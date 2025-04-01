@@ -1391,6 +1391,9 @@ If <code class="docutils literal notranslate"><span class="pre">-relocatable</sp
 
 <p>If <code class="docutils literal notranslate"><span class="pre">-boot</span></code> was not passed, Rocq will add <code class="docutils literal notranslate"><span class="pre">$runtimelib/..</span></code> to the
 OCamlfind search path (as though <code class="docutils literal notranslate"><span class="pre">-I</span> <span class="pre">$runtimelib/..</span></code> was passed).</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">-boot</span></code> was not passed and no <code class="docutils literal notranslate"><span class="pre">-nI</span></code> argument was passed, Rocq will
+also add an implicit <code class="docutils literal notranslate"><span class="pre">-nI</span> <span class="pre">$runtimelib/kernel</span></code> for <a class="reference internal" href="../proofs/writing-proofs/equality.html#coq:tacn.native_compute" title="native_compute"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">native_compute</span></code></a>
+(so if you use <code class="docutils literal notranslate"><span class="pre">-boot</span></code> and native compute you must use <code class="docutils literal notranslate"><span class="pre">-nI</span></code>).</p>
 <p>Then, regardless of <code class="docutils literal notranslate"><span class="pre">-boot</span></code>, Rocq will search for OCamlfind package <code class="docutils literal notranslate"><span class="pre">rocq-runtime</span></code>.</p>
 <dl class="coq exn">
 <dt class="sig sig-object coq" id="coq:exn.Could-not-find-package-rocq-runtime">
