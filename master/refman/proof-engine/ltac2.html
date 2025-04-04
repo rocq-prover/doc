@@ -1657,8 +1657,19 @@ destroy all backtrack and return values.</p>
 </section>
 <section id="backtracking">
 <h4>Backtracking<a class="headerlink" href="#backtracking" title="Permalink to this heading"></a></h4>
-<p>In Ltac2, we have the following backtracking primitives, defined in the
-<code class="docutils literal notranslate"><span class="pre">Control</span></code> module:</p>
+<p>Ltac2 models backtracking computations using streams of values: the head of a non-empty stream represent the first path of computation while its tail stands for the alternative paths of computation when backtracking occurs. The empty stream holding no values represent failure and initiates backtracking.</p>
+<p>Backtracking failures (empty streams) are moreover decorated with exceptions to inform the reason of failure. These exceptions are then passed to the tail of a non-empty backtracking computation. The following Ltac2 type summarizes the model for backtracking computations</p>
+<blockquote>
+<div><div class="coqtop literal-block docutils container">
+<span></span><dl class="simple">
+<dt><span></span><span class="coqdoc-keyword">Ltac</span><span>2 </span><span class="coqdoc-keyword">Type</span><span> </span><span class="coqdoc-keyword">rec</span><span> '</span><span class="coqdoc-var">a</span><span> </span><span class="coqdoc-var">backtracking_stream</span><span> :=</span><span>
+  [ </span><span class="coqdoc-var">EmptyStream</span><span>(</span><span class="coqdoc-var">exn</span><span>)</span><span>
+  | </span><span class="coqdoc-var">ConsStream</span><span>('</span><span class="coqdoc-var">a</span><span>, (</span><span class="coqdoc-var">exn</span><span> -&gt; '</span><span class="coqdoc-var">a</span><span> </span><span class="coqdoc-var">backtracking_stream</span><span>)) ].</span><span>
+</span></dt></dl>
+</div>
+</div></blockquote>
+<p>where <code class="docutils literal notranslate"><span class="pre">EmptyStream</span></code> is a backtracking failure holding an exception and <code class="docutils literal notranslate"><span class="pre">ConsStream</span></code> is a backtracking success with a value <code class="docutils literal notranslate"><span class="pre">'a</span></code> as its head and a backtracking handler parameterized by an exception. When sequenced with additional backtracking computations, a backtracking success may lead to a failure with an exception that will be passed to the handler.</p>
+<p>In practice, the backtracking aspects of Ltac2's computations can be accessed through the following primitives, defined in the <code class="docutils literal notranslate"><span class="pre">Control</span></code> module:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Ltac2 Type &#39;a result := [ Val (&#39;a) | Err (exn) ].
 
 val zero : exn -&gt; &#39;a
@@ -1666,12 +1677,55 @@ val plus : (unit -&gt; &#39;a) -&gt; (exn -&gt; &#39;a) -&gt; &#39;a
 val case : (unit -&gt; &#39;a) -&gt; (&#39;a * (exn -&gt; &#39;a)) result
 </pre></div>
 </div>
-<p>If one views thunks as lazy lists, then <code class="docutils literal notranslate"><span class="pre">zero</span></code> is the empty list and <code class="docutils literal notranslate"><span class="pre">plus</span></code> is
-list concatenation, while <code class="docutils literal notranslate"><span class="pre">case</span></code> is pattern-matching.</p>
+<p>Informally, the primitive <code class="docutils literal notranslate"><span class="pre">zero</span> <span class="pre">e</span></code> ends the current computation and returns to the last backtracking point with exception <code class="docutils literal notranslate"><span class="pre">e</span></code>. In the stream model, it corresponds to the empty stream.
+The primitive <code class="docutils literal notranslate"><span class="pre">plus</span> <span class="pre">t</span> <span class="pre">handler</span></code> installs a backtracking point around <code class="docutils literal notranslate"><span class="pre">t</span></code>, using <code class="docutils literal notranslate"><span class="pre">handler</span></code> to handle any exception raised by a <code class="docutils literal notranslate"><span class="pre">zero</span></code> while evaluating <code class="docutils literal notranslate"><span class="pre">t</span></code>. This corresponds to appending two streams in the stream model.
+Finally, the primitive <code class="docutils literal notranslate"><span class="pre">case</span> <span class="pre">t</span></code> inspects the backtracking structure of a thunked computation <code class="docutils literal notranslate"><span class="pre">t</span></code> and returns <code class="docutils literal notranslate"><span class="pre">Err</span> <span class="pre">e</span></code> if <code class="docutils literal notranslate"><span class="pre">t</span></code> yields <code class="docutils literal notranslate"><span class="pre">zero</span> <span class="pre">e</span></code>, or returns the first backtracking point as a pair <code class="docutils literal notranslate"><span class="pre">Val(v,h)</span></code> of a value <code class="docutils literal notranslate"><span class="pre">v</span></code> and a handler <code class="docutils literal notranslate"><span class="pre">h</span></code> if there is any. In the particular case where the computation <code class="docutils literal notranslate"><span class="pre">t</span> <span class="pre">()</span></code> yields an immediate value <code class="docutils literal notranslate"><span class="pre">v</span></code>, <code class="docutils literal notranslate"><span class="pre">case</span> <span class="pre">t</span></code> returns a trivial backtracking point <code class="docutils literal notranslate"><span class="pre">Val(v,</span> <span class="pre">zero)</span></code>. In the stream model, <code class="docutils literal notranslate"><span class="pre">case</span></code> exposes one layer of the stream acting as pattern-matching.</p>
+<p>Using these three primitives, thunks of type <code class="docutils literal notranslate"><span class="pre">unit</span> <span class="pre">-&gt;</span> <span class="pre">'a</span></code> (corresponding to suspended computations of type <code class="docutils literal notranslate"><span class="pre">'a</span></code>) can be seen as <code class="docutils literal notranslate"><span class="pre">'a</span> <span class="pre">backtracking_stream</span></code> when considering only the backtracking effect:</p>
+<blockquote>
+<div><div class="coqtop literal-block docutils container">
+<span></span><dl class="simple">
+<dt><span></span><span class="coqdoc-keyword">Ltac</span><span>2 </span><span class="coqdoc-keyword">rec</span><span> </span><span class="coqdoc-var">to_stream</span><span> (</span><span class="coqdoc-var">t</span><span> : </span><span class="coqdoc-var">unit</span><span> -&gt; '</span><span class="coqdoc-var">a</span><span>) : '</span><span class="coqdoc-var">a</span><span> </span><span class="coqdoc-var">backtracking_stream</span><span> :=</span><span>
+  </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">Control.case</span><span> </span><span class="coqdoc-var">t</span><span> </span><span class="coqdoc-keyword">with</span><span>
+  | </span><span class="coqdoc-var">Err</span><span> </span><span class="coqdoc-var">e</span><span> =&gt; </span><span class="coqdoc-var">EmptyStream</span><span> </span><span class="coqdoc-var">e</span><span>
+  | </span><span class="coqdoc-var">Val</span><span> (</span><span class="coqdoc-var">v</span><span>, </span><span class="coqdoc-var">h</span><span>) =&gt; </span><span class="coqdoc-var">ConsStream</span><span> </span><span class="coqdoc-var">v</span><span> (</span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">e</span><span> =&gt; </span><span class="coqdoc-var">to_stream</span><span> (</span><span class="coqdoc-keyword">fun</span><span> () =&gt; </span><span class="coqdoc-var">h</span><span> </span><span class="coqdoc-var">e</span><span>))</span><span>
+  </span><span class="coqdoc-keyword">end</span><span>.</span><span>
+</span></dt><dt><span></span><span>
+</span><span class="coqdoc-keyword">Ltac</span><span>2 </span><span class="coqdoc-keyword">rec</span><span> </span><span class="coqdoc-var">from_stream</span><span> (</span><span class="coqdoc-var">s</span><span> : '</span><span class="coqdoc-var">a</span><span> </span><span class="coqdoc-var">backtracking_stream</span><span>) : </span><span class="coqdoc-var">unit</span><span> -&gt; '</span><span class="coqdoc-var">a</span><span> := </span><span class="coqdoc-keyword">fun</span><span> () =&gt;</span><span>
+  </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">s</span><span> </span><span class="coqdoc-keyword">with</span><span>
+  | </span><span class="coqdoc-var">EmptyStream</span><span> </span><span class="coqdoc-var">e</span><span> =&gt; </span><span class="coqdoc-var">Control.zero</span><span> </span><span class="coqdoc-var">e</span><span>
+  | </span><span class="coqdoc-var">ConsStream</span><span> </span><span class="coqdoc-var">hd</span><span> </span><span class="coqdoc-var">tl</span><span> =&gt; </span><span class="coqdoc-var">Control.plus</span><span> (</span><span class="coqdoc-keyword">fun</span><span> () =&gt; </span><span class="coqdoc-var">hd</span><span>) (</span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">e</span><span> =&gt; </span><span class="coqdoc-var">from_stream</span><span> (</span><span class="coqdoc-var">tl</span><span> </span><span class="coqdoc-var">e</span><span>) ())</span><span>
+  </span><span class="coqdoc-keyword">end</span><span>.</span><span>
+</span></dt></dl>
+</div>
+</div></blockquote>
 <p>The backtracking is first-class, i.e. one can write
 <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">plus</span></span></span> <span><span><span class="pre">(fun</span></span></span> <span><span><span class="pre">()</span></span></span> <span><span><span class="pre">=&gt;</span></span></span> <span><span><span class="pre">&quot;x&quot;)</span></span></span> <span><span><span class="pre">(fun</span></span></span> <span><span><span class="pre">_</span></span></span> <span><span><span class="pre">=&gt;</span></span></span> <span><span><span class="pre">&quot;y&quot;)</span></span></span> <span><span><span class="pre">:</span></span></span> <span><span><span class="pre">string</span></span></span></span></code> producing a backtracking string.</p>
-<p>These operations are expected to satisfy a few equations, most notably that they
-form a monoid compatible with sequentialization.:</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Example: Behaviour of first class backtracking</p>
+<div class="coqtop literal-block docutils container">
+<span></span><dl>
+<dt><span></span><span class="coqdoc-keyword">From</span><span> </span><span class="coqdoc-var">Ltac2</span><span> </span><span class="coqdoc-keyword">Require</span><span> </span><span class="coqdoc-keyword">Import</span><span> </span><span class="coqdoc-var">Printf</span><span>.</span><span>
+</span></dt><dt><span></span><span>
+</span><span class="coqdoc-comment">(* `bs` holds a backtracking string *)</span></dt><dt><span></span><span class="coqdoc-keyword">Ltac</span><span>2 </span><span class="coqdoc-var">bs</span><span> () := </span><span class="coqdoc-var">Control.plus</span><span> (</span><span class="coqdoc-keyword">fun</span><span> () =&gt; &quot;x&quot;) (</span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">_</span><span> =&gt; &quot;y&quot;).</span><span>
+</span></dt><dt><span></span><span class="coqdoc-comment">(* Prints the first branch &quot;x&quot; and terminates successfully. *)</span></dt><dt><span></span><span class="coqdoc-keyword">Ltac</span><span>2 </span><span class="coqdoc-keyword">Eval</span><span> (</span><span class="coqdoc-keyword">let</span><span> </span><span class="coqdoc-var">s</span><span> := </span><span class="coqdoc-var">bs</span><span> () </span><span class="coqdoc-tactic">in</span><span> </span><span class="coqdoc-var">printf</span><span> &quot;%s&quot; </span><span class="coqdoc-var">s</span><span>).</span><span>
+</span></dt><dd><span>x
+- : unit = ()
+</span></dd>
+<dt><span></span><span class="coqdoc-comment">(* Prints both branches and returns the error. *)</span></dt><dt><span></span><span class="coqdoc-keyword">Ltac</span><span>2 </span><span class="coqdoc-var">print_and_fail</span><span> (</span><span class="coqdoc-var">s</span><span> : </span><span class="coqdoc-var">string</span><span>) :=</span><span>
+  </span><span class="coqdoc-var">printf</span><span> &quot;%s&quot; </span><span class="coqdoc-var">s</span><span> ;</span><span>
+  </span><span class="coqdoc-var">Control.zero</span><span> (</span><span class="coqdoc-var">Tactic_failure</span><span> </span><span class="coqdoc-var">None</span><span>).</span><span>
+</span></dt><dt><span></span><span>
+</span><span class="coqdoc-keyword">Ltac</span><span>2 </span><span class="coqdoc-keyword">Eval</span><span> (</span><span class="coqdoc-var">Control.case</span><span> (</span><span class="coqdoc-keyword">fun</span><span> () =&gt; </span><span class="coqdoc-keyword">let</span><span> </span><span class="coqdoc-var">s</span><span> := </span><span class="coqdoc-var">bs</span><span> () </span><span class="coqdoc-tactic">in</span><span> </span><span class="coqdoc-var">print_and_fail</span><span> </span><span class="coqdoc-var">s</span><span>)).</span><span>
+</span></dt><dd><span>x
+y
+- : ('a * (exn -&gt; 'a)) result = Err (Tactic_failure None)
+</span></dd>
+</dl>
+</div>
+</div>
+</div></blockquote>
+<p>These operations are expected to satisfy a few equations, validated by the stream model, most notably that they form a monoid-like structure (skewed by exceptions) compatible with sequentialization:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>plus t zero ≡ t ()
 plus (fun () =&gt; zero e) f ≡ f e
 plus (plus t f) g ≡ plus t (fun e =&gt; plus (f e) g)
@@ -1682,9 +1736,10 @@ case (fun () =&gt; plus (fun () =&gt; t) f) ≡ Val (t,f)
 let x := zero e in u ≡ zero e
 let x := plus t f in u ≡ plus (fun () =&gt; let x := t in u) (fun e =&gt; let x := f e in u)
 
-(t, u, f, g, e values)
+(t, f, g, e values)
 </pre></div>
 </div>
+<p>The behaviour of <code class="docutils literal notranslate"><span class="pre">case</span></code> on immediate values can be recovered as <code class="docutils literal notranslate"><span class="pre">case</span> <span class="pre">(fun</span> <span class="pre">()</span> <span class="pre">=&gt;</span> <span class="pre">v)</span> <span class="pre">≡</span> <span class="pre">case</span> <span class="pre">(fun</span> <span class="pre">()</span> <span class="pre">=&gt;</span> <span class="pre">(fun</span> <span class="pre">()</span> <span class="pre">=&gt;</span> <span class="pre">v)</span> <span class="pre">())</span> <span class="pre">≡</span> <span class="pre">case</span> <span class="pre">(fun</span> <span class="pre">()</span> <span class="pre">=&gt;</span> <span class="pre">plus</span> <span class="pre">(fun</span> <span class="pre">()</span> <span class="pre">=&gt;</span> <span class="pre">v)</span> <span class="pre">zero)</span> <span class="pre">≡</span> <span class="pre">Val(v,</span> <span class="pre">zero)</span></code>.</p>
 </section>
 <section id="goals">
 <h4>Goals<a class="headerlink" href="#goals" title="Permalink to this heading"></a></h4>
