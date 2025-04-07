@@ -1,29 +1,28 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Coinductive types and corecursive functions &mdash; The Rocq Prover 9.1+alpha documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/ansi.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/coqdoc.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/notations.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/pre-text.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/ansi.css?v=df714dbc" />
+      <link rel="stylesheet" type="text/css" href="../../_static/coqdoc.css?v=2fe46aa3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/notations.css?v=ef8e2f7d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pre-text.css?v=1bed1d2d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=8a0755b4" />
+
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
-        <script src="../../_static/notations.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=a65fab5e"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/notations.js?v=7e0edea7"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,14 +35,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> The Rocq Prover
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            The Rocq Prover
           </a>
-              <div class="version">
-                9.1+alpha
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -1180,9 +1180,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">Core language</a> &raquo;</li>
-      <li>Coinductive types and corecursive functions</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Core language</a></li>
+      <li class="breadcrumb-item active">Coinductive types and corecursive functions</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/coq/coq/blob/master/doc/sphinx/language/core/coinductive.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -1264,9 +1264,9 @@
 \newcommand{\zeroone}[1]{[{#1}]}
 \end{split}\]</div>
 <section id="coinductive-types-and-corecursive-functions">
-<h1>Coinductive types and corecursive functions<a class="headerlink" href="#coinductive-types-and-corecursive-functions" title="Permalink to this heading"></a></h1>
+<h1>Coinductive types and corecursive functions<a class="headerlink" href="#coinductive-types-and-corecursive-functions" title="Link to this heading"></a></h1>
 <section id="coinductive-types">
-<span id="id1"></span><h2>Coinductive types<a class="headerlink" href="#coinductive-types" title="Permalink to this heading"></a></h2>
+<span id="id1"></span><h2>Coinductive types<a class="headerlink" href="#coinductive-types" title="Link to this heading"></a></h2>
 <p>The objects of an inductive type are well-founded with respect to the
 constructors of the type. In other words, such objects contain only a
 <em>finite</em> number of constructors. Coinductive types arise from relaxing
@@ -1278,7 +1278,7 @@ of the type.</p>
 <span id="id2">[<a class="reference internal" href="../../zebibliography.html#id26" title="E. Giménez. An application of co-inductive types in coq: verification of the alternating bit protocol. In Workshop on Types for Proofs and Programs, number 1158 in Lecture Notes in Computer Science, 135-152. Springer-Verlag, 1995.">Gimenez95</a>, <a class="reference internal" href="../../zebibliography.html#id24" title="E. Giménez. A tutorial on recursive types in coq. Technical Report, INRIA, March 1998.">Gimenez98</a>, <a class="reference internal" href="../../zebibliography.html#id25" title="E. Giménez and P. Castéran. A tutorial on [co-]inductive types in coq. available at http://coq.inria.fr/doc, January 2005.">GimenezCasteran05</a>]</span>.</p>
 <dl class="coq cmd">
 <dt class="sig sig-object coq" id="coq:cmd.CoInductive">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">CoInductive</span></span></span> <a class="reference internal" href="inductive.html#grammar-token-inductive_definition"><span class="hole"><span class="pre">inductive_definition</span></span></a> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">with</span></span></span> <a class="reference internal" href="inductive.html#grammar-token-inductive_definition"><span class="hole"><span class="pre">inductive_definition</span></span></a></span><span class="notation-sup"><span class="pre">*</span></span></span></span></span><a class="headerlink" href="#coq:cmd.CoInductive" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">CoInductive</span></span></span> <a class="reference internal" href="inductive.html#grammar-token-inductive_definition"><span class="hole"><span class="pre">inductive_definition</span></span></a> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">with</span></span></span> <a class="reference internal" href="inductive.html#grammar-token-inductive_definition"><span class="hole"><span class="pre">inductive_definition</span></span></a></span><span class="notation-sup"><span class="pre">*</span></span></span></span></span><a class="headerlink" href="#coq:cmd.CoInductive" title="Link to this definition"></a></dt>
 <dt class="sig sig-object coq">
 <em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">CoInductive</span></span></span> <a class="reference internal" href="records.html#grammar-token-record_definition"><span class="hole"><span class="pre">record_definition</span></span></a> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">with</span></span></span> <a class="reference internal" href="records.html#grammar-token-record_definition"><span class="hole"><span class="pre">record_definition</span></span></a></span><span class="notation-sup"><span class="pre">*</span></span></span></span></span></dt>
 <dd><p>This command introduces a coinductive type.
@@ -1338,7 +1338,7 @@ object of type <code class="code Coq docutils literal notranslate"><span class="
 objects in Section <a class="reference internal" href="#cofixpoint"><span class="std std-ref">Top-level definitions of corecursive functions</span></a>.</p>
 </div>
 <section id="caveat">
-<h3>Caveat<a class="headerlink" href="#caveat" title="Permalink to this heading"></a></h3>
+<h3>Caveat<a class="headerlink" href="#caveat" title="Link to this heading"></a></h3>
 <p>The ability to define coinductive types by constructors, hereafter called
 <em>positive coinductive types</em>, is known to break subject reduction. The story is
 a bit long: this is due to dependent pattern-matching which implies
@@ -1404,7 +1404,7 @@ records and primitive projections.</p>
 </section>
 </section>
 <section id="co-recursive-functions-cofix">
-<span id="index-0"></span><h2>Co-recursive functions: cofix<a class="headerlink" href="#co-recursive-functions-cofix" title="Permalink to this heading"></a></h2>
+<span id="index-0"></span><h2>Co-recursive functions: cofix<a class="headerlink" href="#co-recursive-functions-cofix" title="Link to this heading"></a></h2>
 <span class="prodn-table"><span class="prodn-column-group"><span class="prodn-column"></span><span class="prodn-column"></span><span class="prodn-column"></span><span class="prodn-column"></span></span><span class="prodn-row-group"><span class="prodn-row"><span class="prodn-cell-nonterminal"><span class="prodn-target"><span class="target" id="grammar-token-term_cofix"></span></span><span class="notation"><a class="reference internal" href="#grammar-token-term_cofix"><span class="hole">term_cofix</span></a></span></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">::=</span></code></span><span class="prodn-cell-production"><span class="notation"><span><span>let</span></span> <span><span>cofix</span></span> <a class="reference internal" href="#grammar-token-cofix_body"><span class="hole">cofix_body</span></a> <span><span>in</span></span> <a class="reference internal" href="basic.html#grammar-token-term"><span class="hole">term</span></a></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span><span class="prodn-row"><span class="prodn-cell-nonterminal"><code class="docutils literal notranslate"></code></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">|</span></code></span><span class="prodn-cell-production"><span class="notation"><span><span>cofix</span></span> <a class="reference internal" href="#grammar-token-cofix_body"><span class="hole">cofix_body</span></a> <span class="repeat-wrapper"><span class="repeat"><span class="repeat-wrapper"><span class="repeat"><span><span>with</span></span> <a class="reference internal" href="#grammar-token-cofix_body"><span class="hole">cofix_body</span></a></span><span class="notation-sup">+</span></span> <span><span>for</span></span> <a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole">ident</span></a></span><span class="notation-sup">?</span></span></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span><span class="prodn-row"><span class="prodn-cell-nonterminal"><span class="prodn-target"><span class="target" id="grammar-token-cofix_body"></span></span><span class="notation"><a class="reference internal" href="#grammar-token-cofix_body"><span class="hole">cofix_body</span></a></span></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">::=</span></code></span><span class="prodn-cell-production"><span class="notation"><a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole">ident</span></a> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="assumptions.html#grammar-token-binder"><span class="hole">binder</span></a></span><span class="notation-sup">*</span></span> <span class="repeat-wrapper"><span class="repeat"><span><span>:</span></span> <a class="reference internal" href="basic.html#grammar-token-type"><span class="hole">type</span></a></span><span class="notation-sup">?</span></span> <span><span>:=</span></span> <a class="reference internal" href="basic.html#grammar-token-term"><span class="hole">term</span></a></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span></span></span><p>The expression
 &quot;<code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">cofix</span></span></span> <a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span><sub><span class="pre">1</span></sub></span></a> <a class="reference internal" href="assumptions.html#grammar-token-binder"><span class="hole"><span class="pre">binder</span><sub><span class="pre">1</span></sub></span></a> <span><span><span class="pre">:</span></span></span> <a class="reference internal" href="basic.html#grammar-token-type"><span class="hole"><span class="pre">type</span><sub><span class="pre">1</span></sub></span></a> <span><span><span class="pre">with</span></span></span> <span><span><span class="pre">…</span></span></span> <span><span><span class="pre">with</span></span></span> <a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span><sub><span class="pre">n</span></sub></span></a> <a class="reference internal" href="assumptions.html#grammar-token-binder"><span class="hole"><span class="pre">binder</span><sub><span class="pre">n</span></sub></span></a> <span><span><span class="pre">:</span></span></span> <a class="reference internal" href="basic.html#grammar-token-type"><span class="hole"><span class="pre">type</span><sub><span class="pre">n</span></sub></span></a> <span><span><span class="pre">for</span></span></span> <a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span><sub><span class="pre">i</span></sub></span></a></span></code>&quot;
 denotes the <span class="math notranslate nohighlight">\(i\)</span>-th component of a block of terms defined by a mutual guarded
@@ -1412,10 +1412,10 @@ corecursion. It is the local counterpart of the <a class="reference internal" hr
 <span class="math notranslate nohighlight">\(n=1\)</span>, the &quot;<code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">for</span></span></span> <a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span><sub><span class="pre">i</span></sub></span></a></span></code>&quot; clause is omitted.</p>
 </section>
 <section id="top-level-definitions-of-corecursive-functions">
-<span id="cofixpoint"></span><h2>Top-level definitions of corecursive functions<a class="headerlink" href="#top-level-definitions-of-corecursive-functions" title="Permalink to this heading"></a></h2>
+<span id="cofixpoint"></span><h2>Top-level definitions of corecursive functions<a class="headerlink" href="#top-level-definitions-of-corecursive-functions" title="Link to this heading"></a></h2>
 <dl class="coq cmd">
 <dt class="sig sig-object coq" id="coq:cmd.CoFixpoint">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">CoFixpoint</span></span></span> <a class="reference internal" href="#grammar-token-cofix_definition"><span class="hole"><span class="pre">cofix_definition</span></span></a> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">with</span></span></span> <a class="reference internal" href="#grammar-token-cofix_definition"><span class="hole"><span class="pre">cofix_definition</span></span></a></span><span class="notation-sup"><span class="pre">*</span></span></span></span></span><a class="headerlink" href="#coq:cmd.CoFixpoint" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">CoFixpoint</span></span></span> <a class="reference internal" href="#grammar-token-cofix_definition"><span class="hole"><span class="pre">cofix_definition</span></span></a> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">with</span></span></span> <a class="reference internal" href="#grammar-token-cofix_definition"><span class="hole"><span class="pre">cofix_definition</span></span></a></span><span class="notation-sup"><span class="pre">*</span></span></span></span></span><a class="headerlink" href="#coq:cmd.CoFixpoint" title="Link to this definition"></a></dt>
 <dd><span class="prodn-table"><span class="prodn-column-group"><span class="prodn-column"></span><span class="prodn-column"></span><span class="prodn-column"></span><span class="prodn-column"></span></span><span class="prodn-row-group"><span class="prodn-row"><span class="prodn-cell-nonterminal"><span class="prodn-target"><span class="target" id="grammar-token-cofix_definition"></span></span><span class="notation"><a class="reference internal" href="#grammar-token-cofix_definition"><span class="hole">cofix_definition</span></a></span></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">::=</span></code></span><span class="prodn-cell-production"><span class="notation"><a class="reference internal" href="assumptions.html#grammar-token-ident_decl"><span class="hole">ident_decl</span></a> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="assumptions.html#grammar-token-binder"><span class="hole">binder</span></a></span><span class="notation-sup">*</span></span> <span class="repeat-wrapper"><span class="repeat"><span><span>:</span></span> <a class="reference internal" href="basic.html#grammar-token-type"><span class="hole">type</span></a></span><span class="notation-sup">?</span></span> <span class="repeat-wrapper"><span class="repeat"><span><span>:=</span></span> <a class="reference internal" href="basic.html#grammar-token-term"><span class="hole">term</span></a></span><span class="notation-sup">?</span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../../user-extensions/syntax-extensions.html#grammar-token-decl_notations"><span class="hole">decl_notations</span></a></span><span class="notation-sup">?</span></span></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span></span></span><p>This command introduces a method for constructing an infinite object of a
 coinductive type. For example, the stream containing all natural numbers can
 be introduced by applying the following method to the number <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">O</span></span></code> (see

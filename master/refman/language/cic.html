@@ -1,29 +1,28 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Typing rules &mdash; The Rocq Prover 9.1+alpha documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/ansi.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/coqdoc.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/notations.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/pre-text.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/ansi.css?v=df714dbc" />
+      <link rel="stylesheet" type="text/css" href="../_static/coqdoc.css?v=2fe46aa3" />
+      <link rel="stylesheet" type="text/css" href="../_static/notations.css?v=ef8e2f7d" />
+      <link rel="stylesheet" type="text/css" href="../_static/pre-text.css?v=1bed1d2d" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=8a0755b4" />
+
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
-        <script src="../_static/notations.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=a65fab5e"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/notations.js?v=7e0edea7"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,14 +35,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> The Rocq Prover
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            The Rocq Prover
           </a>
-              <div class="version">
-                9.1+alpha
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -1180,9 +1180,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="core/index.html">Core language</a> &raquo;</li>
-      <li>Typing rules</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="core/index.html">Core language</a></li>
+      <li class="breadcrumb-item active">Typing rules</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/coq/coq/blob/master/doc/sphinx/language/cic.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -1264,14 +1264,14 @@
 \newcommand{\zeroone}[1]{[{#1}]}
 \end{split}\]</div>
 <section id="typing-rules">
-<h1>Typing rules<a class="headerlink" href="#typing-rules" title="Permalink to this heading"></a></h1>
+<h1>Typing rules<a class="headerlink" href="#typing-rules" title="Link to this heading"></a></h1>
 <p>The underlying formal language of the Rocq Prover is a
 <span class="term-defn"><span class="target" id="term-Calculus-of-Inductive-Constructions"></span>Calculus of Inductive Constructions</span> (CIC) whose inference rules
 are presented in this
 chapter. The history of this formalism as well as pointers to related
 work are provided in a separate chapter; see <a class="reference internal" href="../history.html#history"><span class="std std-ref">Early history of Coq</span></a>.</p>
 <section id="the-terms">
-<span id="id1"></span><h2>The terms<a class="headerlink" href="#the-terms" title="Permalink to this heading"></a></h2>
+<span id="id1"></span><h2>The terms<a class="headerlink" href="#the-terms" title="Link to this heading"></a></h2>
 <p>The expressions of the CIC are <em>terms</em> and all terms have a <em>type</em>.
 There are types for functions (or programs), there are atomic types
 (especially datatypes)... but also types for proofs and types for the
@@ -1348,7 +1348,7 @@ which associate with each natural number <span class="math notranslate nohighlig
 consequently represent the type of proofs of the formula “<span class="math notranslate nohighlight">\(∀ x.~P(x)\)</span>”.</p>
 </section>
 <section id="id4">
-<span id="id5"></span><h2>Typing rules<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<span id="id5"></span><h2>Typing rules<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
 <p>As objects of type theory, terms are subjected to <em>type discipline</em>.
 The well typing of a term depends on a local context and a global environment.</p>
 <p id="local-context"><strong>Local context.</strong>
@@ -1399,7 +1399,7 @@ there exists a local context <span class="math notranslate nohighlight">\(\Gamma
 that the judgment <span class="math notranslate nohighlight">\(\WTEG{t}{T}\)</span> can be derived from the
 following rules.</p>
 <dl>
-<dt id="inference-W-Empty">W-Empty</dt><dd><div class="math notranslate nohighlight">
+<dt>W-Empty</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 %
 }{%
@@ -1408,7 +1408,7 @@ following rules.</p>
 </dd>
 </dl>
 <dl>
-<dt id="inference-W-Local-Assum">W-Local-Assum</dt><dd><div class="math notranslate nohighlight">
+<dt>W-Local-Assum</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 \WTEG{T}{s}%
 \hspace{3em}%
@@ -1421,7 +1421,7 @@ x \not\in \Gamma % \cup E%
 </dd>
 </dl>
 <dl>
-<dt id="inference-W-Local-Def">W-Local-Def</dt><dd><div class="math notranslate nohighlight">
+<dt>W-Local-Def</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 \WTEG{t}{T}%
 \hspace{3em}%
@@ -1432,7 +1432,7 @@ x \not\in \Gamma % \cup E%
 </dd>
 </dl>
 <dl>
-<dt id="inference-W-Global-Assum">W-Global-Assum</dt><dd><div class="math notranslate nohighlight">
+<dt>W-Global-Assum</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 \WTE{}{T}{s}%
 \hspace{3em}%
@@ -1445,7 +1445,7 @@ c \notin E%
 </dd>
 </dl>
 <dl>
-<dt id="inference-W-Global-Def">W-Global-Def</dt><dd><div class="math notranslate nohighlight">
+<dt>W-Global-Def</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 \WTE{}{t}{T}%
 \hspace{3em}%
@@ -1456,7 +1456,7 @@ c \notin E%
 </dd>
 </dl>
 <dl>
-<dt id="inference-Ax-SProp">Ax-SProp</dt><dd><div class="math notranslate nohighlight">
+<dt>Ax-SProp</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 \WFE{\Gamma}%
 }{%
@@ -1465,7 +1465,7 @@ c \notin E%
 </dd>
 </dl>
 <dl>
-<dt id="inference-Ax-Prop">Ax-Prop</dt><dd><div class="math notranslate nohighlight">
+<dt>Ax-Prop</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 \WFE{\Gamma}%
 }{%
@@ -1474,7 +1474,7 @@ c \notin E%
 </dd>
 </dl>
 <dl>
-<dt id="inference-Ax-Set">Ax-Set</dt><dd><div class="math notranslate nohighlight">
+<dt>Ax-Set</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 \WFE{\Gamma}%
 }{%
@@ -1483,7 +1483,7 @@ c \notin E%
 </dd>
 </dl>
 <dl>
-<dt id="inference-Ax-Type">Ax-Type</dt><dd><div class="math notranslate nohighlight">
+<dt>Ax-Type</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 \WFE{\Gamma}%
 }{%
@@ -1492,7 +1492,7 @@ c \notin E%
 </dd>
 </dl>
 <dl>
-<dt id="inference-Var">Var</dt><dd><div class="math notranslate nohighlight">
+<dt>Var</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 \WFE{\Gamma}%
 \hspace{3em}%
@@ -1503,7 +1503,7 @@ c \notin E%
 </dd>
 </dl>
 <dl>
-<dt id="inference-Const">Const</dt><dd><div class="math notranslate nohighlight">
+<dt>Const</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 \WFE{\Gamma}%
 \hspace{3em}%
@@ -1514,7 +1514,7 @@ c \notin E%
 </dd>
 </dl>
 <dl>
-<dt id="inference-Prod-SProp">Prod-SProp</dt><dd><div class="math notranslate nohighlight">
+<dt>Prod-SProp</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 \WTEG{T}{s}%
 \hspace{3em}%
@@ -1527,7 +1527,7 @@ s \in {\Sort}%
 </dd>
 </dl>
 <dl>
-<dt id="inference-Prod-Prop">Prod-Prop</dt><dd><div class="math notranslate nohighlight">
+<dt>Prod-Prop</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 \WTEG{T}{s}%
 \hspace{3em}%
@@ -1540,7 +1540,7 @@ s \in \Sort%
 </dd>
 </dl>
 <dl>
-<dt id="inference-Prod-Set">Prod-Set</dt><dd><div class="math notranslate nohighlight">
+<dt>Prod-Set</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 \WTEG{T}{s}%
 \hspace{3em}%
@@ -1553,7 +1553,7 @@ s \in \{\SProp, \Prop, \Set\}%
 </dd>
 </dl>
 <dl>
-<dt id="inference-Prod-Type">Prod-Type</dt><dd><div class="math notranslate nohighlight">
+<dt>Prod-Type</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 \WTEG{T}{s}%
 \hspace{3em}%
@@ -1566,7 +1566,7 @@ s \in \{\SProp, \Type(i)\}%
 </dd>
 </dl>
 <dl>
-<dt id="inference-Lam">Lam</dt><dd><div class="math notranslate nohighlight">
+<dt>Lam</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 \WTEG{∀ x:T,~U}{s}%
 \hspace{3em}%
@@ -1577,7 +1577,7 @@ s \in \{\SProp, \Type(i)\}%
 </dd>
 </dl>
 <dl id="app-rule">
-<dt id="inference-App">App</dt><dd><div class="math notranslate nohighlight">
+<dt>App</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 \WTEG{t}{∀ x:U,~T}%
 \hspace{3em}%
@@ -1588,7 +1588,7 @@ s \in \{\SProp, \Type(i)\}%
 </dd>
 </dl>
 <dl>
-<dt id="inference-Let">Let</dt><dd><div class="math notranslate nohighlight">
+<dt>Let</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 \WTEG{t}{T}%
 \hspace{3em}%
@@ -1620,7 +1620,7 @@ is ill-typed.</p>
 </div>
 </section>
 <section id="subtyping-rules">
-<span id="id6"></span><h2>Subtyping rules<a class="headerlink" href="#subtyping-rules" title="Permalink to this heading"></a></h2>
+<span id="id6"></span><h2>Subtyping rules<a class="headerlink" href="#subtyping-rules" title="Link to this heading"></a></h2>
 <p>At the moment, we did not take into account one rule between universes
 which says that any term in a universe of index <span class="math notranslate nohighlight">\(i\)</span> is also a term in
 the universe of index <span class="math notranslate nohighlight">\(i+1\)</span> (this is the <em>cumulativity</em> rule of CIC).
@@ -1670,7 +1670,7 @@ fully applied, i.e., they have a sort as a type) if</p>
 </ol>
 <p>The conversion rule up to subtyping is now exactly:</p>
 <dl>
-<dt id="inference-Conv">Conv</dt><dd><div class="math notranslate nohighlight">
+<dt>Conv</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 E[Γ] ⊢ U : s%
 \hspace{3em}%
@@ -1702,7 +1702,7 @@ can be reducible. Similar notions of head-normal forms involving δ, ι
 and ζ reductions or any combination of those can also be defined.</p>
 </section>
 <section id="the-calculus-of-inductive-constructions-with-impredicative-set">
-<span id="the-calculus-of-inductive-construction-with-impredicative-set"></span><h2>The Calculus of Inductive Constructions with impredicative Set<a class="headerlink" href="#the-calculus-of-inductive-constructions-with-impredicative-set" title="Permalink to this heading"></a></h2>
+<span id="the-calculus-of-inductive-construction-with-impredicative-set"></span><h2>The Calculus of Inductive Constructions with impredicative Set<a class="headerlink" href="#the-calculus-of-inductive-constructions-with-impredicative-set" title="Link to this heading"></a></h2>
 <p>The Rocq Prover can be used as a type checker for the Calculus of Inductive
 Constructions with an impredicative sort <span class="math notranslate nohighlight">\(\Set\)</span> by using the compiler
 option <code class="docutils literal notranslate"><span class="pre">-impredicative-set</span></code>. For example, using the ordinary <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">repl</span></code>
@@ -1725,7 +1725,7 @@ while it is expected to have type &quot;</span><span class="ansi-fg-yellow ansi-
 <p>The major change in the theory concerns the rule for product formation
 in the sort <span class="math notranslate nohighlight">\(\Set\)</span>, which is extended to a domain in any sort:</p>
 <dl>
-<dt id="inference-ProdImp">ProdImp</dt><dd><div class="math notranslate nohighlight">
+<dt>ProdImp</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 E[Γ] ⊢ T : s%
 \hspace{3em}%
@@ -1745,7 +1745,7 @@ quantifier (<code class="code Coq docutils literal notranslate"><span class="nam
 performed on such definitions. The elimination rules in the
 impredicative system for sort <span class="math notranslate nohighlight">\(\Set\)</span> become:</p>
 <dl>
-<dt id="inference-Set1">Set1</dt><dd><div class="math notranslate nohighlight">
+<dt>Set1</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 s ∈ \{\Prop, \Set\}%
 }{%
@@ -1754,7 +1754,7 @@ s ∈ \{\Prop, \Set\}%
 </dd>
 </dl>
 <dl>
-<dt id="inference-Set2">Set2</dt><dd><div class="math notranslate nohighlight">
+<dt>Set2</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 I~\kw{is a small inductive definition}%
 \hspace{3em}%

@@ -1,29 +1,28 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Implicit Coercions &mdash; The Rocq Prover 9.1+alpha documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/ansi.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/coqdoc.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/notations.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/pre-text.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/ansi.css?v=df714dbc" />
+      <link rel="stylesheet" type="text/css" href="../_static/coqdoc.css?v=2fe46aa3" />
+      <link rel="stylesheet" type="text/css" href="../_static/notations.css?v=ef8e2f7d" />
+      <link rel="stylesheet" type="text/css" href="../_static/pre-text.css?v=1bed1d2d" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=8a0755b4" />
+
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
-        <script src="../_static/notations.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=a65fab5e"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/notations.js?v=7e0edea7"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,14 +35,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> The Rocq Prover
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            The Rocq Prover
           </a>
-              <div class="version">
-                9.1+alpha
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -1180,9 +1180,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../language/extensions/index.html">Language extensions</a> &raquo;</li>
-      <li>Implicit Coercions</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../language/extensions/index.html">Language extensions</a></li>
+      <li class="breadcrumb-item active">Implicit Coercions</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/coq/coq/blob/master/doc/sphinx/addendum/implicit-coercions.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -1264,14 +1264,14 @@
 \newcommand{\zeroone}[1]{[{#1}]}
 \end{split}\]</div>
 <section id="implicit-coercions">
-<span id="coercions"></span><h1>Implicit Coercions<a class="headerlink" href="#implicit-coercions" title="Permalink to this heading"></a></h1>
+<span id="coercions"></span><h1>Implicit Coercions<a class="headerlink" href="#implicit-coercions" title="Link to this heading"></a></h1>
 <dl class="field-list simple">
-<dt class="field-odd">Author</dt>
+<dt class="field-odd">Author<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Amokrane Saïbi</p>
 </dd>
 </dl>
 <section id="general-presentation">
-<h2>General Presentation<a class="headerlink" href="#general-presentation" title="Permalink to this heading"></a></h2>
+<h2>General Presentation<a class="headerlink" href="#general-presentation" title="Link to this heading"></a></h2>
 <p>This section describes one inheritance mechanism of the Rocq Prover. With
 inheritance, we are not interested in adding any expressive power to
 our theory, but only convenience. Given a term, possibly not typable,
@@ -1289,7 +1289,7 @@ as a function: bijection, functor, any structure morphism etc.</p></li>
 </div></blockquote>
 </section>
 <section id="coercion-classes">
-<span id="classes-implicit-coercions"></span><h2>Coercion Classes<a class="headerlink" href="#coercion-classes" title="Permalink to this heading"></a></h2>
+<span id="classes-implicit-coercions"></span><h2>Coercion Classes<a class="headerlink" href="#coercion-classes" title="Link to this heading"></a></h2>
 <p>A class with <span class="math notranslate nohighlight">\(n\)</span> parameters is any defined name with a type
 <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">forall</span></span></span> <span><span><span class="pre">(</span></span></span><a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span><sub><span class="pre">1</span></sub></span></a> <span><span><span class="pre">:</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-type"><span class="hole"><span class="pre">type</span><sub><span class="pre">1</span></sub></span></a><span><span><span class="pre">)..(</span></span></span><a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span><sub><span class="pre">n</span></sub></span></a><span><span><span class="pre">:</span></span></span><a class="reference internal" href="../language/core/basic.html#grammar-token-type"><span class="hole"><span class="pre">type</span><sub><span class="pre">n</span></sub></span></a><span><span><span class="pre">),</span></span></span> <a class="reference internal" href="../language/core/sorts.html#grammar-token-sort"><span class="hole"><span class="pre">sort</span></span></a></span></code>.  Thus a class with
 parameters is considered as a single class and not as a family of
@@ -1314,7 +1314,7 @@ special properties defined with the <a class="reference internal" href="type-cla
 </div>
 </section>
 <section id="id1">
-<h2>Coercions<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<h2>Coercions<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
 <p>A name <code class="docutils literal notranslate"><span class="pre">f</span></code> can be declared as a coercion between a source user-defined class
 <code class="docutils literal notranslate"><span class="pre">C</span></code> with <span class="math notranslate nohighlight">\(n\)</span> parameters and a target class <code class="docutils literal notranslate"><span class="pre">D</span></code> if one of these
 conditions holds:</p>
@@ -1347,7 +1347,7 @@ apply the coercion <code class="docutils literal notranslate"><span class="pre">
 then an object of <code class="docutils literal notranslate"><span class="pre">D</span></code>.</p>
 </section>
 <section id="reversible-coercions">
-<h2>Reversible Coercions<a class="headerlink" href="#reversible-coercions" title="Permalink to this heading"></a></h2>
+<h2>Reversible Coercions<a class="headerlink" href="#reversible-coercions" title="Link to this heading"></a></h2>
 <p>When a term cannot be coerced (directly) to its expected type, Rocq tries to
 use a <span class="term-defn"><span class="target" id="term-reversible-coercion"></span>reversible coercion</span> (see the <a class="reference internal" href="#coq:attr.reversible" title="reversible"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">reversible</span></code></a> attribute). Intuitively,
 Rocq synthesizes a new term of the right type that can be coerced
@@ -1371,13 +1371,13 @@ inferring <code class="code Coq docutils literal notranslate"><span class="opera
 <p>See the <a class="reference internal" href="#example-reversible-coercion"><span class="std std-ref">example below</span></a>.</p>
 </section>
 <section id="identity-coercions">
-<h2>Identity Coercions<a class="headerlink" href="#identity-coercions" title="Permalink to this heading"></a></h2>
+<h2>Identity Coercions<a class="headerlink" href="#identity-coercions" title="Link to this heading"></a></h2>
 <p>To make coercions work for both a named class and for
 <code class="docutils literal notranslate"><span class="pre">Sortclass</span></code> or <code class="docutils literal notranslate"><span class="pre">Funclass</span></code>, use the <a class="reference internal" href="#coq:cmd.Identity-Coercion" title="Identity Coercion"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Identity</span> <span class="pre">Coercion</span></code></a> command.
 There is an example <a class="reference internal" href="#example-identity-coercion"><span class="std std-ref">here</span></a>.</p>
 </section>
 <section id="inheritance-graph">
-<h2>Inheritance Graph<a class="headerlink" href="#inheritance-graph" title="Permalink to this heading"></a></h2>
+<h2>Inheritance Graph<a class="headerlink" href="#inheritance-graph" title="Link to this heading"></a></h2>
 <p>Coercions form an inheritance graph with classes as nodes.  We call
 <em>coercion path</em> an ordered list of coercions between two nodes of
 the graph.  A class <code class="docutils literal notranslate"><span class="pre">C</span></code> is said to be a subclass of <code class="docutils literal notranslate"><span class="pre">D</span></code> if there is a
@@ -1394,10 +1394,10 @@ by the coercions <code class="docutils literal notranslate"><span class="pre">f�
 term consists of the successive application of its coercions.</p>
 </section>
 <section id="id2">
-<h2>Coercion Classes<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2>Coercion Classes<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
 <dl class="coq cmd">
 <dt class="sig sig-object coq" id="coq:cmd.Coercion">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Coercion</span></span></span> <a class="reference internal" href="../proof-engine/vernacular-commands.html#grammar-token-reference"><span class="hole"><span class="pre">reference</span></span></a> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">:</span></span></span> <a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span></span></a> <span><span><span class="pre">&gt;-&gt;</span></span></span> <a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span></span></span><a class="headerlink" href="#coq:cmd.Coercion" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Coercion</span></span></span> <a class="reference internal" href="../proof-engine/vernacular-commands.html#grammar-token-reference"><span class="hole"><span class="pre">reference</span></span></a> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">:</span></span></span> <a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span></span></a> <span><span><span class="pre">&gt;-&gt;</span></span></span> <a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span></span></span><a class="headerlink" href="#coq:cmd.Coercion" title="Link to this definition"></a></dt>
 <dt class="sig sig-object coq">
 <em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Coercion</span></span></span> <a class="reference internal" href="../language/core/assumptions.html#grammar-token-ident_decl"><span class="hole"><span class="pre">ident_decl</span></span></a> <a class="reference internal" href="../language/core/definitions.html#grammar-token-def_body"><span class="hole"><span class="pre">def_body</span></span></a></span></span></dt>
 <dd><p>The first form declares the construction denoted by <a class="reference internal" href="../proof-engine/vernacular-commands.html#grammar-token-reference"><code class="xref std std-token docutils literal notranslate"><span class="pre">reference</span></code></a> as a coercion between
@@ -1414,7 +1414,7 @@ See the <a class="reference internal" href="#example-reversible-coercion-attribu
 </dl>
 <dl class="coq attr">
 <dt class="sig sig-object coq" id="coq:attr.reversible">
-<em class="property"><span class="sigannot"><span class="pre">Attribute</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">reversible</span></span></span><span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">=</span></span></span> <span class="alternative"><span class="alternative-block"><span><span><span class="pre">yes</span></span></span></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><span><span><span class="pre">no</span></span></span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span></span></span><a class="headerlink" href="#coq:attr.reversible" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Attribute</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">reversible</span></span></span><span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">=</span></span></span> <span class="alternative"><span class="alternative-block"><span><span><span class="pre">yes</span></span></span></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><span><span><span class="pre">no</span></span></span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span></span></span><a class="headerlink" href="#coq:attr.reversible" title="Link to this definition"></a></dt>
 <dd><p>This <a class="reference internal" href="../language/core/basic.html#term-attribute"><span class="xref std std-term">attribute</span></a> allows the coercion to be used as a
 <a class="reference internal" href="#term-reversible-coercion"><span class="xref std std-term">reversible coercion</span></a>. By default coercions are not reversible except for
 <a class="reference internal" href="../language/core/records.html#coq:cmd.Record" title="Record"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Record</span></code></a> fields specified using <code class="code Coq docutils literal notranslate"><span class="operator"><span class="pre">:&gt;</span></span></code>.</p>
@@ -1422,7 +1422,7 @@ See the <a class="reference internal" href="#example-reversible-coercion-attribu
 
 <dl class="coq attr">
 <dt class="sig sig-object coq" id="coq:attr.nonuniform">
-<em class="property"><span class="sigannot"><span class="pre">Attribute</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">nonuniform</span></span></span></span></span><a class="headerlink" href="#coq:attr.nonuniform" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Attribute</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">nonuniform</span></span></span></span></span><a class="headerlink" href="#coq:attr.nonuniform" title="Link to this definition"></a></dt>
 <dd><p>Silence the non uniform inheritance warning.</p>
 <div class="deprecated">
 <p><span class="versionmodified deprecated">Deprecated since version 8.18: </span>Use the <a class="reference internal" href="../language/core/basic.html#coq:attr.warnings" title="warnings"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">warnings</span></code></a> attribute instead with &quot;-uniform-inheritance&quot;.</p>
@@ -1431,57 +1431,57 @@ See the <a class="reference internal" href="#example-reversible-coercion-attribu
 
 <dl class="coq exn">
 <dt class="sig sig-object coq" id="coq:exn.‘qualid’-not-declared">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">declared.</span></span></span></span></span><a class="headerlink" href="#coq:exn.‘qualid’-not-declared" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">declared.</span></span></span></span></span><a class="headerlink" href="#coq:exn.‘qualid’-not-declared" title="Link to this definition"></a></dt>
 <dd><p><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><code class="xref std std-token docutils literal notranslate"><span class="pre">qualid</span></code></a> is not defined globally.</p>
 </dd></dl>
 
 <dl class="coq exn">
 <dt class="sig sig-object coq" id="coq:exn.‘qualid’-is-already-a-coercion">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">already</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">coercion.</span></span></span></span></span><a class="headerlink" href="#coq:exn.‘qualid’-is-already-a-coercion" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">already</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">coercion.</span></span></span></span></span><a class="headerlink" href="#coq:exn.‘qualid’-is-already-a-coercion" title="Link to this definition"></a></dt>
 <dd><p><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><code class="xref std std-token docutils literal notranslate"><span class="pre">qualid</span></code></a> is already registered as a coercion.</p>
 </dd></dl>
 
 <dl class="coq exn">
 <dt class="sig sig-object coq" id="coq:exn.Funclass-cannot-be-a-source-class">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Funclass</span></span></span> <span><span><span class="pre">cannot</span></span></span> <span><span><span class="pre">be</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">source</span></span></span> <span><span><span class="pre">class.</span></span></span></span></span><a class="headerlink" href="#coq:exn.Funclass-cannot-be-a-source-class" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Funclass</span></span></span> <span><span><span class="pre">cannot</span></span></span> <span><span><span class="pre">be</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">source</span></span></span> <span><span><span class="pre">class.</span></span></span></span></span><a class="headerlink" href="#coq:exn.Funclass-cannot-be-a-source-class" title="Link to this definition"></a></dt>
 <dd><p>Funclass as a source class is currently not supported. This may change in
 the future.</p>
 </dd></dl>
 
 <dl class="coq exn">
 <dt class="sig sig-object coq" id="coq:exn.‘qualid’-is-not-a-function">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">function.</span></span></span></span></span><a class="headerlink" href="#coq:exn.‘qualid’-is-not-a-function" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">function.</span></span></span></span></span><a class="headerlink" href="#coq:exn.‘qualid’-is-not-a-function" title="Link to this definition"></a></dt>
 <dd><p><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><code class="xref std std-token docutils literal notranslate"><span class="pre">qualid</span></code></a> is not a function, so it cannot be used as a coercion.</p>
 </dd></dl>
 
 <dl class="coq exn">
 <dt class="sig sig-object coq" id="coq:exn.Cannot-find-the-source-class-of-‘qualid’">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Cannot</span></span></span> <span><span><span class="pre">find</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">source</span></span></span> <span><span><span class="pre">class</span></span></span> <span><span><span class="pre">of</span></span></span> <a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a><span><span><span class="pre">.</span></span></span></span></span><a class="headerlink" href="#coq:exn.Cannot-find-the-source-class-of-‘qualid’" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Cannot</span></span></span> <span><span><span class="pre">find</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">source</span></span></span> <span><span><span class="pre">class</span></span></span> <span><span><span class="pre">of</span></span></span> <a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a><span><span><span class="pre">.</span></span></span></span></span><a class="headerlink" href="#coq:exn.Cannot-find-the-source-class-of-‘qualid’" title="Link to this definition"></a></dt>
 <dd><p>Rocq can not infer a valid source class.</p>
 </dd></dl>
 
 <dl class="coq exn">
 <dt class="sig sig-object coq" id="coq:exn.Cannot-recognize-‘coercion_class’-as-a-source-class-of-‘qualid’">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Cannot</span></span></span> <span><span><span class="pre">recognize</span></span></span> <a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span></span></a> <span><span><span class="pre">as</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">source</span></span></span> <span><span><span class="pre">class</span></span></span> <span><span><span class="pre">of</span></span></span> <a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a><span><span><span class="pre">.</span></span></span></span></span><a class="headerlink" href="#coq:exn.Cannot-recognize-‘coercion_class’-as-a-source-class-of-‘qualid’" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Cannot</span></span></span> <span><span><span class="pre">recognize</span></span></span> <a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span></span></a> <span><span><span class="pre">as</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">source</span></span></span> <span><span><span class="pre">class</span></span></span> <span><span><span class="pre">of</span></span></span> <a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a><span><span><span class="pre">.</span></span></span></span></span><a class="headerlink" href="#coq:exn.Cannot-recognize-‘coercion_class’-as-a-source-class-of-‘qualid’" title="Link to this definition"></a></dt>
 <dd><p>The inferred source class of the coercion differs from the one specified.</p>
 </dd></dl>
 
 <dl class="coq exn">
 <dt class="sig sig-object coq" id="coq:exn.Cannot-find-the-target-class">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Cannot</span></span></span> <span><span><span class="pre">find</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">target</span></span></span> <span><span><span class="pre">class</span></span></span></span></span><a class="headerlink" href="#coq:exn.Cannot-find-the-target-class" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Cannot</span></span></span> <span><span><span class="pre">find</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">target</span></span></span> <span><span><span class="pre">class</span></span></span></span></span><a class="headerlink" href="#coq:exn.Cannot-find-the-target-class" title="Link to this definition"></a></dt>
 <dd><p>The target class of the coercion is not specified and cannot be inferred.
 Make sure that the target is not a variable.</p>
 </dd></dl>
 
 <dl class="coq exn">
 <dt class="sig sig-object coq" id="coq:exn.Found-target-class-‘coercion_class’-instead-of-‘coercion_class’">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Found</span></span></span> <span><span><span class="pre">target</span></span></span> <span><span><span class="pre">class</span></span></span> <a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span></span></a> <span><span><span class="pre">instead</span></span></span> <span><span><span class="pre">of</span></span></span> <a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span></span></a></span></span><a class="headerlink" href="#coq:exn.Found-target-class-‘coercion_class’-instead-of-‘coercion_class’" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Found</span></span></span> <span><span><span class="pre">target</span></span></span> <span><span><span class="pre">class</span></span></span> <a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span></span></a> <span><span><span class="pre">instead</span></span></span> <span><span><span class="pre">of</span></span></span> <a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span></span></a></span></span><a class="headerlink" href="#coq:exn.Found-target-class-‘coercion_class’-instead-of-‘coercion_class’" title="Link to this definition"></a></dt>
 <dd><p>The inferred target class of the coercion differs from the one specified.</p>
 </dd></dl>
 
 <dl class="coq warn">
 <dt class="sig sig-object coq" id="coq:warn.‘qualid’-does-not-respect-the-uniform-inheritance-condition">
-<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a> <span><span><span class="pre">does</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">respect</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">uniform</span></span></span> <span><span><span class="pre">inheritance</span></span></span> <span><span><span class="pre">condition.</span></span></span></span></span><a class="headerlink" href="#coq:warn.‘qualid’-does-not-respect-the-uniform-inheritance-condition" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a> <span><span><span class="pre">does</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">respect</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">uniform</span></span></span> <span><span><span class="pre">inheritance</span></span></span> <span><span><span class="pre">condition.</span></span></span></span></span><a class="headerlink" href="#coq:warn.‘qualid’-does-not-respect-the-uniform-inheritance-condition" title="Link to this definition"></a></dt>
 <dd><p>The <a class="reference internal" href="#ambiguous-paths"><span class="std std-ref">test for ambiguous coercion paths</span></a>
 may yield false positives involving the coercion <a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><code class="xref std std-token docutils literal notranslate"><span class="pre">qualid</span></code></a>.
 Use the <a class="reference internal" href="../language/core/basic.html#coq:attr.warnings" title="warnings"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">warnings</span></code></a> attribute with &quot;-uniform-inheritance&quot; to silence this warning.</p>
@@ -1489,7 +1489,7 @@ Use the <a class="reference internal" href="../language/core/basic.html#coq:attr
 
 <dl class="coq warn">
 <dt class="sig sig-object coq" id="coq:warn.New-coercion-path-...-is-ambiguous-with-existing-...">
-<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">New</span></span></span> <span><span><span class="pre">coercion</span></span></span> <span><span><span class="pre">path</span></span></span> <span><span><span class="pre">...</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">ambiguous</span></span></span> <span><span><span class="pre">with</span></span></span> <span><span><span class="pre">existing</span></span></span> <span><span><span class="pre">...</span></span></span></span></span><a class="headerlink" href="#coq:warn.New-coercion-path-...-is-ambiguous-with-existing-..." title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">New</span></span></span> <span><span><span class="pre">coercion</span></span></span> <span><span><span class="pre">path</span></span></span> <span><span><span class="pre">...</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">ambiguous</span></span></span> <span><span><span class="pre">with</span></span></span> <span><span><span class="pre">existing</span></span></span> <span><span><span class="pre">...</span></span></span></span></span><a class="headerlink" href="#coq:warn.New-coercion-path-...-is-ambiguous-with-existing-..." title="Link to this definition"></a></dt>
 <dd><p>The check for <a class="reference internal" href="#ambiguous-paths"><span class="std std-ref">ambiguous paths</span></a> failed.
 The paths for which this check fails are displayed by a warning
 in the form <code class="code Coq docutils literal notranslate"><span class="operator"><span class="pre">[</span></span><span class="name"><span class="pre">f₁</span></span><span class="operator"><span class="pre">;..;</span></span><span class="name"><span class="pre">fₙ</span></span><span class="operator"><span class="pre">]</span></span> <span class="operator"><span class="pre">:</span></span> <span class="name"><span class="pre">C</span></span> <span class="operator"><span class="pre">&gt;-&gt;</span></span> <span class="name"><span class="pre">D</span></span></code>.</p>
@@ -1502,7 +1502,7 @@ this condition.</p>
 
 <dl class="coq warn">
 <dt class="sig sig-object coq" id="coq:warn....-is-not-definitionally-an-identity-function">
-<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">...</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">definitionally</span></span></span> <span><span><span class="pre">an</span></span></span> <span><span><span class="pre">identity</span></span></span> <span><span><span class="pre">function.</span></span></span></span></span><a class="headerlink" href="#coq:warn....-is-not-definitionally-an-identity-function" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">...</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">definitionally</span></span></span> <span><span><span class="pre">an</span></span></span> <span><span><span class="pre">identity</span></span></span> <span><span><span class="pre">function.</span></span></span></span></span><a class="headerlink" href="#coq:warn....-is-not-definitionally-an-identity-function" title="Link to this definition"></a></dt>
 <dd><p>If a coercion path has the same source and target class, that is said to be
 circular. When a new circular coercion path is not convertible with the
 identity function, it will be reported as ambiguous.</p>
@@ -1517,7 +1517,7 @@ Use <code class="docutils literal notranslate"><span class="notation"><span><spa
 type of the assumption to do so.  See <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/assumptions.html#grammar-token-of_type"><span class="hole"><span class="pre">of_type</span></span></a></span></code>.</p>
 <dl class="coq cmd">
 <dt class="sig sig-object coq" id="coq:cmd.Identity-Coercion">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Identity</span></span></span> <span><span><span class="pre">Coercion</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">:</span></span></span> <a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span><sub><span class="pre">src</span></sub></span></a> <span><span><span class="pre">&gt;-&gt;</span></span></span> <a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span><sub><span class="pre">dest</span></sub></span></a></span></span><a class="headerlink" href="#coq:cmd.Identity-Coercion" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Identity</span></span></span> <span><span><span class="pre">Coercion</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">:</span></span></span> <a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span><sub><span class="pre">src</span></sub></span></a> <span><span><span class="pre">&gt;-&gt;</span></span></span> <a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span><sub><span class="pre">dest</span></sub></span></a></span></span><a class="headerlink" href="#coq:cmd.Identity-Coercion" title="Link to this definition"></a></dt>
 <dd><p>Checks that <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span><sub><span class="pre">src</span></sub></span></a></span></code> is a <a class="reference internal" href="../language/core/definitions.html#term-constant"><span class="xref std std-term">constant</span></a> with a <a class="reference internal" href="../language/core/definitions.html#term-body"><span class="xref std std-term">body</span></a> of the form
 <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">fun</span></span></span> <span><span><span class="pre">(x₁:T₁)..(xₙ:Tₙ)</span></span></span> <span><span><span class="pre">=&gt;</span></span></span> <a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span><sub><span class="pre">dest</span></sub></span></a> <span><span><span class="pre">t₁..tₘ</span></span></span></span></code> where <code class="docutils literal notranslate"><span class="pre">m</span></code> is the
 number of parameters of <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span><sub><span class="pre">dest</span></sub></span></a></span></code>.  Then we define an identity
@@ -1527,12 +1527,12 @@ See below for an <a class="reference internal" href="#example-identity-coercion"
 <p>This command supports the <a class="reference internal" href="../language/core/modules.html#coq:attr.local" title="local"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">local</span></code></a> attribute, which makes the coercion local to the current section.</p>
 <dl class="coq exn">
 <dt class="sig sig-object coq" id="coq:exn.‘coercion_class’-must-be-a-transparent-constant">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span></span></a> <span><span><span class="pre">must</span></span></span> <span><span><span class="pre">be</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">transparent</span></span></span> <span><span><span class="pre">constant.</span></span></span></span></span><a class="headerlink" href="#coq:exn.‘coercion_class’-must-be-a-transparent-constant" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span></span></a> <span><span><span class="pre">must</span></span></span> <span><span><span class="pre">be</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">transparent</span></span></span> <span><span><span class="pre">constant.</span></span></span></span></span><a class="headerlink" href="#coq:exn.‘coercion_class’-must-be-a-transparent-constant" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="coq cmd">
 <dt class="sig sig-object coq" id="coq:cmd.SubClass">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">SubClass</span></span></span> <a class="reference internal" href="../language/core/assumptions.html#grammar-token-ident_decl"><span class="hole"><span class="pre">ident_decl</span></span></a> <a class="reference internal" href="../language/core/definitions.html#grammar-token-def_body"><span class="hole"><span class="pre">def_body</span></span></a></span></span><a class="headerlink" href="#coq:cmd.SubClass" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">SubClass</span></span></span> <a class="reference internal" href="../language/core/assumptions.html#grammar-token-ident_decl"><span class="hole"><span class="pre">ident_decl</span></span></a> <a class="reference internal" href="../language/core/definitions.html#grammar-token-def_body"><span class="hole"><span class="pre">def_body</span></span></a></span></span><a class="headerlink" href="#coq:cmd.SubClass" title="Link to this definition"></a></dt>
 <dd><p>If <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/basic.html#grammar-token-type"><span class="hole"><span class="pre">type</span></span></a></span></code> is a coercion class <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a><span>'</span></span></code> applied to some arguments then
 <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></code> is defined and an identity coercion of name
 <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">Id</span></span></span><span><span><span class="pre">_</span></span></span><a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a><span><span><span class="pre">_</span></span></span><a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a><span>'</span></span></code> is
@@ -1546,51 +1546,51 @@ declared. In other words, this is an abbreviation for</p>
 
 </section>
 <section id="displaying-available-coercions">
-<h2>Displaying Available Coercions<a class="headerlink" href="#displaying-available-coercions" title="Permalink to this heading"></a></h2>
+<h2>Displaying Available Coercions<a class="headerlink" href="#displaying-available-coercions" title="Link to this heading"></a></h2>
 <dl class="coq cmd">
 <dt class="sig sig-object coq" id="coq:cmd.Print-Classes">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Print</span></span></span> <span><span><span class="pre">Classes</span></span></span></span></span><a class="headerlink" href="#coq:cmd.Print-Classes" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Print</span></span></span> <span><span><span class="pre">Classes</span></span></span></span></span><a class="headerlink" href="#coq:cmd.Print-Classes" title="Link to this definition"></a></dt>
 <dd><p>Print the list of declared coercion classes in the current context.</p>
 </dd></dl>
 
 <dl class="coq cmd">
 <dt class="sig sig-object coq" id="coq:cmd.Print-Coercions">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Print</span></span></span> <span><span><span class="pre">Coercions</span></span></span></span></span><a class="headerlink" href="#coq:cmd.Print-Coercions" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Print</span></span></span> <span><span><span class="pre">Coercions</span></span></span></span></span><a class="headerlink" href="#coq:cmd.Print-Coercions" title="Link to this definition"></a></dt>
 <dd><p>Print the list of declared coercions in the current context.</p>
 </dd></dl>
 
 <dl class="coq cmd">
 <dt class="sig sig-object coq" id="coq:cmd.Print-Graph">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Print</span></span></span> <span><span><span class="pre">Graph</span></span></span></span></span><a class="headerlink" href="#coq:cmd.Print-Graph" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Print</span></span></span> <span><span><span class="pre">Graph</span></span></span></span></span><a class="headerlink" href="#coq:cmd.Print-Graph" title="Link to this definition"></a></dt>
 <dd><p>Print the list of valid coercion paths in the current context.</p>
 </dd></dl>
 
 <dl class="coq cmd">
 <dt class="sig sig-object coq" id="coq:cmd.Print-Coercion-Paths">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Print</span></span></span> <span><span><span class="pre">Coercion</span></span></span> <span><span><span class="pre">Paths</span></span></span> <a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span></span></a> <a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span></span></a></span></span><a class="headerlink" href="#coq:cmd.Print-Coercion-Paths" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Print</span></span></span> <span><span><span class="pre">Coercion</span></span></span> <span><span><span class="pre">Paths</span></span></span> <a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span></span></a> <a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span></span></a></span></span><a class="headerlink" href="#coq:cmd.Print-Coercion-Paths" title="Link to this definition"></a></dt>
 <dd><p>Print the list of valid coercion paths between the two given classes.</p>
 </dd></dl>
 
 </section>
 <section id="activating-the-printing-of-coercions">
-<h2>Activating the Printing of Coercions<a class="headerlink" href="#activating-the-printing-of-coercions" title="Permalink to this heading"></a></h2>
+<h2>Activating the Printing of Coercions<a class="headerlink" href="#activating-the-printing-of-coercions" title="Link to this heading"></a></h2>
 <dl class="coq flag">
 <dt class="sig sig-object coq" id="coq:flag.Printing-Coercions">
-<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Coercions</span></span></span></span></span><a class="headerlink" href="#coq:flag.Printing-Coercions" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Coercions</span></span></span></span></span><a class="headerlink" href="#coq:flag.Printing-Coercions" title="Link to this definition"></a></dt>
 <dd><p>When on, this <a class="reference internal" href="../language/core/basic.html#term-flag"><span class="xref std std-term">flag</span></a> forces all the coercions to be printed.
 By default, coercions are not printed.</p>
 </dd></dl>
 
 <dl class="coq table">
 <dt class="sig sig-object coq" id="coq:table.Printing-Coercion">
-<em class="property"><span class="sigannot"><span class="pre">Table</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Coercion</span></span></span> <a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></span><a class="headerlink" href="#coq:table.Printing-Coercion" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Table</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Coercion</span></span></span> <a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></span><a class="headerlink" href="#coq:table.Printing-Coercion" title="Link to this definition"></a></dt>
 <dd><p>This <a class="reference internal" href="../language/core/basic.html#term-table"><span class="xref std std-term">table</span></a> specifies a set of qualids for which coercions are always displayed.  Use the
 <a class="reference internal" href="../language/core/basic.html#coq:cmd.Add" title="Add"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Add</span></code></a> and <a class="reference internal" href="../language/core/basic.html#coq:cmd.Remove" title="Remove"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Remove</span></code></a> commands to update the set of qualids.</p>
 </dd></dl>
 
 </section>
 <section id="classes-as-records">
-<span id="coercions-classes-as-records"></span><h2>Classes as Records<a class="headerlink" href="#classes-as-records" title="Permalink to this heading"></a></h2>
+<span id="coercions-classes-as-records"></span><h2>Classes as Records<a class="headerlink" href="#classes-as-records" title="Link to this heading"></a></h2>
 <p id="index-0"><em>Structures with Inheritance</em> may be defined using the <a class="reference internal" href="../language/core/records.html#coq:cmd.Record" title="Record"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Record</span></code></a> command.</p>
 <p>Use <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> before the record name to declare the constructor name as
 a coercion from the class of the last field type to the record name.
@@ -1600,7 +1600,7 @@ record name to the class of the field type. For these coercions, the
 <a class="reference internal" href="#coq:attr.reversible" title="reversible"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">reversible</span></code></a> attribute defaults to <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">yes</span></span></code>. See <a class="reference internal" href="../language/core/assumptions.html#grammar-token-of_type"><code class="xref std std-token docutils literal notranslate"><span class="pre">of_type</span></code></a>.</p>
 </section>
 <section id="coercions-and-sections">
-<h2>Coercions and Sections<a class="headerlink" href="#coercions-and-sections" title="Permalink to this heading"></a></h2>
+<h2>Coercions and Sections<a class="headerlink" href="#coercions-and-sections" title="Link to this heading"></a></h2>
 <p>The inheritance mechanism is compatible with the section
 mechanism. The global classes and coercions defined inside a section
 are redefined after its closing, using their new value and new
@@ -1610,12 +1610,12 @@ Coercions with a local source class or a local target class
 are also forgotten.</p>
 </section>
 <section id="coercions-and-modules">
-<h2>Coercions and Modules<a class="headerlink" href="#coercions-and-modules" title="Permalink to this heading"></a></h2>
+<h2>Coercions and Modules<a class="headerlink" href="#coercions-and-modules" title="Link to this heading"></a></h2>
 <p>The coercions present in a module are activated only when the module is
 explicitly imported.</p>
 </section>
 <section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h2>
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
 <p>There are three situations:</p>
 <div class="admonition note">
 <p class="admonition-title">Example: Coercion at function application</p>

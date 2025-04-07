@@ -1,29 +1,28 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Extended pattern matching &mdash; The Rocq Prover 9.1+alpha documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/ansi.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/coqdoc.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/notations.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/pre-text.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/ansi.css?v=df714dbc" />
+      <link rel="stylesheet" type="text/css" href="../../_static/coqdoc.css?v=2fe46aa3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/notations.css?v=ef8e2f7d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pre-text.css?v=1bed1d2d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=8a0755b4" />
+
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
-        <script src="../../_static/notations.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=a65fab5e"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/notations.js?v=7e0edea7"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,14 +35,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> The Rocq Prover
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            The Rocq Prover
           </a>
-              <div class="version">
-                9.1+alpha
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -1180,9 +1180,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">Language extensions</a> &raquo;</li>
-      <li>Extended pattern matching</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Language extensions</a></li>
+      <li class="breadcrumb-item active">Extended pattern matching</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/coq/coq/blob/master/doc/sphinx/language/extensions/match.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -1264,17 +1264,17 @@
 \newcommand{\zeroone}[1]{[{#1}]}
 \end{split}\]</div>
 <section id="extended-pattern-matching">
-<span id="extendedpatternmatching"></span><h1>Extended pattern matching<a class="headerlink" href="#extended-pattern-matching" title="Permalink to this heading"></a></h1>
+<span id="extendedpatternmatching"></span><h1>Extended pattern matching<a class="headerlink" href="#extended-pattern-matching" title="Link to this heading"></a></h1>
 <dl class="field-list simple">
-<dt class="field-odd">Authors</dt>
+<dt class="field-odd">Authors<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Cristina Cornes and Hugo Herbelin</p>
 </dd>
 </dl>
 <p>This section describes the full form of pattern matching in Rocq terms.</p>
 <section id="variants-and-extensions-of-match">
-<h2>Variants and extensions of <code class="code Coq docutils literal notranslate"><span class="keyword"><span class="pre">match</span></span></code><a class="headerlink" href="#variants-and-extensions-of-match" title="Permalink to this heading"></a></h2>
+<h2>Variants and extensions of <code class="code Coq docutils literal notranslate"><span class="keyword"><span class="pre">match</span></span></code><a class="headerlink" href="#variants-and-extensions-of-match" title="Link to this heading"></a></h2>
 <section id="multiple-and-nested-pattern-matching">
-<span id="mult-match"></span><h3>Multiple and nested pattern matching<a class="headerlink" href="#multiple-and-nested-pattern-matching" title="Permalink to this heading"></a></h3>
+<span id="mult-match"></span><h3>Multiple and nested pattern matching<a class="headerlink" href="#multiple-and-nested-pattern-matching" title="Link to this heading"></a></h3>
 <p>The basic version of <code class="code Coq docutils literal notranslate"><span class="keyword"><span class="pre">match</span></span></code> allows pattern matching on simple
 patterns. As an extension, multiple nested patterns or disjunction of
 patterns are allowed, as in ML-like languages
@@ -1285,7 +1285,7 @@ construction defined using the extended match is generally printed
 under its expanded form (see <a class="reference internal" href="#coq:flag.Printing-Matching" title="Printing Matching"><code class="xref coq coq-flag docutils literal notranslate"><span class="pre">Printing</span> <span class="pre">Matching</span></code></a>).</p>
 </section>
 <section id="pattern-matching-on-boolean-values-the-if-expression">
-<span id="if-then-else"></span><h3>Pattern-matching on boolean values: the if expression<a class="headerlink" href="#pattern-matching-on-boolean-values-the-if-expression" title="Permalink to this heading"></a></h3>
+<span id="if-then-else"></span><h3>Pattern-matching on boolean values: the if expression<a class="headerlink" href="#pattern-matching-on-boolean-values-the-if-expression" title="Link to this heading"></a></h3>
 <span class="prodn-table"><span class="prodn-column-group"><span class="prodn-column"></span><span class="prodn-column"></span><span class="prodn-column"></span><span class="prodn-column"></span></span><span class="prodn-row-group"><span class="prodn-row"><span class="prodn-cell-nonterminal"><span class="prodn-target"><span class="target" id="grammar-token-term_if"></span></span><span class="notation"><a class="reference internal" href="#grammar-token-term_if"><span class="hole">term_if</span></a></span></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">::=</span></code></span><span class="prodn-cell-production"><span class="notation"><span><span>if</span></span> <a class="reference internal" href="../core/basic.html#grammar-token-term"><span class="hole">term</span></a> <span class="repeat-wrapper"><span class="repeat"><span class="repeat-wrapper"><span class="repeat"><span><span>as</span></span> <a class="reference internal" href="../core/assumptions.html#grammar-token-name"><span class="hole">name</span></a></span><span class="notation-sup">?</span></span> <span><span>return</span></span> <a class="reference internal" href="../core/basic.html#grammar-token-term100"><span class="hole">term100</span></a></span><span class="notation-sup">?</span></span> <span><span>then</span></span> <a class="reference internal" href="../core/basic.html#grammar-token-term"><span class="hole">term</span></a> <span><span>else</span></span> <a class="reference internal" href="../core/basic.html#grammar-token-term"><span class="hole">term</span></a></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span></span></span><p>For inductive types with exactly two constructors and for pattern matching
 expressions that do not depend on the arguments of the constructors, it is possible
 to use a <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">…</span> <span class="pre">then</span> <span class="pre">…</span> <span class="pre">else</span></code> notation. For instance, the definition</p>
@@ -1331,12 +1331,12 @@ and <code class="docutils literal notranslate"><span class="notation"><a class="
 declared as such (see <a class="reference internal" href="#controlling-match-pp"><span class="std std-ref">Controlling pretty-printing of match expressions</span></a>).</p>
 </section>
 <section id="irrefutable-patterns-the-destructuring-let-variants">
-<span id="irrefutable-patterns"></span><h3>Irrefutable patterns: the destructuring let variants<a class="headerlink" href="#irrefutable-patterns-the-destructuring-let-variants" title="Permalink to this heading"></a></h3>
+<span id="irrefutable-patterns"></span><h3>Irrefutable patterns: the destructuring let variants<a class="headerlink" href="#irrefutable-patterns-the-destructuring-let-variants" title="Link to this heading"></a></h3>
 <p>Pattern-matching on terms inhabiting inductive type having only one
 constructor can be alternatively written using <code class="code Coq docutils literal notranslate"><span class="keyword"><span class="pre">let</span></span> <span class="name builtin pseudo"><span class="pre">…</span></span> <span class="keyword"><span class="pre">in</span></span> <span class="name builtin pseudo"><span class="pre">…</span></span></code>
 constructions. There are two variants of them.</p>
 <span class="prodn-table"><span class="prodn-column-group"><span class="prodn-column"></span><span class="prodn-column"></span><span class="prodn-column"></span><span class="prodn-column"></span></span><span class="prodn-row-group"><span class="prodn-row"><span class="prodn-cell-nonterminal"><span class="prodn-target"><span class="target" id="grammar-token-destructuring_let"></span></span><span class="notation"><a class="reference internal" href="#grammar-token-destructuring_let"><span class="hole">destructuring_let</span></a></span></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">::=</span></code></span><span class="prodn-cell-production"><span class="notation"><span><span>let</span></span> <span><span>(</span></span> <span class="repeat-wrapper-with-sub"><span class="repeat"><a class="reference internal" href="../core/assumptions.html#grammar-token-name"><span class="hole">name</span></a></span><span class="notation-sup">*</span><span class="notation-sub">,</span></span> <span><span>)</span></span> <span class="repeat-wrapper"><span class="repeat"><span class="repeat-wrapper"><span class="repeat"><span><span>as</span></span> <a class="reference internal" href="../core/assumptions.html#grammar-token-name"><span class="hole">name</span></a></span><span class="notation-sup">?</span></span> <span><span>return</span></span> <a class="reference internal" href="../core/basic.html#grammar-token-term100"><span class="hole">term100</span></a></span><span class="notation-sup">?</span></span> <span><span>:=</span></span> <a class="reference internal" href="../core/basic.html#grammar-token-term"><span class="hole">term</span></a> <span><span>in</span></span> <a class="reference internal" href="../core/basic.html#grammar-token-term"><span class="hole">term</span></a></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span><span class="prodn-row"><span class="prodn-cell-nonterminal"><code class="docutils literal notranslate"></code></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">|</span></code></span><span class="prodn-cell-production"><span class="notation"><span><span>let</span></span> <span>'</span> <a class="reference internal" href="../core/variants.html#grammar-token-pattern"><span class="hole">pattern</span></a> <span><span>:=</span></span> <a class="reference internal" href="../core/basic.html#grammar-token-term"><span class="hole">term</span></a> <span class="repeat-wrapper"><span class="repeat"><span><span>return</span></span> <a class="reference internal" href="../core/basic.html#grammar-token-term100"><span class="hole">term100</span></a></span><span class="notation-sup">?</span></span> <span><span>in</span></span> <a class="reference internal" href="../core/basic.html#grammar-token-term"><span class="hole">term</span></a></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span><span class="prodn-row"><span class="prodn-cell-nonterminal"><code class="docutils literal notranslate"></code></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">|</span></code></span><span class="prodn-cell-production"><span class="notation"><span><span>let</span></span> <span>'</span> <a class="reference internal" href="../core/variants.html#grammar-token-pattern"><span class="hole">pattern</span></a> <span><span>in</span></span> <a class="reference internal" href="../core/variants.html#grammar-token-pattern"><span class="hole">pattern</span></a> <span><span>:=</span></span> <a class="reference internal" href="../core/basic.html#grammar-token-term"><span class="hole">term</span></a> <span><span>return</span></span> <a class="reference internal" href="../core/basic.html#grammar-token-term100"><span class="hole">term100</span></a> <span><span>in</span></span> <a class="reference internal" href="../core/basic.html#grammar-token-term"><span class="hole">term</span></a></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span></span></span><section id="first-destructuring-let-syntax">
-<h4>First destructuring let syntax<a class="headerlink" href="#first-destructuring-let-syntax" title="Permalink to this heading"></a></h4>
+<h4>First destructuring let syntax<a class="headerlink" href="#first-destructuring-let-syntax" title="Link to this heading"></a></h4>
 <p>The expression <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">let</span></span></span> <span><span><span class="pre">(</span></span></span> <span class="repeat-wrapper-with-sub"><span class="repeat"><a class="reference internal" href="../core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span><sub><span class="pre">i</span></sub></span></a></span><span class="notation-sup"><span class="pre">*</span></span><span class="notation-sub"><span class="pre">,</span></span></span> <span><span><span class="pre">)</span></span></span> <span><span><span class="pre">:=</span></span></span> <a class="reference internal" href="../core/basic.html#grammar-token-term"><span class="hole"><span class="pre">term</span><sub><span class="pre">0</span></sub></span></a> <span><span><span class="pre">in</span></span></span> <a class="reference internal" href="../core/basic.html#grammar-token-term"><span class="hole"><span class="pre">term</span><sub><span class="pre">1</span></sub></span></a></span></code>
 performs case analysis on <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../core/basic.html#grammar-token-term"><span class="hole"><span class="pre">term</span><sub><span class="pre">0</span></sub></span></a></span></code> whose type must be an
 inductive type with exactly one constructor.  The number of variables
@@ -1380,7 +1380,7 @@ end
 </div>
 </section>
 <section id="second-destructuring-let-syntax">
-<h4>Second destructuring let syntax<a class="headerlink" href="#second-destructuring-let-syntax" title="Permalink to this heading"></a></h4>
+<h4>Second destructuring let syntax<a class="headerlink" href="#second-destructuring-let-syntax" title="Link to this heading"></a></h4>
 <p>Another destructuring let syntax is available for inductive types with
 one constructor by giving an arbitrary pattern instead of just a tuple
 for all the arguments. For example, the preceding example can be
@@ -1418,14 +1418,14 @@ consideration (see Section <a class="reference internal" href="#controlling-matc
 </section>
 </section>
 <section id="controlling-pretty-printing-of-match-expressions">
-<span id="controlling-match-pp"></span><h3>Controlling pretty-printing of match expressions<a class="headerlink" href="#controlling-pretty-printing-of-match-expressions" title="Permalink to this heading"></a></h3>
+<span id="controlling-match-pp"></span><h3>Controlling pretty-printing of match expressions<a class="headerlink" href="#controlling-pretty-printing-of-match-expressions" title="Link to this heading"></a></h3>
 <p>The following commands give some control over the pretty-printing
 of <code class="code Coq docutils literal notranslate"><span class="keyword"><span class="pre">match</span></span></code> expressions.</p>
 <section id="printing-nested-patterns">
-<h4>Printing nested patterns<a class="headerlink" href="#printing-nested-patterns" title="Permalink to this heading"></a></h4>
+<h4>Printing nested patterns<a class="headerlink" href="#printing-nested-patterns" title="Link to this heading"></a></h4>
 <dl class="coq flag">
 <dt class="sig sig-object coq" id="coq:flag.Printing-Matching">
-<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Matching</span></span></span></span></span><a class="headerlink" href="#coq:flag.Printing-Matching" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Matching</span></span></span></span></span><a class="headerlink" href="#coq:flag.Printing-Matching" title="Link to this definition"></a></dt>
 <dd><p>The Calculus of Inductive Constructions knows pattern matching only
 over simple patterns. It is however convenient to re-factorize nested
 pattern matching into a single pattern matching over a nested
@@ -1438,10 +1438,10 @@ in the same way as the Rocq kernel handles them.</p>
 
 </section>
 <section id="factorization-of-clauses-with-same-right-hand-side">
-<h4>Factorization of clauses with same right-hand side<a class="headerlink" href="#factorization-of-clauses-with-same-right-hand-side" title="Permalink to this heading"></a></h4>
+<h4>Factorization of clauses with same right-hand side<a class="headerlink" href="#factorization-of-clauses-with-same-right-hand-side" title="Link to this heading"></a></h4>
 <dl class="coq flag">
 <dt class="sig sig-object coq" id="coq:flag.Printing-Factorizable-Match-Patterns">
-<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Factorizable</span></span></span> <span><span><span class="pre">Match</span></span></span> <span><span><span class="pre">Patterns</span></span></span></span></span><a class="headerlink" href="#coq:flag.Printing-Factorizable-Match-Patterns" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Factorizable</span></span></span> <span><span><span class="pre">Match</span></span></span> <span><span><span class="pre">Patterns</span></span></span></span></span><a class="headerlink" href="#coq:flag.Printing-Factorizable-Match-Patterns" title="Link to this definition"></a></dt>
 <dd><p>When several patterns share the same right-hand side, it is additionally
 possible to share the clauses using disjunctive patterns. Assuming that the
 printing matching mode is on, this <a class="reference internal" href="../core/basic.html#term-flag"><span class="xref std std-term">flag</span></a> (on by default) tells Rocq's
@@ -1450,10 +1450,10 @@ printer to try to do this kind of factorization.</p>
 
 </section>
 <section id="use-of-a-default-clause">
-<h4>Use of a default clause<a class="headerlink" href="#use-of-a-default-clause" title="Permalink to this heading"></a></h4>
+<h4>Use of a default clause<a class="headerlink" href="#use-of-a-default-clause" title="Link to this heading"></a></h4>
 <dl class="coq flag">
 <dt class="sig sig-object coq" id="coq:flag.Printing-Allow-Match-Default-Clause">
-<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Allow</span></span></span> <span><span><span class="pre">Match</span></span></span> <span><span><span class="pre">Default</span></span></span> <span><span><span class="pre">Clause</span></span></span></span></span><a class="headerlink" href="#coq:flag.Printing-Allow-Match-Default-Clause" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Allow</span></span></span> <span><span><span class="pre">Match</span></span></span> <span><span><span class="pre">Default</span></span></span> <span><span><span class="pre">Clause</span></span></span></span></span><a class="headerlink" href="#coq:flag.Printing-Allow-Match-Default-Clause" title="Link to this definition"></a></dt>
 <dd><p>When several patterns share the same right-hand side which do not depend on the
 arguments of the patterns, yet an extra factorization is possible: the
 disjunction of patterns can be replaced with a <code class="docutils literal notranslate"><span class="pre">_</span></code> default clause. Assuming that
@@ -1463,10 +1463,10 @@ default) tells Rocq's printer to use a default clause when relevant.</p>
 
 </section>
 <section id="printing-of-wildcard-patterns">
-<h4>Printing of wildcard patterns<a class="headerlink" href="#printing-of-wildcard-patterns" title="Permalink to this heading"></a></h4>
+<h4>Printing of wildcard patterns<a class="headerlink" href="#printing-of-wildcard-patterns" title="Link to this heading"></a></h4>
 <dl class="coq flag">
 <dt class="sig sig-object coq" id="coq:flag.Printing-Wildcard">
-<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Wildcard</span></span></span></span></span><a class="headerlink" href="#coq:flag.Printing-Wildcard" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Wildcard</span></span></span></span></span><a class="headerlink" href="#coq:flag.Printing-Wildcard" title="Link to this definition"></a></dt>
 <dd><p>Some variables in a pattern may not occur in the right-hand side of
 the pattern matching clause. When this <a class="reference internal" href="../core/basic.html#term-flag"><span class="xref std std-term">flag</span></a> is on (default), the
 variables having no occurrences in the right-hand side of the
@@ -1476,10 +1476,10 @@ pattern matching clause are just printed using the wildcard symbol
 
 </section>
 <section id="printing-of-the-elimination-predicate">
-<h4>Printing of the elimination predicate<a class="headerlink" href="#printing-of-the-elimination-predicate" title="Permalink to this heading"></a></h4>
+<h4>Printing of the elimination predicate<a class="headerlink" href="#printing-of-the-elimination-predicate" title="Link to this heading"></a></h4>
 <dl class="coq flag">
 <dt class="sig sig-object coq" id="coq:flag.Printing-Synth">
-<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Synth</span></span></span></span></span><a class="headerlink" href="#coq:flag.Printing-Synth" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Synth</span></span></span></span></span><a class="headerlink" href="#coq:flag.Printing-Synth" title="Link to this definition"></a></dt>
 <dd><p>In most of the cases, the type of the result of a matched term is
 mechanically synthesizable. Especially, if the result type does not
 depend of the matched term. When this <a class="reference internal" href="../core/basic.html#term-flag"><span class="xref std std-term">flag</span></a> is on (default),
@@ -1489,10 +1489,10 @@ synthesize it.</p>
 
 </section>
 <section id="printing-of-hidden-subterms">
-<h4>Printing of hidden subterms<a class="headerlink" href="#printing-of-hidden-subterms" title="Permalink to this heading"></a></h4>
+<h4>Printing of hidden subterms<a class="headerlink" href="#printing-of-hidden-subterms" title="Link to this heading"></a></h4>
 <dl class="coq flag">
 <dt class="sig sig-object coq" id="coq:flag.Printing-Match-All-Subterms">
-<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Match</span></span></span> <span><span><span class="pre">All</span></span></span> <span><span><span class="pre">Subterms</span></span></span></span></span><a class="headerlink" href="#coq:flag.Printing-Match-All-Subterms" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Match</span></span></span> <span><span><span class="pre">All</span></span></span> <span><span><span class="pre">Subterms</span></span></span></span></span><a class="headerlink" href="#coq:flag.Printing-Match-All-Subterms" title="Link to this definition"></a></dt>
 <dd><p>In order to be able to cheaply reconstruct the types of the
 variables bound by <code class="docutils literal notranslate"><span class="pre">in</span></code> and <code class="docutils literal notranslate"><span class="pre">as</span></code>, <code class="docutils literal notranslate"><span class="pre">match</span></code> terms contain the
 polymorphic universe instance and the parameters of the inductive
@@ -1586,12 +1586,12 @@ Arguments </span><span class="ansi-fg-light-green">seq_rect</span><span> A%_type
 
 </section>
 <section id="printing-matching-on-irrefutable-patterns">
-<h4>Printing matching on irrefutable patterns<a class="headerlink" href="#printing-matching-on-irrefutable-patterns" title="Permalink to this heading"></a></h4>
+<h4>Printing matching on irrefutable patterns<a class="headerlink" href="#printing-matching-on-irrefutable-patterns" title="Link to this heading"></a></h4>
 <p>If an inductive type has just one constructor, pattern matching can be
 written using the first destructuring let syntax.</p>
 <dl class="coq table">
 <dt class="sig sig-object coq" id="coq:table.Printing-Let">
-<em class="property"><span class="sigannot"><span class="pre">Table</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Let</span></span></span> <a class="reference internal" href="../core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></span><a class="headerlink" href="#coq:table.Printing-Let" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Table</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Let</span></span></span> <a class="reference internal" href="../core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></span><a class="headerlink" href="#coq:table.Printing-Let" title="Link to this definition"></a></dt>
 <dd><p>This <a class="reference internal" href="../core/basic.html#term-table"><span class="xref std std-term">table</span></a> specifies a set of qualids for which pattern matching is displayed using a let expression.
 Note that this only applies to pattern matching instances entered with <code class="code Coq docutils literal notranslate"><span class="keyword"><span class="pre">match</span></span></code>.
 It doesn't affect pattern matching explicitly entered with a destructuring
@@ -1601,13 +1601,13 @@ Use the <a class="reference internal" href="../core/basic.html#coq:cmd.Add" titl
 
 </section>
 <section id="printing-matching-on-booleans">
-<h4>Printing matching on booleans<a class="headerlink" href="#printing-matching-on-booleans" title="Permalink to this heading"></a></h4>
+<h4>Printing matching on booleans<a class="headerlink" href="#printing-matching-on-booleans" title="Link to this heading"></a></h4>
 <p>If an inductive type is isomorphic to the boolean type, pattern matching
 can be written using <code class="docutils literal notranslate"><span class="pre">if</span></code> … <code class="docutils literal notranslate"><span class="pre">then</span></code> … <code class="docutils literal notranslate"><span class="pre">else</span></code> ….  This table controls
 which types are written this way:</p>
 <dl class="coq table">
 <dt class="sig sig-object coq" id="coq:table.Printing-If">
-<em class="property"><span class="sigannot"><span class="pre">Table</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">If</span></span></span> <a class="reference internal" href="../core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></span><a class="headerlink" href="#coq:table.Printing-If" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Table</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">If</span></span></span> <a class="reference internal" href="../core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></span><a class="headerlink" href="#coq:table.Printing-If" title="Link to this definition"></a></dt>
 <dd><p>This <a class="reference internal" href="../core/basic.html#term-table"><span class="xref std std-term">table</span></a> specifies a set of qualids for which pattern matching is displayed using
 <code class="docutils literal notranslate"><span class="pre">if</span></code> … <code class="docutils literal notranslate"><span class="pre">then</span></code> … <code class="docutils literal notranslate"><span class="pre">else</span></code> ….  Use the <a class="reference internal" href="../core/basic.html#coq:cmd.Add" title="Add"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Add</span></code></a> and <a class="reference internal" href="../core/basic.html#coq:cmd.Remove" title="Remove"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Remove</span></code></a>
 commands to update this set.</p>
@@ -1658,14 +1658,14 @@ Arguments </span><span class="ansi-fg-light-green">snd</span><span> (A B)%_type_
 </section>
 </section>
 <section id="conventions-about-unused-pattern-matching-variables">
-<h3>Conventions about unused pattern-matching variables<a class="headerlink" href="#conventions-about-unused-pattern-matching-variables" title="Permalink to this heading"></a></h3>
+<h3>Conventions about unused pattern-matching variables<a class="headerlink" href="#conventions-about-unused-pattern-matching-variables" title="Link to this heading"></a></h3>
 <p>Pattern-matching variables that are not used on the right-hand side of <code class="docutils literal notranslate"><span class="pre">=&gt;</span></code> are
 considered the sign of a potential error. For instance, it could
 result from an undetected misspelled constant constructor. By default,
 a warning is issued in such situations.</p>
 <dl class="coq warn">
 <dt class="sig sig-object coq" id="coq:warn.Unused-variable-‘ident’-might-be-a-misspelled-constructor.-Use-_-or-_‘ident’-to-silence-this-warning.">
-<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Unused</span></span></span> <span><span><span class="pre">variable</span></span></span> <a class="reference internal" href="../core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">might</span></span></span> <span><span><span class="pre">be</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">misspelled</span></span></span> <span><span><span class="pre">constructor.</span></span></span> <span><span><span class="pre">Use</span></span></span> <span><span><span class="pre">_</span></span></span> <span><span><span class="pre">or</span></span></span> <span><span><span class="pre">_</span></span></span><a class="reference internal" href="../core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">to</span></span></span> <span><span><span class="pre">silence</span></span></span> <span><span><span class="pre">this</span></span></span> <span><span><span class="pre">warning.</span></span></span></span></span><a class="headerlink" href="#coq:warn.Unused-variable-‘ident’-might-be-a-misspelled-constructor.-Use-_-or-_‘ident’-to-silence-this-warning." title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Unused</span></span></span> <span><span><span class="pre">variable</span></span></span> <a class="reference internal" href="../core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">might</span></span></span> <span><span><span class="pre">be</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">misspelled</span></span></span> <span><span><span class="pre">constructor.</span></span></span> <span><span><span class="pre">Use</span></span></span> <span><span><span class="pre">_</span></span></span> <span><span><span class="pre">or</span></span></span> <span><span><span class="pre">_</span></span></span><a class="reference internal" href="../core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">to</span></span></span> <span><span><span class="pre">silence</span></span></span> <span><span><span class="pre">this</span></span></span> <span><span><span class="pre">warning.</span></span></span></span></span><a class="headerlink" href="#coq:warn.Unused-variable-‘ident’-might-be-a-misspelled-constructor.-Use-_-or-_‘ident’-to-silence-this-warning." title="Link to this definition"></a></dt>
 <dd><p>This indicates that an unused pattern variable <a class="reference internal" href="../core/basic.html#grammar-token-ident"><code class="xref std std-token docutils literal notranslate"><span class="pre">ident</span></code></a>
 occurs in a pattern-matching clause.</p>
 <p>The warning can be deactivated by using a variable name starting
@@ -1695,7 +1695,7 @@ is_zero is defined
 </section>
 </section>
 <section id="patterns">
-<h2>Patterns<a class="headerlink" href="#patterns" title="Permalink to this heading"></a></h2>
+<h2>Patterns<a class="headerlink" href="#patterns" title="Link to this heading"></a></h2>
 <p>The full syntax of <code class="docutils literal notranslate"><span class="pre">match</span></code> is presented in <a class="reference internal" href="../core/variants.html#match-term"><span class="std std-ref">Definition by cases: match</span></a>.
 Identifiers in patterns are either constructor names or variables. Any
 identifier that is not the constructor of an inductive or coinductive
@@ -1752,7 +1752,7 @@ max is recursively defined (guarded on 2nd argument)
 </div>
 </section>
 <section id="multiple-patterns">
-<span id="id1"></span><h2>Multiple patterns<a class="headerlink" href="#multiple-patterns" title="Permalink to this heading"></a></h2>
+<span id="id1"></span><h2>Multiple patterns<a class="headerlink" href="#multiple-patterns" title="Link to this heading"></a></h2>
 <p>Using multiple patterns in the definition of <code class="docutils literal notranslate"><span class="pre">max</span></code> lets us write:</p>
 <div class="coqtop literal-block docutils container">
 <span class="coqtop-reset"></span><dl>
@@ -1784,7 +1784,7 @@ does not build a match expression.</p>
 </div>
 </section>
 <section id="aliasing-subpatterns">
-<h2>Aliasing subpatterns<a class="headerlink" href="#aliasing-subpatterns" title="Permalink to this heading"></a></h2>
+<h2>Aliasing subpatterns<a class="headerlink" href="#aliasing-subpatterns" title="Link to this heading"></a></h2>
 <p>We can also use <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">as</span></span></span> <a class="reference internal" href="../core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></code> to associate a name to a sub-pattern:</p>
 <div class="coqtop literal-block docutils container">
 <span class="coqtop-reset"></span><dl>
@@ -1801,7 +1801,7 @@ max is recursively defined (guarded on 1st argument)
 </div>
 </section>
 <section id="nested-patterns">
-<span id="id2"></span><h2>Nested patterns<a class="headerlink" href="#nested-patterns" title="Permalink to this heading"></a></h2>
+<span id="id2"></span><h2>Nested patterns<a class="headerlink" href="#nested-patterns" title="Link to this heading"></a></h2>
 <p>Here is now an example of nested patterns:</p>
 <div class="coqtop literal-block docutils container">
 <span></span><dl>
@@ -1898,7 +1898,7 @@ Pattern &quot;x&quot; is redundant in this clause.
 </div>
 </section>
 <section id="disjunctive-patterns">
-<h2>Disjunctive patterns<a class="headerlink" href="#disjunctive-patterns" title="Permalink to this heading"></a></h2>
+<h2>Disjunctive patterns<a class="headerlink" href="#disjunctive-patterns" title="Link to this heading"></a></h2>
 <p>Multiple patterns that share the same right-hand-side can be
 factorized using the notation <code class="docutils literal notranslate"><span class="notation"><span class="repeat-wrapper-with-sub"><span class="repeat"><span class="repeat-wrapper-with-sub"><span class="repeat"><a class="reference internal" href="../core/variants.html#grammar-token-pattern"><span class="hole"><span class="pre">pattern</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span><span class="notation-sub"><span class="pre">,</span></span></span></span><span class="notation-sup"><span class="pre">+</span></span><span class="notation-sub"><span class="pre">|</span></span></span></span></code>. For
 instance, <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">max</span></span></code> can be rewritten as follows:</p>
@@ -1943,9 +1943,9 @@ notation <code class="docutils literal notranslate"><span class="notation"><span
 </div>
 </section>
 <section id="about-patterns-of-parametric-types">
-<h2>About patterns of parametric types<a class="headerlink" href="#about-patterns-of-parametric-types" title="Permalink to this heading"></a></h2>
+<h2>About patterns of parametric types<a class="headerlink" href="#about-patterns-of-parametric-types" title="Link to this heading"></a></h2>
 <section id="parameters-in-patterns">
-<h3>Parameters in patterns<a class="headerlink" href="#parameters-in-patterns" title="Permalink to this heading"></a></h3>
+<h3>Parameters in patterns<a class="headerlink" href="#parameters-in-patterns" title="Link to this heading"></a></h3>
 <p>When matching objects of a parametric type, parameters do not bind in
 patterns. They must be substituted by “<code class="docutils literal notranslate"><span class="pre">_</span></code>”. Consider for example the
 type of polymorphic lists:</p>
@@ -1995,7 +1995,7 @@ The parameters do not bind in patterns; they must be replaced by '_'.
 </div>
 <dl class="coq flag">
 <dt class="sig sig-object coq" id="coq:flag.Asymmetric-Patterns">
-<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Asymmetric</span></span></span> <span><span><span class="pre">Patterns</span></span></span></span></span><a class="headerlink" href="#coq:flag.Asymmetric-Patterns" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Asymmetric</span></span></span> <span><span><span class="pre">Patterns</span></span></span></span></span><a class="headerlink" href="#coq:flag.Asymmetric-Patterns" title="Link to this definition"></a></dt>
 <dd><p>This <a class="reference internal" href="../core/basic.html#term-flag"><span class="xref std std-term">flag</span></a> (off by default) removes parameters from constructors in patterns:</p>
 </dd></dl>
 
@@ -2019,7 +2019,7 @@ The parameters do not bind in patterns; they must be replaced by '_'.
 </section>
 </section>
 <section id="implicit-arguments-in-patterns">
-<h2>Implicit arguments in patterns<a class="headerlink" href="#implicit-arguments-in-patterns" title="Permalink to this heading"></a></h2>
+<h2>Implicit arguments in patterns<a class="headerlink" href="#implicit-arguments-in-patterns" title="Link to this heading"></a></h2>
 <p>By default, implicit arguments are omitted in patterns. So we write:</p>
 <div class="coqtop literal-block docutils container">
 <span></span><dl>
@@ -2059,7 +2059,7 @@ explicitations (as for terms, see <a class="reference internal" href="implicit-a
 </div>
 </section>
 <section id="matching-objects-of-dependent-types">
-<span id="matching-dependent"></span><h2>Matching objects of dependent types<a class="headerlink" href="#matching-objects-of-dependent-types" title="Permalink to this heading"></a></h2>
+<span id="matching-dependent"></span><h2>Matching objects of dependent types<a class="headerlink" href="#matching-objects-of-dependent-types" title="Link to this heading"></a></h2>
 <p>The previous examples illustrate pattern matching on objects of non-
 dependent types, but we can also use the expansion strategy to
 destructure objects of dependent types. Consider the type <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">listn</span></span></code> of
@@ -2079,7 +2079,7 @@ listn_sind is defined
 </div>
 </section>
 <section id="understanding-dependencies-in-patterns">
-<h2>Understanding dependencies in patterns<a class="headerlink" href="#understanding-dependencies-in-patterns" title="Permalink to this heading"></a></h2>
+<h2>Understanding dependencies in patterns<a class="headerlink" href="#understanding-dependencies-in-patterns" title="Link to this heading"></a></h2>
 <p>We can define the function length over <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">listn</span></span></code> by:</p>
 <div class="coqdoc literal-block docutils container">
 <span><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">length</span><span> (</span><span class="coqdoc-var">n</span><span>:</span><span class="coqdoc-var">nat</span><span>) (</span><span class="coqdoc-var">l</span><span>:</span><span class="coqdoc-var">listn</span><span> </span><span class="coqdoc-var">n</span><span>) := </span><span class="coqdoc-var">n</span><span>.</span><span>
@@ -2101,9 +2101,9 @@ analysis:</p>
 notions of usual pattern matching.</p>
 </section>
 <section id="when-the-elimination-predicate-must-be-provided">
-<h2>When the elimination predicate must be provided<a class="headerlink" href="#when-the-elimination-predicate-must-be-provided" title="Permalink to this heading"></a></h2>
+<h2>When the elimination predicate must be provided<a class="headerlink" href="#when-the-elimination-predicate-must-be-provided" title="Link to this heading"></a></h2>
 <section id="dependent-pattern-matching">
-<h3>Dependent pattern matching<a class="headerlink" href="#dependent-pattern-matching" title="Permalink to this heading"></a></h3>
+<h3>Dependent pattern matching<a class="headerlink" href="#dependent-pattern-matching" title="Link to this heading"></a></h3>
 <p>The examples given so far do not need an explicit elimination
 predicate because all the right hand sides have the same type and Rocq
 succeeds to synthesize it. Unfortunately when dealing with dependent
@@ -2137,7 +2137,7 @@ in the property <code class="code Coq docutils literal notranslate"><span class=
 inductive definitions should not be mentioned and are replaced by <code class="docutils literal notranslate"><span class="pre">_</span></code>.</p>
 </section>
 <section id="multiple-dependent-pattern-matching">
-<h3>Multiple dependent pattern matching<a class="headerlink" href="#multiple-dependent-pattern-matching" title="Permalink to this heading"></a></h3>
+<h3>Multiple dependent pattern matching<a class="headerlink" href="#multiple-dependent-pattern-matching" title="Link to this heading"></a></h3>
 <p>Recall that a list of patterns is also a pattern. So, when we
 destructure several terms at the same time and the branches have
 different types we need to provide the elimination predicate for this
@@ -2179,7 +2179,7 @@ length, by writing</p>
 <p>we have a copy of <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">b</span></span></code> in type <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">listn</span></span> <span class="literal number integer"><span class="pre">0</span></span></code> resp. <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">listn</span></span> <span class="operator"><span class="pre">(</span></span><span class="name"><span class="pre">S</span></span> <span class="name"><span class="pre">n'</span></span><span class="operator"><span class="pre">)</span></span></code>.</p>
 </section>
 <section id="patterns-in-in">
-<span id="match-in-patterns"></span><h3>Patterns in <code class="docutils literal notranslate"><span class="pre">in</span></code><a class="headerlink" href="#patterns-in-in" title="Permalink to this heading"></a></h3>
+<span id="match-in-patterns"></span><h3>Patterns in <code class="docutils literal notranslate"><span class="pre">in</span></code><a class="headerlink" href="#patterns-in-in" title="Link to this heading"></a></h3>
 <p>If the type of the matched term is more precise than an inductive
 applied to variables, arguments of the inductive in the <code class="docutils literal notranslate"><span class="pre">in</span></code> branch can
 be more complicated patterns than a variable.</p>
@@ -2203,7 +2203,7 @@ anything.</p>
 </section>
 </section>
 <section id="using-pattern-matching-to-write-proofs">
-<h2>Using pattern matching to write proofs<a class="headerlink" href="#using-pattern-matching-to-write-proofs" title="Permalink to this heading"></a></h2>
+<h2>Using pattern matching to write proofs<a class="headerlink" href="#using-pattern-matching-to-write-proofs" title="Link to this heading"></a></h2>
 <p>In all the previous examples the elimination predicate does not depend
 on the object(s) matched. But it may depend and the typical case is
 when we write a proof by induction or a function that yields an object
@@ -2261,7 +2261,7 @@ is not.</p>
 to build incomplete proofs beginning with a <code class="code Coq docutils literal notranslate"><span class="keyword"><span class="pre">match</span></span></code> construction.</p>
 </section>
 <section id="pattern-matching-on-inductive-objects-involving-local-definitions">
-<h2>Pattern-matching on inductive objects involving local definitions<a class="headerlink" href="#pattern-matching-on-inductive-objects-involving-local-definitions" title="Permalink to this heading"></a></h2>
+<h2>Pattern-matching on inductive objects involving local definitions<a class="headerlink" href="#pattern-matching-on-inductive-objects-involving-local-definitions" title="Link to this heading"></a></h2>
 <p>If local definitions (<code class="docutils literal notranslate"><span class="pre">let</span> <span class="pre">:=</span></code>) occur in the type of a constructor, then there
 are two ways to match on this constructor. Either the local
 definitions are skipped and matching is done only on the true
@@ -2327,7 +2327,7 @@ there is no mention of it in error messages.</p>
 </div>
 </section>
 <section id="pattern-matching-and-coercions">
-<h2>Pattern-matching and coercions<a class="headerlink" href="#pattern-matching-and-coercions" title="Permalink to this heading"></a></h2>
+<h2>Pattern-matching and coercions<a class="headerlink" href="#pattern-matching-and-coercions" title="Link to this heading"></a></h2>
 <p>If a mismatch occurs between the expected type of a pattern and its
 actual type, a coercion made from constructors is sought. If such a
 coercion can be found, it is automatically inserted around the
@@ -2365,7 +2365,7 @@ I_sind is defined
 </div>
 </section>
 <section id="when-does-the-expansion-strategy-fail">
-<h2>When does the expansion strategy fail?<a class="headerlink" href="#when-does-the-expansion-strategy-fail" title="Permalink to this heading"></a></h2>
+<h2>When does the expansion strategy fail?<a class="headerlink" href="#when-does-the-expansion-strategy-fail" title="Link to this heading"></a></h2>
 <p>The strategy works very like in ML languages when treating patterns of
 non-dependent types. But there are new cases of failure that are due to
 the presence of dependencies.</p>
@@ -2385,32 +2385,32 @@ generated expression and the original.</p>
 situation:</p>
 <dl class="coq exn">
 <dt class="sig sig-object coq" id="coq:exn.The-constructor-‘ident’-expects-‘natural’-arguments">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">The</span></span></span> <span><span><span class="pre">constructor</span></span></span> <a class="reference internal" href="../core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">expects</span></span></span> <a class="reference internal" href="../core/basic.html#grammar-token-natural"><span class="hole"><span class="pre">natural</span></span></a> <span><span><span class="pre">arguments.</span></span></span></span></span><a class="headerlink" href="#coq:exn.The-constructor-‘ident’-expects-‘natural’-arguments" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">The</span></span></span> <span><span><span class="pre">constructor</span></span></span> <a class="reference internal" href="../core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">expects</span></span></span> <a class="reference internal" href="../core/basic.html#grammar-token-natural"><span class="hole"><span class="pre">natural</span></span></a> <span><span><span class="pre">arguments.</span></span></span></span></span><a class="headerlink" href="#coq:exn.The-constructor-‘ident’-expects-‘natural’-arguments" title="Link to this definition"></a></dt>
 <dt class="sig sig-object coq" id="coq:exn.The-variable-ident-is-bound-several-times-in-pattern-term">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">The</span></span></span> <span><span><span class="pre">variable</span></span></span> <span><span><span class="pre">ident</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">bound</span></span></span> <span><span><span class="pre">several</span></span></span> <span><span><span class="pre">times</span></span></span> <span><span><span class="pre">in</span></span></span> <span><span><span class="pre">pattern</span></span></span> <span><span><span class="pre">term</span></span></span></span></span><a class="headerlink" href="#coq:exn.The-variable-ident-is-bound-several-times-in-pattern-term" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">The</span></span></span> <span><span><span class="pre">variable</span></span></span> <span><span><span class="pre">ident</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">bound</span></span></span> <span><span><span class="pre">several</span></span></span> <span><span><span class="pre">times</span></span></span> <span><span><span class="pre">in</span></span></span> <span><span><span class="pre">pattern</span></span></span> <span><span><span class="pre">term</span></span></span></span></span><a class="headerlink" href="#coq:exn.The-variable-ident-is-bound-several-times-in-pattern-term" title="Link to this definition"></a></dt>
 <dt class="sig sig-object coq" id="coq:exn.Found-a-constructor-of-inductive-type-term-while-a-constructor-of-term-is-expected">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Found</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">constructor</span></span></span> <span><span><span class="pre">of</span></span></span> <span><span><span class="pre">inductive</span></span></span> <span><span><span class="pre">type</span></span></span> <span><span><span class="pre">term</span></span></span> <span><span><span class="pre">while</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">constructor</span></span></span> <span><span><span class="pre">of</span></span></span> <span><span><span class="pre">term</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">expected</span></span></span></span></span><a class="headerlink" href="#coq:exn.Found-a-constructor-of-inductive-type-term-while-a-constructor-of-term-is-expected" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Found</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">constructor</span></span></span> <span><span><span class="pre">of</span></span></span> <span><span><span class="pre">inductive</span></span></span> <span><span><span class="pre">type</span></span></span> <span><span><span class="pre">term</span></span></span> <span><span><span class="pre">while</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">constructor</span></span></span> <span><span><span class="pre">of</span></span></span> <span><span><span class="pre">term</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">expected</span></span></span></span></span><a class="headerlink" href="#coq:exn.Found-a-constructor-of-inductive-type-term-while-a-constructor-of-term-is-expected" title="Link to this definition"></a></dt>
 <dd><p>Patterns are incorrect (because constructors are not applied to the correct number of
 arguments, because they are not linear or they are wrongly typed).</p>
 </dd></dl>
 
 <dl class="coq exn">
 <dt class="sig sig-object coq" id="coq:exn.Non-exhaustive-pattern-matching">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Non</span></span></span> <span><span><span class="pre">exhaustive</span></span></span> <span><span><span class="pre">pattern</span></span></span> <span><span><span class="pre">matching.</span></span></span></span></span><a class="headerlink" href="#coq:exn.Non-exhaustive-pattern-matching" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Non</span></span></span> <span><span><span class="pre">exhaustive</span></span></span> <span><span><span class="pre">pattern</span></span></span> <span><span><span class="pre">matching.</span></span></span></span></span><a class="headerlink" href="#coq:exn.Non-exhaustive-pattern-matching" title="Link to this definition"></a></dt>
 <dd><p>The pattern matching is not exhaustive.</p>
 </dd></dl>
 
 <dl class="coq exn">
 <dt class="sig sig-object coq" id="coq:exn.The-elimination-predicate-term-should-be-of-arity-‘natural’-(for-non-dependent-case)-or-‘natural’-(for-dependent-case)">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">The</span></span></span> <span><span><span class="pre">elimination</span></span></span> <span><span><span class="pre">predicate</span></span></span> <span><span><span class="pre">term</span></span></span> <span><span><span class="pre">should</span></span></span> <span><span><span class="pre">be</span></span></span> <span><span><span class="pre">of</span></span></span> <span><span><span class="pre">arity</span></span></span> <a class="reference internal" href="../core/basic.html#grammar-token-natural"><span class="hole"><span class="pre">natural</span></span></a> <span><span><span class="pre">(for</span></span></span> <span><span><span class="pre">non</span></span></span> <span><span><span class="pre">dependent</span></span></span> <span><span><span class="pre">case)</span></span></span> <span><span><span class="pre">or</span></span></span> <a class="reference internal" href="../core/basic.html#grammar-token-natural"><span class="hole"><span class="pre">natural</span></span></a> <span><span><span class="pre">(for</span></span></span> <span><span><span class="pre">dependent</span></span></span> <span><span><span class="pre">case).</span></span></span></span></span><a class="headerlink" href="#coq:exn.The-elimination-predicate-term-should-be-of-arity-‘natural’-(for-non-dependent-case)-or-‘natural’-(for-dependent-case)" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">The</span></span></span> <span><span><span class="pre">elimination</span></span></span> <span><span><span class="pre">predicate</span></span></span> <span><span><span class="pre">term</span></span></span> <span><span><span class="pre">should</span></span></span> <span><span><span class="pre">be</span></span></span> <span><span><span class="pre">of</span></span></span> <span><span><span class="pre">arity</span></span></span> <a class="reference internal" href="../core/basic.html#grammar-token-natural"><span class="hole"><span class="pre">natural</span></span></a> <span><span><span class="pre">(for</span></span></span> <span><span><span class="pre">non</span></span></span> <span><span><span class="pre">dependent</span></span></span> <span><span><span class="pre">case)</span></span></span> <span><span><span class="pre">or</span></span></span> <a class="reference internal" href="../core/basic.html#grammar-token-natural"><span class="hole"><span class="pre">natural</span></span></a> <span><span><span class="pre">(for</span></span></span> <span><span><span class="pre">dependent</span></span></span> <span><span><span class="pre">case).</span></span></span></span></span><a class="headerlink" href="#coq:exn.The-elimination-predicate-term-should-be-of-arity-‘natural’-(for-non-dependent-case)-or-‘natural’-(for-dependent-case)" title="Link to this definition"></a></dt>
 <dd><p>The elimination predicate provided to match has not the expected arity.</p>
 </dd></dl>
 
 <dl class="coq exn">
 <dt class="sig sig-object coq" id="coq:exn.Unable-to-infer-a-match-predicate">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Unable</span></span></span> <span><span><span class="pre">to</span></span></span> <span><span><span class="pre">infer</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">match</span></span></span> <span><span><span class="pre">predicate</span></span></span></span></span><a class="headerlink" href="#coq:exn.Unable-to-infer-a-match-predicate" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Unable</span></span></span> <span><span><span class="pre">to</span></span></span> <span><span><span class="pre">infer</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">match</span></span></span> <span><span><span class="pre">predicate</span></span></span></span></span><a class="headerlink" href="#coq:exn.Unable-to-infer-a-match-predicate" title="Link to this definition"></a></dt>
 <dt class="sig sig-object coq" id="coq:exn.Either-there-is-a-type-incompatibility-or-the-problem-involves-dependencies">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Either</span></span></span> <span><span><span class="pre">there</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">type</span></span></span> <span><span><span class="pre">incompatibility</span></span></span> <span><span><span class="pre">or</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">problem</span></span></span> <span><span><span class="pre">involves</span></span></span> <span><span><span class="pre">dependencies.</span></span></span></span></span><a class="headerlink" href="#coq:exn.Either-there-is-a-type-incompatibility-or-the-problem-involves-dependencies" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Either</span></span></span> <span><span><span class="pre">there</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">type</span></span></span> <span><span><span class="pre">incompatibility</span></span></span> <span><span><span class="pre">or</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">problem</span></span></span> <span><span><span class="pre">involves</span></span></span> <span><span><span class="pre">dependencies.</span></span></span></span></span><a class="headerlink" href="#coq:exn.Either-there-is-a-type-incompatibility-or-the-problem-involves-dependencies" title="Link to this definition"></a></dt>
 <dd><p>There is a type mismatch between the different branches. The user should
 provide an elimination predicate.</p>
 </dd></dl>

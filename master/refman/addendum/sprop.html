@@ -1,29 +1,28 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SProp (proof irrelevant propositions) &mdash; The Rocq Prover 9.1+alpha documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/ansi.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/coqdoc.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/notations.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/pre-text.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/ansi.css?v=df714dbc" />
+      <link rel="stylesheet" type="text/css" href="../_static/coqdoc.css?v=2fe46aa3" />
+      <link rel="stylesheet" type="text/css" href="../_static/notations.css?v=ef8e2f7d" />
+      <link rel="stylesheet" type="text/css" href="../_static/pre-text.css?v=1bed1d2d" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=8a0755b4" />
+
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
-        <script src="../_static/notations.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=a65fab5e"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/notations.js?v=7e0edea7"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,14 +35,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> The Rocq Prover
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            The Rocq Prover
           </a>
-              <div class="version">
-                9.1+alpha
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -1180,9 +1180,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../language/core/index.html">Core language</a> &raquo;</li>
-      <li>SProp (proof irrelevant propositions)</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../language/core/index.html">Core language</a></li>
+      <li class="breadcrumb-item active">SProp (proof irrelevant propositions)</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/coq/coq/blob/master/doc/sphinx/addendum/sprop.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -1264,7 +1264,7 @@
 \newcommand{\zeroone}[1]{[{#1}]}
 \end{split}\]</div>
 <section id="sprop-proof-irrelevant-propositions">
-<span id="sprop"></span><h1>SProp (proof irrelevant propositions)<a class="headerlink" href="#sprop-proof-irrelevant-propositions" title="Permalink to this heading"></a></h1>
+<span id="sprop"></span><h1>SProp (proof irrelevant propositions)<a class="headerlink" href="#sprop-proof-irrelevant-propositions" title="Link to this heading"></a></h1>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>The status of strict propositions is experimental.</p>
@@ -1279,13 +1279,13 @@ known as strict propositions) as described in
 Rocq program or by turning the <a class="reference internal" href="#coq:flag.Allow-StrictProp" title="Allow StrictProp"><code class="xref coq coq-flag docutils literal notranslate"><span class="pre">Allow</span> <span class="pre">StrictProp</span></code></a> flag off.</p>
 <dl class="coq flag">
 <dt class="sig sig-object coq" id="coq:flag.Allow-StrictProp">
-<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Allow</span></span></span> <span><span><span class="pre">StrictProp</span></span></span></span></span><a class="headerlink" href="#coq:flag.Allow-StrictProp" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Allow</span></span></span> <span><span><span class="pre">StrictProp</span></span></span></span></span><a class="headerlink" href="#coq:flag.Allow-StrictProp" title="Link to this definition"></a></dt>
 <dd><p>This <a class="reference internal" href="../language/core/basic.html#term-flag"><span class="xref std std-term">flag</span></a> enables or disables the use of <span class="math notranslate nohighlight">\(\SProp\)</span>.  It is enabled by default.
 The command-line flag <code class="docutils literal notranslate"><span class="pre">-disallow-sprop</span></code> disables <span class="math notranslate nohighlight">\(\SProp\)</span> at
 startup.</p>
 <dl class="coq exn">
 <dt class="sig sig-object coq" id="coq:exn.SProp-is-disallowed-because-the-&quot;Allow-StrictProp&quot;-flag-is-off">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">SProp</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">disallowed</span></span></span> <span><span><span class="pre">because</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">&quot;Allow</span></span></span> <span><span><span class="pre">StrictProp&quot;</span></span></span> <span><span><span class="pre">flag</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">off.</span></span></span></span></span><a class="headerlink" href="#coq:exn.SProp-is-disallowed-because-the-"Allow-StrictProp"-flag-is-off" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">SProp</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">disallowed</span></span></span> <span><span><span class="pre">because</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">&quot;Allow</span></span></span> <span><span><span class="pre">StrictProp&quot;</span></span></span> <span><span><span class="pre">flag</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">off.</span></span></span></span></span><a class="headerlink" href="#coq:exn.SProp-is-disallowed-because-the-"Allow-StrictProp"-flag-is-off" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1293,7 +1293,7 @@ startup.</p>
 <p>Some of the definitions described in this document are available
 through <code class="docutils literal notranslate"><span class="pre">Stdlib.Logic.StrictProp</span></code>, which see.</p>
 <section id="basic-constructs">
-<h2>Basic constructs<a class="headerlink" href="#basic-constructs" title="Permalink to this heading"></a></h2>
+<h2>Basic constructs<a class="headerlink" href="#basic-constructs" title="Link to this heading"></a></h2>
 <p>The purpose of <span class="math notranslate nohighlight">\(\SProp\)</span> is to provide types where all elements
 are convertible:</p>
 <div class="coqtop literal-block docutils container">
@@ -1455,7 +1455,7 @@ in SProp but all projections may be irrelevant.
 the Box inductive.</p>
 </section>
 <section id="encodings-for-strict-propositions">
-<h2>Encodings for strict propositions<a class="headerlink" href="#encodings-for-strict-propositions" title="Permalink to this heading"></a></h2>
+<h2>Encodings for strict propositions<a class="headerlink" href="#encodings-for-strict-propositions" title="Link to this heading"></a></h2>
 <p>The elimination for unit types can be encoded by a trivial function
 thanks to proof irrelevance:</p>
 <div class="coqdoc literal-block docutils container">
@@ -1478,10 +1478,10 @@ strict propositions. For instance:</p>
 </span></span></div>
 </section>
 <section id="definitional-uip">
-<h2>Definitional UIP<a class="headerlink" href="#definitional-uip" title="Permalink to this heading"></a></h2>
+<h2>Definitional UIP<a class="headerlink" href="#definitional-uip" title="Link to this heading"></a></h2>
 <dl class="coq flag">
 <dt class="sig sig-object coq" id="coq:flag.Definitional-UIP">
-<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Definitional</span></span></span> <span><span><span class="pre">UIP</span></span></span></span></span><a class="headerlink" href="#coq:flag.Definitional-UIP" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Definitional</span></span></span> <span><span><span class="pre">UIP</span></span></span></span></span><a class="headerlink" href="#coq:flag.Definitional-UIP" title="Link to this definition"></a></dt>
 <dd><p>This <a class="reference internal" href="../language/core/basic.html#term-flag"><span class="xref std std-term">flag</span></a>, off by default, allows the declaration of non-squashed
 inductive types in <span class="math notranslate nohighlight">\(\SProp\)</span> with 1 constructor which takes no non-parameter arguments.
 Since this includes equality types, it provides
@@ -1539,7 +1539,7 @@ a cast around the discriminee:</p>
 </dl>
 </div>
 <section id="non-termination-with-uip">
-<h3>Non Termination with UIP<a class="headerlink" href="#non-termination-with-uip" title="Permalink to this heading"></a></h3>
+<h3>Non Termination with UIP<a class="headerlink" href="#non-termination-with-uip" title="Link to this heading"></a></h3>
 <p>The special reduction rule of UIP combined with an impredicative sort
 breaks termination of reduction
 <span id="id2">[<a class="reference internal" href="../zebibliography.html#id56" title="Andreas Abel and Thierry Coquand. Failure of Normalization in Impredicative Type Theory with Proof-Irrelevant Propositional Equality. Technical Report, Chalmers and Gothenburg University, 2019.">AC19</a>]</span>:</p>
@@ -1578,7 +1578,7 @@ Timeout!
 </section>
 </section>
 <section id="debugging-sprop-issues">
-<h2>Debugging <span class="math notranslate nohighlight">\(\SProp\)</span> issues<a class="headerlink" href="#debugging-sprop-issues" title="Permalink to this heading"></a></h2>
+<h2>Debugging <span class="math notranslate nohighlight">\(\SProp\)</span> issues<a class="headerlink" href="#debugging-sprop-issues" title="Link to this heading"></a></h2>
 <p>Every binder in a term (such as <code class="docutils literal notranslate"><span class="pre">fun</span> <span class="pre">x</span></code> or <code class="docutils literal notranslate"><span class="pre">forall</span> <span class="pre">x</span></code>) caches
 information called the <span class="term-defn"><span class="target" id="term-relevance-mark"></span>relevance mark</span> indicating whether its type is
 in <span class="math notranslate nohighlight">\(\SProp\)</span> or not. This is used to efficiently implement proof
@@ -1590,7 +1590,7 @@ conversion will incorrectly fail as a variable was incorrectly marked
 proof relevant.</p>
 <dl class="coq warn">
 <dt class="sig sig-object coq" id="coq:warn.Bad-relevance">
-<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Bad</span></span></span> <span><span><span class="pre">relevance</span></span></span></span></span><a class="headerlink" href="#coq:warn.Bad-relevance" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Bad</span></span></span> <span><span><span class="pre">relevance</span></span></span></span></span><a class="headerlink" href="#coq:warn.Bad-relevance" title="Link to this definition"></a></dt>
 <dd><p>This is a developer warning, which is treated as an error by default. It is
 emitted by the kernel when it is passed a term with incorrect relevance marks.
 This is always caused by a bug in Rocq (or a plugin), which should thus be reported and
@@ -1601,7 +1601,7 @@ kernel will silently repair the proof term instead of failing.</p>
 
 <dl class="coq flag">
 <dt class="sig sig-object coq" id="coq:flag.Printing-Relevance-Marks">
-<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Relevance</span></span></span> <span><span><span class="pre">Marks</span></span></span></span></span><a class="headerlink" href="#coq:flag.Printing-Relevance-Marks" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Relevance</span></span></span> <span><span><span class="pre">Marks</span></span></span></span></span><a class="headerlink" href="#coq:flag.Printing-Relevance-Marks" title="Link to this definition"></a></dt>
 <dd><p>This <a class="reference internal" href="../language/core/basic.html#term-flag"><span class="xref std std-term">flag</span></a> enables debug printing of relevance marks. It is off by default.
 Note that <a class="reference internal" href="../proof-engine/vernacular-commands.html#coq:flag.Printing-All" title="Printing All"><code class="xref coq coq-flag docutils literal notranslate"><span class="pre">Printing</span> <span class="pre">All</span></code></a> does not affect printing of relevance marks.</p>
 <div class="coqtop literal-block docutils container">

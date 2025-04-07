@@ -1,29 +1,28 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Module System &mdash; The Rocq Prover 9.1+alpha documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/ansi.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/coqdoc.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/notations.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/pre-text.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/ansi.css?v=df714dbc" />
+      <link rel="stylesheet" type="text/css" href="../../_static/coqdoc.css?v=2fe46aa3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/notations.css?v=ef8e2f7d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pre-text.css?v=1bed1d2d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=8a0755b4" />
+
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
-        <script src="../../_static/notations.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=a65fab5e"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/notations.js?v=7e0edea7"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,14 +35,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> The Rocq Prover
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            The Rocq Prover
           </a>
-              <div class="version">
-                9.1+alpha
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -1180,9 +1180,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">Core language</a> &raquo;</li>
-      <li>The Module System</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Core language</a></li>
+      <li class="breadcrumb-item active">The Module System</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/coq/coq/blob/master/doc/sphinx/language/core/modules.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -1264,12 +1264,12 @@
 \newcommand{\zeroone}[1]{[{#1}]}
 \end{split}\]</div>
 <section id="the-module-system">
-<span id="themodulesystem"></span><h1>The Module System<a class="headerlink" href="#the-module-system" title="Permalink to this heading"></a></h1>
+<span id="themodulesystem"></span><h1>The Module System<a class="headerlink" href="#the-module-system" title="Link to this heading"></a></h1>
 <p>The module system extends the Calculus of Inductive Constructions
 providing a convenient way to structure large developments as well as
 a means of massive abstraction.</p>
 <section id="modules-and-module-types">
-<h2>Modules and module types<a class="headerlink" href="#modules-and-module-types" title="Permalink to this heading"></a></h2>
+<h2>Modules and module types<a class="headerlink" href="#modules-and-module-types" title="Link to this heading"></a></h2>
 <p><strong>Access path.</strong> An access path is denoted by <span class="math notranslate nohighlight">\(p\)</span> and can be
 either a module variable <span class="math notranslate nohighlight">\(X\)</span> or, if <span class="math notranslate nohighlight">\(p′\)</span> is an access path
 and <span class="math notranslate nohighlight">\(id\)</span> an identifier, then <span class="math notranslate nohighlight">\(p′.id\)</span> is an access path.</p>
@@ -1303,12 +1303,12 @@ where <span class="math notranslate nohighlight">\(Y\)</span> is an identifier a
 expression .</p>
 </section>
 <section id="using-modules">
-<h2>Using modules<a class="headerlink" href="#using-modules" title="Permalink to this heading"></a></h2>
+<h2>Using modules<a class="headerlink" href="#using-modules" title="Link to this heading"></a></h2>
 <p>The module system provides a way of packaging related elements
 together, as well as a means of massive abstraction.</p>
 <dl class="coq cmd">
 <dt class="sig sig-object coq" id="coq:cmd.Module">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Module</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span class="alternative"><span class="alternative-block"><span><span><span class="pre">Import</span></span></span></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><span><span><span class="pre">Export</span></span></span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="#grammar-token-import_categories"><span class="hole"><span class="pre">import_categories</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span> <a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="#grammar-token-module_binder"><span class="hole"><span class="pre">module_binder</span></span></a></span><span class="notation-sup"><span class="pre">*</span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="#grammar-token-of_module_type"><span class="hole"><span class="pre">of_module_type</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">:=</span></span></span> <span class="repeat-wrapper-with-sub"><span class="repeat"><a class="reference internal" href="#grammar-token-module_expr_inl"><span class="hole"><span class="pre">module_expr_inl</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span><span class="notation-sub"><span class="pre">&lt;+</span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span></span></span><a class="headerlink" href="#coq:cmd.Module" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Module</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span class="alternative"><span class="alternative-block"><span><span><span class="pre">Import</span></span></span></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><span><span><span class="pre">Export</span></span></span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="#grammar-token-import_categories"><span class="hole"><span class="pre">import_categories</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span> <a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="#grammar-token-module_binder"><span class="hole"><span class="pre">module_binder</span></span></a></span><span class="notation-sup"><span class="pre">*</span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="#grammar-token-of_module_type"><span class="hole"><span class="pre">of_module_type</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">:=</span></span></span> <span class="repeat-wrapper-with-sub"><span class="repeat"><a class="reference internal" href="#grammar-token-module_expr_inl"><span class="hole"><span class="pre">module_expr_inl</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span><span class="notation-sub"><span class="pre">&lt;+</span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span></span></span><a class="headerlink" href="#coq:cmd.Module" title="Link to this definition"></a></dt>
 <dd><span class="prodn-table"><span class="prodn-column-group"><span class="prodn-column"></span><span class="prodn-column"></span><span class="prodn-column"></span><span class="prodn-column"></span></span><span class="prodn-row-group"><span class="prodn-row"><span class="prodn-cell-nonterminal"><span class="prodn-target"><span class="target" id="grammar-token-module_binder"></span></span><span class="notation"><a class="reference internal" href="#grammar-token-module_binder"><span class="hole">module_binder</span></a></span></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">::=</span></code></span><span class="prodn-cell-production"><span class="notation"><span><span>(</span></span> <span class="repeat-wrapper"><span class="repeat"><span class="alternative"><span class="alternative-block"><span><span>Import</span></span></span><span class="alternative-separator">​</span><span class="alternative-block"><span><span>Export</span></span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="#grammar-token-import_categories"><span class="hole">import_categories</span></a></span><span class="notation-sup">?</span></span></span><span class="notation-sup">?</span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole">ident</span></a></span><span class="notation-sup">+</span></span> <span><span>:</span></span> <a class="reference internal" href="#grammar-token-module_type_inl"><span class="hole">module_type_inl</span></a> <span><span>)</span></span></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span><span class="prodn-row"><span class="prodn-cell-nonterminal"><span class="prodn-target"><span class="target" id="grammar-token-module_type_inl"></span></span><span class="notation"><a class="reference internal" href="#grammar-token-module_type_inl"><span class="hole">module_type_inl</span></a></span></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">::=</span></code></span><span class="prodn-cell-production"><span class="notation"><span><span>!</span></span> <a class="reference internal" href="#grammar-token-module_type"><span class="hole">module_type</span></a></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span><span class="prodn-row"><span class="prodn-cell-nonterminal"><code class="docutils literal notranslate"></code></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">|</span></code></span><span class="prodn-cell-production"><span class="notation"><a class="reference internal" href="#grammar-token-module_type"><span class="hole">module_type</span></a> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="#grammar-token-functor_app_annot"><span class="hole">functor_app_annot</span></a></span><span class="notation-sup">?</span></span></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span><span class="prodn-row"><span class="prodn-cell-nonterminal"><span class="prodn-target"><span class="target" id="grammar-token-functor_app_annot"></span></span><span class="notation"><a class="reference internal" href="#grammar-token-functor_app_annot"><span class="hole">functor_app_annot</span></a></span></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">::=</span></code></span><span class="prodn-cell-production"><span class="notation"><span><span>[</span></span> <span><span>inline</span></span> <span><span>at</span></span> <span><span>level</span></span> <a class="reference internal" href="basic.html#grammar-token-natural"><span class="hole">natural</span></a> <span><span>]</span></span></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span><span class="prodn-row"><span class="prodn-cell-nonterminal"><code class="docutils literal notranslate"></code></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">|</span></code></span><span class="prodn-cell-production"><span class="notation"><span><span>[</span></span> <span><span>no</span></span> <span><span>inline</span></span> <span><span>]</span></span></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span><span class="prodn-row"><span class="prodn-cell-nonterminal"><span class="prodn-target"><span class="target" id="grammar-token-module_type"></span></span><span class="notation"><a class="reference internal" href="#grammar-token-module_type"><span class="hole">module_type</span></a></span></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">::=</span></code></span><span class="prodn-cell-production"><span class="notation"><a class="reference internal" href="#grammar-token-qualid"><span class="hole">qualid</span></a></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span><span class="prodn-row"><span class="prodn-cell-nonterminal"><code class="docutils literal notranslate"></code></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">|</span></code></span><span class="prodn-cell-production"><span class="notation"><span><span>(</span></span> <a class="reference internal" href="#grammar-token-module_type"><span class="hole">module_type</span></a> <span><span>)</span></span></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span><span class="prodn-row"><span class="prodn-cell-nonterminal"><code class="docutils literal notranslate"></code></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">|</span></code></span><span class="prodn-cell-production"><span class="notation"><a class="reference internal" href="#grammar-token-module_type"><span class="hole">module_type</span></a> <a class="reference internal" href="#grammar-token-module_expr_atom"><span class="hole">module_expr_atom</span></a></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span><span class="prodn-row"><span class="prodn-cell-nonterminal"><code class="docutils literal notranslate"></code></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">|</span></code></span><span class="prodn-cell-production"><span class="notation"><a class="reference internal" href="#grammar-token-module_type"><span class="hole">module_type</span></a> <span><span>with</span></span> <a class="reference internal" href="#grammar-token-with_declaration"><span class="hole">with_declaration</span></a></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span><span class="prodn-row"><span class="prodn-cell-nonterminal"><span class="prodn-target"><span class="target" id="grammar-token-with_declaration"></span></span><span class="notation"><a class="reference internal" href="#grammar-token-with_declaration"><span class="hole">with_declaration</span></a></span></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">::=</span></code></span><span class="prodn-cell-production"><span class="notation"><span><span>Definition</span></span> <a class="reference internal" href="#grammar-token-qualid"><span class="hole">qualid</span></a> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../../addendum/universe-polymorphism.html#grammar-token-univ_decl"><span class="hole">univ_decl</span></a></span><span class="notation-sup">?</span></span> <span><span>:=</span></span> <a class="reference internal" href="basic.html#grammar-token-term"><span class="hole">term</span></a></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span><span class="prodn-row"><span class="prodn-cell-nonterminal"><code class="docutils literal notranslate"></code></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">|</span></code></span><span class="prodn-cell-production"><span class="notation"><span><span>Module</span></span> <a class="reference internal" href="#grammar-token-qualid"><span class="hole">qualid</span></a> <span><span>:=</span></span> <a class="reference internal" href="#grammar-token-qualid"><span class="hole">qualid</span></a></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span><span class="prodn-row"><span class="prodn-cell-nonterminal"><span class="prodn-target"><span class="target" id="grammar-token-module_expr_atom"></span></span><span class="notation"><a class="reference internal" href="#grammar-token-module_expr_atom"><span class="hole">module_expr_atom</span></a></span></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">::=</span></code></span><span class="prodn-cell-production"><span class="notation"><a class="reference internal" href="#grammar-token-qualid"><span class="hole">qualid</span></a></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span><span class="prodn-row"><span class="prodn-cell-nonterminal"><code class="docutils literal notranslate"></code></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">|</span></code></span><span class="prodn-cell-production"><span class="notation"><span><span>(</span></span> <a class="reference internal" href="#grammar-token-module_expr_atom"><span class="hole">module_expr_atom</span></a> <span><span>)</span></span></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span><span class="prodn-row"><span class="prodn-cell-nonterminal"><span class="prodn-target"><span class="target" id="grammar-token-of_module_type"></span></span><span class="notation"><a class="reference internal" href="#grammar-token-of_module_type"><span class="hole">of_module_type</span></a></span></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">::=</span></code></span><span class="prodn-cell-production"><span class="notation"><span><span>:</span></span> <a class="reference internal" href="#grammar-token-module_type_inl"><span class="hole">module_type_inl</span></a></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span><span class="prodn-row"><span class="prodn-cell-nonterminal"><code class="docutils literal notranslate"></code></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">|</span></code></span><span class="prodn-cell-production"><span class="notation"><span class="repeat-wrapper"><span class="repeat"><span><span>&lt;:</span></span> <a class="reference internal" href="#grammar-token-module_type_inl"><span class="hole">module_type_inl</span></a></span><span class="notation-sup">*</span></span></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span><span class="prodn-row"><span class="prodn-cell-nonterminal"><span class="prodn-target"><span class="target" id="grammar-token-module_expr_inl"></span></span><span class="notation"><a class="reference internal" href="#grammar-token-module_expr_inl"><span class="hole">module_expr_inl</span></a></span></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">::=</span></code></span><span class="prodn-cell-production"><span class="notation"><span><span>!</span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="#grammar-token-module_expr_atom"><span class="hole">module_expr_atom</span></a></span><span class="notation-sup">+</span></span></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span><span class="prodn-row"><span class="prodn-cell-nonterminal"><code class="docutils literal notranslate"></code></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">|</span></code></span><span class="prodn-cell-production"><span class="notation"><span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="#grammar-token-module_expr_atom"><span class="hole">module_expr_atom</span></a></span><span class="notation-sup">+</span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="#grammar-token-functor_app_annot"><span class="hole">functor_app_annot</span></a></span><span class="notation-sup">?</span></span></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span></span></span><p>Defines a module named <a class="reference internal" href="basic.html#grammar-token-ident"><code class="xref std std-token docutils literal notranslate"><span class="pre">ident</span></code></a>.  See the examples <a class="reference internal" href="#module-examples"><span class="std std-ref">here</span></a>.</p>
 <p>The <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">Import</span></span></span></span></code> and <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">Export</span></span></span></span></code> flags specify whether the module should be automatically
 imported or exported.</p>
@@ -1330,7 +1330,7 @@ in the type of the functor arguments will be ignored.</p>
 
 <dl class="coq cmd">
 <dt class="sig sig-object coq" id="coq:cmd.Module-Type">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Module</span></span></span> <span><span><span class="pre">Type</span></span></span> <a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="#grammar-token-module_binder"><span class="hole"><span class="pre">module_binder</span></span></a></span><span class="notation-sup"><span class="pre">*</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">&lt;:</span></span></span> <a class="reference internal" href="#grammar-token-module_type_inl"><span class="hole"><span class="pre">module_type_inl</span></span></a></span><span class="notation-sup"><span class="pre">*</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">:=</span></span></span> <span class="repeat-wrapper-with-sub"><span class="repeat"><a class="reference internal" href="#grammar-token-module_type_inl"><span class="hole"><span class="pre">module_type_inl</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span><span class="notation-sub"><span class="pre">&lt;+</span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span></span></span><a class="headerlink" href="#coq:cmd.Module-Type" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Module</span></span></span> <span><span><span class="pre">Type</span></span></span> <a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="#grammar-token-module_binder"><span class="hole"><span class="pre">module_binder</span></span></a></span><span class="notation-sup"><span class="pre">*</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">&lt;:</span></span></span> <a class="reference internal" href="#grammar-token-module_type_inl"><span class="hole"><span class="pre">module_type_inl</span></span></a></span><span class="notation-sup"><span class="pre">*</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">:=</span></span></span> <span class="repeat-wrapper-with-sub"><span class="repeat"><a class="reference internal" href="#grammar-token-module_type_inl"><span class="hole"><span class="pre">module_type_inl</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span><span class="notation-sub"><span class="pre">&lt;+</span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span></span></span><a class="headerlink" href="#coq:cmd.Module-Type" title="Link to this definition"></a></dt>
 <dd><p>Defines a module type named <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></code>.  See the example <a class="reference internal" href="#example-def-simple-module-type"><span class="std std-ref">here</span></a>.</p>
 <p>Specifying <code class="docutils literal notranslate"><span class="notation"><span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="#grammar-token-module_binder"><span class="hole"><span class="pre">module_binder</span></span></a></span><span class="notation-sup"><span class="pre">*</span></span></span></span></code> starts a functor type with
 parameters given by the <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="#grammar-token-module_binder"><span class="hole"><span class="pre">module_binder</span></span></a></span></code>s.</p>
@@ -1353,12 +1353,12 @@ functor, its components (<a class="reference internal" href="definitions.html#te
 are now available through the dot notation.</p>
 <dl class="coq exn">
 <dt class="sig sig-object coq" id="coq:exn.Signature-components-for-field-‘ident’-do-not-match">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Signature</span></span></span> <span><span><span class="pre">components</span></span></span> <span><span><span class="pre">for</span></span></span> <span><span><span class="pre">field</span></span></span> <a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">do</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">match.</span></span></span></span></span><a class="headerlink" href="#coq:exn.Signature-components-for-field-‘ident’-do-not-match" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Signature</span></span></span> <span><span><span class="pre">components</span></span></span> <span><span><span class="pre">for</span></span></span> <span><span><span class="pre">field</span></span></span> <a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">do</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">match.</span></span></span></span></span><a class="headerlink" href="#coq:exn.Signature-components-for-field-‘ident’-do-not-match" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="coq exn">
 <dt class="sig sig-object coq" id="coq:exn.The-field-‘ident’-is-missing-in-‘qualid’">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">The</span></span></span> <span><span><span class="pre">field</span></span></span> <a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">missing</span></span></span> <span><span><span class="pre">in</span></span></span> <a class="reference internal" href="#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a><span><span><span class="pre">.</span></span></span></span></span><a class="headerlink" href="#coq:exn.The-field-‘ident’-is-missing-in-‘qualid’" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">The</span></span></span> <span><span><span class="pre">field</span></span></span> <a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">missing</span></span></span> <span><span><span class="pre">in</span></span></span> <a class="reference internal" href="#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a><span><span><span class="pre">.</span></span></span></span></span><a class="headerlink" href="#coq:exn.The-field-‘ident’-is-missing-in-‘qualid’" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <div class="admonition note">
@@ -1386,7 +1386,7 @@ expanded when the functor is applied, except when the function application is pr
 </div>
 <dl class="coq cmd">
 <dt class="sig sig-object coq" id="coq:cmd.Include">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Include</span></span></span> <a class="reference internal" href="#grammar-token-module_type_inl"><span class="hole"><span class="pre">module_type_inl</span></span></a> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">&lt;+</span></span></span> <a class="reference internal" href="#grammar-token-module_type_inl"><span class="hole"><span class="pre">module_type_inl</span></span></a></span><span class="notation-sup"><span class="pre">*</span></span></span></span></span><a class="headerlink" href="#coq:cmd.Include" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Include</span></span></span> <a class="reference internal" href="#grammar-token-module_type_inl"><span class="hole"><span class="pre">module_type_inl</span></span></a> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">&lt;+</span></span></span> <a class="reference internal" href="#grammar-token-module_type_inl"><span class="hole"><span class="pre">module_type_inl</span></span></a></span><span class="notation-sup"><span class="pre">*</span></span></span></span></span><a class="headerlink" href="#coq:cmd.Include" title="Link to this definition"></a></dt>
 <dd><p>Includes the content of module(s) in the current
 interactive module. Here <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="#grammar-token-module_type_inl"><span class="hole"><span class="pre">module_type_inl</span></span></a></span></code> can be a module expression or a module
 type expression. If it is a high-order module or module type
@@ -1398,7 +1398,7 @@ in a separate <a class="reference internal" href="#coq:cmd.Include" title="Inclu
 
 <dl class="coq cmd">
 <dt class="sig sig-object coq" id="coq:cmd.Include-Type">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Include</span></span></span> <span><span><span class="pre">Type</span></span></span> <span class="repeat-wrapper-with-sub"><span class="repeat"><a class="reference internal" href="#grammar-token-module_type_inl"><span class="hole"><span class="pre">module_type_inl</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span><span class="notation-sub"><span class="pre">&lt;+</span></span></span></span></span><a class="headerlink" href="#coq:cmd.Include-Type" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Include</span></span></span> <span><span><span class="pre">Type</span></span></span> <span class="repeat-wrapper-with-sub"><span class="repeat"><a class="reference internal" href="#grammar-token-module_type_inl"><span class="hole"><span class="pre">module_type_inl</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span><span class="notation-sub"><span class="pre">&lt;+</span></span></span></span></span><a class="headerlink" href="#coq:cmd.Include-Type" title="Link to this definition"></a></dt>
 <dd><div class="deprecated">
 <p><span class="versionmodified deprecated">Deprecated since version 8.3: </span>Use <a class="reference internal" href="#coq:cmd.Include" title="Include"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Include</span></code></a> instead.</p>
 </div>
@@ -1406,7 +1406,7 @@ in a separate <a class="reference internal" href="#coq:cmd.Include" title="Inclu
 
 <dl class="coq cmd">
 <dt class="sig sig-object coq" id="coq:cmd.Declare-Module">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Declare</span></span></span> <span><span><span class="pre">Module</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span class="alternative"><span class="alternative-block"><span><span><span class="pre">Import</span></span></span></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><span><span><span class="pre">Export</span></span></span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="#grammar-token-import_categories"><span class="hole"><span class="pre">import_categories</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span> <a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="#grammar-token-module_binder"><span class="hole"><span class="pre">module_binder</span></span></a></span><span class="notation-sup"><span class="pre">*</span></span></span> <span><span><span class="pre">:</span></span></span> <a class="reference internal" href="#grammar-token-module_type_inl"><span class="hole"><span class="pre">module_type_inl</span></span></a></span></span><a class="headerlink" href="#coq:cmd.Declare-Module" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Declare</span></span></span> <span><span><span class="pre">Module</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span class="alternative"><span class="alternative-block"><span><span><span class="pre">Import</span></span></span></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><span><span><span class="pre">Export</span></span></span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="#grammar-token-import_categories"><span class="hole"><span class="pre">import_categories</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span> <a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="#grammar-token-module_binder"><span class="hole"><span class="pre">module_binder</span></span></a></span><span class="notation-sup"><span class="pre">*</span></span></span> <span><span><span class="pre">:</span></span></span> <a class="reference internal" href="#grammar-token-module_type_inl"><span class="hole"><span class="pre">module_type_inl</span></span></a></span></span><a class="headerlink" href="#coq:cmd.Declare-Module" title="Link to this definition"></a></dt>
 <dd><p>Declares a module <a class="reference internal" href="basic.html#grammar-token-ident"><code class="xref std std-token docutils literal notranslate"><span class="pre">ident</span></code></a> of type <a class="reference internal" href="#grammar-token-module_type_inl"><code class="xref std std-token docutils literal notranslate"><span class="pre">module_type_inl</span></code></a>.</p>
 <p>If <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="#grammar-token-module_binder"><span class="hole"><span class="pre">module_binder</span></span></a></span></code>s are specified, declares a functor with parameters given by the list of
 <a class="reference internal" href="#grammar-token-module_binder"><code class="xref std std-token docutils literal notranslate"><span class="pre">module_binder</span></code></a>s.</p>
@@ -1414,7 +1414,7 @@ in a separate <a class="reference internal" href="#coq:cmd.Include" title="Inclu
 
 <dl class="coq cmd">
 <dt class="sig sig-object coq" id="coq:cmd.Import">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Import</span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="#grammar-token-import_categories"><span class="hole"><span class="pre">import_categories</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="#grammar-token-filtered_import"><span class="hole"><span class="pre">filtered_import</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span></span></span></span><a class="headerlink" href="#coq:cmd.Import" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Import</span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="#grammar-token-import_categories"><span class="hole"><span class="pre">import_categories</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="#grammar-token-filtered_import"><span class="hole"><span class="pre">filtered_import</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span></span></span></span><a class="headerlink" href="#coq:cmd.Import" title="Link to this definition"></a></dt>
 <dd><p>For each module name <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></code> in <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="#grammar-token-filtered_import"><span class="hole"><span class="pre">filtered_import</span></span></a></span></code>,
 if <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></code> denotes a valid basic module (i.e. its module type is a
 signature), makes its components available by their short names.</p>
@@ -1559,7 +1559,7 @@ The reference B.U was not found in the current environment.
 </div>
 <dl class="coq warn">
 <dt class="sig sig-object coq" id="coq:warn.Cannot-import-local-constant,-it-will-be-ignored">
-<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Cannot</span></span></span> <span><span><span class="pre">import</span></span></span> <span><span><span class="pre">local</span></span></span> <span><span><span class="pre">constant,</span></span></span> <span><span><span class="pre">it</span></span></span> <span><span><span class="pre">will</span></span></span> <span><span><span class="pre">be</span></span></span> <span><span><span class="pre">ignored.</span></span></span></span></span><a class="headerlink" href="#coq:warn.Cannot-import-local-constant,-it-will-be-ignored" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Cannot</span></span></span> <span><span><span class="pre">import</span></span></span> <span><span><span class="pre">local</span></span></span> <span><span><span class="pre">constant,</span></span></span> <span><span><span class="pre">it</span></span></span> <span><span><span class="pre">will</span></span></span> <span><span><span class="pre">be</span></span></span> <span><span><span class="pre">ignored.</span></span></span></span></span><a class="headerlink" href="#coq:warn.Cannot-import-local-constant,-it-will-be-ignored" title="Link to this definition"></a></dt>
 <dd><p>This warning is printed when a name in the list of names to
 import was declared as a local constant, and the name is not imported.</p>
 </dd></dl>
@@ -1585,38 +1585,38 @@ Currently supported categories are:</p>
 
 <dl class="coq cmd">
 <dt class="sig sig-object coq" id="coq:cmd.Export">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Export</span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="#grammar-token-import_categories"><span class="hole"><span class="pre">import_categories</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="#grammar-token-filtered_import"><span class="hole"><span class="pre">filtered_import</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span></span></span></span><a class="headerlink" href="#coq:cmd.Export" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Export</span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="#grammar-token-import_categories"><span class="hole"><span class="pre">import_categories</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="#grammar-token-filtered_import"><span class="hole"><span class="pre">filtered_import</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span></span></span></span><a class="headerlink" href="#coq:cmd.Export" title="Link to this definition"></a></dt>
 <dd><p>Similar to <a class="reference internal" href="#coq:cmd.Import" title="Import"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Import</span></code></a>, except that when the module containing this command
 is imported, the <code class="docutils literal notranslate"><span class="notation"><span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span></span></span></code> are imported as well.</p>
 <p>When used in a section, the effect is not local to the section.</p>
 <p>The selective import syntax also works with Export.</p>
 <dl class="coq exn">
 <dt class="sig sig-object coq" id="coq:exn.‘qualid’-is-not-a-module">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><a class="reference internal" href="#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">module.</span></span></span></span></span><a class="headerlink" href="#coq:exn.‘qualid’-is-not-a-module" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><a class="reference internal" href="#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">module.</span></span></span></span></span><a class="headerlink" href="#coq:exn.‘qualid’-is-not-a-module" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="coq warn">
 <dt class="sig sig-object coq" id="coq:warn.Trying-to-mask-the-absolute-name-‘qualid’!">
-<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Trying</span></span></span> <span><span><span class="pre">to</span></span></span> <span><span><span class="pre">mask</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">absolute</span></span></span> <span><span><span class="pre">name</span></span></span> <a class="reference internal" href="#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a><span><span><span class="pre">!</span></span></span></span></span><a class="headerlink" href="#coq:warn.Trying-to-mask-the-absolute-name-‘qualid’!" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Trying</span></span></span> <span><span><span class="pre">to</span></span></span> <span><span><span class="pre">mask</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">absolute</span></span></span> <span><span><span class="pre">name</span></span></span> <a class="reference internal" href="#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a><span><span><span class="pre">!</span></span></span></span></span><a class="headerlink" href="#coq:warn.Trying-to-mask-the-absolute-name-‘qualid’!" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="coq cmd">
 <dt class="sig sig-object coq" id="coq:cmd.Print-Module">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Print</span></span></span> <span><span><span class="pre">Module</span></span></span> <a class="reference internal" href="#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></span><a class="headerlink" href="#coq:cmd.Print-Module" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Print</span></span></span> <span><span><span class="pre">Module</span></span></span> <a class="reference internal" href="#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></span><a class="headerlink" href="#coq:cmd.Print-Module" title="Link to this definition"></a></dt>
 <dd><p>Prints the module type and (optionally) the body of the module <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></code>.</p>
 </dd></dl>
 
 <dl class="coq cmd">
 <dt class="sig sig-object coq" id="coq:cmd.Print-Module-Type">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Print</span></span></span> <span><span><span class="pre">Module</span></span></span> <span><span><span class="pre">Type</span></span></span> <a class="reference internal" href="#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></span><a class="headerlink" href="#coq:cmd.Print-Module-Type" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Print</span></span></span> <span><span><span class="pre">Module</span></span></span> <span><span><span class="pre">Type</span></span></span> <a class="reference internal" href="#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></span><a class="headerlink" href="#coq:cmd.Print-Module-Type" title="Link to this definition"></a></dt>
 <dd><p>Prints the module type corresponding to <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></code>.</p>
 </dd></dl>
 
 <dl class="coq flag">
 <dt class="sig sig-object coq" id="coq:flag.Short-Module-Printing">
-<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Short</span></span></span> <span><span><span class="pre">Module</span></span></span> <span><span><span class="pre">Printing</span></span></span></span></span><a class="headerlink" href="#coq:flag.Short-Module-Printing" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Short</span></span></span> <span><span><span class="pre">Module</span></span></span> <span><span><span class="pre">Printing</span></span></span></span></span><a class="headerlink" href="#coq:flag.Short-Module-Printing" title="Link to this definition"></a></dt>
 <dd><p>This <a class="reference internal" href="basic.html#term-flag"><span class="xref std std-term">flag</span></a> (off by default) disables the printing of the types of fields,
 leaving only their names, for the commands <a class="reference internal" href="#coq:cmd.Print-Module" title="Print Module"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Print</span> <span class="pre">Module</span></code></a> and
 <a class="reference internal" href="#coq:cmd.Print-Module-Type" title="Print Module Type"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Print</span> <span class="pre">Module</span> <span class="pre">Type</span></code></a>.</p>
@@ -1624,7 +1624,7 @@ leaving only their names, for the commands <a class="reference internal" href="#
 
 <dl class="coq cmd">
 <dt class="sig sig-object coq" id="coq:cmd.Print-Namespace">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Print</span></span></span> <span><span><span class="pre">Namespace</span></span></span> <a class="reference internal" href="../../proof-engine/vernacular-commands.html#grammar-token-dirpath"><span class="hole"><span class="pre">dirpath</span></span></a></span></span><a class="headerlink" href="#coq:cmd.Print-Namespace" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Print</span></span></span> <span><span><span class="pre">Namespace</span></span></span> <a class="reference internal" href="../../proof-engine/vernacular-commands.html#grammar-token-dirpath"><span class="hole"><span class="pre">dirpath</span></span></a></span></span><a class="headerlink" href="#coq:cmd.Print-Namespace" title="Link to this definition"></a></dt>
 <dd><p>Prints the names and types of all loaded constants whose fully qualified
 names start with <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../proof-engine/vernacular-commands.html#grammar-token-dirpath"><span class="hole"><span class="pre">dirpath</span></span></a></span></code>. For example, the command <code class="docutils literal notranslate"><span class="pre">Print</span> <span class="pre">Namespace</span> <span class="pre">Stdlib.</span></code>
 displays the names and types of all loaded constants in the standard library.
@@ -1679,7 +1679,7 @@ bar: nat
 </dd></dl>
 
 <section id="examples">
-<span id="module-examples"></span><h3>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h3>
+<span id="module-examples"></span><h3>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h3>
 <div class="admonition note">
 <p class="admonition-title">Example: Defining a simple module interactively</p>
 <div class="coqtop literal-block docutils container">
@@ -1829,7 +1829,7 @@ N.y not a defined object.
 </div>
 <dl class="coq exn">
 <dt class="sig sig-object coq" id="coq:exn.No-field-named-‘ident’-in-‘qualid’">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">No</span></span></span> <span><span><span class="pre">field</span></span></span> <span><span><span class="pre">named</span></span></span> <a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">in</span></span></span> <a class="reference internal" href="#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a><span><span><span class="pre">.</span></span></span></span></span><a class="headerlink" href="#coq:exn.No-field-named-‘ident’-in-‘qualid’" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">No</span></span></span> <span><span><span class="pre">field</span></span></span> <span><span><span class="pre">named</span></span></span> <a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">in</span></span></span> <a class="reference internal" href="#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a><span><span><span class="pre">.</span></span></span></span></span><a class="headerlink" href="#coq:exn.No-field-named-‘ident’-in-‘qualid’" title="Link to this definition"></a></dt>
 <dd><p>Raised when the final <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></code> in the left-hand side <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></code> of
 a <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="#grammar-token-with_declaration"><span class="hole"><span class="pre">with_declaration</span></span></a></span></code> is applied to a module type <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></code> that
 has no field named this <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></code>.</p>
@@ -1940,7 +1940,7 @@ component is <code class="docutils literal notranslate"><span class="pre">nat</s
 </section>
 </section>
 <section id="qualified-names">
-<span id="id1"></span><h2>Qualified names<a class="headerlink" href="#qualified-names" title="Permalink to this heading"></a></h2>
+<span id="id1"></span><h2>Qualified names<a class="headerlink" href="#qualified-names" title="Link to this heading"></a></h2>
 <p>Qualified names (<a class="reference internal" href="#grammar-token-qualid"><code class="xref std std-token docutils literal notranslate"><span class="pre">qualid</span></code></a>s) are hierarchical names that are used to
 identify items such as definitions, theorems and parameters that may be defined
 inside modules (see <a class="reference internal" href="#coq:cmd.Module" title="Module"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Module</span></code></a>).  In addition, they are used to identify
@@ -2028,7 +2028,7 @@ Inductive Corelib.Init.Datatypes.nat
 become associated with specific files.</p>
 </section>
 <section id="controlling-the-scope-of-commands-with-locality-attributes">
-<span id="controlling-locality-of-commands"></span><h2>Controlling the scope of commands with locality attributes<a class="headerlink" href="#controlling-the-scope-of-commands-with-locality-attributes" title="Permalink to this heading"></a></h2>
+<span id="controlling-locality-of-commands"></span><h2>Controlling the scope of commands with locality attributes<a class="headerlink" href="#controlling-the-scope-of-commands-with-locality-attributes" title="Link to this heading"></a></h2>
 <p>Many commands have effects that apply only within a specific scope,
 typically the section or the module in which the command was
 called. Locality <a class="reference internal" href="basic.html#term-attribute"><span class="xref std std-term">attributes</span></a> can alter the scope of
@@ -2037,7 +2037,7 @@ while noting a few exceptional commands for which <a class="reference internal" 
 <a class="reference internal" href="#coq:attr.global" title="global"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">global</span></code></a> attributes are interpreted differently.</p>
 <dl class="coq attr">
 <dt class="sig sig-object coq" id="coq:attr.local">
-<em class="property"><span class="sigannot"><span class="pre">Attribute</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">local</span></span></span></span></span><a class="headerlink" href="#coq:attr.local" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Attribute</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">local</span></span></span></span></span><a class="headerlink" href="#coq:attr.local" title="Link to this definition"></a></dt>
 <dd><p>This <a class="reference internal" href="basic.html#term-attribute"><span class="xref std std-term">attribute</span></a> limits the effect of the command to the
 current scope (section or module).</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">Local</span></code> prefix is an alternative syntax for the <a class="reference internal" href="#coq:attr.local" title="local"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">local</span></code></a>
@@ -2065,7 +2065,7 @@ unqualified names after an <a class="reference internal" href="#coq:cmd.Import" 
 
 <dl class="coq attr">
 <dt class="sig sig-object coq" id="coq:attr.export">
-<em class="property"><span class="sigannot"><span class="pre">Attribute</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">export</span></span></span></span></span><a class="headerlink" href="#coq:attr.export" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Attribute</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">export</span></span></span></span></span><a class="headerlink" href="#coq:attr.export" title="Link to this definition"></a></dt>
 <dd><p>This <a class="reference internal" href="basic.html#term-attribute"><span class="xref std std-term">attribute</span></a> makes the effect of the command
 persist when the section is closed and applies the effect when the
 module containing the command is imported.</p>
@@ -2076,7 +2076,7 @@ don't support it within sections.</p>
 
 <dl class="coq attr">
 <dt class="sig sig-object coq" id="coq:attr.global">
-<em class="property"><span class="sigannot"><span class="pre">Attribute</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">global</span></span></span></span></span><a class="headerlink" href="#coq:attr.global" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Attribute</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">global</span></span></span></span></span><a class="headerlink" href="#coq:attr.global" title="Link to this definition"></a></dt>
 <dd><p>This <a class="reference internal" href="basic.html#term-attribute"><span class="xref std std-term">attribute</span></a> makes the effect of the command
 persist even when the current section or module is closed.  Loading
 the file containing the command (possibly transitively) applies the
@@ -2099,7 +2099,7 @@ locality attribute where it is supported.</p>
 
 </section>
 <section id="summary-of-locality-attributes-in-a-module">
-<span id="visibility-attributes-modules"></span><h2>Summary of locality attributes in a module<a class="headerlink" href="#summary-of-locality-attributes-in-a-module" title="Permalink to this heading"></a></h2>
+<span id="visibility-attributes-modules"></span><h2>Summary of locality attributes in a module<a class="headerlink" href="#summary-of-locality-attributes-in-a-module" title="Link to this heading"></a></h2>
 <p>This table sums up the effect of locality attributes on the scope of vernacular
 commands in a module, when outside the module where they were entered. In the
 following table:</p>
@@ -2121,13 +2121,6 @@ if it is not imported).</p></li>
 <p>A similar table for <a class="reference internal" href="sections.html#coq:cmd.Section" title="Section"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Section</span></code></a> can be found
 <a class="reference internal" href="sections.html#visibility-attributes-sections"><span class="std std-ref">here</span></a>.</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p><code class="docutils literal notranslate"><span class="pre">Command</span></code></p></th>
 <th class="head"><p>no attribute</p></th>
@@ -2217,7 +2210,7 @@ if it is not imported).</p></li>
 </table>
 </section>
 <section id="typing-modules">
-<h2>Typing Modules<a class="headerlink" href="#typing-modules" title="Permalink to this heading"></a></h2>
+<h2>Typing Modules<a class="headerlink" href="#typing-modules" title="Link to this heading"></a></h2>
 <p>In order to introduce the typing system we first slightly extend the syntactic
 class of terms and environments given in section <a class="reference internal" href="../cic.html#the-terms"><span class="std std-ref">The terms</span></a>. The
 environments, apart from definitions of <a class="reference internal" href="definitions.html#term-constant"><span class="xref std std-term">constants</span></a> and inductive types now also
@@ -2237,7 +2230,7 @@ precise than a structure element <span class="math notranslate nohighlight">\(e_
 </ul>
 <p>The rules for forming structures are the following:</p>
 <dl>
-<dt id="inference-WF-STR">WF-STR</dt><dd><div class="math notranslate nohighlight">
+<dt>WF-STR</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 \WF{E;E′}{}%
 }{%
@@ -2246,7 +2239,7 @@ precise than a structure element <span class="math notranslate nohighlight">\(e_
 </dd>
 </dl>
 <dl>
-<dt id="inference-WF-FUN">WF-FUN</dt><dd><div class="math notranslate nohighlight">
+<dt>WF-FUN</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 \WFT{E; \ModS{X}{S}}{ \ovl{S′} }%
 }{%
@@ -2256,7 +2249,7 @@ precise than a structure element <span class="math notranslate nohighlight">\(e_
 </dl>
 <p>Evaluation of structures to weak head normal form:</p>
 <dl>
-<dt id="inference-WEVAL-APP">WEVAL-APP</dt><dd><div class="math notranslate nohighlight">
+<dt>WEVAL-APP</dt><dd><div class="math notranslate nohighlight">
 \[\begin{split}\frac{%
 \begin{array}{c}%
 \hspace{3em}%
@@ -2271,7 +2264,7 @@ precise than a structure element <span class="math notranslate nohighlight">\(e_
 </dd>
 </dl>
 <dl>
-<dt id="inference-WEVAL-WITH-MOD">WEVAL-WITH-MOD</dt><dd><div class="math notranslate nohighlight">
+<dt>WEVAL-WITH-MOD</dt><dd><div class="math notranslate nohighlight">
 \[\begin{split}\frac{%
 \begin{array}{c}%
 \hspace{3em}%
@@ -2296,7 +2289,7 @@ E;e_1 ;…;e_i [] ⊢ S_2 &lt;: \ovl{S_1}%
 </dd>
 </dl>
 <dl>
-<dt id="inference-WEVAL-WITH-MOD-REC">WEVAL-WITH-MOD-REC</dt><dd><div class="math notranslate nohighlight">
+<dt>WEVAL-WITH-MOD-REC</dt><dd><div class="math notranslate nohighlight">
 \[\begin{split}\frac{%
 \begin{array}{c}%
 \hspace{3em}%
@@ -2317,7 +2310,7 @@ E;e_1 ;…;e_i [] ⊢ S_2 &lt;: \ovl{S_1}%
 </dd>
 </dl>
 <dl>
-<dt id="inference-WEVAL-WITH-DEF">WEVAL-WITH-DEF</dt><dd><div class="math notranslate nohighlight">
+<dt>WEVAL-WITH-DEF</dt><dd><div class="math notranslate nohighlight">
 \[\begin{split}\frac{%
 \begin{array}{c}%
 \hspace{3em}%
@@ -2338,7 +2331,7 @@ E;e_1 ;…;e_i [] ⊢ S_2 &lt;: \ovl{S_1}%
 </dd>
 </dl>
 <dl>
-<dt id="inference-WEVAL-WITH-DEF-REC">WEVAL-WITH-DEF-REC</dt><dd><div class="math notranslate nohighlight">
+<dt>WEVAL-WITH-DEF-REC</dt><dd><div class="math notranslate nohighlight">
 \[\begin{split}\frac{%
 \begin{array}{c}%
 \hspace{3em}%
@@ -2359,7 +2352,7 @@ E;e_1 ;…;e_i [] ⊢ S_2 &lt;: \ovl{S_1}%
 </dd>
 </dl>
 <dl>
-<dt id="inference-WEVAL-PATH-MOD1">WEVAL-PATH-MOD1</dt><dd><div class="math notranslate nohighlight">
+<dt>WEVAL-PATH-MOD1</dt><dd><div class="math notranslate nohighlight">
 \[\begin{split}\frac{%
 \begin{array}{c}%
 \hspace{3em}%
@@ -2374,7 +2367,7 @@ E[] ⊢ p.X \lra \ovl{S}%
 </dd>
 </dl>
 <dl>
-<dt id="inference-WEVAL-PATH-MOD2">WEVAL-PATH-MOD2</dt><dd><div class="math notranslate nohighlight">
+<dt>WEVAL-PATH-MOD2</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 \WF{E}{}%
 \hspace{3em}%
@@ -2387,7 +2380,7 @@ E[] ⊢ p.X \lra \ovl{S}%
 </dd>
 </dl>
 <dl>
-<dt id="inference-WEVAL-PATH-ALIAS1">WEVAL-PATH-ALIAS1</dt><dd><div class="math notranslate nohighlight">
+<dt>WEVAL-PATH-ALIAS1</dt><dd><div class="math notranslate nohighlight">
 \[\begin{split}\frac{%
 \begin{array}{c}%
 \hspace{3em}%
@@ -2402,7 +2395,7 @@ E[] ⊢ p.X \lra \ovl{S}%
 </dd>
 </dl>
 <dl>
-<dt id="inference-WEVAL-PATH-ALIAS2">WEVAL-PATH-ALIAS2</dt><dd><div class="math notranslate nohighlight">
+<dt>WEVAL-PATH-ALIAS2</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 \WF{E}{}%
 \hspace{3em}%
@@ -2415,7 +2408,7 @@ E[] ⊢ p.X \lra \ovl{S}%
 </dd>
 </dl>
 <dl>
-<dt id="inference-WEVAL-PATH-TYPE1">WEVAL-PATH-TYPE1</dt><dd><div class="math notranslate nohighlight">
+<dt>WEVAL-PATH-TYPE1</dt><dd><div class="math notranslate nohighlight">
 \[\begin{split}\frac{%
 \begin{array}{c}%
 \hspace{3em}%
@@ -2430,7 +2423,7 @@ E[] ⊢ p.X \lra \ovl{S}%
 </dd>
 </dl>
 <dl>
-<dt id="inference-WEVAL-PATH-TYPE2">WEVAL-PATH-TYPE2</dt><dd><div class="math notranslate nohighlight">
+<dt>WEVAL-PATH-TYPE2</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 \WF{E}{}%
 \hspace{3em}%
@@ -2444,7 +2437,7 @@ E[] ⊢ p.X \lra \ovl{S}%
 </dl>
 <p>Rules for typing module:</p>
 <dl>
-<dt id="inference-MT-EVAL">MT-EVAL</dt><dd><div class="math notranslate nohighlight">
+<dt>MT-EVAL</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 \WEV{E}{p}{\ovl{S}}%
 }{%
@@ -2453,7 +2446,7 @@ E[] ⊢ p : \ovl{S}%
 </dd>
 </dl>
 <dl>
-<dt id="inference-MT-STR">MT-STR</dt><dd><div class="math notranslate nohighlight">
+<dt>MT-STR</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 E[] ⊢ p : S%
 }{%
@@ -2491,7 +2484,7 @@ below as well as the equality rules on inductive types and
 constructors.</p>
 <p>The module subtyping rules:</p>
 <dl>
-<dt id="inference-MSUB-STR">MSUB-STR</dt><dd><div class="math notranslate nohighlight">
+<dt>MSUB-STR</dt><dd><div class="math notranslate nohighlight">
 \[\begin{split}\frac{%
 \begin{array}{c}%
 \hspace{3em}%
@@ -2506,7 +2499,7 @@ constructors.</p>
 </dd>
 </dl>
 <dl>
-<dt id="inference-MSUB-FUN">MSUB-FUN</dt><dd><div class="math notranslate nohighlight">
+<dt>MSUB-FUN</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 \WS{E}{\ovl{S_1'}}{\ovl{S_1}}%
 \hspace{3em}%
@@ -2518,7 +2511,7 @@ E[] ⊢ \Functor(X:S_1 ) S_2 &lt;: \Functor(X:S_1') S_2'%
 </dl>
 <p>Structure element subtyping rules:</p>
 <dl>
-<dt id="inference-ASSUM-ASSUM">ASSUM-ASSUM</dt><dd><div class="math notranslate nohighlight">
+<dt>ASSUM-ASSUM</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 E[] ⊢ T_1 ≤_{βδιζη} T_2%
 }{%
@@ -2527,7 +2520,7 @@ E[] ⊢ T_1 ≤_{βδιζη} T_2%
 </dd>
 </dl>
 <dl>
-<dt id="inference-DEF-ASSUM">DEF-ASSUM</dt><dd><div class="math notranslate nohighlight">
+<dt>DEF-ASSUM</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 E[] ⊢ T_1 ≤_{βδιζη} T_2%
 }{%
@@ -2536,7 +2529,7 @@ E[] ⊢ T_1 ≤_{βδιζη} T_2%
 </dd>
 </dl>
 <dl>
-<dt id="inference-ASSUM-DEF">ASSUM-DEF</dt><dd><div class="math notranslate nohighlight">
+<dt>ASSUM-DEF</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 E[] ⊢ T_1 ≤_{βδιζη} T_2%
 \hspace{3em}%
@@ -2547,7 +2540,7 @@ E[] ⊢ c =_{βδιζη} t_2%
 </dd>
 </dl>
 <dl>
-<dt id="inference-DEF-DEF">DEF-DEF</dt><dd><div class="math notranslate nohighlight">
+<dt>DEF-DEF</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 E[] ⊢ T_1 ≤_{βδιζη} T_2%
 \hspace{3em}%
@@ -2558,7 +2551,7 @@ E[] ⊢ t_1 =_{βδιζη} t_2%
 </dd>
 </dl>
 <dl>
-<dt id="inference-IND-IND">IND-IND</dt><dd><div class="math notranslate nohighlight">
+<dt>IND-IND</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 E[] ⊢ Γ_I =_{βδιζη} Γ_I'%
 \hspace{3em}%
@@ -2569,7 +2562,7 @@ E[Γ_I] ⊢ Γ_C =_{βδιζη} Γ_C'%
 </dd>
 </dl>
 <dl>
-<dt id="inference-INDP-IND">INDP-IND</dt><dd><div class="math notranslate nohighlight">
+<dt>INDP-IND</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 E[] ⊢ Γ_I =_{βδιζη} Γ_I'%
 \hspace{3em}%
@@ -2580,7 +2573,7 @@ E[Γ_I] ⊢ Γ_C =_{βδιζη} Γ_C'%
 </dd>
 </dl>
 <dl>
-<dt id="inference-INDP-INDP">INDP-INDP</dt><dd><div class="math notranslate nohighlight">
+<dt>INDP-INDP</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 E[] ⊢ Γ_I =_{βδιζη} Γ_I'%
 \hspace{3em}%
@@ -2593,7 +2586,7 @@ E[] ⊢ p =_{βδιζη} p'%
 </dd>
 </dl>
 <dl>
-<dt id="inference-MOD-MOD">MOD-MOD</dt><dd><div class="math notranslate nohighlight">
+<dt>MOD-MOD</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 \WS{E}{S_1}{S_2}%
 }{%
@@ -2602,7 +2595,7 @@ E[] ⊢ p =_{βδιζη} p'%
 </dd>
 </dl>
 <dl>
-<dt id="inference-ALIAS-MOD">ALIAS-MOD</dt><dd><div class="math notranslate nohighlight">
+<dt>ALIAS-MOD</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 E[] ⊢ p : S_1%
 \hspace{3em}%
@@ -2613,7 +2606,7 @@ E[] ⊢ p : S_1%
 </dd>
 </dl>
 <dl>
-<dt id="inference-MOD-ALIAS">MOD-ALIAS</dt><dd><div class="math notranslate nohighlight">
+<dt>MOD-ALIAS</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 E[] ⊢ p : S_2%
 \hspace{3em}%
@@ -2626,7 +2619,7 @@ E[] ⊢ X =_{βδιζη} p%
 </dd>
 </dl>
 <dl>
-<dt id="inference-ALIAS-ALIAS">ALIAS-ALIAS</dt><dd><div class="math notranslate nohighlight">
+<dt>ALIAS-ALIAS</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 E[] ⊢ p_1 =_{βδιζη} p_2%
 }{%
@@ -2635,7 +2628,7 @@ E[] ⊢ p_1 =_{βδιζη} p_2%
 </dd>
 </dl>
 <dl>
-<dt id="inference-MODTYPE-MODTYPE">MODTYPE-MODTYPE</dt><dd><div class="math notranslate nohighlight">
+<dt>MODTYPE-MODTYPE</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 \WS{E}{S_1}{S_2}%
 \hspace{3em}%
@@ -2647,7 +2640,7 @@ E[] ⊢ p_1 =_{βδιζη} p_2%
 </dl>
 <p>New environment formation rules</p>
 <dl>
-<dt id="inference-WF-MOD1">WF-MOD1</dt><dd><div class="math notranslate nohighlight">
+<dt>WF-MOD1</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 \WF{E}{}%
 \hspace{3em}%
@@ -2658,7 +2651,7 @@ E[] ⊢ p_1 =_{βδιζη} p_2%
 </dd>
 </dl>
 <dl>
-<dt id="inference-WF-MOD2">WF-MOD2</dt><dd><div class="math notranslate nohighlight">
+<dt>WF-MOD2</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 \WS{E}{S_2}{S_1}%
 \hspace{3em}%
@@ -2673,7 +2666,7 @@ E[] ⊢ p_1 =_{βδιζη} p_2%
 </dd>
 </dl>
 <dl>
-<dt id="inference-WF-ALIAS">WF-ALIAS</dt><dd><div class="math notranslate nohighlight">
+<dt>WF-ALIAS</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 \WF{E}{}%
 \hspace{3em}%
@@ -2684,7 +2677,7 @@ E[] ⊢ p : S%
 </dd>
 </dl>
 <dl>
-<dt id="inference-WF-MODTYPE">WF-MODTYPE</dt><dd><div class="math notranslate nohighlight">
+<dt>WF-MODTYPE</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 \WF{E}{}%
 \hspace{3em}%
@@ -2695,7 +2688,7 @@ E[] ⊢ p : S%
 </dd>
 </dl>
 <dl>
-<dt id="inference-WF-IND">WF-IND</dt><dd><div class="math notranslate nohighlight">
+<dt>WF-IND</dt><dd><div class="math notranslate nohighlight">
 \[\begin{split}\frac{%
 \begin{array}{c}%
 \hspace{3em}%
@@ -2713,7 +2706,7 @@ E[] ⊢ \ind{r}{Γ_I'}{Γ_C'} &lt;: \ind{r}{Γ_I}{Γ_C}%
 </dl>
 <p>Component access rules</p>
 <dl>
-<dt id="inference-ACC-TYPE1">ACC-TYPE1</dt><dd><div class="math notranslate nohighlight">
+<dt>ACC-TYPE1</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 E[Γ] ⊢ p :~\Struct~e_1 ;…;e_i ;(c:T);… ~\End%
 }{%
@@ -2722,7 +2715,7 @@ E[Γ] ⊢ p.c : T%
 </dd>
 </dl>
 <dl>
-<dt id="inference-ACC-TYPE2">ACC-TYPE2</dt><dd><div class="math notranslate nohighlight">
+<dt>ACC-TYPE2</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 E[Γ] ⊢ p :~\Struct~e_1 ;…;e_i ;(c:=t:T);… ~\End%
 }{%
@@ -2732,7 +2725,7 @@ E[Γ] ⊢ p.c : T%
 </dl>
 <p>Notice that the following rule extends the delta rule defined in section <a class="reference internal" href="conversion.html#conversion-rules"><span class="std std-ref">Conversion rules</span></a></p>
 <dl>
-<dt id="inference-ACC-DELTA">ACC-DELTA</dt><dd><div class="math notranslate nohighlight">
+<dt>ACC-DELTA</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 E[Γ] ⊢ p :~\Struct~e_1 ;…;e_i ;(c:=t:U);… ~\End%
 }{%
@@ -2745,7 +2738,7 @@ E[Γ] ⊢ p.c \triangleright_δ t%
 <span class="math notranslate nohighlight">\(Γ_I\)</span> is <span class="math notranslate nohighlight">\([I_1{:}∀ Γ_P, A_1 ; …; I_k{:}∀ Γ_P, A_k ]\)</span>,
 and <span class="math notranslate nohighlight">\(Γ_C\)</span> is <span class="math notranslate nohighlight">\([c_1{:}∀ Γ_P, C_1 ; …; c_n{:}∀ Γ_P, C_n ]\)</span>.</p>
 <dl>
-<dt id="inference-ACC-IND1">ACC-IND1</dt><dd><div class="math notranslate nohighlight">
+<dt>ACC-IND1</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 E[Γ] ⊢ p :~\Struct~e_1 ;…;e_i ;\ind{r}{Γ_I}{Γ_C};… ~\End%
 }{%
@@ -2754,7 +2747,7 @@ E[Γ] ⊢ p.I_j : ∀ Γ_P, A_j%
 </dd>
 </dl>
 <dl>
-<dt id="inference-ACC-IND2">ACC-IND2</dt><dd><div class="math notranslate nohighlight">
+<dt>ACC-IND2</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 E[Γ] ⊢ p :~\Struct~e_1 ;…;e_i ;\ind{r}{Γ_I}{Γ_C};… ~\End%
 }{%
@@ -2763,7 +2756,7 @@ E[Γ] ⊢ p.c_m : ∀ Γ_P, C_m%
 </dd>
 </dl>
 <dl>
-<dt id="inference-ACC-INDP1">ACC-INDP1</dt><dd><div class="math notranslate nohighlight">
+<dt>ACC-INDP1</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 E[] ⊢ p :~\Struct~e_1 ;…;e_i ; \Indp{r}{Γ_I}{Γ_C}{p'} ;… ~\End%
 }{%
@@ -2772,7 +2765,7 @@ E[] ⊢ p.I_i \triangleright_δ p'.I_i%
 </dd>
 </dl>
 <dl>
-<dt id="inference-ACC-INDP2">ACC-INDP2</dt><dd><div class="math notranslate nohighlight">
+<dt>ACC-INDP2</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 E[] ⊢ p :~\Struct~e_1 ;…;e_i ; \Indp{r}{Γ_I}{Γ_C}{p'} ;… ~\End%
 }{%

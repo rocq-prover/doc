@@ -1,29 +1,28 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Conversion rules &mdash; The Rocq Prover 9.1+alpha documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/ansi.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/coqdoc.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/notations.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/pre-text.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/ansi.css?v=df714dbc" />
+      <link rel="stylesheet" type="text/css" href="../../_static/coqdoc.css?v=2fe46aa3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/notations.css?v=ef8e2f7d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pre-text.css?v=1bed1d2d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=8a0755b4" />
+
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
-        <script src="../../_static/notations.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=a65fab5e"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/notations.js?v=7e0edea7"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,14 +35,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> The Rocq Prover
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            The Rocq Prover
           </a>
-              <div class="version">
-                9.1+alpha
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -1180,9 +1180,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">Core language</a> &raquo;</li>
-      <li>Conversion rules</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Core language</a></li>
+      <li class="breadcrumb-item active">Conversion rules</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/coq/coq/blob/master/doc/sphinx/language/core/conversion.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -1264,7 +1264,7 @@
 \newcommand{\zeroone}[1]{[{#1}]}
 \end{split}\]</div>
 <section id="conversion-rules">
-<span id="id1"></span><h1>Conversion rules<a class="headerlink" href="#conversion-rules" title="Permalink to this heading"></a></h1>
+<span id="id1"></span><h1>Conversion rules<a class="headerlink" href="#conversion-rules" title="Link to this heading"></a></h1>
 <p>The Rocq Prover has conversion rules that can be used to determine if two
 terms are equal by definition in CIC, or <a class="reference internal" href="#term-convertible"><span class="xref std std-term">convertible</span></a>.
 Conversion rules consist of reduction rules and expansion rules.
@@ -1306,10 +1306,6 @@ variables, axioms or opaque contants that can't be reduced.</p>
 can be applied with conversion tactics such as <a class="reference internal" href="../../proofs/writing-proofs/equality.html#coq:tacn.cbv" title="cbv"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">cbv</span></code></a>:</p>
 <blockquote>
 <div><table class="docutils align-default">
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Conversion name</p></th>
 <th class="head"><p>Description</p></th>
@@ -1350,7 +1346,7 @@ describes tactics that only apply conversion rules.
 (Other tactics may use conversion rules in addition
 to other changes to the proof state.)</p>
 <section id="conversion">
-<h2>α-conversion<a class="headerlink" href="#conversion" title="Permalink to this heading"></a></h2>
+<h2>α-conversion<a class="headerlink" href="#conversion" title="Link to this heading"></a></h2>
 <p>Two terms are <span class="term-defn"><span class="target" id="term-alpha-convertible"></span>α-convertible</span> if they are syntactically
 equal ignoring differences in the names of variables bound within the expression.
 For example <code class="docutils literal notranslate"><span class="pre">forall</span> <span class="pre">x,</span> <span class="pre">x</span> <span class="pre">+</span> <span class="pre">0</span> <span class="pre">=</span> <span class="pre">x</span></code> is α-convertible with <code class="docutils literal notranslate"><span class="pre">forall</span> <span class="pre">y,</span> <span class="pre">y</span> <span class="pre">+</span> <span class="pre">0</span> <span class="pre">=</span> <span class="pre">y</span></code>.
@@ -1358,7 +1354,7 @@ For example <code class="docutils literal notranslate"><span class="pre">forall<
 so explicit α-conversion is not necessary.)</p>
 </section>
 <section id="reduction">
-<h2>β-reduction<a class="headerlink" href="#reduction" title="Permalink to this heading"></a></h2>
+<h2>β-reduction<a class="headerlink" href="#reduction" title="Link to this heading"></a></h2>
 <p><span class="term-defn"><span class="target" id="term-beta-reduction"></span>β-reduction</span> reduces a <span class="term-defn"><span class="target" id="term-beta-redex"></span>beta-redex</span>, which is
 a term in the form <code class="docutils literal notranslate"><span class="pre">(fun</span> <span class="pre">x</span> <span class="pre">=&gt;</span> <span class="pre">t)</span> <span class="pre">u</span></code>.  (Beta-redex
 is short for &quot;beta-reducible expression&quot;, a term from lambda calculus.
@@ -1367,7 +1363,7 @@ for more background.)</p>
 <p>Formally, in any <a class="reference internal" href="../../proofs/writing-proofs/proof-mode.html#term-global-environment"><span class="xref std std-term">global environment</span></a> <span class="math notranslate nohighlight">\(E\)</span> and <a class="reference internal" href="../../proofs/writing-proofs/proof-mode.html#term-local-context"><span class="xref std std-term">local context</span></a>
 <span class="math notranslate nohighlight">\(Γ\)</span>, the beta-reduction rule is:</p>
 <dl>
-<dt id="inference-Beta">Beta</dt><dd><div class="math notranslate nohighlight">
+<dt>Beta</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 %
 }{%
@@ -1385,13 +1381,13 @@ theoretically of great importance but we will not detail them here and
 refer the interested reader to <span id="id2">[<a class="reference internal" href="../../zebibliography.html#id11" title="Th. Coquand. Une Théorie des Constructions. PhD thesis, Université Paris 7, January 1985.">Coq85</a>]</span>.</p>
 </section>
 <section id="delta-reduction-sect">
-<span id="id3"></span><h2>δ-reduction<a class="headerlink" href="#delta-reduction-sect" title="Permalink to this heading"></a></h2>
+<span id="id3"></span><h2>δ-reduction<a class="headerlink" href="#delta-reduction-sect" title="Link to this heading"></a></h2>
 <p><span class="term-defn"><span class="target" id="term-delta-reduction"></span>δ-reduction</span> replaces variables defined in
 <a class="reference internal" href="../../proofs/writing-proofs/proof-mode.html#term-local-context"><span class="xref std std-term">local contexts</span></a>
 or <a class="reference internal" href="definitions.html#term-constant"><span class="xref std std-term">constants</span></a> defined in the <a class="reference internal" href="../../proofs/writing-proofs/proof-mode.html#term-global-environment"><span class="xref std std-term">global environment</span></a> with their values.
 <span class="term-defn"><span class="target" id="term-unfold"></span>Unfolding</span> means to replace a constant by its definition. Formally, this is:</p>
 <dl>
-<dt id="inference-Delta-Local">Delta-Local</dt><dd><div class="math notranslate nohighlight">
+<dt>Delta-Local</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 \WFE{\Gamma}%
 \hspace{3em}%
@@ -1402,7 +1398,7 @@ E[Γ] ⊢ x~\triangleright_Δ~t%
 </dd>
 </dl>
 <dl>
-<dt id="inference-Delta-Global">Delta-Global</dt><dd><div class="math notranslate nohighlight">
+<dt>Delta-Global</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 \WFE{\Gamma}%
 \hspace{3em}%
@@ -1417,7 +1413,7 @@ marked <span class="term-defn"><span class="target" id="term-transparent"></span
 transparent; <a class="reference internal" href="#term-delta-reduction"><span class="xref std std-term">delta-reduction</span></a> doesn't unfold opaque constants.</p>
 </section>
 <section id="id4">
-<h2>ι-reduction<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<h2>ι-reduction<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
 <p>A specific conversion rule is associated with the inductive objects in
 the global environment. We shall give later on (see Section
 <a class="reference internal" href="inductive.html#well-formed-inductive-definitions"><span class="std std-ref">Well-formed inductive definitions</span></a>) the precise rules but it
@@ -1427,14 +1423,14 @@ constructor behaves as expected. This reduction is called
 and is more precisely studied in <span id="id5">[<a class="reference internal" href="../../zebibliography.html#id38" title="C. Paulin-Mohring. Inductive Definitions in the System Coq - Rules and Properties. In M. Bezem and J.-F. Groote, editors, Proceedings of the conference Typed Lambda Calculi and Applications, number 664 in LNCS. Springer-Verlag, 1993. Also LIP research report 92-49, ENS Lyon.">PM93a</a>, <a class="reference internal" href="../../zebibliography.html#id52" title="B. Werner. Une théorie des constructions inductives. Thèse de Doctorat, Université Paris 7, 1994.">Wer94</a>]</span>.</p>
 </section>
 <section id="id6">
-<h2>ζ-reduction<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
+<h2>ζ-reduction<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
 <p><span class="term-defn"><span class="target" id="term-zeta-reduction"></span>ζ-reduction</span> removes <a class="reference internal" href="definitions.html#let-in"><span class="std std-ref">let-in definitions</span></a>
 in terms by
 replacing the defined variable by its value. One way this reduction differs from
 δ-reduction is that the declaration is removed from the term entirely.
 Formally, this is:</p>
 <dl>
-<dt id="inference-Zeta">Zeta</dt><dd><div class="math notranslate nohighlight">
+<dt>Zeta</dt><dd><div class="math notranslate nohighlight">
 \[\frac{%
 \WFE{\Gamma}%
 \hspace{3em}%
@@ -1448,7 +1444,7 @@ E[Γ] ⊢ \letin{x}{u:U}{t}~\triangleright_ζ~\subst{t}{x}{u}%
 </dl>
 </section>
 <section id="expansion">
-<span id="eta-expansion-sect"></span><h2>η-expansion<a class="headerlink" href="#expansion" title="Permalink to this heading"></a></h2>
+<span id="eta-expansion-sect"></span><h2>η-expansion<a class="headerlink" href="#expansion" title="Link to this heading"></a></h2>
 <p>Another important concept is <span class="term-defn"><span class="target" id="term-eta-expansion"></span>η-expansion</span>. It is legal to identify any
 term <span class="math notranslate nohighlight">\(t\)</span> of functional type <span class="math notranslate nohighlight">\(∀ x:T,~U\)</span> with its so-called η-expansion</p>
 <div class="math notranslate nohighlight">
@@ -1474,7 +1470,7 @@ convertible to the type of the original term <span class="math notranslate nohig
 </div>
 </section>
 <section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h2>
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
 <blockquote>
 <div><div class="admonition note">
 <p class="admonition-title">Example: Simple delta, fix, beta and match reductions</p>
@@ -1581,13 +1577,13 @@ Arguments </span><span class="ansi-fg-light-magenta">Nat</span><span>.</span><sp
 </div></blockquote>
 </section>
 <section id="proof-irrelevance">
-<span id="id7"></span><h2>Proof Irrelevance<a class="headerlink" href="#proof-irrelevance" title="Permalink to this heading"></a></h2>
+<span id="id7"></span><h2>Proof Irrelevance<a class="headerlink" href="#proof-irrelevance" title="Link to this heading"></a></h2>
 <p>It is legal to identify any two terms whose common type is a strict
 proposition <span class="math notranslate nohighlight">\(A : \SProp\)</span>. Terms in a strict propositions are
 therefore called <em>irrelevant</em>.</p>
 </section>
 <section id="convertibility">
-<span id="id8"></span><h2>Convertibility<a class="headerlink" href="#convertibility" title="Permalink to this heading"></a></h2>
+<span id="id8"></span><h2>Convertibility<a class="headerlink" href="#convertibility" title="Link to this heading"></a></h2>
 <p>Let us write <span class="math notranslate nohighlight">\(E[Γ] ⊢ t \triangleright u\)</span> for the contextual closure of the
 relation <span class="math notranslate nohighlight">\(t\)</span> reduces to <span class="math notranslate nohighlight">\(u\)</span> in the global environment
 <span class="math notranslate nohighlight">\(E\)</span> and local context <span class="math notranslate nohighlight">\(Γ\)</span> with one of the previous

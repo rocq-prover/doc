@@ -1,29 +1,28 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Variants and the match construct &mdash; The Rocq Prover 9.1+alpha documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/ansi.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/coqdoc.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/notations.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/pre-text.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/ansi.css?v=df714dbc" />
+      <link rel="stylesheet" type="text/css" href="../../_static/coqdoc.css?v=2fe46aa3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/notations.css?v=ef8e2f7d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pre-text.css?v=1bed1d2d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=8a0755b4" />
+
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
-        <script src="../../_static/notations.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=a65fab5e"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/notations.js?v=7e0edea7"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,14 +35,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> The Rocq Prover
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            The Rocq Prover
           </a>
-              <div class="version">
-                9.1+alpha
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -1180,9 +1180,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">Core language</a> &raquo;</li>
-      <li>Variants and the <code class="docutils literal notranslate"><span class="pre">match</span></code> construct</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Core language</a></li>
+      <li class="breadcrumb-item active">Variants and the <code class="docutils literal notranslate"><span class="pre">match</span></code> construct</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/coq/coq/blob/master/doc/sphinx/language/core/variants.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -1264,9 +1264,9 @@
 \newcommand{\zeroone}[1]{[{#1}]}
 \end{split}\]</div>
 <section id="variants-and-the-match-construct">
-<span id="variants"></span><h1>Variants and the <code class="docutils literal notranslate"><span class="pre">match</span></code> construct<a class="headerlink" href="#variants-and-the-match-construct" title="Permalink to this heading"></a></h1>
+<span id="variants"></span><h1>Variants and the <code class="docutils literal notranslate"><span class="pre">match</span></code> construct<a class="headerlink" href="#variants-and-the-match-construct" title="Link to this heading"></a></h1>
 <section id="id1">
-<h2>Variants<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<h2>Variants<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
 <p>The <a class="reference internal" href="#coq:cmd.Variant" title="Variant"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Variant</span></code></a> command allows defining types by listing
 the <a class="reference internal" href="basic.html#term-inhabitant"><span class="xref std std-term">inhabitants</span></a> of the type.  Each inhabitant is
 specified by a <span class="term-defn"><span class="target" id="term-constructor"></span>constructor</span>.  For instance, Booleans have two
@@ -1286,7 +1286,7 @@ is reserved for non-recursive types. Natural numbers, lists or streams cannot
 be defined using <a class="reference internal" href="#coq:cmd.Variant" title="Variant"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Variant</span></code></a>.</p>
 <dl class="coq cmd">
 <dt class="sig sig-object coq" id="coq:cmd.Variant">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Variant</span></span></span> <a class="reference internal" href="assumptions.html#grammar-token-ident_decl"><span class="hole"><span class="pre">ident_decl</span></span></a> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="assumptions.html#grammar-token-binder"><span class="hole"><span class="pre">binder</span></span></a></span><span class="notation-sup"><span class="pre">*</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">|</span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="assumptions.html#grammar-token-binder"><span class="hole"><span class="pre">binder</span></span></a></span><span class="notation-sup"><span class="pre">*</span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">:</span></span></span> <a class="reference internal" href="basic.html#grammar-token-type"><span class="hole"><span class="pre">type</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span> <span><span><span class="pre">:=</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">|</span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span> <span class="repeat-wrapper-with-sub"><span class="repeat"><a class="reference internal" href="inductive.html#grammar-token-constructor"><span class="hole"><span class="pre">constructor</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span><span class="notation-sub"><span class="pre">|</span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../../user-extensions/syntax-extensions.html#grammar-token-decl_notations"><span class="hole"><span class="pre">decl_notations</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span></span></span><a class="headerlink" href="#coq:cmd.Variant" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Variant</span></span></span> <a class="reference internal" href="assumptions.html#grammar-token-ident_decl"><span class="hole"><span class="pre">ident_decl</span></span></a> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="assumptions.html#grammar-token-binder"><span class="hole"><span class="pre">binder</span></span></a></span><span class="notation-sup"><span class="pre">*</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">|</span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="assumptions.html#grammar-token-binder"><span class="hole"><span class="pre">binder</span></span></a></span><span class="notation-sup"><span class="pre">*</span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">:</span></span></span> <a class="reference internal" href="basic.html#grammar-token-type"><span class="hole"><span class="pre">type</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span> <span><span><span class="pre">:=</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">|</span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span> <span class="repeat-wrapper-with-sub"><span class="repeat"><a class="reference internal" href="inductive.html#grammar-token-constructor"><span class="hole"><span class="pre">constructor</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span><span class="notation-sub"><span class="pre">|</span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../../user-extensions/syntax-extensions.html#grammar-token-decl_notations"><span class="hole"><span class="pre">decl_notations</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span></span></span><a class="headerlink" href="#coq:cmd.Variant" title="Link to this definition"></a></dt>
 <dd><p>Defines a variant type named <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></code> (in <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="assumptions.html#grammar-token-ident_decl"><span class="hole"><span class="pre">ident_decl</span></span></a></span></code>)
 with the given list of constructors.
 No induction scheme is generated for
@@ -1301,7 +1301,7 @@ See <a class="reference internal" href="inductive.html#coq:flag.Uniform-Inductiv
 <a class="reference internal" href="#coq:attr.private(matching)" title="private(matching)"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">private(matching)</span></code></a> attributes.</p>
 <dl class="coq exn">
 <dt class="sig sig-object coq" id="coq:exn.The-‘natural’-th-argument-of-‘ident’-must-be-‘ident’-in-‘type’">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">The</span></span></span> <a class="reference internal" href="basic.html#grammar-token-natural"><span class="hole"><span class="pre">natural</span></span></a> <span><span><span class="pre">th</span></span></span> <span><span><span class="pre">argument</span></span></span> <span><span><span class="pre">of</span></span></span> <a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">must</span></span></span> <span><span><span class="pre">be</span></span></span> <a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">in</span></span></span> <a class="reference internal" href="basic.html#grammar-token-type"><span class="hole"><span class="pre">type</span></span></a><span><span><span class="pre">.</span></span></span></span></span><a class="headerlink" href="#coq:exn.The-‘natural’-th-argument-of-‘ident’-must-be-‘ident’-in-‘type’" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">The</span></span></span> <a class="reference internal" href="basic.html#grammar-token-natural"><span class="hole"><span class="pre">natural</span></span></a> <span><span><span class="pre">th</span></span></span> <span><span><span class="pre">argument</span></span></span> <span><span><span class="pre">of</span></span></span> <a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">must</span></span></span> <span><span><span class="pre">be</span></span></span> <a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">in</span></span></span> <a class="reference internal" href="basic.html#grammar-token-type"><span class="hole"><span class="pre">type</span></span></a><span><span><span class="pre">.</span></span></span></span></span><a class="headerlink" href="#coq:exn.The-‘natural’-th-argument-of-‘ident’-must-be-‘ident’-in-‘type’" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1371,10 +1371,10 @@ automatically derive the schemes
 for <a class="reference internal" href="#coq:cmd.Variant" title="Variant"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Variant</span></code></a> if the <a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#coq:flag.Nonrecursive-Elimination-Schemes" title="Nonrecursive Elimination Schemes"><code class="xref coq coq-flag docutils literal notranslate"><span class="pre">Nonrecursive</span> <span class="pre">Elimination</span> <span class="pre">Schemes</span></code></a> flag is set.)</p>
 </div>
 <section id="private-matching-inductive-types">
-<h3>Private (matching) inductive types<a class="headerlink" href="#private-matching-inductive-types" title="Permalink to this heading"></a></h3>
+<h3>Private (matching) inductive types<a class="headerlink" href="#private-matching-inductive-types" title="Link to this heading"></a></h3>
 <dl class="coq attr">
 <dt class="sig sig-object coq" id="coq:attr.private(matching)">
-<span id="coq:attr.Private"></span><em class="property"><span class="sigannot"><span class="pre">Attribute</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">private(matching)</span></span></span></span></span><a class="headerlink" href="#coq:attr.private(matching)" title="Permalink to this definition"></a></dt>
+<span id="coq:attr.Private"></span><em class="property"><span class="sigannot"><span class="pre">Attribute</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">private(matching)</span></span></span></span></span><a class="headerlink" href="#coq:attr.private(matching)" title="Link to this definition"></a></dt>
 <dd><p>This <a class="reference internal" href="basic.html#term-attribute"><span class="xref std std-term">attribute</span></a> can be used to forbid the use of the <code class="code Coq docutils literal notranslate"><span class="keyword"><span class="pre">match</span></span></code>
 construct on objects of this inductive type outside of the module
 where it is defined.  There is also a legacy syntax using the
@@ -1419,7 +1419,7 @@ case analysis on a private type.
 </section>
 </section>
 <section id="definition-by-cases-match">
-<span id="match-term"></span><span id="index-0"></span><h2>Definition by cases: match<a class="headerlink" href="#definition-by-cases-match" title="Permalink to this heading"></a></h2>
+<span id="match-term"></span><span id="index-0"></span><h2>Definition by cases: match<a class="headerlink" href="#definition-by-cases-match" title="Link to this heading"></a></h2>
 <p>Objects of inductive types can be destructured by a case-analysis
 construction called <em>pattern matching</em> expression. A pattern matching
 expression is used to analyze the structure of an inductive object and
@@ -1428,7 +1428,7 @@ to apply specific treatments accordingly.</p>
 is not supported in <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">match</span></span></span></span></code> patterns.  Trying to use it will give this error:</p>
 <dl class="coq exn">
 <dt class="sig sig-object coq" id="coq:exn.Casts-are-not-supported-in-this-pattern">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Casts</span></span></span> <span><span><span class="pre">are</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">supported</span></span></span> <span><span><span class="pre">in</span></span></span> <span><span><span class="pre">this</span></span></span> <span><span><span class="pre">pattern.</span></span></span></span></span><a class="headerlink" href="#coq:exn.Casts-are-not-supported-in-this-pattern" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Casts</span></span></span> <span><span><span class="pre">are</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">supported</span></span></span> <span><span><span class="pre">in</span></span></span> <span><span><span class="pre">this</span></span></span> <span><span><span class="pre">pattern.</span></span></span></span></span><a class="headerlink" href="#coq:exn.Casts-are-not-supported-in-this-pattern" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <p>This paragraph describes the basic form of pattern matching. See
@@ -1449,7 +1449,7 @@ exactly one branch for every constructor of <span class="math notranslate nohigh
 expression. There are several cases. In the <em>non-dependent</em> case, all
 branches have the same type, and the <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">return</span></span></span> <a class="reference internal" href="basic.html#grammar-token-term100"><span class="hole"><span class="pre">term100</span></span></a></span></code> specifies that type.
 In this case, <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">return</span></span></span> <a class="reference internal" href="basic.html#grammar-token-term100"><span class="hole"><span class="pre">term100</span></span></a></span></code> can usually be omitted as it can be
-inferred from the type of the branches <a class="footnote-reference brackets" href="#id3" id="id2">1</a>.</p>
+inferred from the type of the branches <a class="footnote-reference brackets" href="#id3" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p>
 <p>In the <em>dependent</em> case, there are three subcases. In the first subcase,
 the type in each branch may depend on the exact value being matched in
 the branch. In this case, the whole pattern matching itself depends on
@@ -1558,12 +1558,13 @@ a type with indices. For this third subcase, both the clauses <code class="docut
 <p>There are specific notations for case analysis on types with one or two
 constructors: <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">…</span> <span class="pre">then</span> <span class="pre">…</span> <span class="pre">else</span> <span class="pre">…</span></code> and <code class="docutils literal notranslate"><span class="pre">let</span> <span class="pre">(…,…)</span> <span class="pre">:=</span> <span class="pre">…</span> <span class="pre">in</span> <span class="pre">…</span></code> (see
 Sections <a class="reference internal" href="../extensions/match.html#if-then-else"><span class="std std-ref">Pattern-matching on boolean values: the if expression</span></a> and <a class="reference internal" href="../extensions/match.html#irrefutable-patterns"><span class="std std-ref">Irrefutable patterns: the destructuring let variants</span></a>).</p>
-<dl class="footnote brackets">
-<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
-<dd><p>Except if the inductive type is empty in which case there is no
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id3" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">1</a><span class="fn-bracket">]</span></span>
+<p>Except if the inductive type is empty in which case there is no
 equation that can be used to infer the return type.</p>
-</dd>
-</dl>
+</aside>
+</aside>
 </section>
 </section>
 
