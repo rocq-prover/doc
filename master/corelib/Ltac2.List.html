@@ -935,14 +935,11 @@
 
 <br/>
 <span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">inclusive_range</span> (<span class="id" title="var">lb</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">ub</span> : <span class="id" title="var">int</span>) : <span class="id" title="var">int</span> <span class="id" title="var">list</span> :=<br/>
-&nbsp;&nbsp;<span class="id" title="keyword">let</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">go</span> <span class="id" title="var">lb</span> <span class="id" title="var">ub</span> :=<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">if</span> <span class="id" title="var">Int.gt</span> <span class="id" title="var">lb</span> <span class="id" title="var">ub</span> <span class="id" title="keyword">then</span> [] <span class="id" title="keyword">else</span> <span class="id" title="var">lb</span> :: <span class="id" title="var">go</span> (<span class="id" title="var">Int.add</span> <span class="id" title="var">lb</span> 1) <span class="id" title="var">ub</span><br/>
-&nbsp;&nbsp;<span class="id" title="tactic">in</span><br/>
-&nbsp;&nbsp;<span class="id" title="var">go</span> <span class="id" title="var">lb</span> <span class="id" title="var">ub</span>.<br/>
+&nbsp;&nbsp;<span class="id" title="var">seq</span> <span class="id" title="var">lb</span> 1 (<span class="id" title="var">Int.add</span> <span class="id" title="var">ub</span> 1).<br/>
 
 <br/>
 <span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">range</span> (<span class="id" title="var">lb</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">ub</span> : <span class="id" title="var">int</span>) : <span class="id" title="var">int</span> <span class="id" title="var">list</span> :=<br/>
-&nbsp;&nbsp;<span class="id" title="var">inclusive_range</span> <span class="id" title="var">lb</span> (<span class="id" title="var">Int.sub</span> <span class="id" title="var">ub</span> 1).<br/>
+&nbsp;&nbsp;<span class="id" title="var">seq</span> <span class="id" title="var">lb</span> 1 <span class="id" title="var">ub</span>.<br/>
 
 <br/>
 </div>
