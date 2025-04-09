@@ -272,7 +272,7 @@
 <span class="id" title="keyword">Module</span> <a id="Free" class="idref" href="#Free"><span class="id" title="module">Free</span></a>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">Type</span> <span class="id" title="var">t</span>.<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Type</span> <span class="id" title="var">t</span>.<br/>
 </div>
 
 <div class="doc">
@@ -281,22 +281,22 @@ Type of sets of free variables
 <div class="code">
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @<span class="id" title="var">external</span> <span class="id" title="var">empty</span> : <span class="id" title="var">t</span> := "rocq-runtime.plugins.ltac2" "fresh_free_empty".<br/>
+<span class="id" title="keyword">Ltac2</span> @<span class="id" title="var">external</span> <span class="id" title="var">empty</span> : <span class="id" title="var">t</span> := "rocq-runtime.plugins.ltac2" "fresh_free_empty".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @<span class="id" title="var">external</span> <span class="id" title="var">add</span> : <span class="id" title="var">ident</span> -&gt; <span class="id" title="var">t</span> -&gt; <span class="id" title="var">t</span> := "rocq-runtime.plugins.ltac2" "fresh_free_add".<br/>
+<span class="id" title="keyword">Ltac2</span> @<span class="id" title="var">external</span> <span class="id" title="var">add</span> : <span class="id" title="var">ident</span> -&gt; <span class="id" title="var">t</span> -&gt; <span class="id" title="var">t</span> := "rocq-runtime.plugins.ltac2" "fresh_free_add".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @<span class="id" title="var">external</span> <span class="id" title="var">union</span> : <span class="id" title="var">t</span> -&gt; <span class="id" title="var">t</span> -&gt; <span class="id" title="var">t</span> := "rocq-runtime.plugins.ltac2" "fresh_free_union".<br/>
+<span class="id" title="keyword">Ltac2</span> @<span class="id" title="var">external</span> <span class="id" title="var">union</span> : <span class="id" title="var">t</span> -&gt; <span class="id" title="var">t</span> -&gt; <span class="id" title="var">t</span> := "rocq-runtime.plugins.ltac2" "fresh_free_union".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @<span class="id" title="var">external</span> <span class="id" title="var">of_ids</span> : <span class="id" title="var">ident</span> <span class="id" title="var">list</span> -&gt; <span class="id" title="var">t</span> := "rocq-runtime.plugins.ltac2" "fresh_free_of_ids".<br/>
+<span class="id" title="keyword">Ltac2</span> @<span class="id" title="var">external</span> <span class="id" title="var">of_ids</span> : <span class="id" title="var">ident</span> <span class="id" title="var">list</span> -&gt; <span class="id" title="var">t</span> := "rocq-runtime.plugins.ltac2" "fresh_free_of_ids".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @<span class="id" title="var">external</span> <span class="id" title="var">of_constr</span> : <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="var">t</span> := "rocq-runtime.plugins.ltac2" "fresh_free_of_constr".<br/>
+<span class="id" title="keyword">Ltac2</span> @<span class="id" title="var">external</span> <span class="id" title="var">of_constr</span> : <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="var">t</span> := "rocq-runtime.plugins.ltac2" "fresh_free_of_constr".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">of_goal</span> () := <span class="id" title="var">of_ids</span> (<span class="id" title="var">List.map</span> (<span class="id" title="keyword">fun</span> (<span class="id" title="var">id</span>, <span class="id" title="var">_</span>, <span class="id" title="var">_</span>) =&gt; <span class="id" title="var">id</span>) (<span class="id" title="var">Control.hyps</span> ())).<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">of_goal</span> () := <span class="id" title="var">of_ids</span> (<span class="id" title="var">List.map</span> (<span class="id" title="keyword">fun</span> (<span class="id" title="var">id</span>, <span class="id" title="var">_</span>, <span class="id" title="var">_</span>) =&gt; <span class="id" title="var">id</span>) (<span class="id" title="var">Control.hyps</span> ())).<br/>
 
 <br/>
 <span class="id" title="keyword">End</span> <a class="idref" href="Ltac2.Fresh.html#Free"><span class="id" title="module">Free</span></a>.<br/>
@@ -310,7 +310,7 @@ Generate a fresh identifier with the given base name which is not a
     More efficient than composing <span class="inlinecode"><span class="id" title="tactic">fresh</span></span> and <span class="inlinecode"><span class="id" title="var">Free.add</span></span>. 
 </div>
 <div class="code">
-<span class="id" title="keyword">Ltac</span>2 @<span class="id" title="var">external</span> <span class="id" title="var">next</span> : <span class="id" title="var">Free.t</span> -&gt; <span class="id" title="var">ident</span> -&gt; <span class="id" title="var">ident</span> * <span class="id" title="var">Free.t</span> := "rocq-runtime.plugins.ltac2" "fresh_next".<br/>
+<span class="id" title="keyword">Ltac2</span> @<span class="id" title="var">external</span> <span class="id" title="var">next</span> : <span class="id" title="var">Free.t</span> -&gt; <span class="id" title="var">ident</span> -&gt; <span class="id" title="var">ident</span> * <span class="id" title="var">Free.t</span> := "rocq-runtime.plugins.ltac2" "fresh_next".<br/>
 
 <br/>
 </div>
@@ -320,10 +320,10 @@ Generate a fresh identifier with the given base name which is not a
     member of the provided set of free variables. 
 </div>
 <div class="code">
-<span class="id" title="keyword">Ltac</span>2 @<span class="id" title="var">external</span> <span class="id" title="tactic">fresh</span> : <span class="id" title="var">Free.t</span> -&gt; <span class="id" title="var">ident</span> -&gt; <span class="id" title="var">ident</span> := "rocq-runtime.plugins.ltac2" "fresh_fresh".<br/>
+<span class="id" title="keyword">Ltac2</span> @<span class="id" title="var">external</span> <span class="id" title="tactic">fresh</span> : <span class="id" title="var">Free.t</span> -&gt; <span class="id" title="var">ident</span> -&gt; <span class="id" title="var">ident</span> := "rocq-runtime.plugins.ltac2" "fresh_fresh".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">in_goal</span> <span class="id" title="var">id</span> := <span class="id" title="var">Fresh.fresh</span> (<span class="id" title="var">Free.of_goal</span> ()) <span class="id" title="var">id</span>.<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">in_goal</span> <span class="id" title="var">id</span> := <span class="id" title="var">Fresh.fresh</span> (<span class="id" title="var">Free.of_goal</span> ()) <span class="id" title="var">id</span>.<br/>
 </div>
 
           <!-- ************************

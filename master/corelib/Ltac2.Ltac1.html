@@ -278,7 +278,7 @@ This module defines the Ltac2 FFI to Ltac1 code. Due to intricate semantics
 <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="Ltac2.Init.html#"><span class="id" title="library">Ltac2.Init</span></a> <a class="idref" href="Ltac2.Std.html#"><span class="id" title="library">Ltac2.Std</span></a> <a class="idref" href="Ltac2.Control.html#"><span class="id" title="library">Ltac2.Control</span></a>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">Type</span> <span class="id" title="var">t</span>.<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Type</span> <span class="id" title="var">t</span>.<br/>
 </div>
 
 <div class="doc">
@@ -287,7 +287,7 @@ Dynamically-typed Ltac1 values.
 <div class="code">
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">ref</span> : <span class="id" title="var">ident</span> <span class="id" title="var">list</span> -&gt; <span class="id" title="var">t</span> := "rocq-runtime.plugins.ltac2_ltac1" "ltac1_ref".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">ref</span> : <span class="id" title="var">ident</span> <span class="id" title="var">list</span> -&gt; <span class="id" title="var">t</span> := "rocq-runtime.plugins.ltac2_ltac1" "ltac1_ref".<br/>
 </div>
 
 <div class="doc">
@@ -296,7 +296,7 @@ Returns the Ltac1 definition with the given absolute name.
 <div class="code">
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">run</span> : <span class="id" title="var">t</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2_ltac1" "ltac1_run".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">run</span> : <span class="id" title="var">t</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2_ltac1" "ltac1_run".<br/>
 </div>
 
 <div class="doc">
@@ -306,7 +306,7 @@ Runs an Ltac1 value, assuming it is a 'tactic', i.e. not returning
 <div class="code">
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">lambda</span> : (<span class="id" title="var">t</span> -&gt; <span class="id" title="var">t</span>) -&gt; <span class="id" title="var">t</span> := "rocq-runtime.plugins.ltac2_ltac1" "ltac1_lambda".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">lambda</span> : (<span class="id" title="var">t</span> -&gt; <span class="id" title="var">t</span>) -&gt; <span class="id" title="var">t</span> := "rocq-runtime.plugins.ltac2_ltac1" "ltac1_lambda".<br/>
 </div>
 
 <div class="doc">
@@ -318,7 +318,7 @@ Embed an Ltac2 function into Ltac1 values. Contrarily to the ltac1:(...)
 <div class="code">
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">apply</span> : <span class="id" title="var">t</span> -&gt; <span class="id" title="var">t</span> <span class="id" title="var">list</span> -&gt; (<span class="id" title="var">t</span> -&gt; <span class="id" title="var">unit</span>) -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2_ltac1" "ltac1_apply".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">apply</span> : <span class="id" title="var">t</span> -&gt; <span class="id" title="var">t</span> <span class="id" title="var">list</span> -&gt; (<span class="id" title="var">t</span> -&gt; <span class="id" title="var">unit</span>) -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2_ltac1" "ltac1_apply".<br/>
 </div>
 
 <div class="doc">
@@ -331,14 +331,14 @@ Applies an Ltac1 value to a list of arguments, and provides the result in
 <div class="code">
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">of_int</span> : <span class="id" title="var">int</span> -&gt; <span class="id" title="var">t</span> := "rocq-runtime.plugins.ltac2_ltac1" "ltac1_of_int".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">of_int</span> : <span class="id" title="var">int</span> -&gt; <span class="id" title="var">t</span> := "rocq-runtime.plugins.ltac2_ltac1" "ltac1_of_int".<br/>
 </div>
 
 <div class="doc">
 Converts an Ltac2 int into an Ltac1 value. 
 </div>
 <div class="code">
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">to_int</span> : <span class="id" title="var">t</span> -&gt; <span class="id" title="var">int</span> <span class="id" title="var">option</span> := "rocq-runtime.plugins.ltac2_ltac1" "ltac1_to_int".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">to_int</span> : <span class="id" title="var">t</span> -&gt; <span class="id" title="var">int</span> <span class="id" title="var">option</span> := "rocq-runtime.plugins.ltac2_ltac1" "ltac1_to_int".<br/>
 </div>
 
 <div class="doc">
@@ -347,14 +347,14 @@ Converts an Ltac1 int into an Ltac2 value.
 <div class="code">
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">of_constr</span> : <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="var">t</span> := "rocq-runtime.plugins.ltac2_ltac1" "ltac1_of_constr".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">of_constr</span> : <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="var">t</span> := "rocq-runtime.plugins.ltac2_ltac1" "ltac1_of_constr".<br/>
 </div>
 
 <div class="doc">
 Converts an Ltac2 constr into an Ltac1 value. 
 </div>
 <div class="code">
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">to_constr</span> : <span class="id" title="var">t</span> -&gt; <span class="id" title="keyword">constr</span> <span class="id" title="var">option</span> := "rocq-runtime.plugins.ltac2_ltac1" "ltac1_to_constr".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">to_constr</span> : <span class="id" title="var">t</span> -&gt; <span class="id" title="keyword">constr</span> <span class="id" title="var">option</span> := "rocq-runtime.plugins.ltac2_ltac1" "ltac1_to_constr".<br/>
 </div>
 
 <div class="doc">
@@ -364,20 +364,20 @@ Converts an Ltac1 constr (which includes terms created via open_constr) into an 
  <span class="inlinecode"><span class="id" title="var">preterm</span></span> is called <span class="inlinecode"><span class="id" title="var">uconstr</span></span> in Ltac1. 
 </div>
 <div class="code">
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">of_preterm</span> : <span class="id" title="var">preterm</span> -&gt; <span class="id" title="var">t</span> := "rocq-runtime.plugins.ltac2_ltac1" "ltac1_of_preterm".<br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">to_preterm</span> : <span class="id" title="var">t</span> -&gt; <span class="id" title="var">preterm</span> <span class="id" title="var">option</span> := "rocq-runtime.plugins.ltac2_ltac1" "ltac1_to_preterm".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">of_preterm</span> : <span class="id" title="var">preterm</span> -&gt; <span class="id" title="var">t</span> := "rocq-runtime.plugins.ltac2_ltac1" "ltac1_of_preterm".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">to_preterm</span> : <span class="id" title="var">t</span> -&gt; <span class="id" title="var">preterm</span> <span class="id" title="var">option</span> := "rocq-runtime.plugins.ltac2_ltac1" "ltac1_to_preterm".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">of_ident</span> : <span class="id" title="var">ident</span> -&gt; <span class="id" title="var">t</span> := "rocq-runtime.plugins.ltac2_ltac1" "ltac1_of_ident".<br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">to_ident</span> : <span class="id" title="var">t</span> -&gt; <span class="id" title="var">ident</span> <span class="id" title="var">option</span> := "rocq-runtime.plugins.ltac2_ltac1" "ltac1_to_ident".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">of_ident</span> : <span class="id" title="var">ident</span> -&gt; <span class="id" title="var">t</span> := "rocq-runtime.plugins.ltac2_ltac1" "ltac1_of_ident".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">to_ident</span> : <span class="id" title="var">t</span> -&gt; <span class="id" title="var">ident</span> <span class="id" title="var">option</span> := "rocq-runtime.plugins.ltac2_ltac1" "ltac1_to_ident".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">of_list</span> : <span class="id" title="var">t</span> <span class="id" title="var">list</span> -&gt; <span class="id" title="var">t</span> := "rocq-runtime.plugins.ltac2_ltac1" "ltac1_of_list".<br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">to_list</span> : <span class="id" title="var">t</span> -&gt; <span class="id" title="var">t</span> <span class="id" title="var">list</span> <span class="id" title="var">option</span> := "rocq-runtime.plugins.ltac2_ltac1" "ltac1_to_list".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">of_list</span> : <span class="id" title="var">t</span> <span class="id" title="var">list</span> -&gt; <span class="id" title="var">t</span> := "rocq-runtime.plugins.ltac2_ltac1" "ltac1_of_list".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">to_list</span> : <span class="id" title="var">t</span> -&gt; <span class="id" title="var">t</span> <span class="id" title="var">list</span> <span class="id" title="var">option</span> := "rocq-runtime.plugins.ltac2_ltac1" "ltac1_to_list".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">of_intro_pattern</span> : <span class="id" title="var">intro_pattern</span> -&gt; <span class="id" title="var">t</span> := "rocq-runtime.plugins.ltac2_ltac1" "ltac1_of_intro_pattern".<br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">to_intro_pattern</span> : <span class="id" title="var">t</span> -&gt; <span class="id" title="var">intro_pattern</span> <span class="id" title="var">option</span> := "rocq-runtime.plugins.ltac2_ltac1" "ltac1_to_intro_pattern".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">of_intro_pattern</span> : <span class="id" title="var">intro_pattern</span> -&gt; <span class="id" title="var">t</span> := "rocq-runtime.plugins.ltac2_ltac1" "ltac1_of_intro_pattern".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">to_intro_pattern</span> : <span class="id" title="var">t</span> -&gt; <span class="id" title="var">intro_pattern</span> <span class="id" title="var">option</span> := "rocq-runtime.plugins.ltac2_ltac1" "ltac1_to_intro_pattern".<br/>
 
 <br/>
 </div>
@@ -388,7 +388,7 @@ Debug information
 <div class="code">
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">tag_name</span> : <span class="id" title="var">t</span> -&gt; <span class="id" title="var">string</span> :=  "rocq-runtime.plugins.ltac2_ltac1" "ltac1_tag_name".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">tag_name</span> : <span class="id" title="var">t</span> -&gt; <span class="id" title="var">string</span> :=  "rocq-runtime.plugins.ltac2_ltac1" "ltac1_tag_name".<br/>
 </div>
 
 <div class="doc">

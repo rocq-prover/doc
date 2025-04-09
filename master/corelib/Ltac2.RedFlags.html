@@ -268,33 +268,33 @@
 <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="Ltac2.Std.html#"><span class="id" title="library">Ltac2.Std</span></a>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">Type</span> <span class="id" title="var">t</span> := <span class="id" title="var">Std.red_flags</span>.<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Type</span> <span class="id" title="var">t</span> := <span class="id" title="var">Std.red_flags</span>.<br/>
 
 <br/>
 <span class="id" title="keyword">Module</span> <span class="id" title="keyword">Export</span> <a id="Notations" class="idref" href="#Notations"><span class="id" title="module">Notations</span></a>.<br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">Notation</span> "red_flags:(" <span class="id" title="var">s</span>(<span class="id" title="var">strategy</span>) ")" : 0 := <span class="id" title="var">s</span>.<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Notation</span> "red_flags:(" <span class="id" title="var">s</span>(<span class="id" title="var">strategy</span>) ")" : 0 := <span class="id" title="var">s</span>.<br/>
 <span class="id" title="keyword">End</span> <a class="idref" href="Ltac2.RedFlags.html#Notations"><span class="id" title="module">Notations</span></a>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">none</span> := {<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">none</span> := {<br/>
 &nbsp;&nbsp;<span class="id" title="var">rBeta</span> := <span class="id" title="var">false</span>; <span class="id" title="var">rMatch</span> := <span class="id" title="var">false</span>; <span class="id" title="var">rFix</span> := <span class="id" title="var">false</span>; <span class="id" title="var">rCofix</span> := <span class="id" title="var">false</span>;<br/>
 &nbsp;&nbsp;<span class="id" title="var">rZeta</span> := <span class="id" title="var">false</span>; <span class="id" title="var">rDelta</span> := <span class="id" title="var">false</span>; <span class="id" title="var">rConst</span> := []; <span class="id" title="var">rStrength</span> := <span class="id" title="var">Norm</span>;<br/>
 }.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">all</span> : <span class="id" title="var">t</span> := {<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">all</span> : <span class="id" title="var">t</span> := {<br/>
 &nbsp;&nbsp;<span class="id" title="var">rBeta</span> := <span class="id" title="var">true</span>; <span class="id" title="var">rMatch</span> := <span class="id" title="var">true</span>; <span class="id" title="var">rFix</span> := <span class="id" title="var">true</span>; <span class="id" title="var">rCofix</span> := <span class="id" title="var">true</span>;<br/>
 &nbsp;&nbsp;<span class="id" title="var">rZeta</span> := <span class="id" title="var">true</span>; <span class="id" title="var">rDelta</span> := <span class="id" title="var">true</span>; <span class="id" title="var">rConst</span> := []; <span class="id" title="var">rStrength</span> := <span class="id" title="var">Norm</span>;<br/>
 }.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">beta</span> : <span class="id" title="var">t</span> := <span class="id" title="var">red_flags</span>:(<span class="id" title="keyword">beta</span>).<br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">beta_delta_zeta</span> : <span class="id" title="var">t</span> := <span class="id" title="var">red_flags</span>:(<span class="id" title="keyword">beta</span> <span class="id" title="keyword">delta</span> <span class="id" title="keyword">zeta</span>).<br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">beta_iota</span> : <span class="id" title="var">t</span> := <span class="id" title="var">red_flags</span>:(<span class="id" title="keyword">beta</span> <span class="id" title="keyword">iota</span>).<br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">beta_iota_zeta</span> : <span class="id" title="var">t</span> := <span class="id" title="var">red_flags</span>:(<span class="id" title="keyword">beta</span> <span class="id" title="keyword">iota</span> <span class="id" title="keyword">zeta</span>).<br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">beta_zeta</span> : <span class="id" title="var">t</span> := <span class="id" title="var">red_flags</span>:(<span class="id" title="keyword">beta</span> <span class="id" title="keyword">zeta</span>).<br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">delta</span> : <span class="id" title="var">t</span> := <span class="id" title="var">red_flags</span>:(<span class="id" title="keyword">delta</span>).<br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">zeta</span> : <span class="id" title="var">t</span> := <span class="id" title="var">red_flags</span>:(<span class="id" title="keyword">zeta</span>).<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">beta</span> : <span class="id" title="var">t</span> := <span class="id" title="var">red_flags</span>:(<span class="id" title="keyword">beta</span>).<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">beta_delta_zeta</span> : <span class="id" title="var">t</span> := <span class="id" title="var">red_flags</span>:(<span class="id" title="keyword">beta</span> <span class="id" title="keyword">delta</span> <span class="id" title="keyword">zeta</span>).<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">beta_iota</span> : <span class="id" title="var">t</span> := <span class="id" title="var">red_flags</span>:(<span class="id" title="keyword">beta</span> <span class="id" title="keyword">iota</span>).<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">beta_iota_zeta</span> : <span class="id" title="var">t</span> := <span class="id" title="var">red_flags</span>:(<span class="id" title="keyword">beta</span> <span class="id" title="keyword">iota</span> <span class="id" title="keyword">zeta</span>).<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">beta_zeta</span> : <span class="id" title="var">t</span> := <span class="id" title="var">red_flags</span>:(<span class="id" title="keyword">beta</span> <span class="id" title="keyword">zeta</span>).<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">delta</span> : <span class="id" title="var">t</span> := <span class="id" title="var">red_flags</span>:(<span class="id" title="keyword">delta</span>).<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">zeta</span> : <span class="id" title="var">t</span> := <span class="id" title="var">red_flags</span>:(<span class="id" title="keyword">zeta</span>).<br/>
 </div>
 
           <!-- ************************

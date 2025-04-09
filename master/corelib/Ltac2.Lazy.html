@@ -269,7 +269,7 @@
 <span class="id" title="keyword">Require</span> <a class="idref" href="Ltac2.Control.html#"><span class="id" title="library">Ltac2.Control</span></a>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">Type</span> '<span class="id" title="var">a</span> <span class="id" title="var">lazy_data</span> := [ <span class="id" title="var">Value</span> ('<span class="id" title="var">a</span>) | <span class="id" title="var">Thunk</span> (<span class="id" title="var">unit</span> -&gt; '<span class="id" title="var">a</span>) ].<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Type</span> '<span class="id" title="var">a</span> <span class="id" title="var">lazy_data</span> := [ <span class="id" title="var">Value</span> ('<span class="id" title="var">a</span>) | <span class="id" title="var">Thunk</span> (<span class="id" title="var">unit</span> -&gt; '<span class="id" title="var">a</span>) ].<br/>
 
 <br/>
 </div>
@@ -281,7 +281,7 @@ Type of a lazy cell, similar to OCaml's <span class="inlinecode">'<span class="i
     most (potential other successes are ignored). 
 </div>
 <div class="code">
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">Type</span> '<span class="id" title="var">a</span> <span class="id" title="var">t</span> := '<span class="id" title="var">a</span> <span class="id" title="var">lazy_data</span> <span class="id" title="var">Ref.ref</span>.<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Type</span> '<span class="id" title="var">a</span> <span class="id" title="var">t</span> := '<span class="id" title="var">a</span> <span class="id" title="var">lazy_data</span> <span class="id" title="var">Ref.ref</span>.<br/>
 
 <br/>
 </div>
@@ -292,7 +292,7 @@ Type of a lazy cell, similar to OCaml's <span class="inlinecode">'<span class="i
     value <span class="inlinecode"><span class="id" title="var">v</span></span>, and never gives an exception. 
 </div>
 <div class="code">
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">from_val</span> (<span class="id" title="var">v</span> : '<span class="id" title="var">a</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">t</span> :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">from_val</span> (<span class="id" title="var">v</span> : '<span class="id" title="var">a</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">t</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="var">Ref.ref</span> (<span class="id" title="var">Value</span> <span class="id" title="var">v</span>).<br/>
 
 <br/>
@@ -304,7 +304,7 @@ Type of a lazy cell, similar to OCaml's <span class="inlinecode">'<span class="i
     than one success, only the first one will be considered. 
 </div>
 <div class="code">
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">from_fun</span> (<span class="id" title="var">f</span> : <span class="id" title="var">unit</span> -&gt; '<span class="id" title="var">a</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">t</span> :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">from_fun</span> (<span class="id" title="var">f</span> : <span class="id" title="var">unit</span> -&gt; '<span class="id" title="var">a</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">t</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="var">Ref.ref</span> (<span class="id" title="var">Thunk</span> <span class="id" title="var">f</span>).<br/>
 
 <br/>
@@ -318,7 +318,7 @@ Type of a lazy cell, similar to OCaml's <span class="inlinecode">'<span class="i
     <span class="inlinecode"><span class="id" title="var">force</span></span> function), and if no exception was produced by said forcing. 
 </div>
 <div class="code">
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">is_val</span> (<span class="id" title="var">r</span> : '<span class="id" title="var">a</span> <span class="id" title="var">t</span>) : <span class="id" title="var">bool</span> :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">is_val</span> (<span class="id" title="var">r</span> : '<span class="id" title="var">a</span> <span class="id" title="var">t</span>) : <span class="id" title="var">bool</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">Ref.get</span> <span class="id" title="var">r</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">Value</span> <span class="id" title="var">_</span> =&gt; <span class="id" title="var">true</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">Thunk</span> <span class="id" title="var">_</span> =&gt; <span class="id" title="var">false</span><br/>
@@ -331,7 +331,7 @@ Type of a lazy cell, similar to OCaml's <span class="inlinecode">'<span class="i
 Exception raised in case of a "cyclic" lazy cell. 
 </div>
 <div class="code">
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">Type</span> <span class="id" title="var">exn</span> ::= [ <span class="id" title="var">Undefined</span> ].<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Type</span> <span class="id" title="var">exn</span> ::= [ <span class="id" title="var">Undefined</span> ].<br/>
 
 <br/>
 </div>
@@ -346,7 +346,7 @@ Exception raised in case of a "cyclic" lazy cell.
     its own value for its definition (i.e., if <span class="inlinecode"><span class="id" title="var">r</span></span> is "cyclic"). 
 </div>
 <div class="code">
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">force</span> (<span class="id" title="var">r</span> : '<span class="id" title="var">a</span> <span class="id" title="var">t</span>) : '<span class="id" title="var">a</span> :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">force</span> (<span class="id" title="var">r</span> : '<span class="id" title="var">a</span> <span class="id" title="var">t</span>) : '<span class="id" title="var">a</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">Ref.get</span> <span class="id" title="var">r</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">Value</span> <span class="id" title="var">v</span> =&gt; <span class="id" title="var">v</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">Thunk</span> <span class="id" title="var">f</span> =&gt;<br/>
@@ -368,7 +368,7 @@ Exception raised in case of a "cyclic" lazy cell.
 <span class="inlinecode"><span class="id" title="var">map</span></span> <span class="inlinecode"><span class="id" title="var">f</span></span> <span class="inlinecode"><span class="id" title="var">r</span></span> is equivalent to <span class="inlinecode"><span class="id" title="var">from_fun</span></span> <span class="inlinecode">(<span class="id" title="keyword">fun</span></span> <span class="inlinecode">()</span> <span class="inlinecode">=&gt;</span> <span class="inlinecode"><span class="id" title="var">f</span></span> <span class="inlinecode">(<span class="id" title="var">force</span></span> <span class="inlinecode"><span class="id" title="var">r</span>))</span>. 
 </div>
 <div class="code">
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">map</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span>) (<span class="id" title="var">r</span> : '<span class="id" title="var">a</span> <span class="id" title="var">t</span>) : '<span class="id" title="var">b</span> <span class="id" title="var">t</span> :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">map</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span>) (<span class="id" title="var">r</span> : '<span class="id" title="var">a</span> <span class="id" title="var">t</span>) : '<span class="id" title="var">b</span> <span class="id" title="var">t</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="var">from_fun</span> (<span class="id" title="keyword">fun</span> () =&gt; <span class="id" title="var">f</span> (<span class="id" title="var">force</span> <span class="id" title="var">r</span>)).<br/>
 
 <br/>
@@ -381,7 +381,7 @@ Exception raised in case of a "cyclic" lazy cell.
     the same exception. 
 </div>
 <div class="code">
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">map_val</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span>) (<span class="id" title="var">r</span> : '<span class="id" title="var">a</span> <span class="id" title="var">t</span>) : '<span class="id" title="var">b</span> <span class="id" title="var">t</span> :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">map_val</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span>) (<span class="id" title="var">r</span> : '<span class="id" title="var">a</span> <span class="id" title="var">t</span>) : '<span class="id" title="var">b</span> <span class="id" title="var">t</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">Ref.get</span> <span class="id" title="var">r</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">Value</span> <span class="id" title="var">v</span> =&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">Control.case</span> (<span class="id" title="keyword">fun</span> () =&gt; <span class="id" title="var">f</span> <span class="id" title="var">v</span>) <span class="id" title="keyword">with</span><br/>
@@ -393,7 +393,7 @@ Exception raised in case of a "cyclic" lazy cell.
 
 <br/>
 <span class="id" title="keyword">Module</span> <span class="id" title="keyword">Export</span> <a id="Notations" class="idref" href="#Notations"><span class="id" title="module">Notations</span></a>.<br/>
-&nbsp;&nbsp;<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">Notation</span> "lazy!" <span class="id" title="var">f</span>(<span class="id" title="var">thunk</span>(<span class="id" title="var">self</span>)) := <span class="id" title="var">from_fun</span> <span class="id" title="var">f</span>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Notation</span> "lazy!" <span class="id" title="var">f</span>(<span class="id" title="var">thunk</span>(<span class="id" title="var">self</span>)) := <span class="id" title="var">from_fun</span> <span class="id" title="var">f</span>.<br/>
 <span class="id" title="keyword">End</span> <a class="idref" href="Ltac2.Lazy.html#Notations"><span class="id" title="module">Notations</span></a>.<br/>
 </div>
 

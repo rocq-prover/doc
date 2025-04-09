@@ -275,20 +275,20 @@ ML-facing types
 <div class="code">
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">Type</span> <span class="id" title="var">hypothesis</span> := [ <span class="id" title="var">AnonHyp</span> (<span class="id" title="var">int</span>) | <span class="id" title="var">NamedHyp</span> (<span class="id" title="var">ident</span>) ].<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Type</span> <span class="id" title="var">hypothesis</span> := [ <span class="id" title="var">AnonHyp</span> (<span class="id" title="var">int</span>) | <span class="id" title="var">NamedHyp</span> (<span class="id" title="var">ident</span>) ].<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">Type</span> <span class="id" title="var">bindings</span> := [<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Type</span> <span class="id" title="var">bindings</span> := [<br/>
 | <span class="id" title="var">NoBindings</span><br/>
 | <span class="id" title="var">ImplicitBindings</span> (<span class="id" title="keyword">constr</span> <span class="id" title="var">list</span>)<br/>
 | <span class="id" title="var">ExplicitBindings</span> ((<span class="id" title="var">hypothesis</span> * <span class="id" title="keyword">constr</span>) <span class="id" title="var">list</span>)<br/>
 ].<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">Type</span> <span class="id" title="var">constr_with_bindings</span> := <span class="id" title="keyword">constr</span> * <span class="id" title="var">bindings</span>.<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Type</span> <span class="id" title="var">constr_with_bindings</span> := <span class="id" title="keyword">constr</span> * <span class="id" title="var">bindings</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">Type</span> <span class="id" title="var">occurrences</span> := [<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Type</span> <span class="id" title="var">occurrences</span> := [<br/>
 | <span class="id" title="var">AllOccurrences</span><br/>
 | <span class="id" title="var">AllOccurrencesBut</span> (<span class="id" title="var">int</span> <span class="id" title="var">list</span>)<br/>
 | <span class="id" title="var">NoOccurrences</span><br/>
@@ -296,16 +296,16 @@ ML-facing types
 ].<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">Type</span> <span class="id" title="var">hyp_location_flag</span> := [ <span class="id" title="var">InHyp</span> | <span class="id" title="var">InHypTypeOnly</span> | <span class="id" title="var">InHypValueOnly</span> ].<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Type</span> <span class="id" title="var">hyp_location_flag</span> := [ <span class="id" title="var">InHyp</span> | <span class="id" title="var">InHypTypeOnly</span> | <span class="id" title="var">InHypValueOnly</span> ].<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">Type</span> <span class="id" title="var">clause</span> := {<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Type</span> <span class="id" title="var">clause</span> := {<br/>
 &nbsp;&nbsp;<span class="id" title="var">on_hyps</span> : (<span class="id" title="var">ident</span> * <span class="id" title="var">occurrences</span> * <span class="id" title="var">hyp_location_flag</span>) <span class="id" title="var">list</span> <span class="id" title="var">option</span>;<br/>
 &nbsp;&nbsp;<span class="id" title="var">on_concl</span> : <span class="id" title="var">occurrences</span>;<br/>
 }.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">Type</span> <span class="id" title="var">reference</span> := [<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Type</span> <span class="id" title="var">reference</span> := [<br/>
 | <span class="id" title="var">VarRef</span> (<span class="id" title="var">ident</span>)<br/>
 | <span class="id" title="var">ConstRef</span> (<span class="id" title="var">constant</span>)<br/>
 | <span class="id" title="var">IndRef</span> (<span class="id" title="var">inductive</span>)<br/>
@@ -313,10 +313,10 @@ ML-facing types
 ].<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">Type</span> <span class="id" title="var">strength</span> := [ <span class="id" title="var">Norm</span> | <span class="id" title="var">Head</span> ].<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Type</span> <span class="id" title="var">strength</span> := [ <span class="id" title="var">Norm</span> | <span class="id" title="var">Head</span> ].<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">Type</span> <span class="id" title="var">red_flags</span> := {<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Type</span> <span class="id" title="var">red_flags</span> := {<br/>
 &nbsp;&nbsp;<span class="id" title="var">rStrength</span> : <span class="id" title="var">strength</span>;<br/>
 &nbsp;&nbsp;<span class="id" title="var">rBeta</span> : <span class="id" title="var">bool</span>;<br/>
 &nbsp;&nbsp;<span class="id" title="var">rMatch</span> : <span class="id" title="var">bool</span>;<br/>
@@ -333,10 +333,10 @@ true = delta all but rConst; false = delta only on rConst
 }.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">Type</span> '<span class="id" title="var">a</span> <span class="id" title="var">not_implemented</span>.<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Type</span> '<span class="id" title="var">a</span> <span class="id" title="var">not_implemented</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">Type</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">intro_pattern</span> := [<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Type</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">intro_pattern</span> := [<br/>
 | <span class="id" title="var">IntroForthcoming</span> (<span class="id" title="var">bool</span>)<br/>
 | <span class="id" title="var">IntroNaming</span> (<span class="id" title="var">intro_pattern_naming</span>)<br/>
 | <span class="id" title="var">IntroAction</span> (<span class="id" title="var">intro_pattern_action</span>)<br/>
@@ -359,14 +359,14 @@ true = delta all but rConst; false = delta only on rConst
 ].<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">Type</span> <span class="id" title="var">destruction_arg</span> := [<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Type</span> <span class="id" title="var">destruction_arg</span> := [<br/>
 | <span class="id" title="var">ElimOnConstr</span> (<span class="id" title="var">unit</span> -&gt; <span class="id" title="var">constr_with_bindings</span>)<br/>
 | <span class="id" title="var">ElimOnIdent</span> (<span class="id" title="var">ident</span>)<br/>
 | <span class="id" title="var">ElimOnAnonHyp</span> (<span class="id" title="var">int</span>)<br/>
 ].<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">Type</span> <span class="id" title="var">induction_clause</span> := {<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Type</span> <span class="id" title="var">induction_clause</span> := {<br/>
 &nbsp;&nbsp;<span class="id" title="var">indcl_arg</span> : <span class="id" title="var">destruction_arg</span>;<br/>
 &nbsp;&nbsp;<span class="id" title="var">indcl_eqn</span> : <span class="id" title="var">intro_pattern_naming</span> <span class="id" title="var">option</span>;<br/>
 &nbsp;&nbsp;<span class="id" title="var">indcl_as</span> : <span class="id" title="var">or_and_intro_pattern</span> <span class="id" title="var">option</span>;<br/>
@@ -374,13 +374,13 @@ true = delta all but rConst; false = delta only on rConst
 }.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">Type</span> <span class="id" title="var">assertion</span> := [<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Type</span> <span class="id" title="var">assertion</span> := [<br/>
 | <span class="id" title="var">AssertType</span> (<span class="id" title="var">intro_pattern</span> <span class="id" title="var">option</span>, <span class="id" title="keyword">constr</span>, (<span class="id" title="var">unit</span> -&gt; <span class="id" title="var">unit</span>) <span class="id" title="var">option</span>)<br/>
 | <span class="id" title="var">AssertValue</span> (<span class="id" title="var">ident</span>, <span class="id" title="keyword">constr</span>)<br/>
 ].<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">Type</span> <span class="id" title="tactic">repeat</span> := [<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Type</span> <span class="id" title="tactic">repeat</span> := [<br/>
 | <span class="id" title="var">Precisely</span> (<span class="id" title="var">int</span>)<br/>
 | <span class="id" title="var">UpTo</span> (<span class="id" title="var">int</span>)<br/>
 | <span class="id" title="var">RepeatStar</span><br/>
@@ -388,21 +388,21 @@ true = delta all but rConst; false = delta only on rConst
 ].<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">Type</span> <span class="id" title="var">orientation</span> := [ <span class="id" title="var">LTR</span> | <span class="id" title="var">RTL</span> ].<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Type</span> <span class="id" title="var">orientation</span> := [ <span class="id" title="var">LTR</span> | <span class="id" title="var">RTL</span> ].<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">Type</span> <span class="id" title="var">rewriting</span> := {<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Type</span> <span class="id" title="var">rewriting</span> := {<br/>
 &nbsp;&nbsp;<span class="id" title="var">rew_orient</span> : <span class="id" title="var">orientation</span> <span class="id" title="var">option</span>;<br/>
 &nbsp;&nbsp;<span class="id" title="var">rew_repeat</span> : <span class="id" title="tactic">repeat</span>;<br/>
 &nbsp;&nbsp;<span class="id" title="var">rew_equatn</span> : (<span class="id" title="var">unit</span> -&gt; <span class="id" title="var">constr_with_bindings</span>);<br/>
 }.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">Type</span> <span class="id" title="var">evar_flag</span> := <span class="id" title="var">bool</span>.<br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">Type</span> <span class="id" title="var">advanced_flag</span> := <span class="id" title="var">bool</span>.<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Type</span> <span class="id" title="var">evar_flag</span> := <span class="id" title="var">bool</span>.<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Type</span> <span class="id" title="var">advanced_flag</span> := <span class="id" title="var">bool</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">Type</span> <span class="id" title="var">move_location</span> := [<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Type</span> <span class="id" title="var">move_location</span> := [<br/>
 | <span class="id" title="var">MoveAfter</span> (<span class="id" title="var">ident</span>)<br/>
 | <span class="id" title="var">MoveBefore</span> (<span class="id" title="var">ident</span>)<br/>
 | <span class="id" title="var">MoveFirst</span><br/>
@@ -410,7 +410,7 @@ true = delta all but rConst; false = delta only on rConst
 ].<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">Type</span> <span class="id" title="var">inversion_kind</span> := [<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Type</span> <span class="id" title="var">inversion_kind</span> := [<br/>
 | <span class="id" title="var">SimpleInversion</span><br/>
 | <span class="id" title="var">FullInversion</span><br/>
 | <span class="id" title="var">FullInversionClear</span><br/>
@@ -425,136 +425,136 @@ Standard, built-in tactics. See Ltac1 for documentation.
 <div class="code">
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">intros</span> : <span class="id" title="var">evar_flag</span> -&gt; <span class="id" title="var">intro_pattern</span> <span class="id" title="var">list</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_intros".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">intros</span> : <span class="id" title="var">evar_flag</span> -&gt; <span class="id" title="var">intro_pattern</span> <span class="id" title="var">list</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_intros".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">apply</span> : <span class="id" title="var">advanced_flag</span> -&gt; <span class="id" title="var">evar_flag</span> -&gt;<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">apply</span> : <span class="id" title="var">advanced_flag</span> -&gt; <span class="id" title="var">evar_flag</span> -&gt;<br/>
 &nbsp;&nbsp;(<span class="id" title="var">unit</span> -&gt; <span class="id" title="var">constr_with_bindings</span>) <span class="id" title="var">list</span> -&gt; (<span class="id" title="var">ident</span> * (<span class="id" title="var">intro_pattern</span> <span class="id" title="var">option</span>)) <span class="id" title="var">option</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_apply".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">elim</span> : <span class="id" title="var">evar_flag</span> -&gt; <span class="id" title="var">constr_with_bindings</span> -&gt; <span class="id" title="var">constr_with_bindings</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_elim".<br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">case</span> : <span class="id" title="var">evar_flag</span> -&gt; <span class="id" title="var">constr_with_bindings</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_case".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">elim</span> : <span class="id" title="var">evar_flag</span> -&gt; <span class="id" title="var">constr_with_bindings</span> -&gt; <span class="id" title="var">constr_with_bindings</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_elim".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">case</span> : <span class="id" title="var">evar_flag</span> -&gt; <span class="id" title="var">constr_with_bindings</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_case".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">generalize</span> : (<span class="id" title="keyword">constr</span> * <span class="id" title="var">occurrences</span> * <span class="id" title="var">ident</span> <span class="id" title="var">option</span>) <span class="id" title="var">list</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_generalize".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">generalize</span> : (<span class="id" title="keyword">constr</span> * <span class="id" title="var">occurrences</span> * <span class="id" title="var">ident</span> <span class="id" title="var">option</span>) <span class="id" title="var">list</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_generalize".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">assert</span> : <span class="id" title="var">assertion</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_assert".<br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">enough</span> : <span class="id" title="keyword">constr</span> -&gt; (<span class="id" title="var">unit</span> -&gt; <span class="id" title="var">unit</span>) <span class="id" title="var">option</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">intro_pattern</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_enough".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">assert</span> : <span class="id" title="var">assertion</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_assert".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">enough</span> : <span class="id" title="keyword">constr</span> -&gt; (<span class="id" title="var">unit</span> -&gt; <span class="id" title="var">unit</span>) <span class="id" title="var">option</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">intro_pattern</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_enough".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">pose</span> : <span class="id" title="var">ident</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_pose".<br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">set</span> : <span class="id" title="var">evar_flag</span> -&gt; (<span class="id" title="var">unit</span> -&gt; <span class="id" title="var">ident</span> <span class="id" title="var">option</span> * <span class="id" title="keyword">constr</span>) -&gt; <span class="id" title="var">clause</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_set".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">pose</span> : <span class="id" title="var">ident</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_pose".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">set</span> : <span class="id" title="var">evar_flag</span> -&gt; (<span class="id" title="var">unit</span> -&gt; <span class="id" title="var">ident</span> <span class="id" title="var">option</span> * <span class="id" title="keyword">constr</span>) -&gt; <span class="id" title="var">clause</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_set".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">remember</span> : <span class="id" title="var">evar_flag</span> -&gt; <span class="id" title="var">ident</span> <span class="id" title="var">option</span> -&gt; (<span class="id" title="var">unit</span> -&gt; <span class="id" title="keyword">constr</span>) -&gt; <span class="id" title="var">intro_pattern</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">clause</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_remember".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">remember</span> : <span class="id" title="var">evar_flag</span> -&gt; <span class="id" title="var">ident</span> <span class="id" title="var">option</span> -&gt; (<span class="id" title="var">unit</span> -&gt; <span class="id" title="keyword">constr</span>) -&gt; <span class="id" title="var">intro_pattern</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">clause</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_remember".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">destruct</span> : <span class="id" title="var">evar_flag</span> -&gt; <span class="id" title="var">induction_clause</span> <span class="id" title="var">list</span> -&gt;<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">destruct</span> : <span class="id" title="var">evar_flag</span> -&gt; <span class="id" title="var">induction_clause</span> <span class="id" title="var">list</span> -&gt;<br/>
 &nbsp;&nbsp;<span class="id" title="var">constr_with_bindings</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_destruct".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">induction</span> : <span class="id" title="var">evar_flag</span> -&gt; <span class="id" title="var">induction_clause</span> <span class="id" title="var">list</span> -&gt;<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">induction</span> : <span class="id" title="var">evar_flag</span> -&gt; <span class="id" title="var">induction_clause</span> <span class="id" title="var">list</span> -&gt;<br/>
 &nbsp;&nbsp;<span class="id" title="var">constr_with_bindings</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_induction".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @<span class="id" title="var">external</span> <span class="id" title="var">exfalso</span> : <span class="id" title="var">unit</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_exfalso".<br/>
+<span class="id" title="keyword">Ltac2</span> @<span class="id" title="var">external</span> <span class="id" title="var">exfalso</span> : <span class="id" title="var">unit</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_exfalso".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">red</span> : <span class="id" title="var">clause</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_red".<br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">hnf</span> : <span class="id" title="var">clause</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_hnf".<br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">simpl</span> : <span class="id" title="var">red_flags</span> -&gt; (<span class="id" title="tactic">pattern</span> * <span class="id" title="var">occurrences</span>) <span class="id" title="var">option</span> -&gt; <span class="id" title="var">clause</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_simpl".<br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">cbv</span> : <span class="id" title="var">red_flags</span> -&gt; <span class="id" title="var">clause</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_cbv".<br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">cbn</span> : <span class="id" title="var">red_flags</span> -&gt; <span class="id" title="var">clause</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_cbn".<br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">lazy</span> : <span class="id" title="var">red_flags</span> -&gt; <span class="id" title="var">clause</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_lazy".<br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">unfold</span> : (<span class="id" title="var">reference</span> * <span class="id" title="var">occurrences</span>) <span class="id" title="var">list</span> -&gt; <span class="id" title="var">clause</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_unfold".<br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">fold</span> : <span class="id" title="keyword">constr</span> <span class="id" title="var">list</span> -&gt; <span class="id" title="var">clause</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_fold".<br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">pattern</span> : (<span class="id" title="keyword">constr</span> * <span class="id" title="var">occurrences</span>) <span class="id" title="var">list</span> -&gt; <span class="id" title="var">clause</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_pattern".<br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">vm</span> : (<span class="id" title="tactic">pattern</span> * <span class="id" title="var">occurrences</span>) <span class="id" title="var">option</span> -&gt; <span class="id" title="var">clause</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_vm".<br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">native</span> : (<span class="id" title="tactic">pattern</span> * <span class="id" title="var">occurrences</span>) <span class="id" title="var">option</span> -&gt; <span class="id" title="var">clause</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_native".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">red</span> : <span class="id" title="var">clause</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_red".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">hnf</span> : <span class="id" title="var">clause</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_hnf".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">simpl</span> : <span class="id" title="var">red_flags</span> -&gt; (<span class="id" title="tactic">pattern</span> * <span class="id" title="var">occurrences</span>) <span class="id" title="var">option</span> -&gt; <span class="id" title="var">clause</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_simpl".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">cbv</span> : <span class="id" title="var">red_flags</span> -&gt; <span class="id" title="var">clause</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_cbv".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">cbn</span> : <span class="id" title="var">red_flags</span> -&gt; <span class="id" title="var">clause</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_cbn".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">lazy</span> : <span class="id" title="var">red_flags</span> -&gt; <span class="id" title="var">clause</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_lazy".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">unfold</span> : (<span class="id" title="var">reference</span> * <span class="id" title="var">occurrences</span>) <span class="id" title="var">list</span> -&gt; <span class="id" title="var">clause</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_unfold".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">fold</span> : <span class="id" title="keyword">constr</span> <span class="id" title="var">list</span> -&gt; <span class="id" title="var">clause</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_fold".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">pattern</span> : (<span class="id" title="keyword">constr</span> * <span class="id" title="var">occurrences</span>) <span class="id" title="var">list</span> -&gt; <span class="id" title="var">clause</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_pattern".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">vm</span> : (<span class="id" title="tactic">pattern</span> * <span class="id" title="var">occurrences</span>) <span class="id" title="var">option</span> -&gt; <span class="id" title="var">clause</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_vm".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">native</span> : (<span class="id" title="tactic">pattern</span> * <span class="id" title="var">occurrences</span>) <span class="id" title="var">option</span> -&gt; <span class="id" title="var">clause</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_native".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">eval_red</span> : <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="keyword">constr</span> := "rocq-runtime.plugins.ltac2" "eval_red".<br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">eval_hnf</span> : <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="keyword">constr</span> := "rocq-runtime.plugins.ltac2" "eval_hnf".<br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">eval_simpl</span> : <span class="id" title="var">red_flags</span> -&gt; (<span class="id" title="tactic">pattern</span> * <span class="id" title="var">occurrences</span>) <span class="id" title="var">option</span> -&gt; <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="keyword">constr</span> := "rocq-runtime.plugins.ltac2" "eval_simpl".<br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">eval_cbv</span> : <span class="id" title="var">red_flags</span> -&gt; <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="keyword">constr</span> := "rocq-runtime.plugins.ltac2" "eval_cbv".<br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">eval_cbn</span> : <span class="id" title="var">red_flags</span> -&gt; <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="keyword">constr</span> := "rocq-runtime.plugins.ltac2" "eval_cbn".<br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">eval_lazy</span> : <span class="id" title="var">red_flags</span> -&gt; <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="keyword">constr</span> := "rocq-runtime.plugins.ltac2" "eval_lazy".<br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">eval_unfold</span> : (<span class="id" title="var">reference</span> * <span class="id" title="var">occurrences</span>) <span class="id" title="var">list</span> -&gt; <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="keyword">constr</span> := "rocq-runtime.plugins.ltac2" "eval_unfold".<br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">eval_fold</span> : <span class="id" title="keyword">constr</span> <span class="id" title="var">list</span> -&gt; <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="keyword">constr</span> := "rocq-runtime.plugins.ltac2" "eval_fold".<br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">eval_pattern</span> : (<span class="id" title="keyword">constr</span> * <span class="id" title="var">occurrences</span>) <span class="id" title="var">list</span> -&gt; <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="keyword">constr</span> := "rocq-runtime.plugins.ltac2" "eval_pattern".<br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">eval_vm</span> : (<span class="id" title="tactic">pattern</span> * <span class="id" title="var">occurrences</span>) <span class="id" title="var">option</span> -&gt; <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="keyword">constr</span> := "rocq-runtime.plugins.ltac2" "eval_vm".<br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">eval_native</span> : (<span class="id" title="tactic">pattern</span> * <span class="id" title="var">occurrences</span>) <span class="id" title="var">option</span> -&gt; <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="keyword">constr</span> := "rocq-runtime.plugins.ltac2" "eval_native".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">eval_red</span> : <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="keyword">constr</span> := "rocq-runtime.plugins.ltac2" "eval_red".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">eval_hnf</span> : <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="keyword">constr</span> := "rocq-runtime.plugins.ltac2" "eval_hnf".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">eval_simpl</span> : <span class="id" title="var">red_flags</span> -&gt; (<span class="id" title="tactic">pattern</span> * <span class="id" title="var">occurrences</span>) <span class="id" title="var">option</span> -&gt; <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="keyword">constr</span> := "rocq-runtime.plugins.ltac2" "eval_simpl".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">eval_cbv</span> : <span class="id" title="var">red_flags</span> -&gt; <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="keyword">constr</span> := "rocq-runtime.plugins.ltac2" "eval_cbv".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">eval_cbn</span> : <span class="id" title="var">red_flags</span> -&gt; <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="keyword">constr</span> := "rocq-runtime.plugins.ltac2" "eval_cbn".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">eval_lazy</span> : <span class="id" title="var">red_flags</span> -&gt; <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="keyword">constr</span> := "rocq-runtime.plugins.ltac2" "eval_lazy".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">eval_unfold</span> : (<span class="id" title="var">reference</span> * <span class="id" title="var">occurrences</span>) <span class="id" title="var">list</span> -&gt; <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="keyword">constr</span> := "rocq-runtime.plugins.ltac2" "eval_unfold".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">eval_fold</span> : <span class="id" title="keyword">constr</span> <span class="id" title="var">list</span> -&gt; <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="keyword">constr</span> := "rocq-runtime.plugins.ltac2" "eval_fold".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">eval_pattern</span> : (<span class="id" title="keyword">constr</span> * <span class="id" title="var">occurrences</span>) <span class="id" title="var">list</span> -&gt; <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="keyword">constr</span> := "rocq-runtime.plugins.ltac2" "eval_pattern".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">eval_vm</span> : (<span class="id" title="tactic">pattern</span> * <span class="id" title="var">occurrences</span>) <span class="id" title="var">option</span> -&gt; <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="keyword">constr</span> := "rocq-runtime.plugins.ltac2" "eval_vm".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">eval_native</span> : (<span class="id" title="tactic">pattern</span> * <span class="id" title="var">occurrences</span>) <span class="id" title="var">option</span> -&gt; <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="keyword">constr</span> := "rocq-runtime.plugins.ltac2" "eval_native".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">change</span> : <span class="id" title="tactic">pattern</span> <span class="id" title="var">option</span> -&gt; (<span class="id" title="keyword">constr</span> <span class="id" title="var">array</span> -&gt; <span class="id" title="keyword">constr</span>) -&gt; <span class="id" title="var">clause</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_change".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">change</span> : <span class="id" title="tactic">pattern</span> <span class="id" title="var">option</span> -&gt; (<span class="id" title="keyword">constr</span> <span class="id" title="var">array</span> -&gt; <span class="id" title="keyword">constr</span>) -&gt; <span class="id" title="var">clause</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_change".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">rewrite</span> : <span class="id" title="var">evar_flag</span> -&gt; <span class="id" title="var">rewriting</span> <span class="id" title="var">list</span> -&gt; <span class="id" title="var">clause</span> -&gt; (<span class="id" title="var">unit</span> -&gt; <span class="id" title="var">unit</span>) <span class="id" title="var">option</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_rewrite".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">rewrite</span> : <span class="id" title="var">evar_flag</span> -&gt; <span class="id" title="var">rewriting</span> <span class="id" title="var">list</span> -&gt; <span class="id" title="var">clause</span> -&gt; (<span class="id" title="var">unit</span> -&gt; <span class="id" title="var">unit</span>) <span class="id" title="var">option</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_rewrite".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">setoid_rewrite</span> : <span class="id" title="var">orientation</span> -&gt; (<span class="id" title="var">unit</span> -&gt; <span class="id" title="var">constr_with_bindings</span>) -&gt; <span class="id" title="var">occurrences</span> -&gt; <span class="id" title="var">ident</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_setoid_rewrite".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">setoid_rewrite</span> : <span class="id" title="var">orientation</span> -&gt; (<span class="id" title="var">unit</span> -&gt; <span class="id" title="var">constr_with_bindings</span>) -&gt; <span class="id" title="var">occurrences</span> -&gt; <span class="id" title="var">ident</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_setoid_rewrite".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">reflexivity</span> : <span class="id" title="var">unit</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_reflexivity".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">reflexivity</span> : <span class="id" title="var">unit</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_reflexivity".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">assumption</span> : <span class="id" title="var">unit</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_assumption".<br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">eassumption</span> : <span class="id" title="var">unit</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_eassumption".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">assumption</span> : <span class="id" title="var">unit</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_assumption".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">eassumption</span> : <span class="id" title="var">unit</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_eassumption".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">transitivity</span> : <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_transitivity".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">transitivity</span> : <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_transitivity".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">etransitivity</span> : <span class="id" title="var">unit</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_etransitivity".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">etransitivity</span> : <span class="id" title="var">unit</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_etransitivity".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">cut</span> : <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_cut".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">cut</span> : <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_cut".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">left</span> : <span class="id" title="var">evar_flag</span> -&gt; <span class="id" title="var">bindings</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_left".<br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">right</span> : <span class="id" title="var">evar_flag</span> -&gt; <span class="id" title="var">bindings</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_right".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">left</span> : <span class="id" title="var">evar_flag</span> -&gt; <span class="id" title="var">bindings</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_left".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">right</span> : <span class="id" title="var">evar_flag</span> -&gt; <span class="id" title="var">bindings</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_right".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">constructor</span> : <span class="id" title="var">evar_flag</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_constructor".<br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">split</span> : <span class="id" title="var">evar_flag</span> -&gt; <span class="id" title="var">bindings</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_split".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">constructor</span> : <span class="id" title="var">evar_flag</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_constructor".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">split</span> : <span class="id" title="var">evar_flag</span> -&gt; <span class="id" title="var">bindings</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_split".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">constructor_n</span> : <span class="id" title="var">evar_flag</span> -&gt; <span class="id" title="var">int</span> -&gt; <span class="id" title="var">bindings</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_constructorn".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">constructor_n</span> : <span class="id" title="var">evar_flag</span> -&gt; <span class="id" title="var">int</span> -&gt; <span class="id" title="var">bindings</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_constructorn".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">intros_until</span> : <span class="id" title="var">hypothesis</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_introsuntil".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">intros_until</span> : <span class="id" title="var">hypothesis</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_introsuntil".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">symmetry</span> : <span class="id" title="var">clause</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_symmetry".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">symmetry</span> : <span class="id" title="var">clause</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_symmetry".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">rename</span> : (<span class="id" title="var">ident</span> * <span class="id" title="var">ident</span>) <span class="id" title="var">list</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_rename".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">rename</span> : (<span class="id" title="var">ident</span> * <span class="id" title="var">ident</span>) <span class="id" title="var">list</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_rename".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">revert</span> : <span class="id" title="var">ident</span> <span class="id" title="var">list</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_revert".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">revert</span> : <span class="id" title="var">ident</span> <span class="id" title="var">list</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_revert".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">admit</span> : <span class="id" title="var">unit</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_admit".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">admit</span> : <span class="id" title="var">unit</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_admit".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">fix_</span> : <span class="id" title="var">ident</span> -&gt; <span class="id" title="var">int</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_fix".<br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">cofix_</span> : <span class="id" title="var">ident</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_cofix".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">fix_</span> : <span class="id" title="var">ident</span> -&gt; <span class="id" title="var">int</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_fix".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">cofix_</span> : <span class="id" title="var">ident</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_cofix".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">clear</span> : <span class="id" title="var">ident</span> <span class="id" title="var">list</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_clear".<br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">keep</span> : <span class="id" title="var">ident</span> <span class="id" title="var">list</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_keep".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">clear</span> : <span class="id" title="var">ident</span> <span class="id" title="var">list</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_clear".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">keep</span> : <span class="id" title="var">ident</span> <span class="id" title="var">list</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_keep".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">clearbody</span> : <span class="id" title="var">ident</span> <span class="id" title="var">list</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_clearbody".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">clearbody</span> : <span class="id" title="var">ident</span> <span class="id" title="var">list</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_clearbody".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">exact_no_check</span> : <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_exactnocheck".<br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">vm_cast_no_check</span> : <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_vmcastnocheck".<br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">native_cast_no_check</span> : <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_nativecastnocheck".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">exact_no_check</span> : <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_exactnocheck".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">vm_cast_no_check</span> : <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_vmcastnocheck".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">native_cast_no_check</span> : <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_nativecastnocheck".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">inversion</span> : <span class="id" title="var">inversion_kind</span> -&gt; <span class="id" title="var">destruction_arg</span> -&gt; <span class="id" title="var">intro_pattern</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">ident</span> <span class="id" title="var">list</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_inversion".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">inversion</span> : <span class="id" title="var">inversion_kind</span> -&gt; <span class="id" title="var">destruction_arg</span> -&gt; <span class="id" title="var">intro_pattern</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">ident</span> <span class="id" title="var">list</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_inversion".<br/>
 
 <br/>
 </div>
@@ -565,13 +565,13 @@ coretactics
 <div class="code">
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">move</span> : <span class="id" title="var">ident</span> -&gt; <span class="id" title="var">move_location</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_move".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">move</span> : <span class="id" title="var">ident</span> -&gt; <span class="id" title="var">move_location</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_move".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">intro</span> : <span class="id" title="var">ident</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">move_location</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_intro".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">intro</span> : <span class="id" title="var">ident</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">move_location</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_intro".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">specialize</span> : <span class="id" title="var">constr_with_bindings</span> -&gt; <span class="id" title="var">intro_pattern</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_specialize".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">specialize</span> : <span class="id" title="var">constr_with_bindings</span> -&gt; <span class="id" title="var">intro_pattern</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_specialize".<br/>
 
 <br/>
 </div>
@@ -582,19 +582,19 @@ extratactics
 <div class="code">
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">discriminate</span> : <span class="id" title="var">evar_flag</span> -&gt; <span class="id" title="var">destruction_arg</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_discriminate".<br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">injection</span> : <span class="id" title="var">evar_flag</span> -&gt; <span class="id" title="var">intro_pattern</span> <span class="id" title="var">list</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">destruction_arg</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_injection".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">discriminate</span> : <span class="id" title="var">evar_flag</span> -&gt; <span class="id" title="var">destruction_arg</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_discriminate".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">injection</span> : <span class="id" title="var">evar_flag</span> -&gt; <span class="id" title="var">intro_pattern</span> <span class="id" title="var">list</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">destruction_arg</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_injection".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">absurd</span> : <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_absurd".<br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">contradiction</span> : <span class="id" title="var">constr_with_bindings</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_contradiction".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">absurd</span> : <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_absurd".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">contradiction</span> : <span class="id" title="var">constr_with_bindings</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_contradiction".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">autorewrite</span> : <span class="id" title="var">bool</span> -&gt; (<span class="id" title="var">unit</span> -&gt; <span class="id" title="var">unit</span>) <span class="id" title="var">option</span> -&gt; <span class="id" title="var">ident</span> <span class="id" title="var">list</span> -&gt; <span class="id" title="var">clause</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_autorewrite".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">autorewrite</span> : <span class="id" title="var">bool</span> -&gt; (<span class="id" title="var">unit</span> -&gt; <span class="id" title="var">unit</span>) <span class="id" title="var">option</span> -&gt; <span class="id" title="var">ident</span> <span class="id" title="var">list</span> -&gt; <span class="id" title="var">clause</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_autorewrite".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">subst</span> : <span class="id" title="var">ident</span> <span class="id" title="var">list</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_subst".<br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">subst_all</span> : <span class="id" title="var">unit</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_substall".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">subst</span> : <span class="id" title="var">ident</span> <span class="id" title="var">list</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_subst".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">subst_all</span> : <span class="id" title="var">unit</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_substall".<br/>
 
 <br/>
 </div>
@@ -605,25 +605,25 @@ auto
 <div class="code">
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">Type</span> <span class="id" title="tactic">debug</span> := [ <span class="id" title="var">Off</span> | <span class="id" title="var">Info</span> | <span class="id" title="keyword">Debug</span> ].<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Type</span> <span class="id" title="tactic">debug</span> := [ <span class="id" title="var">Off</span> | <span class="id" title="var">Info</span> | <span class="id" title="keyword">Debug</span> ].<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">Type</span> <span class="id" title="var">strategy</span> := [ <span class="id" title="var">BFS</span> | <span class="id" title="var">DFS</span> ].<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Type</span> <span class="id" title="var">strategy</span> := [ <span class="id" title="var">BFS</span> | <span class="id" title="var">DFS</span> ].<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">trivial</span> : <span class="id" title="tactic">debug</span> -&gt; <span class="id" title="var">reference</span> <span class="id" title="var">list</span> -&gt; <span class="id" title="var">ident</span> <span class="id" title="var">list</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_trivial".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">trivial</span> : <span class="id" title="tactic">debug</span> -&gt; <span class="id" title="var">reference</span> <span class="id" title="var">list</span> -&gt; <span class="id" title="var">ident</span> <span class="id" title="var">list</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_trivial".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">auto</span> : <span class="id" title="tactic">debug</span> -&gt; <span class="id" title="var">int</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">reference</span> <span class="id" title="var">list</span> -&gt; <span class="id" title="var">ident</span> <span class="id" title="var">list</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_auto".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">auto</span> : <span class="id" title="tactic">debug</span> -&gt; <span class="id" title="var">int</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">reference</span> <span class="id" title="var">list</span> -&gt; <span class="id" title="var">ident</span> <span class="id" title="var">list</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_auto".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">eauto</span> : <span class="id" title="tactic">debug</span> -&gt; <span class="id" title="var">int</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">reference</span> <span class="id" title="var">list</span> -&gt; <span class="id" title="var">ident</span> <span class="id" title="var">list</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_eauto".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">eauto</span> : <span class="id" title="tactic">debug</span> -&gt; <span class="id" title="var">int</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">reference</span> <span class="id" title="var">list</span> -&gt; <span class="id" title="var">ident</span> <span class="id" title="var">list</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_eauto".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">typeclasses_eauto</span> : <span class="id" title="var">strategy</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">int</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">ident</span> <span class="id" title="var">list</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_typeclasses_eauto".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">typeclasses_eauto</span> : <span class="id" title="var">strategy</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">int</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">ident</span> <span class="id" title="var">list</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_typeclasses_eauto".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">resolve_tc</span> : <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_resolve_tc".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">resolve_tc</span> : <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_resolve_tc".<br/>
 </div>
 
 <div class="doc">
@@ -635,18 +635,18 @@ Resolve the existential variables appearing in the constr
 <div class="code">
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">unify</span> : <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_unify".<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">unify</span> : <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "tac_unify".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="tactic">congruence</span> : <span class="id" title="var">int</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="keyword">constr</span> <span class="id" title="var">list</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">unit</span> :=<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">congruence</span> : <span class="id" title="var">int</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="keyword">constr</span> <span class="id" title="var">list</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">unit</span> :=<br/>
 &nbsp;&nbsp;"rocq-runtime.plugins.ltac2" "congruence".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @ <span class="id" title="var">external</span> <span class="id" title="var">simple_congruence</span> : <span class="id" title="var">int</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="keyword">constr</span> <span class="id" title="var">list</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">unit</span> :=<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">simple_congruence</span> : <span class="id" title="var">int</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="keyword">constr</span> <span class="id" title="var">list</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">unit</span> :=<br/>
 &nbsp;&nbsp;"rocq-runtime.plugins.ltac2" "simple_congruence".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 @<span class="id" title="var">external</span> <span class="id" title="tactic">f_equal</span> : <span class="id" title="var">unit</span> -&gt; <span class="id" title="var">unit</span> :=<br/>
+<span class="id" title="keyword">Ltac2</span> @<span class="id" title="var">external</span> <span class="id" title="tactic">f_equal</span> : <span class="id" title="var">unit</span> -&gt; <span class="id" title="var">unit</span> :=<br/>
 &nbsp;&nbsp;"rocq-runtime.plugins.ltac2" "f_equal".<br/>
 </div>
 

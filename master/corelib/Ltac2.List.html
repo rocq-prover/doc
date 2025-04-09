@@ -275,14 +275,14 @@
 <span class="id" title="keyword">Require</span> <a class="idref" href="Ltac2.Message.html#"><span class="id" title="library">Ltac2.Message</span></a>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">rec</span> <span class="id" title="var">length</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">length</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; 0<br/>
 &nbsp;&nbsp;| <span class="id" title="var">_</span> :: <span class="id" title="var">xs</span> =&gt; <span class="id" title="var">Int.add</span> 1 (<span class="id" title="var">length</span> <span class="id" title="var">xs</span>)<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">rec</span> <span class="id" title="var">compare_lengths</span> (<span class="id" title="var">ls1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">ls2</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">compare_lengths</span> (<span class="id" title="var">ls1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">ls2</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls1</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| []<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;=&gt; <span class="id" title="keyword">match</span> <span class="id" title="var">ls2</span> <span class="id" title="keyword">with</span><br/>
@@ -297,7 +297,7 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">rec</span> <span class="id" title="var">compare_length_with</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">n</span> : <span class="id" title="var">int</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">compare_length_with</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">n</span> : <span class="id" title="var">int</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">Int.lt</span> <span class="id" title="var">n</span> 0 <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">true</span> =&gt; 1<br/>
 &nbsp;&nbsp;| <span class="id" title="var">false</span><br/>
@@ -308,48 +308,48 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">cons</span> (<span class="id" title="var">x</span> : '<span class="id" title="var">a</span>) (<span class="id" title="var">xs</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">cons</span> (<span class="id" title="var">x</span> : '<span class="id" title="var">a</span>) (<span class="id" title="var">xs</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="var">x</span> :: <span class="id" title="var">xs</span>.<br/>
 
 <br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">hd_opt</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">hd_opt</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; <span class="id" title="var">None</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">x</span> :: <span class="id" title="var">_</span> =&gt; <span class="id" title="var">Some</span> <span class="id" title="var">x</span><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">hd</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">hd</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; <span class="id" title="var">Control.throw_invalid_argument</span> "List.hd"<br/>
 &nbsp;&nbsp;| <span class="id" title="var">x</span> :: <span class="id" title="var">_</span> =&gt; <span class="id" title="var">x</span><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">tl</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">tl</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; []<br/>
 &nbsp;&nbsp;| <span class="id" title="var">_</span> :: <span class="id" title="var">xs</span> =&gt; <span class="id" title="var">xs</span><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">dest</span> (<span class="id" title="var">xs</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">a</span> * '<span class="id" title="var">a</span> <span class="id" title="var">list</span> :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">dest</span> (<span class="id" title="var">xs</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">a</span> * '<span class="id" title="var">a</span> <span class="id" title="var">list</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">xs</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">x</span> :: <span class="id" title="var">xs</span> =&gt; (<span class="id" title="var">x</span>, <span class="id" title="var">xs</span>)<br/>
 &nbsp;&nbsp;| [] =&gt; <span class="id" title="var">Control.throw_invalid_argument</span> "List.dest: list empty"<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">is_empty</span> (<span class="id" title="var">xs</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : <span class="id" title="var">bool</span> :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">is_empty</span> (<span class="id" title="var">xs</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : <span class="id" title="var">bool</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">xs</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">_</span> :: <span class="id" title="var">_</span> =&gt; <span class="id" title="var">false</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">_</span> =&gt; <span class="id" title="var">true</span><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">rec</span> <span class="id" title="var">last_opt</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">last_opt</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; <span class="id" title="var">None</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">x</span> :: <span class="id" title="var">xs</span><br/>
@@ -360,14 +360,14 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">last</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">last</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">last_opt</span> <span class="id" title="var">ls</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">None</span> =&gt; <span class="id" title="var">Control.throw_invalid_argument</span> "List.last"<br/>
 &nbsp;&nbsp;| <span class="id" title="var">Some</span> <span class="id" title="var">v</span> =&gt; <span class="id" title="var">v</span><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">rec</span> <span class="id" title="var">removelast</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">removelast</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; []<br/>
 &nbsp;&nbsp;| <span class="id" title="var">x</span> :: <span class="id" title="var">xs</span><br/>
@@ -378,7 +378,7 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">rec</span> <span class="id" title="var">nth_opt_aux</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">n</span> : <span class="id" title="var">int</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">nth_opt_aux</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">n</span> : <span class="id" title="var">int</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; <span class="id" title="var">None</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">x</span> :: <span class="id" title="var">xs</span><br/>
@@ -389,89 +389,89 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">nth_opt</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">n</span> : <span class="id" title="var">int</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">nth_opt</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">n</span> : <span class="id" title="var">int</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="var">Control.assert_valid_argument</span> "List.nth" (<span class="id" title="var">Int.ge</span> <span class="id" title="var">n</span> 0);<br/>
 &nbsp;&nbsp;<span class="id" title="var">nth_opt_aux</span> <span class="id" title="var">ls</span> <span class="id" title="var">n</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">nth</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">n</span> : <span class="id" title="var">int</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">nth</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">n</span> : <span class="id" title="var">int</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">nth_opt</span> <span class="id" title="var">ls</span> <span class="id" title="var">n</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">Some</span> <span class="id" title="var">v</span> =&gt; <span class="id" title="var">v</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">None</span> =&gt; <span class="id" title="var">Control.throw_out_of_bounds</span> "List.nth"<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">rec</span> <span class="id" title="var">rev_append</span> (<span class="id" title="var">l1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">l2</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">rev_append</span> (<span class="id" title="var">l1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">l2</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">l1</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; <span class="id" title="var">l2</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">a</span> :: <span class="id" title="var">l</span> =&gt; <span class="id" title="var">rev_append</span> <span class="id" title="var">l</span> (<span class="id" title="var">a</span> :: <span class="id" title="var">l2</span>)<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">rev</span> <span class="id" title="var">l</span> := <span class="id" title="var">rev_append</span> <span class="id" title="var">l</span> [].<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">rev</span> <span class="id" title="var">l</span> := <span class="id" title="var">rev_append</span> <span class="id" title="var">l</span> [].<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">rec</span> <span class="id" title="var">append</span> <span class="id" title="var">ls1</span> <span class="id" title="var">ls2</span> :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">append</span> <span class="id" title="var">ls1</span> <span class="id" title="var">ls2</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls1</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; <span class="id" title="var">ls2</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">x</span> :: <span class="id" title="var">xs</span> =&gt; <span class="id" title="var">x</span> :: <span class="id" title="var">append</span> <span class="id" title="var">xs</span> <span class="id" title="var">ls2</span><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">rec</span> <span class="id" title="var">concat</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span> <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">concat</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span> <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; []<br/>
 &nbsp;&nbsp;| <span class="id" title="var">x</span> :: <span class="id" title="var">xs</span> =&gt; <span class="id" title="var">append</span> <span class="id" title="var">x</span> (<span class="id" title="var">concat</span> <span class="id" title="var">xs</span>)<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">flatten</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span> <span class="id" title="var">list</span>) := <span class="id" title="var">concat</span> <span class="id" title="var">ls</span>.<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">flatten</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span> <span class="id" title="var">list</span>) := <span class="id" title="var">concat</span> <span class="id" title="var">ls</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">rec</span> <span class="id" title="var">iter</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">unit</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">iter</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">unit</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; ()<br/>
 &nbsp;&nbsp;| <span class="id" title="var">l</span> :: <span class="id" title="var">ls</span> =&gt; <span class="id" title="var">f</span> <span class="id" title="var">l</span>; <span class="id" title="var">iter</span> <span class="id" title="var">f</span> <span class="id" title="var">ls</span><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">rec</span> <span class="id" title="var">iteri_aux</span> (<span class="id" title="var">i</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">f</span> : <span class="id" title="var">int</span> -&gt; '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">unit</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">iteri_aux</span> (<span class="id" title="var">i</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">f</span> : <span class="id" title="var">int</span> -&gt; '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">unit</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; ()<br/>
 &nbsp;&nbsp;| <span class="id" title="var">l</span> :: <span class="id" title="var">ls</span> =&gt; <span class="id" title="var">f</span> <span class="id" title="var">i</span> <span class="id" title="var">l</span>; <span class="id" title="var">iteri_aux</span> (<span class="id" title="var">Int.add</span> <span class="id" title="var">i</span> 1) <span class="id" title="var">f</span> <span class="id" title="var">ls</span><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">iteri</span> (<span class="id" title="var">f</span> : <span class="id" title="var">int</span> -&gt; '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">unit</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">iteri</span> (<span class="id" title="var">f</span> : <span class="id" title="var">int</span> -&gt; '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">unit</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="var">iteri_aux</span> 0 <span class="id" title="var">f</span> <span class="id" title="var">ls</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">rec</span> <span class="id" title="var">map</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">map</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; []<br/>
 &nbsp;&nbsp;| <span class="id" title="var">l</span> :: <span class="id" title="var">ls</span> =&gt; <span class="id" title="var">f</span> <span class="id" title="var">l</span> :: <span class="id" title="var">map</span> <span class="id" title="var">f</span> <span class="id" title="var">ls</span><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">rec</span> <span class="id" title="var">mapi_aux</span> (<span class="id" title="var">i</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">f</span> : <span class="id" title="var">int</span> -&gt; '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">mapi_aux</span> (<span class="id" title="var">i</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">f</span> : <span class="id" title="var">int</span> -&gt; '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; []<br/>
 &nbsp;&nbsp;| <span class="id" title="var">l</span> :: <span class="id" title="var">ls</span> =&gt; <span class="id" title="var">f</span> <span class="id" title="var">i</span> <span class="id" title="var">l</span> :: <span class="id" title="var">mapi_aux</span> (<span class="id" title="var">Int.add</span> <span class="id" title="var">i</span> 1) <span class="id" title="var">f</span> <span class="id" title="var">ls</span><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">mapi</span> (<span class="id" title="var">f</span> : <span class="id" title="var">int</span> -&gt; '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">mapi</span> (<span class="id" title="var">f</span> : <span class="id" title="var">int</span> -&gt; '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="var">mapi_aux</span> 0 <span class="id" title="var">f</span> <span class="id" title="var">ls</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">rec</span> <span class="id" title="var">flat_map</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) (<span class="id" title="var">xs</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">flat_map</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) (<span class="id" title="var">xs</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">xs</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; []<br/>
 &nbsp;&nbsp;| <span class="id" title="var">x</span> :: <span class="id" title="var">xs</span> =&gt; <span class="id" title="var">append</span> (<span class="id" title="var">f</span> <span class="id" title="var">x</span>) (<span class="id" title="var">flat_map</span> <span class="id" title="var">f</span> <span class="id" title="var">xs</span>)<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">rev_map</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">rev_map</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">let</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">rmap_f</span> <span class="id" title="var">accu</span> <span class="id" title="var">ls</span> :=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| [] =&gt; <span class="id" title="var">accu</span><br/>
@@ -480,21 +480,21 @@
 &nbsp;&nbsp;<span class="id" title="var">rmap_f</span> [] <span class="id" title="var">ls</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">rec</span> <span class="id" title="var">fold_right</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; '<span class="id" title="var">b</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">b</span>) : '<span class="id" title="var">b</span> :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">fold_right</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; '<span class="id" title="var">b</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">b</span>) : '<span class="id" title="var">b</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; <span class="id" title="var">a</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">l</span> :: <span class="id" title="var">ls</span> =&gt; <span class="id" title="var">f</span> <span class="id" title="var">l</span> (<span class="id" title="var">fold_right</span> <span class="id" title="var">f</span> <span class="id" title="var">ls</span> <span class="id" title="var">a</span>)<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">rec</span> <span class="id" title="var">fold_left</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; '<span class="id" title="var">a</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span>) (<span class="id" title="var">xs</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">a</span> :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">fold_left</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; '<span class="id" title="var">a</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span>) (<span class="id" title="var">xs</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">a</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">xs</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; <span class="id" title="var">a</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">x</span> :: <span class="id" title="var">xs</span> =&gt; <span class="id" title="var">fold_left</span> <span class="id" title="var">f</span> (<span class="id" title="var">f</span> <span class="id" title="var">a</span> <span class="id" title="var">x</span>) <span class="id" title="var">xs</span><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">fold_lefti</span> (<span class="id" title="var">f</span> : <span class="id" title="var">int</span> -&gt; '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; '<span class="id" title="var">a</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span>) (<span class="id" title="var">xs</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">a</span> :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">fold_lefti</span> (<span class="id" title="var">f</span> : <span class="id" title="var">int</span> -&gt; '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; '<span class="id" title="var">a</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span>) (<span class="id" title="var">xs</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">a</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">let</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">go</span> <span class="id" title="var">i</span> <span class="id" title="var">a</span> <span class="id" title="var">xs</span> :=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">xs</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;| [] =&gt; <span class="id" title="var">a</span><br/>
@@ -503,7 +503,7 @@
 &nbsp;&nbsp;<span class="id" title="tactic">in</span> <span class="id" title="var">go</span> 0 <span class="id" title="var">a</span> <span class="id" title="var">xs</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">rec</span> <span class="id" title="var">iter2</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; <span class="id" title="var">unit</span>) (<span class="id" title="var">ls1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">ls2</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">iter2</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; <span class="id" title="var">unit</span>) (<span class="id" title="var">ls1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">ls2</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls1</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| []<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;=&gt; <span class="id" title="keyword">match</span> <span class="id" title="var">ls2</span> <span class="id" title="keyword">with</span><br/>
@@ -519,7 +519,7 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">rec</span> <span class="id" title="var">map2</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; '<span class="id" title="var">c</span>) (<span class="id" title="var">ls1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">ls2</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">map2</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; '<span class="id" title="var">c</span>) (<span class="id" title="var">ls1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">ls2</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls1</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| []<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;=&gt; <span class="id" title="keyword">match</span> <span class="id" title="var">ls2</span> <span class="id" title="keyword">with</span><br/>
@@ -535,7 +535,7 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">rev_map2</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; '<span class="id" title="var">c</span>) (<span class="id" title="var">ls1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">ls2</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">rev_map2</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; '<span class="id" title="var">c</span>) (<span class="id" title="var">ls1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">ls2</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">let</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">rmap2_f</span> <span class="id" title="var">accu</span> <span class="id" title="var">ls1</span> <span class="id" title="var">ls2</span> :=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls1</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| []<br/>
@@ -553,7 +553,7 @@
 &nbsp;&nbsp;<span class="id" title="var">rmap2_f</span> [] <span class="id" title="var">ls1</span> <span class="id" title="var">ls2</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">rec</span> <span class="id" title="var">fold_right2</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; '<span class="id" title="var">c</span> -&gt; '<span class="id" title="var">c</span>) (<span class="id" title="var">ls1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">ls2</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">c</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">fold_right2</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; '<span class="id" title="var">c</span> -&gt; '<span class="id" title="var">c</span>) (<span class="id" title="var">ls1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">ls2</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">c</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls1</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| []<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;=&gt; <span class="id" title="keyword">match</span> <span class="id" title="var">ls2</span> <span class="id" title="keyword">with</span><br/>
@@ -569,7 +569,7 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">rec</span> <span class="id" title="var">fold_left2</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; '<span class="id" title="var">c</span> -&gt; '<span class="id" title="var">a</span>)  (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span>) (<span class="id" title="var">ls1</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) (<span class="id" title="var">ls2</span> : '<span class="id" title="var">c</span> <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">fold_left2</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; '<span class="id" title="var">c</span> -&gt; '<span class="id" title="var">a</span>)  (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span>) (<span class="id" title="var">ls1</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) (<span class="id" title="var">ls2</span> : '<span class="id" title="var">c</span> <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls1</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| []<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;=&gt; <span class="id" title="keyword">match</span> <span class="id" title="var">ls2</span> <span class="id" title="keyword">with</span><br/>
@@ -585,7 +585,7 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">rec</span> <span class="id" title="var">for_all</span> <span class="id" title="var">f</span> <span class="id" title="var">ls</span> :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">for_all</span> <span class="id" title="var">f</span> <span class="id" title="var">ls</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; <span class="id" title="var">true</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">x</span> :: <span class="id" title="var">xs</span> =&gt; <span class="id" title="keyword">match</span> <span class="id" title="var">f</span> <span class="id" title="var">x</span> <span class="id" title="keyword">with</span><br/>
@@ -595,7 +595,7 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">rec</span> <span class="id" title="var">exist</span> <span class="id" title="var">f</span> <span class="id" title="var">ls</span> :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">exist</span> <span class="id" title="var">f</span> <span class="id" title="var">ls</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; <span class="id" title="var">false</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">x</span> :: <span class="id" title="var">xs</span> =&gt; <span class="id" title="keyword">match</span> <span class="id" title="var">f</span> <span class="id" title="var">x</span> <span class="id" title="keyword">with</span><br/>
@@ -605,7 +605,7 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">rec</span> <span class="id" title="var">for_all2_aux</span> (<span class="id" title="var">on_length_mismatch</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span> -&gt; '<span class="id" title="var">b</span> <span class="id" title="var">list</span> -&gt; <span class="id" title="var">bool</span>) <span class="id" title="var">f</span> <span class="id" title="var">xs</span> <span class="id" title="var">ys</span> :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">for_all2_aux</span> (<span class="id" title="var">on_length_mismatch</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span> -&gt; '<span class="id" title="var">b</span> <span class="id" title="var">list</span> -&gt; <span class="id" title="var">bool</span>) <span class="id" title="var">f</span> <span class="id" title="var">xs</span> <span class="id" title="var">ys</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">xs</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; <span class="id" title="keyword">match</span> <span class="id" title="var">ys</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| [] =&gt; <span class="id" title="var">true</span><br/>
@@ -623,11 +623,11 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">for_all2</span> <span class="id" title="var">f</span> <span class="id" title="var">xs</span> <span class="id" title="var">ys</span> := <span class="id" title="var">for_all2_aux</span> (<span class="id" title="keyword">fun</span> <span class="id" title="var">_</span> <span class="id" title="var">_</span> =&gt; <span class="id" title="var">Control.throw_invalid_argument</span> "List.for_all2") <span class="id" title="var">f</span> <span class="id" title="var">xs</span> <span class="id" title="var">ys</span>.<br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">equal</span> <span class="id" title="var">f</span> <span class="id" title="var">xs</span> <span class="id" title="var">ys</span> := <span class="id" title="var">for_all2_aux</span> (<span class="id" title="keyword">fun</span> <span class="id" title="var">_</span> <span class="id" title="var">_</span> =&gt; <span class="id" title="var">false</span>) <span class="id" title="var">f</span> <span class="id" title="var">xs</span> <span class="id" title="var">ys</span>.<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">for_all2</span> <span class="id" title="var">f</span> <span class="id" title="var">xs</span> <span class="id" title="var">ys</span> := <span class="id" title="var">for_all2_aux</span> (<span class="id" title="keyword">fun</span> <span class="id" title="var">_</span> <span class="id" title="var">_</span> =&gt; <span class="id" title="var">Control.throw_invalid_argument</span> "List.for_all2") <span class="id" title="var">f</span> <span class="id" title="var">xs</span> <span class="id" title="var">ys</span>.<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">equal</span> <span class="id" title="var">f</span> <span class="id" title="var">xs</span> <span class="id" title="var">ys</span> := <span class="id" title="var">for_all2_aux</span> (<span class="id" title="keyword">fun</span> <span class="id" title="var">_</span> <span class="id" title="var">_</span> =&gt; <span class="id" title="var">false</span>) <span class="id" title="var">f</span> <span class="id" title="var">xs</span> <span class="id" title="var">ys</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">rec</span> <span class="id" title="var">exist2</span> <span class="id" title="var">f</span> <span class="id" title="var">xs</span> <span class="id" title="var">ys</span> :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">exist2</span> <span class="id" title="var">f</span> <span class="id" title="var">xs</span> <span class="id" title="var">ys</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">xs</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; <span class="id" title="keyword">match</span> <span class="id" title="var">ys</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| [] =&gt; <span class="id" title="var">false</span><br/>
@@ -645,7 +645,7 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">rec</span> <span class="id" title="var">find_opt</span> <span class="id" title="var">f</span> <span class="id" title="var">xs</span> :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">find_opt</span> <span class="id" title="var">f</span> <span class="id" title="var">xs</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">xs</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; <span class="id" title="var">None</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">x</span> :: <span class="id" title="var">xs</span> =&gt; <span class="id" title="keyword">match</span> <span class="id" title="var">f</span> <span class="id" title="var">x</span> <span class="id" title="keyword">with</span><br/>
@@ -655,14 +655,14 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">find</span> <span class="id" title="var">f</span> <span class="id" title="var">xs</span> :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">find</span> <span class="id" title="var">f</span> <span class="id" title="var">xs</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">find_opt</span> <span class="id" title="var">f</span> <span class="id" title="var">xs</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">Some</span> <span class="id" title="var">v</span> =&gt; <span class="id" title="var">v</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">None</span> =&gt; <span class="id" title="var">Control.throw</span> <span class="id" title="var">Not_found</span><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">rec</span> <span class="id" title="var">find_rev_opt</span> <span class="id" title="var">f</span> <span class="id" title="var">xs</span> :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">find_rev_opt</span> <span class="id" title="var">f</span> <span class="id" title="var">xs</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">xs</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; <span class="id" title="var">None</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">x</span> :: <span class="id" title="var">xs</span> =&gt; <span class="id" title="keyword">match</span> <span class="id" title="var">find_rev_opt</span> <span class="id" title="var">f</span> <span class="id" title="var">xs</span> <span class="id" title="keyword">with</span><br/>
@@ -675,18 +675,18 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">find_rev</span> <span class="id" title="var">f</span> <span class="id" title="var">xs</span> :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">find_rev</span> <span class="id" title="var">f</span> <span class="id" title="var">xs</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">find_rev_opt</span> <span class="id" title="var">f</span> <span class="id" title="var">xs</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">Some</span> <span class="id" title="var">v</span> =&gt; <span class="id" title="var">v</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">None</span> =&gt; <span class="id" title="var">Control.throw</span> <span class="id" title="var">Not_found</span><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">mem</span> (<span class="id" title="var">eq</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">mem</span> (<span class="id" title="var">eq</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="var">exist</span> (<span class="id" title="var">eq</span> <span class="id" title="var">a</span>) <span class="id" title="var">ls</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">rec</span> <span class="id" title="var">filter</span> <span class="id" title="var">f</span> <span class="id" title="var">xs</span> :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">filter</span> <span class="id" title="var">f</span> <span class="id" title="var">xs</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">xs</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; []<br/>
 &nbsp;&nbsp;| <span class="id" title="var">x</span> :: <span class="id" title="var">xs</span><br/>
@@ -697,22 +697,22 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">rec</span> <span class="id" title="var">filter_out</span> <span class="id" title="var">f</span> <span class="id" title="var">xs</span> :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">filter_out</span> <span class="id" title="var">f</span> <span class="id" title="var">xs</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="var">filter</span> (<span class="id" title="keyword">fun</span> <span class="id" title="var">x</span> =&gt; <span class="id" title="var">Bool.neg</span> (<span class="id" title="var">f</span> <span class="id" title="var">x</span>)) <span class="id" title="var">xs</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">find_all</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) := <span class="id" title="var">filter</span> <span class="id" title="var">f</span> <span class="id" title="var">ls</span>.<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">find_all</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) := <span class="id" title="var">filter</span> <span class="id" title="var">f</span> <span class="id" title="var">ls</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">remove</span> (<span class="id" title="var">eqb</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">x</span> : '<span class="id" title="var">a</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">remove</span> (<span class="id" title="var">eqb</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">x</span> : '<span class="id" title="var">a</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="var">filter_out</span> (<span class="id" title="var">eqb</span> <span class="id" title="var">x</span>) <span class="id" title="var">ls</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">count_occ</span> (<span class="id" title="var">eqb</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">x</span> : '<span class="id" title="var">a</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">count_occ</span> (<span class="id" title="var">eqb</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">x</span> : '<span class="id" title="var">a</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="var">length</span> (<span class="id" title="var">filter</span> (<span class="id" title="var">eqb</span> <span class="id" title="var">x</span>) <span class="id" title="var">ls</span>).<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">rec</span> <span class="id" title="var">list_power</span> (<span class="id" title="var">ls1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">ls2</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">list_power</span> (<span class="id" title="var">ls1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">ls2</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls1</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; [] :: []<br/>
 &nbsp;&nbsp;| <span class="id" title="var">x</span> :: <span class="id" title="var">t</span><br/>
@@ -721,7 +721,7 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">rec</span> <span class="id" title="var">partition</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">l</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">partition</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">l</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">l</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; ([], [])<br/>
 &nbsp;&nbsp;| <span class="id" title="var">x</span> :: <span class="id" title="var">tl</span><br/>
@@ -743,7 +743,7 @@
 <div class="code">
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">rec</span> <span class="id" title="var">list_prod</span> (<span class="id" title="var">ls1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">ls2</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">list_prod</span> (<span class="id" title="var">ls1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">ls2</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls1</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; []<br/>
 &nbsp;&nbsp;| <span class="id" title="var">x</span> :: <span class="id" title="var">t</span><br/>
@@ -751,7 +751,7 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">rec</span> <span class="id" title="var">firstn</span> (<span class="id" title="var">n</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">firstn</span> (<span class="id" title="var">n</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="var">Control.assert_valid_argument</span> "List.firstn" (<span class="id" title="var">Int.ge</span> <span class="id" title="var">n</span> 0);<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">Int.equal</span> <span class="id" title="var">n</span> 0 <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">true</span> =&gt; []<br/>
@@ -764,7 +764,7 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">rec</span> <span class="id" title="var">skipn</span> (<span class="id" title="var">n</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">skipn</span> (<span class="id" title="var">n</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="var">Control.assert_valid_argument</span> "List.skipn" (<span class="id" title="var">Int.ge</span> <span class="id" title="var">n</span> 0);<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">Int.equal</span> <span class="id" title="var">n</span> 0 <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">true</span> =&gt; <span class="id" title="var">ls</span><br/>
@@ -777,14 +777,14 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">lastn</span> (<span class="id" title="var">n</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">lastn</span> (<span class="id" title="var">n</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">let</span> <span class="id" title="var">l</span> := <span class="id" title="var">length</span> <span class="id" title="var">ls</span> <span class="id" title="tactic">in</span><br/>
 &nbsp;&nbsp;<span class="id" title="var">Control.assert_valid_argument</span> "List.lastn" (<span class="id" title="var">Int.ge</span> <span class="id" title="var">n</span> 0);<br/>
 &nbsp;&nbsp;<span class="id" title="var">Control.assert_bounds</span> "List.lastn" (<span class="id" title="var">Int.le</span> <span class="id" title="var">n</span> <span class="id" title="var">l</span>);<br/>
 &nbsp;&nbsp;<span class="id" title="var">skipn</span> (<span class="id" title="var">Int.sub</span> <span class="id" title="var">l</span> <span class="id" title="var">n</span>) <span class="id" title="var">ls</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">rec</span> <span class="id" title="var">nodup</span> (<span class="id" title="var">eqb</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">nodup</span> (<span class="id" title="var">eqb</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; []<br/>
 &nbsp;&nbsp;| <span class="id" title="var">x</span> :: <span class="id" title="var">xs</span><br/>
@@ -795,7 +795,7 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">rec</span> <span class="id" title="var">seq</span> (<span class="id" title="var">start</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">step</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">last</span> : <span class="id" title="var">int</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">seq</span> (<span class="id" title="var">start</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">step</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">last</span> : <span class="id" title="var">int</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">Int.lt</span> (<span class="id" title="var">Int.sub</span> <span class="id" title="var">last</span> <span class="id" title="var">start</span>) <span class="id" title="var">step</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">true</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;=&gt; []<br/>
@@ -804,22 +804,22 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">init</span> (<span class="id" title="var">len</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">f</span> : <span class="id" title="var">int</span> -&gt; '<span class="id" title="var">a</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">init</span> (<span class="id" title="var">len</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">f</span> : <span class="id" title="var">int</span> -&gt; '<span class="id" title="var">a</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="var">Control.assert_valid_argument</span> "List.init" (<span class="id" title="var">Int.ge</span> <span class="id" title="var">len</span> 0);<br/>
 &nbsp;&nbsp;<span class="id" title="var">map</span> <span class="id" title="var">f</span> (<span class="id" title="var">seq</span> 0 1 <span class="id" title="var">len</span>).<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="tactic">repeat</span> (<span class="id" title="var">x</span> : '<span class="id" title="var">a</span>) (<span class="id" title="var">n</span> : <span class="id" title="var">int</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="tactic">repeat</span> (<span class="id" title="var">x</span> : '<span class="id" title="var">a</span>) (<span class="id" title="var">n</span> : <span class="id" title="var">int</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="var">init</span> <span class="id" title="var">n</span> (<span class="id" title="keyword">fun</span> <span class="id" title="var">_</span> =&gt; <span class="id" title="var">x</span>).<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">assoc</span> (<span class="id" title="var">eqk</span> : '<span class="id" title="var">k</span> -&gt; '<span class="id" title="var">k</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">k</span> : '<span class="id" title="var">k</span>) (<span class="id" title="var">l</span> : ('<span class="id" title="var">k</span> * '<span class="id" title="var">v</span>) <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">assoc</span> (<span class="id" title="var">eqk</span> : '<span class="id" title="var">k</span> -&gt; '<span class="id" title="var">k</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">k</span> : '<span class="id" title="var">k</span>) (<span class="id" title="var">l</span> : ('<span class="id" title="var">k</span> * '<span class="id" title="var">v</span>) <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">let</span> <span class="id" title="var">eq_key</span> <span class="id" title="var">kv</span> := <span class="id" title="keyword">let</span> (<span class="id" title="var">k'</span>, <span class="id" title="var">_</span>) := <span class="id" title="var">kv</span> <span class="id" title="tactic">in</span> <span class="id" title="var">eqk</span> <span class="id" title="var">k</span> <span class="id" title="var">k'</span> <span class="id" title="tactic">in</span><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">let</span> (<span class="id" title="var">_</span>, <span class="id" title="var">v</span>) := <span class="id" title="var">find</span> <span class="id" title="var">eq_key</span> <span class="id" title="var">l</span> <span class="id" title="tactic">in</span><br/>
 &nbsp;&nbsp;<span class="id" title="var">v</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">assoc_opt</span> (<span class="id" title="var">eqk</span> : '<span class="id" title="var">k</span> -&gt; '<span class="id" title="var">k</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">k</span> : '<span class="id" title="var">k</span>) (<span class="id" title="var">l</span> : ('<span class="id" title="var">k</span> * '<span class="id" title="var">v</span>) <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">assoc_opt</span> (<span class="id" title="var">eqk</span> : '<span class="id" title="var">k</span> -&gt; '<span class="id" title="var">k</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">k</span> : '<span class="id" title="var">k</span>) (<span class="id" title="var">l</span> : ('<span class="id" title="var">k</span> * '<span class="id" title="var">v</span>) <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">let</span> <span class="id" title="var">eq_key</span> <span class="id" title="var">kv</span> := <span class="id" title="keyword">let</span> (<span class="id" title="var">k'</span>, <span class="id" title="var">_</span>) := <span class="id" title="var">kv</span> <span class="id" title="tactic">in</span> <span class="id" title="var">eqk</span> <span class="id" title="var">k</span> <span class="id" title="var">k'</span> <span class="id" title="tactic">in</span><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">find_opt</span> <span class="id" title="var">eq_key</span> <span class="id" title="var">l</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">Some</span> <span class="id" title="var">kv</span> =&gt; <span class="id" title="keyword">let</span> (<span class="id" title="var">_</span>, <span class="id" title="var">v</span>) := <span class="id" title="var">kv</span> <span class="id" title="tactic">in</span> <span class="id" title="var">Some</span> <span class="id" title="var">v</span><br/>
@@ -827,17 +827,17 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">mem_assoc</span> (<span class="id" title="var">eqk</span> : '<span class="id" title="var">k</span> -&gt; '<span class="id" title="var">k</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">k</span> : '<span class="id" title="var">k</span>) (<span class="id" title="var">l</span> : ('<span class="id" title="var">k</span> * '<span class="id" title="var">v</span>) <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">mem_assoc</span> (<span class="id" title="var">eqk</span> : '<span class="id" title="var">k</span> -&gt; '<span class="id" title="var">k</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">k</span> : '<span class="id" title="var">k</span>) (<span class="id" title="var">l</span> : ('<span class="id" title="var">k</span> * '<span class="id" title="var">v</span>) <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">let</span> <span class="id" title="var">eq_key</span> <span class="id" title="var">kv</span> := <span class="id" title="keyword">let</span> (<span class="id" title="var">k'</span>, <span class="id" title="var">_</span>) := <span class="id" title="var">kv</span> <span class="id" title="tactic">in</span> <span class="id" title="var">eqk</span> <span class="id" title="var">k</span> <span class="id" title="var">k'</span> <span class="id" title="tactic">in</span><br/>
 &nbsp;&nbsp;<span class="id" title="var">exist</span> <span class="id" title="var">eq_key</span> <span class="id" title="var">l</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">remove_assoc</span> (<span class="id" title="var">eqk</span> : '<span class="id" title="var">k</span> -&gt; '<span class="id" title="var">k</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">k</span> : '<span class="id" title="var">k</span>) (<span class="id" title="var">l</span> : ('<span class="id" title="var">k</span> * '<span class="id" title="var">v</span>) <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">remove_assoc</span> (<span class="id" title="var">eqk</span> : '<span class="id" title="var">k</span> -&gt; '<span class="id" title="var">k</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">k</span> : '<span class="id" title="var">k</span>) (<span class="id" title="var">l</span> : ('<span class="id" title="var">k</span> * '<span class="id" title="var">v</span>) <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">let</span> <span class="id" title="var">eq_key</span> <span class="id" title="var">kv</span> := <span class="id" title="keyword">let</span> (<span class="id" title="var">k'</span>, <span class="id" title="var">_</span>) := <span class="id" title="var">kv</span> <span class="id" title="tactic">in</span> <span class="id" title="var">eqk</span> <span class="id" title="var">k</span> <span class="id" title="var">k'</span> <span class="id" title="tactic">in</span><br/>
 &nbsp;&nbsp;<span class="id" title="var">filter_out</span> <span class="id" title="var">eq_key</span> <span class="id" title="var">l</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">rec</span> <span class="id" title="tactic">split</span> (<span class="id" title="var">ls</span> : ('<span class="id" title="var">a</span> * '<span class="id" title="var">b</span>) <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="tactic">split</span> (<span class="id" title="var">ls</span> : ('<span class="id" title="var">a</span> * '<span class="id" title="var">b</span>) <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; ([], [])<br/>
 &nbsp;&nbsp;| <span class="id" title="var">xy</span> :: <span class="id" title="var">tl</span><br/>
@@ -847,7 +847,7 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">rec</span> <span class="id" title="var">combine</span> (<span class="id" title="var">ls1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">ls2</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">combine</span> (<span class="id" title="var">ls1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">ls2</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls1</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| []<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;=&gt; <span class="id" title="keyword">match</span> <span class="id" title="var">ls2</span> <span class="id" title="keyword">with</span><br/>
@@ -863,11 +863,11 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">enumerate</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">enumerate</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="var">mapi</span> (<span class="id" title="keyword">fun</span> <span class="id" title="var">i</span> <span class="id" title="var">v</span> =&gt; (<span class="id" title="var">i</span>,<span class="id" title="var">v</span>)) <span class="id" title="var">ls</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">rec</span> <span class="id" title="var">merge</span> (<span class="id" title="var">cmp</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">int</span>) (<span class="id" title="var">l1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">l2</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">merge</span> (<span class="id" title="var">cmp</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">int</span>) (<span class="id" title="var">l1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">l2</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">let</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">merge_aux</span> <span class="id" title="var">l2</span> :=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">l1</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| [] =&gt; <span class="id" title="var">l2</span><br/>
@@ -884,7 +884,7 @@
 &nbsp;&nbsp;<span class="id" title="var">merge_aux</span> <span class="id" title="var">l2</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">rec</span> <span class="id" title="var">merge_list_to_stack</span> <span class="id" title="var">cmp</span> <span class="id" title="var">stack</span> <span class="id" title="var">l</span> :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">merge_list_to_stack</span> <span class="id" title="var">cmp</span> <span class="id" title="var">stack</span> <span class="id" title="var">l</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">stack</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; [<span class="id" title="var">Some</span> <span class="id" title="var">l</span>]<br/>
 &nbsp;&nbsp;| <span class="id" title="var">l'</span> :: <span class="id" title="var">stack'</span><br/>
@@ -896,7 +896,7 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">rec</span> <span class="id" title="var">merge_stack</span> <span class="id" title="var">cmp</span> <span class="id" title="var">stack</span> :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">merge_stack</span> <span class="id" title="var">cmp</span> <span class="id" title="var">stack</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">stack</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; []<br/>
 &nbsp;&nbsp;| <span class="id" title="var">l</span> :: <span class="id" title="var">stack'</span><br/>
@@ -907,17 +907,17 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">rec</span> <span class="id" title="var">iter_merge</span> <span class="id" title="var">cmp</span> <span class="id" title="var">stack</span> <span class="id" title="var">l</span> :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">iter_merge</span> <span class="id" title="var">cmp</span> <span class="id" title="var">stack</span> <span class="id" title="var">l</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">l</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; <span class="id" title="var">merge_stack</span> <span class="id" title="var">cmp</span> <span class="id" title="var">stack</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">a</span>::<span class="id" title="var">l'</span> =&gt; <span class="id" title="var">iter_merge</span> <span class="id" title="var">cmp</span> (<span class="id" title="var">merge_list_to_stack</span> <span class="id" title="var">cmp</span> <span class="id" title="var">stack</span> [<span class="id" title="var">a</span>]) <span class="id" title="var">l'</span><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">sort</span> <span class="id" title="var">cmp</span> <span class="id" title="var">l</span> := <span class="id" title="var">iter_merge</span> <span class="id" title="var">cmp</span> [] <span class="id" title="var">l</span>.<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">sort</span> <span class="id" title="var">cmp</span> <span class="id" title="var">l</span> := <span class="id" title="var">iter_merge</span> <span class="id" title="var">cmp</span> [] <span class="id" title="var">l</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">sort_uniq</span> (<span class="id" title="var">cmp</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">int</span>) (<span class="id" title="var">l</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">sort_uniq</span> (<span class="id" title="var">cmp</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">int</span>) (<span class="id" title="var">l</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">let</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">uniq</span> <span class="id" title="var">l</span> :=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">l</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| [] =&gt; []<br/>
@@ -934,11 +934,11 @@
 &nbsp;&nbsp;<span class="id" title="var">uniq</span> (<span class="id" title="var">sort</span> <span class="id" title="var">cmp</span> <span class="id" title="var">l</span>).<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">inclusive_range</span> (<span class="id" title="var">lb</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">ub</span> : <span class="id" title="var">int</span>) : <span class="id" title="var">int</span> <span class="id" title="var">list</span> :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">inclusive_range</span> (<span class="id" title="var">lb</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">ub</span> : <span class="id" title="var">int</span>) : <span class="id" title="var">int</span> <span class="id" title="var">list</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="var">seq</span> <span class="id" title="var">lb</span> 1 (<span class="id" title="var">Int.add</span> <span class="id" title="var">ub</span> 1).<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">range</span> (<span class="id" title="var">lb</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">ub</span> : <span class="id" title="var">int</span>) : <span class="id" title="var">int</span> <span class="id" title="var">list</span> :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">range</span> (<span class="id" title="var">lb</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">ub</span> : <span class="id" title="var">int</span>) : <span class="id" title="var">int</span> <span class="id" title="var">list</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="var">seq</span> <span class="id" title="var">lb</span> 1 <span class="id" title="var">ub</span>.<br/>
 
 <br/>
@@ -951,7 +951,7 @@
     when the order of items does not matter. 
 </div>
 <div class="code">
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="var">concat_rev</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">list</span> :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">concat_rev</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">list</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">let</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">go</span> <span class="id" title="var">ls</span> <span class="id" title="var">acc</span> :=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;| [] =&gt; <span class="id" title="var">acc</span><br/>
@@ -964,7 +964,7 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span>2 <span class="id" title="keyword">rec</span> <span class="id" title="var">map_filter</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> <span class="id" title="var">option</span>) (<span class="id" title="var">l</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">b</span> <span class="id" title="var">list</span> :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">map_filter</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> <span class="id" title="var">option</span>) (<span class="id" title="var">l</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">b</span> <span class="id" title="var">list</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">l</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; []<br/>
 &nbsp;&nbsp;| <span class="id" title="var">x</span> :: <span class="id" title="var">l</span> =&gt;<br/>

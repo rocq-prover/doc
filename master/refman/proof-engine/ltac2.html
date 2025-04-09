@@ -1389,14 +1389,14 @@ the current module. This makes it possible to enforce invariants.</p>
 </span></dd>
 <dt><span>  #[</span><span class="coqdoc-tactic">abstract</span><span>] </span><span class="coqdoc-var">Ltac2</span><span> </span><span class="coqdoc-keyword">Type</span><span> </span><span class="coqdoc-var">t</span><span> := </span><span class="coqdoc-var">int</span><span>.</span><span>
 </span></dt><dt><span></span><span>
-  </span><span class="coqdoc-keyword">Ltac</span><span>2 </span><span class="coqdoc-var">make</span><span> (</span><span class="coqdoc-var">x</span><span>:</span><span class="coqdoc-var">int</span><span>) : </span><span class="coqdoc-var">t</span><span> := </span><span class="coqdoc-keyword">if</span><span> </span><span class="coqdoc-var">Int.le</span><span> 0 </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-keyword">then</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-keyword">else</span><span> </span><span class="coqdoc-var">Control.throw</span><span> (</span><span class="coqdoc-var">Invalid_argument</span><span> </span><span class="coqdoc-var">None</span><span>).</span><span>
-</span></dt><dt><span>  </span><span class="coqdoc-keyword">Ltac</span><span>2 </span><span class="coqdoc-var">get</span><span> (</span><span class="coqdoc-var">x</span><span>:</span><span class="coqdoc-var">t</span><span>) : </span><span class="coqdoc-var">int</span><span> := </span><span class="coqdoc-var">x</span><span>.</span><span>
+  </span><span class="coqdoc-keyword">Ltac2</span><span> </span><span class="coqdoc-var">make</span><span> (</span><span class="coqdoc-var">x</span><span>:</span><span class="coqdoc-var">int</span><span>) : </span><span class="coqdoc-var">t</span><span> := </span><span class="coqdoc-keyword">if</span><span> </span><span class="coqdoc-var">Int.le</span><span> 0 </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-keyword">then</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-keyword">else</span><span> </span><span class="coqdoc-var">Control.throw</span><span> (</span><span class="coqdoc-var">Invalid_argument</span><span> </span><span class="coqdoc-var">None</span><span>).</span><span>
+</span></dt><dt><span>  </span><span class="coqdoc-keyword">Ltac2</span><span> </span><span class="coqdoc-var">get</span><span> (</span><span class="coqdoc-var">x</span><span>:</span><span class="coqdoc-var">t</span><span>) : </span><span class="coqdoc-var">int</span><span> := </span><span class="coqdoc-var">x</span><span>.</span><span>
 </span></dt><dt><span></span><span class="coqdoc-keyword">End</span><span> </span><span class="coqdoc-var">PositiveInt</span><span>.</span><span>
 </span></dt><dd class="coqtop-hidden"><span>Module PositiveInt is defined
 </span></dd>
 </dl>
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Ltac</span><span>2 </span><span class="coqdoc-keyword">Eval</span><span> </span><span class="coqdoc-var">PositiveInt.get</span><span> (</span><span class="coqdoc-var">PositiveInt.make</span><span> 3).</span><span>
+<dt><span></span><span class="coqdoc-keyword">Ltac2</span><span> </span><span class="coqdoc-keyword">Eval</span><span> </span><span class="coqdoc-var">PositiveInt.get</span><span> (</span><span class="coqdoc-var">PositiveInt.make</span><span> 3).</span><span>
 </span></dt><dd><span>- : int = 3
 </span></dd>
 <dt><span></span><span class="coqdoc-var">Fail</span><span> </span><span class="coqdoc-var">Ltac2</span><span> </span><span class="coqdoc-keyword">Eval</span><span> </span><span class="coqdoc-var">PositiveInt.get</span><span> (</span><span class="coqdoc-var">PositiveInt.make</span><span> -1).</span><span>
@@ -1500,13 +1500,13 @@ In other words it acts according to <a class="reference internal" href="../langu
 <p class="admonition-title">Example: Dynamic nature of mutable cells</p>
 <div class="coqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Ltac</span><span>2 </span><span class="coqdoc-var">mutable</span><span> </span><span class="coqdoc-var">x</span><span> := </span><span class="coqdoc-var">true</span><span>.</span><span>
-</span></dt><dt><span></span><span class="coqdoc-keyword">Ltac</span><span>2 </span><span class="coqdoc-var">y</span><span> () := </span><span class="coqdoc-var">x</span><span>.</span><span>
-</span></dt><dt><span></span><span class="coqdoc-keyword">Ltac</span><span>2 </span><span class="coqdoc-keyword">Eval</span><span> </span><span class="coqdoc-var">y</span><span> ().</span><span>
+<dt><span></span><span class="coqdoc-keyword">Ltac2</span><span> </span><span class="coqdoc-var">mutable</span><span> </span><span class="coqdoc-var">x</span><span> := </span><span class="coqdoc-var">true</span><span>.</span><span>
+</span></dt><dt><span></span><span class="coqdoc-keyword">Ltac2</span><span> </span><span class="coqdoc-var">y</span><span> () := </span><span class="coqdoc-var">x</span><span>.</span><span>
+</span></dt><dt><span></span><span class="coqdoc-keyword">Ltac2</span><span> </span><span class="coqdoc-keyword">Eval</span><span> </span><span class="coqdoc-var">y</span><span> ().</span><span>
 </span></dt><dd><span>- : bool = true
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Ltac</span><span>2 </span><span class="coqdoc-keyword">Set</span><span> </span><span class="coqdoc-var">x</span><span> := </span><span class="coqdoc-var">false</span><span>.</span><span>
-</span></dt><dt><span></span><span class="coqdoc-keyword">Ltac</span><span>2 </span><span class="coqdoc-keyword">Eval</span><span> </span><span class="coqdoc-var">y</span><span> ().</span><span>
+<dt><span></span><span class="coqdoc-keyword">Ltac2</span><span> </span><span class="coqdoc-keyword">Set</span><span> </span><span class="coqdoc-var">x</span><span> := </span><span class="coqdoc-var">false</span><span>.</span><span>
+</span></dt><dt><span></span><span class="coqdoc-keyword">Ltac2</span><span> </span><span class="coqdoc-keyword">Eval</span><span> </span><span class="coqdoc-var">y</span><span> ().</span><span>
 </span></dt><dd><span>- : bool = false
 </span></dd>
 </dl>
@@ -1516,13 +1516,13 @@ In other words it acts according to <a class="reference internal" href="../langu
 <p class="admonition-title">Example: Interaction with recursive calls</p>
 <div class="coqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Ltac</span><span>2 </span><span class="coqdoc-var">mutable</span><span> </span><span class="coqdoc-keyword">rec</span><span> </span><span class="coqdoc-var">f</span><span> </span><span class="coqdoc-var">b</span><span> := </span><span class="coqdoc-keyword">if</span><span> </span><span class="coqdoc-var">b</span><span> </span><span class="coqdoc-keyword">then</span><span> 0 </span><span class="coqdoc-keyword">else</span><span> </span><span class="coqdoc-var">f</span><span> </span><span class="coqdoc-var">true</span><span>.</span><span>
-</span></dt><dt><span></span><span class="coqdoc-keyword">Ltac</span><span>2 </span><span class="coqdoc-keyword">Set</span><span> </span><span class="coqdoc-var">f</span><span> := </span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">b</span><span> =&gt; </span><span class="coqdoc-keyword">if</span><span> </span><span class="coqdoc-var">b</span><span> </span><span class="coqdoc-keyword">then</span><span> 1 </span><span class="coqdoc-keyword">else</span><span> </span><span class="coqdoc-var">f</span><span> </span><span class="coqdoc-var">true</span><span>.</span><span>
-</span></dt><dt><span></span><span class="coqdoc-keyword">Ltac</span><span>2 </span><span class="coqdoc-keyword">Eval</span><span> (</span><span class="coqdoc-var">f</span><span> </span><span class="coqdoc-var">false</span><span>).</span><span>
+<dt><span></span><span class="coqdoc-keyword">Ltac2</span><span> </span><span class="coqdoc-var">mutable</span><span> </span><span class="coqdoc-keyword">rec</span><span> </span><span class="coqdoc-var">f</span><span> </span><span class="coqdoc-var">b</span><span> := </span><span class="coqdoc-keyword">if</span><span> </span><span class="coqdoc-var">b</span><span> </span><span class="coqdoc-keyword">then</span><span> 0 </span><span class="coqdoc-keyword">else</span><span> </span><span class="coqdoc-var">f</span><span> </span><span class="coqdoc-var">true</span><span>.</span><span>
+</span></dt><dt><span></span><span class="coqdoc-keyword">Ltac2</span><span> </span><span class="coqdoc-keyword">Set</span><span> </span><span class="coqdoc-var">f</span><span> := </span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">b</span><span> =&gt; </span><span class="coqdoc-keyword">if</span><span> </span><span class="coqdoc-var">b</span><span> </span><span class="coqdoc-keyword">then</span><span> 1 </span><span class="coqdoc-keyword">else</span><span> </span><span class="coqdoc-var">f</span><span> </span><span class="coqdoc-var">true</span><span>.</span><span>
+</span></dt><dt><span></span><span class="coqdoc-keyword">Ltac2</span><span> </span><span class="coqdoc-keyword">Eval</span><span> (</span><span class="coqdoc-var">f</span><span> </span><span class="coqdoc-var">false</span><span>).</span><span>
 </span></dt><dd><span>- : int = 1
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Ltac</span><span>2 </span><span class="coqdoc-keyword">Set</span><span> </span><span class="coqdoc-var">f</span><span> </span><span class="coqdoc-keyword">as</span><span> </span><span class="coqdoc-var">oldf</span><span> := </span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">b</span><span> =&gt; </span><span class="coqdoc-keyword">if</span><span> </span><span class="coqdoc-var">b</span><span> </span><span class="coqdoc-keyword">then</span><span>  2 </span><span class="coqdoc-keyword">else</span><span> </span><span class="coqdoc-var">oldf</span><span> </span><span class="coqdoc-var">false</span><span>.</span><span>
-</span></dt><dt><span></span><span class="coqdoc-keyword">Ltac</span><span>2 </span><span class="coqdoc-keyword">Eval</span><span> (</span><span class="coqdoc-var">f</span><span> </span><span class="coqdoc-var">false</span><span>).</span><span>
+<dt><span></span><span class="coqdoc-keyword">Ltac2</span><span> </span><span class="coqdoc-keyword">Set</span><span> </span><span class="coqdoc-var">f</span><span> </span><span class="coqdoc-keyword">as</span><span> </span><span class="coqdoc-var">oldf</span><span> := </span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">b</span><span> =&gt; </span><span class="coqdoc-keyword">if</span><span> </span><span class="coqdoc-var">b</span><span> </span><span class="coqdoc-keyword">then</span><span>  2 </span><span class="coqdoc-keyword">else</span><span> </span><span class="coqdoc-var">oldf</span><span> </span><span class="coqdoc-var">false</span><span>.</span><span>
+</span></dt><dt><span></span><span class="coqdoc-keyword">Ltac2</span><span> </span><span class="coqdoc-keyword">Eval</span><span> (</span><span class="coqdoc-var">f</span><span> </span><span class="coqdoc-var">false</span><span>).</span><span>
 </span></dt><dd><span>- : int = 2
 </span></dd>
 </dl>
@@ -1662,7 +1662,7 @@ destroy all backtrack and return values.</p>
 <blockquote>
 <div><div class="coqtop literal-block docutils container">
 <span></span><dl class="simple">
-<dt><span></span><span class="coqdoc-keyword">Ltac</span><span>2 </span><span class="coqdoc-keyword">Type</span><span> </span><span class="coqdoc-keyword">rec</span><span> '</span><span class="coqdoc-var">a</span><span> </span><span class="coqdoc-var">backtracking_stream</span><span> :=</span><span>
+<dt><span></span><span class="coqdoc-keyword">Ltac2</span><span> </span><span class="coqdoc-keyword">Type</span><span> </span><span class="coqdoc-keyword">rec</span><span> '</span><span class="coqdoc-var">a</span><span> </span><span class="coqdoc-var">backtracking_stream</span><span> :=</span><span>
   [ </span><span class="coqdoc-var">EmptyStream</span><span>(</span><span class="coqdoc-var">exn</span><span>)</span><span>
   | </span><span class="coqdoc-var">ConsStream</span><span>('</span><span class="coqdoc-var">a</span><span>, (</span><span class="coqdoc-var">exn</span><span> -&gt; '</span><span class="coqdoc-var">a</span><span> </span><span class="coqdoc-var">backtracking_stream</span><span>)) ].</span><span>
 </span></dt></dl>
@@ -1684,13 +1684,13 @@ Finally, the primitive <code class="docutils literal notranslate"><span class="p
 <blockquote>
 <div><div class="coqtop literal-block docutils container">
 <span></span><dl class="simple">
-<dt><span></span><span class="coqdoc-keyword">Ltac</span><span>2 </span><span class="coqdoc-keyword">rec</span><span> </span><span class="coqdoc-var">to_stream</span><span> (</span><span class="coqdoc-var">t</span><span> : </span><span class="coqdoc-var">unit</span><span> -&gt; '</span><span class="coqdoc-var">a</span><span>) : '</span><span class="coqdoc-var">a</span><span> </span><span class="coqdoc-var">backtracking_stream</span><span> :=</span><span>
+<dt><span></span><span class="coqdoc-keyword">Ltac2</span><span> </span><span class="coqdoc-keyword">rec</span><span> </span><span class="coqdoc-var">to_stream</span><span> (</span><span class="coqdoc-var">t</span><span> : </span><span class="coqdoc-var">unit</span><span> -&gt; '</span><span class="coqdoc-var">a</span><span>) : '</span><span class="coqdoc-var">a</span><span> </span><span class="coqdoc-var">backtracking_stream</span><span> :=</span><span>
   </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">Control.case</span><span> </span><span class="coqdoc-var">t</span><span> </span><span class="coqdoc-keyword">with</span><span>
   | </span><span class="coqdoc-var">Err</span><span> </span><span class="coqdoc-var">e</span><span> =&gt; </span><span class="coqdoc-var">EmptyStream</span><span> </span><span class="coqdoc-var">e</span><span>
   | </span><span class="coqdoc-var">Val</span><span> (</span><span class="coqdoc-var">v</span><span>, </span><span class="coqdoc-var">h</span><span>) =&gt; </span><span class="coqdoc-var">ConsStream</span><span> </span><span class="coqdoc-var">v</span><span> (</span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">e</span><span> =&gt; </span><span class="coqdoc-var">to_stream</span><span> (</span><span class="coqdoc-keyword">fun</span><span> () =&gt; </span><span class="coqdoc-var">h</span><span> </span><span class="coqdoc-var">e</span><span>))</span><span>
   </span><span class="coqdoc-keyword">end</span><span>.</span><span>
 </span></dt><dt><span></span><span>
-</span><span class="coqdoc-keyword">Ltac</span><span>2 </span><span class="coqdoc-keyword">rec</span><span> </span><span class="coqdoc-var">from_stream</span><span> (</span><span class="coqdoc-var">s</span><span> : '</span><span class="coqdoc-var">a</span><span> </span><span class="coqdoc-var">backtracking_stream</span><span>) : </span><span class="coqdoc-var">unit</span><span> -&gt; '</span><span class="coqdoc-var">a</span><span> := </span><span class="coqdoc-keyword">fun</span><span> () =&gt;</span><span>
+</span><span class="coqdoc-keyword">Ltac2</span><span> </span><span class="coqdoc-keyword">rec</span><span> </span><span class="coqdoc-var">from_stream</span><span> (</span><span class="coqdoc-var">s</span><span> : '</span><span class="coqdoc-var">a</span><span> </span><span class="coqdoc-var">backtracking_stream</span><span>) : </span><span class="coqdoc-var">unit</span><span> -&gt; '</span><span class="coqdoc-var">a</span><span> := </span><span class="coqdoc-keyword">fun</span><span> () =&gt;</span><span>
   </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">s</span><span> </span><span class="coqdoc-keyword">with</span><span>
   | </span><span class="coqdoc-var">EmptyStream</span><span> </span><span class="coqdoc-var">e</span><span> =&gt; </span><span class="coqdoc-var">Control.zero</span><span> </span><span class="coqdoc-var">e</span><span>
   | </span><span class="coqdoc-var">ConsStream</span><span> </span><span class="coqdoc-var">hd</span><span> </span><span class="coqdoc-var">tl</span><span> =&gt; </span><span class="coqdoc-var">Control.plus</span><span> (</span><span class="coqdoc-keyword">fun</span><span> () =&gt; </span><span class="coqdoc-var">hd</span><span>) (</span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">e</span><span> =&gt; </span><span class="coqdoc-var">from_stream</span><span> (</span><span class="coqdoc-var">tl</span><span> </span><span class="coqdoc-var">e</span><span>) ())</span><span>
@@ -1707,16 +1707,16 @@ Finally, the primitive <code class="docutils literal notranslate"><span class="p
 <span></span><dl>
 <dt><span></span><span class="coqdoc-keyword">From</span><span> </span><span class="coqdoc-var">Ltac2</span><span> </span><span class="coqdoc-keyword">Require</span><span> </span><span class="coqdoc-keyword">Import</span><span> </span><span class="coqdoc-var">Printf</span><span>.</span><span>
 </span></dt><dt><span></span><span>
-</span><span class="coqdoc-comment">(* `bs` holds a backtracking string *)</span></dt><dt><span></span><span class="coqdoc-keyword">Ltac</span><span>2 </span><span class="coqdoc-var">bs</span><span> () := </span><span class="coqdoc-var">Control.plus</span><span> (</span><span class="coqdoc-keyword">fun</span><span> () =&gt; &quot;x&quot;) (</span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">_</span><span> =&gt; &quot;y&quot;).</span><span>
-</span></dt><dt><span></span><span class="coqdoc-comment">(* Prints the first branch &quot;x&quot; and terminates successfully. *)</span></dt><dt><span></span><span class="coqdoc-keyword">Ltac</span><span>2 </span><span class="coqdoc-keyword">Eval</span><span> (</span><span class="coqdoc-keyword">let</span><span> </span><span class="coqdoc-var">s</span><span> := </span><span class="coqdoc-var">bs</span><span> () </span><span class="coqdoc-tactic">in</span><span> </span><span class="coqdoc-var">printf</span><span> &quot;%s&quot; </span><span class="coqdoc-var">s</span><span>).</span><span>
+</span><span class="coqdoc-comment">(* `bs` holds a backtracking string *)</span></dt><dt><span></span><span class="coqdoc-keyword">Ltac2</span><span> </span><span class="coqdoc-var">bs</span><span> () := </span><span class="coqdoc-var">Control.plus</span><span> (</span><span class="coqdoc-keyword">fun</span><span> () =&gt; &quot;x&quot;) (</span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">_</span><span> =&gt; &quot;y&quot;).</span><span>
+</span></dt><dt><span></span><span class="coqdoc-comment">(* Prints the first branch &quot;x&quot; and terminates successfully. *)</span></dt><dt><span></span><span class="coqdoc-keyword">Ltac2</span><span> </span><span class="coqdoc-keyword">Eval</span><span> (</span><span class="coqdoc-keyword">let</span><span> </span><span class="coqdoc-var">s</span><span> := </span><span class="coqdoc-var">bs</span><span> () </span><span class="coqdoc-tactic">in</span><span> </span><span class="coqdoc-var">printf</span><span> &quot;%s&quot; </span><span class="coqdoc-var">s</span><span>).</span><span>
 </span></dt><dd><span>x
 - : unit = ()
 </span></dd>
-<dt><span></span><span class="coqdoc-comment">(* Prints both branches and returns the error. *)</span></dt><dt><span></span><span class="coqdoc-keyword">Ltac</span><span>2 </span><span class="coqdoc-var">print_and_fail</span><span> (</span><span class="coqdoc-var">s</span><span> : </span><span class="coqdoc-var">string</span><span>) :=</span><span>
+<dt><span></span><span class="coqdoc-comment">(* Prints both branches and returns the error. *)</span></dt><dt><span></span><span class="coqdoc-keyword">Ltac2</span><span> </span><span class="coqdoc-var">print_and_fail</span><span> (</span><span class="coqdoc-var">s</span><span> : </span><span class="coqdoc-var">string</span><span>) :=</span><span>
   </span><span class="coqdoc-var">printf</span><span> &quot;%s&quot; </span><span class="coqdoc-var">s</span><span> ;</span><span>
   </span><span class="coqdoc-var">Control.zero</span><span> (</span><span class="coqdoc-var">Tactic_failure</span><span> </span><span class="coqdoc-var">None</span><span>).</span><span>
 </span></dt><dt><span></span><span>
-</span><span class="coqdoc-keyword">Ltac</span><span>2 </span><span class="coqdoc-keyword">Eval</span><span> (</span><span class="coqdoc-var">Control.case</span><span> (</span><span class="coqdoc-keyword">fun</span><span> () =&gt; </span><span class="coqdoc-keyword">let</span><span> </span><span class="coqdoc-var">s</span><span> := </span><span class="coqdoc-var">bs</span><span> () </span><span class="coqdoc-tactic">in</span><span> </span><span class="coqdoc-var">print_and_fail</span><span> </span><span class="coqdoc-var">s</span><span>)).</span><span>
+</span><span class="coqdoc-keyword">Ltac2</span><span> </span><span class="coqdoc-keyword">Eval</span><span> (</span><span class="coqdoc-var">Control.case</span><span> (</span><span class="coqdoc-keyword">fun</span><span> () =&gt; </span><span class="coqdoc-keyword">let</span><span> </span><span class="coqdoc-var">s</span><span> := </span><span class="coqdoc-var">bs</span><span> () </span><span class="coqdoc-tactic">in</span><span> </span><span class="coqdoc-var">print_and_fail</span><span> </span><span class="coqdoc-var">s</span><span>)).</span><span>
 </span></dt><dd><span>x
 y
 - : ('a * (exn -&gt; 'a)) result = Err (Tactic_failure None)
@@ -1875,7 +1875,7 @@ is potentially ill-typed as a runtime <strong>Rocq</strong> term.</p>
 <p>The following term is valid (with type <code class="docutils literal notranslate"><span class="pre">unit</span> <span class="pre">-&gt;</span> <span class="pre">constr</span></code>), but will fail at runtime:</p>
 <div class="coqtop literal-block docutils container">
 <span></span><dl class="simple">
-<dt><span></span><span class="coqdoc-keyword">Ltac</span><span>2 </span><span class="coqdoc-var">myconstr</span><span> () := </span><span class="coqdoc-keyword">constr</span><span>:(</span><span class="coqdoc-var">nat</span><span> -&gt; 0).</span><span>
+<dt><span></span><span class="coqdoc-keyword">Ltac2</span><span> </span><span class="coqdoc-var">myconstr</span><span> () := </span><span class="coqdoc-keyword">constr</span><span>:(</span><span class="coqdoc-var">nat</span><span> -&gt; 0).</span><span>
 </span></dt></dl>
 </div>
 </div>
@@ -2058,7 +2058,7 @@ alternative to <code class="docutils literal notranslate"><span class="pre">prin
 <div class="coqtop literal-block docutils container">
 <span></span><dl class="simple">
 <dt><span></span><span class="coqdoc-keyword">From</span><span> </span><span class="coqdoc-var">Ltac2</span><span> </span><span class="coqdoc-keyword">Require</span><span> </span><span class="coqdoc-keyword">Import</span><span> </span><span class="coqdoc-var">Message</span><span>.</span><span>
-</span></dt><dt><span></span><span class="coqdoc-keyword">Ltac</span><span>2 </span><span class="coqdoc-var">msg</span><span> </span><span class="coqdoc-var">x</span><span> := </span><span class="coqdoc-var">print</span><span> (</span><span class="coqdoc-var">of_string</span><span> </span><span class="coqdoc-var">x</span><span>).</span><span>
+</span></dt><dt><span></span><span class="coqdoc-keyword">Ltac2</span><span> </span><span class="coqdoc-var">msg</span><span> </span><span class="coqdoc-var">x</span><span> := </span><span class="coqdoc-var">print</span><span> (</span><span class="coqdoc-var">of_string</span><span> </span><span class="coqdoc-var">x</span><span>).</span><span>
 </span></dt></dl>
 <span></span><dl>
 <dt class="coqtop-hidden"><span></span><span class="coqdoc-keyword">Goal</span><span> </span><span class="coqdoc-var">True</span><span>.</span><span>
@@ -2135,7 +2135,7 @@ Uncaught Ltac2 exception: Tactic_failure None
 first match.</p>
 <div class="coqtop literal-block docutils container">
 <span></span><dl class="simple">
-<dt><span></span><span class="coqdoc-keyword">Ltac</span><span>2 </span><span class="coqdoc-var">f2</span><span> </span><span class="coqdoc-var">t</span><span> := </span><span class="coqdoc-keyword">match</span><span>! </span><span class="coqdoc-var">t</span><span> </span><span class="coqdoc-keyword">with</span><span>
+<dt><span></span><span class="coqdoc-keyword">Ltac2</span><span> </span><span class="coqdoc-var">f2</span><span> </span><span class="coqdoc-var">t</span><span> := </span><span class="coqdoc-keyword">match</span><span>! </span><span class="coqdoc-var">t</span><span> </span><span class="coqdoc-keyword">with</span><span>
               | </span><span class="coqdoc-keyword">context</span><span> [ (~ ?</span><span class="coqdoc-var">t</span><span>) ] =&gt; </span><span class="coqdoc-var">print</span><span> (</span><span class="coqdoc-var">of_constr</span><span> </span><span class="coqdoc-var">t</span><span>); </span><span class="coqdoc-tactic">fail</span><span>
               | </span><span class="coqdoc-var">_</span><span> =&gt; ()</span><span>
               </span><span class="coqdoc-keyword">end</span><span>.</span><span>
@@ -2366,7 +2366,7 @@ in practice, please report any real use cases you find.</p>
 </dl>
 <span></span><dl>
 <dt><span></span><span class="coqdoc-keyword">From</span><span> </span><span class="coqdoc-var">Ltac2</span><span> </span><span class="coqdoc-keyword">Require</span><span> </span><span class="coqdoc-keyword">Import</span><span> </span><span class="coqdoc-var">Message</span><span>.</span><span>
-</span></dt><dt><span></span><span class="coqdoc-keyword">Ltac</span><span>2 </span><span class="coqdoc-keyword">Notation</span><span> &quot;ex1&quot; </span><span class="coqdoc-var">x</span><span>(</span><span class="coqdoc-keyword">constr</span><span>) := </span><span class="coqdoc-var">print</span><span> (</span><span class="coqdoc-var">of_constr</span><span> </span><span class="coqdoc-var">x</span><span>).</span><span>
+</span></dt><dt><span></span><span class="coqdoc-keyword">Ltac2</span><span> </span><span class="coqdoc-keyword">Notation</span><span> &quot;ex1&quot; </span><span class="coqdoc-var">x</span><span>(</span><span class="coqdoc-keyword">constr</span><span>) := </span><span class="coqdoc-var">print</span><span> (</span><span class="coqdoc-var">of_constr</span><span> </span><span class="coqdoc-var">x</span><span>).</span><span>
 </span></dt><dt><span></span><span class="coqdoc-var">ex1</span><span> (1 + 2).</span><span>
 </span></dt><dd><span>(1</span><span> +</span><span> 2)
 </span></dd>
@@ -2376,7 +2376,7 @@ in practice, please report any real use cases you find.</p>
 the quotation <code class="docutils literal notranslate"><span class="pre">constr:(</span> <span class="pre">…</span> <span class="pre">)</span></code>:</p>
 <div class="coqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Ltac</span><span>2 </span><span class="coqdoc-var">ex2</span><span> </span><span class="coqdoc-var">x</span><span> := </span><span class="coqdoc-var">print</span><span> (</span><span class="coqdoc-var">of_constr</span><span> </span><span class="coqdoc-var">x</span><span>).</span><span>
+<dt><span></span><span class="coqdoc-keyword">Ltac2</span><span> </span><span class="coqdoc-var">ex2</span><span> </span><span class="coqdoc-var">x</span><span> := </span><span class="coqdoc-var">print</span><span> (</span><span class="coqdoc-var">of_constr</span><span> </span><span class="coqdoc-var">x</span><span>).</span><span>
 </span></dt><dt><span></span><span class="coqdoc-var">ex2</span><span> </span><span class="coqdoc-keyword">constr</span><span>:(1+2).</span><span>
 </span></dt><dd><span>(1</span><span> +</span><span> 2)
 </span></dd>
@@ -2390,11 +2390,11 @@ recognizes a comma-separated list of one or more <a class="reference internal" h
 <p class="admonition-title">Example: Parsing a list of <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/basic.html#grammar-token-term"><span class="hole"><span class="pre">term</span></span></a></span></code>s</p>
 <div class="coqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Ltac</span><span>2 </span><span class="coqdoc-keyword">rec</span><span> </span><span class="coqdoc-var">print_list</span><span> </span><span class="coqdoc-var">x</span><span> := </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-keyword">with</span><span>
+<dt><span></span><span class="coqdoc-keyword">Ltac2</span><span> </span><span class="coqdoc-keyword">rec</span><span> </span><span class="coqdoc-var">print_list</span><span> </span><span class="coqdoc-var">x</span><span> := </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-keyword">with</span><span>
 | </span><span class="coqdoc-var">a</span><span> :: </span><span class="coqdoc-var">t</span><span> =&gt; </span><span class="coqdoc-var">print</span><span> (</span><span class="coqdoc-var">of_constr</span><span> </span><span class="coqdoc-var">a</span><span>); </span><span class="coqdoc-var">print_list</span><span> </span><span class="coqdoc-var">t</span><span>
 | [] =&gt; ()</span><span>
 </span><span class="coqdoc-keyword">end</span><span>.</span><span>
-</span></dt><dt><span></span><span class="coqdoc-keyword">Ltac</span><span>2 </span><span class="coqdoc-keyword">Notation</span><span> &quot;ex2&quot; </span><span class="coqdoc-var">x</span><span>(</span><span class="coqdoc-var">list1</span><span>(</span><span class="coqdoc-keyword">constr</span><span>, &quot;,&quot;)) := </span><span class="coqdoc-var">print_list</span><span> </span><span class="coqdoc-var">x</span><span>.</span><span>
+</span></dt><dt><span></span><span class="coqdoc-keyword">Ltac2</span><span> </span><span class="coqdoc-keyword">Notation</span><span> &quot;ex2&quot; </span><span class="coqdoc-var">x</span><span>(</span><span class="coqdoc-var">list1</span><span>(</span><span class="coqdoc-keyword">constr</span><span>, &quot;,&quot;)) := </span><span class="coqdoc-var">print_list</span><span> </span><span class="coqdoc-var">x</span><span>.</span><span>
 </span></dt><dt><span></span><span class="coqdoc-var">ex2</span><span> 1, 2, 3.</span><span>
 </span></dt><dd><span>1
 2
@@ -2410,7 +2410,7 @@ corresponding generated expression.</p>
 <p class="admonition-title">Example</p>
 <p>Assume we perform:</p>
 <div class="coqdoc literal-block docutils container">
-<span><span></span><span class="coqdoc-keyword">Ltac</span><span>2 </span><span class="coqdoc-keyword">Notation</span><span> &quot;foo&quot; </span><span class="coqdoc-var">c</span><span>(</span><span class="coqdoc-var">thunk</span><span>(</span><span class="coqdoc-keyword">constr</span><span>)) </span><span class="coqdoc-var">ids</span><span>(</span><span class="coqdoc-var">list0</span><span>(</span><span class="coqdoc-var">ident</span><span>)) := </span><span class="coqdoc-var">Bar.f</span><span> </span><span class="coqdoc-var">c</span><span> </span><span class="coqdoc-var">ids</span><span>.</span><span>
+<span><span></span><span class="coqdoc-keyword">Ltac2</span><span> </span><span class="coqdoc-keyword">Notation</span><span> &quot;foo&quot; </span><span class="coqdoc-var">c</span><span>(</span><span class="coqdoc-var">thunk</span><span>(</span><span class="coqdoc-keyword">constr</span><span>)) </span><span class="coqdoc-var">ids</span><span>(</span><span class="coqdoc-var">list0</span><span>(</span><span class="coqdoc-var">ident</span><span>)) := </span><span class="coqdoc-var">Bar.f</span><span> </span><span class="coqdoc-var">c</span><span> </span><span class="coqdoc-var">ids</span><span>.</span><span>
 </span></span></div>
 <p>Then the following expression</p>
 <p><code class="docutils literal notranslate"><span class="pre">let</span> <span class="pre">y</span> <span class="pre">:=</span> <span class="pre">&#64;X</span> <span class="pre">in</span> <span class="pre">foo</span> <span class="pre">(nat</span> <span class="pre">-&gt;</span> <span class="pre">nat)</span> <span class="pre">x</span> <span class="pre">$y</span></code></p>
@@ -2490,8 +2490,8 @@ You can make them accessible in Ltac2 with commands similar to the following
 [Loading ML file rocq-runtime.plugins.micromega_core ... done]
 [Loading ML file rocq-runtime.plugins.micromega ... done]
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Local Ltac</span><span>2 </span><span class="coqdoc-var">lia_ltac1</span><span> () := </span><span class="coqdoc-var">ltac1</span><span>:(</span><span class="coqdoc-var">lia</span><span>).</span><span>
-</span></dt><dt><span></span><span class="coqdoc-keyword">Ltac</span><span>2 </span><span class="coqdoc-keyword">Notation</span><span> &quot;lia&quot; := </span><span class="coqdoc-var">lia_ltac1</span><span> ().</span><span>
+<dt><span></span><span class="coqdoc-keyword">Local Ltac2</span><span> </span><span class="coqdoc-var">lia_ltac1</span><span> () := </span><span class="coqdoc-var">ltac1</span><span>:(</span><span class="coqdoc-var">lia</span><span>).</span><span>
+</span></dt><dt><span></span><span class="coqdoc-keyword">Ltac2</span><span> </span><span class="coqdoc-keyword">Notation</span><span> &quot;lia&quot; := </span><span class="coqdoc-var">lia_ltac1</span><span> ().</span><span>
 </span></dt></dl>
 </div>
 <p>A similar approach can be used to access missing built-in tactics.  See <a class="reference internal" href="#simple-api"><span class="std std-ref">Simple API</span></a> for an
@@ -2729,9 +2729,9 @@ be done with an explicit annotation on the <code class="docutils literal notrans
 quotation.  See <a class="reference internal" href="#ltac2-built-in-quotations"><span class="std std-ref">Built-in quotations</span></a>.  For example:</p>
 <div class="coqtop literal-block docutils container">
 <span></span><dl class="simple">
-<dt><span></span><span class="coqdoc-keyword">Local Ltac</span><span>2 </span><span class="coqdoc-var">replace_with</span><span> (</span><span class="coqdoc-var">lhs</span><span>: </span><span class="coqdoc-keyword">constr</span><span>) (</span><span class="coqdoc-var">rhs</span><span>: </span><span class="coqdoc-keyword">constr</span><span>) :=</span><span>
+<dt><span></span><span class="coqdoc-keyword">Local Ltac2</span><span> </span><span class="coqdoc-var">replace_with</span><span> (</span><span class="coqdoc-var">lhs</span><span>: </span><span class="coqdoc-keyword">constr</span><span>) (</span><span class="coqdoc-var">rhs</span><span>: </span><span class="coqdoc-keyword">constr</span><span>) :=</span><span>
   </span><span class="coqdoc-var">ltac1</span><span>:(</span><span class="coqdoc-var">lhs</span><span> </span><span class="coqdoc-var">rhs</span><span> |- </span><span class="coqdoc-tactic">replace</span><span> </span><span class="coqdoc-var">lhs</span><span> </span><span class="coqdoc-keyword">with</span><span> </span><span class="coqdoc-var">rhs</span><span>) (</span><span class="coqdoc-var">Ltac1.of_constr</span><span> </span><span class="coqdoc-var">lhs</span><span>) (</span><span class="coqdoc-var">Ltac1.of_constr</span><span> </span><span class="coqdoc-var">rhs</span><span>).</span><span>
-</span></dt><dt><span></span><span class="coqdoc-keyword">Ltac</span><span>2 </span><span class="coqdoc-keyword">Notation</span><span> &quot;replace&quot; </span><span class="coqdoc-var">lhs</span><span>(</span><span class="coqdoc-keyword">constr</span><span>) &quot;with&quot; </span><span class="coqdoc-var">rhs</span><span>(</span><span class="coqdoc-keyword">constr</span><span>) := </span><span class="coqdoc-var">replace_with</span><span> </span><span class="coqdoc-var">lhs</span><span> </span><span class="coqdoc-var">rhs</span><span>.</span><span>
+</span></dt><dt><span></span><span class="coqdoc-keyword">Ltac2</span><span> </span><span class="coqdoc-keyword">Notation</span><span> &quot;replace&quot; </span><span class="coqdoc-var">lhs</span><span>(</span><span class="coqdoc-keyword">constr</span><span>) &quot;with&quot; </span><span class="coqdoc-var">rhs</span><span>(</span><span class="coqdoc-keyword">constr</span><span>) := </span><span class="coqdoc-var">replace_with</span><span> </span><span class="coqdoc-var">lhs</span><span> </span><span class="coqdoc-var">rhs</span><span>.</span><span>
 </span></dt></dl>
 </div>
 <p>The return type of this expression is a function of the same arity as the number
