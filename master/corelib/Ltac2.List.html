@@ -275,14 +275,28 @@
 <span class="id" title="keyword">Require</span> <a class="idref" href="Ltac2.Message.html#"><span class="id" title="library">Ltac2.Message</span></a>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">length</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+</div>
+
+<div class="doc">
+Compute the length of a list. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">length</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : <span class="id" title="var">int</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; 0<br/>
 &nbsp;&nbsp;| <span class="id" title="var">_</span> :: <span class="id" title="var">xs</span> =&gt; <span class="id" title="var">Int.add</span> 1 (<span class="id" title="var">length</span> <span class="id" title="var">xs</span>)<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">compare_lengths</span> (<span class="id" title="var">ls1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">ls2</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) :=<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">compare_lengths</span></span> <span class="inlinecode"><span class="id" title="var">ls1</span></span> <span class="inlinecode"><span class="id" title="var">ls2</span></span> is equal to <span class="inlinecode"><span class="id" title="var">Int.compare</span></span> <span class="inlinecode">(<span class="id" title="var">length</span></span> <span class="inlinecode"><span class="id" title="var">ls1</span>)</span> <span class="inlinecode">(<span class="id" title="var">length</span></span> <span class="inlinecode"><span class="id" title="var">ls2</span>)</span>,
+    but is more efficient in most cases: it runs in O(min (length ls1) (length ls2))
+    instead of O(max (length ls1) (length ls2)). 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">compare_lengths</span> (<span class="id" title="var">ls1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">ls2</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) : <span class="id" title="var">int</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls1</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| []<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;=&gt; <span class="id" title="keyword">match</span> <span class="id" title="var">ls2</span> <span class="id" title="keyword">with</span><br/>
@@ -297,7 +311,15 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">compare_length_with</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">n</span> : <span class="id" title="var">int</span>) :=<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">compare_length_with</span></span> <span class="inlinecode"><span class="id" title="var">ls</span></span> <span class="inlinecode"><span class="id" title="var">n</span></span> is equal to <span class="inlinecode"><span class="id" title="var">Int.compare</span></span> <span class="inlinecode">(<span class="id" title="var">length</span></span> <span class="inlinecode"><span class="id" title="var">ls</span>)</span> <span class="inlinecode"><span class="id" title="var">n</span></span>,
+    but is more efficient in most cases: it runs in O(min (length ls) n)
+    instead of O(length ls). 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">compare_length_with</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">n</span> : <span class="id" title="var">int</span>) : <span class="id" title="var">int</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">Int.lt</span> <span class="id" title="var">n</span> 0 <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">true</span> =&gt; 1<br/>
 &nbsp;&nbsp;| <span class="id" title="var">false</span><br/>
@@ -308,33 +330,64 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">cons</span> (<span class="id" title="var">x</span> : '<span class="id" title="var">a</span>) (<span class="id" title="var">xs</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">cons</span> (<span class="id" title="var">x</span> : '<span class="id" title="var">a</span>) (<span class="id" title="var">xs</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">list</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="var">x</span> :: <span class="id" title="var">xs</span>.<br/>
 
 <br/>
+</div>
 
-<br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">hd_opt</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+<div class="doc">
+Since Ltac2 distinguishes between backtracking and fatal exceptions,
+    we provide option and default variants of functions which throw in the
+    OCaml stdlib. 
+<div class="paragraph"> </div>
+
+ Return the first element of a list.
+    Returns <span class="inlinecode"><span class="id" title="var">None</span></span> if the list is empty. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">hd_opt</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">option</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; <span class="id" title="var">None</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">x</span> :: <span class="id" title="var">_</span> =&gt; <span class="id" title="var">Some</span> <span class="id" title="var">x</span><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">hd</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+</div>
+
+<div class="doc">
+Return the first element of a list.
+    Throw an exception if the list is empty. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">hd</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">a</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; <span class="id" title="var">Control.throw_invalid_argument</span> "List.hd"<br/>
 &nbsp;&nbsp;| <span class="id" title="var">x</span> :: <span class="id" title="var">_</span> =&gt; <span class="id" title="var">x</span><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">tl</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+</div>
+
+<div class="doc">
+Remove the first element from a list.
+    The empty list is returned as is. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">tl</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">list</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; []<br/>
 &nbsp;&nbsp;| <span class="id" title="var">_</span> :: <span class="id" title="var">xs</span> =&gt; <span class="id" title="var">xs</span><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
+</div>
+
+<div class="doc">
+Destruct a list into its head and tail.
+    Throws an exception if the list is empty. 
+</div>
+<div class="code">
 <span class="id" title="keyword">Ltac2</span> <span class="id" title="var">dest</span> (<span class="id" title="var">xs</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">a</span> * '<span class="id" title="var">a</span> <span class="id" title="var">list</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">xs</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">x</span> :: <span class="id" title="var">xs</span> =&gt; (<span class="id" title="var">x</span>, <span class="id" title="var">xs</span>)<br/>
@@ -342,6 +395,12 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
+</div>
+
+<div class="doc">
+Return <span class="inlinecode"><span class="id" title="var">true</span></span> if the list is empty. 
+</div>
+<div class="code">
 <span class="id" title="keyword">Ltac2</span> <span class="id" title="var">is_empty</span> (<span class="id" title="var">xs</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : <span class="id" title="var">bool</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">xs</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">_</span> :: <span class="id" title="var">_</span> =&gt; <span class="id" title="var">false</span><br/>
@@ -349,7 +408,14 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">last_opt</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+</div>
+
+<div class="doc">
+Return the last element of a list.
+    Returns <span class="inlinecode"><span class="id" title="var">None</span></span> if the list is empty. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">last_opt</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">option</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; <span class="id" title="var">None</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">x</span> :: <span class="id" title="var">xs</span><br/>
@@ -360,14 +426,28 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">last</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+</div>
+
+<div class="doc">
+Return the last element of a list.
+    Throws an exception if the list is empty. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">last</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">a</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">last_opt</span> <span class="id" title="var">ls</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">None</span> =&gt; <span class="id" title="var">Control.throw_invalid_argument</span> "List.last"<br/>
 &nbsp;&nbsp;| <span class="id" title="var">Some</span> <span class="id" title="var">v</span> =&gt; <span class="id" title="var">v</span><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">removelast</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+</div>
+
+<div class="doc">
+Remove the last element of a list.
+    The empty list is returned as is. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">removelast</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">list</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; []<br/>
 &nbsp;&nbsp;| <span class="id" title="var">x</span> :: <span class="id" title="var">xs</span><br/>
@@ -378,6 +458,12 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
+</div>
+
+<div class="doc">
+Helper function for <span class="inlinecode"><span class="id" title="var">nth_opt</span></span>. 
+</div>
+<div class="code">
 <span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">nth_opt_aux</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">n</span> : <span class="id" title="var">int</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; <span class="id" title="var">None</span><br/>
@@ -389,89 +475,190 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">nth_opt</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">n</span> : <span class="id" title="var">int</span>) :=<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">nth_opt</span></span> <span class="inlinecode"><span class="id" title="var">ls</span></span> <span class="inlinecode"><span class="id" title="var">n</span></span> returns the <span class="inlinecode"><span class="id" title="var">n</span></span>-th element <span class="inlinecode"><span class="id" title="var">ls</span></span>, starting at <span class="inlinecode">0</span>.
+    Throws an exception if <span class="inlinecode"><span class="id" title="var">n</span></span> <span class="inlinecode">&lt;</span> <span class="inlinecode">0</span>. Returns <span class="inlinecode"><span class="id" title="var">None</span></span> if <span class="inlinecode"><span class="id" title="var">n</span></span> <span class="inlinecode">&gt;=</span> <span class="inlinecode"><span class="id" title="var">length</span></span> <span class="inlinecode"><span class="id" title="var">ls</span></span>. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">nth_opt</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">n</span> : <span class="id" title="var">int</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">option</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="var">Control.assert_valid_argument</span> "List.nth" (<span class="id" title="var">Int.ge</span> <span class="id" title="var">n</span> 0);<br/>
 &nbsp;&nbsp;<span class="id" title="var">nth_opt_aux</span> <span class="id" title="var">ls</span> <span class="id" title="var">n</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">nth</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">n</span> : <span class="id" title="var">int</span>) :=<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">nth</span></span> <span class="inlinecode"><span class="id" title="var">ls</span></span> <span class="inlinecode"><span class="id" title="var">n</span></span> returns the <span class="inlinecode"><span class="id" title="var">n</span></span>-th element of <span class="inlinecode"><span class="id" title="var">ls</span></span>, starting at <span class="inlinecode">0</span>.
+    Throws an exception if <span class="inlinecode"><span class="id" title="var">n</span></span> <span class="inlinecode">&lt;</span> <span class="inlinecode">0</span> or <span class="inlinecode"><span class="id" title="var">n</span></span> <span class="inlinecode">&gt;=</span> <span class="inlinecode"><span class="id" title="var">length</span></span> <span class="inlinecode"><span class="id" title="var">ls</span></span>. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">nth</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">n</span> : <span class="id" title="var">int</span>) : '<span class="id" title="var">a</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">nth_opt</span> <span class="id" title="var">ls</span> <span class="id" title="var">n</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">Some</span> <span class="id" title="var">v</span> =&gt; <span class="id" title="var">v</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">None</span> =&gt; <span class="id" title="var">Control.throw_out_of_bounds</span> "List.nth"<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">rev_append</span> (<span class="id" title="var">l1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">l2</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+</div>
+
+<div class="doc">
+Reverse <span class="inlinecode"><span class="id" title="var">l1</span></span>, and append it with <span class="inlinecode"><span class="id" title="var">l2</span></span>:
+    <span class="inlinecode"><span class="id" title="var">rev_append</span></span> <span class="inlinecode"><span class="id" title="var">l1</span></span> <span class="inlinecode"><span class="id" title="var">l2</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" title="var">append</span></span> <span class="inlinecode">(<span class="id" title="var">rev</span></span> <span class="inlinecode"><span class="id" title="var">l1</span>)</span> <span class="inlinecode"><span class="id" title="var">l2</span></span>. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">rev_append</span> (<span class="id" title="var">l1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">l2</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">list</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">l1</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; <span class="id" title="var">l2</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">a</span> :: <span class="id" title="var">l</span> =&gt; <span class="id" title="var">rev_append</span> <span class="id" title="var">l</span> (<span class="id" title="var">a</span> :: <span class="id" title="var">l2</span>)<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">rev</span> <span class="id" title="var">l</span> := <span class="id" title="var">rev_append</span> <span class="id" title="var">l</span> [].<br/>
+</div>
+
+<div class="doc">
+Reverse a list. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">rev</span> (<span class="id" title="var">l</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">list</span> :=<br/>
+&nbsp;&nbsp;<span class="id" title="var">rev_append</span> <span class="id" title="var">l</span> [].<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">append</span> <span class="id" title="var">ls1</span> <span class="id" title="var">ls2</span> :=<br/>
+</div>
+
+<div class="doc">
+Append two lists <span class="inlinecode"><span class="id" title="var">ls1</span></span> and <span class="inlinecode"><span class="id" title="var">ls2</span></span>. Complexity: O(length ls1). 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">append</span> (<span class="id" title="var">ls1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">ls2</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">list</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls1</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; <span class="id" title="var">ls2</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">x</span> :: <span class="id" title="var">xs</span> =&gt; <span class="id" title="var">x</span> :: <span class="id" title="var">append</span> <span class="id" title="var">xs</span> <span class="id" title="var">ls2</span><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">concat</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span> <span class="id" title="var">list</span>) :=<br/>
+</div>
+
+<div class="doc">
+Concatenate a list of lists. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">concat</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">list</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; []<br/>
 &nbsp;&nbsp;| <span class="id" title="var">x</span> :: <span class="id" title="var">xs</span> =&gt; <span class="id" title="var">append</span> <span class="id" title="var">x</span> (<span class="id" title="var">concat</span> <span class="id" title="var">xs</span>)<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">flatten</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span> <span class="id" title="var">list</span>) := <span class="id" title="var">concat</span> <span class="id" title="var">ls</span>.<br/>
+</div>
+
+<div class="doc">
+Synonym for <span class="inlinecode"><span class="id" title="var">concat</span></span>. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">flatten</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">list</span> :=<br/>
+&nbsp;&nbsp;<span class="id" title="var">concat</span> <span class="id" title="var">ls</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">iter</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">unit</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+</div>
+
+<div class="doc">
+Iterate a function on each element of a list.
+    Elements are processed from first to last. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">iter</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">unit</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : <span class="id" title="var">unit</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; ()<br/>
 &nbsp;&nbsp;| <span class="id" title="var">l</span> :: <span class="id" title="var">ls</span> =&gt; <span class="id" title="var">f</span> <span class="id" title="var">l</span>; <span class="id" title="var">iter</span> <span class="id" title="var">f</span> <span class="id" title="var">ls</span><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">iteri_aux</span> (<span class="id" title="var">i</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">f</span> : <span class="id" title="var">int</span> -&gt; '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">unit</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+</div>
+
+<div class="doc">
+Helper function for <span class="inlinecode"><span class="id" title="var">iteri</span></span>. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">iteri_aux</span> (<span class="id" title="var">i</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">f</span> : <span class="id" title="var">int</span> -&gt; '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">unit</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : <span class="id" title="var">unit</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; ()<br/>
 &nbsp;&nbsp;| <span class="id" title="var">l</span> :: <span class="id" title="var">ls</span> =&gt; <span class="id" title="var">f</span> <span class="id" title="var">i</span> <span class="id" title="var">l</span>; <span class="id" title="var">iteri_aux</span> (<span class="id" title="var">Int.add</span> <span class="id" title="var">i</span> 1) <span class="id" title="var">f</span> <span class="id" title="var">ls</span><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">iteri</span> (<span class="id" title="var">f</span> : <span class="id" title="var">int</span> -&gt; '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">unit</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+</div>
+
+<div class="doc">
+Iterate a function <span class="inlinecode"><span class="id" title="var">f</span></span> on each element of a list.
+    <span class="inlinecode"><span class="id" title="var">f</span></span> is additionally supplied the index of each element, starting at <span class="inlinecode">0</span>.
+    Elements are processed from first to last. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">iteri</span> (<span class="id" title="var">f</span> : <span class="id" title="var">int</span> -&gt; '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">unit</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : <span class="id" title="var">unit</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="var">iteri_aux</span> 0 <span class="id" title="var">f</span> <span class="id" title="var">ls</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">map</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">map</span></span> <span class="inlinecode"><span class="id" title="var">f</span></span> <span class="inlinecode">[<span class="id" title="var">x0</span></span> <span class="inlinecode">;</span> <span class="inlinecode"><span class="id" title="var">x1</span></span> <span class="inlinecode">;</span> <span class="inlinecode">...</span> <span class="inlinecode">;</span> <span class="inlinecode"><span class="id" title="var">xN</span>]</span> is <span class="inlinecode"><span class="id" title="var">f</span></span> <span class="inlinecode"><span class="id" title="var">x0</span></span> <span class="inlinecode">;</span> <span class="inlinecode"><span class="id" title="var">f</span></span> <span class="inlinecode"><span class="id" title="var">x1</span></span> <span class="inlinecode">;</span> <span class="inlinecode">...</span> <span class="inlinecode">;</span> <span class="inlinecode"><span class="id" title="var">f</span></span> <span class="inlinecode"><span class="id" title="var">xN</span></span>.
+    Elements are processed from first to last. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">map</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">b</span> <span class="id" title="var">list</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; []<br/>
 &nbsp;&nbsp;| <span class="id" title="var">l</span> :: <span class="id" title="var">ls</span> =&gt; <span class="id" title="var">f</span> <span class="id" title="var">l</span> :: <span class="id" title="var">map</span> <span class="id" title="var">f</span> <span class="id" title="var">ls</span><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">mapi_aux</span> (<span class="id" title="var">i</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">f</span> : <span class="id" title="var">int</span> -&gt; '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+</div>
+
+<div class="doc">
+Helper function for <span class="inlinecode"><span class="id" title="var">mapi</span></span>. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">mapi_aux</span> (<span class="id" title="var">i</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">f</span> : <span class="id" title="var">int</span> -&gt; '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">b</span> <span class="id" title="var">list</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; []<br/>
 &nbsp;&nbsp;| <span class="id" title="var">l</span> :: <span class="id" title="var">ls</span> =&gt; <span class="id" title="var">f</span> <span class="id" title="var">i</span> <span class="id" title="var">l</span> :: <span class="id" title="var">mapi_aux</span> (<span class="id" title="var">Int.add</span> <span class="id" title="var">i</span> 1) <span class="id" title="var">f</span> <span class="id" title="var">ls</span><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">mapi</span> (<span class="id" title="var">f</span> : <span class="id" title="var">int</span> -&gt; '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">mapi</span></span> <span class="inlinecode"><span class="id" title="var">f</span></span> <span class="inlinecode">[<span class="id" title="var">x0</span></span> <span class="inlinecode">;</span> <span class="inlinecode"><span class="id" title="var">x1</span></span> <span class="inlinecode">;</span> <span class="inlinecode">...</span> <span class="inlinecode">;</span> <span class="inlinecode"><span class="id" title="var">xN</span>]</span> is <span class="inlinecode"><span class="id" title="var">f</span></span> <span class="inlinecode">0</span> <span class="inlinecode"><span class="id" title="var">x0</span></span> <span class="inlinecode">;</span> <span class="inlinecode"><span class="id" title="var">f</span></span> <span class="inlinecode">1</span> <span class="inlinecode"><span class="id" title="var">x1</span></span> <span class="inlinecode">;</span> <span class="inlinecode">...</span> <span class="inlinecode">;</span> <span class="inlinecode"><span class="id" title="var">f</span></span> <span class="inlinecode"><span class="id" title="var">N</span></span> <span class="inlinecode"><span class="id" title="var">xN</span></span>.
+    Elements are processed from first to last. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">mapi</span> (<span class="id" title="var">f</span> : <span class="id" title="var">int</span> -&gt; '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">b</span> <span class="id" title="var">list</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="var">mapi_aux</span> 0 <span class="id" title="var">f</span> <span class="id" title="var">ls</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">flat_map</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) (<span class="id" title="var">xs</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+</div>
+
+<div class="doc">
+Map a function over a list, and then concatenate the results. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">flat_map</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) (<span class="id" title="var">xs</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">b</span> <span class="id" title="var">list</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">xs</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; []<br/>
 &nbsp;&nbsp;| <span class="id" title="var">x</span> :: <span class="id" title="var">xs</span> =&gt; <span class="id" title="var">append</span> (<span class="id" title="var">f</span> <span class="id" title="var">x</span>) (<span class="id" title="var">flat_map</span> <span class="id" title="var">f</span> <span class="id" title="var">xs</span>)<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">rev_map</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">rev_map</span></span> <span class="inlinecode"><span class="id" title="var">f</span></span> <span class="inlinecode"><span class="id" title="var">l</span></span> is equal to <span class="inlinecode"><span class="id" title="var">rev</span></span> <span class="inlinecode">(<span class="id" title="var">map</span></span> <span class="inlinecode"><span class="id" title="var">f</span></span> <span class="inlinecode"><span class="id" title="var">l</span>)</span>,
+    but is more efficient in most cases. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">rev_map</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">b</span> <span class="id" title="var">list</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">let</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">rmap_f</span> <span class="id" title="var">accu</span> <span class="id" title="var">ls</span> :=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| [] =&gt; <span class="id" title="var">accu</span><br/>
@@ -480,6 +667,12 @@
 &nbsp;&nbsp;<span class="id" title="var">rmap_f</span> [] <span class="id" title="var">ls</span>.<br/>
 
 <br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">fold_right</span></span> <span class="inlinecode"><span class="id" title="var">f</span></span> <span class="inlinecode">[<span class="id" title="var">a1</span>;</span> <span class="inlinecode">...;</span> <span class="inlinecode"><span class="id" title="var">an</span>]</span> <span class="inlinecode"><span class="id" title="var">init</span></span> is <span class="inlinecode"><span class="id" title="var">f</span></span> <span class="inlinecode"><span class="id" title="var">a1</span></span> <span class="inlinecode">(<span class="id" title="var">f</span></span> <span class="inlinecode"><span class="id" title="var">a2</span></span> <span class="inlinecode">(...</span> <span class="inlinecode">(<span class="id" title="var">f</span></span> <span class="inlinecode"><span class="id" title="var">an</span></span> <span class="inlinecode"><span class="id" title="var">init</span>)</span> <span class="inlinecode">...))</span>. 
+</div>
+<div class="code">
 <span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">fold_right</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; '<span class="id" title="var">b</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">b</span>) : '<span class="id" title="var">b</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; <span class="id" title="var">a</span><br/>
@@ -487,6 +680,12 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">fold_left</span></span> <span class="inlinecode"><span class="id" title="var">f</span></span> <span class="inlinecode"><span class="id" title="var">init</span></span> <span class="inlinecode">[<span class="id" title="var">b1</span>;</span> <span class="inlinecode">...;</span> <span class="inlinecode"><span class="id" title="var">bn</span>]</span> is <span class="inlinecode"><span class="id" title="var">f</span></span> <span class="inlinecode">(...</span> <span class="inlinecode">(<span class="id" title="var">f</span></span> <span class="inlinecode">(<span class="id" title="var">f</span></span> <span class="inlinecode"><span class="id" title="var">init</span></span> <span class="inlinecode"><span class="id" title="var">b1</span>)</span> <span class="inlinecode"><span class="id" title="var">b2</span>)</span> <span class="inlinecode">...)</span> <span class="inlinecode"><span class="id" title="var">bn</span></span>. 
+</div>
+<div class="code">
 <span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">fold_left</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; '<span class="id" title="var">a</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span>) (<span class="id" title="var">xs</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">a</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">xs</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; <span class="id" title="var">a</span><br/>
@@ -503,7 +702,15 @@
 &nbsp;&nbsp;<span class="id" title="tactic">in</span> <span class="id" title="var">go</span> 0 <span class="id" title="var">a</span> <span class="id" title="var">xs</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">iter2</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; <span class="id" title="var">unit</span>) (<span class="id" title="var">ls1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">ls2</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) :=<br/>
+</div>
+
+<div class="doc">
+Iterate a function over two lists.
+    Elements are processed from first to last.
+    Throws an exception if the lengths of the lists differ. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">iter2</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; <span class="id" title="var">unit</span>) (<span class="id" title="var">ls1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">ls2</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) : <span class="id" title="var">unit</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls1</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| []<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;=&gt; <span class="id" title="keyword">match</span> <span class="id" title="var">ls2</span> <span class="id" title="keyword">with</span><br/>
@@ -519,7 +726,15 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">map2</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; '<span class="id" title="var">c</span>) (<span class="id" title="var">ls1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">ls2</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) :=<br/>
+</div>
+
+<div class="doc">
+Map a function over two lists.
+    Elements are processed from first to last.
+    Throws an exception if the lengths of the lists differ. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">map2</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; '<span class="id" title="var">c</span>) (<span class="id" title="var">ls1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">ls2</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">c</span> <span class="id" title="var">list</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls1</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| []<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;=&gt; <span class="id" title="keyword">match</span> <span class="id" title="var">ls2</span> <span class="id" title="keyword">with</span><br/>
@@ -535,7 +750,14 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">rev_map2</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; '<span class="id" title="var">c</span>) (<span class="id" title="var">ls1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">ls2</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) :=<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">rev_map2</span></span> <span class="inlinecode"><span class="id" title="var">f</span></span> <span class="inlinecode"><span class="id" title="var">l1</span></span> <span class="inlinecode"><span class="id" title="var">l2</span></span> is equal to <span class="inlinecode"><span class="id" title="var">rev</span></span> <span class="inlinecode">(<span class="id" title="var">map2</span></span> <span class="inlinecode"><span class="id" title="var">f</span></span> <span class="inlinecode"><span class="id" title="var">l1</span></span> <span class="inlinecode"><span class="id" title="var">l2</span>)</span>,
+    but is more efficient in most cases. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">rev_map2</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; '<span class="id" title="var">c</span>) (<span class="id" title="var">ls1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">ls2</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">c</span> <span class="id" title="var">list</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">let</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">rmap2_f</span> <span class="id" title="var">accu</span> <span class="id" title="var">ls1</span> <span class="id" title="var">ls2</span> :=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls1</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| []<br/>
@@ -553,7 +775,14 @@
 &nbsp;&nbsp;<span class="id" title="var">rmap2_f</span> [] <span class="id" title="var">ls1</span> <span class="id" title="var">ls2</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">fold_right2</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; '<span class="id" title="var">c</span> -&gt; '<span class="id" title="var">c</span>) (<span class="id" title="var">ls1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">ls2</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">c</span>) :=<br/>
+</div>
+
+<div class="doc">
+Right fold over two lists.
+    Throws an exception if the lengths of the lists differ. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">fold_right2</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; '<span class="id" title="var">c</span> -&gt; '<span class="id" title="var">c</span>) (<span class="id" title="var">ls1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">ls2</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">c</span>) : '<span class="id" title="var">c</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls1</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| []<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;=&gt; <span class="id" title="keyword">match</span> <span class="id" title="var">ls2</span> <span class="id" title="keyword">with</span><br/>
@@ -569,7 +798,14 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">fold_left2</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; '<span class="id" title="var">c</span> -&gt; '<span class="id" title="var">a</span>)  (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span>) (<span class="id" title="var">ls1</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) (<span class="id" title="var">ls2</span> : '<span class="id" title="var">c</span> <span class="id" title="var">list</span>) :=<br/>
+</div>
+
+<div class="doc">
+Left fold over two lists.
+    Throws an exception if the lengths of the lists differ. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">fold_left2</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; '<span class="id" title="var">c</span> -&gt; '<span class="id" title="var">a</span>)  (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span>) (<span class="id" title="var">ls1</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) (<span class="id" title="var">ls2</span> : '<span class="id" title="var">c</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">a</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls1</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| []<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;=&gt; <span class="id" title="keyword">match</span> <span class="id" title="var">ls2</span> <span class="id" title="keyword">with</span><br/>
@@ -585,7 +821,14 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">for_all</span> <span class="id" title="var">f</span> <span class="id" title="var">ls</span> :=<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">for_all</span></span> <span class="inlinecode"><span class="id" title="var">f</span></span> <span class="inlinecode"><span class="id" title="var">l</span></span> checks that <span class="inlinecode"><span class="id" title="var">f</span></span> returns true on <i>all</i> elements of the list <span class="inlinecode"><span class="id" title="var">l</span></span>.
+    In particular <span class="inlinecode"><span class="id" title="var">for_all</span></span> <span class="inlinecode"><span class="id" title="var">f</span></span> <span class="inlinecode">[]</span> is <span class="inlinecode"><span class="id" title="var">true</span></span>. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">for_all</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : <span class="id" title="var">bool</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; <span class="id" title="var">true</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">x</span> :: <span class="id" title="var">xs</span> =&gt; <span class="id" title="keyword">match</span> <span class="id" title="var">f</span> <span class="id" title="var">x</span> <span class="id" title="keyword">with</span><br/>
@@ -595,7 +838,19 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">exist</span> <span class="id" title="var">f</span> <span class="id" title="var">ls</span> :=<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">exist</span></span> <span class="inlinecode"><span class="id" title="var">f</span></span> <span class="inlinecode"><span class="id" title="var">l</span></span> checks that <span class="inlinecode"><span class="id" title="var">f</span></span> returns true on <i>at least one</i> element of the list <span class="inlinecode"><span class="id" title="var">l</span></span>.
+    In particular <span class="inlinecode"><span class="id" title="var">exist</span></span> <span class="inlinecode"><span class="id" title="var">f</span></span> <span class="inlinecode">[]</span> is <span class="inlinecode"><span class="id" title="var">false</span></span>.
+
+<div class="paragraph"> </div>
+
+    We would call this <span class="inlinecode"><span class="id" title="tactic">exists</span></span> a la OCaml's <span class="inlinecode"><span class="id" title="var">List.exists</span></span>,
+    but that would be a syntax error (because it conflicts with the notation for tactic `exists`), so instead we name it exist. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">exist</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : <span class="id" title="var">bool</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; <span class="id" title="var">false</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">x</span> :: <span class="id" title="var">xs</span> =&gt; <span class="id" title="keyword">match</span> <span class="id" title="var">f</span> <span class="id" title="var">x</span> <span class="id" title="keyword">with</span><br/>
@@ -605,7 +860,13 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">for_all2_aux</span> (<span class="id" title="var">on_length_mismatch</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span> -&gt; '<span class="id" title="var">b</span> <span class="id" title="var">list</span> -&gt; <span class="id" title="var">bool</span>) <span class="id" title="var">f</span> <span class="id" title="var">xs</span> <span class="id" title="var">ys</span> :=<br/>
+</div>
+
+<div class="doc">
+Helper function for <span class="inlinecode"><span class="id" title="var">for_all2</span></span>. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">for_all2_aux</span> (<span class="id" title="var">on_length_mismatch</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span> -&gt; '<span class="id" title="var">b</span> <span class="id" title="var">list</span> -&gt; <span class="id" title="var">bool</span>) <span class="id" title="var">f</span> <span class="id" title="var">xs</span> <span class="id" title="var">ys</span> : <span class="id" title="var">bool</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">xs</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; <span class="id" title="keyword">match</span> <span class="id" title="var">ys</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| [] =&gt; <span class="id" title="var">true</span><br/>
@@ -623,11 +884,36 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">for_all2</span> <span class="id" title="var">f</span> <span class="id" title="var">xs</span> <span class="id" title="var">ys</span> := <span class="id" title="var">for_all2_aux</span> (<span class="id" title="keyword">fun</span> <span class="id" title="var">_</span> <span class="id" title="var">_</span> =&gt; <span class="id" title="var">Control.throw_invalid_argument</span> "List.for_all2") <span class="id" title="var">f</span> <span class="id" title="var">xs</span> <span class="id" title="var">ys</span>.<br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">equal</span> <span class="id" title="var">f</span> <span class="id" title="var">xs</span> <span class="id" title="var">ys</span> := <span class="id" title="var">for_all2_aux</span> (<span class="id" title="keyword">fun</span> <span class="id" title="var">_</span> <span class="id" title="var">_</span> =&gt; <span class="id" title="var">false</span>) <span class="id" title="var">f</span> <span class="id" title="var">xs</span> <span class="id" title="var">ys</span>.<br/>
+</div>
+
+<div class="doc">
+Same as <span class="inlinecode"><span class="id" title="var">for_all</span></span> but for two lists.
+    Throws an exception in case the lengths of the lists differ. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">for_all2</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">xs</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">ys</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) : <span class="id" title="var">bool</span> :=<br/>
+&nbsp;&nbsp;<span class="id" title="var">for_all2_aux</span> (<span class="id" title="keyword">fun</span> <span class="id" title="var">_</span> <span class="id" title="var">_</span> =&gt; <span class="id" title="var">Control.throw_invalid_argument</span> "List.for_all2") <span class="id" title="var">f</span> <span class="id" title="var">xs</span> <span class="id" title="var">ys</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">exist2</span> <span class="id" title="var">f</span> <span class="id" title="var">xs</span> <span class="id" title="var">ys</span> :=<br/>
+</div>
+
+<div class="doc">
+Same as <span class="inlinecode"><span class="id" title="var">for_all</span></span> but for two lists.
+    Returns <span class="inlinecode"><span class="id" title="var">false</span></span> in case the lengths of the lists differ. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">equal</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">xs</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">ys</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) : <span class="id" title="var">bool</span> :=<br/>
+&nbsp;&nbsp;<span class="id" title="var">for_all2_aux</span> (<span class="id" title="keyword">fun</span> <span class="id" title="var">_</span> <span class="id" title="var">_</span> =&gt; <span class="id" title="var">false</span>) <span class="id" title="var">f</span> <span class="id" title="var">xs</span> <span class="id" title="var">ys</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Same as <span class="inlinecode"><span class="id" title="var">exist</span></span> but for two lists.
+    Throws an exception if the lengths of the lists differ. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">exist2</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">xs</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">ys</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) : <span class="id" title="var">bool</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">xs</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; <span class="id" title="keyword">match</span> <span class="id" title="var">ys</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| [] =&gt; <span class="id" title="var">false</span><br/>
@@ -645,7 +931,14 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">find_opt</span> <span class="id" title="var">f</span> <span class="id" title="var">xs</span> :=<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">find_opt</span></span> <span class="inlinecode"><span class="id" title="var">f</span></span> <span class="inlinecode"><span class="id" title="var">xs</span></span> returns the <i>first</i> element of the list <span class="inlinecode"><span class="id" title="var">xs</span></span> satisfying <span class="inlinecode"><span class="id" title="var">f</span></span>.
+    Returns <span class="inlinecode"><span class="id" title="var">None</span></span> if no element is found. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">find_opt</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">xs</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">option</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">xs</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; <span class="id" title="var">None</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">x</span> :: <span class="id" title="var">xs</span> =&gt; <span class="id" title="keyword">match</span> <span class="id" title="var">f</span> <span class="id" title="var">x</span> <span class="id" title="keyword">with</span><br/>
@@ -655,14 +948,28 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">find</span> <span class="id" title="var">f</span> <span class="id" title="var">xs</span> :=<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">find</span></span> <span class="inlinecode"><span class="id" title="var">f</span></span> <span class="inlinecode"><span class="id" title="var">xs</span></span> returns the <i>first</i> element of the list <span class="inlinecode"><span class="id" title="var">xs</span></span> satisfying <span class="inlinecode"><span class="id" title="var">f</span></span>.
+    Throws an exception if no element is found. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">find</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">xs</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">a</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">find_opt</span> <span class="id" title="var">f</span> <span class="id" title="var">xs</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">Some</span> <span class="id" title="var">v</span> =&gt; <span class="id" title="var">v</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">None</span> =&gt; <span class="id" title="var">Control.throw</span> <span class="id" title="var">Not_found</span><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">find_rev_opt</span> <span class="id" title="var">f</span> <span class="id" title="var">xs</span> :=<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">find_rev_opt</span></span> <span class="inlinecode"><span class="id" title="var">f</span></span> <span class="inlinecode"><span class="id" title="var">xs</span></span> returns the <i>last</i> element of the list <span class="inlinecode"><span class="id" title="var">xs</span></span> satisfying <span class="inlinecode"><span class="id" title="var">f</span></span>.
+    Returns <span class="inlinecode"><span class="id" title="var">None</span></span> if no element is found. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">find_rev_opt</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">xs</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">option</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">xs</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; <span class="id" title="var">None</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">x</span> :: <span class="id" title="var">xs</span> =&gt; <span class="id" title="keyword">match</span> <span class="id" title="var">find_rev_opt</span> <span class="id" title="var">f</span> <span class="id" title="var">xs</span> <span class="id" title="keyword">with</span><br/>
@@ -675,18 +982,38 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">find_rev</span> <span class="id" title="var">f</span> <span class="id" title="var">xs</span> :=<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">find_rev</span></span> <span class="inlinecode"><span class="id" title="var">f</span></span> <span class="inlinecode"><span class="id" title="var">xs</span></span> returns the <i>last</i> element of the list <span class="inlinecode"><span class="id" title="var">xs</span></span> satisfying <span class="inlinecode"><span class="id" title="var">f</span></span>.
+    Throws an exception if no element is found. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">find_rev</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">xs</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">a</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">find_rev_opt</span> <span class="id" title="var">f</span> <span class="id" title="var">xs</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">Some</span> <span class="id" title="var">v</span> =&gt; <span class="id" title="var">v</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">None</span> =&gt; <span class="id" title="var">Control.throw</span> <span class="id" title="var">Not_found</span><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">mem</span> (<span class="id" title="var">eq</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">mem</span></span> <span class="inlinecode"><span class="id" title="var">eq</span></span> <span class="inlinecode"><span class="id" title="var">a</span></span> <span class="inlinecode"><span class="id" title="var">ls</span></span> checks if an element of <span class="inlinecode"><span class="id" title="var">ls</span></span> is equal to <span class="inlinecode"><span class="id" title="var">a</span></span> according
+    to the user-supplied equality function <span class="inlinecode"><span class="id" title="var">eq</span></span>. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">mem</span> (<span class="id" title="var">eq</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : <span class="id" title="var">bool</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="var">exist</span> (<span class="id" title="var">eq</span> <span class="id" title="var">a</span>) <span class="id" title="var">ls</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">filter</span> <span class="id" title="var">f</span> <span class="id" title="var">xs</span> :=<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">filter</span></span> <span class="inlinecode"><span class="id" title="var">f</span></span> <span class="inlinecode"><span class="id" title="var">xs</span></span> removes all the elements of <span class="inlinecode"><span class="id" title="var">xs</span></span> which do not satisfy <span class="inlinecode"><span class="id" title="var">f</span></span>. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">filter</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">xs</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">list</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">xs</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; []<br/>
 &nbsp;&nbsp;| <span class="id" title="var">x</span> :: <span class="id" title="var">xs</span><br/>
@@ -697,22 +1024,55 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">filter_out</span> <span class="id" title="var">f</span> <span class="id" title="var">xs</span> :=<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">filter_out</span></span> <span class="inlinecode"><span class="id" title="var">f</span></span> <span class="inlinecode"><span class="id" title="var">xs</span></span> removes all the elements of <span class="inlinecode"><span class="id" title="var">xs</span></span> which satisfy <span class="inlinecode"><span class="id" title="var">f</span></span>. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">filter_out</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">xs</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">list</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="var">filter</span> (<span class="id" title="keyword">fun</span> <span class="id" title="var">x</span> =&gt; <span class="id" title="var">Bool.neg</span> (<span class="id" title="var">f</span> <span class="id" title="var">x</span>)) <span class="id" title="var">xs</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">find_all</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) := <span class="id" title="var">filter</span> <span class="id" title="var">f</span> <span class="id" title="var">ls</span>.<br/>
+</div>
+
+<div class="doc">
+Synonym for <span class="inlinecode"><span class="id" title="var">filter</span></span>. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">find_all</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">list</span> := <span class="id" title="var">filter</span> <span class="id" title="var">f</span> <span class="id" title="var">ls</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">remove</span> (<span class="id" title="var">eqb</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">x</span> : '<span class="id" title="var">a</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">remove</span></span> <span class="inlinecode"><span class="id" title="var">eqb</span></span> <span class="inlinecode"><span class="id" title="var">x</span></span> <span class="inlinecode"><span class="id" title="var">ls</span></span> removes all elements of <span class="inlinecode"><span class="id" title="var">ls</span></span> which are equal to <span class="inlinecode"><span class="id" title="var">x</span></span>,
+    according to the user-supplied equality function <span class="inlinecode"><span class="id" title="var">eqb</span></span>. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">remove</span> (<span class="id" title="var">eqb</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">x</span> : '<span class="id" title="var">a</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">list</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="var">filter_out</span> (<span class="id" title="var">eqb</span> <span class="id" title="var">x</span>) <span class="id" title="var">ls</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">count_occ</span> (<span class="id" title="var">eqb</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">x</span> : '<span class="id" title="var">a</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">count_occ</span></span> <span class="inlinecode"><span class="id" title="var">eqb</span></span> <span class="inlinecode"><span class="id" title="var">x</span></span> <span class="inlinecode"><span class="id" title="var">ls</span></span> counts how many elements of <span class="inlinecode"><span class="id" title="var">ls</span></span> are equal to <span class="inlinecode"><span class="id" title="var">x</span></span>, according
+    to the user-supplied equality function <span class="inlinecode"><span class="id" title="var">eqb</span></span>. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">count_occ</span> (<span class="id" title="var">eqb</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">x</span> : '<span class="id" title="var">a</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : <span class="id" title="var">int</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="var">length</span> (<span class="id" title="var">filter</span> (<span class="id" title="var">eqb</span> <span class="id" title="var">x</span>) <span class="id" title="var">ls</span>).<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">list_power</span> (<span class="id" title="var">ls1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">ls2</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) :=<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">list_power</span></span> <span class="inlinecode"><span class="id" title="var">ls1</span></span> <span class="inlinecode"><span class="id" title="var">ls2</span>)</span> <span class="inlinecode"><span class="id" title="keyword">is</span></span> <span class="inlinecode">[<span class="id" title="var">ls2</span>]^[<span class="id" title="var">ls1</span>],</span> <span class="inlinecode"><span class="id" title="var">or</span></span> <span class="inlinecode"><span class="id" title="var">the</span></span> <span class="inlinecode"><span class="id" title="tactic">set</span></span> <span class="inlinecode"><span class="id" title="keyword">of</span></span> <span class="inlinecode"><span class="id" title="var">sequences</span></span> <span class="inlinecode"><span class="id" title="keyword">of</span></span> <span class="inlinecode"><span class="id" title="var">elements</span></span>
+    <span class="inlinecode"><span class="id" title="keyword">of</span></span> <span class="inlinecode">[<span class="id" title="var">ls2</span>]</span> <span class="inlinecode"><span class="id" title="var">indexed</span></span> <span class="inlinecode"><span class="id" title="tactic">by</span></span> <span class="inlinecode"><span class="id" title="var">elements</span></span> <span class="inlinecode"><span class="id" title="keyword">of</span></span> <span class="inlinecode">[<span class="id" title="var">ls1</span>],</span> <span class="inlinecode"><span class="id" title="var">sorted</span></span> <span class="inlinecode"><span class="id" title="tactic">in</span></span> <span class="inlinecode"><span class="id" title="var">lexicographic</span></span> <span class="inlinecode"><span class="id" title="var">order</span>.</span> <span class="inlinecode"></span>
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">list_power</span> (<span class="id" title="var">ls1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">ls2</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) : ('<span class="id" title="var">a</span> * '<span class="id" title="var">b</span>) <span class="id" title="var">list</span> <span class="id" title="var">list</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls1</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; [] :: []<br/>
 &nbsp;&nbsp;| <span class="id" title="var">x</span> :: <span class="id" title="var">t</span><br/>
@@ -721,7 +1081,21 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">partition</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">l</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">partition</span></span> <span class="inlinecode"><span class="id" title="var">f</span></span> <span class="inlinecode"><span class="id" title="var">l</span></span> returns two lists <span class="inlinecode">(<span class="id" title="var">l_true</span>,</span> <span class="inlinecode"><span class="id" title="var">l_false</span>)</span> such that:
+<ul class="doclist">
+<li> <span class="inlinecode"><span class="id" title="var">l_true</span></span> is the sublist of elements of <span class="inlinecode"><span class="id" title="var">l</span></span> which satisfy <span class="inlinecode"><span class="id" title="var">f</span></span>.
+
+</li>
+<li> <span class="inlinecode"><span class="id" title="var">l_false</span></span> is the sublist of elements of <span class="inlinecode"><span class="id" title="var">l</span></span> which do not satisfy <span class="inlinecode"><span class="id" title="var">f</span></span>. 
+
+</li>
+</ul>
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">partition</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">l</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">list</span> * '<span class="id" title="var">a</span> <span class="id" title="var">list</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">l</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; ([], [])<br/>
 &nbsp;&nbsp;| <span class="id" title="var">x</span> :: <span class="id" title="var">tl</span><br/>
@@ -736,14 +1110,11 @@
 </div>
 
 <div class="doc">
-<span class="inlinecode"><span class="id" title="var">list_prod</span></span> has the same signature as <span class="inlinecode"><span class="id" title="var">combine</span></span>, but unlike
-     <span class="inlinecode"><span class="id" title="var">combine</span></span>, it adds every possible pairs, not only those at the
-     same position. 
+<span class="inlinecode"><span class="id" title="var">list_prod</span></span> <span class="inlinecode"><span class="id" title="var">ls1</span></span> <span class="inlinecode"><span class="id" title="var">ls2</span></span> returns the cartesian product of <span class="inlinecode"><span class="id" title="var">ls1</span></span> and <span class="inlinecode"><span class="id" title="var">ls2</span></span>,
+    i.e. the list of <i>all</i> pairs <span class="inlinecode">(<span class="id" title="var">x</span>,</span> <span class="inlinecode"><span class="id" title="var">y</span>)</span> where <span class="inlinecode"><span class="id" title="var">x</span></span> is in <span class="inlinecode"><span class="id" title="var">ls1</span></span> and <span class="inlinecode"><span class="id" title="var">y</span></span> is in <span class="inlinecode"><span class="id" title="var">ls2</span></span>. 
 </div>
 <div class="code">
-
-<br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">list_prod</span> (<span class="id" title="var">ls1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">ls2</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) :=<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">list_prod</span> (<span class="id" title="var">ls1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">ls2</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) : ('<span class="id" title="var">a</span> * '<span class="id" title="var">b</span>) <span class="id" title="var">list</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls1</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; []<br/>
 &nbsp;&nbsp;| <span class="id" title="var">x</span> :: <span class="id" title="var">t</span><br/>
@@ -751,7 +1122,14 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">firstn</span> (<span class="id" title="var">n</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">fistn</span></span> <span class="inlinecode"><span class="id" title="var">n</span></span> <span class="inlinecode"><span class="id" title="var">ls</span></span> returns the first <span class="inlinecode"><span class="id" title="var">n</span></span> elements of <span class="inlinecode"><span class="id" title="var">ls</span></span>.
+    Throws an exception if <span class="inlinecode"><span class="id" title="var">n</span></span> <span class="inlinecode">&lt;</span> <span class="inlinecode">0</span> or <span class="inlinecode"><span class="id" title="var">n</span></span> <span class="inlinecode">&gt;</span> <span class="inlinecode"><span class="id" title="var">length</span></span> <span class="inlinecode"><span class="id" title="var">ls</span></span>. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">firstn</span> (<span class="id" title="var">n</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">list</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="var">Control.assert_valid_argument</span> "List.firstn" (<span class="id" title="var">Int.ge</span> <span class="id" title="var">n</span> 0);<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">Int.equal</span> <span class="id" title="var">n</span> 0 <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">true</span> =&gt; []<br/>
@@ -764,7 +1142,14 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">skipn</span> (<span class="id" title="var">n</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">skipn</span></span> <span class="inlinecode"><span class="id" title="var">n</span></span> <span class="inlinecode"><span class="id" title="var">ls</span></span> removes the first <span class="inlinecode"><span class="id" title="var">n</span></span> elements of <span class="inlinecode"><span class="id" title="var">ls</span></span>.
+    Throws an exception if <span class="inlinecode"><span class="id" title="var">n</span></span> <span class="inlinecode">&lt;</span> <span class="inlinecode">0</span> or <span class="inlinecode"><span class="id" title="var">n</span></span> <span class="inlinecode">&gt;</span> <span class="inlinecode"><span class="id" title="var">length</span></span> <span class="inlinecode"><span class="id" title="var">ls</span></span>. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">skipn</span> (<span class="id" title="var">n</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">list</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="var">Control.assert_valid_argument</span> "List.skipn" (<span class="id" title="var">Int.ge</span> <span class="id" title="var">n</span> 0);<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">Int.equal</span> <span class="id" title="var">n</span> 0 <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">true</span> =&gt; <span class="id" title="var">ls</span><br/>
@@ -777,14 +1162,28 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">lastn</span> (<span class="id" title="var">n</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">lastn</span></span> <span class="inlinecode"><span class="id" title="var">n</span></span> <span class="inlinecode"><span class="id" title="var">ls</span></span> returns the last <span class="inlinecode"><span class="id" title="var">n</span></span> elements of <span class="inlinecode"><span class="id" title="var">ls</span></span>.
+    Throws an exception if <span class="inlinecode"><span class="id" title="var">n</span></span> <span class="inlinecode">&lt;</span> <span class="inlinecode">0</span> or <span class="inlinecode"><span class="id" title="var">n</span></span> <span class="inlinecode">&gt;</span> <span class="inlinecode"><span class="id" title="var">length</span></span> <span class="inlinecode"><span class="id" title="var">ls</span></span>. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">lastn</span> (<span class="id" title="var">n</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">list</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">let</span> <span class="id" title="var">l</span> := <span class="id" title="var">length</span> <span class="id" title="var">ls</span> <span class="id" title="tactic">in</span><br/>
 &nbsp;&nbsp;<span class="id" title="var">Control.assert_valid_argument</span> "List.lastn" (<span class="id" title="var">Int.ge</span> <span class="id" title="var">n</span> 0);<br/>
 &nbsp;&nbsp;<span class="id" title="var">Control.assert_bounds</span> "List.lastn" (<span class="id" title="var">Int.le</span> <span class="id" title="var">n</span> <span class="id" title="var">l</span>);<br/>
 &nbsp;&nbsp;<span class="id" title="var">skipn</span> (<span class="id" title="var">Int.sub</span> <span class="id" title="var">l</span> <span class="id" title="var">n</span>) <span class="id" title="var">ls</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">nodup</span> (<span class="id" title="var">eqb</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">nodup</span></span> <span class="inlinecode"><span class="id" title="var">eqb</span></span> <span class="inlinecode"><span class="id" title="var">ls</span></span> removes duplicates from <span class="inlinecode"><span class="id" title="var">ls</span></span>, according
+    to the user-suppplied equality function <span class="inlinecode"><span class="id" title="var">eq</span></span>. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">nodup</span> (<span class="id" title="var">eqb</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">list</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; []<br/>
 &nbsp;&nbsp;| <span class="id" title="var">x</span> :: <span class="id" title="var">xs</span><br/>
@@ -795,7 +1194,15 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">seq</span> (<span class="id" title="var">start</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">step</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">last</span> : <span class="id" title="var">int</span>) :=<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">seq</span></span> <span class="inlinecode"><span class="id" title="var">start</span></span> <span class="inlinecode"><span class="id" title="var">step</span></span> <span class="inlinecode"><span class="id" title="var">last</span></span> returns the list <span class="inlinecode"><span class="id" title="var">start</span></span> <span class="inlinecode">;</span> <span class="inlinecode">(<span class="id" title="var">start</span></span> <span class="inlinecode">+</span> <span class="inlinecode"><span class="id" title="var">step</span>)</span> <span class="inlinecode">;</span> <span class="inlinecode">(<span class="id" title="var">start</span></span> <span class="inlinecode">+</span> <span class="inlinecode">2*<span class="id" title="var">step</span>)</span> <span class="inlinecode">;</span> <span class="inlinecode">...</span>,
+    stopping when <span class="inlinecode"><span class="id" title="var">start</span></span> <span class="inlinecode">+</span> <span class="inlinecode"><span class="id" title="var">n</span>*<span class="id" title="var">step</span></span> <span class="inlinecode">&gt;=</span> <span class="inlinecode"><span class="id" title="var">last</span></span>. In particular the lower bound <span class="inlinecode"><span class="id" title="var">start</span></span> is included,
+    whereas the upper bound <span class="inlinecode"><span class="id" title="var">last</span></span> is excluded. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">seq</span> (<span class="id" title="var">start</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">step</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">last</span> : <span class="id" title="var">int</span>) : <span class="id" title="var">int</span> <span class="id" title="var">list</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">Int.lt</span> (<span class="id" title="var">Int.sub</span> <span class="id" title="var">last</span> <span class="id" title="var">start</span>) <span class="id" title="var">step</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">true</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;=&gt; []<br/>
@@ -804,22 +1211,51 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">init</span> (<span class="id" title="var">len</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">f</span> : <span class="id" title="var">int</span> -&gt; '<span class="id" title="var">a</span>) :=<br/>
-&nbsp;&nbsp;<span class="id" title="var">Control.assert_valid_argument</span> "List.init" (<span class="id" title="var">Int.ge</span> <span class="id" title="var">len</span> 0);<br/>
-&nbsp;&nbsp;<span class="id" title="var">map</span> <span class="id" title="var">f</span> (<span class="id" title="var">seq</span> 0 1 <span class="id" title="var">len</span>).<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">init</span></span> <span class="inlinecode"><span class="id" title="var">n</span></span> <span class="inlinecode"><span class="id" title="var">f</span></span> returns the list <span class="inlinecode"><span class="id" title="var">f</span></span> <span class="inlinecode">0</span> <span class="inlinecode">;</span> <span class="inlinecode"><span class="id" title="var">f</span></span> <span class="inlinecode">1</span> <span class="inlinecode">;</span> <span class="inlinecode">...</span> <span class="inlinecode">;</span> <span class="inlinecode"><span class="id" title="var">f</span></span> <span class="inlinecode">(<span class="id" title="var">n</span>-1)</span>.
+    Throws an exception if <span class="inlinecode"><span class="id" title="var">n</span></span> <span class="inlinecode">&lt;</span> <span class="inlinecode">0</span>. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">init</span> (<span class="id" title="var">n</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">f</span> : <span class="id" title="var">int</span> -&gt; '<span class="id" title="var">a</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">list</span> :=<br/>
+&nbsp;&nbsp;<span class="id" title="var">Control.assert_valid_argument</span> "List.init" (<span class="id" title="var">Int.ge</span> <span class="id" title="var">n</span> 0);<br/>
+&nbsp;&nbsp;<span class="id" title="var">map</span> <span class="id" title="var">f</span> (<span class="id" title="var">seq</span> 0 1 <span class="id" title="var">n</span>).<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="tactic">repeat</span> (<span class="id" title="var">x</span> : '<span class="id" title="var">a</span>) (<span class="id" title="var">n</span> : <span class="id" title="var">int</span>) :=<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="tactic">repeat</span></span> <span class="inlinecode"><span class="id" title="var">x</span></span> <span class="inlinecode"><span class="id" title="var">n</span></span> returns the list of length <span class="inlinecode"><span class="id" title="var">n</span></span> with all elements equal to <span class="inlinecode"><span class="id" title="var">x</span></span>. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="tactic">repeat</span> (<span class="id" title="var">x</span> : '<span class="id" title="var">a</span>) (<span class="id" title="var">n</span> : <span class="id" title="var">int</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">list</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="var">init</span> <span class="id" title="var">n</span> (<span class="id" title="keyword">fun</span> <span class="id" title="var">_</span> =&gt; <span class="id" title="var">x</span>).<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">assoc</span> (<span class="id" title="var">eqk</span> : '<span class="id" title="var">k</span> -&gt; '<span class="id" title="var">k</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">k</span> : '<span class="id" title="var">k</span>) (<span class="id" title="var">l</span> : ('<span class="id" title="var">k</span> * '<span class="id" title="var">v</span>) <span class="id" title="var">list</span>) :=<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">assoc</span></span> <span class="inlinecode"><span class="id" title="var">eqk</span></span> <span class="inlinecode"><span class="id" title="var">k</span></span> <span class="inlinecode"><span class="id" title="var">l</span></span> returns the first value associated to key <span class="inlinecode"><span class="id" title="var">k</span></span> in an association list <span class="inlinecode"><span class="id" title="var">l</span></span>,
+    using <span class="inlinecode"><span class="id" title="var">eqk</span></span> to compare keys for equality.
+    Throws an exception if no value is found. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">assoc</span> (<span class="id" title="var">eqk</span> : '<span class="id" title="var">k</span> -&gt; '<span class="id" title="var">k</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">k</span> : '<span class="id" title="var">k</span>) (<span class="id" title="var">l</span> : ('<span class="id" title="var">k</span> * '<span class="id" title="var">v</span>) <span class="id" title="var">list</span>) : '<span class="id" title="var">v</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">let</span> <span class="id" title="var">eq_key</span> <span class="id" title="var">kv</span> := <span class="id" title="keyword">let</span> (<span class="id" title="var">k'</span>, <span class="id" title="var">_</span>) := <span class="id" title="var">kv</span> <span class="id" title="tactic">in</span> <span class="id" title="var">eqk</span> <span class="id" title="var">k</span> <span class="id" title="var">k'</span> <span class="id" title="tactic">in</span><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">let</span> (<span class="id" title="var">_</span>, <span class="id" title="var">v</span>) := <span class="id" title="var">find</span> <span class="id" title="var">eq_key</span> <span class="id" title="var">l</span> <span class="id" title="tactic">in</span><br/>
 &nbsp;&nbsp;<span class="id" title="var">v</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">assoc_opt</span> (<span class="id" title="var">eqk</span> : '<span class="id" title="var">k</span> -&gt; '<span class="id" title="var">k</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">k</span> : '<span class="id" title="var">k</span>) (<span class="id" title="var">l</span> : ('<span class="id" title="var">k</span> * '<span class="id" title="var">v</span>) <span class="id" title="var">list</span>) :=<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">assoc</span></span> <span class="inlinecode"><span class="id" title="var">eqk</span></span> <span class="inlinecode"><span class="id" title="var">k</span></span> <span class="inlinecode"><span class="id" title="var">l</span></span> returns the first value associated to key <span class="inlinecode"><span class="id" title="var">k</span></span> in an association list <span class="inlinecode"><span class="id" title="var">l</span></span>,
+    using <span class="inlinecode"><span class="id" title="var">eqk</span></span> to compare keys for equality.
+    Returns <span class="inlinecode"><span class="id" title="var">None</span></span> if no value is found. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">assoc_opt</span> (<span class="id" title="var">eqk</span> : '<span class="id" title="var">k</span> -&gt; '<span class="id" title="var">k</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">k</span> : '<span class="id" title="var">k</span>) (<span class="id" title="var">l</span> : ('<span class="id" title="var">k</span> * '<span class="id" title="var">v</span>) <span class="id" title="var">list</span>) : '<span class="id" title="var">v</span> <span class="id" title="var">option</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">let</span> <span class="id" title="var">eq_key</span> <span class="id" title="var">kv</span> := <span class="id" title="keyword">let</span> (<span class="id" title="var">k'</span>, <span class="id" title="var">_</span>) := <span class="id" title="var">kv</span> <span class="id" title="tactic">in</span> <span class="id" title="var">eqk</span> <span class="id" title="var">k</span> <span class="id" title="var">k'</span> <span class="id" title="tactic">in</span><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">find_opt</span> <span class="id" title="var">eq_key</span> <span class="id" title="var">l</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">Some</span> <span class="id" title="var">kv</span> =&gt; <span class="id" title="keyword">let</span> (<span class="id" title="var">_</span>, <span class="id" title="var">v</span>) := <span class="id" title="var">kv</span> <span class="id" title="tactic">in</span> <span class="id" title="var">Some</span> <span class="id" title="var">v</span><br/>
@@ -827,17 +1263,37 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">mem_assoc</span> (<span class="id" title="var">eqk</span> : '<span class="id" title="var">k</span> -&gt; '<span class="id" title="var">k</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">k</span> : '<span class="id" title="var">k</span>) (<span class="id" title="var">l</span> : ('<span class="id" title="var">k</span> * '<span class="id" title="var">v</span>) <span class="id" title="var">list</span>) :=<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">mem_assoc</span></span> <span class="inlinecode"><span class="id" title="var">eqk</span></span> <span class="inlinecode"><span class="id" title="var">k</span></span> <span class="inlinecode"><span class="id" title="var">l</span></span> checks if the key <span class="inlinecode"><span class="id" title="var">k</span></span> is present in an association list <span class="inlinecode"><span class="id" title="var">l</span></span>,
+    using <span class="inlinecode"><span class="id" title="var">eqk</span></span> to compare keys for equality. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">mem_assoc</span> (<span class="id" title="var">eqk</span> : '<span class="id" title="var">k</span> -&gt; '<span class="id" title="var">k</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">k</span> : '<span class="id" title="var">k</span>) (<span class="id" title="var">l</span> : ('<span class="id" title="var">k</span> * '<span class="id" title="var">v</span>) <span class="id" title="var">list</span>) : <span class="id" title="var">bool</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">let</span> <span class="id" title="var">eq_key</span> <span class="id" title="var">kv</span> := <span class="id" title="keyword">let</span> (<span class="id" title="var">k'</span>, <span class="id" title="var">_</span>) := <span class="id" title="var">kv</span> <span class="id" title="tactic">in</span> <span class="id" title="var">eqk</span> <span class="id" title="var">k</span> <span class="id" title="var">k'</span> <span class="id" title="tactic">in</span><br/>
 &nbsp;&nbsp;<span class="id" title="var">exist</span> <span class="id" title="var">eq_key</span> <span class="id" title="var">l</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">remove_assoc</span> (<span class="id" title="var">eqk</span> : '<span class="id" title="var">k</span> -&gt; '<span class="id" title="var">k</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">k</span> : '<span class="id" title="var">k</span>) (<span class="id" title="var">l</span> : ('<span class="id" title="var">k</span> * '<span class="id" title="var">v</span>) <span class="id" title="var">list</span>) :=<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">remove_assoc</span></span> <span class="inlinecode"><span class="id" title="var">eqk</span></span> <span class="inlinecode"><span class="id" title="var">k</span></span> <span class="inlinecode"><span class="id" title="var">l</span></span> removes <i>all</i> key/value pairs associated with key <span class="inlinecode"><span class="id" title="var">k</span></span>
+    from an association list <span class="inlinecode"><span class="id" title="var">l</span></span>, using <span class="inlinecode"><span class="id" title="var">eqk</span></span> to compare keys for equality. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">remove_assoc</span> (<span class="id" title="var">eqk</span> : '<span class="id" title="var">k</span> -&gt; '<span class="id" title="var">k</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">k</span> : '<span class="id" title="var">k</span>) (<span class="id" title="var">l</span> : ('<span class="id" title="var">k</span> * '<span class="id" title="var">v</span>) <span class="id" title="var">list</span>) : ('<span class="id" title="var">k</span> * '<span class="id" title="var">v</span>) <span class="id" title="var">list</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">let</span> <span class="id" title="var">eq_key</span> <span class="id" title="var">kv</span> := <span class="id" title="keyword">let</span> (<span class="id" title="var">k'</span>, <span class="id" title="var">_</span>) := <span class="id" title="var">kv</span> <span class="id" title="tactic">in</span> <span class="id" title="var">eqk</span> <span class="id" title="var">k</span> <span class="id" title="var">k'</span> <span class="id" title="tactic">in</span><br/>
 &nbsp;&nbsp;<span class="id" title="var">filter_out</span> <span class="id" title="var">eq_key</span> <span class="id" title="var">l</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="tactic">split</span> (<span class="id" title="var">ls</span> : ('<span class="id" title="var">a</span> * '<span class="id" title="var">b</span>) <span class="id" title="var">list</span>) :=<br/>
+</div>
+
+<div class="doc">
+Split a list of pairs into a pair of lists. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="tactic">split</span> (<span class="id" title="var">ls</span> : ('<span class="id" title="var">a</span> * '<span class="id" title="var">b</span>) <span class="id" title="var">list</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">list</span> * '<span class="id" title="var">b</span> <span class="id" title="var">list</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; ([], [])<br/>
 &nbsp;&nbsp;| <span class="id" title="var">xy</span> :: <span class="id" title="var">tl</span><br/>
@@ -847,7 +1303,15 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">combine</span> (<span class="id" title="var">ls1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">ls2</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) :=<br/>
+</div>
+
+<div class="doc">
+Combine two lists into a list of pairs. Only pairs of elements
+    at the same position are considered.
+    Throws an exception if the lengths of the lists differ. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">combine</span> (<span class="id" title="var">ls1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">ls2</span> : '<span class="id" title="var">b</span> <span class="id" title="var">list</span>) : ('<span class="id" title="var">a</span> * '<span class="id" title="var">b</span>) <span class="id" title="var">list</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls1</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| []<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;=&gt; <span class="id" title="keyword">match</span> <span class="id" title="var">ls2</span> <span class="id" title="keyword">with</span><br/>
@@ -863,11 +1327,24 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">enumerate</span></span> <span class="inlinecode">[<span class="id" title="var">x0</span></span> <span class="inlinecode">;</span> <span class="inlinecode"><span class="id" title="var">x1</span></span> <span class="inlinecode">;</span> <span class="inlinecode"><span class="id" title="var">x2</span></span> <span class="inlinecode">;</span> <span class="inlinecode">...]</span> returns the list <span class="inlinecode">(0,</span> <span class="inlinecode"><span class="id" title="var">x0</span>)</span> <span class="inlinecode">;</span> <span class="inlinecode">(1,</span> <span class="inlinecode"><span class="id" title="var">x1</span>)</span> <span class="inlinecode">;</span> <span class="inlinecode">(2,</span> <span class="inlinecode"><span class="id" title="var">x2</span>)</span> <span class="inlinecode">;</span> <span class="inlinecode">...</span>. 
+</div>
+<div class="code">
 <span class="id" title="keyword">Ltac2</span> <span class="id" title="var">enumerate</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="var">mapi</span> (<span class="id" title="keyword">fun</span> <span class="id" title="var">i</span> <span class="id" title="var">v</span> =&gt; (<span class="id" title="var">i</span>,<span class="id" title="var">v</span>)) <span class="id" title="var">ls</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">merge</span> (<span class="id" title="var">cmp</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">int</span>) (<span class="id" title="var">l1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">l2</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+</div>
+
+<div class="doc">
+Merge two list sorted in increasing order into a sorted list,
+    using a user-provided comparison function. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">merge</span> (<span class="id" title="var">cmp</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">int</span>) (<span class="id" title="var">l1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">l2</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">list</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">let</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">merge_aux</span> <span class="id" title="var">l2</span> :=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">l1</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| [] =&gt; <span class="id" title="var">l2</span><br/>
@@ -914,10 +1391,34 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">sort</span> <span class="id" title="var">cmp</span> <span class="id" title="var">l</span> := <span class="id" title="var">iter_merge</span> <span class="id" title="var">cmp</span> [] <span class="id" title="var">l</span>.<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">sort</span></span> <span class="inlinecode"><span class="id" title="var">cmp</span></span> <span class="inlinecode"><span class="id" title="var">l</span></span> sorts the list <span class="inlinecode"><span class="id" title="var">l</span></span> in increasing order,
+    according to the user-supplied comparison function <span class="inlinecode"><span class="id" title="var">cmp</span></span>.
+
+<div class="paragraph"> </div>
+
+    It is currently implemented using a variant of merge sort. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">sort</span> (<span class="id" title="var">cmp</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">int</span>) (<span class="id" title="var">l</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">list</span> :=<br/>
+&nbsp;&nbsp;<span class="id" title="var">iter_merge</span> <span class="id" title="var">cmp</span> [] <span class="id" title="var">l</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">sort_uniq</span> (<span class="id" title="var">cmp</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">int</span>) (<span class="id" title="var">l</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">sort</span></span> <span class="inlinecode"><span class="id" title="var">cmp</span></span> <span class="inlinecode"><span class="id" title="var">l</span></span> sorts the list <span class="inlinecode"><span class="id" title="var">l</span></span> in increasing order and removes duplicates,
+    according to the user-supplied comparison function <span class="inlinecode"><span class="id" title="var">cmp</span></span>.
+
+<div class="paragraph"> </div>
+
+    This takes advantage of the fact that removing duplicates from a sorted list
+    is much faster than for an arbitrary list.  
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">sort_uniq</span> (<span class="id" title="var">cmp</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">int</span>) (<span class="id" title="var">l</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">list</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">let</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">uniq</span> <span class="id" title="var">l</span> :=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">l</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| [] =&gt; []<br/>
@@ -934,10 +1435,24 @@
 &nbsp;&nbsp;<span class="id" title="var">uniq</span> (<span class="id" title="var">sort</span> <span class="id" title="var">cmp</span> <span class="id" title="var">l</span>).<br/>
 
 <br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">inclusive_range</span></span> <span class="inlinecode"><span class="id" title="var">lb</span></span> <span class="inlinecode"><span class="id" title="var">ub</span></span> returns the list <span class="inlinecode"><span class="id" title="var">lb</span></span> <span class="inlinecode">;</span> <span class="inlinecode"><span class="id" title="var">lb</span>+1</span> <span class="inlinecode">;</span> <span class="inlinecode"><span class="id" title="var">lb</span>+2</span> <span class="inlinecode">;</span> <span class="inlinecode">...</span> <span class="inlinecode">;</span> <span class="inlinecode"><span class="id" title="var">up</span></span>.
+    In particular both the lower bound <span class="inlinecode"><span class="id" title="var">lb</span></span> and upper bound <span class="inlinecode"><span class="id" title="var">ub</span></span> are included.  
+</div>
+<div class="code">
 <span class="id" title="keyword">Ltac2</span> <span class="id" title="var">inclusive_range</span> (<span class="id" title="var">lb</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">ub</span> : <span class="id" title="var">int</span>) : <span class="id" title="var">int</span> <span class="id" title="var">list</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="var">seq</span> <span class="id" title="var">lb</span> 1 (<span class="id" title="var">Int.add</span> <span class="id" title="var">ub</span> 1).<br/>
 
 <br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">range</span></span> <span class="inlinecode"><span class="id" title="var">lb</span></span> <span class="inlinecode"><span class="id" title="var">ub</span></span> returns the list <span class="inlinecode"><span class="id" title="var">lb</span></span> <span class="inlinecode">;</span> <span class="inlinecode"><span class="id" title="var">lb</span>+1</span> <span class="inlinecode">;</span> <span class="inlinecode"><span class="id" title="var">lb</span>+2</span> <span class="inlinecode">;</span> <span class="inlinecode">...</span> <span class="inlinecode">;</span> <span class="inlinecode"><span class="id" title="var">up</span>-1</span>.
+    In particular the lower bound <span class="inlinecode"><span class="id" title="var">lb</span></span> is included, whereas the upper bound <span class="inlinecode"><span class="id" title="var">ub</span></span> is excluded. 
+</div>
+<div class="code">
 <span class="id" title="keyword">Ltac2</span> <span class="id" title="var">range</span> (<span class="id" title="var">lb</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">ub</span> : <span class="id" title="var">int</span>) : <span class="id" title="var">int</span> <span class="id" title="var">list</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="var">seq</span> <span class="id" title="var">lb</span> 1 <span class="id" title="var">ub</span>.<br/>
 
@@ -945,8 +1460,11 @@
 </div>
 
 <div class="doc">
-<span class="inlinecode"><span class="id" title="var">concat_rev</span></span> <span class="inlinecode">[<span class="id" title="var">x1</span>;</span> <span class="inlinecode">..;</span> <span class="inlinecode"><span class="id" title="var">xN</span>-1;</span> <span class="inlinecode"><span class="id" title="var">xN</span>]</span> computes <span class="inlinecode"><span class="id" title="var">rev</span></span> <span class="inlinecode"><span class="id" title="var">xN</span></span> <span class="inlinecode">++</span> <span class="inlinecode"><span class="id" title="var">rev</span></span> <span class="inlinecode"><span class="id" title="var">xN</span>-1</span> <span class="inlinecode">++</span> <span class="inlinecode">..</span> <span class="inlinecode"><span class="id" title="var">x1</span></span>.
+<span class="inlinecode"><span class="id" title="var">concat_rev</span></span> <span class="inlinecode">[<span class="id" title="var">x1</span>;</span> <span class="inlinecode">..;</span> <span class="inlinecode"><span class="id" title="var">xN</span>-1;</span> <span class="inlinecode"><span class="id" title="var">xN</span>]</span> computes <span class="inlinecode"><span class="id" title="var">rev</span></span> <span class="inlinecode"><span class="id" title="var">xN</span></span> <span class="inlinecode">++</span> <span class="inlinecode"><span class="id" title="var">rev</span></span> <span class="inlinecode"><span class="id" title="var">xN</span>-1</span> <span class="inlinecode">++</span> <span class="inlinecode">..</span> <span class="inlinecode">++</span> <span class="inlinecode"><span class="id" title="var">x1</span></span>.
     Note that <span class="inlinecode"><span class="id" title="var">x1</span></span> is not reversed and appears in its original order.
+
+<div class="paragraph"> </div>
+
     <span class="inlinecode"><span class="id" title="var">concat_rev</span></span> is faster than <span class="inlinecode"><span class="id" title="var">concat</span></span> and should be preferred over <span class="inlinecode"><span class="id" title="var">concat</span></span>
     when the order of items does not matter. 
 </div>
@@ -964,6 +1482,12 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">map_filter</span></span> <span class="inlinecode"><span class="id" title="var">f</span></span> <span class="inlinecode"><span class="id" title="var">l</span></span> maps <span class="inlinecode"><span class="id" title="var">f</span></span> over <span class="inlinecode"><span class="id" title="var">l</span></span>, then removes all elements that are <span class="inlinecode"><span class="id" title="var">None</span></span>. 
+</div>
+<div class="code">
 <span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">map_filter</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> <span class="id" title="var">option</span>) (<span class="id" title="var">l</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">b</span> <span class="id" title="var">list</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">l</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; []<br/>
