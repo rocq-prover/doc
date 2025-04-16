@@ -275,21 +275,109 @@
 <span class="id" title="keyword">Require</span> <a class="idref" href="Ltac2.Message.html#"><span class="id" title="library">Ltac2.Message</span></a>.<br/>
 
 <br/>
+</div>
+
+<div class="doc">
+This module implements fixed sized, mutable arrays.
+
+<div class="paragraph"> </div>
+
+    Unless specified otherwise, all functions defined below throw
+    an exception in case of out of bounds indices, and arrays are indexed
+    starting at <span class="inlinecode">0</span>. 
+<div class="paragraph"> </div>
+
+ The empty array. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> @<span class="id" title="var">external</span> <span class="id" title="var">empty</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span> := "rocq-runtime.plugins.ltac2" "array_empty".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> @<span class="id" title="var">external</span> <span class="id" title="var">empty</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span> := "rocq-runtime.plugins.ltac2" "array_empty".<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">make</span></span> <span class="inlinecode"><span class="id" title="var">n</span></span> <span class="inlinecode"><span class="id" title="var">x</span></span> creates an array of length <span class="inlinecode"><span class="id" title="var">n</span></span>, with all elements set to <span class="inlinecode"><span class="id" title="var">x</span></span>. 
+</div>
+<div class="code">
 <span class="id" title="keyword">Ltac2</span> @<span class="id" title="var">external</span> <span class="id" title="var">make</span> : <span class="id" title="var">int</span> -&gt; '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">a</span> <span class="id" title="var">array</span> := "rocq-runtime.plugins.ltac2" "array_make".<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Return the length of an array. 
+</div>
+<div class="code">
 <span class="id" title="keyword">Ltac2</span> @<span class="id" title="var">external</span> <span class="id" title="var">length</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span> -&gt; <span class="id" title="var">int</span> := "rocq-runtime.plugins.ltac2" "array_length".<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">get</span></span> <span class="inlinecode"><span class="id" title="var">arr</span></span> <span class="inlinecode"><span class="id" title="var">i</span></span> returns the <span class="inlinecode"><span class="id" title="var">i</span></span>-th element of <span class="inlinecode"><span class="id" title="var">arr</span></span>. 
+</div>
+<div class="code">
 <span class="id" title="keyword">Ltac2</span> @<span class="id" title="var">external</span> <span class="id" title="var">get</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span> -&gt; <span class="id" title="var">int</span> -&gt; '<span class="id" title="var">a</span> := "rocq-runtime.plugins.ltac2" "array_get".<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="tactic">set</span></span> <span class="inlinecode"><span class="id" title="var">arr</span></span> <span class="inlinecode"><span class="id" title="var">i</span></span> <span class="inlinecode"><span class="id" title="var">x</span></span> replaces <span class="inlinecode"><span class="id" title="var">arr</span>[<span class="id" title="var">i</span>]</span> with <span class="inlinecode"><span class="id" title="var">x</span></span>. This modifies <span class="inlinecode"><span class="id" title="var">arr</span></span> in place. 
+</div>
+<div class="code">
 <span class="id" title="keyword">Ltac2</span> @<span class="id" title="var">external</span> <span class="id" title="tactic">set</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span> -&gt; <span class="id" title="var">int</span> -&gt; '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "array_set".<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">lowlevel_blit</span></span> <span class="inlinecode"><span class="id" title="var">from</span></span> <span class="inlinecode"><span class="id" title="var">fofs</span></span> <span class="inlinecode"><span class="id" title="var">to</span></span> <span class="inlinecode"><span class="id" title="var">tofs</span></span> <span class="inlinecode"><span class="id" title="var">len</span></span> copies <span class="inlinecode"><span class="id" title="var">from</span>[<span class="id" title="var">fofs</span>...<span class="id" title="var">fofs</span>+<span class="id" title="var">len</span>-1]</span> to <span class="inlinecode"><span class="id" title="var">to</span>[<span class="id" title="var">tofs</span>...<span class="id" title="var">tofs</span>+<span class="id" title="var">len</span>-1]</span> (bounds included).
+    This modifies <span class="inlinecode"><span class="id" title="var">to</span></span> in place.
+
+<div class="paragraph"> </div>
+
+    Consider using <span class="inlinecode"><span class="id" title="var">blit</span></span> for nicer error messages. 
+</div>
+<div class="code">
 <span class="id" title="keyword">Ltac2</span> @<span class="id" title="var">external</span> <span class="id" title="var">lowlevel_blit</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span> -&gt; <span class="id" title="var">int</span> -&gt; '<span class="id" title="var">a</span> <span class="id" title="var">array</span> -&gt; <span class="id" title="var">int</span> -&gt; <span class="id" title="var">int</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "array_blit".<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">lowlevel_fill</span></span> <span class="inlinecode"><span class="id" title="var">arr</span></span> <span class="inlinecode"><span class="id" title="var">ofs</span></span> <span class="inlinecode"><span class="id" title="var">len</span></span> <span class="inlinecode"><span class="id" title="var">x</span></span> replaces <span class="inlinecode"><span class="id" title="var">arr</span>[<span class="id" title="var">ofs</span>]</span>, <span class="inlinecode"><span class="id" title="var">arr</span>[<span class="id" title="var">ofs</span>+1]</span>, ..., <span class="inlinecode"><span class="id" title="var">arr</span>[<span class="id" title="var">ofs</span>+<span class="id" title="var">len</span>-1]</span> with <span class="inlinecode"><span class="id" title="var">x</span></span>.
+    This modifes <span class="inlinecode"><span class="id" title="var">arr</span></span> in place.
+
+<div class="paragraph"> </div>
+
+    Consider using <span class="inlinecode"><span class="id" title="var">fill</span></span> for nicer error messages. 
+</div>
+<div class="code">
 <span class="id" title="keyword">Ltac2</span> @<span class="id" title="var">external</span> <span class="id" title="var">lowlevel_fill</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span> -&gt; <span class="id" title="var">int</span> -&gt; <span class="id" title="var">int</span> -&gt; '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "array_fill".<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">concat</span></span> <span class="inlinecode">[<span class="id" title="var">a1</span></span> <span class="inlinecode">;</span> <span class="inlinecode"><span class="id" title="var">a2</span></span> <span class="inlinecode">;</span> <span class="inlinecode">...</span> <span class="inlinecode">;</span> <span class="inlinecode"><span class="id" title="var">aN</span>]</span> returns the array <span class="inlinecode"><span class="id" title="var">a1</span></span> <span class="inlinecode">++</span> <span class="inlinecode"><span class="id" title="var">a2</span></span> <span class="inlinecode">++</span> <span class="inlinecode">...</span> <span class="inlinecode">++</span> <span class="inlinecode"><span class="id" title="var">an</span></span>. 
+</div>
+<div class="code">
 <span class="id" title="keyword">Ltac2</span> @<span class="id" title="var">external</span> <span class="id" title="var">concat</span> : ('<span class="id" title="var">a</span> <span class="id" title="var">array</span>) <span class="id" title="var">list</span> -&gt; '<span class="id" title="var">a</span> <span class="id" title="var">array</span> := "rocq-runtime.plugins.ltac2" "array_concat".<br/>
 
 <br/>
+</div>
 
-<br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">lowlevel_sub</span> (<span class="id" title="var">arr</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) (<span class="id" title="var">start</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">len</span> : <span class="id" title="var">int</span>) :=<br/>
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">lowlevel_sub</span></span> <span class="inlinecode"><span class="id" title="var">arr</span></span> <span class="inlinecode"><span class="id" title="var">ofs</span></span> <span class="inlinecode"><span class="id" title="var">len</span></span> returns the subarray <span class="inlinecode"><span class="id" title="var">arr</span>[<span class="id" title="var">ofs</span>...<span class="id" title="var">ofs</span>+<span class="id" title="var">len</span>-1]</span>.
+    The result is allocated as a new array, i.e. is not aliased with <span class="inlinecode"><span class="id" title="var">arr</span></span>.
+
+<div class="paragraph"> </div>
+
+    Consider using <span class="inlinecode"><span class="id" title="var">sub</span></span> for nicer error messages. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">lowlevel_sub</span> (<span class="id" title="var">arr</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) (<span class="id" title="var">start</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">len</span> : <span class="id" title="var">int</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">array</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">let</span> <span class="id" title="var">l</span> := <span class="id" title="var">length</span> <span class="id" title="var">arr</span> <span class="id" title="tactic">in</span><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">Int.equal</span> <span class="id" title="var">l</span> 0 <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">true</span> =&gt; <span class="id" title="var">empty</span><br/>
@@ -300,9 +388,13 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
+</div>
 
-<br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">init</span> (<span class="id" title="var">l</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">f</span> : <span class="id" title="var">int</span>-&gt;'<span class="id" title="var">a</span>) :=<br/>
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">init</span></span> <span class="inlinecode"><span class="id" title="var">n</span></span> <span class="inlinecode"><span class="id" title="var">f</span></span> creates the array <span class="inlinecode">|</span> <span class="inlinecode"><span class="id" title="var">f</span></span> <span class="inlinecode">0</span> <span class="inlinecode">;</span> <span class="inlinecode"><span class="id" title="var">f</span></span> <span class="inlinecode">1</span> <span class="inlinecode">;</span> <span class="inlinecode">...</span> <span class="inlinecode">;</span> <span class="inlinecode"><span class="id" title="var">f</span></span> <span class="inlinecode">(<span class="id" title="var">n</span>-1)</span> <span class="inlinecode">|</span>. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">init</span> (<span class="id" title="var">l</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">f</span> : <span class="id" title="var">int</span> -&gt; '<span class="id" title="var">a</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">array</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">let</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">init_aux</span> (<span class="id" title="var">dst</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) (<span class="id" title="var">pos</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">len</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">f</span> : <span class="id" title="var">int</span>-&gt;'<span class="id" title="var">a</span>) :=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">Int.equal</span> <span class="id" title="var">len</span> 0 <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;| <span class="id" title="var">true</span> =&gt; ()<br/>
@@ -320,15 +412,37 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">make_matrix</span> (<span class="id" title="var">sx</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">sy</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">v</span> : '<span class="id" title="var">a</span>) :=<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">make_matrix</span></span> <span class="inlinecode"><span class="id" title="var">sx</span></span> <span class="inlinecode"><span class="id" title="var">sy</span></span> <span class="inlinecode"><span class="id" title="var">v</span></span> creates an array of size <span class="inlinecode"><span class="id" title="var">sx</span></span>
+    which contains array of size <span class="inlinecode"><span class="id" title="var">sy</span></span>, filled with <span class="inlinecode"><span class="id" title="var">v</span></span>. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">make_matrix</span> (<span class="id" title="var">sx</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">sy</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">v</span> : '<span class="id" title="var">a</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">array</span> <span class="id" title="var">array</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">let</span> <span class="id" title="var">initr</span> <span class="id" title="var">_</span> := <span class="id" title="var">make</span> <span class="id" title="var">sy</span> <span class="id" title="var">v</span> <span class="id" title="tactic">in</span><br/>
 &nbsp;&nbsp;<span class="id" title="var">init</span> <span class="id" title="var">sx</span> <span class="id" title="var">initr</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">copy</span> <span class="id" title="var">a</span> := <span class="id" title="var">lowlevel_sub</span> <span class="id" title="var">a</span> 0 (<span class="id" title="var">length</span> <span class="id" title="var">a</span>).<br/>
+</div>
+
+<div class="doc">
+Copy an array. The copied array can be modified without
+    changing the original array (and vice versa). 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">copy</span> (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">array</span> :=<br/>
+&nbsp;&nbsp;<span class="id" title="var">lowlevel_sub</span> <span class="id" title="var">a</span> 0 (<span class="id" title="var">length</span> <span class="id" title="var">a</span>).<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">append</span> (<span class="id" title="var">a1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) (<span class="id" title="var">a2</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) :=<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">append</span></span> <span class="inlinecode"><span class="id" title="var">a1</span></span> <span class="inlinecode"><span class="id" title="var">a2</span></span> appends <span class="inlinecode"><span class="id" title="var">a1</span></span> and <span class="inlinecode"><span class="id" title="var">a2</span></span>.
+    This allocates a new array, even if <span class="inlinecode"><span class="id" title="var">a1</span></span> or <span class="inlinecode"><span class="id" title="var">a2</span></span> is empty. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">append</span> (<span class="id" title="var">a1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) (<span class="id" title="var">a2</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">array</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">Int.equal</span> (<span class="id" title="var">length</span> <span class="id" title="var">a1</span>) 0 <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">true</span> =&gt; <span class="id" title="var">copy</span> <span class="id" title="var">a2</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">false</span> =&gt; <span class="id" title="keyword">match</span> <span class="id" title="var">Int.equal</span> (<span class="id" title="var">length</span> <span class="id" title="var">a2</span>) 0 <span class="id" title="keyword">with</span><br/>
@@ -342,21 +456,42 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">sub</span> (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) (<span class="id" title="var">ofs</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">len</span> : <span class="id" title="var">int</span>) :=<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">sub</span></span> <span class="inlinecode"><span class="id" title="var">arr</span></span> <span class="inlinecode"><span class="id" title="var">ofs</span></span> <span class="inlinecode"><span class="id" title="var">len</span></span> returns the subarray <span class="inlinecode"><span class="id" title="var">arr</span>[<span class="id" title="var">ofs</span>...<span class="id" title="var">ofs</span>+<span class="id" title="var">len</span>-1]</span>.
+    The result is allocated as a new array, i.e. is not aliased with <span class="inlinecode"><span class="id" title="var">arr</span></span>. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">sub</span> (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) (<span class="id" title="var">ofs</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">len</span> : <span class="id" title="var">int</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">array</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="var">Control.assert_valid_argument</span> "Array.sub ofs&lt;0" (<span class="id" title="var">Int.ge</span> <span class="id" title="var">ofs</span> 0);<br/>
 &nbsp;&nbsp;<span class="id" title="var">Control.assert_valid_argument</span> "Array.sub len&lt;0" (<span class="id" title="var">Int.ge</span> <span class="id" title="var">len</span> 0);<br/>
 &nbsp;&nbsp;<span class="id" title="var">Control.assert_bounds</span> "Array.sub" (<span class="id" title="var">Int.le</span> <span class="id" title="var">ofs</span> (<span class="id" title="var">Int.sub</span> (<span class="id" title="var">length</span> <span class="id" title="var">a</span>) <span class="id" title="var">len</span>));<br/>
 &nbsp;&nbsp;<span class="id" title="var">lowlevel_sub</span> <span class="id" title="var">a</span> <span class="id" title="var">ofs</span> <span class="id" title="var">len</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">fill</span> (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) (<span class="id" title="var">ofs</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">len</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">v</span> : '<span class="id" title="var">a</span>) :=<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">fill</span></span> <span class="inlinecode"><span class="id" title="var">arr</span></span> <span class="inlinecode"><span class="id" title="var">ofs</span></span> <span class="inlinecode"><span class="id" title="var">len</span></span> <span class="inlinecode"><span class="id" title="var">x</span></span> replaces <span class="inlinecode"><span class="id" title="var">arr</span>[<span class="id" title="var">ofs</span>]</span>, <span class="inlinecode"><span class="id" title="var">arr</span>[<span class="id" title="var">ofs</span>+1]</span>, ..., <span class="inlinecode"><span class="id" title="var">arr</span>[<span class="id" title="var">ofs</span>+<span class="id" title="var">len</span>-1]</span> with <span class="inlinecode"><span class="id" title="var">x</span></span>.
+    This modifes <span class="inlinecode"><span class="id" title="var">arr</span></span> in place. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">fill</span> (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) (<span class="id" title="var">ofs</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">len</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">v</span> : '<span class="id" title="var">a</span>) : <span class="id" title="var">unit</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="var">Control.assert_valid_argument</span> "Array.fill ofs&lt;0" (<span class="id" title="var">Int.ge</span> <span class="id" title="var">ofs</span> 0);<br/>
 &nbsp;&nbsp;<span class="id" title="var">Control.assert_valid_argument</span> "Array.fill len&lt;0" (<span class="id" title="var">Int.ge</span> <span class="id" title="var">len</span> 0);<br/>
 &nbsp;&nbsp;<span class="id" title="var">Control.assert_bounds</span> "Array.fill" (<span class="id" title="var">Int.le</span> <span class="id" title="var">ofs</span> (<span class="id" title="var">Int.sub</span> (<span class="id" title="var">length</span> <span class="id" title="var">a</span>) <span class="id" title="var">len</span>));<br/>
 &nbsp;&nbsp;<span class="id" title="var">lowlevel_fill</span> <span class="id" title="var">a</span> <span class="id" title="var">ofs</span> <span class="id" title="var">len</span> <span class="id" title="var">v</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">blit</span> (<span class="id" title="var">a1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) (<span class="id" title="var">ofs1</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">a2</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) (<span class="id" title="var">ofs2</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">len</span> : <span class="id" title="var">int</span>) :=<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">blit</span></span> <span class="inlinecode"><span class="id" title="var">from</span></span> <span class="inlinecode"><span class="id" title="var">fofs</span></span> <span class="inlinecode"><span class="id" title="var">to</span></span> <span class="inlinecode"><span class="id" title="var">tofs</span></span> <span class="inlinecode"><span class="id" title="var">len</span></span> copies <span class="inlinecode"><span class="id" title="var">from</span>[<span class="id" title="var">fofs</span>...<span class="id" title="var">fofs</span>+<span class="id" title="var">len</span>-1]</span> to <span class="inlinecode"><span class="id" title="var">to</span>[<span class="id" title="var">tofs</span>...<span class="id" title="var">tofs</span>+<span class="id" title="var">len</span>-1]</span> (bounds included).
+    This modifies <span class="inlinecode"><span class="id" title="var">to</span></span> in place. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">blit</span> (<span class="id" title="var">a1</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) (<span class="id" title="var">ofs1</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">a2</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) (<span class="id" title="var">ofs2</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">len</span> : <span class="id" title="var">int</span>) : <span class="id" title="var">unit</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="var">Control.assert_valid_argument</span> "Array.blit ofs1&lt;0" (<span class="id" title="var">Int.ge</span> <span class="id" title="var">ofs1</span> 0);<br/>
 &nbsp;&nbsp;<span class="id" title="var">Control.assert_valid_argument</span> "Array.blit ofs2&lt;0" (<span class="id" title="var">Int.ge</span> <span class="id" title="var">ofs2</span> 0);<br/>
 &nbsp;&nbsp;<span class="id" title="var">Control.assert_valid_argument</span> "Array.blit len&lt;0" (<span class="id" title="var">Int.ge</span> <span class="id" title="var">len</span> 0);<br/>
@@ -365,62 +500,143 @@
 &nbsp;&nbsp;<span class="id" title="var">lowlevel_blit</span> <span class="id" title="var">a1</span> <span class="id" title="var">ofs1</span> <span class="id" title="var">a2</span> <span class="id" title="var">ofs2</span> <span class="id" title="var">len</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">iter_aux</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">unit</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) (<span class="id" title="var">pos</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">len</span> : <span class="id" title="var">int</span>) :=<br/>
+</div>
+
+<div class="doc">
+Helper function for <span class="inlinecode"><span class="id" title="var">iter</span></span>. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">iter_aux</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">unit</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) (<span class="id" title="var">pos</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">len</span> : <span class="id" title="var">int</span>) : <span class="id" title="var">unit</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">Int.equal</span> <span class="id" title="var">len</span> 0 <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">true</span> =&gt; ()<br/>
 &nbsp;&nbsp;| <span class="id" title="var">false</span> =&gt; <span class="id" title="var">f</span> (<span class="id" title="var">get</span> <span class="id" title="var">a</span> <span class="id" title="var">pos</span>); <span class="id" title="var">iter_aux</span> <span class="id" title="var">f</span> <span class="id" title="var">a</span> (<span class="id" title="var">Int.add</span> <span class="id" title="var">pos</span> 1) (<span class="id" title="var">Int.sub</span> <span class="id" title="var">len</span> 1)<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">iter</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">unit</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) := <span class="id" title="var">iter_aux</span> <span class="id" title="var">f</span> <span class="id" title="var">a</span> 0 (<span class="id" title="var">length</span> <span class="id" title="var">a</span>).<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">iter</span></span> <span class="inlinecode"><span class="id" title="var">f</span></span> <span class="inlinecode"><span class="id" title="var">arr</span></span> calls <span class="inlinecode"><span class="id" title="var">f</span></span> on every element of <span class="inlinecode"><span class="id" title="var">arr</span></span>, from first to last. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">iter</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">unit</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) : <span class="id" title="var">unit</span> :=<br/>
+&nbsp;&nbsp;<span class="id" title="var">iter_aux</span> <span class="id" title="var">f</span> <span class="id" title="var">a</span> 0 (<span class="id" title="var">length</span> <span class="id" title="var">a</span>).<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">iter2_aux</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; <span class="id" title="var">unit</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) (<span class="id" title="var">b</span> : '<span class="id" title="var">b</span> <span class="id" title="var">array</span>) (<span class="id" title="var">pos</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">len</span> : <span class="id" title="var">int</span>) :=<br/>
+</div>
+
+<div class="doc">
+Helper function for <span class="inlinecode"><span class="id" title="var">iter2</span></span>. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">iter2_aux</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; <span class="id" title="var">unit</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) (<span class="id" title="var">b</span> : '<span class="id" title="var">b</span> <span class="id" title="var">array</span>) (<span class="id" title="var">pos</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">len</span> : <span class="id" title="var">int</span>) : <span class="id" title="var">unit</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">Int.equal</span> <span class="id" title="var">len</span> 0 <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">true</span> =&gt; ()<br/>
 &nbsp;&nbsp;| <span class="id" title="var">false</span> =&gt; <span class="id" title="var">f</span> (<span class="id" title="var">get</span> <span class="id" title="var">a</span> <span class="id" title="var">pos</span>) (<span class="id" title="var">get</span> <span class="id" title="var">b</span> <span class="id" title="var">pos</span>); <span class="id" title="var">iter2_aux</span> <span class="id" title="var">f</span> <span class="id" title="var">a</span> <span class="id" title="var">b</span> (<span class="id" title="var">Int.add</span> <span class="id" title="var">pos</span> 1) (<span class="id" title="var">Int.sub</span> <span class="id" title="var">len</span> 1)<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">iter2</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; <span class="id" title="var">unit</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) (<span class="id" title="var">b</span> : '<span class="id" title="var">b</span> <span class="id" title="var">array</span>) :=<br/>
+</div>
+
+<div class="doc">
+Same as <span class="inlinecode"><span class="id" title="var">iter</span></span> but with two arrays.
+    Throws an exception when the lengths of the arrays differ. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">iter2</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; <span class="id" title="var">unit</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) (<span class="id" title="var">b</span> : '<span class="id" title="var">b</span> <span class="id" title="var">array</span>) : <span class="id" title="var">unit</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="var">Control.assert_valid_argument</span> "Array.iter2" (<span class="id" title="var">Int.equal</span> (<span class="id" title="var">length</span> <span class="id" title="var">a</span>) (<span class="id" title="var">length</span> <span class="id" title="var">b</span>));<br/>
 &nbsp;&nbsp;<span class="id" title="var">iter2_aux</span> <span class="id" title="var">f</span> <span class="id" title="var">a</span> <span class="id" title="var">b</span> 0 (<span class="id" title="var">length</span> <span class="id" title="var">a</span>).<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">map</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) :=<br/>
+</div>
+
+<div class="doc">
+Map a function over an array. Elements are processed from first to last.
+    The result is allocated as a new array, i.e. it does not alias the original array. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">map</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) : '<span class="id" title="var">b</span> <span class="id" title="var">array</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="var">init</span> (<span class="id" title="var">length</span> <span class="id" title="var">a</span>) (<span class="id" title="keyword">fun</span> <span class="id" title="var">i</span> =&gt; <span class="id" title="var">f</span> (<span class="id" title="var">get</span> <span class="id" title="var">a</span> <span class="id" title="var">i</span>)).<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">map2</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; '<span class="id" title="var">c</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) (<span class="id" title="var">b</span> : '<span class="id" title="var">b</span> <span class="id" title="var">array</span>) :=<br/>
+</div>
+
+<div class="doc">
+Same as <span class="inlinecode"><span class="id" title="var">map</span></span> but with two arrays.
+    Throws an exception when the lengths of the arrays differ. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">map2</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; '<span class="id" title="var">c</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) (<span class="id" title="var">b</span> : '<span class="id" title="var">b</span> <span class="id" title="var">array</span>) : '<span class="id" title="var">c</span> <span class="id" title="var">array</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="var">Control.assert_valid_argument</span> "Array.map2" (<span class="id" title="var">Int.equal</span> (<span class="id" title="var">length</span> <span class="id" title="var">a</span>) (<span class="id" title="var">length</span> <span class="id" title="var">b</span>));<br/>
 &nbsp;&nbsp;<span class="id" title="var">init</span> (<span class="id" title="var">length</span> <span class="id" title="var">a</span>) (<span class="id" title="keyword">fun</span> <span class="id" title="var">i</span> =&gt; <span class="id" title="var">f</span> (<span class="id" title="var">get</span> <span class="id" title="var">a</span> <span class="id" title="var">i</span>) (<span class="id" title="var">get</span> <span class="id" title="var">b</span> <span class="id" title="var">i</span>)).<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">iteri_aux</span> (<span class="id" title="var">f</span> : <span class="id" title="var">int</span> -&gt; '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">unit</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) (<span class="id" title="var">pos</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">len</span> : <span class="id" title="var">int</span>) :=<br/>
+</div>
+
+<div class="doc">
+Helper function for <span class="inlinecode"><span class="id" title="var">iteri</span></span>. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">iteri_aux</span> (<span class="id" title="var">f</span> : <span class="id" title="var">int</span> -&gt; '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">unit</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) (<span class="id" title="var">pos</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">len</span> : <span class="id" title="var">int</span>) : <span class="id" title="var">unit</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">Int.equal</span> <span class="id" title="var">len</span> 0 <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">true</span> =&gt; ()<br/>
 &nbsp;&nbsp;| <span class="id" title="var">false</span> =&gt; <span class="id" title="var">f</span> <span class="id" title="var">pos</span> (<span class="id" title="var">get</span> <span class="id" title="var">a</span> <span class="id" title="var">pos</span>); <span class="id" title="var">iteri_aux</span> <span class="id" title="var">f</span> <span class="id" title="var">a</span> (<span class="id" title="var">Int.add</span> <span class="id" title="var">pos</span> 1) (<span class="id" title="var">Int.sub</span> <span class="id" title="var">len</span> 1)<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">iteri</span> (<span class="id" title="var">f</span> : <span class="id" title="var">int</span> -&gt; '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">unit</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) := <span class="id" title="var">iteri_aux</span> <span class="id" title="var">f</span> <span class="id" title="var">a</span> 0 (<span class="id" title="var">length</span> <span class="id" title="var">a</span>).<br/>
+</div>
+
+<div class="doc">
+Iterate a function over an array, passing the index of each argument to the function.
+    Elements are processed from first to last. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">iteri</span> (<span class="id" title="var">f</span> : <span class="id" title="var">int</span> -&gt; '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">unit</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) : <span class="id" title="var">unit</span> :=<br/>
+&nbsp;&nbsp;<span class="id" title="var">iteri_aux</span> <span class="id" title="var">f</span> <span class="id" title="var">a</span> 0 (<span class="id" title="var">length</span> <span class="id" title="var">a</span>).<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">mapi</span> (<span class="id" title="var">f</span> : <span class="id" title="var">int</span> -&gt; '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) :=<br/>
+</div>
+
+<div class="doc">
+Map a function over an array, passing the index of each argument to the function.
+    Elements are processed from first to last. The result is allocated as a new array,
+    i.e. it does not alias the original array. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">mapi</span> (<span class="id" title="var">f</span> : <span class="id" title="var">int</span> -&gt; '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) : '<span class="id" title="var">b</span> <span class="id" title="var">array</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="var">init</span> (<span class="id" title="var">length</span> <span class="id" title="var">a</span>) (<span class="id" title="keyword">fun</span> <span class="id" title="var">i</span> =&gt; <span class="id" title="var">f</span> <span class="id" title="var">i</span> (<span class="id" title="var">get</span> <span class="id" title="var">a</span> <span class="id" title="var">i</span>)).<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">to_list_aux</span> (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) (<span class="id" title="var">pos</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">len</span> : <span class="id" title="var">int</span>) :=<br/>
+</div>
+
+<div class="doc">
+Helper function to <span class="inlinecode"><span class="id" title="var">to_list</span></span>. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">to_list_aux</span> (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) (<span class="id" title="var">pos</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">len</span> : <span class="id" title="var">int</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">list</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">Int.equal</span> <span class="id" title="var">len</span> 0 <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">true</span> =&gt; []<br/>
 &nbsp;&nbsp;| <span class="id" title="var">false</span> =&gt; <span class="id" title="var">get</span> <span class="id" title="var">a</span> <span class="id" title="var">pos</span> :: <span class="id" title="var">to_list_aux</span> <span class="id" title="var">a</span> (<span class="id" title="var">Int.add</span> <span class="id" title="var">pos</span> 1) (<span class="id" title="var">Int.sub</span> <span class="id" title="var">len</span> 1)<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">to_list</span> (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) := <span class="id" title="var">to_list_aux</span> <span class="id" title="var">a</span> 0 (<span class="id" title="var">length</span> <span class="id" title="var">a</span>).<br/>
+</div>
+
+<div class="doc">
+Convert an array to a list. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">to_list</span> (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">list</span> :=<br/>
+&nbsp;&nbsp;<span class="id" title="var">to_list_aux</span> <span class="id" title="var">a</span> 0 (<span class="id" title="var">length</span> <span class="id" title="var">a</span>).<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">of_list_aux</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">dst</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) (<span class="id" title="var">pos</span> : <span class="id" title="var">int</span>) :=<br/>
+</div>
+
+<div class="doc">
+Helper function to <span class="inlinecode"><span class="id" title="var">of_list</span></span>. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">of_list_aux</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) (<span class="id" title="var">dst</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) (<span class="id" title="var">pos</span> : <span class="id" title="var">int</span>) : <span class="id" title="var">unit</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| [] =&gt; ()<br/>
 &nbsp;&nbsp;| <span class="id" title="var">hd</span>::<span class="id" title="var">tl</span> =&gt;<br/>
@@ -429,7 +645,13 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">of_list</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
+</div>
+
+<div class="doc">
+Convert a list into an array. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">of_list</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">array</span> :=<br/>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">let</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">list_length</span> (<span class="id" title="var">ls</span> : '<span class="id" title="var">a</span> <span class="id" title="var">list</span>) :=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">ls</span> <span class="id" title="keyword">with</span><br/>
@@ -445,18 +667,36 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">fold_left_aux</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; '<span class="id" title="var">a</span>) (<span class="id" title="var">x</span> : '<span class="id" title="var">a</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">b</span> <span class="id" title="var">array</span>) (<span class="id" title="var">pos</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">len</span> : <span class="id" title="var">int</span>) :=<br/>
+</div>
+
+<div class="doc">
+Helper function for <span class="inlinecode"><span class="id" title="var">fold_left</span></span>. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">fold_left_aux</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; '<span class="id" title="var">a</span>) (<span class="id" title="var">x</span> : '<span class="id" title="var">a</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">b</span> <span class="id" title="var">array</span>) (<span class="id" title="var">pos</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">len</span> : <span class="id" title="var">int</span>) : '<span class="id" title="var">a</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">Int.equal</span> <span class="id" title="var">len</span> 0 <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">true</span> =&gt; <span class="id" title="var">x</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">false</span> =&gt; <span class="id" title="var">fold_left_aux</span> <span class="id" title="var">f</span> (<span class="id" title="var">f</span> <span class="id" title="var">x</span> (<span class="id" title="var">get</span> <span class="id" title="var">a</span> <span class="id" title="var">pos</span>)) <span class="id" title="var">a</span> (<span class="id" title="var">Int.add</span> <span class="id" title="var">pos</span> 1) (<span class="id" title="var">Int.sub</span> <span class="id" title="var">len</span> 1)<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
+</div>
+
+<div class="doc">
+Left fold over an array. 
+</div>
+<div class="code">
 <span class="id" title="keyword">Ltac2</span> <span class="id" title="var">fold_left</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; '<span class="id" title="var">a</span>) (<span class="id" title="var">x</span> : '<span class="id" title="var">a</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">b</span> <span class="id" title="var">array</span>) : '<span class="id" title="var">a</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="var">fold_left_aux</span> <span class="id" title="var">f</span> <span class="id" title="var">x</span> <span class="id" title="var">a</span> 0 (<span class="id" title="var">length</span> <span class="id" title="var">a</span>).<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">fold_right_aux</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; '<span class="id" title="var">b</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) (<span class="id" title="var">x</span> : '<span class="id" title="var">b</span>) (<span class="id" title="var">pos</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">len</span> : <span class="id" title="var">int</span>) :=<br/>
+</div>
+
+<div class="doc">
+Helper function for <span class="inlinecode"><span class="id" title="var">fold_right</span></span>. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">fold_right_aux</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; '<span class="id" title="var">b</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) (<span class="id" title="var">x</span> : '<span class="id" title="var">b</span>) (<span class="id" title="var">pos</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">len</span> : <span class="id" title="var">int</span>) : '<span class="id" title="var">b</span> :=<br/>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">Int.equal</span> <span class="id" title="var">len</span> 0 <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">true</span> =&gt; <span class="id" title="var">x</span><br/>
@@ -464,11 +704,23 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
+</div>
+
+<div class="doc">
+Right fold over an array. 
+</div>
+<div class="code">
 <span class="id" title="keyword">Ltac2</span> <span class="id" title="var">fold_right</span> (<span class="id" title="var">f</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; '<span class="id" title="var">b</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) (<span class="id" title="var">x</span> : '<span class="id" title="var">b</span>) : '<span class="id" title="var">b</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="var">fold_right_aux</span> <span class="id" title="var">f</span> <span class="id" title="var">a</span> <span class="id" title="var">x</span> (<span class="id" title="var">Int.sub</span> (<span class="id" title="var">length</span> <span class="id" title="var">a</span>) 1) (<span class="id" title="var">length</span> <span class="id" title="var">a</span>).<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">exist_aux</span> (<span class="id" title="var">p</span> : '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) (<span class="id" title="var">pos</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">len</span> : <span class="id" title="var">int</span>) :=<br/>
+</div>
+
+<div class="doc">
+Helper function for <span class="inlinecode"><span class="id" title="var">exist</span></span>. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">exist_aux</span> (<span class="id" title="var">p</span> : '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) (<span class="id" title="var">pos</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">len</span> : <span class="id" title="var">int</span>) : <span class="id" title="var">bool</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">Int.equal</span> <span class="id" title="var">len</span> 0 <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">true</span> =&gt; <span class="id" title="var">false</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">false</span> =&gt; <span class="id" title="keyword">match</span> <span class="id" title="var">p</span> (<span class="id" title="var">get</span> <span class="id" title="var">a</span> <span class="id" title="var">pos</span>) <span class="id" title="keyword">with</span><br/>
@@ -478,10 +730,29 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">exist</span> (<span class="id" title="var">p</span> : '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) := <span class="id" title="var">exist_aux</span> <span class="id" title="var">p</span> <span class="id" title="var">a</span> 0 (<span class="id" title="var">length</span> <span class="id" title="var">a</span>).<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">exist</span></span> <span class="inlinecode"><span class="id" title="var">f</span></span> <span class="inlinecode"><span class="id" title="var">arr</span></span> checks if <span class="inlinecode"><span class="id" title="var">f</span></span> is true for <i>at least one</i> element of <span class="inlinecode"><span class="id" title="var">arr</span></span>.
+    In particular <span class="inlinecode"><span class="id" title="var">exist</span></span> <span class="inlinecode"><span class="id" title="var">f</span></span> <span class="inlinecode"><span class="id" title="var">empty</span></span> is <span class="inlinecode"><span class="id" title="var">false</span></span>.
+
+<div class="paragraph"> </div>
+
+    We would call this <span class="inlinecode"><span class="id" title="tactic">exists</span></span> a la OCaml's <span class="inlinecode"><span class="id" title="var">List.exists</span></span>,
+    but that would be a syntax error (because it conflicts with the notation for tactic `exists`), so instead we name it exist. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">exist</span> (<span class="id" title="var">p</span> : '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) : <span class="id" title="var">bool</span> :=<br/>
+&nbsp;&nbsp;<span class="id" title="var">exist_aux</span> <span class="id" title="var">p</span> <span class="id" title="var">a</span> 0 (<span class="id" title="var">length</span> <span class="id" title="var">a</span>).<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">for_all_aux</span> (<span class="id" title="var">p</span> : '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) (<span class="id" title="var">pos</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">len</span> : <span class="id" title="var">int</span>) :=<br/>
+</div>
+
+<div class="doc">
+Helper function for <span class="inlinecode"><span class="id" title="var">for_all</span></span>. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">for_all_aux</span> (<span class="id" title="var">p</span> : '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) (<span class="id" title="var">pos</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">len</span> : <span class="id" title="var">int</span>) : <span class="id" title="var">bool</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">Int.equal</span> <span class="id" title="var">len</span> 0 <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">true</span> =&gt; <span class="id" title="var">true</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">false</span> =&gt; <span class="id" title="keyword">match</span> <span class="id" title="var">p</span> (<span class="id" title="var">get</span> <span class="id" title="var">a</span> <span class="id" title="var">pos</span>) <span class="id" title="keyword">with</span><br/>
@@ -491,14 +762,35 @@
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">for_all</span> (<span class="id" title="var">p</span> : '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) := <span class="id" title="var">for_all_aux</span> <span class="id" title="var">p</span> <span class="id" title="var">a</span> 0 (<span class="id" title="var">length</span> <span class="id" title="var">a</span>).<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">for_all</span></span> <span class="inlinecode"><span class="id" title="var">f</span></span> <span class="inlinecode"><span class="id" title="var">arr</span></span> checks if <span class="inlinecode"><span class="id" title="var">f</span></span> is true for <i>all</i> elements of <span class="inlinecode"><span class="id" title="var">arr</span></span>.
+    In particular <span class="inlinecode"><span class="id" title="var">for_all</span></span> <span class="inlinecode"><span class="id" title="var">f</span></span> <span class="inlinecode"><span class="id" title="var">empty</span></span> is <span class="inlinecode"><span class="id" title="var">true</span></span>. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">for_all</span> (<span class="id" title="var">p</span> : '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) : <span class="id" title="var">bool</span> :=<br/>
+&nbsp;&nbsp;<span class="id" title="var">for_all_aux</span> <span class="id" title="var">p</span> <span class="id" title="var">a</span> 0 (<span class="id" title="var">length</span> <span class="id" title="var">a</span>).<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">mem</span> (<span class="id" title="var">eq</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">x</span> : '<span class="id" title="var">a</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) :=<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">mem</span></span> <span class="inlinecode"><span class="id" title="var">eq</span></span> <span class="inlinecode"><span class="id" title="var">x</span></span> <span class="inlinecode"><span class="id" title="var">arr</span></span> checks if an element of <span class="inlinecode"><span class="id" title="var">arr</span></span> is equal to <span class="inlinecode"><span class="id" title="var">x</span></span> according
+    to the user-supplied equality function <span class="inlinecode"><span class="id" title="var">eq</span></span> 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">mem</span> (<span class="id" title="var">eq</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">a</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">x</span> : '<span class="id" title="var">a</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) : <span class="id" title="var">bool</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="var">exist</span> (<span class="id" title="var">eq</span> <span class="id" title="var">x</span>) <span class="id" title="var">a</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">for_all2_aux</span> (<span class="id" title="var">p</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) (<span class="id" title="var">b</span> : '<span class="id" title="var">b</span> <span class="id" title="var">array</span>) (<span class="id" title="var">pos</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">len</span> : <span class="id" title="var">int</span>) :=<br/>
+</div>
+
+<div class="doc">
+Helper function for <span class="inlinecode"><span class="id" title="var">for_all2</span></span>. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">rec</span> <span class="id" title="var">for_all2_aux</span> (<span class="id" title="var">p</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) (<span class="id" title="var">b</span> : '<span class="id" title="var">b</span> <span class="id" title="var">array</span>) (<span class="id" title="var">pos</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">len</span> : <span class="id" title="var">int</span>) : <span class="id" title="var">bool</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">if</span> <span class="id" title="var">Int.equal</span> <span class="id" title="var">len</span> 0<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">then</span> <span class="id" title="var">true</span><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">else</span> <span class="id" title="keyword">if</span> <span class="id" title="var">p</span> (<span class="id" title="var">get</span> <span class="id" title="var">a</span> <span class="id" title="var">pos</span>) (<span class="id" title="var">get</span> <span class="id" title="var">b</span> <span class="id" title="var">pos</span>)<br/>
@@ -506,7 +798,14 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">else</span> <span class="id" title="var">false</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">for_all2</span> <span class="id" title="var">p</span> <span class="id" title="var">a</span> <span class="id" title="var">b</span> :=<br/>
+</div>
+
+<div class="doc">
+Same as <span class="inlinecode"><span class="id" title="var">for_all</span></span> but for two lists.
+    Throws an exception when the lengths of the lists differ. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">for_all2</span> (<span class="id" title="var">p</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) (<span class="id" title="var">b</span> : '<span class="id" title="var">b</span> <span class="id" title="var">array</span>) : <span class="id" title="var">bool</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">let</span> <span class="id" title="var">lena</span> := <span class="id" title="var">length</span> <span class="id" title="var">a</span> <span class="id" title="tactic">in</span><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">let</span> <span class="id" title="var">lenb</span> := <span class="id" title="var">length</span> <span class="id" title="var">b</span> <span class="id" title="tactic">in</span><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">if</span> <span class="id" title="var">Int.equal</span> <span class="id" title="var">lena</span> <span class="id" title="var">lenb</span><br/>
@@ -514,7 +813,14 @@
 &nbsp;&nbsp;<span class="id" title="keyword">else</span> <span class="id" title="var">Control.throw_invalid_argument</span> "Array.for_all2".<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">equal</span> <span class="id" title="var">p</span> <span class="id" title="var">a</span> <span class="id" title="var">b</span> :=<br/>
+</div>
+
+<div class="doc">
+Same as <span class="inlinecode"><span class="id" title="var">for_all</span></span> but for two lists.
+    Returns <span class="inlinecode"><span class="id" title="var">false</span></span> when the lengths of the lists differ. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">equal</span> (<span class="id" title="var">p</span> : '<span class="id" title="var">a</span> -&gt; '<span class="id" title="var">b</span> -&gt; <span class="id" title="var">bool</span>) (<span class="id" title="var">a</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) (<span class="id" title="var">b</span> : '<span class="id" title="var">b</span> <span class="id" title="var">array</span>) : <span class="id" title="var">bool</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">let</span> <span class="id" title="var">lena</span> := <span class="id" title="var">length</span> <span class="id" title="var">a</span> <span class="id" title="tactic">in</span><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">let</span> <span class="id" title="var">lenb</span> := <span class="id" title="var">length</span> <span class="id" title="var">b</span> <span class="id" title="tactic">in</span><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">if</span> <span class="id" title="var">Int.equal</span> <span class="id" title="var">lena</span> <span class="id" title="var">lenb</span><br/>
@@ -522,6 +828,13 @@
 &nbsp;&nbsp;<span class="id" title="keyword">else</span> <span class="id" title="var">false</span>.<br/>
 
 <br/>
+</div>
+
+<div class="doc">
+Reverse an array. The result is allocated as a new array,
+    i.e. it does not alias the original array. 
+</div>
+<div class="code">
 <span class="id" title="keyword">Ltac2</span> <span class="id" title="var">rev</span> (<span class="id" title="var">ar</span> : '<span class="id" title="var">a</span> <span class="id" title="var">array</span>) : '<span class="id" title="var">a</span> <span class="id" title="var">array</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">let</span> <span class="id" title="var">len</span> := <span class="id" title="var">length</span> <span class="id" title="var">ar</span> <span class="id" title="tactic">in</span><br/>
 &nbsp;&nbsp;<span class="id" title="var">init</span> <span class="id" title="var">len</span> (<span class="id" title="keyword">fun</span> <span class="id" title="var">i</span> =&gt; <span class="id" title="var">get</span> <span class="id" title="var">ar</span> (<span class="id" title="var">Int.sub</span> (<span class="id" title="var">Int.sub</span> <span class="id" title="var">len</span> <span class="id" title="var">i</span>) 1)).<br/>
