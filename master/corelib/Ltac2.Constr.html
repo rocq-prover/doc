@@ -354,36 +354,205 @@ Low-level access to kernel terms. Use with care!
 
 <br/>
 <span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Type</span> <span class="id" title="tactic">case</span>.<br/>
+</div>
+
+<div class="doc">
+A value of <span class="inlinecode"><span class="id" title="tactic">case</span></span> is data carried by a pattern match expression that contains a reference to the inductive type being matched on. Given an inductive type, one can use the <span class="inlinecode"><span class="id" title="tactic">case</span></span> function below to construct pattern match expressions on that type. 
+</div>
+<div class="code">
 
 <br/>
-<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Type</span> <span class="id" title="var">case_invert</span> := [<br/>
-| <span class="id" title="var">NoInvert</span><br/>
-| <span class="id" title="var">CaseInvert</span> (<span class="id" title="keyword">constr</span> <span class="id" title="var">array</span>)<br/>
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Type</span> <span class="id" title="var">case_invert</span><br/>
+</div>
+
+<div class="doc">
+A piece of metadata attached to a pattern match expression which
+tells Rocq which reduction rule to use for the pattern match 
+</div>
+<div class="code">
+&nbsp;&nbsp;:= [<br/>
+&nbsp;&nbsp;| <span class="id" title="var">NoInvert</span><br/>
+&nbsp;&nbsp;</div>
+
+<div class="doc">
+The normal reduction rule: reduce the pattern match exactly when the
+      scrutinee is a constructor. 
+</div>
+<div class="code">
+&nbsp;&nbsp;| <span class="id" title="var">CaseInvert</span> (<span class="id" title="keyword">constr</span> <span class="id" title="var">array</span>)<br/>
+&nbsp;&nbsp;</div>
+
+<div class="doc">
+The special reduction rule for eliminating out of an <span class="inlinecode"><span class="id" title="var">SProp</span></span> into a
+      non-<span class="inlinecode"><span class="id" title="var">SProp</span></span>. Normally such elimination is only legal when the <span class="inlinecode"><span class="id" title="var">SProp</span></span> has no
+      constructors, in which case the match is irreducible. If the <span class="inlinecode"><span class="id" title="var">SProp</span></span> was
+      defined with the <span class="inlinecode"><span class="id" title="var">Definitional</span></span> <span class="inlinecode"><span class="id" title="var">UIP</span></span> flag on, and the <span class="inlinecode"><span class="id" title="var">SProp</span></span> has one
+      constructor which takes no non-parameter arguments, then the match is
+      reducible if the indices for the scrutinee are unifiable with the indices
+      for the unique constructor. See the <span class="inlinecode"><span class="id" title="var">Definitional</span></span> <span class="inlinecode"><span class="id" title="var">UIP</span></span> section of the
+      <span class="inlinecode"><span class="id" title="var">SProp</span></span> documentation in the refman for more information. 
+</div>
+<div class="code">
 ].<br/>
 
 <br/>
 <span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Type</span> <span class="id" title="var">kind</span> := [<br/>
-| <span class="id" title="var">Rel</span> (<span class="id" title="var">int</span>)<br/>
-| <span class="id" title="var">Var</span> (<span class="id" title="var">ident</span>)<br/>
-| <span class="id" title="var">Meta</span> (<span class="id" title="var">meta</span>)<br/>
-| <span class="id" title="var">Evar</span> (<span class="id" title="tactic">evar</span>, <span class="id" title="keyword">constr</span> <span class="id" title="var">array</span>)<br/>
-| <span class="id" title="keyword">Sort</span> (<span class="id" title="var">sort</span>)<br/>
-| <span class="id" title="var">Cast</span> (<span class="id" title="keyword">constr</span>, <span class="id" title="var">cast</span>, <span class="id" title="keyword">constr</span>)<br/>
-| <span class="id" title="var">Prod</span> (<span class="id" title="var">binder</span>, <span class="id" title="keyword">constr</span>)<br/>
-| <span class="id" title="var">Lambda</span> (<span class="id" title="var">binder</span>, <span class="id" title="keyword">constr</span>)<br/>
-| <span class="id" title="var">LetIn</span> (<span class="id" title="var">binder</span>, <span class="id" title="keyword">constr</span>, <span class="id" title="keyword">constr</span>)<br/>
-| <span class="id" title="var">App</span> (<span class="id" title="keyword">constr</span>, <span class="id" title="keyword">constr</span> <span class="id" title="var">array</span>)<br/>
-| <span class="id" title="var">Constant</span> (<span class="id" title="var">constant</span>, <span class="id" title="var">instance</span>)<br/>
-| <span class="id" title="var">Ind</span> (<span class="id" title="var">inductive</span>, <span class="id" title="var">instance</span>)<br/>
-| <span class="id" title="var">Constructor</span> (<span class="id" title="tactic">constructor</span>, <span class="id" title="var">instance</span>)<br/>
-| <span class="id" title="var">Case</span> (<span class="id" title="tactic">case</span>, (<span class="id" title="keyword">constr</span> * <span class="id" title="var">Binder.relevance</span>), <span class="id" title="var">case_invert</span>, <span class="id" title="keyword">constr</span>, <span class="id" title="keyword">constr</span> <span class="id" title="var">array</span>)<br/>
-| <span class="id" title="keyword">Fix</span> (<span class="id" title="var">int</span> <span class="id" title="var">array</span>, <span class="id" title="var">int</span>, <span class="id" title="var">binder</span> <span class="id" title="var">array</span>, <span class="id" title="keyword">constr</span> <span class="id" title="var">array</span>)<br/>
-| <span class="id" title="var">CoFix</span> (<span class="id" title="var">int</span>, <span class="id" title="var">binder</span> <span class="id" title="var">array</span>, <span class="id" title="keyword">constr</span> <span class="id" title="var">array</span>)<br/>
-| <span class="id" title="var">Proj</span> (<span class="id" title="var">projection</span>, <span class="id" title="var">Binder.relevance</span>, <span class="id" title="keyword">constr</span>)<br/>
-| <span class="id" title="var">Uint63</span> (<span class="id" title="var">uint63</span>)<br/>
-| <span class="id" title="var">Float</span> (<span class="id" title="var">float</span>)<br/>
-| <span class="id" title="var">String</span> (<span class="id" title="var">pstring</span>)<br/>
-| <span class="id" title="var">Array</span> (<span class="id" title="var">instance</span>, <span class="id" title="keyword">constr</span> <span class="id" title="var">array</span>, <span class="id" title="keyword">constr</span>, <span class="id" title="keyword">constr</span>)<br/>
+&nbsp;&nbsp;| <span class="id" title="var">Rel</span> (<span class="id" title="var">int</span>)<br/>
+&nbsp;&nbsp;</div>
+
+<div class="doc">
+de Bruijn local variable, bound by a surrounding binder such as <span class="inlinecode"><span class="id" title="keyword">forall</span></span>, <span class="inlinecode"><span class="id" title="keyword">fun</span></span>, etc.
+      No <span class="inlinecode"><span class="id" title="var">Rel</span></span> is bound in a goal's context: the goal context is all <span class="inlinecode"><span class="id" title="var">Var</span></span>s. 
+</div>
+<div class="code">
+&nbsp;&nbsp;| <span class="id" title="var">Var</span> (<span class="id" title="var">ident</span>)<br/>
+&nbsp;&nbsp;</div>
+
+<div class="doc">
+Named variable (section variables and proof context variables are treated identically) 
+</div>
+<div class="code">
+&nbsp;&nbsp;| <span class="id" title="var">Meta</span> (<span class="id" title="var">meta</span>)<br/>
+&nbsp;&nbsp;</div>
+
+<div class="doc">
+An older, legacy implementation of unification variables. This is probably
+      dead code. 
+</div>
+<div class="code">
+&nbsp;&nbsp;| <span class="id" title="var">Evar</span> (<span class="id" title="tactic">evar</span>, <span class="id" title="keyword">constr</span> <span class="id" title="var">array</span>)<br/>
+&nbsp;&nbsp;</div>
+
+<div class="doc">
+Existential variable (unification variable). In <span class="inlinecode"><span class="id" title="var">Evar</span></span> <span class="inlinecode"><span class="id" title="tactic">evar</span></span> <span class="inlinecode"><span class="id" title="var">array</span></span>, <span class="inlinecode"><span class="id" title="tactic">evar</span></span> is the existential variable
+      itself and <span class="inlinecode"><span class="id" title="var">array</span></span> is the local variable instance, i.e. values for each of the variables in the evar's context.
+      For an evar <span class="inlinecode"><span class="id" title="var">x</span></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" title="var">T1</span>,</span> <span class="inlinecode"><span class="id" title="var">y</span></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" title="var">T2</span></span> <span class="inlinecode">|-</span> <span class="inlinecode">?<span class="id" title="var">e</span></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" title="var">Te</span></span>, <span class="inlinecode">?<span class="id" title="var">e@</span>{<span class="id" title="var">x</span>:=<span class="id" title="var">e1</span>;</span> <span class="inlinecode"><span class="id" title="var">y</span>:=<span class="id" title="var">e2</span>}</span> gives array <span class="inlinecode">[|<span class="id" title="var">e2</span>;</span> <span class="inlinecode"><span class="id" title="var">e1</span>|]</span>.
+      See also flag <span class="inlinecode"><span class="id" title="keyword">Printing</span></span> <span class="inlinecode"><span class="id" title="var">Existential</span></span> <span class="inlinecode"><span class="id" title="var">Instances</span></span> in the refman. 
+</div>
+<div class="code">
+&nbsp;&nbsp;| <span class="id" title="keyword">Sort</span> (<span class="id" title="var">sort</span>)<br/>
+&nbsp;&nbsp;</div>
+
+<div class="doc">
+A sort such as Prop, SProp, Type@{u}, a polymorphic sort Type@{s|u}, etc. (cf. refman Core language &gt; Sorts) 
+</div>
+<div class="code">
+&nbsp;&nbsp;| <span class="id" title="var">Cast</span> (<span class="id" title="keyword">constr</span>, <span class="id" title="var">cast</span>, <span class="id" title="keyword">constr</span>)<br/>
+&nbsp;&nbsp;</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">Cast</span></span> <span class="inlinecode"><span class="id" title="var">t1</span></span> <span class="inlinecode"><span class="id" title="var">k</span></span> <span class="inlinecode"><span class="id" title="var">t2</span></span> corresponds to the syntactic term <span class="inlinecode">(<span class="id" title="var">t1</span></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" title="var">t2</span>)</span>, i.e.,
+      the programmer declares that <span class="inlinecode"><span class="id" title="var">t1</span></span> is of type <span class="inlinecode"><span class="id" title="var">t2</span></span>. <span class="inlinecode"><span class="id" title="var">k</span></span> is a flag telling
+      the kernel what strategy should be used to validate this assertion,
+      e.g., VM or native evaluation. 
+</div>
+<div class="code">
+&nbsp;&nbsp;| <span class="id" title="var">Prod</span> (<span class="id" title="var">binder</span>, <span class="id" title="keyword">constr</span>)<br/>
+&nbsp;&nbsp;</div>
+
+<div class="doc">
+Concrete syntax <span class="inlinecode">&quot;<span class="id" title="keyword">forall</span></span> <span class="inlinecode"><span class="id" title="var">A</span>:<span class="id" title="var">B</span>,<span class="id" title="var">C</span>&quot;</span> is represented as <span class="inlinecode"><span class="id" title="var">Prod</span></span> <span class="inlinecode">(<span class="id" title="var">A</span>:<span class="id" title="var">B</span>)</span> <span class="inlinecode"><span class="id" title="var">C</span></span>.
+      <span class="inlinecode"><span class="id" title="var">A</span></span> is bound as a <span class="inlinecode"><span class="id" title="var">Rel</span></span> in <span class="inlinecode"><span class="id" title="var">C</span></span>. 
+</div>
+<div class="code">
+&nbsp;&nbsp;| <span class="id" title="var">Lambda</span> (<span class="id" title="var">binder</span>, <span class="id" title="keyword">constr</span>)<br/>
+&nbsp;&nbsp;</div>
+
+<div class="doc">
+Concrete syntax <span class="inlinecode">&quot;<span class="id" title="keyword">fun</span></span> <span class="inlinecode"><span class="id" title="var">A</span>:<span class="id" title="var">B</span></span> <span class="inlinecode">=&gt;</span> <span class="inlinecode"><span class="id" title="var">C</span>&quot;</span> is represented as <span class="inlinecode"><span class="id" title="var">Lambda</span></span> <span class="inlinecode">(<span class="id" title="var">A</span>:<span class="id" title="var">B</span>)</span> <span class="inlinecode"><span class="id" title="var">C</span></span>.
+      <span class="inlinecode"><span class="id" title="var">A</span></span> is bound as a <span class="inlinecode"><span class="id" title="var">Rel</span></span> in <span class="inlinecode"><span class="id" title="var">C</span></span>. 
+</div>
+<div class="code">
+&nbsp;&nbsp;| <span class="id" title="var">LetIn</span> (<span class="id" title="var">binder</span>, <span class="id" title="keyword">constr</span>, <span class="id" title="keyword">constr</span>)<br/>
+&nbsp;&nbsp;</div>
+
+<div class="doc">
+Concrete syntax <span class="inlinecode">&quot;<span class="id" title="keyword">let</span></span> <span class="inlinecode"><span class="id" title="var">A</span>:<span class="id" title="var">C</span></span> <span class="inlinecode">:=</span> <span class="inlinecode"><span class="id" title="var">B</span></span> <span class="inlinecode"><span class="id" title="tactic">in</span></span> <span class="inlinecode"><span class="id" title="var">D</span>&quot;</span> is represented as
+      <span class="inlinecode"><span class="id" title="var">LetIn</span></span> <span class="inlinecode">(<span class="id" title="var">A</span>:<span class="id" title="var">C</span>)</span> <span class="inlinecode"><span class="id" title="var">B</span></span> <span class="inlinecode"><span class="id" title="var">D</span></span>. <span class="inlinecode"><span class="id" title="var">A</span></span> is bound as a <span class="inlinecode"><span class="id" title="var">Rel</span></span> in <span class="inlinecode"><span class="id" title="var">D</span></span>. 
+</div>
+<div class="code">
+&nbsp;&nbsp;| <span class="id" title="var">App</span> (<span class="id" title="keyword">constr</span>, <span class="id" title="keyword">constr</span> <span class="id" title="var">array</span>)<br/>
+&nbsp;&nbsp;</div>
+
+<div class="doc">
+Application is n-ary. Concrete syntax <span class="inlinecode">&quot;(<span class="id" title="var">F</span></span> <span class="inlinecode"><span class="id" title="var">P1</span></span> <span class="inlinecode"><span class="id" title="var">P2</span></span> <span class="inlinecode">...</span>  <span class="inlinecode"><span class="id" title="var">Pn</span>)&quot;</span> is represented as <span class="inlinecode"><span class="id" title="var">App</span></span> <span class="inlinecode">(<span class="id" title="var">F</span>,</span> <span class="inlinecode">[|<span class="id" title="var">P1</span>;</span> <span class="inlinecode"><span class="id" title="var">P2</span>;</span> <span class="inlinecode">...;</span> <span class="inlinecode"><span class="id" title="var">Pn</span>|])</span>. 
+</div>
+<div class="code">
+&nbsp;&nbsp;| <span class="id" title="var">Constant</span> (<span class="id" title="var">constant</span>, <span class="id" title="var">instance</span>)<br/>
+&nbsp;&nbsp;</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">Constant</span></span> <span class="inlinecode"><span class="id" title="var">c</span></span> <span class="inlinecode"><span class="id" title="var">ui</span></span> is the constant <span class="inlinecode"><span class="id" title="var">c</span></span> @ universe instance <span class="inlinecode"><span class="id" title="var">ui</span></span>. 
+</div>
+<div class="code">
+&nbsp;&nbsp;| <span class="id" title="var">Ind</span> (<span class="id" title="var">inductive</span>, <span class="id" title="var">instance</span>)<br/>
+&nbsp;&nbsp;</div>
+
+<div class="doc">
+A name of an inductive or coinductive type. <span class="inlinecode"><span class="id" title="var">Ind</span></span> <span class="inlinecode"><span class="id" title="var">ind</span></span> <span class="inlinecode"><span class="id" title="var">ui</span></span> is <span class="inlinecode"><span class="id" title="var">ind@</span>[<span class="id" title="var">ui</span>]</span> 
+</div>
+<div class="code">
+&nbsp;&nbsp;| <span class="id" title="var">Constructor</span> (<span class="id" title="tactic">constructor</span>, <span class="id" title="var">instance</span>)<br/>
+&nbsp;&nbsp;</div>
+
+<div class="doc">
+A constructor of an inductive type. <span class="inlinecode"><span class="id" title="var">Constructor</span></span> <span class="inlinecode"><span class="id" title="var">c</span></span> <span class="inlinecode"><span class="id" title="var">ui</span></span> is <span class="inlinecode"><span class="id" title="var">c@</span>[<span class="id" title="var">ui</span>]</span>. 
+</div>
+<div class="code">
+&nbsp;&nbsp;| <span class="id" title="var">Case</span> (<span class="id" title="tactic">case</span>, (<span class="id" title="keyword">constr</span> * <span class="id" title="var">Binder.relevance</span>), <span class="id" title="var">case_invert</span>, <span class="id" title="keyword">constr</span>, <span class="id" title="keyword">constr</span> <span class="id" title="var">array</span>)<br/>
+&nbsp;&nbsp;</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">Case</span></span> <span class="inlinecode"><span class="id" title="tactic">case</span></span> <span class="inlinecode">(<span class="id" title="keyword">fun</span></span> <span class="inlinecode"><span class="id" title="var">u1</span></span> <span class="inlinecode"><span class="id" title="var">u2</span></span> <span class="inlinecode">...</span> <span class="inlinecode"><span class="id" title="var">un</span></span> <span class="inlinecode"><span class="id" title="var">v</span></span> <span class="inlinecode">=&gt;</span> <span class="inlinecode"><span class="id" title="var">rettype</span>,</span> <span class="inlinecode"><span class="id" title="var">_</span>)</span> <span class="inlinecode"><span class="id" title="var">ci</span></span> <span class="inlinecode"><span class="id" title="var">scrut</span></span>
+          <span class="inlinecode">[|(<span class="id" title="keyword">fun</span></span> <span class="inlinecode"><span class="id" title="var">x1</span></span> <span class="inlinecode"><span class="id" title="var">x2</span></span> <span class="inlinecode">=&gt;</span> <span class="inlinecode"><span class="id" title="var">t1</span>);(<span class="id" title="keyword">fun</span></span> <span class="inlinecode"><span class="id" title="var">y1</span></span> <span class="inlinecode"><span class="id" title="var">y2</span></span> <span class="inlinecode"><span class="id" title="var">y3</span></span> <span class="inlinecode">=&gt;</span> <span class="inlinecode"><span class="id" title="var">t2</span>));...|]</span>
+      corresponds to
+      <span class="inlinecode"><span class="id" title="keyword">match</span></span> <span class="inlinecode"><span class="id" title="var">scrut</span></span> <span class="inlinecode"><span class="id" title="tactic">in</span></span> <span class="inlinecode"><span class="id" title="var">I</span></span> <span class="inlinecode"><span class="id" title="var">u1</span></span> <span class="inlinecode"><span class="id" title="var">u2</span></span> <span class="inlinecode">...</span> <span class="inlinecode"><span class="id" title="keyword">as</span></span> <span class="inlinecode"><span class="id" title="var">v</span></span> <span class="inlinecode"><span class="id" title="keyword">return</span></span> <span class="inlinecode"><span class="id" title="var">rettype</span></span> <span class="inlinecode"><span class="id" title="keyword">with</span></span>
+       <span class="inlinecode">|</span> <span class="inlinecode"><span class="id" title="var">c0</span></span> <span class="inlinecode"><span class="id" title="var">_</span></span> <span class="inlinecode"><span class="id" title="var">_</span></span> <span class="inlinecode"><span class="id" title="var">x1</span></span> <span class="inlinecode"><span class="id" title="var">x2</span></span> <span class="inlinecode">=&gt;</span> <span class="inlinecode"><span class="id" title="var">t1</span></span>
+       <span class="inlinecode">|</span> <span class="inlinecode"><span class="id" title="var">c1</span></span> <span class="inlinecode"><span class="id" title="var">_</span></span> <span class="inlinecode"><span class="id" title="var">_</span></span> <span class="inlinecode"><span class="id" title="var">y1</span></span> <span class="inlinecode"><span class="id" title="var">y2</span></span> <span class="inlinecode"><span class="id" title="var">y3</span></span> <span class="inlinecode">=&gt;</span> <span class="inlinecode"><span class="id" title="var">t2</span></span>
+       <span class="inlinecode">|</span> <span class="inlinecode">(...)</span>
+      <span class="inlinecode"><span class="id" title="keyword">end</span></span>.
+      <span class="inlinecode"><span class="id" title="var">ci</span></span> is of interest when <span class="inlinecode"><span class="id" title="var">scrut</span></span> inhabits an <span class="inlinecode"><span class="id" title="var">SProp</span></span>, see comments on the type
+      <span class="inlinecode"><span class="id" title="var">case_invert</span></span> above. <span class="inlinecode"><span class="id" title="tactic">case</span></span> contains a reference to the inductive type of the scrutinee.
+</div>
+<div class="code">
+&nbsp;&nbsp;| <span class="id" title="keyword">Fix</span> (<span class="id" title="var">int</span> <span class="id" title="var">array</span>, <span class="id" title="var">int</span>, <span class="id" title="var">binder</span> <span class="id" title="var">array</span>, <span class="id" title="keyword">constr</span> <span class="id" title="var">array</span>)<br/>
+&nbsp;&nbsp;</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="keyword">fix</span></span> <span class="inlinecode"><span class="id" title="var">fun0</span></span> <span class="inlinecode">(<span class="id" title="var">b00</span></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" title="var">B00</span>)</span> <span class="inlinecode">(<span class="id" title="var">b01</span></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" title="var">B01</span>)</span> <span class="inlinecode">(...)</span> <span class="inlinecode">{<span class="id" title="keyword">struct</span></span> <span class="inlinecode"><span class="id" title="var">b0_k0</span>}</span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" title="var">C0</span></span> <span class="inlinecode">:=</span> <span class="inlinecode"><span class="id" title="var">t0</span></span> <span class="inlinecode"><span class="id" title="keyword">with</span></span>
+           <span class="inlinecode"><span class="id" title="var">fun1</span></span> <span class="inlinecode">(<span class="id" title="var">b10</span></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" title="var">B10</span>)</span> <span class="inlinecode">(<span class="id" title="var">b11</span></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" title="var">B11</span>)</span> <span class="inlinecode">(...)</span> <span class="inlinecode">{<span class="id" title="keyword">struct</span></span> <span class="inlinecode"><span class="id" title="var">b1_k1</span>}</span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" title="var">C1</span></span> <span class="inlinecode">:=</span> <span class="inlinecode"><span class="id" title="var">t1</span></span> <span class="inlinecode"><span class="id" title="keyword">with</span></span>
+           <span class="inlinecode">(...)</span>
+           <span class="inlinecode"><span class="id" title="keyword">for</span></span> <span class="inlinecode"><span class="id" title="var">funi</span></span>
+      is represented as
+      <span class="inlinecode"><span class="id" title="keyword">Fix</span></span> <span class="inlinecode">[|<span class="id" title="var">k0</span>;<span class="id" title="var">k1</span>;...|]</span> <span class="inlinecode"><span class="id" title="var">i</span></span> <span class="inlinecode">[|</span>
+          <span class="inlinecode"><span class="id" title="var">fun0</span></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" title="keyword">forall</span></span> <span class="inlinecode">(<span class="id" title="var">b00</span></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" title="var">B00</span>)</span> <span class="inlinecode">(<span class="id" title="var">b01</span></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" title="var">B01</span>)</span> <span class="inlinecode">(...),</span> <span class="inlinecode"><span class="id" title="var">C0</span>;</span>
+          <span class="inlinecode"><span class="id" title="var">fun1</span></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" title="keyword">forall</span></span> <span class="inlinecode">(<span class="id" title="var">b10</span></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" title="var">B10</span>)</span> <span class="inlinecode">(<span class="id" title="var">b11</span></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" title="var">B11</span>)</span> <span class="inlinecode">(...),</span> <span class="inlinecode"><span class="id" title="var">C1</span>;</span>
+          <span class="inlinecode">(...)</span>
+       <span class="inlinecode">|]</span> <span class="inlinecode">[|</span>
+          <span class="inlinecode"><span class="id" title="keyword">fun</span></span> <span class="inlinecode"><span class="id" title="var">b00</span></span> <span class="inlinecode"><span class="id" title="var">b01</span></span> <span class="inlinecode">(...)</span> <span class="inlinecode">=&gt;</span> <span class="inlinecode"><span class="id" title="var">t0</span>;</span>
+          <span class="inlinecode"><span class="id" title="keyword">fun</span></span> <span class="inlinecode"><span class="id" title="var">b00</span></span> <span class="inlinecode"><span class="id" title="var">b01</span></span> <span class="inlinecode">(...)</span> <span class="inlinecode">=&gt;</span> <span class="inlinecode"><span class="id" title="var">t1</span>;</span>
+          <span class="inlinecode">(...)</span>
+       <span class="inlinecode">|]</span> 
+</div>
+<div class="code">
+&nbsp;&nbsp;| <span class="id" title="var">CoFix</span> (<span class="id" title="var">int</span>, <span class="id" title="var">binder</span> <span class="id" title="var">array</span>, <span class="id" title="keyword">constr</span> <span class="id" title="var">array</span>)<br/>
+&nbsp;&nbsp;| <span class="id" title="var">Proj</span> (<span class="id" title="var">projection</span>, <span class="id" title="var">Binder.relevance</span>, <span class="id" title="keyword">constr</span>)<br/>
+&nbsp;&nbsp;</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">Proj</span></span> <span class="inlinecode"><span class="id" title="var">p</span></span> <span class="inlinecode"><span class="id" title="var">r</span></span> <span class="inlinecode"><span class="id" title="var">c</span></span> is <span class="inlinecode"><span class="id" title="var">c</span>.(<span class="id" title="var">p</span>)</span>. The relevance is the relevance of the whole term. 
+</div>
+<div class="code">
+&nbsp;&nbsp;| <span class="id" title="var">Uint63</span> (<span class="id" title="var">uint63</span>)<br/>
+&nbsp;&nbsp;| <span class="id" title="var">Float</span> (<span class="id" title="var">float</span>)<br/>
+&nbsp;&nbsp;| <span class="id" title="var">String</span> (<span class="id" title="var">pstring</span>)<br/>
+&nbsp;&nbsp;| <span class="id" title="var">Array</span> (<span class="id" title="var">instance</span>, <span class="id" title="keyword">constr</span> <span class="id" title="var">array</span>, <span class="id" title="keyword">constr</span>, <span class="id" title="keyword">constr</span>)<br/>
+&nbsp;&nbsp;&nbsp;</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">Array</span></span> <span class="inlinecode"><span class="id" title="var">u</span></span> <span class="inlinecode"><span class="id" title="var">vals</span></span> <span class="inlinecode"><span class="id" title="var">def</span></span> <span class="inlinecode"><span class="id" title="var">t</span></span> is the primitive array literal <span class="inlinecode">[|<span class="id" title="var">vals</span></span> <span class="inlinecode">|</span> <span class="inlinecode"><span class="id" title="var">def</span></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" title="var">t</span>|]@{<span class="id" title="var">u</span>}</span>. 
+</div>
+<div class="code">
 ].<br/>
 
 <br/>

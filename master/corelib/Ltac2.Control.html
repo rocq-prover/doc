@@ -289,19 +289,63 @@ Fatal exception throwing. This does not induce backtracking.
 
 <br/>
 <span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">zero</span> : <span class="id" title="var">exn</span> -&gt; '<span class="id" title="var">a</span> := "rocq-runtime.plugins.ltac2" "zero".<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">zero</span></span> <span class="inlinecode"><span class="id" title="var">e</span></span> raises the exception e, passing control to the current backtracking continuation. 
+</div>
+<div class="code">
+
+<br/>
 <span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">plus</span> : (<span class="id" title="var">unit</span> -&gt; '<span class="id" title="var">a</span>) -&gt; (<span class="id" title="var">exn</span> -&gt; '<span class="id" title="var">a</span>) -&gt; '<span class="id" title="var">a</span> := "rocq-runtime.plugins.ltac2" "plus".<br/>
+</div>
+
+<div class="doc">
+Backtracking point, cf Backtracking section of the ltac2 refman. 
+</div>
+<div class="code">
+
+<br/>
 <span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">once</span> : (<span class="id" title="var">unit</span> -&gt; '<span class="id" title="var">a</span>) -&gt; '<span class="id" title="var">a</span> := "rocq-runtime.plugins.ltac2" "once".<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">once</span></span> <span class="inlinecode"><span class="id" title="var">t</span></span> behaves like <span class="inlinecode"><span class="id" title="var">t</span></span>, except it has at most one success: <span class="inlinecode"><span class="id" title="var">once</span></span> <span class="inlinecode"><span class="id" title="var">t</span></span>
+    stops after the first success of <span class="inlinecode"><span class="id" title="var">t</span></span>. If <span class="inlinecode"><span class="id" title="var">t</span></span> fails with <span class="inlinecode"><span class="id" title="var">e</span></span>,
+    <span class="inlinecode"><span class="id" title="var">once</span></span> <span class="inlinecode"><span class="id" title="var">t</span></span> also fails with <span class="inlinecode"><span class="id" title="var">e</span></span>. If <span class="inlinecode"><span class="id" title="var">once</span></span> <span class="inlinecode"><span class="id" title="var">t</span>;</span> <span class="inlinecode"><span class="id" title="var">t'</span></span> fails on <span class="inlinecode"><span class="id" title="var">t'</span></span>, then <span class="inlinecode"><span class="id" title="var">once</span></span> <span class="inlinecode"><span class="id" title="var">t</span></span> will not backtrack and evaluate <span class="inlinecode"><span class="id" title="var">t</span></span> for another value, and will instead fail. 
+</div>
+<div class="code">
+
+<br/>
 <span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">case</span> : (<span class="id" title="var">unit</span> -&gt; '<span class="id" title="var">a</span>) -&gt; ('<span class="id" title="var">a</span> * (<span class="id" title="var">exn</span> -&gt; '<span class="id" title="var">a</span>)) <span class="id" title="var">result</span> := "rocq-runtime.plugins.ltac2" "case".<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="tactic">case</span></span> is the most general primitive to control backtracking:
+<ul class="doclist">
+<li> If <span class="inlinecode"><span class="id" title="var">t</span></span> <span class="inlinecode">()</span> would fail with <span class="inlinecode"><span class="id" title="var">e</span></span>, <span class="inlinecode"><span class="id" title="tactic">case</span></span> <span class="inlinecode"><span class="id" title="var">t</span></span> returns <span class="inlinecode"><span class="id" title="var">Err</span></span> <span class="inlinecode"><span class="id" title="var">e</span></span>.
+
+</li>
+<li> If <span class="inlinecode"><span class="id" title="var">t</span></span> <span class="inlinecode">()</span> would succeed and evaluate to <span class="inlinecode"><span class="id" title="var">v</span></span> then <span class="inlinecode"><span class="id" title="tactic">case</span></span> <span class="inlinecode"><span class="id" title="var">t</span></span> returns <span class="inlinecode"><span class="id" title="var">Val</span></span> <span class="inlinecode">(<span class="id" title="var">v</span>,</span> <span class="inlinecode"><span class="id" title="var">h</span>)</span>,
+  where <span class="inlinecode"><span class="id" title="var">h</span></span> is the continuation to execute in case of subsequent failure.
+  <span class="inlinecode"><span class="id" title="tactic">case</span></span> reifies a backtracking computation into an inspectable value, it allows the programmer to make explicit the effects which are normally implicit (i.e., they do not appear in the type system).
+
+</li>
+</ul>
+
+</div>
+<div class="code">
 
 <br/>
 <span class="id" title="keyword">Ltac2</span> <span class="id" title="var">once_plus</span> (<span class="id" title="var">run</span> : <span class="id" title="var">unit</span> -&gt; '<span class="id" title="var">a</span>) (<span class="id" title="var">handle</span> : <span class="id" title="var">exn</span> -&gt; '<span class="id" title="var">a</span>) : '<span class="id" title="var">a</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="var">once</span> (<span class="id" title="keyword">fun</span> () =&gt; <span class="id" title="var">plus</span> <span class="id" title="var">run</span> <span class="id" title="var">handle</span>).<br/>
-
-<br/>
 </div>
 
 <div class="doc">
-Proof state manipulation 
+<span class="inlinecode"><span class="id" title="var">once_plus</span></span> <span class="inlinecode"><span class="id" title="var">run</span></span> <span class="inlinecode"><span class="id" title="var">handle</span></span> is <span class="inlinecode"><span class="id" title="var">once</span></span> applied to <span class="inlinecode"><span class="id" title="var">plus</span></span> <span class="inlinecode"><span class="id" title="var">run</span></span> <span class="inlinecode"><span class="id" title="var">handle</span></span>. 
+<div class="paragraph"> </div>
+
+ Proof state manipulation 
 </div>
 <div class="code">
 
@@ -316,14 +360,82 @@ Return the number of goals currently focused.
 
 <br/>
 <span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">dispatch</span> : (<span class="id" title="var">unit</span> -&gt; <span class="id" title="var">unit</span>) <span class="id" title="var">list</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "dispatch".<br/>
+</div>
+
+<div class="doc">
+The dispatch tactical is used to apply a different tactic to each
+    goal under focus. It works by applying each of the tactics in a focus
+    restricted to the corresponding goal (starting with the first
+    goal). When the length of the tactic list is not equal to the
+    number of focused goals, raises Internal err. 
+</div>
+<div class="code">
+
+<br/>
 <span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">extend</span> : (<span class="id" title="var">unit</span> -&gt; <span class="id" title="var">unit</span>) <span class="id" title="var">list</span> -&gt; (<span class="id" title="var">unit</span> -&gt; <span class="id" title="var">unit</span>) -&gt; (<span class="id" title="var">unit</span> -&gt; <span class="id" title="var">unit</span>) <span class="id" title="var">list</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "extend".<br/>
+</div>
+
+<div class="doc">
+extend is a more flexible variant of dispatch, where the second argument
+    tactic is "repeated" enough times such that every goal has a tactic
+    assigned to it. <span class="inlinecode"><span class="id" title="var">extend</span></span> <span class="inlinecode"><span class="id" title="var">b</span></span> <span class="inlinecode"><span class="id" title="var">r</span></span> <span class="inlinecode"><span class="id" title="var">e</span></span> applies the tactics in <span class="inlinecode"><span class="id" title="var">b</span></span> to the first
+    <span class="inlinecode"><span class="id" title="var">length</span></span> <span class="inlinecode"><span class="id" title="var">b</span></span> goals, the tactics in <span class="inlinecode"><span class="id" title="var">r</span></span> to the last <span class="inlinecode"><span class="id" title="var">length</span></span> <span class="inlinecode"><span class="id" title="var">r</span></span> goals, and
+    <span class="inlinecode"><span class="id" title="var">e</span></span> to all tactics in between. Raises Internal err if <span class="inlinecode"><span class="id" title="var">length</span></span> <span class="inlinecode"><span class="id" title="var">b</span></span> <span class="inlinecode">+</span> <span class="inlinecode"><span class="id" title="var">length</span></span> <span class="inlinecode"><span class="id" title="var">r</span></span>
+    is greater than the number of goals under focus.
+</div>
+<div class="code">
+
+<br/>
 <span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">enter</span> : (<span class="id" title="var">unit</span> -&gt; <span class="id" title="var">unit</span>) -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "enter".<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">enter</span></span> takes a single tactic <span class="inlinecode"><span class="id" title="var">t</span></span> and applies <span class="inlinecode"><span class="id" title="var">t</span></span> in each goal under focus independently. 
+</div>
+<div class="code">
 
 <br/>
 <span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">focus</span> : <span class="id" title="var">int</span> -&gt; <span class="id" title="var">int</span> -&gt; (<span class="id" title="var">unit</span> -&gt; '<span class="id" title="var">a</span>) -&gt; '<span class="id" title="var">a</span> := "rocq-runtime.plugins.ltac2" "focus".<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">focus</span></span> <span class="inlinecode"><span class="id" title="var">i</span></span> <span class="inlinecode"><span class="id" title="var">j</span></span> <span class="inlinecode"><span class="id" title="var">tac</span></span> focuses a proofview on the goals from index <span class="inlinecode"><span class="id" title="var">i</span></span> to
+    index <span class="inlinecode"><span class="id" title="var">j</span></span> (inclusive, goals are indexed from <span class="inlinecode">1</span>) and runs
+    t with those goals under focus, i.e. goals
+    number <span class="inlinecode"><span class="id" title="var">i</span></span> to <span class="inlinecode"><span class="id" title="var">j</span></span> become the only focused goals during the execution
+    of tac. When <span class="inlinecode"><span class="id" title="var">focus</span></span> returns, the present focus is restored. If the range <span class="inlinecode"><span class="id" title="var">i</span></span> <span class="inlinecode">-</span> <span class="inlinecode"><span class="id" title="var">j</span></span> is invalid, fails with a backtrackable "no such goal" error. 
+</div>
+<div class="code">
+
+<br/>
 <span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">cycle</span> : <span class="id" title="var">int</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "cycle".<br/>
+</div>
+
+<div class="doc">
+If <span class="inlinecode"><span class="id" title="var">n</span></span> is positive, <span class="inlinecode"><span class="id" title="var">cycle</span></span> <span class="inlinecode"><span class="id" title="var">n</span></span> puts the <span class="inlinecode"><span class="id" title="var">n</span></span> first goal last. If <span class="inlinecode"><span class="id" title="var">n</span></span>
+    is negative, then it puts the <span class="inlinecode"><span class="id" title="var">n</span></span> last goals first.
+</div>
+<div class="code">
+
+<br/>
 <span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">shelve</span> : <span class="id" title="var">unit</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "shelve".<br/>
+</div>
+
+<div class="doc">
+Shelve all goals under focus. The goals are placed on the shelf for later use, or to be solved by side-effects.
+</div>
+<div class="code">
+
+<br/>
 <span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">shelve_unifiable</span> : <span class="id" title="var">unit</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "shelve_unifiable".<br/>
+</div>
+
+<div class="doc">
+Shelves the unifiable goals under focus, i.e. the goals which
+    appear in other goals under focus (the unfocused goals are not
+    considered). 
+</div>
+<div class="code">
 
 <br/>
 <span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">new_goal</span> : <span class="id" title="tactic">evar</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "new_goal".<br/>
@@ -349,12 +461,15 @@ Runs the closure, then unshelves existential variables added to the
 
 <br/>
 <span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">progress</span> : (<span class="id" title="var">unit</span> -&gt; '<span class="id" title="var">a</span>) -&gt; '<span class="id" title="var">a</span> := "rocq-runtime.plugins.ltac2" "progress".<br/>
-
-<br/>
 </div>
 
 <div class="doc">
-Goal inspection 
+<span class="inlinecode"><span class="id" title="tactic">progress</span></span> <span class="inlinecode"><span class="id" title="var">t</span></span> checks the state of the proof after <span class="inlinecode"><span class="id" title="var">t</span></span>. It it is
+    identical to the state before, then <span class="inlinecode"><span class="id" title="tactic">progress</span></span> <span class="inlinecode"><span class="id" title="var">t</span></span> fails, otherwise
+    it succeeds like <span class="inlinecode"><span class="id" title="var">t</span></span>. 
+<div class="paragraph"> </div>
+
+ Goal inspection 
 </div>
 <div class="code">
 
@@ -409,12 +524,15 @@ Panics if there is more than one goal under focus. If there is no
 
 <br/>
 <span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="tactic">refine</span> : (<span class="id" title="var">unit</span> -&gt; <span class="id" title="keyword">constr</span>) -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "refine".<br/>
-
-<br/>
 </div>
 
 <div class="doc">
-Evars 
+<span class="inlinecode"><span class="id" title="tactic">refine</span></span> <span class="inlinecode"><span class="id" title="var">t</span></span> computes the type of the term <span class="inlinecode"><span class="id" title="var">t</span></span> <span class="inlinecode">()</span> and unifies the
+ type with the current goal. All unification variables produced while computing <span class="inlinecode"><span class="id" title="var">t</span></span> <span class="inlinecode">()</span> not
+ solved by this unification process are added as new goals. 
+<div class="paragraph"> </div>
+
+ Evars 
 </div>
 <div class="code">
 
