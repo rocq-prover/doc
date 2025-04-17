@@ -2257,12 +2257,16 @@ such that <span class="math notranslate nohighlight">\(Γ_I\)</span> is <span cl
 satisfies the positivity condition for <span class="math notranslate nohighlight">\(I_1 … I_k\)</span> and <span class="math notranslate nohighlight">\(c_i ∉  E\)</span>.</p></li>
 </ul>
 </div></blockquote>
-<p>One can remark that there is a constraint between the sort of the
-arity of the inductive type and the sort of the type of its
-constructors which will always be satisfied for the impredicative
-sorts <span class="math notranslate nohighlight">\(\SProp\)</span> and <span class="math notranslate nohighlight">\(\Prop\)</span> but may fail to define
-inductive type on sort <span class="math notranslate nohighlight">\(\Set\)</span> and generate constraints
-between universes for inductive types in the Type hierarchy.</p>
+<p>Additionally, for <span class="math notranslate nohighlight">\(j=1… k\)</span> the following universe constraints must be satisfied,
+or <span class="math notranslate nohighlight">\(s_j\)</span> must be an impredicative sort (<code class="docutils literal notranslate"><span class="pre">SProp</span></code>, <code class="docutils literal notranslate"><span class="pre">Prop</span></code>, or if <code class="docutils literal notranslate"><span class="pre">-impredicative-set</span></code> was used <code class="docutils literal notranslate"><span class="pre">Set</span></code>)
+and the <code class="docutils literal notranslate"><span class="pre">j</span></code>th inductive may not be eliminated to larger sorts:</p>
+<ul class="simple">
+<li><p>for each (non parameter) constructor argument, the universe of its type must be smaller than <span class="math notranslate nohighlight">\(s_j\)</span></p></li>
+<li><p>if <code class="docutils literal notranslate"><span class="pre">-indices-matter</span></code> was used, for each index the universe of its type must be smaller than <span class="math notranslate nohighlight">\(s_j\)</span></p></li>
+<li><p>if there are 2 or more constructors, <code class="docutils literal notranslate"><span class="pre">Set</span></code> must be smaller than <span class="math notranslate nohighlight">\(s_j\)</span></p></li>
+<li><p>unless the inductive is a primitive record, and unless <a class="reference internal" href="../../addendum/sprop.html#coq:flag.Definitional-UIP" title="Definitional UIP"><code class="xref coq coq-flag docutils literal notranslate"><span class="pre">Definitional</span> <span class="pre">UIP</span></code></a> was used,
+if there is 1 constructor, <code class="docutils literal notranslate"><span class="pre">Prop</span></code> must be smaller than <span class="math notranslate nohighlight">\(s_j\)</span> (essentially this means <span class="math notranslate nohighlight">\(s_j\)</span> must not be <code class="docutils literal notranslate"><span class="pre">SProp</span></code>)</p></li>
+</ul>
 <div class="admonition note">
 <p class="admonition-title">Example</p>
 <p>It is well known that the existential quantifier can be encoded as an
