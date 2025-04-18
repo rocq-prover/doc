@@ -2068,8 +2068,12 @@ per line. Keywords cannot be used as identifiers.</p>
 <dl class="coq cmd">
 <dt class="sig sig-object coq" id="coq:cmd.Print-Grammar">
 <em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Print</span></span></span> <span><span><span class="pre">Grammar</span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span><span class="notation-sup"><span class="pre">*</span></span></span></span></span><a class="headerlink" href="#coq:cmd.Print-Grammar" title="Link to this definition"></a></dt>
-<dd><p>When no <a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><code class="xref std std-token docutils literal notranslate"><span class="pre">ident</span></code></a> is provided, shows the whole grammar.
-Otherwise shows the grammar for the nonterminal <a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><code class="xref std std-token docutils literal notranslate"><span class="pre">ident</span></code></a>s, except for
+<dd><p>When no <a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><code class="xref std std-token docutils literal notranslate"><span class="pre">ident</span></code></a> is provided, shows the whole grammar
+(to be specific, the grammar reachable from <a class="reference internal" href="../language/core/basic.html#term-sentence"><span class="xref std std-term">sentence</span></a> parsing
+and every declared <a class="reference internal" href="../proofs/writing-proofs/proof-mode.html#coq:opt.Default-Proof-Mode" title="Default Proof Mode"><code class="xref coq coq-opt docutils literal notranslate"><span class="pre">proof</span> <span class="pre">mode</span></code></a>).</p>
+<p><code class="docutils literal notranslate"><span class="pre">Print</span> <span class="pre">Grammar</span> <span class="pre">Full</span></code> shows the whole grammar known to the parsing
+engine including unreachable nonterminals.</p>
+<p>Otherwise shows the grammar for the nonterminal <a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><code class="xref std std-token docutils literal notranslate"><span class="pre">ident</span></code></a>s, except for
 the following, which will include some related nonterminals:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">constr</span></code> - for <a class="reference internal" href="../language/core/basic.html#grammar-token-term"><code class="xref std std-token docutils literal notranslate"><span class="pre">term</span></code></a>s</p></li>
