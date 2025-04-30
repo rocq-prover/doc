@@ -268,6 +268,13 @@
 
 <br/>
 <span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Type</span> <span class="id" title="var">t</span> := <span class="id" title="var">inductive</span>.<br/>
+</div>
+
+<div class="doc">
+An <span class="inlinecode"><span class="id" title="var">inductive</span></span> is a name of a mutually inductive type and the index of an
+    inductive block within that type. 
+</div>
+<div class="code">
 
 <br/>
 <span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">equal</span> : <span class="id" title="var">t</span> -&gt; <span class="id" title="var">t</span> -&gt; <span class="id" title="var">bool</span> := "rocq-runtime.plugins.ltac2" "ind_equal".<br/>
@@ -283,7 +290,10 @@ Equality test.
 </div>
 
 <div class="doc">
-Type of data representing inductive blocks. 
+The actual data specified by a concrete declaration of an inductive type,
+    containing, e.g., its constructors and its parameters. A value of type
+    <span class="inlinecode"><span class="id" title="var">data</span></span> corresponds to one inductive type within a larger mutually inductive
+    block. 
 </div>
 <div class="code">
 
@@ -292,8 +302,8 @@ Type of data representing inductive blocks.
 </div>
 
 <div class="doc">
-Get the mutual blocks corresponding to an inductive type in the current
-    environment. Panics if there is no such inductive. 
+Get the value named by <span class="inlinecode"><span class="id" title="var">t</span></span> in the current environment. Panics if <span class="inlinecode"><span class="id" title="var">t</span></span> is not
+    in the current environment. 
 </div>
 <div class="code">
 
@@ -302,7 +312,8 @@ Get the mutual blocks corresponding to an inductive type in the current
 </div>
 
 <div class="doc">
-Returns the inductive corresponding to the block. Inverse of <span class="inlinecode"><span class="id" title="var">data</span></span>. 
+Returns the name of the inductive type corresponding to the block. Inverse
+    of <span class="inlinecode"><span class="id" title="var">data</span></span>. 
 </div>
 <div class="code">
 
@@ -312,8 +323,8 @@ Returns the inductive corresponding to the block. Inverse of <span class="inline
 
 <div class="doc">
 Returns the index of the inductive type inside its mutual block. Guaranteed
-    to range between <span class="inlinecode">0</span> and <span class="inlinecode"><span class="id" title="var">nblocks</span></span> <span class="inlinecode"><span class="id" title="var">data</span></span> <span class="inlinecode">-</span> <span class="inlinecode">1</span> where <span class="inlinecode"><span class="id" title="var">data</span></span> was retrieved
-    using the above function. 
+    to range between <span class="inlinecode">0</span> and <span class="inlinecode"><span class="id" title="var">nblocks</span></span> <span class="inlinecode"><span class="id" title="var">data</span></span> <span class="inlinecode">-</span> <span class="inlinecode">1</span> where <span class="inlinecode"><span class="id" title="var">data</span></span> was retrieved using
+    the above function. 
 </div>
 <div class="code">
 
@@ -340,8 +351,9 @@ Returns the number of constructors appearing in the current block.
 </div>
 
 <div class="doc">
-Returns the block corresponding to the nth inductive type. Index must range
-    between <span class="inlinecode">0</span> and <span class="inlinecode"><span class="id" title="var">nblocks</span></span> <span class="inlinecode"><span class="id" title="var">data</span></span> <span class="inlinecode">-</span> <span class="inlinecode">1</span>, otherwise the function panics. 
+<span class="inlinecode"><span class="id" title="var">get_block</span></span> <span class="inlinecode"><span class="id" title="var">data</span></span> <span class="inlinecode"><span class="id" title="var">n</span></span> is the block corresponding to the nth inductive type in
+    <span class="inlinecode"><span class="id" title="var">data</span></span>'s parent mutually inductive type. Index must range between <span class="inlinecode">0</span> and
+    <span class="inlinecode"><span class="id" title="var">nblocks</span></span> <span class="inlinecode"><span class="id" title="var">data</span></span> <span class="inlinecode">-</span> <span class="inlinecode">1</span>, otherwise the function panics. 
 </div>
 <div class="code">
 
@@ -356,6 +368,26 @@ Returns the nth constructor of the inductive type. Index must range between
 <div class="code">
 
 <br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">nparams</span> : <span class="id" title="var">data</span> -&gt; <span class="id" title="var">int</span> := "rocq-runtime.plugins.ltac2" "ind_get_nparams".<br/>
+</div>
+
+<div class="doc">
+The number of parameters of the inductive type, including both uniform and
+    non-uniform parameters. Does not count local let-ins. 
+</div>
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">nparams_uniform</span> : <span class="id" title="var">data</span> -&gt; <span class="id" title="var">int</span> := "rocq-runtime.plugins.ltac2" "ind_get_nparams_rec".<br/>
+</div>
+
+<div class="doc">
+The number of recursively uniform (i.e., ordinary) parameters of the
+    inductive type. 
+</div>
+<div class="code">
+
+<br/>
 <span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">get_projections</span> : <span class="id" title="var">data</span> -&gt; <span class="id" title="var">projection</span> <span class="id" title="var">array</span> <span class="id" title="var">option</span><br/>
 &nbsp;&nbsp;:= "rocq-runtime.plugins.ltac2" "ind_get_projections".<br/>
 </div>
@@ -363,6 +395,32 @@ Returns the nth constructor of the inductive type. Index must range between
 <div class="doc">
 Returns the list of projections for a primitive record,
     or <span class="inlinecode"><span class="id" title="var">None</span></span> if the inductive is not a primitive record. 
+</div>
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">constructor_nargs</span> : <span class="id" title="var">data</span> -&gt; <span class="id" title="var">int</span> <span class="id" title="var">array</span> := "rocq-runtime.plugins.ltac2" "constructor_nargs".<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">Array.get</span></span> <span class="inlinecode">(<span class="id" title="var">constructor_nargs</span></span> <span class="inlinecode"><span class="id" title="var">data</span>)</span> <span class="inlinecode"><span class="id" title="var">n</span></span> is the number of non-parameter
+    arguments accepted by the <span class="inlinecode"><span class="id" title="var">n</span></span>th constructor of this inductive type. Add
+    <span class="inlinecode"><span class="id" title="var">Array.get</span></span> <span class="inlinecode">(<span class="id" title="var">constructor_nargs</span></span> <span class="inlinecode"><span class="id" title="var">data</span>)</span> <span class="inlinecode"><span class="id" title="var">n</span></span> to <span class="inlinecode"><span class="id" title="var">Ind.nparams_data</span></span> to get the total
+    number of arguments of the constructor. 
+</div>
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">constructor_ndecls</span> : <span class="id" title="var">data</span> -&gt; <span class="id" title="var">int</span> <span class="id" title="var">array</span> := "rocq-runtime.plugins.ltac2" "constructor_ndecls".<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">Array.get</span></span> <span class="inlinecode">(<span class="id" title="var">constructor_ndecls</span></span> <span class="inlinecode"><span class="id" title="var">data</span>)</span> <span class="inlinecode"><span class="id" title="var">n</span></span> is the number of variables bound in
+    a pattern match expression by the <span class="inlinecode"><span class="id" title="var">n</span></span>th constructor of this inductive type.
+    Can be greater than <span class="inlinecode"><span class="id" title="var">constructor_nargs</span></span> if the constructors have local
+    let-bindings, e.g., applied to <span class="inlinecode"><span class="id" title="keyword">Inductive</span></span> <span class="inlinecode"><span class="id" title="var">Ind</span></span> <span class="inlinecode">(<span class="id" title="var">A</span></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" title="keyword">Type</span>)</span> <span class="inlinecode">(<span class="id" title="var">f</span></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" title="var">A</span></span> <span class="inlinecode">-&gt;</span> <span class="inlinecode"><span class="id" title="var">A</span>)</span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" title="keyword">Set</span></span>
+    <span class="inlinecode">:=</span> <span class="inlinecode"><span class="id" title="var">Constr</span></span> <span class="inlinecode">(<span class="id" title="var">x</span></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" title="var">A</span>)</span> <span class="inlinecode">(<span class="id" title="var">y</span></span> <span class="inlinecode">:=</span> <span class="inlinecode"><span class="id" title="var">f</span></span> <span class="inlinecode"><span class="id" title="var">x</span>)</span> it would return <span class="inlinecode">[|2|]</span>, because in <span class="inlinecode"><span class="id" title="keyword">match</span></span> <span class="inlinecode"><span class="id" title="var">t</span></span>
+    <span class="inlinecode"><span class="id" title="keyword">with</span></span> <span class="inlinecode"><span class="id" title="var">Constr</span></span> <span class="inlinecode"><span class="id" title="var">_</span></span> <span class="inlinecode"><span class="id" title="var">_</span></span> <span class="inlinecode"><span class="id" title="var">x</span></span> <span class="inlinecode"><span class="id" title="var">y</span></span> <span class="inlinecode">=&gt;</span> <span class="inlinecode"><span class="id" title="var">e</span></span> <span class="inlinecode"><span class="id" title="keyword">end</span></span>, <span class="inlinecode"><span class="id" title="var">x</span></span> and <span class="inlinecode"><span class="id" title="var">y</span></span> are bound in <span class="inlinecode"><span class="id" title="var">e</span></span>. 
 </div>
 <div class="code">
 </div>
