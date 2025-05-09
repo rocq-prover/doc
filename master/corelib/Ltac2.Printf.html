@@ -307,11 +307,18 @@ This file defines a printf notation for easiness of writing messages
 <li> <code>s </code>: takes an argument of type string and behaves as Message.of_string
 
 </li>
+<li> <code>m </code>: takes an argument of type message and prints it unmodified
+
+</li>
 <li> <code>t </code>: takes an argument of type constr and behaves as Message.of_constr
 
 </li>
 <li> <code>a </code>: takes two arguments <code>f </code> of type <code>(unit -&gt; 'a -&gt; message) </code>
              and <code>x </code> of type <code>'a </code> and behaves as <code>f () x </code>
+
+</li>
+<li> <code>A </code>: takes two arguments <code>f </code> of type <code>('a -&gt; message) </code>
+             and <code>x </code> of type <code>'a </code> and behaves as <code>f x </code>
 
 </li>
 <li> <code>% </code>: outputs <code>% </code> verbatim
