@@ -280,7 +280,7 @@
 </div>
 
 <div class="doc">
-<a id="lab730"></a><h1 class="section">Binary natural numbers, definitions of operations</h1>
+<a id="lab731"></a><h1 class="section">Binary natural numbers, definitions of operations</h1>
 
 </div>
 <div class="code">
@@ -298,7 +298,7 @@
 </div>
 
 <div class="doc">
-<a id="lab731"></a><h2 class="section">Nicer name <span class="inlinecode"><span class="id" title="var">N.pos</span></span> for constructor <span class="inlinecode"><span class="id" title="var">Npos</span></span></h2>
+<a id="lab732"></a><h2 class="section">Nicer name <span class="inlinecode"><span class="id" title="var">N.pos</span></span> for constructor <span class="inlinecode"><span class="id" title="var">Npos</span></span></h2>
 
 </div>
 <div class="code">
@@ -310,7 +310,7 @@
 </div>
 
 <div class="doc">
-<a id="lab732"></a><h2 class="section">Constants</h2>
+<a id="lab733"></a><h2 class="section">Constants</h2>
 
 </div>
 <div class="code">
@@ -324,7 +324,7 @@
 </div>
 
 <div class="doc">
-<a id="lab733"></a><h2 class="section">Successor</h2>
+<a id="lab734"></a><h2 class="section">Successor</h2>
 
 </div>
 <div class="code">
@@ -340,7 +340,7 @@
 </div>
 
 <div class="doc">
-<a id="lab734"></a><h2 class="section">Predecessor</h2>
+<a id="lab735"></a><h2 class="section">Predecessor</h2>
 
 </div>
 <div class="code">
@@ -356,7 +356,7 @@
 </div>
 
 <div class="doc">
-<a id="lab735"></a><h2 class="section">Addition</h2>
+<a id="lab736"></a><h2 class="section">Addition</h2>
 
 </div>
 <div class="code">
@@ -735,75 +735,87 @@ Iteration of a function
 </div>
 
 <div class="doc">
+Iteration of an associative operator 
+</div>
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">Definition</span> <a id="N.iter_op" class="idref" href="#N.iter_op"><span class="id" title="definition">iter_op</span></a> {<a id="A:82" class="idref" href="#A:82"><span class="id" title="binder">A</span></a>} (<a id="op:83" class="idref" href="#op:83"><span class="id" title="binder">op</span></a> : <a class="idref" href="Stdlib.NArith.BinNatDef.html#A:82"><span class="id" title="variable">A</span></a> <a class="idref" href="../corelib/Corelib.Init.Logic.html#::type_scope:x_'-&gt;'_x"><span class="id" title="notation">-&gt;</span></a> <a class="idref" href="Stdlib.NArith.BinNatDef.html#A:82"><span class="id" title="variable">A</span></a> <a class="idref" href="../corelib/Corelib.Init.Logic.html#::type_scope:x_'-&gt;'_x"><span class="id" title="notation">-&gt;</span></a> <a class="idref" href="Stdlib.NArith.BinNatDef.html#A:82"><span class="id" title="variable">A</span></a>) (<a id="z:84" class="idref" href="#z:84"><span class="id" title="binder">z</span></a> <a id="x:85" class="idref" href="#x:85"><span class="id" title="binder">x</span></a> : <a class="idref" href="Stdlib.NArith.BinNatDef.html#A:82"><span class="id" title="variable">A</span></a>) (<a id="n:86" class="idref" href="#n:86"><span class="id" title="binder">n</span></a> : <a class="idref" href="../corelib/Corelib.Numbers.BinNums.html#N"><span class="id" title="inductive">N</span></a>) :=<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">match</span> <a class="idref" href="Stdlib.NArith.BinNatDef.html#n:86"><span class="id" title="variable">n</span></a> <span class="id" title="keyword">with</span> <a class="idref" href="../corelib/Corelib.Numbers.BinNums.html#N0"><span class="id" title="constructor">N0</span></a> =&gt; <a class="idref" href="Stdlib.NArith.BinNatDef.html#z:84"><span class="id" title="variable">z</span></a> | <a class="idref" href="../corelib/Corelib.Numbers.BinNums.html#Npos"><span class="id" title="constructor">Npos</span></a> <span class="id" title="var">p</span> =&gt; <a class="idref" href="../corelib/Corelib.BinNums.PosDef.html#Pos.iter_op"><span class="id" title="definition">Pos.iter_op</span></a> <a class="idref" href="Stdlib.NArith.BinNatDef.html#op:83"><span class="id" title="variable">op</span></a> <span class="id" title="var">p</span> <a class="idref" href="Stdlib.NArith.BinNatDef.html#x:85"><span class="id" title="variable">x</span></a> <span class="id" title="keyword">end</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
 Conversion with a decimal representation for printing/parsing 
 </div>
 <div class="code">
 
 <br/>
-<span class="id" title="keyword">Definition</span> <a id="N.of_uint" class="idref" href="#N.of_uint"><span class="id" title="definition">of_uint</span></a> (<a id="d:82" class="idref" href="#d:82"><span class="id" title="binder">d</span></a>:<a class="idref" href="../corelib/Corelib.Init.Decimal.html#uint"><span class="id" title="inductive">Decimal.uint</span></a>) := <a class="idref" href="Stdlib.PArith.BinPos.html#Pos.of_uint"><span class="id" title="definition">Pos.of_uint</span></a> <a class="idref" href="Stdlib.NArith.BinNatDef.html#d:82"><span class="id" title="variable">d</span></a>.<br/>
+<span class="id" title="keyword">Definition</span> <a id="N.of_uint" class="idref" href="#N.of_uint"><span class="id" title="definition">of_uint</span></a> (<a id="d:88" class="idref" href="#d:88"><span class="id" title="binder">d</span></a>:<a class="idref" href="../corelib/Corelib.Init.Decimal.html#uint"><span class="id" title="inductive">Decimal.uint</span></a>) := <a class="idref" href="Stdlib.PArith.BinPos.html#Pos.of_uint"><span class="id" title="definition">Pos.of_uint</span></a> <a class="idref" href="Stdlib.NArith.BinNatDef.html#d:88"><span class="id" title="variable">d</span></a>.<br/>
 
 <br/>
-<span class="id" title="keyword">Definition</span> <a id="N.of_hex_uint" class="idref" href="#N.of_hex_uint"><span class="id" title="definition">of_hex_uint</span></a> (<a id="d:83" class="idref" href="#d:83"><span class="id" title="binder">d</span></a>:<a class="idref" href="../corelib/Corelib.Init.Hexadecimal.html#uint"><span class="id" title="inductive">Hexadecimal.uint</span></a>) := <a class="idref" href="Stdlib.PArith.BinPos.html#Pos.of_hex_uint"><span class="id" title="definition">Pos.of_hex_uint</span></a> <a class="idref" href="Stdlib.NArith.BinNatDef.html#d:83"><span class="id" title="variable">d</span></a>.<br/>
+<span class="id" title="keyword">Definition</span> <a id="N.of_hex_uint" class="idref" href="#N.of_hex_uint"><span class="id" title="definition">of_hex_uint</span></a> (<a id="d:89" class="idref" href="#d:89"><span class="id" title="binder">d</span></a>:<a class="idref" href="../corelib/Corelib.Init.Hexadecimal.html#uint"><span class="id" title="inductive">Hexadecimal.uint</span></a>) := <a class="idref" href="Stdlib.PArith.BinPos.html#Pos.of_hex_uint"><span class="id" title="definition">Pos.of_hex_uint</span></a> <a class="idref" href="Stdlib.NArith.BinNatDef.html#d:89"><span class="id" title="variable">d</span></a>.<br/>
 
 <br/>
-<span class="id" title="keyword">Definition</span> <a id="N.of_num_uint" class="idref" href="#N.of_num_uint"><span class="id" title="definition">of_num_uint</span></a> (<a id="d:84" class="idref" href="#d:84"><span class="id" title="binder">d</span></a>:<a class="idref" href="../corelib/Corelib.Init.Number.html#uint"><span class="id" title="inductive">Number.uint</span></a>) :=<br/>
-&nbsp;&nbsp;<span class="id" title="keyword">match</span> <a class="idref" href="Stdlib.NArith.BinNatDef.html#d:84"><span class="id" title="variable">d</span></a> <span class="id" title="keyword">with</span><br/>
-&nbsp;&nbsp;| <a class="idref" href="../corelib/Corelib.Init.Number.html#UIntDecimal"><span class="id" title="constructor">Number.UIntDecimal</span></a> <span class="id" title="var">d</span> =&gt; <a class="idref" href="Stdlib.NArith.BinNatDef.html#N.of_uint"><span class="id" title="definition">of_uint</span></a> <a class="idref" href="Stdlib.NArith.BinNatDef.html#d:84"><span class="id" title="variable">d</span></a><br/>
-&nbsp;&nbsp;| <a class="idref" href="../corelib/Corelib.Init.Number.html#UIntHexadecimal"><span class="id" title="constructor">Number.UIntHexadecimal</span></a> <span class="id" title="var">d</span> =&gt; <a class="idref" href="Stdlib.NArith.BinNatDef.html#N.of_hex_uint"><span class="id" title="definition">of_hex_uint</span></a> <a class="idref" href="Stdlib.NArith.BinNatDef.html#d:84"><span class="id" title="variable">d</span></a><br/>
+<span class="id" title="keyword">Definition</span> <a id="N.of_num_uint" class="idref" href="#N.of_num_uint"><span class="id" title="definition">of_num_uint</span></a> (<a id="d:90" class="idref" href="#d:90"><span class="id" title="binder">d</span></a>:<a class="idref" href="../corelib/Corelib.Init.Number.html#uint"><span class="id" title="inductive">Number.uint</span></a>) :=<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">match</span> <a class="idref" href="Stdlib.NArith.BinNatDef.html#d:90"><span class="id" title="variable">d</span></a> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;| <a class="idref" href="../corelib/Corelib.Init.Number.html#UIntDecimal"><span class="id" title="constructor">Number.UIntDecimal</span></a> <span class="id" title="var">d</span> =&gt; <a class="idref" href="Stdlib.NArith.BinNatDef.html#N.of_uint"><span class="id" title="definition">of_uint</span></a> <a class="idref" href="Stdlib.NArith.BinNatDef.html#d:90"><span class="id" title="variable">d</span></a><br/>
+&nbsp;&nbsp;| <a class="idref" href="../corelib/Corelib.Init.Number.html#UIntHexadecimal"><span class="id" title="constructor">Number.UIntHexadecimal</span></a> <span class="id" title="var">d</span> =&gt; <a class="idref" href="Stdlib.NArith.BinNatDef.html#N.of_hex_uint"><span class="id" title="definition">of_hex_uint</span></a> <a class="idref" href="Stdlib.NArith.BinNatDef.html#d:90"><span class="id" title="variable">d</span></a><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Definition</span> <a id="N.of_int" class="idref" href="#N.of_int"><span class="id" title="definition">of_int</span></a> (<a id="d:86" class="idref" href="#d:86"><span class="id" title="binder">d</span></a>:<a class="idref" href="../corelib/Corelib.Init.Decimal.html#int"><span class="id" title="abbreviation">Decimal.int</span></a>) :=<br/>
-&nbsp;&nbsp;<span class="id" title="keyword">match</span> <a class="idref" href="../corelib/Corelib.Init.Decimal.html#norm"><span class="id" title="definition">Decimal.norm</span></a> <a class="idref" href="Stdlib.NArith.BinNatDef.html#d:86"><span class="id" title="variable">d</span></a> <span class="id" title="keyword">with</span><br/>
-&nbsp;&nbsp;| <a class="idref" href="../corelib/Corelib.Init.Decimal.html#Pos"><span class="id" title="constructor">Decimal.Pos</span></a> <span class="id" title="var">d</span> =&gt; <a class="idref" href="../corelib/Corelib.Init.Datatypes.html#Some"><span class="id" title="constructor">Some</span></a> (<a class="idref" href="Stdlib.PArith.BinPos.html#Pos.of_uint"><span class="id" title="definition">Pos.of_uint</span></a> <a class="idref" href="Stdlib.NArith.BinNatDef.html#d:86"><span class="id" title="variable">d</span></a>)<br/>
+<span class="id" title="keyword">Definition</span> <a id="N.of_int" class="idref" href="#N.of_int"><span class="id" title="definition">of_int</span></a> (<a id="d:92" class="idref" href="#d:92"><span class="id" title="binder">d</span></a>:<a class="idref" href="../corelib/Corelib.Init.Decimal.html#int"><span class="id" title="abbreviation">Decimal.int</span></a>) :=<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">match</span> <a class="idref" href="../corelib/Corelib.Init.Decimal.html#norm"><span class="id" title="definition">Decimal.norm</span></a> <a class="idref" href="Stdlib.NArith.BinNatDef.html#d:92"><span class="id" title="variable">d</span></a> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;| <a class="idref" href="../corelib/Corelib.Init.Decimal.html#Pos"><span class="id" title="constructor">Decimal.Pos</span></a> <span class="id" title="var">d</span> =&gt; <a class="idref" href="../corelib/Corelib.Init.Datatypes.html#Some"><span class="id" title="constructor">Some</span></a> (<a class="idref" href="Stdlib.PArith.BinPos.html#Pos.of_uint"><span class="id" title="definition">Pos.of_uint</span></a> <a class="idref" href="Stdlib.NArith.BinNatDef.html#d:92"><span class="id" title="variable">d</span></a>)<br/>
 &nbsp;&nbsp;| <a class="idref" href="../corelib/Corelib.Init.Decimal.html#Neg"><span class="id" title="constructor">Decimal.Neg</span></a> <span class="id" title="var">_</span> =&gt; <a class="idref" href="../corelib/Corelib.Init.Datatypes.html#None"><span class="id" title="constructor">None</span></a><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Definition</span> <a id="N.of_hex_int" class="idref" href="#N.of_hex_int"><span class="id" title="definition">of_hex_int</span></a> (<a id="d:87" class="idref" href="#d:87"><span class="id" title="binder">d</span></a>:<a class="idref" href="../corelib/Corelib.Init.Hexadecimal.html#int"><span class="id" title="abbreviation">Hexadecimal.int</span></a>) :=<br/>
-&nbsp;&nbsp;<span class="id" title="keyword">match</span> <a class="idref" href="../corelib/Corelib.Init.Hexadecimal.html#norm"><span class="id" title="definition">Hexadecimal.norm</span></a> <a class="idref" href="Stdlib.NArith.BinNatDef.html#d:87"><span class="id" title="variable">d</span></a> <span class="id" title="keyword">with</span><br/>
-&nbsp;&nbsp;| <a class="idref" href="../corelib/Corelib.Init.Hexadecimal.html#Pos"><span class="id" title="constructor">Hexadecimal.Pos</span></a> <span class="id" title="var">d</span> =&gt; <a class="idref" href="../corelib/Corelib.Init.Datatypes.html#Some"><span class="id" title="constructor">Some</span></a> (<a class="idref" href="Stdlib.PArith.BinPos.html#Pos.of_hex_uint"><span class="id" title="definition">Pos.of_hex_uint</span></a> <a class="idref" href="Stdlib.NArith.BinNatDef.html#d:87"><span class="id" title="variable">d</span></a>)<br/>
+<span class="id" title="keyword">Definition</span> <a id="N.of_hex_int" class="idref" href="#N.of_hex_int"><span class="id" title="definition">of_hex_int</span></a> (<a id="d:93" class="idref" href="#d:93"><span class="id" title="binder">d</span></a>:<a class="idref" href="../corelib/Corelib.Init.Hexadecimal.html#int"><span class="id" title="abbreviation">Hexadecimal.int</span></a>) :=<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">match</span> <a class="idref" href="../corelib/Corelib.Init.Hexadecimal.html#norm"><span class="id" title="definition">Hexadecimal.norm</span></a> <a class="idref" href="Stdlib.NArith.BinNatDef.html#d:93"><span class="id" title="variable">d</span></a> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;| <a class="idref" href="../corelib/Corelib.Init.Hexadecimal.html#Pos"><span class="id" title="constructor">Hexadecimal.Pos</span></a> <span class="id" title="var">d</span> =&gt; <a class="idref" href="../corelib/Corelib.Init.Datatypes.html#Some"><span class="id" title="constructor">Some</span></a> (<a class="idref" href="Stdlib.PArith.BinPos.html#Pos.of_hex_uint"><span class="id" title="definition">Pos.of_hex_uint</span></a> <a class="idref" href="Stdlib.NArith.BinNatDef.html#d:93"><span class="id" title="variable">d</span></a>)<br/>
 &nbsp;&nbsp;| <a class="idref" href="../corelib/Corelib.Init.Hexadecimal.html#Neg"><span class="id" title="constructor">Hexadecimal.Neg</span></a> <span class="id" title="var">_</span> =&gt; <a class="idref" href="../corelib/Corelib.Init.Datatypes.html#None"><span class="id" title="constructor">None</span></a><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Definition</span> <a id="N.of_num_int" class="idref" href="#N.of_num_int"><span class="id" title="definition">of_num_int</span></a> (<a id="d:88" class="idref" href="#d:88"><span class="id" title="binder">d</span></a>:<a class="idref" href="../corelib/Corelib.Init.Number.html#int"><span class="id" title="abbreviation">Number.int</span></a>) :=<br/>
-&nbsp;&nbsp;<span class="id" title="keyword">match</span> <a class="idref" href="Stdlib.NArith.BinNatDef.html#d:88"><span class="id" title="variable">d</span></a> <span class="id" title="keyword">with</span><br/>
-&nbsp;&nbsp;| <a class="idref" href="../corelib/Corelib.Init.Number.html#IntDecimal"><span class="id" title="constructor">Number.IntDecimal</span></a> <span class="id" title="var">d</span> =&gt; <a class="idref" href="Stdlib.NArith.BinNatDef.html#N.of_int"><span class="id" title="definition">of_int</span></a> <a class="idref" href="Stdlib.NArith.BinNatDef.html#d:88"><span class="id" title="variable">d</span></a><br/>
-&nbsp;&nbsp;| <a class="idref" href="../corelib/Corelib.Init.Number.html#IntHexadecimal"><span class="id" title="constructor">Number.IntHexadecimal</span></a> <span class="id" title="var">d</span> =&gt; <a class="idref" href="Stdlib.NArith.BinNatDef.html#N.of_hex_int"><span class="id" title="definition">of_hex_int</span></a> <a class="idref" href="Stdlib.NArith.BinNatDef.html#d:88"><span class="id" title="variable">d</span></a><br/>
+<span class="id" title="keyword">Definition</span> <a id="N.of_num_int" class="idref" href="#N.of_num_int"><span class="id" title="definition">of_num_int</span></a> (<a id="d:94" class="idref" href="#d:94"><span class="id" title="binder">d</span></a>:<a class="idref" href="../corelib/Corelib.Init.Number.html#int"><span class="id" title="abbreviation">Number.int</span></a>) :=<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">match</span> <a class="idref" href="Stdlib.NArith.BinNatDef.html#d:94"><span class="id" title="variable">d</span></a> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;| <a class="idref" href="../corelib/Corelib.Init.Number.html#IntDecimal"><span class="id" title="constructor">Number.IntDecimal</span></a> <span class="id" title="var">d</span> =&gt; <a class="idref" href="Stdlib.NArith.BinNatDef.html#N.of_int"><span class="id" title="definition">of_int</span></a> <a class="idref" href="Stdlib.NArith.BinNatDef.html#d:94"><span class="id" title="variable">d</span></a><br/>
+&nbsp;&nbsp;| <a class="idref" href="../corelib/Corelib.Init.Number.html#IntHexadecimal"><span class="id" title="constructor">Number.IntHexadecimal</span></a> <span class="id" title="var">d</span> =&gt; <a class="idref" href="Stdlib.NArith.BinNatDef.html#N.of_hex_int"><span class="id" title="definition">of_hex_int</span></a> <a class="idref" href="Stdlib.NArith.BinNatDef.html#d:94"><span class="id" title="variable">d</span></a><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Definition</span> <a id="N.to_uint" class="idref" href="#N.to_uint"><span class="id" title="definition">to_uint</span></a> <a id="n:90" class="idref" href="#n:90"><span class="id" title="binder">n</span></a> :=<br/>
-&nbsp;&nbsp;<span class="id" title="keyword">match</span> <a class="idref" href="Stdlib.NArith.BinNatDef.html#n:90"><span class="id" title="variable">n</span></a> <span class="id" title="keyword">with</span><br/>
+<span class="id" title="keyword">Definition</span> <a id="N.to_uint" class="idref" href="#N.to_uint"><span class="id" title="definition">to_uint</span></a> <a id="n:96" class="idref" href="#n:96"><span class="id" title="binder">n</span></a> :=<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">match</span> <a class="idref" href="Stdlib.NArith.BinNatDef.html#n:96"><span class="id" title="variable">n</span></a> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| 0 =&gt; <a class="idref" href="../corelib/Corelib.Init.Decimal.html#zero"><span class="id" title="abbreviation">Decimal.zero</span></a><br/>
 &nbsp;&nbsp;| <a class="idref" href="Stdlib.NArith.BinNatDef.html#N.pos"><span class="id" title="abbreviation">pos</span></a> <span class="id" title="var">p</span> =&gt; <a class="idref" href="Stdlib.PArith.BinPos.html#Pos.to_uint"><span class="id" title="definition">Pos.to_uint</span></a> <span class="id" title="var">p</span><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Definition</span> <a id="N.to_hex_uint" class="idref" href="#N.to_hex_uint"><span class="id" title="definition">to_hex_uint</span></a> <a id="n:92" class="idref" href="#n:92"><span class="id" title="binder">n</span></a> :=<br/>
-&nbsp;&nbsp;<span class="id" title="keyword">match</span> <a class="idref" href="Stdlib.NArith.BinNatDef.html#n:92"><span class="id" title="variable">n</span></a> <span class="id" title="keyword">with</span><br/>
+<span class="id" title="keyword">Definition</span> <a id="N.to_hex_uint" class="idref" href="#N.to_hex_uint"><span class="id" title="definition">to_hex_uint</span></a> <a id="n:98" class="idref" href="#n:98"><span class="id" title="binder">n</span></a> :=<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">match</span> <a class="idref" href="Stdlib.NArith.BinNatDef.html#n:98"><span class="id" title="variable">n</span></a> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| 0 =&gt; <a class="idref" href="../corelib/Corelib.Init.Hexadecimal.html#zero"><span class="id" title="abbreviation">Hexadecimal.zero</span></a><br/>
 &nbsp;&nbsp;| <a class="idref" href="Stdlib.NArith.BinNatDef.html#N.pos"><span class="id" title="abbreviation">pos</span></a> <span class="id" title="var">p</span> =&gt; <a class="idref" href="Stdlib.PArith.BinPos.html#Pos.to_hex_uint"><span class="id" title="definition">Pos.to_hex_uint</span></a> <span class="id" title="var">p</span><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Definition</span> <a id="N.to_num_uint" class="idref" href="#N.to_num_uint"><span class="id" title="definition">to_num_uint</span></a> <a id="n:94" class="idref" href="#n:94"><span class="id" title="binder">n</span></a> := <a class="idref" href="../corelib/Corelib.Init.Number.html#UIntDecimal"><span class="id" title="constructor">Number.UIntDecimal</span></a> (<a class="idref" href="Stdlib.NArith.BinNatDef.html#N.to_uint"><span class="id" title="definition">to_uint</span></a> <a class="idref" href="Stdlib.NArith.BinNatDef.html#n:94"><span class="id" title="variable">n</span></a>).<br/>
+<span class="id" title="keyword">Definition</span> <a id="N.to_num_uint" class="idref" href="#N.to_num_uint"><span class="id" title="definition">to_num_uint</span></a> <a id="n:100" class="idref" href="#n:100"><span class="id" title="binder">n</span></a> := <a class="idref" href="../corelib/Corelib.Init.Number.html#UIntDecimal"><span class="id" title="constructor">Number.UIntDecimal</span></a> (<a class="idref" href="Stdlib.NArith.BinNatDef.html#N.to_uint"><span class="id" title="definition">to_uint</span></a> <a class="idref" href="Stdlib.NArith.BinNatDef.html#n:100"><span class="id" title="variable">n</span></a>).<br/>
 
 <br/>
-<span class="id" title="keyword">Definition</span> <a id="N.to_num_hex_uint" class="idref" href="#N.to_num_hex_uint"><span class="id" title="definition">to_num_hex_uint</span></a> <a id="n:95" class="idref" href="#n:95"><span class="id" title="binder">n</span></a> := <a class="idref" href="../corelib/Corelib.Init.Number.html#UIntHexadecimal"><span class="id" title="constructor">Number.UIntHexadecimal</span></a> (<a class="idref" href="Stdlib.NArith.BinNatDef.html#N.to_hex_uint"><span class="id" title="definition">to_hex_uint</span></a> <a class="idref" href="Stdlib.NArith.BinNatDef.html#n:95"><span class="id" title="variable">n</span></a>).<br/>
+<span class="id" title="keyword">Definition</span> <a id="N.to_num_hex_uint" class="idref" href="#N.to_num_hex_uint"><span class="id" title="definition">to_num_hex_uint</span></a> <a id="n:101" class="idref" href="#n:101"><span class="id" title="binder">n</span></a> := <a class="idref" href="../corelib/Corelib.Init.Number.html#UIntHexadecimal"><span class="id" title="constructor">Number.UIntHexadecimal</span></a> (<a class="idref" href="Stdlib.NArith.BinNatDef.html#N.to_hex_uint"><span class="id" title="definition">to_hex_uint</span></a> <a class="idref" href="Stdlib.NArith.BinNatDef.html#n:101"><span class="id" title="variable">n</span></a>).<br/>
 
 <br/>
-<span class="id" title="keyword">Definition</span> <a id="N.to_int" class="idref" href="#N.to_int"><span class="id" title="definition">to_int</span></a> <a id="n:96" class="idref" href="#n:96"><span class="id" title="binder">n</span></a> := <a class="idref" href="../corelib/Corelib.Init.Decimal.html#Pos"><span class="id" title="constructor">Decimal.Pos</span></a> (<a class="idref" href="Stdlib.NArith.BinNatDef.html#N.to_uint"><span class="id" title="definition">to_uint</span></a> <a class="idref" href="Stdlib.NArith.BinNatDef.html#n:96"><span class="id" title="variable">n</span></a>).<br/>
+<span class="id" title="keyword">Definition</span> <a id="N.to_int" class="idref" href="#N.to_int"><span class="id" title="definition">to_int</span></a> <a id="n:102" class="idref" href="#n:102"><span class="id" title="binder">n</span></a> := <a class="idref" href="../corelib/Corelib.Init.Decimal.html#Pos"><span class="id" title="constructor">Decimal.Pos</span></a> (<a class="idref" href="Stdlib.NArith.BinNatDef.html#N.to_uint"><span class="id" title="definition">to_uint</span></a> <a class="idref" href="Stdlib.NArith.BinNatDef.html#n:102"><span class="id" title="variable">n</span></a>).<br/>
 
 <br/>
-<span class="id" title="keyword">Definition</span> <a id="N.to_hex_int" class="idref" href="#N.to_hex_int"><span class="id" title="definition">to_hex_int</span></a> <a id="n:97" class="idref" href="#n:97"><span class="id" title="binder">n</span></a> := <a class="idref" href="../corelib/Corelib.Init.Hexadecimal.html#Pos"><span class="id" title="constructor">Hexadecimal.Pos</span></a> (<a class="idref" href="Stdlib.NArith.BinNatDef.html#N.to_hex_uint"><span class="id" title="definition">to_hex_uint</span></a> <a class="idref" href="Stdlib.NArith.BinNatDef.html#n:97"><span class="id" title="variable">n</span></a>).<br/>
+<span class="id" title="keyword">Definition</span> <a id="N.to_hex_int" class="idref" href="#N.to_hex_int"><span class="id" title="definition">to_hex_int</span></a> <a id="n:103" class="idref" href="#n:103"><span class="id" title="binder">n</span></a> := <a class="idref" href="../corelib/Corelib.Init.Hexadecimal.html#Pos"><span class="id" title="constructor">Hexadecimal.Pos</span></a> (<a class="idref" href="Stdlib.NArith.BinNatDef.html#N.to_hex_uint"><span class="id" title="definition">to_hex_uint</span></a> <a class="idref" href="Stdlib.NArith.BinNatDef.html#n:103"><span class="id" title="variable">n</span></a>).<br/>
 
 <br/>
-<span class="id" title="keyword">Definition</span> <a id="N.to_num_int" class="idref" href="#N.to_num_int"><span class="id" title="definition">to_num_int</span></a> <a id="n:98" class="idref" href="#n:98"><span class="id" title="binder">n</span></a> := <a class="idref" href="../corelib/Corelib.Init.Number.html#IntDecimal"><span class="id" title="constructor">Number.IntDecimal</span></a> (<a class="idref" href="Stdlib.NArith.BinNatDef.html#N.to_int"><span class="id" title="definition">to_int</span></a> <a class="idref" href="Stdlib.NArith.BinNatDef.html#n:98"><span class="id" title="variable">n</span></a>).<br/>
+<span class="id" title="keyword">Definition</span> <a id="N.to_num_int" class="idref" href="#N.to_num_int"><span class="id" title="definition">to_num_int</span></a> <a id="n:104" class="idref" href="#n:104"><span class="id" title="binder">n</span></a> := <a class="idref" href="../corelib/Corelib.Init.Number.html#IntDecimal"><span class="id" title="constructor">Number.IntDecimal</span></a> (<a class="idref" href="Stdlib.NArith.BinNatDef.html#N.to_int"><span class="id" title="definition">to_int</span></a> <a class="idref" href="Stdlib.NArith.BinNatDef.html#n:104"><span class="id" title="variable">n</span></a>).<br/>
 
 <br/>
-<span class="id" title="keyword">Definition</span> <a id="N.to_num_hex_int" class="idref" href="#N.to_num_hex_int"><span class="id" title="definition">to_num_hex_int</span></a> <a id="n:99" class="idref" href="#n:99"><span class="id" title="binder">n</span></a> := <a class="idref" href="../corelib/Corelib.Init.Number.html#IntHexadecimal"><span class="id" title="constructor">Number.IntHexadecimal</span></a> (<a class="idref" href="Stdlib.NArith.BinNatDef.html#N.to_hex_int"><span class="id" title="definition">to_hex_int</span></a> <a class="idref" href="Stdlib.NArith.BinNatDef.html#n:99"><span class="id" title="variable">n</span></a>).<br/>
+<span class="id" title="keyword">Definition</span> <a id="N.to_num_hex_int" class="idref" href="#N.to_num_hex_int"><span class="id" title="definition">to_num_hex_int</span></a> <a id="n:105" class="idref" href="#n:105"><span class="id" title="binder">n</span></a> := <a class="idref" href="../corelib/Corelib.Init.Number.html#IntHexadecimal"><span class="id" title="constructor">Number.IntHexadecimal</span></a> (<a class="idref" href="Stdlib.NArith.BinNatDef.html#N.to_hex_int"><span class="id" title="definition">to_hex_int</span></a> <a class="idref" href="Stdlib.NArith.BinNatDef.html#n:105"><span class="id" title="variable">n</span></a>).<br/>
 
 <br/>
 <span class="id" title="keyword">Number Notation</span> <a class="idref" href="../corelib/Corelib.Numbers.BinNums.html#N"><span class="id" title="inductive">N</span></a> <a class="idref" href="Stdlib.NArith.BinNatDef.html#N.of_num_uint"><span class="id" title="definition">of_num_uint</span></a> <a class="idref" href="Stdlib.NArith.BinNatDef.html#N.to_num_hex_uint"><span class="id" title="definition">to_num_hex_uint</span></a> : <span class="id" title="var">hex_N_scope</span>.<br/>
