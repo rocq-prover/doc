@@ -1769,8 +1769,9 @@ applications of <code class="docutils literal notranslate"><span class="notation
 <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="#grammar-token-arg_specs"><span class="hole"><span class="pre">arg_specs</span><sub><span class="pre">1</span></sub></span></a></span></code> and then propagate information from the typing context to
 type check the remaining arguments (in <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="#grammar-token-arg_specs"><span class="hole"><span class="pre">arg_specs</span><sub><span class="pre">2</span></sub></span></a></span></code>).</p>
 <div class="admonition note">
-<p class="admonition-title">Example: Bidirectionality hints</p>
-<p>In a context where a coercion was declared from <code class="docutils literal notranslate"><span class="pre">bool</span></code> to <code class="docutils literal notranslate"><span class="pre">nat</span></code>:</p>
+<p class="admonition-title">Example: Bidirectionality hints, example with coercion</p>
+<p>In a context where a coercion was declared from <code class="docutils literal notranslate"><span class="pre">bool</span></code> to <code class="docutils literal notranslate"><span class="pre">nat</span></code>
+(see section <a class="reference internal" href="../../addendum/implicit-coercions.html#coercions"><span class="std std-ref">Implicit Coercions</span></a>):</p>
 <div class="coqtop literal-block docutils container">
 <span class="coqtop-reset"></span><dl>
 <dt><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">b2n</span><span> (</span><span class="coqdoc-var">b</span><span> : </span><span class="coqdoc-var">bool</span><span>) := </span><span class="coqdoc-keyword">if</span><span> </span><span class="coqdoc-var">b</span><span> </span><span class="coqdoc-keyword">then</span><span> 1 </span><span class="coqdoc-keyword">else</span><span> 0.</span><span>
@@ -1803,6 +1804,71 @@ while it is expected to have type &quot;</span><span>exists</span><span> n : nat
      : </span><span>exists</span><span> n : nat</span><span>,</span><span> n</span><span> &gt;</span><span> 0
 where
 ?g : [ |- (</span><span class="ansi-bold">fun</span><span> n : nat =&gt; n</span><span> &gt;</span><span> 0) true]
+</span></dd>
+</dl>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Example: Bidirectionality hints, example with number comparison</p>
+<p>Bidirectionality hints can be used without coercions,
+as shown by the following example.</p>
+<p>One could provide arguments with simpler types than expected
+(or even fully implicit), and let Rocq infer the correct one.
+For instance, consider the following definition:</p>
+<div class="coqtop literal-block docutils container">
+<span class="coqtop-reset"></span><dl>
+<dt><span></span><span class="coqdoc-keyword">Import</span><span> </span><span class="coqdoc-var">Nat</span><span>.</span><span>
+</span></dt><dt><span></span><span>
+</span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">leb_implies_le</span><span> {</span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-var">m</span><span>} (</span><span class="coqdoc-var">H</span><span> : (</span><span class="coqdoc-var">n</span><span> &lt;=? </span><span class="coqdoc-var">m</span><span>) = </span><span class="coqdoc-var">true</span><span>) : </span><span class="coqdoc-var">n</span><span> &lt;= </span><span class="coqdoc-var">m</span><span>.</span><span>
+</span></dt><dd class="coqtop-hidden"><span>1 goal
+  
+  n, m : nat
+  H : (n</span><span> &lt;=?</span><span> m)</span><span> =</span><span> true
+  ============================
+  n</span><span> &lt;=</span><span> m
+</span></dd>
+<dt><span></span><span class="coqdoc-keyword">Proof</span><span>.</span><span>
+</span></dt><dt><span>   </span><span class="coqdoc-var">revert</span><span> </span><span class="coqdoc-var">m</span><span> </span><span class="coqdoc-var">H</span><span>; </span><span class="coqdoc-tactic">induction</span><span> </span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-keyword">as</span><span> [| </span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-var">IH</span><span>]; </span><span class="coqdoc-tactic">intros</span><span> </span><span class="coqdoc-var">m</span><span>; [</span><span class="coqdoc-tactic">intros</span><span> </span><span class="coqdoc-var">_</span><span>; </span><span class="coqdoc-tactic">exact</span><span> (</span><span class="coqdoc-var">le_0_n</span><span> </span><span class="coqdoc-var">_</span><span>) |].</span><span>
+</span></dt><dd class="coqtop-hidden"><span>1 goal
+  
+  n : nat
+  IH : </span><span class="ansi-bold">forall</span><span> m : nat, (n</span><span> &lt;=?</span><span> m)</span><span> =</span><span> true</span><span> -&gt;</span><span> n</span><span> &lt;=</span><span> m
+  m : nat
+  ============================
+  (S n</span><span> &lt;=?</span><span> m)</span><span> =</span><span> true</span><span> -&gt;</span><span> S n</span><span> &lt;=</span><span> m
+</span></dd>
+<dt><span>   </span><span class="coqdoc-tactic">destruct</span><span> </span><span class="coqdoc-var">m</span><span>; </span><span class="coqdoc-tactic">intros</span><span> [= </span><span class="coqdoc-var">H</span><span>]; </span><span class="coqdoc-tactic">apply</span><span> </span><span class="coqdoc-var">le_n_S</span><span>, </span><span class="coqdoc-var">IH</span><span>; </span><span class="coqdoc-tactic">exact</span><span> </span><span class="coqdoc-var">H</span><span>.</span><span>
+</span></dt><dd class="coqtop-hidden"><span>No more goals.
+</span></dd>
+<dt><span></span><span class="coqdoc-keyword">Qed</span><span>.</span><span>
+</span></dt></dl>
+</div>
+<p>One could use leb_implies_le to prove <code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">&lt;=</span> <span class="pre">4</span></code> without providing
+an explicit proof of <code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">&lt;=?</span> <span class="pre">4</span> <span class="pre">=</span> <span class="pre">true</span></code>, by using <code class="docutils literal notranslate"><span class="pre">eq_refl</span></code> in <code class="docutils literal notranslate"><span class="pre">H</span></code>'s place.</p>
+<p>Rocq is able to infer that <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">3</span></code> and <code class="docutils literal notranslate"><span class="pre">m</span> <span class="pre">=</span> <span class="pre">4</span></code> by using <code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">&lt;=</span> <span class="pre">4</span></code> from the
+expected type and <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&lt;=</span> <span class="pre">m</span></code> from the definition of <code class="docutils literal notranslate"><span class="pre">leb_implies_le</span></code>.
+But it cannot use these values to infer that H's type should be <code class="docutils literal notranslate"><span class="pre">(3</span> <span class="pre">&lt;=?</span> <span class="pre">4)</span> <span class="pre">=</span> <span class="pre">true</span></code>
+from <code class="docutils literal notranslate"><span class="pre">(?n</span> <span class="pre">&lt;=?</span> <span class="pre">?m)</span> <span class="pre">=</span> <span class="pre">true</span></code> as one could expect. The reason is that Rocq doesn't
+make types infered for some arguments available for the inference of the
+remaining arguments:</p>
+<div class="coqtop literal-block docutils container">
+<span></span><dl>
+<dt><span></span><span class="coqdoc-var">Fail</span><span> </span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-var">leb_implies_le</span><span> (</span><span class="coqdoc-var">eq_refl</span><span> </span><span class="coqdoc-var">_</span><span>) : 3 &lt;= 4.</span><span>
+</span></dt><dd><span>The command has indeed failed with message:
+The term &quot;eq_refl&quot; has type &quot;(</span><span class="ansi-fg-light-blue">?n</span><span> &lt;=?</span><span> </span><span class="ansi-fg-light-blue">?m</span><span>)</span><span> =</span><span> (</span><span class="ansi-fg-light-blue">?n</span><span> &lt;=?</span><span> </span><span class="ansi-fg-light-blue">?m</span><span>)&quot;
+while it is expected to have type &quot;(</span><span class="ansi-fg-light-blue">?n</span><span> &lt;=?</span><span> </span><span class="ansi-fg-light-blue">?m</span><span>)</span><span> =</span><span> true&quot;.
+</span></dd>
+</dl>
+</div>
+<p>However, by using a bidirectionality hint, values infered for arguments on the left of <code class="docutils literal notranslate"><span class="pre">&amp;</span></code>
+are propagated to those on the right. This makes values <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">3</span></code> and <code class="docutils literal notranslate"><span class="pre">m</span> <span class="pre">=</span> <span class="pre">4</span></code> propagate to <code class="docutils literal notranslate"><span class="pre">H</span></code>,
+allowing <code class="docutils literal notranslate"><span class="pre">(?n</span> <span class="pre">&lt;=?</span> <span class="pre">?m)</span></code> to be reduced to <code class="docutils literal notranslate"><span class="pre">true</span></code>:</p>
+<div class="coqtop literal-block docutils container">
+<span></span><dl>
+<dt><span></span><span class="coqdoc-keyword">Arguments</span><span> </span><span class="coqdoc-var">leb_implies_le</span><span> </span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-var">m</span><span> &amp; </span><span class="coqdoc-var">H</span><span>.</span><span>
+</span></dt><dt><span></span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-var">leb_implies_le</span><span> (</span><span class="coqdoc-var">eq_refl</span><span> </span><span class="coqdoc-var">_</span><span>) : 3 &lt;= 4.</span><span>
+</span></dt><dd><span>leb_implies_le eq_refl : 3</span><span> &lt;=</span><span> 4
+     : 3</span><span> &lt;=</span><span> 4
 </span></dd>
 </dl>
 </div>
