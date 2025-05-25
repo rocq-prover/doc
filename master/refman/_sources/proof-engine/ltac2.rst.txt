@@ -1357,7 +1357,7 @@ Abbreviations
 
    Introduces a special kind of notation, called an abbreviation,
    that does not add any parsing rules. It is similar in
-   spirit to Rocq abbreviations (see :cmd:`Notation (abbreviation)`,
+   spirit to Rocq abbreviations (see :cmd:`Notation (abbreviation)`),
    insofar as its main purpose is to give an
    absolute name to a piece of pure syntax, which can be transparently referred to
    by this name as if it were a proper definition.
@@ -1371,7 +1371,9 @@ Abbreviations
 
    For instance, suppose that we define the following.
 
-   :n:`Ltac2 Notation foo := fun x => x ().`
+   .. rocqdoc::
+
+      Ltac2 Notation foo := fun x => x ().
 
    Then we have the following expansion at internalization time.
 
@@ -1388,7 +1390,7 @@ Defining tactics
 ~~~~~~~~~~~~~~~~
 
 Built-in tactics (those defined in OCaml code in the Rocq executable) and Ltac1 tactics,
-which are defined in `.v` files, must be defined through notations.  (Ltac2 tactics can be
+which are defined in `.v` files, must be defined through notations. Ltac2 tactics can be
 defined with :cmd:`Ltac2`.
 
 Notations for many but not all built-in tactics are defined in `Notations.v`, which is automatically
@@ -1451,24 +1453,24 @@ Metasyntactic operations that can be applied to other syntactic classes are:
 
   :n:`opt(@ltac2_syntax_class)`
     Parses an optional :token:`ltac2_syntax_class`.  The associated value is either :n:`None` or
-    enclosed in :n:`Some`
+    enclosed in :n:`Some`.
 
   :n:`list1(@ltac2_syntax_class {? , @string })`
-    Parses a list of one or more :token:`ltac2_syntax_class`\s.  If :token:`string` is specified,
+    Parses a list of one or more :token:`ltac2_syntax_class`\es.  If :token:`string` is specified,
     items must be separated by :token:`string`.
 
   :n:`list0(@ltac2_syntax_class {? , @string })`
-    Parses a list of zero or more :token:`ltac2_syntax_class`\s.  If :token:`string` is specified,
+    Parses a list of zero or more :token:`ltac2_syntax_class`\es.  If :token:`string` is specified,
     items must be separated by :token:`string`.  For zero items, the associated value
     is an empty list.
 
   :n:`seq({+, @ltac2_syntax_class })`
-    Parses the :token:`ltac2_syntax_class`\s in order.  The associated value is a tuple,
-    omitting :token:`ltac2_syntax_class`\s that are :token:`string`\s.
+    Parses the :token:`ltac2_syntax_class`\es in order.  The associated value is a tuple,
+    omitting :token:`ltac2_syntax_class`\es that are :token:`string`\s.
     `self` and `next` are not permitted within `seq`.
 
 The following classes represent nonterminals with some special handling.  The
-table further down lists the classes that that are handled plainly.
+table further down lists the classes that are handled plainly.
 
   :n:`constr {? ( {+, @scope_key } ) }`
     Parses a :token:`term`.  If specified, the :token:`scope_key`\s are used to interpret
