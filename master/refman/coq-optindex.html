@@ -461,6 +461,7 @@
 <li class="toctree-l4"><a class="reference internal" href="proof-engine/tactics.html#bindings">Bindings</a></li>
 <li class="toctree-l4"><a class="reference internal" href="proof-engine/tactics.html#intro-patterns">Intro patterns</a></li>
 <li class="toctree-l4"><a class="reference internal" href="proof-engine/tactics.html#occurrence-clauses">Occurrence clauses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="proof-engine/tactics.html#automatic-clearing-of-hypotheses">Automatic clearing of hypotheses</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="proof-engine/tactics.html#applying-theorems">Applying theorems</a></li>
@@ -824,6 +825,7 @@
 <li class="toctree-l4"><a class="reference internal" href="addendum/extraction.html#setting-the-target-language">Setting the target language</a></li>
 <li class="toctree-l4"><a class="reference internal" href="addendum/extraction.html#inlining-and-optimizations">Inlining and optimizations</a></li>
 <li class="toctree-l4"><a class="reference internal" href="addendum/extraction.html#extra-elimination-of-useless-arguments">Extra elimination of useless arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="addendum/extraction.html#accessing-opaque-proofs">Accessing opaque proofs</a></li>
 <li class="toctree-l4"><a class="reference internal" href="addendum/extraction.html#realizing-axioms">Realizing axioms</a></li>
 <li class="toctree-l4"><a class="reference internal" href="addendum/extraction.html#realizing-inductive-types">Realizing inductive types</a></li>
 <li class="toctree-l4"><a class="reference internal" href="addendum/extraction.html#generating-ffi-code">Generating FFI Code</a></li>
@@ -845,6 +847,7 @@
 <li class="toctree-l3"><a class="reference internal" href="using/libraries/funind.html#advanced-recursive-functions">Advanced recursive functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="using/libraries/funind.html#tactics">Tactics</a></li>
 <li class="toctree-l3"><a class="reference internal" href="using/libraries/funind.html#generation-of-induction-principles-with-functional-scheme">Generation of induction principles with <code class="docutils literal notranslate"><span class="pre">Functional</span></code> <code class="docutils literal notranslate"><span class="pre">Scheme</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="using/libraries/funind.html#flags">Flags</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="using/libraries/writing.html">Writing Rocq libraries and plugins</a><ul>
@@ -1315,6 +1318,11 @@
      <tr>
        <td></td>
        <td>
+       <a href="proof-engine/tactics.html#coq:flag.Default-Clearing-Used-Hypotheses"><code class="xref">Default Clearing Used Hypotheses</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
        <a href="proof-engine/tactics.html#coq:opt.Default-Goal-Selector"><code class="xref">Default Goal Selector</code></a></td><td>
        <em></em></td></tr>
      <tr>
@@ -1359,6 +1367,11 @@
        <td></td>
        <td>
        <a href="proofs/writing-proofs/reasoning-inductives.html#coq:flag.Elimination-Schemes"><code class="xref">Elimination Schemes</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="addendum/extraction.html#coq:flag.Extraction-AccessOpaque"><code class="xref">Extraction AccessOpaque</code></a></td><td>
        <em></em></td></tr>
      <tr>
        <td></td>
@@ -1423,6 +1436,16 @@
        <td>
        <a href="proofs/automatic-tactics/logic.html#coq:opt.Firstorder-Solver"><code class="xref">Firstorder Solver</code></a></td><td>
        <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="using/libraries/funind.html#coq:flag.Function_raw_tcc"><code class="xref">Function_raw_tcc</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="using/libraries/funind.html#coq:flag.Functional-Induction-Rewrite-Dependent"><code class="xref">Functional Induction Rewrite Dependent</code></a></td><td>
+       <em></em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-g"><td></td><td>
        <strong>g</strong></td><td></td></tr>
@@ -1483,6 +1506,11 @@
      <tr>
        <td></td>
        <td>
+       <a href="proofs/writing-proofs/proof-mode.html#coq:flag.Keep-Admitted-Variables"><code class="xref">Keep Admitted Variables</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
        <a href="proofs/writing-proofs/reasoning-inductives.html#coq:table.Keep-Equalities"><code class="xref">Keep Equalities</code></a></td><td>
        <em></em></td></tr>
      <tr>
@@ -1511,6 +1539,11 @@
      <tr>
        <td></td>
        <td>
+       <a href="addendum/micromega.html#coq:flag.Lia-Depth"><code class="xref">Lia Depth</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
        <a href="proofs/automatic-tactics/auto.html#coq:opt.Loose-Hint-Behavior"><code class="xref">Loose Hint Behavior</code></a></td><td>
        <em></em></td></tr>
      <tr>
@@ -1532,6 +1565,11 @@
        <td></td>
        <td>
        <a href="proof-engine/ltac.html#coq:flag.Ltac-Profiling"><code class="xref">Ltac Profiling</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="proof-engine/ltac.html#coq:opt.Ltac-Profiling-Cutoff"><code class="xref">Ltac Profiling Cutoff</code></a></td><td>
        <em></em></td></tr>
      <tr>
        <td></td>
@@ -1685,6 +1723,11 @@
      <tr>
        <td></td>
        <td>
+       <a href="language/core/primitive.html#coq:flag.Printing-Float"><code class="xref">Printing Float</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
        <a href="proofs/writing-proofs/proof-mode.html#coq:flag.Printing-Goal-Names"><code class="xref">Printing Goal Names</code></a></td><td>
        <em></em></td></tr>
      <tr>
@@ -1765,6 +1808,11 @@
      <tr>
        <td></td>
        <td>
+       <a href="addendum/universe-polymorphism.html#coq:flag.Printing-Sort-Qualities"><code class="xref">Printing Sort Qualities</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
        <a href="language/extensions/match.html#coq:flag.Printing-Synth"><code class="xref">Printing Synth</code></a></td><td>
        <em></em></td></tr>
      <tr>
@@ -1823,11 +1871,6 @@
      <tr>
        <td></td>
        <td>
-       <a href="proofs/writing-proofs/equality.html#coq:flag.Regular-Subst-Tactic"><code class="xref">Regular Subst Tactic</code></a></td><td>
-       <em></em></td></tr>
-     <tr>
-       <td></td>
-       <td>
        <a href="language/extensions/implicit-arguments.html#coq:flag.Reversible-Pattern-Implicit"><code class="xref">Reversible Pattern Implicit</code></a></td><td>
        <em></em></td></tr>
      <tr>
@@ -1839,6 +1882,21 @@
        <td></td>
        <td>
        <a href="proofs/writing-proofs/reasoning-inductives.html#coq:flag.Rewriting-Schemes"><code class="xref">Rewriting Schemes</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="proofs/automatic-tactics/logic.html#coq:flag.Rtauto-Check"><code class="xref">Rtauto Check</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="proofs/automatic-tactics/logic.html#coq:flag.Rtauto-Pruning"><code class="xref">Rtauto Pruning</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="proofs/automatic-tactics/logic.html#coq:flag.Rtauto-Verbose"><code class="xref">Rtauto Verbose</code></a></td><td>
        <em></em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-s"><td></td><td>
@@ -1867,6 +1925,11 @@
        <td></td>
        <td>
        <a href="proof-engine/vernacular-commands.html#coq:flag.Silent"><code class="xref">Silent</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="proofs/writing-proofs/equality.html#coq:flag.SimplIsCbn"><code class="xref">SimplIsCbn</code></a></td><td>
        <em></em></td></tr>
      <tr>
        <td></td>

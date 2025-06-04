@@ -252,7 +252,7 @@ Printing of hidden subterms
    In order to be able to cheaply reconstruct the types of the
    variables bound by `in` and `as`, `match` terms contain the
    polymorphic universe instance and the parameters of the inductive
-   which is being matched. When this flag is on (it is off by
+   which is being matched. When this :term:`flag` is on (it is off by
    default), this information is displayed as a :term:`volatile cast` around
    the match discriminee.
 

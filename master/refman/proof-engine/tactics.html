@@ -462,6 +462,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#bindings">Bindings</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#intro-patterns">Intro patterns</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#occurrence-clauses">Occurrence clauses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#automatic-clearing-of-hypotheses">Automatic clearing of hypotheses</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#applying-theorems">Applying theorems</a></li>
@@ -825,6 +826,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../addendum/extraction.html#setting-the-target-language">Setting the target language</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../addendum/extraction.html#inlining-and-optimizations">Inlining and optimizations</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../addendum/extraction.html#extra-elimination-of-useless-arguments">Extra elimination of useless arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../addendum/extraction.html#accessing-opaque-proofs">Accessing opaque proofs</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../addendum/extraction.html#realizing-axioms">Realizing axioms</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../addendum/extraction.html#realizing-inductive-types">Realizing inductive types</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../addendum/extraction.html#generating-ffi-code">Generating FFI Code</a></li>
@@ -846,6 +848,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../using/libraries/funind.html#advanced-recursive-functions">Advanced recursive functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../using/libraries/funind.html#tactics">Tactics</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../using/libraries/funind.html#generation-of-induction-principles-with-functional-scheme">Generation of induction principles with <code class="docutils literal notranslate"><span class="pre">Functional</span></code> <code class="docutils literal notranslate"><span class="pre">Scheme</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../using/libraries/funind.html#flags">Flags</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../using/libraries/writing.html">Writing Rocq libraries and plugins</a><ul>
@@ -1946,6 +1949,17 @@ are ignored.</p>
 <p><a class="reference internal" href="#managingthelocalcontext"><span class="std std-ref">Managing the local context</span></a>, <a class="reference internal" href="../proofs/writing-proofs/reasoning-inductives.html#caseanalysisandinduction"><span class="std std-ref">Case analysis</span></a>,
 <a class="reference internal" href="vernacular-commands.html#printing-constructions-full"><span class="std std-ref">Printing constructions in full</span></a>.</p>
 </div>
+</section>
+<section id="automatic-clearing-of-hypotheses">
+<h3>Automatic clearing of hypotheses<a class="headerlink" href="#automatic-clearing-of-hypotheses" title="Link to this heading"></a></h3>
+<dl class="coq flag">
+<dt class="sig sig-object coq" id="coq:flag.Default-Clearing-Used-Hypotheses">
+<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Default</span></span></span> <span><span><span class="pre">Clearing</span></span></span> <span><span><span class="pre">Used</span></span></span> <span><span><span class="pre">Hypotheses</span></span></span></span></span><a class="headerlink" href="#coq:flag.Default-Clearing-Used-Hypotheses" title="Link to this definition"></a></dt>
+<dd><p>When this <a class="reference internal" href="../language/core/basic.html#term-flag"><span class="xref std std-term">flag</span></a> is on (it is off by default), some tactics
+will automatically clear their hypothesis arguments.</p>
+<p>For instance when <code class="docutils literal notranslate"><span class="pre">H</span></code> is an hypothesis, <code class="docutils literal notranslate"><span class="pre">apply</span> <span class="pre">H</span></code> will clear <code class="docutils literal notranslate"><span class="pre">H</span></code>.</p>
+</dd></dl>
+
 </section>
 </section>
 <section id="applying-theorems">

@@ -462,6 +462,7 @@
 <li class="toctree-l4"><a class="reference internal" href="tactics.html#bindings">Bindings</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tactics.html#intro-patterns">Intro patterns</a></li>
 <li class="toctree-l4"><a class="reference internal" href="tactics.html#occurrence-clauses">Occurrence clauses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tactics.html#automatic-clearing-of-hypotheses">Automatic clearing of hypotheses</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="tactics.html#applying-theorems">Applying theorems</a></li>
@@ -825,6 +826,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../addendum/extraction.html#setting-the-target-language">Setting the target language</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../addendum/extraction.html#inlining-and-optimizations">Inlining and optimizations</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../addendum/extraction.html#extra-elimination-of-useless-arguments">Extra elimination of useless arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../addendum/extraction.html#accessing-opaque-proofs">Accessing opaque proofs</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../addendum/extraction.html#realizing-axioms">Realizing axioms</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../addendum/extraction.html#realizing-inductive-types">Realizing inductive types</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../addendum/extraction.html#generating-ffi-code">Generating FFI Code</a></li>
@@ -846,6 +848,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../using/libraries/funind.html#advanced-recursive-functions">Advanced recursive functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../using/libraries/funind.html#tactics">Tactics</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../using/libraries/funind.html#generation-of-induction-principles-with-functional-scheme">Generation of induction principles with <code class="docutils literal notranslate"><span class="pre">Functional</span></code> <code class="docutils literal notranslate"><span class="pre">Scheme</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../using/libraries/funind.html#flags">Flags</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../using/libraries/writing.html">Writing Rocq libraries and plugins</a><ul>
@@ -4211,6 +4214,14 @@ performance issue.</p>
 <dd><p>This <a class="reference internal" href="../language/core/basic.html#term-flag"><span class="xref std std-term">flag</span></a> enables and disables the profiler.</p>
 </dd></dl>
 
+<dl class="coq opt">
+<dt class="sig sig-object coq" id="coq:opt.Ltac-Profiling-Cutoff">
+<em class="property"><span class="sigannot"><span class="pre">Option</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Ltac</span></span></span> <span><span><span class="pre">Profiling</span></span></span> <span><span><span class="pre">Cutoff</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-string"><span class="hole"><span class="pre">string</span></span></a></span></span><a class="headerlink" href="#coq:opt.Ltac-Profiling-Cutoff" title="Link to this definition"></a></dt>
+<dd><p>Reading the string as a floating point number, ltac profiles are
+printed without entries faster than the cutoff (in seconds).</p>
+<p><code class="docutils literal notranslate"><span class="pre">2.0</span></code> by default.</p>
+</dd></dl>
+
 <dl class="coq cmd">
 <dt class="sig sig-object coq" id="coq:cmd.Show-Ltac-Profile">
 <em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Show</span></span></span> <span><span><span class="pre">Ltac</span></span></span> <span><span><span class="pre">Profile</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span class="repeated-alternative"><span class="alternative-block"><span><span><span class="pre">CutOff</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-integer"><span class="hole"><span class="pre">integer</span></span></a></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><a class="reference internal" href="../language/core/basic.html#grammar-token-string"><span class="hole"><span class="pre">string</span></span></a></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span></span></span><a class="headerlink" href="#coq:cmd.Show-Ltac-Profile" title="Link to this definition"></a></dt>
@@ -4290,42 +4301,40 @@ performance issue.</p>
 </span></dt><dd><span>No more goals.
 </span></dd>
 <dt><span></span><span class="coqdoc-keyword">Show</span><span> </span><span class="coqdoc-keyword">Ltac</span><span> </span><span class="coqdoc-var">Profile</span><span>.</span><span>
-</span></dt><dd><span>total time:      1.514s
+</span></dt><dd><span>total time:      1.404s
 
  tactic                                      local  total   calls       max
 ───────────────────────────────────────────┴──────┴──────┴───────┴─────────┘
-─tac --------------------------------------   0.1% 100.0%       1    1.514s
-─&lt;Corelib.Init.Tauto.with_uniform_flags&gt; --   0.0%  96.6%      26    0.110s
-─&lt;Corelib.Init.Tauto.tauto_gen&gt; -----------   0.0%  96.5%      26    0.110s
-─&lt;Corelib.Init.Tauto.tauto_intuitionistic&gt;    0.0%  96.5%      26    0.110s
-─t_tauto_intuit ---------------------------   0.1%  96.4%      26    0.109s
-─&lt;Corelib.Init.Tauto.simplif&gt; -------------  65.0%  93.2%      26    0.108s
-─&lt;Corelib.Init.Tauto.is_conj&gt; -------------  20.4%  20.4%   28756    0.001s
-─elim id ----------------------------------   4.3%   4.3%     650    0.002s
-─&lt;Corelib.Init.Tauto.axioms&gt; --------------   2.2%   3.1%       0    0.004s
-─lia --------------------------------------   0.1%   3.1%      28    0.027s
-─xlia (tactic) ----------------------------   1.4%   2.1%      28    0.025s
+─tac --------------------------------------   0.1% 100.0%       1    1.404s
+─&lt;Corelib.Init.Tauto.with_uniform_flags&gt; --   0.0%  97.2%      26    0.155s
+─&lt;Corelib.Init.Tauto.tauto_gen&gt; -----------   0.0%  97.1%      26    0.155s
+─&lt;Corelib.Init.Tauto.tauto_intuitionistic&gt;    0.0%  97.1%      26    0.155s
+─t_tauto_intuit ---------------------------   0.1%  97.0%      26    0.155s
+─&lt;Corelib.Init.Tauto.simplif&gt; -------------  69.3%  93.9%      26    0.153s
+─&lt;Corelib.Init.Tauto.is_conj&gt; -------------  17.6%  17.6%   28756    0.001s
+─elim id ----------------------------------   3.8%   3.8%     650    0.003s
+─&lt;Corelib.Init.Tauto.axioms&gt; --------------   2.2%   3.0%       0    0.003s
+─lia --------------------------------------   0.1%   2.5%      28    0.016s
 
  tactic                                        local  total   calls       max
 ─────────────────────────────────────────────┴──────┴──────┴───────┴─────────┘
-─tac ----------------------------------------   0.1% 100.0%       1    1.514s
- ├─&lt;Corelib.Init.Tauto.with_uniform_flags&gt; --   0.0%  96.6%      26    0.110s
- │└&lt;Corelib.Init.Tauto.tauto_gen&gt; -----------   0.0%  96.5%      26    0.110s
- │└&lt;Corelib.Init.Tauto.tauto_intuitionistic&gt;    0.0%  96.5%      26    0.110s
- │└t_tauto_intuit ---------------------------   0.1%  96.4%      26    0.109s
- │ ├─&lt;Corelib.Init.Tauto.simplif&gt; -----------  65.0%  93.2%      26    0.108s
- │ │ ├─&lt;Corelib.Init.Tauto.is_conj&gt; ---------  20.4%  20.4%   28756    0.001s
- │ │ └─elim id ------------------------------   4.3%   4.3%     650    0.002s
- │ └─&lt;Corelib.Init.Tauto.axioms&gt; ------------   2.2%   3.1%       0    0.004s
- └─lia --------------------------------------   0.1%   3.1%      28    0.027s
-  └xlia (tactic) ----------------------------   1.4%   2.1%      28    0.025s
+─tac ----------------------------------------   0.1% 100.0%       1    1.404s
+ ├─&lt;Corelib.Init.Tauto.with_uniform_flags&gt; --   0.0%  97.2%      26    0.155s
+ │└&lt;Corelib.Init.Tauto.tauto_gen&gt; -----------   0.0%  97.1%      26    0.155s
+ │└&lt;Corelib.Init.Tauto.tauto_intuitionistic&gt;    0.0%  97.1%      26    0.155s
+ │└t_tauto_intuit ---------------------------   0.1%  97.0%      26    0.155s
+ │ ├─&lt;Corelib.Init.Tauto.simplif&gt; -----------  69.3%  93.9%      26    0.153s
+ │ │ ├─&lt;Corelib.Init.Tauto.is_conj&gt; ---------  17.6%  17.6%   28756    0.001s
+ │ │ └─elim id ------------------------------   3.8%   3.8%     650    0.003s
+ │ └─&lt;Corelib.Init.Tauto.axioms&gt; ------------   2.2%   3.0%       0    0.003s
+ └─lia --------------------------------------   0.1%   2.5%      28    0.016s
 </span></dd>
 <dt><span></span><span class="coqdoc-keyword">Show</span><span> </span><span class="coqdoc-keyword">Ltac</span><span> </span><span class="coqdoc-var">Profile</span><span> &quot;lia&quot;.</span><span>
-</span></dt><dd><span>total time:      1.514s
+</span></dt><dd><span>total time:      1.404s
 
  tactic  local  total   calls       max
 ───────┴──────┴──────┴───────┴─────────┘
-─lia --   0.1%   3.1%      28    0.027s
+─lia --   0.1%   2.5%      28    0.016s
 
  tactic  local  total   calls       max
 ───────┴──────┴──────┴───────┴─────────┘

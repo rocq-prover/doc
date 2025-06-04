@@ -462,6 +462,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../proof-engine/tactics.html#bindings">Bindings</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../proof-engine/tactics.html#intro-patterns">Intro patterns</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../proof-engine/tactics.html#occurrence-clauses">Occurrence clauses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../proof-engine/tactics.html#automatic-clearing-of-hypotheses">Automatic clearing of hypotheses</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../proof-engine/tactics.html#applying-theorems">Applying theorems</a></li>
@@ -825,6 +826,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../addendum/extraction.html#setting-the-target-language">Setting the target language</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../addendum/extraction.html#inlining-and-optimizations">Inlining and optimizations</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../addendum/extraction.html#extra-elimination-of-useless-arguments">Extra elimination of useless arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../addendum/extraction.html#accessing-opaque-proofs">Accessing opaque proofs</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../addendum/extraction.html#realizing-axioms">Realizing axioms</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../addendum/extraction.html#realizing-inductive-types">Realizing inductive types</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../addendum/extraction.html#generating-ffi-code">Generating FFI Code</a></li>
@@ -846,6 +848,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../using/libraries/funind.html#advanced-recursive-functions">Advanced recursive functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../using/libraries/funind.html#tactics">Tactics</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../using/libraries/funind.html#generation-of-induction-principles-with-functional-scheme">Generation of induction principles with <code class="docutils literal notranslate"><span class="pre">Functional</span></code> <code class="docutils literal notranslate"><span class="pre">Scheme</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../using/libraries/funind.html#flags">Flags</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../using/libraries/writing.html">Writing Rocq libraries and plugins</a><ul>
@@ -1607,32 +1610,6 @@ goal.</p>
 <p>If the hypothesis is itself dependent in the goal, it is replaced by the proof of
 reflexivity of equality.</p>
 </div>
-<dl class="coq flag">
-<dt class="sig sig-object coq" id="coq:flag.Regular-Subst-Tactic">
-<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Regular</span></span></span> <span><span><span class="pre">Subst</span></span></span> <span><span><span class="pre">Tactic</span></span></span></span></span><a class="headerlink" href="#coq:flag.Regular-Subst-Tactic" title="Link to this definition"></a></dt>
-<dd><p>This <a class="reference internal" href="../../language/core/basic.html#term-flag"><span class="xref std std-term">flag</span></a> controls the behavior of <a class="reference internal" href="#coq:tacn.subst" title="subst"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">subst</span></code></a>. When it is
-activated (it is by default), <a class="reference internal" href="#coq:tacn.subst" title="subst"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">subst</span></code></a> also deals with the following corner cases:</p>
-<ul class="simple">
-<li><p>A context with ordered hypotheses <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span><sub><span class="pre">1</span></sub></span></a> <span><span><span class="pre">=</span></span></span> <a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span><sub><span class="pre">2</span></sub></span></a></span></code>
-and <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span><sub><span class="pre">1</span></sub></span></a> <span><span><span class="pre">=</span></span></span> <span><span><span class="pre">t</span></span></span></span></code>, or <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">t′</span></span></span> <span><span><span class="pre">=</span></span></span> <a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span><sub><span class="pre">1</span></sub></span></a></span></code> with <code class="docutils literal notranslate"><span class="pre">t′</span></code> not
-a variable, and no other hypotheses of the form <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span><sub><span class="pre">2</span></sub></span></a> <span><span><span class="pre">=</span></span></span> <span><span><span class="pre">u</span></span></span></span></code>
-or <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">u</span></span></span> <span><span><span class="pre">=</span></span></span> <a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span><sub><span class="pre">2</span></sub></span></a></span></code>; without the flag, a second call to
-subst would be necessary to replace <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span><sub><span class="pre">2</span></sub></span></a></span></code> by <code class="docutils literal notranslate"><span class="pre">t</span></code> or
-<code class="docutils literal notranslate"><span class="pre">t′</span></code> respectively.</p></li>
-<li><p>The presence of a recursive equation which without the flag would
-be a cause of failure of <a class="reference internal" href="#coq:tacn.subst" title="subst"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">subst</span></code></a>.</p></li>
-<li><p>A context with cyclic dependencies as with hypotheses <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span><sub><span class="pre">1</span></sub></span></a> <span><span><span class="pre">=</span></span></span> <span><span><span class="pre">f</span></span></span> <a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span><sub><span class="pre">2</span></sub></span></a></span></code>
-and <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span><sub><span class="pre">2</span></sub></span></a> <span><span><span class="pre">=</span></span></span> <span><span><span class="pre">g</span></span></span> <a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span><sub><span class="pre">1</span></sub></span></a></span></code> which without the
-flag would be a cause of failure of <a class="reference internal" href="#coq:tacn.subst" title="subst"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">subst</span></code></a>.</p></li>
-</ul>
-<p>Additionally, it prevents a <a class="reference internal" href="proof-mode.html#term-context-local-definition"><span class="xref std std-term">local definition</span></a>
-such as <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">:=</span></span></span> <span><span><span class="pre">t</span></span></span></span></code> from being
-unfolded which otherwise would exceptionally unfold in configurations
-containing hypotheses of the form <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">=</span></span></span> <span><span><span class="pre">u</span></span></span></span></code>, or <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">u′</span></span></span> <span><span><span class="pre">=</span></span></span> <a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></code>
-with <code class="docutils literal notranslate"><span class="pre">u′</span></code> not a variable. Finally, it preserves the initial order of
-hypotheses, which without the flag it may break.</p>
-</dd></dl>
-
 <dl class="coq exn">
 <dt class="sig sig-object coq" id="coq:exn.Cannot-find-any-non-recursive-equality-over-‘ident’">
 <em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Cannot</span></span></span> <span><span><span class="pre">find</span></span></span> <span><span><span class="pre">any</span></span></span> <span><span><span class="pre">non-recursive</span></span></span> <span><span><span class="pre">equality</span></span></span> <span><span><span class="pre">over</span></span></span> <a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a><span><span><span class="pre">.</span></span></span></span></span><a class="headerlink" href="#coq:exn.Cannot-find-any-non-recursive-equality-over-‘ident’" title="Link to this definition"></a></dt>
@@ -2006,6 +1983,13 @@ constant <code class="docutils literal notranslate"><span class="notation"><a cl
 in the notation <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/basic.html#grammar-token-string"><span class="hole"><span class="pre">string</span></span></a></span></code> (see <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../proof-engine/vernacular-commands.html#grammar-token-reference"><span class="hole"><span class="pre">reference</span></span></a></span></code>)</p></li>
 <li><p>subterms matching a pattern <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/basic.html#grammar-token-one_term"><span class="hole"><span class="pre">one_term</span></span></a></span></code></p></li>
 </ul>
+<dl class="coq flag">
+<dt class="sig sig-object coq" id="coq:flag.SimplIsCbn">
+<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">SimplIsCbn</span></span></span></span></span><a class="headerlink" href="#coq:flag.SimplIsCbn" title="Link to this definition"></a></dt>
+<dd><p>When this <a class="reference internal" href="../../language/core/basic.html#term-flag"><span class="xref std std-term">flag</span></a> is on, <a class="reference internal" href="#coq:tacn.simpl" title="simpl"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">simpl</span></code></a> and <code class="docutils literal notranslate"><span class="pre">simpl</span></code> in
+<code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="#grammar-token-red_expr"><span class="hole"><span class="pre">red_expr</span></span></a></span></code> behave as <a class="reference internal" href="#coq:tacn.cbn" title="cbn"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">cbn</span></code></a>. Off by default.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="coq tacn">
@@ -2655,7 +2639,7 @@ the relevant threshold at around <span class="math notranslate nohighlight">\(n 
   True
 </span></dd>
 <dt><span></span><span class="coqdoc-keyword">Time</span><span> </span><span class="coqdoc-tactic">assert</span><span> (</span><span class="coqdoc-var">id</span><span> (</span><span class="coqdoc-var">fact</span><span> 8) = </span><span class="coqdoc-var">fact</span><span> 8) </span><span class="coqdoc-tactic">by</span><span> </span><span class="coqdoc-tactic">reflexivity</span><span>.</span><span>
-</span></dt><dd><span>Finished transaction in 0.082 secs (0.044u,0.038s) (successful)
+</span></dt><dd><span>Finished transaction in 0.062 secs (0.036u,0.025s) (successful)
 1 goal
   
   H : id (fact 8)</span><span> =</span><span> fact 8
@@ -2663,7 +2647,7 @@ the relevant threshold at around <span class="math notranslate nohighlight">\(n 
   True
 </span></dd>
 <dt><span></span><span class="coqdoc-keyword">Time</span><span> </span><span class="coqdoc-tactic">assert</span><span> (</span><span class="coqdoc-var">id</span><span> (</span><span class="coqdoc-var">fact</span><span> 9) = </span><span class="coqdoc-var">fact</span><span> 9) </span><span class="coqdoc-tactic">by</span><span> </span><span class="coqdoc-tactic">reflexivity</span><span>.</span><span>
-</span></dt><dd><span>Finished transaction in 0.83 secs (0.829u,0.s) (successful)
+</span></dt><dd><span>Finished transaction in 0.377 secs (0.366u,0.011s) (successful)
 1 goal
   
   H : id (fact 8)</span><span> =</span><span> fact 8
@@ -2691,7 +2675,7 @@ merely a hint to unfold this constant last.</p>
 Timeout!
 </span></dd>
 <dt><span></span><span class="coqdoc-keyword">Time</span><span> </span><span class="coqdoc-tactic">assert</span><span> (</span><span class="coqdoc-var">id</span><span> (</span><span class="coqdoc-var">fact</span><span> 100) = </span><span class="coqdoc-var">fact</span><span> 100) </span><span class="coqdoc-tactic">by</span><span> </span><span class="coqdoc-var">with_strategy</span><span> -1 [</span><span class="coqdoc-var">id</span><span>] </span><span class="coqdoc-tactic">reflexivity</span><span>.</span><span>
-</span></dt><dd><span>Finished transaction in 0.001 secs (0.001u,0.s) (successful)
+</span></dt><dd><span>Finished transaction in 0. secs (0.u,0.s) (successful)
 1 goal
   
   H : id (fact 100)</span><span> =</span><span> fact 100

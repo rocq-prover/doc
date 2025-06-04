@@ -458,6 +458,7 @@
 <li class="toctree-l4"><a class="reference internal" href="proof-engine/tactics.html#bindings">Bindings</a></li>
 <li class="toctree-l4"><a class="reference internal" href="proof-engine/tactics.html#intro-patterns">Intro patterns</a></li>
 <li class="toctree-l4"><a class="reference internal" href="proof-engine/tactics.html#occurrence-clauses">Occurrence clauses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="proof-engine/tactics.html#automatic-clearing-of-hypotheses">Automatic clearing of hypotheses</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="proof-engine/tactics.html#applying-theorems">Applying theorems</a></li>
@@ -821,6 +822,7 @@
 <li class="toctree-l4"><a class="reference internal" href="addendum/extraction.html#setting-the-target-language">Setting the target language</a></li>
 <li class="toctree-l4"><a class="reference internal" href="addendum/extraction.html#inlining-and-optimizations">Inlining and optimizations</a></li>
 <li class="toctree-l4"><a class="reference internal" href="addendum/extraction.html#extra-elimination-of-useless-arguments">Extra elimination of useless arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="addendum/extraction.html#accessing-opaque-proofs">Accessing opaque proofs</a></li>
 <li class="toctree-l4"><a class="reference internal" href="addendum/extraction.html#realizing-axioms">Realizing axioms</a></li>
 <li class="toctree-l4"><a class="reference internal" href="addendum/extraction.html#realizing-inductive-types">Realizing inductive types</a></li>
 <li class="toctree-l4"><a class="reference internal" href="addendum/extraction.html#generating-ffi-code">Generating FFI Code</a></li>
@@ -842,6 +844,7 @@
 <li class="toctree-l3"><a class="reference internal" href="using/libraries/funind.html#advanced-recursive-functions">Advanced recursive functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="using/libraries/funind.html#tactics">Tactics</a></li>
 <li class="toctree-l3"><a class="reference internal" href="using/libraries/funind.html#generation-of-induction-principles-with-functional-scheme">Generation of induction principles with <code class="docutils literal notranslate"><span class="pre">Functional</span></code> <code class="docutils literal notranslate"><span class="pre">Scheme</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="using/libraries/funind.html#flags">Flags</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="using/libraries/writing.html">Writing Rocq libraries and plugins</a><ul>
@@ -1825,6 +1828,8 @@
 </li>
       <li><a href="proofs/writing-proofs/reasoning-inductives.html#coq:tacn.decompose-sum">decompose sum (tactic)</a>
 </li>
+      <li><a href="proof-engine/tactics.html#coq:flag.Default-Clearing-Used-Hypotheses">Default Clearing Used Hypotheses (flag)</a>
+</li>
       <li><a href="proof-engine/tactics.html#coq:opt.Default-Goal-Selector">Default Goal Selector (option)</a>
 </li>
       <li><a href="proofs/writing-proofs/proof-mode.html#coq:opt.Default-Proof-Mode">Default Proof Mode (option)</a>
@@ -2075,6 +2080,8 @@
 </li>
       <li><a href="addendum/extraction.html#coq:cmd.Extraction">Extraction (command)</a>
 </li>
+      <li><a href="addendum/extraction.html#coq:flag.Extraction-AccessOpaque">Extraction AccessOpaque (flag)</a>
+</li>
       <li><a href="addendum/extraction.html#coq:flag.Extraction-AutoInline">Extraction AutoInline (flag)</a>
 </li>
       <li><a href="addendum/extraction.html#coq:cmd.Extraction-Blacklist">Extraction Blacklist (command)</a>
@@ -2225,11 +2232,15 @@
 </li>
       <li><a href="using/libraries/funind.html#coq:cmd.Function">Function (command)</a>
 </li>
+      <li><a href="using/libraries/funind.html#coq:flag.Function_raw_tcc">Function_raw_tcc (flag)</a>
+</li>
       <li><a href="user-extensions/syntax-extensions.html#index-1">function_scope</a>
 </li>
       <li><a href="using/libraries/funind.html#coq:cmd.Functional-Case">Functional Case (command)</a>
 </li>
       <li><a href="using/libraries/funind.html#coq:tacn.functional-induction">functional induction (tactic)</a>
+</li>
+      <li><a href="using/libraries/funind.html#coq:flag.Functional-Induction-Rewrite-Dependent">Functional Induction Rewrite Dependent (flag)</a>
 </li>
       <li><a href="using/libraries/funind.html#coq:tacn.functional-inversion">functional inversion (tactic)</a>
 </li>
@@ -2467,12 +2478,14 @@
 <h2 id="K">K</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="proofs/writing-proofs/reasoning-inductives.html#coq:table.Keep-Equalities">Keep Equalities (table)</a>
+      <li><a href="proofs/writing-proofs/proof-mode.html#coq:flag.Keep-Admitted-Variables">Keep Admitted Variables (flag)</a>
 </li>
-      <li><a href="proofs/writing-proofs/reasoning-inductives.html#coq:flag.Keep-Proof-Equalities">Keep Proof Equalities (flag)</a>
+      <li><a href="proofs/writing-proofs/reasoning-inductives.html#coq:table.Keep-Equalities">Keep Equalities (table)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="proofs/writing-proofs/reasoning-inductives.html#coq:flag.Keep-Proof-Equalities">Keep Proof Equalities (flag)</a>
+</li>
       <li><a href="proofs/writing-proofs/equality.html#coq:flag.Kernel-Term-Sharing">Kernel Term Sharing (flag)</a>
 </li>
       <li><a href="proofs/writing-proofs/equality.html#coq:flag.Keyed-Unification">Keyed Unification (flag)</a>
@@ -2531,6 +2544,8 @@
 </li>
       <li><a href="addendum/micromega.html#coq:flag.Lia-Cache">Lia Cache (flag)</a>
 </li>
+      <li><a href="addendum/micromega.html#coq:flag.Lia-Depth">Lia Depth (flag)</a>
+</li>
       <li><a href="using/libraries/writing.html#coq:warn.Library-File-(transitively-required)-‘qualid’-is-deprecated-since-‘string’.-‘string’.-Use-‘qualid’-instead">Library File (transitively required) ‘qualid’ is deprecated since ‘string’. ‘string’. Use ‘qualid’ instead (warning)</a>
 </li>
       <li><a href="using/libraries/writing.html#coq:warn.Library-File-‘qualid’-is-deprecated-since-‘string’.-‘string’.-Use-‘qualid’-instead">Library File ‘qualid’ is deprecated since ‘string’. ‘string’. Use ‘qualid’ instead (warning)</a>
@@ -2574,6 +2589,8 @@
       <li><a href="proof-engine/ltac.html#coq:warn.Ltac-Profiler-encountered-an-invalid-stack-(no-self-node).-This-can-happen-if-you-reset-the-profile-during-tactic-execution">Ltac Profiler encountered an invalid stack (no self node). This can happen if you reset the profile during tactic execution (warning)</a>
 </li>
       <li><a href="proof-engine/ltac.html#coq:flag.Ltac-Profiling">Ltac Profiling (flag)</a>
+</li>
+      <li><a href="proof-engine/ltac.html#coq:opt.Ltac-Profiling-Cutoff">Ltac Profiling Cutoff (option)</a>
 </li>
       <li><a href="proof-engine/ltac.html#coq:tacn.ltac-seq">ltac-seq (tactic)</a>
 </li>
@@ -3073,10 +3090,10 @@
 </li>
       <li><a href="addendum/universe-polymorphism.html#coq:cmd.Print-Sorts">Print Sorts (command)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="proofs/writing-proofs/equality.html#coq:cmd.Print-Strategies">Print Strategies (command)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="proofs/writing-proofs/equality.html#coq:cmd.Print-Strategy">Print Strategy (command)</a>
 </li>
       <li><a href="language/core/basic.html#coq:cmd.Print-Table">Print Table (command)</a>
@@ -3113,6 +3130,8 @@
 </li>
       <li><a href="language/extensions/match.html#coq:flag.Printing-Factorizable-Match-Patterns">Printing Factorizable Match Patterns (flag)</a>
 </li>
+      <li><a href="language/core/primitive.html#coq:flag.Printing-Float">Printing Float (flag)</a>
+</li>
       <li><a href="proofs/writing-proofs/proof-mode.html#coq:flag.Printing-Goal-Names">Printing Goal Names (flag)</a>
 </li>
       <li><a href="proofs/writing-proofs/proof-mode.html#coq:flag.Printing-Goal-Tags">Printing Goal Tags (flag)</a>
@@ -3144,6 +3163,8 @@
       <li><a href="language/core/records.html#coq:flag.Printing-Records">Printing Records (flag)</a>
 </li>
       <li><a href="addendum/sprop.html#coq:flag.Printing-Relevance-Marks">Printing Relevance Marks (flag)</a>
+</li>
+      <li><a href="addendum/universe-polymorphism.html#coq:flag.Printing-Sort-Qualities">Printing Sort Qualities (flag)</a>
 </li>
       <li><a href="language/extensions/match.html#coq:flag.Printing-Synth">Printing Synth (flag)</a>
 </li>
@@ -3275,8 +3296,6 @@
 </li>
       <li><a href="proof-engine/vernacular-commands.html#coq:cmd.Register-Scheme">Register Scheme (command)</a>
 </li>
-      <li><a href="proofs/writing-proofs/equality.html#coq:flag.Regular-Subst-Tactic">Regular Subst Tactic (flag)</a>
-</li>
       <li><a href="language/core/definitions.html#coq:cmd.Remark">Remark (command)</a>
 </li>
       <li><a href="proof-engine/tactics.html#coq:tacn.remember">remember (tactic)</a>
@@ -3305,12 +3324,12 @@
 </li>
       <li><a href="user-extensions/syntax-extensions.html#coq:cmd.Reserved-Notation">Reserved Notation (command)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="proof-engine/vernacular-commands.html#coq:cmd.Reset">Reset (command)</a>
 </li>
       <li><a href="addendum/extraction.html#coq:cmd.Reset-Extraction-Blacklist">Reset Extraction Blacklist (command)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="addendum/extraction.html#coq:cmd.Reset-Extraction-Callback">Reset Extraction Callback (command)</a>
 </li>
       <li><a href="addendum/extraction.html#coq:cmd.Reset-Extraction-Inline">Reset Extraction Inline (command)</a>
@@ -3370,6 +3389,12 @@
       <li><a href="addendum/ring.html#coq:tacn.ring_simplify">ring_simplify (tactic)</a>
 </li>
       <li><a href="proofs/automatic-tactics/logic.html#coq:tacn.rtauto">rtauto (tactic)</a>
+</li>
+      <li><a href="proofs/automatic-tactics/logic.html#coq:flag.Rtauto-Check">Rtauto Check (flag)</a>
+</li>
+      <li><a href="proofs/automatic-tactics/logic.html#coq:flag.Rtauto-Pruning">Rtauto Pruning (flag)</a>
+</li>
+      <li><a href="proofs/automatic-tactics/logic.html#coq:flag.Rtauto-Verbose">Rtauto Verbose (flag)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -3506,6 +3531,8 @@
       <li><a href="proofs/writing-proofs/equality.html#coq:tacn.simple-subst">simple subst (tactic)</a>
 </li>
       <li><a href="proofs/writing-proofs/reasoning-inductives.html#coq:tacn.simplify_eq">simplify_eq (tactic)</a>
+</li>
+      <li><a href="proofs/writing-proofs/equality.html#coq:flag.SimplIsCbn">SimplIsCbn (flag)</a>
 </li>
       <li><a href="language/coq-library.html#index-9">snd (term)</a>
 </li>

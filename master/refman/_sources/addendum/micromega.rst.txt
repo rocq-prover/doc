@@ -63,6 +63,8 @@ or only for reals by ``Require Import Lra``.
 
    This :term:`flag` (set by default) instructs :tacn:`nra` to cache its results in the file `.nra.cache`
 
+.. flag:: Lia Depth
+   :undocumented:
 
 The tactics solve propositional formulas parameterized by atomic
 arithmetic expressions interpreted over a domain :math:`D \in \{\mathbb{Z},\mathbb{Q},\mathbb{R}\}`.
