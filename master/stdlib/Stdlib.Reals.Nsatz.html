@@ -262,8 +262,7 @@
 <h1 class="libtitle">Library Stdlib.Reals.Nsatz</h1>
 
 <div class="code">
-
-<br/>
+<span class="id" title="keyword">Require</span> <span class="id" title="keyword">Export</span> <a class="idref" href="Stdlib.Reals.RNsatz.html#"><span class="id" title="library">RNsatz</span></a> <a class="idref" href="Stdlib.QArith.QNsatz.html#"><span class="id" title="library">QNsatz</span></a> <a class="idref" href="Stdlib.ZArith.ZNsatz.html#"><span class="id" title="library">ZNsatz</span></a> <a class="idref" href="Stdlib.nsatz.NsatzTactic.html#"><span class="id" title="library">NsatzTactic</span></a>.<br/>
 
 <br/>
 <span class="id" title="keyword">From</span> <span class="id" title="var">Stdlib</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="Stdlib.Lists.List.html#"><span class="id" title="library">List</span></a>.<br/>
@@ -279,37 +278,21 @@
 <span class="id" title="keyword">From</span> <span class="id" title="var">Stdlib</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="Stdlib.Reals.DiscrR.html#"><span class="id" title="library">DiscrR</span></a>.<br/>
 <span class="id" title="keyword">From</span> <span class="id" title="var">Stdlib</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="Stdlib.ZArith.ZArith.html#"><span class="id" title="library">ZArith</span></a>.<br/>
 <span class="id" title="keyword">From</span> <span class="id" title="var">Stdlib</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="Stdlib.micromega.Lia.html#"><span class="id" title="library">Lia</span></a>.<br/>
-
-<br/>
-<span class="id" title="keyword">From</span> <span class="id" title="var">Stdlib</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Export</span> <a class="idref" href="Stdlib.nsatz.NsatzTactic.html#"><span class="id" title="library">NsatzTactic</span></a>.<br/>
-</div>
-
-<div class="doc">
-Make use of <span class="inlinecode"><span class="id" title="var">discrR</span></span> in <span class="inlinecode"><span class="id" title="var">nsatz</span></span> 
-</div>
-<div class="code">
-<span class="id" title="keyword">Ltac</span> <span class="id" title="var">nsatz_internal_discrR</span> ::= <span class="id" title="var">discrR</span>.<br/>
-
-<br/>
 <span class="id" title="keyword">From</span> <span class="id" title="var">Stdlib</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Export</span> <a class="idref" href="Stdlib.Reals.Rbase.html#"><span class="id" title="library">Rbase</span></a>.<br/>
 <span class="id" title="keyword">From</span> <span class="id" title="var">Stdlib</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Export</span> <a class="idref" href="Stdlib.Reals.Rfunctions.html#"><span class="id" title="library">Rfunctions</span></a>.<br/>
 <span class="id" title="keyword">From</span> <span class="id" title="var">Stdlib</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="Stdlib.setoid_ring.RealField.html#"><span class="id" title="library">RealField</span></a>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">Stdlib</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="Stdlib.QArith.QArith_base.html#"><span class="id" title="library">QArith_base</span></a>.<br/>
 
 <br/>
-<span class="id" title="keyword">Lemma</span> <a id="Rsth" class="idref" href="#Rsth"><span class="id" title="lemma">Rsth</span></a> : <a class="idref" href="../corelib/Corelib.Setoids.Setoid.html#Setoid_Theory"><span class="id" title="definition">Setoid_Theory</span></a> <a class="idref" href="Stdlib.Reals.Rdefinitions.html#RbaseSymbolsImpl.R"><span class="id" title="axiom">R</span></a> (@<a class="idref" href="../corelib/Corelib.Init.Logic.html#eq"><span class="id" title="inductive">eq</span></a> <a class="idref" href="Stdlib.Reals.Rdefinitions.html#RbaseSymbolsImpl.R"><span class="id" title="axiom">R</span></a>).<br/>
+#[<span class="id" title="var">global</span>] <span class="id" title="var">Existing</span> <span class="id" title="keyword">Instance</span> <a class="idref" href="Stdlib.setoid_ring.Ncring_initial.html#Zops"><span class="id" title="instance">Zops</span></a>.<br/>
+#[<span class="id" title="var">global</span>] <span class="id" title="var">Existing</span> <span class="id" title="keyword">Instance</span> <a class="idref" href="Stdlib.setoid_ring.Ncring_initial.html#Zr"><span class="id" title="instance">Zr</span></a>.<br/>
+#[<span class="id" title="var">global</span>] <span class="id" title="var">Existing</span> <span class="id" title="keyword">Instance</span> <a class="idref" href="Stdlib.ZArith.ZNsatz.html#Zdi"><span class="id" title="instance">Zdi</span></a>.<br/>
+#[<span class="id" title="var">global</span>] <span class="id" title="var">Existing</span> <span class="id" title="keyword">Instance</span> <a class="idref" href="Stdlib.QArith.QNsatz.html#Qops"><span class="id" title="instance">Qops</span></a>.<br/>
+#[<span class="id" title="var">global</span>] <span class="id" title="var">Existing</span> <span class="id" title="keyword">Instance</span> <a class="idref" href="Stdlib.QArith.QNsatz.html#Qri"><span class="id" title="instance">Qri</span></a>.<br/>
+#[<span class="id" title="var">global</span>] <span class="id" title="var">Existing</span> <span class="id" title="keyword">Instance</span> <a class="idref" href="Stdlib.QArith.QNsatz.html#Qdi"><span class="id" title="instance">Qdi</span></a>.<br/>
 
 <br/>
-#[<span class="id" title="var">global</span>]<br/>
-<span class="id" title="keyword">Instance</span> <a id="Rops" class="idref" href="#Rops"><span class="id" title="instance">Rops</span></a>: (@<a class="idref" href="Stdlib.setoid_ring.Ncring.html#Ring_ops"><span class="id" title="class">Ring_ops</span></a> <a class="idref" href="Stdlib.Reals.Rdefinitions.html#RbaseSymbolsImpl.R"><span class="id" title="axiom">R</span></a> 0%<span class="id" title="var">R</span> 1%<span class="id" title="var">R</span> <a class="idref" href="Stdlib.Reals.Rdefinitions.html#RbaseSymbolsImpl.Rplus"><span class="id" title="axiom">Rplus</span></a> <a class="idref" href="Stdlib.Reals.Rdefinitions.html#RbaseSymbolsImpl.Rmult"><span class="id" title="axiom">Rmult</span></a> <a class="idref" href="Stdlib.Reals.Rdefinitions.html#Rminus"><span class="id" title="definition">Rminus</span></a> <a class="idref" href="Stdlib.Reals.Rdefinitions.html#RbaseSymbolsImpl.Ropp"><span class="id" title="axiom">Ropp</span></a> (@<a class="idref" href="../corelib/Corelib.Init.Logic.html#eq"><span class="id" title="inductive">eq</span></a> <a class="idref" href="Stdlib.Reals.Rdefinitions.html#RbaseSymbolsImpl.R"><span class="id" title="axiom">R</span></a>)).<br/>
-<span class="id" title="keyword">Defined</span>.<br/>
-
-<br/>
-#[<span class="id" title="var">global</span>]<br/>
-<span class="id" title="keyword">Instance</span> <a id="Rri" class="idref" href="#Rri"><span class="id" title="instance">Rri</span></a> : (<a class="idref" href="Stdlib.setoid_ring.Ncring.html#Ring"><span class="id" title="class">Ring</span></a> (<span class="id" title="var">Ro</span>:=<a class="idref" href="Stdlib.Reals.Nsatz.html#Rops"><span class="id" title="instance">Rops</span></a>)).<br/>
-<span class="id" title="keyword">Defined</span>.<br/>
-
-<br/>
-<span class="id" title="keyword">Ltac</span> <span class="id" title="var">extra_reify</span> <span class="id" title="var">term</span> ::=<br/>
+<span class="id" title="keyword">Ltac</span> <span class="id" title="var">Ncring_tac.extra_reify</span> <span class="id" title="var">term</span> ::=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">lazymatch</span> <span class="id" title="var">term</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| <a class="idref" href="Stdlib.Reals.Rdefinitions.html#IZR"><span class="id" title="definition">IZR</span></a> ?<span class="id" title="var">z</span> =&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">lazymatch</span> <span class="id" title="var">isZcst</span> <span class="id" title="var">z</span> <span class="id" title="keyword">with</span><br/>
@@ -320,17 +303,20 @@ Make use of <span class="inlinecode"><span class="id" title="var">discrR</span><
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Lemma</span> <a id="R_one_zero" class="idref" href="#R_one_zero"><span class="id" title="lemma">R_one_zero</span></a>: 1%<span class="id" title="var">R</span> <a class="idref" href="../corelib/Corelib.Init.Logic.html#::type_scope:x_'&lt;&gt;'_x"><span class="id" title="notation">&lt;&gt;</span></a> 0%<span class="id" title="var">R</span>.<br/>
+#[<span class="id" title="var">deprecated</span>(<span class="id" title="var">since</span>="9.1", <span class="id" title="var">note</span>="use discriminate")]<br/>
+<span class="id" title="keyword">Lemma</span> <a id="Z_one_zero" class="idref" href="#Z_one_zero"><span class="id" title="lemma">Z_one_zero</span></a>: 1%<span class="id" title="var">Z</span> <a class="idref" href="../corelib/Corelib.Init.Logic.html#::type_scope:x_'&lt;&gt;'_x"><span class="id" title="notation">&lt;&gt;</span></a> 0%<span class="id" title="var">Z</span>.<br/>
+ 
+<br/>
+#[<span class="id" title="var">deprecated</span>(<span class="id" title="var">since</span>="9.1", <span class="id" title="var">use</span>=<span class="id" title="var">Q_apart_0_1</span>)]<br/>
+<span class="id" title="keyword">Notation</span> <a id="Q_one_zero" class="idref" href="#Q_one_zero"><span class="id" title="abbreviation">Q_one_zero</span></a> := <a class="idref" href="Stdlib.QArith.QArith_base.html#Q_apart_0_1"><span class="id" title="lemma">Q_apart_0_1</span></a> (<span class="id" title="var">only</span> <span class="id" title="var">parsing</span>).<br/>
 
 <br/>
-#[<span class="id" title="var">global</span>]<br/>
-<span class="id" title="keyword">Instance</span> <a id="Rcri" class="idref" href="#Rcri"><span class="id" title="instance">Rcri</span></a>: (<a class="idref" href="Stdlib.setoid_ring.Cring.html#Cring"><span class="id" title="class">Cring</span></a> (<span class="id" title="var">Rr</span>:=<a class="idref" href="Stdlib.Reals.Nsatz.html#Rri"><span class="id" title="instance">Rri</span></a>)).<br/>
+#[<span class="id" title="var">deprecated</span>(<span class="id" title="var">since</span>="9.1", <span class="id" title="var">use</span>=<span class="id" title="var">eq_equivalence</span>)]<br/>
+<span class="id" title="keyword">Lemma</span> <a id="Rsth" class="idref" href="#Rsth"><span class="id" title="lemma">Rsth</span></a> : <a class="idref" href="../corelib/Corelib.Setoids.Setoid.html#Setoid_Theory"><span class="id" title="definition">Setoid_Theory</span></a> <a class="idref" href="Stdlib.Reals.Rdefinitions.html#RbaseSymbolsImpl.R"><span class="id" title="axiom">R</span></a> (@<a class="idref" href="../corelib/Corelib.Init.Logic.html#eq"><span class="id" title="inductive">eq</span></a> <a class="idref" href="Stdlib.Reals.Rdefinitions.html#RbaseSymbolsImpl.R"><span class="id" title="axiom">R</span></a>).<br/>
+ 
 <br/>
-
-<br/>
-#[<span class="id" title="var">global</span>]<br/>
-<span class="id" title="keyword">Instance</span> <a id="Rdi" class="idref" href="#Rdi"><span class="id" title="instance">Rdi</span></a> : (<a class="idref" href="Stdlib.setoid_ring.Integral_domain.html#Integral_domain"><span class="id" title="class">Integral_domain</span></a> (<span class="id" title="var">Rcr</span>:=<a class="idref" href="Stdlib.Reals.Nsatz.html#Rcri"><span class="id" title="instance">Rcri</span></a>)).<br/>
-<span class="id" title="keyword">Defined</span>.<br/>
+#[<span class="id" title="var">deprecated</span>(<span class="id" title="var">since</span>="9.1", <span class="id" title="var">use</span>=<span class="id" title="var">R1_neq_R0</span>)]<br/>
+<span class="id" title="keyword">Notation</span> <a id="R_one_zero" class="idref" href="#R_one_zero"><span class="id" title="abbreviation">R_one_zero</span></a> := <a class="idref" href="Stdlib.Reals.Raxioms.html#R1_neq_R0"><span class="id" title="lemma">R1_neq_R0</span></a> (<span class="id" title="var">only</span> <span class="id" title="var">parsing</span>).<br/>
 </div>
 
           <!-- ************************
