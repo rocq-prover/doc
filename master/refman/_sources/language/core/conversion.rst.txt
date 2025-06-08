@@ -132,7 +132,7 @@ or :term:`constants <constant>` defined in the :term:`global environment` with t
    \WFE{\Gamma}
    (x:=t:T) ∈ Γ
    --------------
-   E[Γ] ⊢ x~\triangleright_Δ~t
+   E[Γ] ⊢ x~\triangleright_δ~t
 
 .. inference:: Delta-Global
 
