@@ -210,6 +210,14 @@ described elsewhere
    * :n:`{| inside | in } {+ @qualid }` - limit the search to the specified modules
    * :n:`outside {+ @qualid }` - exclude the specified modules from the search
 
+   The specified modules can be the current file or a currently opened module.
+   For instance, when using Rocq interactively in a file `Foo.v`, the command
+   :g:`Search _ in Foo.` displays every (non-blacklisted) constants previously
+   defined in the file `Foo`.
+   Inside a :cmd:`Module` `A`, :g:`Search _ in A` similarly displays every
+   constant defined up to this point in the :cmd:`Module` `A`.
+   See :ref:`this example <search-current-module>`.
+
    .. exn:: Module/section @qualid not found.
 
       There is no constant in the environment named :n:`@qualid`, where :n:`@qualid`
@@ -320,6 +328,31 @@ described elsewhere
       .. rocqtop:: all reset
 
          Search (nat -> nat -> nat) -bool [ is:Definition | is:Fixpoint ].
+
+   .. _search-current-module:
+
+   .. example:: Search in current file or :cmd:`Module`
+
+      The following example shows how to filter `Search` output in an
+      interactive session. Note that with `rocq top`, the current pseudo-file
+      is named `Top`, it can be replaced with the name of the current file
+      (without the trailing `.v`) when using an IDE.
+
+      .. rocqtop:: all reset
+
+         Definition b := 42.
+
+         Search _ in Top.
+
+         Module A.
+
+         Definition a := 12.
+
+         Search _ in A.
+
+         End A.
+
+         Search _ in Top.
 
 .. cmd:: SearchPattern @one_pattern {? {| inside | in | outside } {+ @qualid } }
 
