@@ -1377,7 +1377,8 @@ when a variable can't be instantiated
 <p class="admonition-title">Example: <a class="reference internal" href="#coq:tacn.constructor" title="constructor"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">constructor</span></code></a>, <a class="reference internal" href="#coq:tacn.left" title="left"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">left</span></code></a> and <a class="reference internal" href="#coq:tacn.right" title="right"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">right</span></code></a></p>
 <div class="coqtop literal-block docutils container">
 <span class="coqtop-reset"></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Print</span><span> </span><span class="coqdoc-var">or</span><span>. </span><span class="coqdoc-comment">(* or, represented by \/, has two constructors, or_introl and or_intror *)</span></dt><dd><span class="ansi-fg-light-red ansi-bold">Inductive</span><span> or (A B : </span><span class="ansi-fg-yellow ansi-bold">Prop</span><span>) : </span><span class="ansi-fg-yellow ansi-bold">Prop</span><span> :=
+<dt><span></span><span class="coqdoc-keyword">Print</span><span> </span><span class="coqdoc-var">or</span><span>. </span><span class="coqdoc-comment">(* or, represented by \/, has two constructors, or_introl and or_intror *)</span><span>
+</span></dt><dd><span class="ansi-fg-light-red ansi-bold">Inductive</span><span> or (A B : </span><span class="ansi-fg-yellow ansi-bold">Prop</span><span>) : </span><span class="ansi-fg-yellow ansi-bold">Prop</span><span> :=
     or_introl : A</span><span> -&gt;</span><span> A</span><span> \/</span><span> B | or_intror : B</span><span> -&gt;</span><span> A</span><span> \/</span><span> B.
 
 Arguments </span><span class="ansi-fg-light-green">or</span><span> (A B)%_type_scope
@@ -1390,7 +1391,8 @@ Arguments </span><span class="ansi-fg-light-green">or_intror</span><span> [A B]%
   ============================
   </span><span class="ansi-bold">forall</span><span> P1 P2 : </span><span class="ansi-fg-yellow ansi-bold">Prop</span><span>, P1</span><span> -&gt;</span><span> P1</span><span> \/</span><span> P2
 </span></dd>
-<dt><span></span><span class="coqdoc-tactic">constructor</span><span> 1. </span><span class="coqdoc-comment">(* equivalent to &quot;left&quot; *)</span></dt><dd><span>1 goal
+<dt><span></span><span class="coqdoc-tactic">constructor</span><span> 1. </span><span class="coqdoc-comment">(* equivalent to &quot;left&quot; *)</span><span>
+</span></dt><dd><span>1 goal
   
   P1, P2 : </span><span class="ansi-fg-yellow ansi-bold">Prop</span><span>
   H : P1
@@ -1762,7 +1764,8 @@ Cannot recognize a statement based on N.
   ============================
   P n
 </span></dd>
-<dt><span></span><span class="coqdoc-comment">(* n is now of type N, matching the inferred type that strong operates on *)</span></dt><dt><span></span><span class="coqdoc-tactic">induction</span><span> </span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-keyword">using</span><span> </span><span class="coqdoc-var">strong</span><span>.</span><span>
+<dt><span></span><span class="coqdoc-comment">(* n is now of type N, matching the inferred type that strong operates on *)</span><span>
+</span><span class="coqdoc-tactic">induction</span><span> </span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-keyword">using</span><span> </span><span class="coqdoc-var">strong</span><span>.</span><span>
 </span></dt><dd><span>1 goal
   
   n : N
@@ -2217,7 +2220,8 @@ goal 2 is:
 </span></dd>
 </dl>
 <span></span><dl>
-<dt><span>- </span><span class="coqdoc-tactic">discriminate</span><span>. </span><span class="coqdoc-comment">(* works: O and (S O) start with different constructors *)</span></dt><dd><span>1 goal
+<dt><span>- </span><span class="coqdoc-tactic">discriminate</span><span>. </span><span class="coqdoc-comment">(* works: O and (S O) start with different constructors *)</span><span>
+</span></dt><dd><span>1 goal
   
   ============================
   0</span><span> &lt;&gt;</span><span> 1
@@ -2230,7 +2234,8 @@ Focus next goal with bullet -.
 goal 1 is:
  S n</span><span> &lt;&gt;</span><span> S (S n)
 </span></dd>
-<dt><span>- </span><span class="coqdoc-var">Fail</span><span> </span><span class="coqdoc-tactic">discriminate</span><span>. </span><span class="coqdoc-comment">(* fails: discriminate doesn't handle this case *)</span></dt><dd><span>1 goal
+<dt><span>- </span><span class="coqdoc-var">Fail</span><span> </span><span class="coqdoc-tactic">discriminate</span><span>. </span><span class="coqdoc-comment">(* fails: discriminate doesn't handle this case *)</span><span>
+</span></dt><dd><span>1 goal
   
   n : nat
   IHn : n</span><span> &lt;&gt;</span><span> S n
@@ -3201,7 +3206,8 @@ odd_even, even_odd are recursively defined
 </span></dt><dd><span>Nat is defined
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-comment">(* dependent, recursive *)</span></dt><dt><span></span><span class="coqdoc-keyword">Scheme</span><span> </span><span class="coqdoc-keyword">Induction</span><span> </span><span class="coqdoc-keyword">for</span><span> </span><span class="coqdoc-var">Nat</span><span> </span><span class="coqdoc-keyword">Sort</span><span> </span><span class="coqdoc-keyword">Set</span><span>.</span><span>
+</span><span class="coqdoc-comment">(* dependent, recursive *)</span><span>
+</span><span class="coqdoc-keyword">Scheme</span><span> </span><span class="coqdoc-keyword">Induction</span><span> </span><span class="coqdoc-keyword">for</span><span> </span><span class="coqdoc-var">Nat</span><span> </span><span class="coqdoc-keyword">Sort</span><span> </span><span class="coqdoc-keyword">Set</span><span>.</span><span>
 </span></dt><dd><span>Nat_rec is defined
 Nat_rec is recursively defined
 </span></dd>
@@ -3214,10 +3220,11 @@ Nat_rec is not universe polymorphic
 Arguments </span><span class="ansi-fg-light-green">Nat_rec</span><span> P%_function_scope f f0%_function_scope n
 Nat_rec is transparent
 Expands to: Constant Top.Nat_rec
-Declared in toplevel input, characters 4839-4873
+Declared in toplevel input, characters 4943-4977
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-comment">(* non-dependent, recursive *)</span></dt><dt><span></span><span class="coqdoc-keyword">Scheme</span><span> </span><span class="coqdoc-var">Minimality</span><span> </span><span class="coqdoc-keyword">for</span><span> </span><span class="coqdoc-var">Nat</span><span> </span><span class="coqdoc-keyword">Sort</span><span> </span><span class="coqdoc-keyword">Set</span><span>.</span><span>
+</span><span class="coqdoc-comment">(* non-dependent, recursive *)</span><span>
+</span><span class="coqdoc-keyword">Scheme</span><span> </span><span class="coqdoc-var">Minimality</span><span> </span><span class="coqdoc-keyword">for</span><span> </span><span class="coqdoc-var">Nat</span><span> </span><span class="coqdoc-keyword">Sort</span><span> </span><span class="coqdoc-keyword">Set</span><span>.</span><span>
 </span></dt><dd><span>Nat_rec_nodep is defined
 Nat_rec_nodep is recursively defined
 </span></dd>
@@ -3228,10 +3235,11 @@ Nat_rec_nodep is not universe polymorphic
 Arguments </span><span class="ansi-fg-light-green">Nat_rec_nodep</span><span> P%_type_scope f f0%_function_scope n
 Nat_rec_nodep is transparent
 Expands to: Constant Top.Nat_rec_nodep
-Declared in toplevel input, characters 4889-4924
+Declared in toplevel input, characters 5024-5059
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-comment">(* dependent, non-recursive *)</span></dt><dt><span></span><span class="coqdoc-keyword">Scheme</span><span> </span><span class="coqdoc-var">Elimination</span><span> </span><span class="coqdoc-keyword">for</span><span> </span><span class="coqdoc-var">Nat</span><span> </span><span class="coqdoc-keyword">Sort</span><span> </span><span class="coqdoc-keyword">Set</span><span>.</span><span>
+</span><span class="coqdoc-comment">(* dependent, non-recursive *)</span><span>
+</span><span class="coqdoc-keyword">Scheme</span><span> </span><span class="coqdoc-var">Elimination</span><span> </span><span class="coqdoc-keyword">for</span><span> </span><span class="coqdoc-var">Nat</span><span> </span><span class="coqdoc-keyword">Sort</span><span> </span><span class="coqdoc-keyword">Set</span><span>.</span><span>
 </span></dt><dd><span>Nat_case is defined
 Nat_case is recursively defined
 </span></dd>
@@ -3244,10 +3252,11 @@ Nat_case is not universe polymorphic
 Arguments </span><span class="ansi-fg-light-green">Nat_case</span><span> P%_function_scope f f0%_function_scope n
 Nat_case is transparent
 Expands to: Constant Top.Nat_case
-Declared in toplevel input, characters 4946-4982
+Declared in toplevel input, characters 5112-5148
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-comment">(* non-dependent, non-recursive *)</span></dt><dt><span></span><span class="coqdoc-keyword">Scheme</span><span> </span><span class="coqdoc-var">Case</span><span> </span><span class="coqdoc-keyword">for</span><span> </span><span class="coqdoc-var">Nat</span><span> </span><span class="coqdoc-keyword">Sort</span><span> </span><span class="coqdoc-keyword">Set</span><span>.</span><span>
+</span><span class="coqdoc-comment">(* non-dependent, non-recursive *)</span><span>
+</span><span class="coqdoc-keyword">Scheme</span><span> </span><span class="coqdoc-var">Case</span><span> </span><span class="coqdoc-keyword">for</span><span> </span><span class="coqdoc-var">Nat</span><span> </span><span class="coqdoc-keyword">Sort</span><span> </span><span class="coqdoc-keyword">Set</span><span>.</span><span>
 </span></dt><dd><span>Nat_case_nodep is defined
 Nat_case_nodep is recursively defined
 </span></dd>
@@ -3258,7 +3267,7 @@ Nat_case_nodep is not universe polymorphic
 Arguments </span><span class="ansi-fg-light-green">Nat_case_nodep</span><span> P%_type_scope f f0%_function_scope n
 Nat_case_nodep is transparent
 Expands to: Constant Top.Nat_case_nodep
-Declared in toplevel input, characters 4999-5028
+Declared in toplevel input, characters 5200-5229
 </span></dd>
 </dl>
 </div>

@@ -1727,16 +1727,19 @@ No more goals.
 </span></dd>
 </dl>
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Print</span><span> </span><span class="coqdoc-var">foo'</span><span>. </span><span class="coqdoc-comment">(* Doesn't show radixNotZero yet *)</span></dt><dd><span>foo' = eq_refl
+<dt><span></span><span class="coqdoc-keyword">Print</span><span> </span><span class="coqdoc-var">foo'</span><span>. </span><span class="coqdoc-comment">(* Doesn't show radixNotZero yet *)</span><span>
+</span></dt><dd><span>foo' = eq_refl
      : 0</span><span> =</span><span> 0
 
 foo' uses section variables radix radixNotZero.
 </span></dd>
 <dt><span></span><span class="coqdoc-keyword">End</span><span> </span><span class="coqdoc-var">bar</span><span>.</span><span>
-</span></dt><dt><span></span><span class="coqdoc-keyword">Print</span><span> </span><span class="coqdoc-var">foo</span><span>. </span><span class="coqdoc-comment">(* Doesn't change after the End *)</span></dt><dd><span>foo = eq_refl
+</span></dt><dt><span></span><span class="coqdoc-keyword">Print</span><span> </span><span class="coqdoc-var">foo</span><span>. </span><span class="coqdoc-comment">(* Doesn't change after the End *)</span><span>
+</span></dt><dd><span>foo = eq_refl
      : 0</span><span> =</span><span> 0
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Print</span><span> </span><span class="coqdoc-var">foo'</span><span>. </span><span class="coqdoc-comment">(* &quot;End&quot; added type radix (used by radixNotZero) and radixNotZero *)</span></dt><dd><span>foo' =
+<dt><span></span><span class="coqdoc-keyword">Print</span><span> </span><span class="coqdoc-var">foo'</span><span>. </span><span class="coqdoc-comment">(* &quot;End&quot; added type radix (used by radixNotZero) and radixNotZero *)</span><span>
+</span></dt><dd><span>foo' =
 </span><span class="ansi-bold">fun</span><span> (radix : nat) (_ : 0</span><span> &lt;</span><span> radix) =&gt; eq_refl
      : </span><span class="ansi-bold">forall</span><span> radix : nat, 0</span><span> &lt;</span><span> radix</span><span> -&gt;</span><span> 0</span><span> =</span><span> 0
 
@@ -1966,7 +1969,8 @@ have names by default.  You can give a name to a goal by using
 <p class="admonition-title">Example: Working with named goals</p>
 <div class="coqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Ltac</span><span> </span><span class="coqdoc-var">name_goal</span><span> </span><span class="coqdoc-var">name</span><span> := </span><span class="coqdoc-tactic">refine</span><span> ?[</span><span class="coqdoc-var">name</span><span>]. </span><span class="coqdoc-comment">(* for convenience *)</span></dt><dd class="coqtop-hidden"><span>name_goal is defined
+<dt><span></span><span class="coqdoc-keyword">Ltac</span><span> </span><span class="coqdoc-var">name_goal</span><span> </span><span class="coqdoc-var">name</span><span> := </span><span class="coqdoc-tactic">refine</span><span> ?[</span><span class="coqdoc-var">name</span><span>]. </span><span class="coqdoc-comment">(* for convenience *)</span><span>
+</span></dt><dd class="coqtop-hidden"><span>name_goal is defined
 </span></dd>
 <dt><span></span><span class="coqdoc-keyword">Set</span><span> </span><span class="coqdoc-keyword">Printing</span><span> </span><span class="coqdoc-keyword">Goal</span><span> </span><span class="coqdoc-var">Names</span><span>. </span><span class="coqdoc-comment">(* show goal names, e.g. &quot;(?base)&quot; and &quot;(?step)&quot; *)</span></dt></dl>
 <span></span><dl>
@@ -1986,7 +1990,8 @@ have names by default.  You can give a name to a goal by using
 goal 2 (?step) is:
  S n</span><span> +</span><span> 0</span><span> =</span><span> S n
 </span></dd>
-<dt><span></span><span class="coqdoc-comment">(* focus on the goal named &quot;base&quot; *)</span></dt><dt><span>[</span><span class="coqdoc-var">base</span><span>]: {</span><span>
+<dt><span></span><span class="coqdoc-comment">(* focus on the goal named &quot;base&quot; *)</span><span>
+[</span><span class="coqdoc-var">base</span><span>]: {</span><span>
   </span><span class="coqdoc-tactic">reflexivity</span><span>.</span><span>
 </span></dt><dd><span>1 goal (?base)
   
@@ -2111,7 +2116,8 @@ Observe that this proof still works even if all the bullets in it are omitted.</
   (1</span><span> =</span><span> 1</span><span> /\</span><span> 2</span><span> =</span><span> 2)</span><span> /\</span><span> 3</span><span> =</span><span> 3
 </span></dd>
 <dt><span></span><span class="coqdoc-keyword">Proof</span><span>.</span><span>
-</span></dt><dt><span></span><span class="coqdoc-tactic">split</span><span>. </span><span class="coqdoc-comment">(*     1 = 1 /\ 2 = 2 and 3 = 3 *)</span></dt><dd class="coqtop-hidden"><span>2 goals
+</span></dt><dt><span></span><span class="coqdoc-tactic">split</span><span>. </span><span class="coqdoc-comment">(*     1 = 1 /\ 2 = 2 and 3 = 3 *)</span><span>
+</span></dt><dd class="coqtop-hidden"><span>2 goals
   
   ============================
   1</span><span> =</span><span> 1</span><span> /\</span><span> 2</span><span> =</span><span> 2
@@ -2119,12 +2125,14 @@ Observe that this proof still works even if all the bullets in it are omitted.</
 goal 2 is:
  3</span><span> =</span><span> 3
 </span></dd>
-<dt><span>-          </span><span class="coqdoc-comment">(* 1 = 1 /\ 2 = 2 *)</span></dt><dd class="coqtop-hidden"><span>1 goal
+<dt><span>-          </span><span class="coqdoc-comment">(* 1 = 1 /\ 2 = 2 *)</span><span>
+ </span><span class="coqdoc-tactic">split</span><span>. </span><span class="coqdoc-comment">(*    1 = 1 and 2 = 2 *)</span><span>
+</span></dt><dd class="coqtop-hidden"><span>1 goal
   
   ============================
   1</span><span> =</span><span> 1</span><span> /\</span><span> 2</span><span> =</span><span> 2
-</span></dd>
-<dt><span> </span><span class="coqdoc-tactic">split</span><span>. </span><span class="coqdoc-comment">(*    1 = 1 and 2 = 2 *)</span></dt><dd class="coqtop-hidden"><span>2 goals
+
+2 goals
   
   ============================
   1</span><span> =</span><span> 1
@@ -2132,12 +2140,14 @@ goal 2 is:
 goal 2 is:
  2</span><span> =</span><span> 2
 </span></dd>
-<dt><span> +         </span><span class="coqdoc-comment">(* 1 = 1 *)</span></dt><dd class="coqtop-hidden"><span>1 goal
+<dt><span> +         </span><span class="coqdoc-comment">(* 1 = 1 *)</span><span>
+  </span><span class="coqdoc-tactic">trivial</span><span>. </span><span class="coqdoc-comment">(* subproof complete *)</span><span>
+</span></dt><dd class="coqtop-hidden"><span>1 goal
   
   ============================
   1</span><span> =</span><span> 1
-</span></dd>
-<dt><span>  </span><span class="coqdoc-tactic">trivial</span><span>. </span><span class="coqdoc-comment">(* subproof complete *)</span></dt><dd class="coqtop-hidden"><span>This subproof is complete, but there are some unfocused goals.
+
+This subproof is complete, but there are some unfocused goals.
 Focus next goal with bullet +.
 
 2 goals
@@ -2147,12 +2157,14 @@ goal 1 is:
 goal 2 is:
  3</span><span> =</span><span> 3
 </span></dd>
-<dt><span> +         </span><span class="coqdoc-comment">(* 2 = 2 *)</span></dt><dd class="coqtop-hidden"><span>1 goal
+<dt><span> +         </span><span class="coqdoc-comment">(* 2 = 2 *)</span><span>
+  </span><span class="coqdoc-tactic">trivial</span><span>. </span><span class="coqdoc-comment">(* subproof complete *)</span><span>
+</span></dt><dd class="coqtop-hidden"><span>1 goal
   
   ============================
   2</span><span> =</span><span> 2
-</span></dd>
-<dt><span>  </span><span class="coqdoc-tactic">trivial</span><span>. </span><span class="coqdoc-comment">(* subproof complete *)</span></dt><dd class="coqtop-hidden"><span>This subproof is complete, but there are some unfocused goals.
+
+This subproof is complete, but there are some unfocused goals.
 Focus next goal with bullet -.
 
 1 goal
@@ -2160,12 +2172,14 @@ Focus next goal with bullet -.
 goal 1 is:
  3</span><span> =</span><span> 3
 </span></dd>
-<dt><span>-          </span><span class="coqdoc-comment">(* 3 = 3 *)</span></dt><dd class="coqtop-hidden"><span>1 goal
+<dt><span>-          </span><span class="coqdoc-comment">(* 3 = 3 *)</span><span>
+ </span><span class="coqdoc-tactic">trivial</span><span>. </span><span class="coqdoc-comment">(*  No more subgoals *)</span><span>
+</span></dt><dd class="coqtop-hidden"><span>1 goal
   
   ============================
   3</span><span> =</span><span> 3
-</span></dd>
-<dt><span> </span><span class="coqdoc-tactic">trivial</span><span>. </span><span class="coqdoc-comment">(*  No more subgoals *)</span></dt><dd class="coqtop-hidden"><span>No more goals.
+
+No more goals.
 </span></dd>
 <dt><span></span><span class="coqdoc-keyword">Qed</span><span>.</span><span>
 </span></dt></dl>
@@ -2347,7 +2361,8 @@ to <code class="docutils literal notranslate"><span class="pre">all:</span> <spa
   ============================
   P 1</span><span> /\</span><span> P 2</span><span> /\</span><span> P 3</span><span> /\</span><span> P 4</span><span> /\</span><span> P 5
 </span></dd>
-<dt><span></span><span class="coqdoc-tactic">repeat</span><span> </span><span class="coqdoc-tactic">split</span><span>. </span><span class="coqdoc-comment">(*  P 1, P 2, P 3, P 4, P 5 *)</span></dt><dd class="coqtop-hidden"><span>5 goals
+<dt><span></span><span class="coqdoc-tactic">repeat</span><span> </span><span class="coqdoc-tactic">split</span><span>. </span><span class="coqdoc-comment">(*  P 1, P 2, P 3, P 4, P 5 *)</span><span>
+</span></dt><dd class="coqtop-hidden"><span>5 goals
   
   ============================
   P 1
@@ -2361,7 +2376,8 @@ goal 4 is:
 goal 5 is:
  P 5
 </span></dd>
-<dt><span></span><span class="coqdoc-var">all</span><span>: </span><span class="coqdoc-var">cycle</span><span> 2. </span><span class="coqdoc-comment">(*  P 3, P 4, P 5, P 1, P 2 *)</span></dt><dd class="coqtop-hidden"><span>5 goals
+<dt><span></span><span class="coqdoc-var">all</span><span>: </span><span class="coqdoc-var">cycle</span><span> 2. </span><span class="coqdoc-comment">(*  P 3, P 4, P 5, P 1, P 2 *)</span><span>
+</span></dt><dd class="coqtop-hidden"><span>5 goals
   
   ============================
   P 3
@@ -2413,7 +2429,8 @@ to <code class="docutils literal notranslate"><span class="pre">all:</span> <spa
   ============================
   P 1</span><span> /\</span><span> P 2</span><span> /\</span><span> P 3</span><span> /\</span><span> P 4</span><span> /\</span><span> P 5
 </span></dd>
-<dt><span></span><span class="coqdoc-tactic">repeat</span><span> </span><span class="coqdoc-tactic">split</span><span>. </span><span class="coqdoc-comment">(*   P 1, P 2, P 3, P 4, P 5 *)</span></dt><dd class="coqtop-hidden"><span>5 goals
+<dt><span></span><span class="coqdoc-tactic">repeat</span><span> </span><span class="coqdoc-tactic">split</span><span>. </span><span class="coqdoc-comment">(*   P 1, P 2, P 3, P 4, P 5 *)</span><span>
+</span></dt><dd class="coqtop-hidden"><span>5 goals
   
   ============================
   P 1
@@ -2427,7 +2444,8 @@ goal 4 is:
 goal 5 is:
  P 5
 </span></dd>
-<dt><span></span><span class="coqdoc-var">all</span><span>: </span><span class="coqdoc-var">swap</span><span> 1 3. </span><span class="coqdoc-comment">(*  P 3, P 2, P 1, P 4, P 5 *)</span></dt><dd class="coqtop-hidden"><span>5 goals
+<dt><span></span><span class="coqdoc-var">all</span><span>: </span><span class="coqdoc-var">swap</span><span> 1 3. </span><span class="coqdoc-comment">(*  P 3, P 2, P 1, P 4, P 5 *)</span><span>
+</span></dt><dd class="coqtop-hidden"><span>5 goals
   
   ============================
   P 3
@@ -2476,7 +2494,8 @@ selector, most commonly <code class="docutils literal notranslate"><span class="
   ============================
   P 1</span><span> /\</span><span> P 2</span><span> /\</span><span> P 3</span><span> /\</span><span> P 4</span><span> /\</span><span> P 5
 </span></dd>
-<dt><span></span><span class="coqdoc-tactic">repeat</span><span> </span><span class="coqdoc-tactic">split</span><span>. </span><span class="coqdoc-comment">(*  P 1, P 2, P 3, P 4, P 5 *)</span></dt><dd class="coqtop-hidden"><span>5 goals
+<dt><span></span><span class="coqdoc-tactic">repeat</span><span> </span><span class="coqdoc-tactic">split</span><span>. </span><span class="coqdoc-comment">(*  P 1, P 2, P 3, P 4, P 5 *)</span><span>
+</span></dt><dd class="coqtop-hidden"><span>5 goals
   
   ============================
   P 1

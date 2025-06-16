@@ -1668,16 +1668,14 @@ destroy all backtrack and return values.</p>
 <h4>Backtracking<a class="headerlink" href="#backtracking" title="Link to this heading"></a></h4>
 <p>Ltac2 models backtracking computations using streams of values: the head of a non-empty stream represent the first path of computation while its tail stands for the alternative paths of computation when backtracking occurs. The empty stream holding no values represent failure and initiates backtracking.</p>
 <p>Backtracking failures (empty streams) are moreover decorated with exceptions to inform the reason of failure. These exceptions are then passed to the tail of a non-empty backtracking computation. The following Ltac2 type summarizes the model for backtracking computations</p>
-<blockquote>
-<div><div class="coqtop literal-block docutils container">
+<div class="coqtop literal-block docutils container">
 <span></span><dl class="simple">
 <dt><span></span><span class="coqdoc-keyword">Ltac2</span><span> </span><span class="coqdoc-keyword">Type</span><span> </span><span class="coqdoc-keyword">rec</span><span> '</span><span class="coqdoc-var">a</span><span> </span><span class="coqdoc-var">backtracking_stream</span><span> :=</span><span>
-  [ </span><span class="coqdoc-var">EmptyStream</span><span>(</span><span class="coqdoc-var">exn</span><span>)</span><span>
-  | </span><span class="coqdoc-var">ConsStream</span><span>('</span><span class="coqdoc-var">a</span><span>, (</span><span class="coqdoc-var">exn</span><span> -&gt; '</span><span class="coqdoc-var">a</span><span> </span><span class="coqdoc-var">backtracking_stream</span><span>)) ].</span><span>
+  [ </span><span class="coqdoc-var">EmptyStream</span><span>(</span><span class="coqdoc-var">exn</span><span>) </span><span class="coqdoc-comment">(* backtracking failure holding an exception *)</span><span>
+  | </span><span class="coqdoc-var">ConsStream</span><span>('</span><span class="coqdoc-var">a</span><span>, (</span><span class="coqdoc-var">exn</span><span> -&gt; '</span><span class="coqdoc-var">a</span><span> </span><span class="coqdoc-var">backtracking_stream</span><span>)) ] </span><span class="coqdoc-comment">(* backtracking success *)</span><span>.</span><span>
 </span></dt></dl>
 </div>
-</div></blockquote>
-<p>where <code class="docutils literal notranslate"><span class="pre">EmptyStream</span></code> is a backtracking failure holding an exception and <code class="docutils literal notranslate"><span class="pre">ConsStream</span></code> is a backtracking success with a value <code class="docutils literal notranslate"><span class="pre">'a</span></code> as its head and a backtracking handler parameterized by an exception. When sequenced with additional backtracking computations, a backtracking success may lead to a failure with an exception that will be passed to the handler.</p>
+<p>where <code class="docutils literal notranslate"><span class="pre">ConsStream</span></code> is a backtracking success with a value of type <code class="docutils literal notranslate"><span class="pre">'a</span></code> as its head and a backtracking handler parameterized by an exception. When sequenced with additional backtracking computations, a backtracking success may lead to a failure with an exception that will be passed to the handler.</p>
 <p>In practice, the backtracking aspects of Ltac2's computations can be accessed through the following primitives, defined in the <code class="docutils literal notranslate"><span class="pre">Control</span></code> module:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Ltac2 Type &#39;a result := [ Val (&#39;a) | Err (exn) ].
 
@@ -1716,12 +1714,15 @@ Finally, the primitive <code class="docutils literal notranslate"><span class="p
 <span></span><dl>
 <dt><span></span><span class="coqdoc-keyword">From</span><span> </span><span class="coqdoc-var">Ltac2</span><span> </span><span class="coqdoc-keyword">Require</span><span> </span><span class="coqdoc-keyword">Import</span><span> </span><span class="coqdoc-var">Printf</span><span>.</span><span>
 </span></dt><dt><span></span><span>
-</span><span class="coqdoc-comment">(* `bs` holds a backtracking string *)</span></dt><dt><span></span><span class="coqdoc-keyword">Ltac2</span><span> </span><span class="coqdoc-var">bs</span><span> () := </span><span class="coqdoc-var">Control.plus</span><span> (</span><span class="coqdoc-keyword">fun</span><span> () =&gt; &quot;x&quot;) (</span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">_</span><span> =&gt; &quot;y&quot;).</span><span>
-</span></dt><dt><span></span><span class="coqdoc-comment">(* Prints the first branch &quot;x&quot; and terminates successfully. *)</span></dt><dt><span></span><span class="coqdoc-keyword">Ltac2</span><span> </span><span class="coqdoc-keyword">Eval</span><span> (</span><span class="coqdoc-keyword">let</span><span> </span><span class="coqdoc-var">s</span><span> := </span><span class="coqdoc-var">bs</span><span> () </span><span class="coqdoc-tactic">in</span><span> </span><span class="coqdoc-var">printf</span><span> &quot;%s&quot; </span><span class="coqdoc-var">s</span><span>).</span><span>
+</span><span class="coqdoc-comment">(* `bs` holds a backtracking string *)</span><span>
+</span><span class="coqdoc-keyword">Ltac2</span><span> </span><span class="coqdoc-var">bs</span><span> () := </span><span class="coqdoc-var">Control.plus</span><span> (</span><span class="coqdoc-keyword">fun</span><span> () =&gt; &quot;x&quot;) (</span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">_</span><span> =&gt; &quot;y&quot;).</span><span>
+</span></dt><dt><span></span><span class="coqdoc-comment">(* Prints the first branch &quot;x&quot; and terminates successfully. *)</span><span>
+</span><span class="coqdoc-keyword">Ltac2</span><span> </span><span class="coqdoc-keyword">Eval</span><span> (</span><span class="coqdoc-keyword">let</span><span> </span><span class="coqdoc-var">s</span><span> := </span><span class="coqdoc-var">bs</span><span> () </span><span class="coqdoc-tactic">in</span><span> </span><span class="coqdoc-var">printf</span><span> &quot;%s&quot; </span><span class="coqdoc-var">s</span><span>).</span><span>
 </span></dt><dd><span>x
 - : unit = ()
 </span></dd>
-<dt><span></span><span class="coqdoc-comment">(* Prints both branches and returns the error. *)</span></dt><dt><span></span><span class="coqdoc-keyword">Ltac2</span><span> </span><span class="coqdoc-var">print_and_fail</span><span> (</span><span class="coqdoc-var">s</span><span> : </span><span class="coqdoc-var">string</span><span>) :=</span><span>
+<dt><span></span><span class="coqdoc-comment">(* Prints both branches and returns the error. *)</span><span>
+</span><span class="coqdoc-keyword">Ltac2</span><span> </span><span class="coqdoc-var">print_and_fail</span><span> (</span><span class="coqdoc-var">s</span><span> : </span><span class="coqdoc-var">string</span><span>) :=</span><span>
   </span><span class="coqdoc-var">printf</span><span> &quot;%s&quot; </span><span class="coqdoc-var">s</span><span> ;</span><span>
   </span><span class="coqdoc-var">Control.zero</span><span> (</span><span class="coqdoc-var">Tactic_failure</span><span> </span><span class="coqdoc-var">None</span><span>).</span><span>
 </span></dt><dt><span></span><span>
@@ -2797,11 +2798,13 @@ below will fail immediately and won't print anything.</p>
   True
 </span></dd>
 <dt><span></span><span class="coqdoc-keyword">Proof</span><span>.</span><span>
-</span></dt><dt><span></span><span class="coqdoc-comment">(* Doesn't print anything *)</span></dt><dt><span></span><span class="coqdoc-var">Fail</span><span> </span><span class="coqdoc-var">mytac</span><span> </span><span class="coqdoc-var">ltac2</span><span>:(</span><span class="coqdoc-tactic">fail</span><span>).</span><span>
+</span></dt><dt><span></span><span class="coqdoc-comment">(* Doesn't print anything *)</span><span>
+</span><span class="coqdoc-var">Fail</span><span> </span><span class="coqdoc-var">mytac</span><span> </span><span class="coqdoc-var">ltac2</span><span>:(</span><span class="coqdoc-tactic">fail</span><span>).</span><span>
 </span></dt><dd><span>The command has indeed failed with message:
 Uncaught Ltac2 exception: Tactic_failure None
 </span></dd>
-<dt><span></span><span class="coqdoc-comment">(* Prints and fails *)</span></dt><dt><span></span><span class="coqdoc-var">Fail</span><span> </span><span class="coqdoc-var">mytac</span><span> </span><span class="coqdoc-keyword">ltac</span><span>:(</span><span class="coqdoc-tactic">idtac</span><span>; </span><span class="coqdoc-var">ltac2</span><span>:(</span><span class="coqdoc-tactic">fail</span><span>)).</span><span>
+<dt><span></span><span class="coqdoc-comment">(* Prints and fails *)</span><span>
+</span><span class="coqdoc-var">Fail</span><span> </span><span class="coqdoc-var">mytac</span><span> </span><span class="coqdoc-keyword">ltac</span><span>:(</span><span class="coqdoc-tactic">idtac</span><span>; </span><span class="coqdoc-var">ltac2</span><span>:(</span><span class="coqdoc-tactic">fail</span><span>)).</span><span>
 </span></dt><dd><span>I am being evaluated
 The command has indeed failed with message:
 Uncaught Ltac2 exception: Tactic_failure None

@@ -2394,7 +2394,8 @@ is used even when rewriting with individual lemmas.</p>
 <dt><span></span><span class="coqdoc-keyword">Proof</span><span>.</span><span>
 </span></dt></dl>
 <span></span><dl>
-<dt><span></span><span class="coqdoc-tactic">intros</span><span>. </span><span class="coqdoc-comment">(* By default, this rewrite succeeds by unifying f with g. *)</span></dt><dd><span>1 goal
+<dt><span></span><span class="coqdoc-tactic">intros</span><span>. </span><span class="coqdoc-comment">(* By default, this rewrite succeeds by unifying f with g. *)</span><span>
+</span></dt><dd><span>1 goal
   
   double_f : </span><span class="ansi-bold">forall</span><span> x y : nat, 2</span><span> *</span><span> f x y</span><span> =</span><span> f (2</span><span> *</span><span> x) y</span><span> +</span><span> y
   ============================
@@ -2402,7 +2403,8 @@ is used even when rewriting with individual lemmas.</p>
 </span></dd>
 <dt><span>  </span><span class="coqdoc-var">assert_succeeds</span><span> (</span><span class="coqdoc-tactic">setoid_rewrite</span><span> </span><span class="coqdoc-var">double_f</span><span>).</span><span>
 </span></dt><dt><span>  </span><span class="coqdoc-var">assert_succeeds</span><span> (</span><span class="coqdoc-var">rewrite_strat</span><span> </span><span class="coqdoc-var">bottomup</span><span> </span><span class="coqdoc-var">double_f</span><span>).</span><span>
-</span></dt><dt><span></span><span class="coqdoc-tactic">set</span><span> (</span><span class="coqdoc-var">x</span><span> := </span><span class="coqdoc-var">g</span><span> </span><span class="coqdoc-var">_</span><span>). </span><span class="coqdoc-comment">(* Hide left-hand side behind local definition. *)</span></dt><dd><span>1 goal
+</span></dt><dt><span></span><span class="coqdoc-tactic">set</span><span> (</span><span class="coqdoc-var">x</span><span> := </span><span class="coqdoc-var">g</span><span> </span><span class="coqdoc-var">_</span><span>). </span><span class="coqdoc-comment">(* Hide left-hand side behind local definition. *)</span><span>
+</span></dt><dd><span>1 goal
   
   double_f : </span><span class="ansi-bold">forall</span><span> x y : nat, 2</span><span> *</span><span> f x y</span><span> =</span><span> f (2</span><span> *</span><span> x) y</span><span> +</span><span> y
   x := g 1 : nat</span><span> -&gt;</span><span> nat
@@ -2411,11 +2413,14 @@ is used even when rewriting with individual lemmas.</p>
 </span></dd>
 <dt><span>  </span><span class="coqdoc-var">assert_fails</span><span> (</span><span class="coqdoc-tactic">setoid_rewrite</span><span> </span><span class="coqdoc-var">double_f</span><span>).</span><span>
 </span></dt><dt><span>  </span><span class="coqdoc-var">assert_fails</span><span> (</span><span class="coqdoc-var">rewrite_strat</span><span> </span><span class="coqdoc-var">bottomup</span><span> </span><span class="coqdoc-var">double_f</span><span>).</span><span>
-</span></dt><dt><span></span><span class="coqdoc-keyword">Hint</span><span> </span><span class="coqdoc-keyword">Variables</span><span> </span><span class="coqdoc-keyword">Transparent</span><span> : </span><span class="coqdoc-tactic">rewrite</span><span>. </span><span class="coqdoc-comment">(* Now rewriting unfolds x. *)</span></dt><dt><span>  </span><span class="coqdoc-var">assert_succeeds</span><span> (</span><span class="coqdoc-tactic">setoid_rewrite</span><span> </span><span class="coqdoc-var">double_f</span><span>).</span><span>
+</span></dt><dt><span></span><span class="coqdoc-keyword">Hint</span><span> </span><span class="coqdoc-keyword">Variables</span><span> </span><span class="coqdoc-keyword">Transparent</span><span> : </span><span class="coqdoc-tactic">rewrite</span><span>. </span><span class="coqdoc-comment">(* Now rewriting unfolds x. *)</span><span>
+</span></dt><dt><span>  </span><span class="coqdoc-var">assert_succeeds</span><span> (</span><span class="coqdoc-tactic">setoid_rewrite</span><span> </span><span class="coqdoc-var">double_f</span><span>).</span><span>
 </span></dt><dt><span>  </span><span class="coqdoc-var">assert_succeeds</span><span> (</span><span class="coqdoc-var">rewrite_strat</span><span> </span><span class="coqdoc-var">bottomup</span><span> </span><span class="coqdoc-var">double_f</span><span>).</span><span>
-</span></dt><dt><span></span><span class="coqdoc-keyword">Hint</span><span> </span><span class="coqdoc-var">Constants</span><span> </span><span class="coqdoc-keyword">Opaque</span><span> : </span><span class="coqdoc-tactic">rewrite</span><span>. </span><span class="coqdoc-comment">(* Disallow unfolding f and g. *)</span></dt><dt><span>  </span><span class="coqdoc-var">assert_fails</span><span> (</span><span class="coqdoc-tactic">setoid_rewrite</span><span> </span><span class="coqdoc-var">double_f</span><span>).</span><span>
+</span></dt><dt><span></span><span class="coqdoc-keyword">Hint</span><span> </span><span class="coqdoc-var">Constants</span><span> </span><span class="coqdoc-keyword">Opaque</span><span> : </span><span class="coqdoc-tactic">rewrite</span><span>. </span><span class="coqdoc-comment">(* Disallow unfolding f and g. *)</span><span>
+</span></dt><dt><span>  </span><span class="coqdoc-var">assert_fails</span><span> (</span><span class="coqdoc-tactic">setoid_rewrite</span><span> </span><span class="coqdoc-var">double_f</span><span>).</span><span>
 </span></dt><dt><span>  </span><span class="coqdoc-var">assert_fails</span><span> (</span><span class="coqdoc-var">rewrite_strat</span><span> </span><span class="coqdoc-var">bottomup</span><span> </span><span class="coqdoc-var">double_f</span><span>).</span><span>
-</span></dt><dt><span></span><span class="coqdoc-tactic">subst</span><span> </span><span class="coqdoc-var">x</span><span>. </span><span class="coqdoc-comment">(* With x substituted, f and g are still distinct. *)</span></dt><dd><span>1 goal
+</span></dt><dt><span></span><span class="coqdoc-tactic">subst</span><span> </span><span class="coqdoc-var">x</span><span>. </span><span class="coqdoc-comment">(* With x substituted, f and g are still distinct. *)</span><span>
+</span></dt><dd><span>1 goal
   
   double_f : </span><span class="ansi-bold">forall</span><span> x y : nat, 2</span><span> *</span><span> f x y</span><span> =</span><span> f (2</span><span> *</span><span> x) y</span><span> +</span><span> y
   ============================
@@ -2423,7 +2428,8 @@ is used even when rewriting with individual lemmas.</p>
 </span></dd>
 <dt><span>  </span><span class="coqdoc-var">assert_fails</span><span> (</span><span class="coqdoc-tactic">setoid_rewrite</span><span> </span><span class="coqdoc-var">double_f</span><span>).</span><span>
 </span></dt><dt><span>  </span><span class="coqdoc-var">assert_fails</span><span> (</span><span class="coqdoc-var">rewrite_strat</span><span> </span><span class="coqdoc-var">bottomup</span><span> </span><span class="coqdoc-var">double_f</span><span>).</span><span>
-</span></dt><dt><span></span><span class="coqdoc-keyword">Hint Transparent</span><span> </span><span class="coqdoc-var">f</span><span> </span><span class="coqdoc-var">g</span><span> : </span><span class="coqdoc-tactic">rewrite</span><span>. </span><span class="coqdoc-comment">(* Allow unfolding f and g only. *)</span></dt><dt><span>  </span><span class="coqdoc-var">assert_succeeds</span><span> (</span><span class="coqdoc-tactic">setoid_rewrite</span><span> </span><span class="coqdoc-var">double_f</span><span>).</span><span>
+</span></dt><dt><span></span><span class="coqdoc-keyword">Hint Transparent</span><span> </span><span class="coqdoc-var">f</span><span> </span><span class="coqdoc-var">g</span><span> : </span><span class="coqdoc-tactic">rewrite</span><span>. </span><span class="coqdoc-comment">(* Allow unfolding f and g only. *)</span><span>
+</span></dt><dt><span>  </span><span class="coqdoc-var">assert_succeeds</span><span> (</span><span class="coqdoc-tactic">setoid_rewrite</span><span> </span><span class="coqdoc-var">double_f</span><span>).</span><span>
 </span></dt><dt><span>  </span><span class="coqdoc-var">assert_succeeds</span><span> (</span><span class="coqdoc-var">rewrite_strat</span><span> </span><span class="coqdoc-var">bottomup</span><span> </span><span class="coqdoc-var">double_f</span><span>).</span><span>
 </span></dt></dl>
 <span></span><dl>

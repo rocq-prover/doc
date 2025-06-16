@@ -1430,7 +1430,8 @@ Module B is defined
 </span></dt><dd><span>MyRecord is defined
 myfield is defined
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">About</span><span> </span><span class="coqdoc-var">myfield</span><span>. </span><span class="coqdoc-comment">(* observe the MyRecord variable is named &quot;VarName&quot; *)</span></dt><dd><span>myfield : MyRecord</span><span> -&gt;</span><span> nat
+<dt><span></span><span class="coqdoc-keyword">About</span><span> </span><span class="coqdoc-var">myfield</span><span>. </span><span class="coqdoc-comment">(* observe the MyRecord variable is named &quot;VarName&quot; *)</span><span>
+</span></dt><dd><span>myfield : MyRecord</span><span> -&gt;</span><span> nat
 
 myfield is not universe polymorphic
 myfield is a projection of MyRecord
@@ -1441,7 +1442,9 @@ Declared in toplevel input, characters 467-474
 </span></dd>
 <dt><span></span><span>
 </span><span class="coqdoc-comment">(* make &quot;VarName&quot; implicit without having to rename the variable,</span><span class="coqdoc-comment">
-   which would be necessary without the &quot;as&quot; clause *)</span></dt><dt><span></span><span class="coqdoc-keyword">Arguments</span><span> </span><span class="coqdoc-var">myfield</span><span> {</span><span class="coqdoc-var">VarName</span><span>}. </span><span class="coqdoc-comment">(* make &quot;VarName&quot; an implicit parameter *)</span></dt><dt><span></span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-var">myfield</span><span>.</span><span>
+   which would be necessary without the &quot;as&quot; clause *)</span><span>
+</span><span class="coqdoc-keyword">Arguments</span><span> </span><span class="coqdoc-var">myfield</span><span> {</span><span class="coqdoc-var">VarName</span><span>}. </span><span class="coqdoc-comment">(* make &quot;VarName&quot; an implicit parameter *)</span><span>
+</span></dt><dt><span></span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-var">myfield</span><span>.</span><span>
 </span></dt><dd><span>myfield
      : nat
 where
@@ -1472,7 +1475,7 @@ myfield2 is a projection of MyClass
 Arguments </span><span class="ansi-fg-light-green">myfield2</span><span> {MyClass}
 myfield2 is transparent
 Expands to: Constant Top.myfield2
-Declared in toplevel input, characters 720-728
+Declared in toplevel input, characters 841-849
 </span></dd>
 </dl>
 </div>
@@ -1567,7 +1570,8 @@ as arguments to the constructor.</p>
 </span></dt><dd class="coqtop-hidden"><span>one_two_irred is declared
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-comment">(* Record form: top and bottom can be inferred from other fields *)</span></dt><dt><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">half</span><span> :=</span><span>
+</span><span class="coqdoc-comment">(* Record form: top and bottom can be inferred from other fields *)</span><span>
+</span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">half</span><span> :=</span><span>
   {| </span><span class="coqdoc-var">negative</span><span> := </span><span class="coqdoc-var">false</span><span>;</span><span>
      </span><span class="coqdoc-var">Rat_bottom_nonzero</span><span> := </span><span class="coqdoc-var">O_S</span><span> 1;</span><span>
      </span><span class="coqdoc-var">Rat_irreducible</span><span> := </span><span class="coqdoc-var">one_two_irred</span><span> |}.</span><span>
@@ -1575,7 +1579,8 @@ as arguments to the constructor.</p>
 </span></dd>
 <dt><span></span><span>
 </span><span class="coqdoc-comment">(* Application form: use the constructor and provide values for all the fields</span><span class="coqdoc-comment">
-   in order.  &quot;mkRat&quot; is defined by the Record command *)</span></dt><dt><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">half'</span><span> := </span><span class="coqdoc-var">mkRat</span><span> </span><span class="coqdoc-var">true</span><span> 1 2 (</span><span class="coqdoc-var">O_S</span><span> 1) </span><span class="coqdoc-var">one_two_irred</span><span>.</span><span>
+   in order.  &quot;mkRat&quot; is defined by the Record command *)</span><span>
+</span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">half'</span><span> := </span><span class="coqdoc-var">mkRat</span><span> </span><span class="coqdoc-var">true</span><span> 1 2 (</span><span class="coqdoc-var">O_S</span><span> 1) </span><span class="coqdoc-var">one_two_irred</span><span>.</span><span>
 </span></dt><dd class="coqtop-hidden"><span>half' is defined
 </span></dd>
 </dl>
@@ -1604,12 +1609,14 @@ formally declared as implicit (see <a class="reference internal" href="../extens
 <p class="admonition-title">Example: Accessing record fields</p>
 <div class="coqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-comment">(* projection form *)</span></dt><dt><span></span><span class="coqdoc-keyword">Eval</span><span> </span><span class="coqdoc-tactic">compute</span><span> </span><span class="coqdoc-tactic">in</span><span> </span><span class="coqdoc-var">half</span><span>.(</span><span class="coqdoc-var">top</span><span>).</span><span>
+<dt><span></span><span class="coqdoc-comment">(* projection form *)</span><span>
+</span><span class="coqdoc-keyword">Eval</span><span> </span><span class="coqdoc-tactic">compute</span><span> </span><span class="coqdoc-tactic">in</span><span> </span><span class="coqdoc-var">half</span><span>.(</span><span class="coqdoc-var">top</span><span>).</span><span>
 </span></dt><dd><span>     = 1
      : nat
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-comment">(* application form *)</span></dt><dt><span></span><span class="coqdoc-keyword">Eval</span><span> </span><span class="coqdoc-tactic">compute</span><span> </span><span class="coqdoc-tactic">in</span><span> </span><span class="coqdoc-var">top</span><span> </span><span class="coqdoc-var">half</span><span>.</span><span>
+</span><span class="coqdoc-comment">(* application form *)</span><span>
+</span><span class="coqdoc-keyword">Eval</span><span> </span><span class="coqdoc-tactic">compute</span><span> </span><span class="coqdoc-tactic">in</span><span> </span><span class="coqdoc-var">top</span><span> </span><span class="coqdoc-var">half</span><span>.</span><span>
 </span></dt><dd><span>     = 1
      : nat
 </span></dd>
@@ -1688,7 +1695,8 @@ use the record syntax (shown above) as the default display format.</p>
 <p class="admonition-title">Example</p>
 <div class="coqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-var">top</span><span> </span><span class="coqdoc-var">half</span><span>. </span><span class="coqdoc-comment">(* off: application form *)</span></dt><dd><span>top half
+<dt><span></span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-var">top</span><span> </span><span class="coqdoc-var">half</span><span>. </span><span class="coqdoc-comment">(* off: application form *)</span><span>
+</span></dt><dd><span>top half
      : nat
 </span></dd>
 <dt><span></span><span class="coqdoc-keyword">Set</span><span> </span><span class="coqdoc-keyword">Printing</span><span> </span><span class="coqdoc-var">Projections</span><span>.</span><span>

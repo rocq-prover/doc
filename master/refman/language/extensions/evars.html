@@ -1376,7 +1376,8 @@ creates a new existential variable <code class="docutils literal notranslate"><s
 </span></dd>
 </dl>
 <span></span><dl>
-<dt><span></span><span class="coqdoc-comment">(* Theorem eq_trans : forall (A : Type) (x y z : A), x = y -&gt; y = z -&gt; x = z. *)</span></dt><dt><span></span><span>
+<dt><span></span><span class="coqdoc-comment">(* Theorem eq_trans : forall (A : Type) (x y z : A), x = y -&gt; y = z -&gt; x = z. *)</span><span>
+</span><span>
 </span><span class="coqdoc-var">Fail</span><span> </span><span class="coqdoc-tactic">apply</span><span> </span><span class="coqdoc-var">eq_trans</span><span>.</span><span>
 </span></dt><dd><span>The command has indeed failed with message:
 Unable to find an instance for the variable y.
@@ -1465,7 +1466,8 @@ which resolves it.</p>
   ============================
   y</span><span> =</span><span> z
 </span></dd>
-<dt><span></span><span class="coqdoc-tactic">eapply</span><span> </span><span class="coqdoc-var">eq_trans</span><span>. </span><span class="coqdoc-comment">(* creates ?y : nat as a shelved goal *)</span></dt><dd><span>2 focused goals (shelved: 1), goal 1 (?Goal)
+<dt><span></span><span class="coqdoc-tactic">eapply</span><span> </span><span class="coqdoc-var">eq_trans</span><span>. </span><span class="coqdoc-comment">(* creates ?y : nat as a shelved goal *)</span><span>
+</span></dt><dd><span>2 focused goals (shelved: 1), goal 1 (?Goal)
   
   x, y, z : nat
   H1 : y</span><span> =</span><span> x
@@ -1476,7 +1478,8 @@ which resolves it.</p>
 goal 2 (?Goal0) is:
  </span><span class="ansi-fg-light-blue">?y</span><span> =</span><span> z
 </span></dd>
-<dt><span></span><span class="coqdoc-var">Unshelve</span><span>. </span><span class="coqdoc-comment">(* moves the shelved goals into focus--not needed and usually not done *)</span></dt><dd><span>3 goals, goal 1 (?Goal)
+<dt><span></span><span class="coqdoc-var">Unshelve</span><span>. </span><span class="coqdoc-comment">(* moves the shelved goals into focus--not needed and usually not done *)</span><span>
+</span></dt><dd><span>3 goals, goal 1 (?Goal)
   
   x, y, z : nat
   H1 : y</span><span> =</span><span> x

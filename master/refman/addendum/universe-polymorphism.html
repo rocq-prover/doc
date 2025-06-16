@@ -1774,7 +1774,8 @@ Irrelevant_sind is defined
 </span></dt><dt><span>  </span><span class="coqdoc-keyword">Universe</span><span> </span><span class="coqdoc-var">low</span><span> </span><span class="coqdoc-var">high</span><span>.</span><span>
 </span></dt><dt><span>  </span><span class="coqdoc-keyword">Constraint</span><span> </span><span class="coqdoc-var">low</span><span> &lt; </span><span class="coqdoc-var">high</span><span>.</span><span>
 </span></dt><dt><span></span><span>
-  </span><span class="coqdoc-comment">(* An invariant universe blocks cumulativity from upper or lower levels. *)</span></dt><dt><span>  </span><span class="coqdoc-keyword">Axiom</span><span> </span><span class="coqdoc-var">inv_low</span><span>  : </span><span class="coqdoc-var">Invariant&#64;</span><span>{</span><span class="coqdoc-var">low</span><span>}.</span><span>
+  </span><span class="coqdoc-comment">(* An invariant universe blocks cumulativity from upper or lower levels. *)</span><span>
+  </span><span class="coqdoc-keyword">Axiom</span><span> </span><span class="coqdoc-var">inv_low</span><span>  : </span><span class="coqdoc-var">Invariant&#64;</span><span>{</span><span class="coqdoc-var">low</span><span>}.</span><span>
 </span></dt><dd class="coqtop-hidden"><span>inv_low is declared
 </span></dd>
 <dt><span>  </span><span class="coqdoc-keyword">Axiom</span><span> </span><span class="coqdoc-var">inv_high</span><span> : </span><span class="coqdoc-var">Invariant&#64;</span><span>{</span><span class="coqdoc-var">high</span><span>}.</span><span>
@@ -1796,7 +1797,8 @@ while it is expected to have type &quot;Invariant&#64;{</span><span class="ansi-
 </span></dd>
 </dl>
 <span></span><dl>
-<dt><span></span><span class="coqdoc-comment">(* A covariant universe allows cumulativity from a lower level. *)</span></dt><dt><span></span><span class="coqdoc-keyword">Axiom</span><span> </span><span class="coqdoc-var">co_low</span><span>  : </span><span class="coqdoc-var">Covariant&#64;</span><span>{</span><span class="coqdoc-var">low</span><span>}.</span><span>
+<dt><span></span><span class="coqdoc-comment">(* A covariant universe allows cumulativity from a lower level. *)</span><span>
+</span><span class="coqdoc-keyword">Axiom</span><span> </span><span class="coqdoc-var">co_low</span><span>  : </span><span class="coqdoc-var">Covariant&#64;</span><span>{</span><span class="coqdoc-var">low</span><span>}.</span><span>
 </span></dt><dd class="coqtop-hidden"><span>co_low is declared
 </span></dd>
 <dt><span></span><span class="coqdoc-keyword">Axiom</span><span> </span><span class="coqdoc-var">co_high</span><span> : </span><span class="coqdoc-var">Covariant&#64;</span><span>{</span><span class="coqdoc-var">high</span><span>}.</span><span>
@@ -1817,7 +1819,8 @@ while it is expected to have type &quot;Covariant&#64;{</span><span class="ansi-
 </span></dd>
 </dl>
 <span></span><dl>
-<dt><span></span><span class="coqdoc-comment">(* An irrelevant universe allows cumulativity from any level *)</span></dt><dt><span></span><span class="coqdoc-keyword">Axiom</span><span> </span><span class="coqdoc-var">irr_low</span><span>  : </span><span class="coqdoc-var">Irrelevant&#64;</span><span>{</span><span class="coqdoc-var">low</span><span>}.</span><span>
+<dt><span></span><span class="coqdoc-comment">(* An irrelevant universe allows cumulativity from any level *)</span><span>
+</span><span class="coqdoc-keyword">Axiom</span><span> </span><span class="coqdoc-var">irr_low</span><span>  : </span><span class="coqdoc-var">Irrelevant&#64;</span><span>{</span><span class="coqdoc-var">low</span><span>}.</span><span>
 </span></dt><dd class="coqtop-hidden"><span>irr_low is declared
 </span></dd>
 <dt><span></span><span class="coqdoc-keyword">Axiom</span><span> </span><span class="coqdoc-var">irr_high</span><span> : </span><span class="coqdoc-var">Irrelevant&#64;</span><span>{</span><span class="coqdoc-var">high</span><span>}.</span><span>
@@ -2140,7 +2143,7 @@ by adding a <code class="code Coq docutils literal notranslate"><span class="ope
 <span></span><dl>
 <dt><span></span><span class="coqdoc-var">Fail</span><span> </span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">foobar&#64;</span><span>{</span><span class="coqdoc-var">u</span><span>} : </span><span class="coqdoc-var">Type&#64;</span><span>{</span><span class="coqdoc-var">u</span><span>} := </span><span class="coqdoc-keyword">Type</span><span>.</span><span>
 </span></dt><dd><span>The command has indeed failed with message:
-Universe Top.155 (Toplevel input, characters 4136-4140) is unbound.
+Universe Top.155 (Toplevel input, characters 4345-4349) is unbound.
 </span></dd>
 <dt><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">foobar&#64;</span><span>{</span><span class="coqdoc-var">u</span><span> +} : </span><span class="coqdoc-var">Type&#64;</span><span>{</span><span class="coqdoc-var">u</span><span>} := </span><span class="coqdoc-keyword">Type</span><span>.</span><span>
 </span></dt><dd><span>foobar is defined
@@ -2273,7 +2276,7 @@ universe:</p>
 foo is universe polymorphic
 foo is opaque
 Expands to: Constant Top.foo
-Declared in toplevel input, characters 4400-4403
+Declared in toplevel input, characters 4609-4612
 </span></dd>
 </dl>
 </div>
@@ -2303,7 +2306,7 @@ No more goals.
 bar is universe polymorphic
 bar is opaque
 Expands to: Constant Top.bar
-Declared in toplevel input, characters 4524-4527
+Declared in toplevel input, characters 4733-4736
 </span></dd>
 <dt><span></span><span class="coqdoc-var">Fail</span><span> </span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-var">bar&#64;</span><span>{</span><span class="coqdoc-var">_</span><span>}.</span><span>
 </span></dt><dd><span>The command has indeed failed with message:
@@ -2342,7 +2345,7 @@ No more goals.
 baz is universe polymorphic
 baz is opaque
 Expands to: Constant Top.baz
-Declared in toplevel input, characters 4684-4687
+Declared in toplevel input, characters 4893-4896
 </span></dd>
 </dl>
 </div>
@@ -2563,14 +2566,16 @@ by turning universe polymorphism off.</p>
 <span></span><dl>
 <dt><span></span><span class="coqdoc-keyword">Set</span><span> </span><span class="coqdoc-var">Universe</span><span> </span><span class="coqdoc-var">Polymorphism</span><span>.</span><span>
 </span></dt><dt><span></span><span>
-</span><span class="coqdoc-comment">(* A global sort named g. *)</span></dt><dt><span>#[</span><span class="coqdoc-var">universes</span><span>(</span><span class="coqdoc-var">polymorphic</span><span>=</span><span class="coqdoc-keyword">no</span><span>)]</span><span>
+</span><span class="coqdoc-comment">(* A global sort named g. *)</span><span>
+#[</span><span class="coqdoc-var">universes</span><span>(</span><span class="coqdoc-var">polymorphic</span><span>=</span><span class="coqdoc-keyword">no</span><span>)]</span><span>
 </span><span class="coqdoc-keyword">Sort</span><span> </span><span class="coqdoc-var">g</span><span>.</span><span>
 </span></dt><dt><span></span><span>
 </span><span class="coqdoc-keyword">Print</span><span> </span><span class="coqdoc-var">Sorts</span><span>.</span><span>
 </span></dt><dd><span>g
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-comment">(* Universe of g-sorted type. *)</span></dt><dt><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">G&#64;</span><span>{</span><span class="coqdoc-var">l</span><span>|} : </span><span class="coqdoc-var">Type&#64;</span><span>{</span><span class="coqdoc-var">l</span><span>+1} := </span><span class="coqdoc-var">Type&#64;</span><span>{</span><span class="coqdoc-var">g</span><span>;</span><span class="coqdoc-var">l</span><span>}.</span><span>
+</span><span class="coqdoc-comment">(* Universe of g-sorted type. *)</span><span>
+</span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">G&#64;</span><span>{</span><span class="coqdoc-var">l</span><span>|} : </span><span class="coqdoc-var">Type&#64;</span><span>{</span><span class="coqdoc-var">l</span><span>+1} := </span><span class="coqdoc-var">Type&#64;</span><span>{</span><span class="coqdoc-var">g</span><span>;</span><span class="coqdoc-var">l</span><span>}.</span><span>
 </span></dt><dd><span>G is defined
 </span></dd>
 <dt><span></span><span>
@@ -2599,23 +2604,26 @@ by turning universe polymorphism off.</p>
 <dt><span></span><span>
 </span><span class="coqdoc-keyword">End</span><span> </span><span class="coqdoc-var">LocalSorts</span><span>.</span><span>
 </span></dt><dt><span></span><span>
-</span><span class="coqdoc-comment">(* The sorts u, v, w, x and y are no longer present. *)</span></dt><dt><span></span><span class="coqdoc-keyword">Print</span><span> </span><span class="coqdoc-var">Sorts</span><span>.</span><span>
+</span><span class="coqdoc-comment">(* The sorts u, v, w, x and y are no longer present. *)</span><span>
+</span><span class="coqdoc-keyword">Print</span><span> </span><span class="coqdoc-var">Sorts</span><span>.</span><span>
 </span></dt><dd><span>g
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-comment">(* Equivalent definition of arr2 outside the section LocalSorts. *)</span></dt><dt><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">arr2'&#64;</span><span>{</span><span class="coqdoc-var">u</span><span> </span><span class="coqdoc-var">v</span><span> </span><span class="coqdoc-var">w</span><span> ; </span><span class="coqdoc-var">l</span><span> |} (</span><span class="coqdoc-var">A</span><span> : </span><span class="coqdoc-var">Type&#64;</span><span>{</span><span class="coqdoc-var">u</span><span>;</span><span class="coqdoc-var">l</span><span>}) (</span><span class="coqdoc-var">B</span><span> : </span><span class="coqdoc-var">Type&#64;</span><span>{</span><span class="coqdoc-var">v</span><span>;</span><span class="coqdoc-var">l</span><span>}) (</span><span class="coqdoc-var">C</span><span> : </span><span class="coqdoc-var">Type&#64;</span><span>{</span><span class="coqdoc-var">w</span><span>;</span><span class="coqdoc-var">l</span><span>}) : </span><span class="coqdoc-var">Type&#64;</span><span>{</span><span class="coqdoc-var">w</span><span>;</span><span class="coqdoc-var">l</span><span>} :=</span><span>
+</span><span class="coqdoc-comment">(* Equivalent definition of arr2 outside the section LocalSorts. *)</span><span>
+</span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">arr2'&#64;</span><span>{</span><span class="coqdoc-var">u</span><span> </span><span class="coqdoc-var">v</span><span> </span><span class="coqdoc-var">w</span><span> ; </span><span class="coqdoc-var">l</span><span> |} (</span><span class="coqdoc-var">A</span><span> : </span><span class="coqdoc-var">Type&#64;</span><span>{</span><span class="coqdoc-var">u</span><span>;</span><span class="coqdoc-var">l</span><span>}) (</span><span class="coqdoc-var">B</span><span> : </span><span class="coqdoc-var">Type&#64;</span><span>{</span><span class="coqdoc-var">v</span><span>;</span><span class="coqdoc-var">l</span><span>}) (</span><span class="coqdoc-var">C</span><span> : </span><span class="coqdoc-var">Type&#64;</span><span>{</span><span class="coqdoc-var">w</span><span>;</span><span class="coqdoc-var">l</span><span>}) : </span><span class="coqdoc-var">Type&#64;</span><span>{</span><span class="coqdoc-var">w</span><span>;</span><span class="coqdoc-var">l</span><span>} :=</span><span>
     </span><span class="coqdoc-var">A</span><span> -&gt; </span><span class="coqdoc-var">B</span><span> -&gt; </span><span class="coqdoc-var">C</span><span>.</span><span>
 </span></dt><dd><span>arr2' is defined
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-comment">(* All sort declarations of the section are bound, even the unused one. *)</span></dt><dt><span></span><span class="coqdoc-keyword">About</span><span> </span><span class="coqdoc-var">arr1</span><span>.</span><span>
+</span><span class="coqdoc-comment">(* All sort declarations of the section are bound, even the unused one. *)</span><span>
+</span><span class="coqdoc-keyword">About</span><span> </span><span class="coqdoc-var">arr1</span><span>.</span><span>
 </span></dt><dd><span>arr1&#64;{u v w x y ; l} : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Type</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>
 
 arr1 is universe polymorphic
 Arguments </span><span class="ansi-fg-light-green">arr1</span><span> (X Y)%_type_scope
 arr1 is transparent
 Expands to: Constant Top.arr1
-Declared in toplevel input, characters 6098-6102
+Declared in toplevel input, characters 6369-6373
 </span></dd>
 </dl>
 </div>
