@@ -1390,7 +1390,7 @@ this explicit substitution is inferred automatically (like for existential varia
 <section id="universe-polymorphic-rules">
 <h2>Universe polymorphic rules<a class="headerlink" href="#universe-polymorphic-rules" title="Link to this heading"></a></h2>
 <p>Rewrite rules support universe and sort quality polymorphism.
-Universe levels and sort quality variables must be declared with the notation <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">&#64;</span></span></span><span class="curlies"><span class="pre">{</span><span><span><span class="pre">q1</span></span></span> <span><span><span class="pre">q2</span></span></span><span class="pre">|</span><span><span><span class="pre">u1</span></span></span> <span><span><span class="pre">u2+</span></span></span><span class="pre">|</span><span><span><span class="pre">+</span></span></span><span class="pre">}</span></span></span></code>
+Universe levels and sort quality variables must be declared with the notation <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">&#64;</span></span></span><span class="curlies"><span class="pre">{</span><span><span><span class="pre">q1</span></span></span> <span><span><span class="pre">q2;u1</span></span></span> <span><span><span class="pre">u2+</span></span></span><span class="pre">|</span><span><span><span class="pre">+</span></span></span><span class="pre">}</span></span></span></code>
 (the same notation as universe instance declarations);
 each variable must appear exactly once in the pattern.
 If any universe level isn't bound in the rule,
@@ -1403,43 +1403,12 @@ so all inferred constraints from the left-hand side are used for the replacement
 <blockquote>
 <div><div class="coqtop literal-block docutils container">
 <span class="coqtop-reset"></span><dl>
-<dt><span>#[</span><span class="coqdoc-var">universes</span><span>(</span><span class="coqdoc-var">polymorphic</span><span>)] </span><span class="coqdoc-var">Symbol</span><span> </span><span class="coqdoc-var">raise&#64;</span><span>{</span><span class="coqdoc-var">q</span><span>|</span><span class="coqdoc-var">u</span><span>|} : </span><span class="coqdoc-keyword">forall</span><span> (</span><span class="coqdoc-var">A</span><span> : </span><span class="coqdoc-var">Type&#64;</span><span>{</span><span class="coqdoc-var">q</span><span>|</span><span class="coqdoc-var">u</span><span>}), </span><span class="coqdoc-var">A</span><span>.</span><span>
-</span></dt><dd><span>Toplevel input, characters 41-42:
-&gt; #[universes(polymorphic)] Symbol raise&#64;{q|u|} 
-&gt;                                          ^
-</span><span class="ansi-fg-white ansi-bg-yellow ansi-bold">Warning:</span><span> Separating sorts from universes with &quot;|&quot; is deprecated.
-Use &quot;;&quot; instead.
-[deprecated-sort-poly-syntax,deprecated-since-9.1,deprecated,default]
-Toplevel input, characters 67-68:
-&gt; #[universes(polymorphic)] Symbol raise&#64;{q|u|} : forall (A : Type&#64;{q|u})
-&gt;                                                                    ^
-</span><span class="ansi-fg-white ansi-bg-yellow ansi-bold">Warning:</span><span> Separating sorts from universes with &quot;|&quot; is deprecated.
-Use &quot;;&quot; instead.
-[deprecated-sort-poly-syntax,deprecated-since-9.1,deprecated,default]
-raise is declared
+<dt><span>#[</span><span class="coqdoc-var">universes</span><span>(</span><span class="coqdoc-var">polymorphic</span><span>)] </span><span class="coqdoc-var">Symbol</span><span> </span><span class="coqdoc-var">raise&#64;</span><span>{</span><span class="coqdoc-var">q</span><span>;</span><span class="coqdoc-var">u</span><span>} : </span><span class="coqdoc-keyword">forall</span><span> (</span><span class="coqdoc-var">A</span><span> : </span><span class="coqdoc-var">Type&#64;</span><span>{</span><span class="coqdoc-var">q</span><span>;</span><span class="coqdoc-var">u</span><span>}), </span><span class="coqdoc-var">A</span><span>.</span><span>
+</span></dt><dd><span>raise is declared
 </span></dd>
 <dt><span></span><span class="coqdoc-keyword">Rewrite</span><span> </span><span class="coqdoc-var">Rule</span><span> </span><span class="coqdoc-var">raise_nat</span><span> :=</span><span>
-  &#64;{</span><span class="coqdoc-var">q</span><span>|</span><span class="coqdoc-var">u</span><span>+|+} |- </span><span class="coqdoc-var">raise&#64;</span><span>{</span><span class="coqdoc-var">q</span><span>|</span><span class="coqdoc-var">u</span><span>} (</span><span class="coqdoc-keyword">forall</span><span> (</span><span class="coqdoc-var">x</span><span> : ?</span><span class="coqdoc-var">A</span><span>), ?</span><span class="coqdoc-var">P</span><span>) =&gt; </span><span class="coqdoc-keyword">fun</span><span> (</span><span class="coqdoc-var">x</span><span> : ?</span><span class="coqdoc-var">A</span><span>) =&gt; </span><span class="coqdoc-var">raise&#64;</span><span>{</span><span class="coqdoc-var">q</span><span>|</span><span class="coqdoc-var">u</span><span>} ?</span><span class="coqdoc-var">P</span><span>.</span><span>
-</span></dt><dd><span>Toplevel input, characters 31-32:
-&gt; Rewrite Rule raise_nat :=   &#64;{q|u+|+} 
-&gt;                                ^
-</span><span class="ansi-fg-white ansi-bg-yellow ansi-bold">Warning:</span><span> Separating sorts from universes with &quot;|&quot; is deprecated.
-Use &quot;;&quot; instead.
-[deprecated-sort-poly-syntax,deprecated-since-9.1,deprecated,default]
-Toplevel input, characters 49-50:
-&gt; Rewrite Rule raise_nat :=   &#64;{q|u+|+} |- raise&#64;{q|u} 
-&gt;                                                  ^
-</span><span class="ansi-fg-white ansi-bg-yellow ansi-bold">Warning:</span><span> Separating sorts from universes with &quot;|&quot; is deprecated.
-Use &quot;;&quot; instead.
-[deprecated-sort-poly-syntax,deprecated-since-9.1,deprecated,default]
-Toplevel input, characters 102-103:
-&gt; Rewrite Rule raise_nat :=   &#64;{q|u+|+} |- raise&#64;{q|u} (forall (x : ?A), ?P) =&gt; fun (x : ?A) =&gt; raise&#64;{q|u} 
-&gt;                                                                                                       ^
-</span><span class="ansi-fg-white ansi-bg-yellow ansi-bold">Warning:</span><span> Separating sorts from universes with &quot;|&quot; is deprecated.
-Use &quot;;&quot; instead.
-[deprecated-sort-poly-syntax,deprecated-since-9.1,deprecated,default]
-</span></dd>
-</dl>
+  &#64;{</span><span class="coqdoc-var">q</span><span>;</span><span class="coqdoc-var">u</span><span>+|+} |- </span><span class="coqdoc-var">raise&#64;</span><span>{</span><span class="coqdoc-var">q</span><span>;</span><span class="coqdoc-var">u</span><span>} (</span><span class="coqdoc-keyword">forall</span><span> (</span><span class="coqdoc-var">x</span><span> : ?</span><span class="coqdoc-var">A</span><span>), ?</span><span class="coqdoc-var">P</span><span>) =&gt; </span><span class="coqdoc-keyword">fun</span><span> (</span><span class="coqdoc-var">x</span><span> : ?</span><span class="coqdoc-var">A</span><span>) =&gt; </span><span class="coqdoc-var">raise&#64;</span><span>{</span><span class="coqdoc-var">q</span><span>;</span><span class="coqdoc-var">u</span><span>} ?</span><span class="coqdoc-var">P</span><span>.</span><span>
+</span></dt></dl>
 </div>
 </div></blockquote>
 </section>
