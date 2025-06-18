@@ -221,6 +221,14 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../language/extensions/index.html">Language extensions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../language/extensions/compil-steps.html">Command level processing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../language/extensions/compil-steps.html#lexing">Lexing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../language/extensions/compil-steps.html#parsing">Parsing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../language/extensions/compil-steps.html#synterp">Synterp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../language/extensions/compil-steps.html#interp">Interp</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../language/extensions/compil-steps.html#term-level-processing">Term level processing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../language/extensions/evars.html">Existential variables</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../language/extensions/evars.html#inferable-subterms">Inferable subterms</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../language/extensions/evars.html#e-tactics-that-can-create-existential-variables">e* tactics that can create existential variables</a></li>
@@ -4301,40 +4309,40 @@ printed without entries faster than the cutoff (in seconds).</p>
 </span></dt><dd><span>No more goals.
 </span></dd>
 <dt><span></span><span class="coqdoc-keyword">Show</span><span> </span><span class="coqdoc-keyword">Ltac</span><span> </span><span class="coqdoc-var">Profile</span><span>.</span><span>
-</span></dt><dd><span>total time:      1.149s
+</span></dt><dd><span>total time:      1.404s
 
  tactic                                      local  total   calls       max
 ───────────────────────────────────────────┴──────┴──────┴───────┴─────────┘
-─tac --------------------------------------   0.1% 100.0%       1    1.149s
-─&lt;Corelib.Init.Tauto.with_uniform_flags&gt; --   0.0%  97.4%      26    0.118s
-─&lt;Corelib.Init.Tauto.tauto_gen&gt; -----------   0.0%  97.3%      26    0.118s
-─&lt;Corelib.Init.Tauto.tauto_intuitionistic&gt;    0.1%  97.3%      26    0.118s
-─t_tauto_intuit ---------------------------   0.1%  97.2%      26    0.118s
-─&lt;Corelib.Init.Tauto.simplif&gt; -------------  60.6%  94.0%      26    0.116s
-─&lt;Corelib.Init.Tauto.is_conj&gt; -------------  20.4%  20.4%   28756    0.002s
-─elim id ----------------------------------   9.8%   9.8%     650    0.073s
-─&lt;Corelib.Init.Tauto.axioms&gt; --------------   2.1%   3.1%       0    0.002s
-─lia --------------------------------------   0.1%   2.3%      28    0.012s
+─tac --------------------------------------   0.1% 100.0%       1    1.404s
+─&lt;Corelib.Init.Tauto.with_uniform_flags&gt; --   0.0%  97.6%      26    0.117s
+─&lt;Corelib.Init.Tauto.tauto_gen&gt; -----------   0.0%  97.6%      26    0.117s
+─&lt;Corelib.Init.Tauto.tauto_intuitionistic&gt;    0.1%  97.5%      26    0.117s
+─t_tauto_intuit ---------------------------   0.1%  97.4%      26    0.117s
+─&lt;Corelib.Init.Tauto.simplif&gt; -------------  62.8%  94.2%      26    0.115s
+─&lt;Corelib.Init.Tauto.is_conj&gt; -------------  19.6%  19.6%   28756    0.004s
+─elim id ----------------------------------   8.4%   8.4%     650    0.066s
+─&lt;Corelib.Init.Tauto.axioms&gt; --------------   2.2%   3.1%       0    0.002s
+─lia --------------------------------------   0.1%   2.1%      28    0.013s
 
  tactic                                        local  total   calls       max
 ─────────────────────────────────────────────┴──────┴──────┴───────┴─────────┘
-─tac ----------------------------------------   0.1% 100.0%       1    1.149s
- ├─&lt;Corelib.Init.Tauto.with_uniform_flags&gt; --   0.0%  97.4%      26    0.118s
- │└&lt;Corelib.Init.Tauto.tauto_gen&gt; -----------   0.0%  97.3%      26    0.118s
- │└&lt;Corelib.Init.Tauto.tauto_intuitionistic&gt;    0.1%  97.3%      26    0.118s
- │└t_tauto_intuit ---------------------------   0.1%  97.2%      26    0.118s
- │ ├─&lt;Corelib.Init.Tauto.simplif&gt; -----------  60.6%  94.0%      26    0.116s
- │ │ ├─&lt;Corelib.Init.Tauto.is_conj&gt; ---------  20.4%  20.4%   28756    0.002s
- │ │ └─elim id ------------------------------   9.8%   9.8%     650    0.073s
- │ └─&lt;Corelib.Init.Tauto.axioms&gt; ------------   2.1%   3.1%       0    0.002s
- └─lia --------------------------------------   0.1%   2.3%      28    0.012s
+─tac ----------------------------------------   0.1% 100.0%       1    1.404s
+ ├─&lt;Corelib.Init.Tauto.with_uniform_flags&gt; --   0.0%  97.6%      26    0.117s
+ │└&lt;Corelib.Init.Tauto.tauto_gen&gt; -----------   0.0%  97.5%      26    0.117s
+ │└&lt;Corelib.Init.Tauto.tauto_intuitionistic&gt;    0.1%  97.5%      26    0.117s
+ │└t_tauto_intuit ---------------------------   0.1%  97.4%      26    0.117s
+ │ ├─&lt;Corelib.Init.Tauto.simplif&gt; -----------  62.8%  94.2%      26    0.115s
+ │ │ ├─&lt;Corelib.Init.Tauto.is_conj&gt; ---------  19.6%  19.6%   28756    0.004s
+ │ │ └─elim id ------------------------------   8.4%   8.4%     650    0.066s
+ │ └─&lt;Corelib.Init.Tauto.axioms&gt; ------------   2.2%   3.1%       0    0.002s
+ └─lia --------------------------------------   0.1%   2.1%      28    0.013s
 </span></dd>
 <dt><span></span><span class="coqdoc-keyword">Show</span><span> </span><span class="coqdoc-keyword">Ltac</span><span> </span><span class="coqdoc-var">Profile</span><span> &quot;lia&quot;.</span><span>
-</span></dt><dd><span>total time:      1.149s
+</span></dt><dd><span>total time:      1.404s
 
  tactic  local  total   calls       max
 ───────┴──────┴──────┴───────┴─────────┘
-─lia --   0.1%   2.3%      28    0.012s
+─lia --   0.1%   2.1%      28    0.013s
 
  tactic  local  total   calls       max
 ───────┴──────┴──────┴───────┴─────────┘
