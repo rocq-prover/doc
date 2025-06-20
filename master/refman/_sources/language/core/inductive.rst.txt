@@ -1,3 +1,5 @@
+.. _inductive:
+
 Inductive types and recursive functions
 =======================================
 

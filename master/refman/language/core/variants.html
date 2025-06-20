@@ -26,7 +26,7 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Record types" href="records.html" />
+    <link rel="next" title="Inductive types and recursive functions" href="inductive.html" />
     <link rel="prev" title="Typing rules" href="../cic.html" /> 
 </head>
 
@@ -111,18 +111,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#definition-by-cases-match">Definition by cases: match</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="records.html">Record types</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="records.html#defining-record-types">Defining record types</a></li>
-<li class="toctree-l3"><a class="reference internal" href="records.html#constructing-records">Constructing records</a></li>
-<li class="toctree-l3"><a class="reference internal" href="records.html#accessing-fields-projections">Accessing fields (projections)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="records.html#settings-for-printing-records">Settings for printing records</a></li>
-<li class="toctree-l3"><a class="reference internal" href="records.html#primitive-projections">Primitive Projections</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="records.html#reduction">Reduction</a></li>
-<li class="toctree-l4"><a class="reference internal" href="records.html#compatibility-constants-for-projections">Compatibility Constants for Projections</a></li>
-</ul>
-</li>
-</ul>
-</li>
 <li class="toctree-l2"><a class="reference internal" href="inductive.html">Inductive types and recursive functions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="inductive.html#inductive-types">Inductive types</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="inductive.html#simple-inductive-types">Simple inductive types</a></li>
@@ -149,6 +137,18 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="coinductive.html#co-recursive-functions-cofix">Co-recursive functions: cofix</a></li>
 <li class="toctree-l3"><a class="reference internal" href="coinductive.html#top-level-definitions-of-corecursive-functions">Top-level definitions of corecursive functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="records.html">Record types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="records.html#defining-record-types">Defining record types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="records.html#constructing-records">Constructing records</a></li>
+<li class="toctree-l3"><a class="reference internal" href="records.html#accessing-fields-projections">Accessing fields (projections)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="records.html#settings-for-printing-records">Settings for printing records</a></li>
+<li class="toctree-l3"><a class="reference internal" href="records.html#primitive-projections">Primitive Projections</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="records.html#reduction">Reduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="records.html#compatibility-constants-for-projections">Compatibility Constants for Projections</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="sections.html">Sections</a><ul>
@@ -1295,7 +1295,7 @@ such as the Boolean reflection or equality predicates. Observing the
 form of the <a class="reference internal" href="basic.html#term-inhabitant"><span class="xref std std-term">inhabitants</span></a> of a variant type is done by case analysis
 using the <code class="docutils literal notranslate"><span class="pre">match</span></code> expression.</p>
 <p>When a constructor of a type takes an argument of that same type,
-the type becomes recursive, in which case it can be either
+the type becomes <span class="term-defn"><span class="target" id="term-recursive-type"></span>recursive</span>, in which case it can be either
 <a class="reference internal" href="inductive.html#coq:cmd.Inductive" title="Inductive"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Inductive</span></code></a> or <a class="reference internal" href="coinductive.html#coq:cmd.CoInductive" title="CoInductive"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">CoInductive</span></code></a>. The keyword <a class="reference internal" href="#coq:cmd.Variant" title="Variant"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Variant</span></code></a>
 is reserved for non-recursive types. Natural numbers, lists or streams cannot
 be defined using <a class="reference internal" href="#coq:cmd.Variant" title="Variant"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Variant</span></code></a>.</p>
@@ -1314,6 +1314,11 @@ See <a class="reference internal" href="inductive.html#coq:flag.Uniform-Inductiv
 <p>This command supports the <a class="reference internal" href="../../addendum/universe-polymorphism.html#coq:attr.universes(polymorphic)" title="universes(polymorphic)"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">universes(polymorphic)</span></code></a>,
 <a class="reference internal" href="inductive.html#coq:attr.universes(template)" title="universes(template)"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">universes(template)</span></code></a>, <a class="reference internal" href="../../addendum/universe-polymorphism.html#coq:attr.universes(cumulative)" title="universes(cumulative)"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">universes(cumulative)</span></code></a>, and
 <a class="reference internal" href="#coq:attr.private(matching)" title="private(matching)"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">private(matching)</span></code></a> attributes.</p>
+<dl class="coq exn">
+<dt class="sig sig-object coq" id="coq:exn.Types-declared-with-the-keyword-Variant-cannot-be-recursive.-Recursive-types-are-defined-with-the-Inductive-and-CoInductive-command">
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Types</span></span></span> <span><span><span class="pre">declared</span></span></span> <span><span><span class="pre">with</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">keyword</span></span></span> <span><span><span class="pre">Variant</span></span></span> <span><span><span class="pre">cannot</span></span></span> <span><span><span class="pre">be</span></span></span> <span><span><span class="pre">recursive.</span></span></span> <span><span><span class="pre">Recursive</span></span></span> <span><span><span class="pre">types</span></span></span> <span><span><span class="pre">are</span></span></span> <span><span><span class="pre">defined</span></span></span> <span><span><span class="pre">with</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">Inductive</span></span></span> <span><span><span class="pre">and</span></span></span> <span><span><span class="pre">CoInductive</span></span></span> <span><span><span class="pre">command.</span></span></span></span></span><a class="headerlink" href="#coq:exn.Types-declared-with-the-keyword-Variant-cannot-be-recursive.-Recursive-types-are-defined-with-the-Inductive-and-CoInductive-command" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="coq exn">
 <dt class="sig sig-object coq" id="coq:exn.The-‘natural’-th-argument-of-‘ident’-must-be-‘ident’-in-‘type’">
 <em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">The</span></span></span> <a class="reference internal" href="basic.html#grammar-token-natural"><span class="hole"><span class="pre">natural</span></span></a> <span><span><span class="pre">th</span></span></span> <span><span><span class="pre">argument</span></span></span> <span><span><span class="pre">of</span></span></span> <a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">must</span></span></span> <span><span><span class="pre">be</span></span></span> <a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">in</span></span></span> <a class="reference internal" href="basic.html#grammar-token-type"><span class="hole"><span class="pre">type</span></span></a><span><span><span class="pre">.</span></span></span></span></span><a class="headerlink" href="#coq:exn.The-‘natural’-th-argument-of-‘ident’-must-be-‘ident’-in-‘type’" title="Link to this definition"></a></dt>
@@ -1357,6 +1362,44 @@ See <a class="reference internal" href="inductive.html#coq:flag.Uniform-Inductiv
 </dl>
 </div>
 </div></blockquote>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The standard library commonly uses <a class="reference internal" href="inductive.html#coq:cmd.Inductive" title="Inductive"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Inductive</span></code></a> in
+place of <a class="reference internal" href="#coq:cmd.Variant" title="Variant"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Variant</span></code></a> even for non-recursive types in order to
+automatically derive the schemes
+<code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></code><code class="docutils literal notranslate"><span class="pre">_rect</span></code>, <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></code><code class="docutils literal notranslate"><span class="pre">_ind</span></code>, <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></code><code class="docutils literal notranslate"><span class="pre">_rec</span></code> and <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></code><code class="docutils literal notranslate"><span class="pre">_sind</span></code>.  (These schemes are also created
+for <a class="reference internal" href="#coq:cmd.Variant" title="Variant"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Variant</span></code></a> if the <a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#coq:flag.Nonrecursive-Elimination-Schemes" title="Nonrecursive Elimination Schemes"><code class="xref coq coq-flag docutils literal notranslate"><span class="pre">Nonrecursive</span> <span class="pre">Elimination</span> <span class="pre">Schemes</span></code></a> flag is set.)</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Example: <a class="reference internal" href="#coq:cmd.Variant" title="Variant"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Variant</span></code></a> won't define recursive types</p>
+<div class="coqtop literal-block docutils container">
+<span></span><dl>
+<dt><span></span><span class="coqdoc-var">Fail</span><span> </span><span class="coqdoc-keyword">Variant</span><span> </span><span class="coqdoc-var">my_nat</span><span> := </span><span class="coqdoc-var">zero</span><span> | </span><span class="coqdoc-var">succ</span><span> (</span><span class="coqdoc-var">n</span><span> : </span><span class="coqdoc-var">my_nat</span><span>).</span><span>
+</span></dt><dd><span>The command has indeed failed with message:
+Types declared with the keyword Variant cannot be recursive. Recursive types
+are defined with the Inductive and CoInductive command.
+</span></dd>
+</dl>
+</div>
+<p>The type <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">my_nat</span></span></code> is <a class="reference internal" href="#term-recursive-type"><span class="xref std std-term">recursive</span></a> because its <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">succ</span></span></code> constructor
+has an argument of the type <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">my_nat</span></span></code> itself.
+Use the <a class="reference internal" href="inductive.html#coq:cmd.Inductive" title="Inductive"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Inductive</span></code></a> command instead (see the chapter covering
+<a class="reference internal" href="inductive.html#inductive"><span class="std std-ref">inductive types</span></a>):</p>
+<div class="coqtop literal-block docutils container">
+<span></span><dl>
+<dt><span></span><span class="coqdoc-keyword">Inductive</span><span> </span><span class="coqdoc-var">my_nat</span><span> := </span><span class="coqdoc-var">zero</span><span> | </span><span class="coqdoc-var">succ</span><span> (</span><span class="coqdoc-var">n</span><span> : </span><span class="coqdoc-var">my_nat</span><span>).</span><span>
+</span></dt><dd class="coqtop-hidden"><span>my_nat is defined
+my_nat_rect is defined
+my_nat_ind is defined
+my_nat_rec is defined
+my_nat_sind is defined
+</span></dd>
+</dl>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Example</p>
 <p><em>Boolean reflection</em> is a relation reflecting under the form of a
 Boolean value when a given proposition <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">P</span></span></span></span></code> holds. It can be
 defined as a two-constructor type family over <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">bool</span></span></code>
@@ -1376,14 +1419,6 @@ parameterized by the proposition <code class="docutils literal notranslate"><spa
 </dl>
 </div>
 <p><a class="reference internal" href="../../proofs/writing-proofs/equality.html#term-Leibniz-equality"><span class="xref std std-term">Leibniz equality</span></a> is another example of variant type.</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The standard library commonly uses <a class="reference internal" href="inductive.html#coq:cmd.Inductive" title="Inductive"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Inductive</span></code></a> in
-place of <a class="reference internal" href="#coq:cmd.Variant" title="Variant"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Variant</span></code></a> even for non-recursive types in order to
-automatically derive the schemes
-<code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></code><code class="docutils literal notranslate"><span class="pre">_rect</span></code>, <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></code><code class="docutils literal notranslate"><span class="pre">_ind</span></code>, <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></code><code class="docutils literal notranslate"><span class="pre">_rec</span></code> and <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></code><code class="docutils literal notranslate"><span class="pre">_sind</span></code>.  (These schemes are also created
-for <a class="reference internal" href="#coq:cmd.Variant" title="Variant"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Variant</span></code></a> if the <a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#coq:flag.Nonrecursive-Elimination-Schemes" title="Nonrecursive Elimination Schemes"><code class="xref coq coq-flag docutils literal notranslate"><span class="pre">Nonrecursive</span> <span class="pre">Elimination</span> <span class="pre">Schemes</span></code></a> flag is set.)</p>
 </div>
 <section id="private-matching-inductive-types">
 <h3>Private (matching) inductive types<a class="headerlink" href="#private-matching-inductive-types" title="Link to this heading"></a></h3>
@@ -1588,7 +1623,7 @@ equation that can be used to infer the return type.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../cic.html" class="btn btn-neutral float-left" title="Typing rules" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="records.html" class="btn btn-neutral float-right" title="Record types" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="inductive.html" class="btn btn-neutral float-right" title="Inductive types and recursive functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -111,18 +111,6 @@
 <li class="toctree-l3"><a class="reference internal" href="../../language/core/variants.html#definition-by-cases-match">Definition by cases: match</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../language/core/records.html">Record types</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../language/core/records.html#defining-record-types">Defining record types</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../language/core/records.html#constructing-records">Constructing records</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../language/core/records.html#accessing-fields-projections">Accessing fields (projections)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../language/core/records.html#settings-for-printing-records">Settings for printing records</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../language/core/records.html#primitive-projections">Primitive Projections</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../language/core/records.html#reduction">Reduction</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../language/core/records.html#compatibility-constants-for-projections">Compatibility Constants for Projections</a></li>
-</ul>
-</li>
-</ul>
-</li>
 <li class="toctree-l2"><a class="reference internal" href="../../language/core/inductive.html">Inductive types and recursive functions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../language/core/inductive.html#inductive-types">Inductive types</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../language/core/inductive.html#simple-inductive-types">Simple inductive types</a></li>
@@ -149,6 +137,18 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../language/core/coinductive.html#co-recursive-functions-cofix">Co-recursive functions: cofix</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../language/core/coinductive.html#top-level-definitions-of-corecursive-functions">Top-level definitions of corecursive functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../language/core/records.html">Record types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../language/core/records.html#defining-record-types">Defining record types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../language/core/records.html#constructing-records">Constructing records</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../language/core/records.html#accessing-fields-projections">Accessing fields (projections)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../language/core/records.html#settings-for-printing-records">Settings for printing records</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../language/core/records.html#primitive-projections">Primitive Projections</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../language/core/records.html#reduction">Reduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../language/core/records.html#compatibility-constants-for-projections">Compatibility Constants for Projections</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../language/core/sections.html">Sections</a><ul>
@@ -2647,7 +2647,7 @@ the relevant threshold at around <span class="math notranslate nohighlight">\(n 
   True
 </span></dd>
 <dt><span></span><span class="coqdoc-keyword">Time</span><span> </span><span class="coqdoc-tactic">assert</span><span> (</span><span class="coqdoc-var">id</span><span> (</span><span class="coqdoc-var">fact</span><span> 8) = </span><span class="coqdoc-var">fact</span><span> 8) </span><span class="coqdoc-tactic">by</span><span> </span><span class="coqdoc-tactic">reflexivity</span><span>.</span><span>
-</span></dt><dd><span>Finished transaction in 0.106 secs (0.069u,0.037s) (successful)
+</span></dt><dd><span>Finished transaction in 0.095 secs (0.071u,0.023s) (successful)
 1 goal
   
   H : id (fact 8)</span><span> =</span><span> fact 8
@@ -2655,7 +2655,7 @@ the relevant threshold at around <span class="math notranslate nohighlight">\(n 
   True
 </span></dd>
 <dt><span></span><span class="coqdoc-keyword">Time</span><span> </span><span class="coqdoc-tactic">assert</span><span> (</span><span class="coqdoc-var">id</span><span> (</span><span class="coqdoc-var">fact</span><span> 9) = </span><span class="coqdoc-var">fact</span><span> 9) </span><span class="coqdoc-tactic">by</span><span> </span><span class="coqdoc-tactic">reflexivity</span><span>.</span><span>
-</span></dt><dd><span>Finished transaction in 0.738 secs (0.731u,0.006s) (successful)
+</span></dt><dd><span>Finished transaction in 0.759 secs (0.751u,0.008s) (successful)
 1 goal
   
   H : id (fact 8)</span><span> =</span><span> fact 8
@@ -2718,7 +2718,7 @@ tactic passed to <a class="reference internal" href="#coq:tacn.with_strategy" ti
   True
 </span></dd>
 <dt><span></span><span class="coqdoc-keyword">Time</span><span> </span><span class="coqdoc-tactic">assert</span><span> (</span><span class="coqdoc-var">id</span><span> (</span><span class="coqdoc-var">fact</span><span> 100) = </span><span class="coqdoc-var">fact</span><span> 100) </span><span class="coqdoc-tactic">by</span><span> </span><span class="coqdoc-var">with_strategy</span><span> -1 [</span><span class="coqdoc-var">id</span><span>] </span><span class="coqdoc-tactic">abstract</span><span> </span><span class="coqdoc-tactic">reflexivity</span><span>.</span><span>
-</span></dt><dd><span>Finished transaction in 0.001 secs (0.001u,0.s) (successful)
+</span></dt><dd><span>Finished transaction in 0.002 secs (0.002u,0.s) (successful)
 1 goal
   
   H : id (fact 100)</span><span> =</span><span> fact 100
@@ -2729,7 +2729,7 @@ tactic passed to <a class="reference internal" href="#coq:tacn.with_strategy" ti
 </span></dt><dd><span>No more goals.
 </span></dd>
 <dt><span></span><span class="coqdoc-keyword">Time</span><span> </span><span class="coqdoc-keyword">Defined</span><span>.</span><span>
-</span></dt><dd><span>Finished transaction in 0. secs (0.u,0.s) (successful)
+</span></dt><dd><span>Finished transaction in 0.001 secs (0.001u,0.s) (successful)
 </span></dd>
 </dl>
 </div>

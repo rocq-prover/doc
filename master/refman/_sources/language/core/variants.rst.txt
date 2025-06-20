@@ -20,7 +20,7 @@ form of the :term:`inhabitants <inhabitant>` of a variant type is done by case a
 using the `match` expression.
 
 When a constructor of a type takes an argument of that same type,
-the type becomes recursive, in which case it can be either
+the type becomes :gdef:`recursive <recursive type>`, in which case it can be either
 :cmd:`Inductive` or :cmd:`CoInductive`. The keyword :cmd:`Variant`
 is reserved for non-recursive types. Natural numbers, lists or streams cannot
 be defined using :cmd:`Variant`.
@@ -39,6 +39,9 @@ be defined using :cmd:`Variant`.
    This command supports the :attr:`universes(polymorphic)`,
    :attr:`universes(template)`, :attr:`universes(cumulative)`, and
    :attr:`private(matching)` attributes.
+
+   .. exn:: Types declared with the keyword Variant cannot be recursive. Recursive types are defined with the Inductive and CoInductive command.
+      :undocumented:
 
    .. exn:: The @natural th argument of @ident must be @ident in @type.
       :undocumented:
@@ -64,6 +67,31 @@ be defined using :cmd:`Variant`.
       Variant option (A : Type) : Type := None : option A | Some : A -> option A.
       Variant sum (A B : Type) : Type := inl : A -> sum A B | inr : B -> sum A B.
 
+.. note::
+   The standard library commonly uses :cmd:`Inductive` in
+   place of :cmd:`Variant` even for non-recursive types in order to
+   automatically derive the schemes
+   :n:`@ident`\ ``_rect``, :n:`@ident`\ ``_ind``, :n:`@ident`\
+   ``_rec`` and :n:`@ident`\ ``_sind``.  (These schemes are also created
+   for :cmd:`Variant` if the :flag:`Nonrecursive Elimination Schemes` flag is set.)
+
+.. example:: :cmd:`Variant` won't define recursive types
+
+   .. rocqtop:: all
+
+      Fail Variant my_nat := zero | succ (n : my_nat).
+
+   The type :g:`my_nat` is :term:`recursive <recursive type>` because its :g:`succ` constructor
+   has an argument of the type :g:`my_nat` itself.
+   Use the :cmd:`Inductive` command instead (see the chapter covering
+   :ref:`inductive types <inductive>`):
+
+   .. rocqtop:: in
+
+      Inductive my_nat := zero | succ (n : my_nat).
+
+.. example::
+
   *Boolean reflection* is a relation reflecting under the form of a
   Boolean value when a given proposition :n:`P` holds. It can be
   defined as a two-constructor type family over :g:`bool`
@@ -80,14 +108,6 @@ be defined using :cmd:`Variant`.
      End FreshNameSpace.
 
   :term:`Leibniz equality` is another example of variant type.
-
-.. note::
-   The standard library commonly uses :cmd:`Inductive` in
-   place of :cmd:`Variant` even for non-recursive types in order to
-   automatically derive the schemes
-   :n:`@ident`\ ``_rect``, :n:`@ident`\ ``_ind``, :n:`@ident`\
-   ``_rec`` and :n:`@ident`\ ``_sind``.  (These schemes are also created
-   for :cmd:`Variant` if the :flag:`Nonrecursive Elimination Schemes` flag is set.)
 
 Private (matching) inductive types
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

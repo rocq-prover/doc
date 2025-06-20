@@ -111,18 +111,6 @@
 <li class="toctree-l3"><a class="reference internal" href="../language/core/variants.html#definition-by-cases-match">Definition by cases: match</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../language/core/records.html">Record types</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../language/core/records.html#defining-record-types">Defining record types</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../language/core/records.html#constructing-records">Constructing records</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../language/core/records.html#accessing-fields-projections">Accessing fields (projections)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../language/core/records.html#settings-for-printing-records">Settings for printing records</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../language/core/records.html#primitive-projections">Primitive Projections</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../language/core/records.html#reduction">Reduction</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../language/core/records.html#compatibility-constants-for-projections">Compatibility Constants for Projections</a></li>
-</ul>
-</li>
-</ul>
-</li>
 <li class="toctree-l2"><a class="reference internal" href="../language/core/inductive.html">Inductive types and recursive functions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../language/core/inductive.html#inductive-types">Inductive types</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../language/core/inductive.html#simple-inductive-types">Simple inductive types</a></li>
@@ -149,6 +137,18 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../language/core/coinductive.html#co-recursive-functions-cofix">Co-recursive functions: cofix</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../language/core/coinductive.html#top-level-definitions-of-corecursive-functions">Top-level definitions of corecursive functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../language/core/records.html">Record types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../language/core/records.html#defining-record-types">Defining record types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../language/core/records.html#constructing-records">Constructing records</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../language/core/records.html#accessing-fields-projections">Accessing fields (projections)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../language/core/records.html#settings-for-printing-records">Settings for printing records</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../language/core/records.html#primitive-projections">Primitive Projections</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../language/core/records.html#reduction">Reduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../language/core/records.html#compatibility-constants-for-projections">Compatibility Constants for Projections</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../language/core/sections.html">Sections</a><ul>
@@ -4309,34 +4309,34 @@ printed without entries faster than the cutoff (in seconds).</p>
 </span></dt><dd><span>No more goals.
 </span></dd>
 <dt><span></span><span class="coqdoc-keyword">Show</span><span> </span><span class="coqdoc-keyword">Ltac</span><span> </span><span class="coqdoc-var">Profile</span><span>.</span><span>
-</span></dt><dd><span>total time:      2.143s
+</span></dt><dd><span>total time:      1.265s
 
  tactic                                      local  total   calls       max
 ───────────────────────────────────────────┴──────┴──────┴───────┴─────────┘
-─tac --------------------------------------   0.1% 100.0%       1    2.143s
-─&lt;Corelib.Init.Tauto.with_uniform_flags&gt; --   0.0%  97.9%      26    0.169s
-─&lt;Corelib.Init.Tauto.tauto_gen&gt; -----------   0.0%  97.9%      26    0.169s
-─&lt;Corelib.Init.Tauto.tauto_intuitionistic&gt;    0.0%  97.8%      26    0.169s
-─t_tauto_intuit ---------------------------   0.1%  97.7%      26    0.169s
-─&lt;Corelib.Init.Tauto.simplif&gt; -------------  63.3%  94.5%      26    0.166s
-─&lt;Corelib.Init.Tauto.is_conj&gt; -------------  20.0%  20.0%   28756    0.009s
-─elim id ----------------------------------   7.5%   7.5%     650    0.063s
-─&lt;Corelib.Init.Tauto.axioms&gt; --------------   2.2%   3.2%       0    0.003s
+─tac --------------------------------------   0.1% 100.0%       1    1.265s
+─&lt;Corelib.Init.Tauto.with_uniform_flags&gt; --   0.0%  98.1%      26    0.088s
+─&lt;Corelib.Init.Tauto.tauto_gen&gt; -----------   0.0%  98.1%      26    0.088s
+─&lt;Corelib.Init.Tauto.tauto_intuitionistic&gt;    0.0%  98.0%      26    0.088s
+─t_tauto_intuit ---------------------------   0.1%  97.9%      26    0.088s
+─&lt;Corelib.Init.Tauto.simplif&gt; -------------  63.1%  94.6%      26    0.087s
+─&lt;Corelib.Init.Tauto.is_conj&gt; -------------  21.4%  21.4%   28756    0.005s
+─elim id ----------------------------------   6.5%   6.5%     650    0.028s
+─&lt;Corelib.Init.Tauto.axioms&gt; --------------   2.3%   3.3%       0    0.002s
 
  tactic                                      local  total   calls       max
 ───────────────────────────────────────────┴──────┴──────┴───────┴─────────┘
-─tac --------------------------------------   0.1% 100.0%       1    2.143s
-└&lt;Corelib.Init.Tauto.with_uniform_flags&gt; --   0.0%  97.9%      26    0.169s
-└&lt;Corelib.Init.Tauto.tauto_gen&gt; -----------   0.0%  97.9%      26    0.169s
-└&lt;Corelib.Init.Tauto.tauto_intuitionistic&gt;    0.0%  97.8%      26    0.169s
-└t_tauto_intuit ---------------------------   0.1%  97.7%      26    0.169s
- ├─&lt;Corelib.Init.Tauto.simplif&gt; -----------  63.3%  94.5%      26    0.166s
- │ ├─&lt;Corelib.Init.Tauto.is_conj&gt; ---------  20.0%  20.0%   28756    0.009s
- │ └─elim id ------------------------------   7.5%   7.5%     650    0.063s
- └─&lt;Corelib.Init.Tauto.axioms&gt; ------------   2.2%   3.2%       0    0.003s
+─tac --------------------------------------   0.1% 100.0%       1    1.265s
+└&lt;Corelib.Init.Tauto.with_uniform_flags&gt; --   0.0%  98.1%      26    0.088s
+└&lt;Corelib.Init.Tauto.tauto_gen&gt; -----------   0.0%  98.1%      26    0.088s
+└&lt;Corelib.Init.Tauto.tauto_intuitionistic&gt;    0.0%  98.0%      26    0.088s
+└t_tauto_intuit ---------------------------   0.1%  97.9%      26    0.088s
+ ├─&lt;Corelib.Init.Tauto.simplif&gt; -----------  63.1%  94.6%      26    0.087s
+ │ ├─&lt;Corelib.Init.Tauto.is_conj&gt; ---------  21.4%  21.4%   28756    0.005s
+ │ └─elim id ------------------------------   6.5%   6.5%     650    0.028s
+ └─&lt;Corelib.Init.Tauto.axioms&gt; ------------   2.3%   3.3%       0    0.002s
 </span></dd>
 <dt><span></span><span class="coqdoc-keyword">Show</span><span> </span><span class="coqdoc-keyword">Ltac</span><span> </span><span class="coqdoc-var">Profile</span><span> &quot;lia&quot;.</span><span>
-</span></dt><dd><span>total time:      2.143s
+</span></dt><dd><span>total time:      1.265s
 
  tactic  local  total   calls       max
 ───────┴──────┴──────┴───────┴─────────┘

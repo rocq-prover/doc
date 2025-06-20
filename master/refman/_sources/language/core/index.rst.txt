@@ -40,9 +40,9 @@ will have to check their output.
    conversion
    ../cic
    variants
-   records
    inductive
    coinductive
+   records
    sections
    modules
    primitive
