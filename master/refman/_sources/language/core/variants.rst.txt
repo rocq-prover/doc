@@ -20,7 +20,7 @@ form of the :term:`inhabitants <inhabitant>` of a variant type is done by case a
 using the `match` expression.
 
 When a constructor of a type takes an argument of that same type,
-the type becomes :gdef:`recursive <recursive type>`, in which case it can be either
+the type is a :gdef:`recursive type`, in which case it can be either
 :cmd:`Inductive` or :cmd:`CoInductive`. The keyword :cmd:`Variant`
 is reserved for non-recursive types. Natural numbers, lists or streams cannot
 be defined using :cmd:`Variant`.
@@ -81,7 +81,7 @@ be defined using :cmd:`Variant`.
 
       Fail Variant my_nat := zero | succ (n : my_nat).
 
-   The type :g:`my_nat` is :term:`recursive <recursive type>` because its :g:`succ` constructor
+   :g:`my_nat` is a :term:`recursive type` because its :g:`succ` constructor
    has an argument of the type :g:`my_nat` itself.
    Use the :cmd:`Inductive` command instead (see the chapter covering
    :ref:`inductive types <inductive>`):
