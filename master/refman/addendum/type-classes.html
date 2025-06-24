@@ -345,7 +345,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../language/extensions/arguments-command.html#automatic-declaration-of-implicit-arguments">Automatic declaration of implicit arguments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../language/extensions/arguments-command.html#renaming-implicit-arguments">Renaming implicit arguments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../language/extensions/arguments-command.html#binding-arguments-to-scopes">Binding arguments to scopes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../language/extensions/arguments-command.html#effects-of-arguments-on-unfolding">Effects of <code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Arguments</span></code> on unfolding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../language/extensions/arguments-command.html#effects-of-arguments-on-unfolding">Effects of <code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Arguments</span></code> on unfolding</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../language/extensions/arguments-command.html#bidirectionality-hints">Bidirectionality hints</a></li>
 </ul>
 </li>
@@ -506,7 +506,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../proofs/writing-proofs/reasoning-inductives.html#generation-of-inversion-principles-with-derive-inversion">Generation of inversion principles with <code class="docutils literal notranslate"><span class="pre">Derive</span></code> <code class="docutils literal notranslate"><span class="pre">Inversion</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../proofs/writing-proofs/reasoning-inductives.html#examples-of-dependent-destruction-dependent-induction">Examples of <code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">destruction</span></code> / <code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">induction</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../proofs/writing-proofs/reasoning-inductives.html#examples-of-dependent-destruction-dependent-induction">Examples of <code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">destruction</span></code> / <code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">induction</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../proofs/writing-proofs/reasoning-inductives.html#a-larger-example">A larger example</a></li>
 </ul>
 </li>
@@ -1289,10 +1289,10 @@ to Coq <span id="id2">[<a class="reference internal" href="../zebibliography.htm
 <h2>Typeclass and instance declarations<a class="headerlink" href="#typeclass-and-instance-declarations" title="Link to this heading"></a></h2>
 <p>The syntax for typeclasses and instance declarations is the same as the record
 syntax:</p>
-<div class="coqdoc literal-block docutils container">
-<span><span></span><span class="coqdoc-keyword">Class</span><span> </span><span class="coqdoc-var">classname</span><span> (</span><span class="coqdoc-var">p1</span><span> : </span><span class="coqdoc-var">t1</span><span>) ⋯ (</span><span class="coqdoc-var">pn</span><span> : </span><span class="coqdoc-var">tn</span><span>) [: </span><span class="coqdoc-var">sort</span><span>] := { </span><span class="coqdoc-var">f1</span><span> : </span><span class="coqdoc-var">u1</span><span> ; ⋯ ; </span><span class="coqdoc-var">fm</span><span> : </span><span class="coqdoc-var">um</span><span> }.</span><span>
+<div class="rocqdoc literal-block docutils container">
+<span><span></span><span class="rocqdoc-keyword">Class</span><span> </span><span class="rocqdoc-var">classname</span><span> (</span><span class="rocqdoc-var">p1</span><span> : </span><span class="rocqdoc-var">t1</span><span>) ⋯ (</span><span class="rocqdoc-var">pn</span><span> : </span><span class="rocqdoc-var">tn</span><span>) [: </span><span class="rocqdoc-var">sort</span><span>] := { </span><span class="rocqdoc-var">f1</span><span> : </span><span class="rocqdoc-var">u1</span><span> ; ⋯ ; </span><span class="rocqdoc-var">fm</span><span> : </span><span class="rocqdoc-var">um</span><span> }.</span><span>
 </span><span>
-</span><span class="coqdoc-keyword">Instance</span><span> </span><span class="coqdoc-var">instancename</span><span> </span><span class="coqdoc-var">q1</span><span> ⋯ </span><span class="coqdoc-var">qm</span><span> : </span><span class="coqdoc-var">classname</span><span> </span><span class="coqdoc-var">p1</span><span> ⋯ </span><span class="coqdoc-var">pn</span><span> := { </span><span class="coqdoc-var">f1</span><span> := </span><span class="coqdoc-var">t1</span><span> ; ⋯ ; </span><span class="coqdoc-var">fm</span><span> := </span><span class="coqdoc-var">tm</span><span> }.</span><span>
+</span><span class="rocqdoc-keyword">Instance</span><span> </span><span class="rocqdoc-var">instancename</span><span> </span><span class="rocqdoc-var">q1</span><span> ⋯ </span><span class="rocqdoc-var">qm</span><span> : </span><span class="rocqdoc-var">classname</span><span> </span><span class="rocqdoc-var">p1</span><span> ⋯ </span><span class="rocqdoc-var">pn</span><span> := { </span><span class="rocqdoc-var">f1</span><span> := </span><span class="rocqdoc-var">t1</span><span> ; ⋯ ; </span><span class="rocqdoc-var">fm</span><span> := </span><span class="rocqdoc-var">tm</span><span> }.</span><span>
 </span></span></div>
 <p>The <code class="docutils literal notranslate"><span class="pre">pi</span> <span class="pre">:</span> <span class="pre">ti</span></code> variables are called the <em>parameters</em> of the typeclass and
 the <code class="docutils literal notranslate"><span class="pre">fi</span> <span class="pre">:</span> <span class="pre">ti</span></code> are called the <em>methods</em>. Each typeclass definition gives
@@ -1300,12 +1300,12 @@ rise to a corresponding record declaration and each instance is a
 regular definition whose name is given by <code class="docutils literal notranslate"><span class="pre">instancename</span></code> and type is an
 instantiation of the record type.</p>
 <p>We’ll use the following example typeclass in the rest of the chapter:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Class</span><span> </span><span class="coqdoc-var">EqDec</span><span> (</span><span class="coqdoc-var">A</span><span> : </span><span class="coqdoc-keyword">Type</span><span>) :=</span><span>
-  { </span><span class="coqdoc-var">eqb</span><span> : </span><span class="coqdoc-var">A</span><span> -&gt; </span><span class="coqdoc-var">A</span><span> -&gt; </span><span class="coqdoc-var">bool</span><span> ;</span><span>
-    </span><span class="coqdoc-var">eqb_leibniz</span><span> : </span><span class="coqdoc-keyword">forall</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span>, </span><span class="coqdoc-var">eqb</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span> = </span><span class="coqdoc-var">true</span><span> -&gt; </span><span class="coqdoc-var">x</span><span> = </span><span class="coqdoc-var">y</span><span> }.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>EqDec is defined
+<dt><span></span><span class="rocqdoc-keyword">Class</span><span> </span><span class="rocqdoc-var">EqDec</span><span> (</span><span class="rocqdoc-var">A</span><span> : </span><span class="rocqdoc-keyword">Type</span><span>) :=</span><span>
+  { </span><span class="rocqdoc-var">eqb</span><span> : </span><span class="rocqdoc-var">A</span><span> -&gt; </span><span class="rocqdoc-var">A</span><span> -&gt; </span><span class="rocqdoc-var">bool</span><span> ;</span><span>
+    </span><span class="rocqdoc-var">eqb_leibniz</span><span> : </span><span class="rocqdoc-keyword">forall</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span>, </span><span class="rocqdoc-var">eqb</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> = </span><span class="rocqdoc-var">true</span><span> -&gt; </span><span class="rocqdoc-var">x</span><span> = </span><span class="rocqdoc-var">y</span><span> }.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>EqDec is defined
 eqb is defined
 eqb_leibniz is defined
 </span></dd>
@@ -1313,48 +1313,48 @@ eqb_leibniz is defined
 </div>
 <p>This typeclass implements a boolean equality test which is compatible with
 Leibniz equality on some type. An example implementation is:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Instance</span><span> </span><span class="coqdoc-var">unit_EqDec</span><span> : </span><span class="coqdoc-var">EqDec</span><span> </span><span class="coqdoc-var">unit</span><span> :=</span><span>
-  { </span><span class="coqdoc-var">eqb</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span> := </span><span class="coqdoc-var">true</span><span> ;</span><span>
-    </span><span class="coqdoc-var">eqb_leibniz</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span> </span><span class="coqdoc-var">H</span><span> :=</span><span>
-      </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">x</span><span>, </span><span class="coqdoc-var">y</span><span> </span><span class="coqdoc-keyword">return</span><span> </span><span class="coqdoc-var">x</span><span> = </span><span class="coqdoc-var">y</span><span> </span><span class="coqdoc-keyword">with</span><span>
-      | </span><span class="coqdoc-var">tt</span><span>, </span><span class="coqdoc-var">tt</span><span> =&gt; </span><span class="coqdoc-var">eq_refl</span><span> </span><span class="coqdoc-var">tt</span><span>
-      </span><span class="coqdoc-keyword">end</span><span> }.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>unit_EqDec is defined
+<dt><span></span><span class="rocqdoc-keyword">Instance</span><span> </span><span class="rocqdoc-var">unit_EqDec</span><span> : </span><span class="rocqdoc-var">EqDec</span><span> </span><span class="rocqdoc-var">unit</span><span> :=</span><span>
+  { </span><span class="rocqdoc-var">eqb</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> := </span><span class="rocqdoc-var">true</span><span> ;</span><span>
+    </span><span class="rocqdoc-var">eqb_leibniz</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> </span><span class="rocqdoc-var">H</span><span> :=</span><span>
+      </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">x</span><span>, </span><span class="rocqdoc-var">y</span><span> </span><span class="rocqdoc-keyword">return</span><span> </span><span class="rocqdoc-var">x</span><span> = </span><span class="rocqdoc-var">y</span><span> </span><span class="rocqdoc-keyword">with</span><span>
+      | </span><span class="rocqdoc-var">tt</span><span>, </span><span class="rocqdoc-var">tt</span><span> =&gt; </span><span class="rocqdoc-var">eq_refl</span><span> </span><span class="rocqdoc-var">tt</span><span>
+      </span><span class="rocqdoc-keyword">end</span><span> }.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>unit_EqDec is defined
 </span></dd>
 </dl>
 </div>
-<p>Using the <a class="reference internal" href="#coq:attr.refine" title="refine"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">refine</span></code></a> attribute, if the term is not sufficient to
+<p>Using the <a class="reference internal" href="#rocq:attr.refine" title="refine"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">refine</span></code></a> attribute, if the term is not sufficient to
 finish the definition (e.g. due to a missing field or non-inferable
 hole) it must be finished in proof mode. If it is sufficient a trivial
 proof mode with no open goals is started.</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span>#[</span><span class="coqdoc-tactic">refine</span><span>] </span><span class="coqdoc-keyword">Instance</span><span> </span><span class="coqdoc-var">unit_EqDec'</span><span> : </span><span class="coqdoc-var">EqDec</span><span> </span><span class="coqdoc-var">unit</span><span> := { </span><span class="coqdoc-var">eqb</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span> := </span><span class="coqdoc-var">true</span><span> }.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>1 goal
+<dt><span>#[</span><span class="rocqdoc-tactic">refine</span><span>] </span><span class="rocqdoc-keyword">Instance</span><span> </span><span class="rocqdoc-var">unit_EqDec'</span><span> : </span><span class="rocqdoc-var">EqDec</span><span> </span><span class="rocqdoc-var">unit</span><span> := { </span><span class="rocqdoc-var">eqb</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> := </span><span class="rocqdoc-var">true</span><span> }.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>1 goal
   
   ============================
   </span><span class="ansi-bold">forall</span><span> x y : unit, true</span><span> =</span><span> true</span><span> -&gt;</span><span> x</span><span> =</span><span> y
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Proof</span><span>. </span><span class="coqdoc-tactic">intros</span><span> [] [];</span><span class="coqdoc-tactic">reflexivity</span><span>. </span><span class="coqdoc-keyword">Defined</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>
+<dt><span></span><span class="rocqdoc-keyword">Proof</span><span>. </span><span class="rocqdoc-tactic">intros</span><span> [] [];</span><span class="rocqdoc-tactic">reflexivity</span><span>. </span><span class="rocqdoc-keyword">Defined</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>
 No more goals.
 
 </span></dd>
 </dl>
 </div>
-<p>Note that if you finish the proof with <a class="reference internal" href="../proofs/writing-proofs/proof-mode.html#coq:cmd.Qed" title="Qed"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Qed</span></code></a> the entire instance
+<p>Note that if you finish the proof with <a class="reference internal" href="../proofs/writing-proofs/proof-mode.html#rocq:cmd.Qed" title="Qed"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Qed</span></code></a> the entire instance
 will be opaque, including the fields given in the initial term.</p>
-<p>Alternatively, in <a class="reference internal" href="program.html#coq:flag.Program-Mode" title="Program Mode"><code class="xref coq coq-flag docutils literal notranslate"><span class="pre">Program</span> <span class="pre">Mode</span></code></a> if one does not give all the
+<p>Alternatively, in <a class="reference internal" href="program.html#rocq:flag.Program-Mode" title="Program Mode"><code class="xref rocq rocq-flag docutils literal notranslate"><span class="pre">Program</span> <span class="pre">Mode</span></code></a> if one does not give all the
 members in the Instance declaration, Rocq generates obligations for the
 remaining fields, e.g.:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Require</span><span> </span><span class="coqdoc-keyword">Import</span><span> </span><span class="coqdoc-var">Program.Tactics</span><span>.</span><span>
-</span></dt><dt><span></span><span class="coqdoc-keyword">Program Instance</span><span> </span><span class="coqdoc-var">eq_bool</span><span> : </span><span class="coqdoc-var">EqDec</span><span> </span><span class="coqdoc-var">bool</span><span> :=</span><span>
-  { </span><span class="coqdoc-var">eqb</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span> := </span><span class="coqdoc-keyword">if</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-keyword">then</span><span> </span><span class="coqdoc-var">y</span><span> </span><span class="coqdoc-keyword">else</span><span> </span><span class="coqdoc-var">negb</span><span> </span><span class="coqdoc-var">y</span><span> }.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>eq_bool has type-checked, generating 1 obligation
+<dt><span></span><span class="rocqdoc-keyword">Require</span><span> </span><span class="rocqdoc-keyword">Import</span><span> </span><span class="rocqdoc-var">Program.Tactics</span><span>.</span><span>
+</span></dt><dt><span></span><span class="rocqdoc-keyword">Program Instance</span><span> </span><span class="rocqdoc-var">eq_bool</span><span> : </span><span class="rocqdoc-var">EqDec</span><span> </span><span class="rocqdoc-var">bool</span><span> :=</span><span>
+  { </span><span class="rocqdoc-var">eqb</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> := </span><span class="rocqdoc-keyword">if</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-keyword">then</span><span> </span><span class="rocqdoc-var">y</span><span> </span><span class="rocqdoc-keyword">else</span><span> </span><span class="rocqdoc-var">negb</span><span> </span><span class="rocqdoc-var">y</span><span> }.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>eq_bool has type-checked, generating 1 obligation
 Solving obligations automatically...
 1 obligation remaining
 Obligation 1 of eq_bool:
@@ -1364,7 +1364,7 @@ Obligation 1 of eq_bool:
 </span></dd>
 </dl>
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Next</span><span> </span><span class="coqdoc-keyword">Obligation</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Next</span><span> </span><span class="rocqdoc-keyword">Obligation</span><span>.</span><span>
 </span></dt><dd><span>1 goal
   
   x, y : bool
@@ -1372,23 +1372,23 @@ Obligation 1 of eq_bool:
   ============================
   x</span><span> =</span><span> y
 </span></dd>
-<dt><span>  </span><span class="coqdoc-tactic">destruct</span><span> </span><span class="coqdoc-var">x</span><span> ; </span><span class="coqdoc-tactic">destruct</span><span> </span><span class="coqdoc-var">y</span><span> ; (</span><span class="coqdoc-tactic">discriminate</span><span> || </span><span class="coqdoc-tactic">reflexivity</span><span>).</span><span>
+<dt><span>  </span><span class="rocqdoc-tactic">destruct</span><span> </span><span class="rocqdoc-var">x</span><span> ; </span><span class="rocqdoc-tactic">destruct</span><span> </span><span class="rocqdoc-var">y</span><span> ; (</span><span class="rocqdoc-tactic">discriminate</span><span> || </span><span class="rocqdoc-tactic">reflexivity</span><span>).</span><span>
 </span></dt><dd><span>No more goals.
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Defined</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Defined</span><span>.</span><span>
 </span></dt></dl>
 </div>
 <p>One has to take care that the transparency of every field is
-determined by the transparency of the <a class="reference internal" href="#coq:cmd.Instance" title="Instance"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Instance</span></code></a> proof. One can
-use alternatively the <a class="reference internal" href="program.html#coq:attr.program" title="program"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">program</span></code></a> attribute to get richer
+determined by the transparency of the <a class="reference internal" href="#rocq:cmd.Instance" title="Instance"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Instance</span></code></a> proof. One can
+use alternatively the <a class="reference internal" href="program.html#rocq:attr.program" title="program"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">program</span></code></a> attribute to get richer
 facilities for dealing with obligations.</p>
 </section>
 <section id="binding-typeclasses">
 <h2>Binding typeclasses<a class="headerlink" href="#binding-typeclasses" title="Link to this heading"></a></h2>
 <p>Once a typeclass is declared, one can use it in typeclass binders:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">neqb</span><span> {</span><span class="coqdoc-var">A</span><span>} {</span><span class="coqdoc-var">eqa</span><span> : </span><span class="coqdoc-var">EqDec</span><span> </span><span class="coqdoc-var">A</span><span>} (</span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span> : </span><span class="coqdoc-var">A</span><span>) := </span><span class="coqdoc-var">negb</span><span> (</span><span class="coqdoc-var">eqb</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span>).</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">neqb</span><span> {</span><span class="rocqdoc-var">A</span><span>} {</span><span class="rocqdoc-var">eqa</span><span> : </span><span class="rocqdoc-var">EqDec</span><span> </span><span class="rocqdoc-var">A</span><span>} (</span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> : </span><span class="rocqdoc-var">A</span><span>) := </span><span class="rocqdoc-var">negb</span><span> (</span><span class="rocqdoc-var">eqb</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span>).</span><span>
 </span></dt><dd><span>neqb is defined
 </span></dd>
 </dl>
@@ -1398,9 +1398,9 @@ satisfied only in contexts where the appropriate instances can be
 found. In the example above, a constraint <code class="docutils literal notranslate"><span class="pre">EqDec</span> <span class="pre">A</span></code> is generated and
 satisfied by <code class="docutils literal notranslate"><span class="pre">eqa</span> <span class="pre">:</span> <span class="pre">EqDec</span> <span class="pre">A</span></code>. In case no satisfying constraint can be
 found, an error is raised:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-var">Fail</span><span> </span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">neqb'</span><span> (</span><span class="coqdoc-var">A</span><span> : </span><span class="coqdoc-keyword">Type</span><span>) (</span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span> : </span><span class="coqdoc-var">A</span><span>) := </span><span class="coqdoc-var">negb</span><span> (</span><span class="coqdoc-var">eqb</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span>).</span><span>
+<dt><span></span><span class="rocqdoc-var">Fail</span><span> </span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">neqb'</span><span> (</span><span class="rocqdoc-var">A</span><span> : </span><span class="rocqdoc-keyword">Type</span><span>) (</span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> : </span><span class="rocqdoc-var">A</span><span>) := </span><span class="rocqdoc-var">negb</span><span> (</span><span class="rocqdoc-var">eqb</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span>).</span><span>
 </span></dt><dd><span>The command has indeed failed with message:
 The following term contains unresolved implicit arguments:
   (</span><span class="ansi-bold">fun</span><span> (A : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>) (x y : A) =&gt; negb (eqb x y))
@@ -1412,14 +1412,14 @@ More precisely:
 </span></dd>
 </dl>
 </div>
-<p>The algorithm used to solve constraints is a variant of the <a class="reference internal" href="../proofs/automatic-tactics/auto.html#coq:tacn.eauto" title="eauto"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">eauto</span></code></a>
+<p>The algorithm used to solve constraints is a variant of the <a class="reference internal" href="../proofs/automatic-tactics/auto.html#rocq:tacn.eauto" title="eauto"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">eauto</span></code></a>
 tactic that does proof search with a set of lemmas (the instances). It
 will use local hypotheses as well as declared lemmas in
 the <code class="docutils literal notranslate"><span class="pre">typeclass_instances</span></code> database. Hence the example can also be
 written:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">neqb'</span><span> </span><span class="coqdoc-var">A</span><span> (</span><span class="coqdoc-var">eqa</span><span> : </span><span class="coqdoc-var">EqDec</span><span> </span><span class="coqdoc-var">A</span><span>) (</span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span> : </span><span class="coqdoc-var">A</span><span>) := </span><span class="coqdoc-var">negb</span><span> (</span><span class="coqdoc-var">eqb</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span>).</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">neqb'</span><span> </span><span class="rocqdoc-var">A</span><span> (</span><span class="rocqdoc-var">eqa</span><span> : </span><span class="rocqdoc-var">EqDec</span><span> </span><span class="rocqdoc-var">A</span><span>) (</span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> : </span><span class="rocqdoc-var">A</span><span>) := </span><span class="rocqdoc-var">negb</span><span> (</span><span class="rocqdoc-var">eqb</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span>).</span><span>
 </span></dt><dd><span>neqb' is defined
 </span></dd>
 </dl>
@@ -1436,11 +1436,11 @@ binder will be automatically generalized.</p></li>
 <li><p>They also support implicit quantification on <a class="reference internal" href="#superclasses"><span class="std std-ref">Superclasses</span></a>.</p></li>
 </ul>
 <p>Following the previous example, one can write:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Generalizable Variables</span><span> </span><span class="coqdoc-var">A</span><span> </span><span class="coqdoc-var">B</span><span> </span><span class="coqdoc-var">C</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Generalizable Variables</span><span> </span><span class="rocqdoc-var">A</span><span> </span><span class="rocqdoc-var">B</span><span> </span><span class="rocqdoc-var">C</span><span>.</span><span>
 </span></dt><dt><span></span><span>
-</span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">neqb_implicit</span><span> `{</span><span class="coqdoc-var">eqa</span><span> : </span><span class="coqdoc-var">EqDec</span><span> </span><span class="coqdoc-var">A</span><span>} (</span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span> : </span><span class="coqdoc-var">A</span><span>) := </span><span class="coqdoc-var">negb</span><span> (</span><span class="coqdoc-var">eqb</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span>).</span><span>
+</span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">neqb_implicit</span><span> `{</span><span class="rocqdoc-var">eqa</span><span> : </span><span class="rocqdoc-var">EqDec</span><span> </span><span class="rocqdoc-var">A</span><span>} (</span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> : </span><span class="rocqdoc-var">A</span><span>) := </span><span class="rocqdoc-var">negb</span><span> (</span><span class="rocqdoc-var">eqb</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span>).</span><span>
 </span></dt><dd><span>neqb_implicit is defined
 </span></dd>
 </dl>
@@ -1452,13 +1452,13 @@ equivalent to the one above.</p>
 <h2>Parameterized instances<a class="headerlink" href="#parameterized-instances" title="Link to this heading"></a></h2>
 <p>One can declare parameterized instances as in Haskell simply by giving
 the constraints as a binding context before the instance, e.g.:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Program Instance</span><span> </span><span class="coqdoc-var">prod_eqb</span><span> `(</span><span class="coqdoc-var">EA</span><span> : </span><span class="coqdoc-var">EqDec</span><span> </span><span class="coqdoc-var">A</span><span>, </span><span class="coqdoc-var">EB</span><span> : </span><span class="coqdoc-var">EqDec</span><span> </span><span class="coqdoc-var">B</span><span>) : </span><span class="coqdoc-var">EqDec</span><span> (</span><span class="coqdoc-var">A</span><span> * </span><span class="coqdoc-var">B</span><span>) :=</span><span>
-  { </span><span class="coqdoc-var">eqb</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span> := </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">x</span><span>, </span><span class="coqdoc-var">y</span><span> </span><span class="coqdoc-keyword">with</span><span>
-               | (</span><span class="coqdoc-var">la</span><span>, </span><span class="coqdoc-var">ra</span><span>), (</span><span class="coqdoc-var">lb</span><span>, </span><span class="coqdoc-var">rb</span><span>) =&gt; </span><span class="coqdoc-var">andb</span><span> (</span><span class="coqdoc-var">eqb</span><span> </span><span class="coqdoc-var">la</span><span> </span><span class="coqdoc-var">lb</span><span>) (</span><span class="coqdoc-var">eqb</span><span> </span><span class="coqdoc-var">ra</span><span> </span><span class="coqdoc-var">rb</span><span>)</span><span>
-               </span><span class="coqdoc-keyword">end</span><span> }.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>prod_eqb has type-checked, generating 1 obligation
+<dt><span></span><span class="rocqdoc-keyword">Program Instance</span><span> </span><span class="rocqdoc-var">prod_eqb</span><span> `(</span><span class="rocqdoc-var">EA</span><span> : </span><span class="rocqdoc-var">EqDec</span><span> </span><span class="rocqdoc-var">A</span><span>, </span><span class="rocqdoc-var">EB</span><span> : </span><span class="rocqdoc-var">EqDec</span><span> </span><span class="rocqdoc-var">B</span><span>) : </span><span class="rocqdoc-var">EqDec</span><span> (</span><span class="rocqdoc-var">A</span><span> * </span><span class="rocqdoc-var">B</span><span>) :=</span><span>
+  { </span><span class="rocqdoc-var">eqb</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> := </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">x</span><span>, </span><span class="rocqdoc-var">y</span><span> </span><span class="rocqdoc-keyword">with</span><span>
+               | (</span><span class="rocqdoc-var">la</span><span>, </span><span class="rocqdoc-var">ra</span><span>), (</span><span class="rocqdoc-var">lb</span><span>, </span><span class="rocqdoc-var">rb</span><span>) =&gt; </span><span class="rocqdoc-var">andb</span><span> (</span><span class="rocqdoc-var">eqb</span><span> </span><span class="rocqdoc-var">la</span><span> </span><span class="rocqdoc-var">lb</span><span>) (</span><span class="rocqdoc-var">eqb</span><span> </span><span class="rocqdoc-var">ra</span><span> </span><span class="rocqdoc-var">rb</span><span>)</span><span>
+               </span><span class="rocqdoc-keyword">end</span><span> }.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>prod_eqb has type-checked, generating 1 obligation
 Solving obligations automatically...
 1 obligation remaining
 Obligation 1 of prod_eqb:
@@ -1476,8 +1476,8 @@ Obligation 1 of prod_eqb:
 </span></dd>
 </dl>
 <span></span><dl>
-<dt class="coqtop-hidden"><span></span><span class="coqdoc-var">Admit</span><span> </span><span class="coqdoc-keyword">Obligations</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>prod_eqb_obligation_1 is declared
+<dt class="rocqtop-hidden"><span></span><span class="rocqdoc-var">Admit</span><span> </span><span class="rocqdoc-keyword">Obligations</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>prod_eqb_obligation_1 is declared
 No more obligations remaining
 prod_eqb is defined
 </span></dd>
@@ -1489,28 +1489,28 @@ database.</p>
 <section id="sections-and-contexts">
 <span id="contexts"></span><h2>Sections and contexts<a class="headerlink" href="#sections-and-contexts" title="Link to this heading"></a></h2>
 <p>To ease developments parameterized by many instances, one can use the
-<a class="reference internal" href="../language/core/sections.html#coq:cmd.Context" title="Context"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Context</span></code></a> command to introduce the parameters into the <a class="reference internal" href="../proofs/writing-proofs/proof-mode.html#term-local-context"><span class="xref std std-term">local context</span></a>,
-which works similarly to the command <a class="reference internal" href="../language/core/assumptions.html#coq:cmd.Variable" title="Variable"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Variable</span></code></a>, except it accepts any
+<a class="reference internal" href="../language/core/sections.html#rocq:cmd.Context" title="Context"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Context</span></code></a> command to introduce the parameters into the <a class="reference internal" href="../proofs/writing-proofs/proof-mode.html#term-local-context"><span class="xref std std-term">local context</span></a>,
+which works similarly to the command <a class="reference internal" href="../language/core/assumptions.html#rocq:cmd.Variable" title="Variable"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Variable</span></code></a>, except it accepts any
 binding context as an argument, so variables can be implicit, and
 <a class="reference internal" href="../language/extensions/implicit-arguments.html#implicit-generalization"><span class="std std-ref">Implicit generalization</span></a> can be used.
 For example:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Section</span><span> </span><span class="coqdoc-var">EqDec_defs</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Section</span><span> </span><span class="rocqdoc-var">EqDec_defs</span><span>.</span><span>
 </span></dt><dt><span></span><span>
-</span><span class="coqdoc-keyword">Context</span><span> `{</span><span class="coqdoc-var">EA</span><span> : </span><span class="coqdoc-var">EqDec</span><span> </span><span class="coqdoc-var">A</span><span>}.</span><span>
+</span><span class="rocqdoc-keyword">Context</span><span> `{</span><span class="rocqdoc-var">EA</span><span> : </span><span class="rocqdoc-var">EqDec</span><span> </span><span class="rocqdoc-var">A</span><span>}.</span><span>
 </span></dt><dd><span>A is declared
 EA is declared
 </span></dd>
 </dl>
 <span></span><dl>
-<dt><span>#[ </span><span class="coqdoc-var">global</span><span>, </span><span class="coqdoc-var">program</span><span> ] </span><span class="coqdoc-keyword">Instance</span><span> </span><span class="coqdoc-var">option_eqb</span><span> : </span><span class="coqdoc-var">EqDec</span><span> (</span><span class="coqdoc-var">option</span><span> </span><span class="coqdoc-var">A</span><span>) :=</span><span>
-  { </span><span class="coqdoc-var">eqb</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span> := </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">x</span><span>, </span><span class="coqdoc-var">y</span><span> </span><span class="coqdoc-keyword">with</span><span>
-         | </span><span class="coqdoc-var">Some</span><span> </span><span class="coqdoc-var">x</span><span>, </span><span class="coqdoc-var">Some</span><span> </span><span class="coqdoc-var">y</span><span> =&gt; </span><span class="coqdoc-var">eqb</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span>
-         | </span><span class="coqdoc-var">None</span><span>, </span><span class="coqdoc-var">None</span><span> =&gt; </span><span class="coqdoc-var">true</span><span>
-         | </span><span class="coqdoc-var">_</span><span>, </span><span class="coqdoc-var">_</span><span> =&gt; </span><span class="coqdoc-var">false</span><span>
-         </span><span class="coqdoc-keyword">end</span><span> }.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>option_eqb has type-checked, generating 3 obligations
+<dt><span>#[ </span><span class="rocqdoc-var">global</span><span>, </span><span class="rocqdoc-var">program</span><span> ] </span><span class="rocqdoc-keyword">Instance</span><span> </span><span class="rocqdoc-var">option_eqb</span><span> : </span><span class="rocqdoc-var">EqDec</span><span> (</span><span class="rocqdoc-var">option</span><span> </span><span class="rocqdoc-var">A</span><span>) :=</span><span>
+  { </span><span class="rocqdoc-var">eqb</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> := </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">x</span><span>, </span><span class="rocqdoc-var">y</span><span> </span><span class="rocqdoc-keyword">with</span><span>
+         | </span><span class="rocqdoc-var">Some</span><span> </span><span class="rocqdoc-var">x</span><span>, </span><span class="rocqdoc-var">Some</span><span> </span><span class="rocqdoc-var">y</span><span> =&gt; </span><span class="rocqdoc-var">eqb</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span>
+         | </span><span class="rocqdoc-var">None</span><span>, </span><span class="rocqdoc-var">None</span><span> =&gt; </span><span class="rocqdoc-var">true</span><span>
+         | </span><span class="rocqdoc-var">_</span><span>, </span><span class="rocqdoc-var">_</span><span> =&gt; </span><span class="rocqdoc-var">false</span><span>
+         </span><span class="rocqdoc-keyword">end</span><span> }.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>option_eqb has type-checked, generating 3 obligations
 Solving obligations automatically...
 3 obligations remaining
 Obligation 1 of option_eqb:
@@ -1576,8 +1576,8 @@ Obligation 3 of option_eqb:
  true</span><span> -&gt;</span><span> x</span><span> =</span><span> y).
  
 </span></dd>
-<dt><span></span><span class="coqdoc-var">Admit</span><span> </span><span class="coqdoc-keyword">Obligations</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>option_eqb_obligation_1 is declared
+<dt><span></span><span class="rocqdoc-var">Admit</span><span> </span><span class="rocqdoc-keyword">Obligations</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>option_eqb_obligation_1 is declared
 2 obligations remaining
 Solving obligations automatically...
 2 obligations remaining
@@ -1591,20 +1591,20 @@ option_eqb is defined
 </span></dd>
 </dl>
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">End</span><span> </span><span class="coqdoc-var">EqDec_defs</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">End</span><span> </span><span class="rocqdoc-var">EqDec_defs</span><span>.</span><span>
 </span></dt><dt><span></span><span>
-</span><span class="coqdoc-keyword">About</span><span> </span><span class="coqdoc-var">option_eqb</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">About</span><span> </span><span class="rocqdoc-var">option_eqb</span><span>.</span><span>
 </span></dt><dd><span>option_eqb : </span><span class="ansi-bold">forall</span><span> {A : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>}, EqDec A</span><span> -&gt;</span><span> EqDec (option A)
 
 option_eqb is not universe polymorphic
 Arguments </span><span class="ansi-fg-light-green">option_eqb</span><span> {A}%_type_scope {EA}
 option_eqb is transparent
 Expands to: Constant Top.option_eqb
-Declared in toplevel input, characters 1212-1222
+Declared in toplevel input, characters 1213-1223
 </span></dd>
 </dl>
 </div>
-<p>Here the <a class="reference internal" href="../language/core/modules.html#coq:attr.global" title="global"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">global</span></code></a> attribute redeclares the instance at the end of the
+<p>Here the <a class="reference internal" href="../language/core/modules.html#rocq:attr.global" title="global"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">global</span></code></a> attribute redeclares the instance at the end of the
 section, once it has been generalized by the context variables it
 uses.</p>
 <div class="admonition seealso">
@@ -1619,9 +1619,9 @@ uses.</p>
 <p>One can also parameterize typeclasses by other typeclasses, generating a
 hierarchy of typeclasses and superclasses. In the same way, we give the
 superclasses as a binding context:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Class</span><span> </span><span class="coqdoc-var">Ord</span><span> `(</span><span class="coqdoc-var">E</span><span> : </span><span class="coqdoc-var">EqDec</span><span> </span><span class="coqdoc-var">A</span><span>) := { </span><span class="coqdoc-var">le</span><span> : </span><span class="coqdoc-var">A</span><span> -&gt; </span><span class="coqdoc-var">A</span><span> -&gt; </span><span class="coqdoc-var">bool</span><span> }.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Class</span><span> </span><span class="rocqdoc-var">Ord</span><span> `(</span><span class="rocqdoc-var">E</span><span> : </span><span class="rocqdoc-var">EqDec</span><span> </span><span class="rocqdoc-var">A</span><span>) := { </span><span class="rocqdoc-var">le</span><span> : </span><span class="rocqdoc-var">A</span><span> -&gt; </span><span class="rocqdoc-var">A</span><span> -&gt; </span><span class="rocqdoc-var">bool</span><span> }.</span><span>
 </span></dt><dd><span>Ord is defined
 le is defined
 </span></dd>
@@ -1629,9 +1629,9 @@ le is defined
 </div>
 <p>Contrary to Haskell, we have no special syntax for superclasses, but
 this declaration is equivalent to:</p>
-<div class="coqdoc literal-block docutils container">
-<span><span></span><span class="coqdoc-keyword">Class</span><span> `(</span><span class="coqdoc-var">E</span><span> : </span><span class="coqdoc-var">EqDec</span><span> </span><span class="coqdoc-var">A</span><span>) =&gt; </span><span class="coqdoc-var">Ord</span><span> </span><span class="coqdoc-var">A</span><span> :=</span><span>
-  { </span><span class="coqdoc-var">le</span><span> : </span><span class="coqdoc-var">A</span><span> -&gt; </span><span class="coqdoc-var">A</span><span> -&gt; </span><span class="coqdoc-var">bool</span><span> }.</span><span>
+<div class="rocqdoc literal-block docutils container">
+<span><span></span><span class="rocqdoc-keyword">Class</span><span> `(</span><span class="rocqdoc-var">E</span><span> : </span><span class="rocqdoc-var">EqDec</span><span> </span><span class="rocqdoc-var">A</span><span>) =&gt; </span><span class="rocqdoc-var">Ord</span><span> </span><span class="rocqdoc-var">A</span><span> :=</span><span>
+  { </span><span class="rocqdoc-var">le</span><span> : </span><span class="rocqdoc-var">A</span><span> -&gt; </span><span class="rocqdoc-var">A</span><span> -&gt; </span><span class="rocqdoc-var">bool</span><span> }.</span><span>
 </span></span></div>
 <p>This declaration means that any instance of the <code class="docutils literal notranslate"><span class="pre">Ord</span></code> typeclass must have
 an instance of <code class="docutils literal notranslate"><span class="pre">EqDec</span></code>. The parameters of the subclass contain at
@@ -1641,9 +1641,9 @@ as a record type with two parameters: a type <code class="docutils literal notra
 <code class="docutils literal notranslate"><span class="pre">EqDec</span> <span class="pre">A</span></code>. However, one can still use it as if it had a single
 parameter inside generalizing binders: the generalization of
 superclasses will be done automatically.</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">le_eqb</span><span> `{</span><span class="coqdoc-var">Ord</span><span> </span><span class="coqdoc-var">A</span><span>} (</span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span> : </span><span class="coqdoc-var">A</span><span>) := </span><span class="coqdoc-var">andb</span><span> (</span><span class="coqdoc-var">le</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span>) (</span><span class="coqdoc-var">le</span><span> </span><span class="coqdoc-var">y</span><span> </span><span class="coqdoc-var">x</span><span>).</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">le_eqb</span><span> `{</span><span class="rocqdoc-var">Ord</span><span> </span><span class="rocqdoc-var">A</span><span>} (</span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> : </span><span class="rocqdoc-var">A</span><span>) := </span><span class="rocqdoc-var">andb</span><span> (</span><span class="rocqdoc-var">le</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span>) (</span><span class="rocqdoc-var">le</span><span> </span><span class="rocqdoc-var">y</span><span> </span><span class="rocqdoc-var">x</span><span>).</span><span>
 </span></dt><dd><span>le_eqb is defined
 </span></dd>
 </dl>
@@ -1651,9 +1651,9 @@ superclasses will be done automatically.</p>
 <p>To specify sharing of structures, you may want to explicitly specify the
 superclasses. You can do this directly in regular binders, and with the <code class="docutils literal notranslate"><span class="pre">!</span></code>
 modifier before typeclass binders. For example:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">lt</span><span> `{</span><span class="coqdoc-var">eqa</span><span> : </span><span class="coqdoc-var">EqDec</span><span> </span><span class="coqdoc-var">A</span><span>, !</span><span class="coqdoc-var">Ord</span><span> </span><span class="coqdoc-var">eqa</span><span>} (</span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span> : </span><span class="coqdoc-var">A</span><span>) := </span><span class="coqdoc-var">andb</span><span> (</span><span class="coqdoc-var">le</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span>) (</span><span class="coqdoc-var">neqb</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span>).</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">lt</span><span> `{</span><span class="rocqdoc-var">eqa</span><span> : </span><span class="rocqdoc-var">EqDec</span><span> </span><span class="rocqdoc-var">A</span><span>, !</span><span class="rocqdoc-var">Ord</span><span> </span><span class="rocqdoc-var">eqa</span><span>} (</span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> : </span><span class="rocqdoc-var">A</span><span>) := </span><span class="rocqdoc-var">andb</span><span> (</span><span class="rocqdoc-var">le</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span>) (</span><span class="rocqdoc-var">neqb</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span>).</span><span>
 </span></dt><dd><span>lt is defined
 </span></dd>
 </dl>
@@ -1665,26 +1665,26 @@ the implicit arguments mechanism if available, as shown in the example.</p>
 <h3>Substructures<a class="headerlink" href="#substructures" title="Link to this heading"></a></h3>
 <p id="index-0">Substructures are components of a typeclass which are themselves instances of a
 typeclass. They often arise when using typeclasses for logical properties, e.g.:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl class="simple">
-<dt class="coqtop-hidden"><span></span><span class="coqdoc-keyword">Require</span><span> </span><span class="coqdoc-keyword">Import</span><span> </span><span class="coqdoc-var">Relation_Definitions</span><span>.</span><span>
+<dt class="rocqtop-hidden"><span></span><span class="rocqdoc-keyword">Require</span><span> </span><span class="rocqdoc-keyword">Import</span><span> </span><span class="rocqdoc-var">Relation_Definitions</span><span>.</span><span>
 </span></dt></dl>
 <span></span><dl class="simple">
-<dt><span></span><span class="coqdoc-keyword">Class</span><span> </span><span class="coqdoc-var">Reflexive</span><span> (</span><span class="coqdoc-var">A</span><span> : </span><span class="coqdoc-keyword">Type</span><span>) (</span><span class="coqdoc-var">R</span><span> : </span><span class="coqdoc-var">relation</span><span> </span><span class="coqdoc-var">A</span><span>) :=</span><span>
-  </span><span class="coqdoc-tactic">reflexivity</span><span> : </span><span class="coqdoc-keyword">forall</span><span> </span><span class="coqdoc-var">x</span><span>, </span><span class="coqdoc-var">R</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">x</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Class</span><span> </span><span class="rocqdoc-var">Reflexive</span><span> (</span><span class="rocqdoc-var">A</span><span> : </span><span class="rocqdoc-keyword">Type</span><span>) (</span><span class="rocqdoc-var">R</span><span> : </span><span class="rocqdoc-var">relation</span><span> </span><span class="rocqdoc-var">A</span><span>) :=</span><span>
+  </span><span class="rocqdoc-tactic">reflexivity</span><span> : </span><span class="rocqdoc-keyword">forall</span><span> </span><span class="rocqdoc-var">x</span><span>, </span><span class="rocqdoc-var">R</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">x</span><span>.</span><span>
 </span></dt><dt><span></span><span>
-</span><span class="coqdoc-keyword">Class</span><span> </span><span class="coqdoc-var">Transitive</span><span> (</span><span class="coqdoc-var">A</span><span> : </span><span class="coqdoc-keyword">Type</span><span>) (</span><span class="coqdoc-var">R</span><span> : </span><span class="coqdoc-var">relation</span><span> </span><span class="coqdoc-var">A</span><span>) :=</span><span>
-  </span><span class="coqdoc-tactic">transitivity</span><span> : </span><span class="coqdoc-keyword">forall</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span> </span><span class="coqdoc-var">z</span><span>, </span><span class="coqdoc-var">R</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span> -&gt; </span><span class="coqdoc-var">R</span><span> </span><span class="coqdoc-var">y</span><span> </span><span class="coqdoc-var">z</span><span> -&gt; </span><span class="coqdoc-var">R</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">z</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Class</span><span> </span><span class="rocqdoc-var">Transitive</span><span> (</span><span class="rocqdoc-var">A</span><span> : </span><span class="rocqdoc-keyword">Type</span><span>) (</span><span class="rocqdoc-var">R</span><span> : </span><span class="rocqdoc-var">relation</span><span> </span><span class="rocqdoc-var">A</span><span>) :=</span><span>
+  </span><span class="rocqdoc-tactic">transitivity</span><span> : </span><span class="rocqdoc-keyword">forall</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> </span><span class="rocqdoc-var">z</span><span>, </span><span class="rocqdoc-var">R</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> -&gt; </span><span class="rocqdoc-var">R</span><span> </span><span class="rocqdoc-var">y</span><span> </span><span class="rocqdoc-var">z</span><span> -&gt; </span><span class="rocqdoc-var">R</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">z</span><span>.</span><span>
 </span></dt></dl>
 </div>
 <p>This declares singleton typeclasses for reflexive and transitive relations,
 (see the <a class="reference internal" href="#singleton-class"><span class="std std-ref">singleton class</span></a> variant for an
 explanation). These may be used as parts of other typeclasses:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Class</span><span> </span><span class="coqdoc-var">PreOrder</span><span> (</span><span class="coqdoc-var">A</span><span> : </span><span class="coqdoc-keyword">Type</span><span>) (</span><span class="coqdoc-var">R</span><span> : </span><span class="coqdoc-var">relation</span><span> </span><span class="coqdoc-var">A</span><span>) :=</span><span>
-  { </span><span class="coqdoc-var">PreOrder_Reflexive</span><span> :: </span><span class="coqdoc-var">Reflexive</span><span> </span><span class="coqdoc-var">A</span><span> </span><span class="coqdoc-var">R</span><span> ;</span><span>
-    </span><span class="coqdoc-var">PreOrder_Transitive</span><span> :: </span><span class="coqdoc-var">Transitive</span><span> </span><span class="coqdoc-var">A</span><span> </span><span class="coqdoc-var">R</span><span> }.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Class</span><span> </span><span class="rocqdoc-var">PreOrder</span><span> (</span><span class="rocqdoc-var">A</span><span> : </span><span class="rocqdoc-keyword">Type</span><span>) (</span><span class="rocqdoc-var">R</span><span> : </span><span class="rocqdoc-var">relation</span><span> </span><span class="rocqdoc-var">A</span><span>) :=</span><span>
+  { </span><span class="rocqdoc-var">PreOrder_Reflexive</span><span> :: </span><span class="rocqdoc-var">Reflexive</span><span> </span><span class="rocqdoc-var">A</span><span> </span><span class="rocqdoc-var">R</span><span> ;</span><span>
+    </span><span class="rocqdoc-var">PreOrder_Transitive</span><span> :: </span><span class="rocqdoc-var">Transitive</span><span> </span><span class="rocqdoc-var">A</span><span> </span><span class="rocqdoc-var">R</span><span> }.</span><span>
 </span></dt><dd><span>PreOrder is defined
 PreOrder_Reflexive is defined
 PreOrder_Transitive is defined
@@ -1697,15 +1697,15 @@ preorder can be used instead. This is very similar to the coercion
 mechanism of <code class="docutils literal notranslate"><span class="pre">Structure</span></code> declarations. The implementation simply
 declares each projection as an instance.</p>
 <p>One can also declare existing objects or structure projections using
-the <a class="reference internal" href="#coq:cmd.Existing-Instance" title="Existing Instance"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Existing</span> <span class="pre">Instance</span></code></a> command to achieve the same effect.</p>
+the <a class="reference internal" href="#rocq:cmd.Existing-Instance" title="Existing Instance"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Existing</span> <span class="pre">Instance</span></code></a> command to achieve the same effect.</p>
 </section>
 </section>
 <section id="command-summary">
 <h2>Command summary<a class="headerlink" href="#command-summary" title="Link to this heading"></a></h2>
-<dl class="coq cmd">
-<dt class="sig sig-object coq" id="coq:cmd.Class">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Class</span></span></span> <a class="reference internal" href="../language/core/records.html#grammar-token-record_definition"><span class="hole"><span class="pre">record_definition</span></span></a></span></span><a class="headerlink" href="#coq:cmd.Class" title="Link to this definition"></a></dt>
-<dt class="sig sig-object coq">
+<dl class="rocq cmd">
+<dt class="sig sig-object rocq" id="rocq:cmd.Class">
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Class</span></span></span> <a class="reference internal" href="../language/core/records.html#grammar-token-record_definition"><span class="hole"><span class="pre">record_definition</span></span></a></span></span><a class="headerlink" href="#rocq:cmd.Class" title="Link to this definition"></a></dt>
+<dt class="sig sig-object rocq">
 <em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Class</span></span></span> <a class="reference internal" href="../language/core/assumptions.html#grammar-token-ident_decl"><span class="hole"><span class="pre">ident_decl</span></span></a> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../language/core/assumptions.html#grammar-token-binder"><span class="hole"><span class="pre">binder</span></span></a></span><span class="notation-sup"><span class="pre">*</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">:</span></span></span> <a class="reference internal" href="../language/core/sorts.html#grammar-token-sort"><span class="hole"><span class="pre">sort</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span> <span><span><span class="pre">:=</span></span></span> <a class="reference internal" href="../language/core/inductive.html#grammar-token-constructor"><span class="hole"><span class="pre">constructor</span></span></a></span></span></dt>
 <dd><p>The first form declares a record and makes the record a typeclass with parameters
 <code class="docutils literal notranslate"><span class="notation"><span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../language/core/assumptions.html#grammar-token-binder"><span class="hole"><span class="pre">binder</span></span></a></span><span class="notation-sup"><span class="pre">*</span></span></span></span></code> and the listed record fields.</p>
@@ -1721,9 +1721,9 @@ not inserting useless trivial projections. The typeclass <a class="reference int
 declared rigid during resolution so that the typeclass abstraction is
 maintained.</p>
 <p>Like any command declaring a record, this command supports the
-<a class="reference internal" href="universe-polymorphism.html#coq:attr.universes(polymorphic)" title="universes(polymorphic)"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">universes(polymorphic)</span></code></a>, <a class="reference internal" href="../language/core/inductive.html#coq:attr.universes(template)" title="universes(template)"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">universes(template)</span></code></a>,
-<a class="reference internal" href="universe-polymorphism.html#coq:attr.universes(cumulative)" title="universes(cumulative)"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">universes(cumulative)</span></code></a> and <a class="reference internal" href="../language/core/variants.html#coq:attr.private(matching)" title="private(matching)"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">private(matching)</span></code></a> attributes.</p>
-<p>It also supports the <a class="reference internal" href="#coq:attr.mode" title="mode"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">mode</span></code></a> attribute for setting a hint mode
+<a class="reference internal" href="universe-polymorphism.html#rocq:attr.universes(polymorphic)" title="universes(polymorphic)"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">universes(polymorphic)</span></code></a>, <a class="reference internal" href="../language/core/inductive.html#rocq:attr.universes(template)" title="universes(template)"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">universes(template)</span></code></a>,
+<a class="reference internal" href="universe-polymorphism.html#rocq:attr.universes(cumulative)" title="universes(cumulative)"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">universes(cumulative)</span></code></a> and <a class="reference internal" href="../language/core/variants.html#rocq:attr.private(matching)" title="private(matching)"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">private(matching)</span></code></a> attributes.</p>
+<p>It also supports the <a class="reference internal" href="#rocq:attr.mode" title="mode"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">mode</span></code></a> attribute for setting a hint mode
 declaration for the class.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1731,30 +1731,30 @@ declaration for the class.</p>
 <code class="docutils literal notranslate"><span class="pre">implicit</span> <span class="pre">coercions&lt;classes-implicit-coercions&gt;</span></code>.</p>
 </div>
 <p>When record syntax is used, this command also supports the
-<a class="reference internal" href="../language/core/records.html#coq:attr.projections(primitive)" title="projections(primitive)"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">projections(primitive)</span></code></a> <a class="reference internal" href="../language/core/basic.html#term-attribute"><span class="xref std std-term">attribute</span></a>.</p>
-<dl class="coq attr">
-<dt class="sig sig-object coq" id="coq:attr.mode">
-<em class="property"><span class="sigannot"><span class="pre">Attribute</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">mode</span></span></span> <span><span><span class="pre">=</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-string"><span class="hole"><span class="pre">string</span></span></a></span></span><a class="headerlink" href="#coq:attr.mode" title="Link to this definition"></a></dt>
+<a class="reference internal" href="../language/core/records.html#rocq:attr.projections(primitive)" title="projections(primitive)"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">projections(primitive)</span></code></a> <a class="reference internal" href="../language/core/basic.html#term-attribute"><span class="xref std std-term">attribute</span></a>.</p>
+<dl class="rocq attr">
+<dt class="sig sig-object rocq" id="rocq:attr.mode">
+<em class="property"><span class="sigannot"><span class="pre">Attribute</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">mode</span></span></span> <span><span><span class="pre">=</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-string"><span class="hole"><span class="pre">string</span></span></a></span></span><a class="headerlink" href="#rocq:attr.mode" title="Link to this definition"></a></dt>
 <dd><p>Sets the mode of resolution for queries on the class.
-The syntax to use in the quoted string is explained in <a class="reference internal" href="../proofs/automatic-tactics/auto.html#coq:cmd.Hint-Mode" title="Hint Mode"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Hint</span> <span class="pre">Mode</span></code></a>.</p>
+The syntax to use in the quoted string is explained in <a class="reference internal" href="../proofs/automatic-tactics/auto.html#rocq:cmd.Hint-Mode" title="Hint Mode"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Hint</span> <span class="pre">Mode</span></code></a>.</p>
 </dd></dl>
 
-<dl class="coq cmd">
-<dt class="sig sig-object coq" id="coq:cmd.Existing-Class">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Existing</span></span></span> <span><span><span class="pre">Class</span></span></span> <a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></span><a class="headerlink" href="#coq:cmd.Existing-Class" title="Link to this definition"></a></dt>
+<dl class="rocq cmd">
+<dt class="sig sig-object rocq" id="rocq:cmd.Existing-Class">
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Existing</span></span></span> <span><span><span class="pre">Class</span></span></span> <a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></span><a class="headerlink" href="#rocq:cmd.Existing-Class" title="Link to this definition"></a></dt>
 <dd><p>Declares a typeclass from a previously declared <a class="reference internal" href="../language/core/definitions.html#term-constant"><span class="xref std std-term">constant</span></a> or
 inductive definition. No methods or instances are defined.</p>
-<dl class="coq warn">
-<dt class="sig sig-object coq" id="coq:warn.‘ident’-is-already-declared-as-a-typeclass">
-<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">already</span></span></span> <span><span><span class="pre">declared</span></span></span> <span><span><span class="pre">as</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">typeclass</span></span></span></span></span><a class="headerlink" href="#coq:warn.‘ident’-is-already-declared-as-a-typeclass" title="Link to this definition"></a></dt>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.‘ident’-is-already-declared-as-a-typeclass">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">already</span></span></span> <span><span><span class="pre">declared</span></span></span> <span><span><span class="pre">as</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">typeclass</span></span></span></span></span><a class="headerlink" href="#rocq:warn.‘ident’-is-already-declared-as-a-typeclass" title="Link to this definition"></a></dt>
 <dd><p>This command has no effect when used on a typeclass.</p>
 </dd></dl>
 
 </dd></dl>
 
-<dl class="coq warn">
-<dt class="sig sig-object coq" id="coq:warn.Ignored-instance-declaration-for-“‘ident’”:-“‘term’”-is-not-a-class">
-<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Ignored</span></span></span> <span><span><span class="pre">instance</span></span></span> <span><span><span class="pre">declaration</span></span></span> <span><span><span class="pre">for</span></span></span> <span><span><span class="pre">“</span></span></span><a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a><span><span><span class="pre">”:</span></span></span> <span><span><span class="pre">“</span></span></span><a class="reference internal" href="../language/core/basic.html#grammar-token-term"><span class="hole"><span class="pre">term</span></span></a><span><span><span class="pre">”</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">class</span></span></span></span></span><a class="headerlink" href="#coq:warn.Ignored-instance-declaration-for-“‘ident’”:-“‘term’”-is-not-a-class" title="Link to this definition"></a></dt>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.Ignored-instance-declaration-for-“‘ident’”:-“‘term’”-is-not-a-class">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Ignored</span></span></span> <span><span><span class="pre">instance</span></span></span> <span><span><span class="pre">declaration</span></span></span> <span><span><span class="pre">for</span></span></span> <span><span><span class="pre">“</span></span></span><a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a><span><span><span class="pre">”:</span></span></span> <span><span><span class="pre">“</span></span></span><a class="reference internal" href="../language/core/basic.html#grammar-token-term"><span class="hole"><span class="pre">term</span></span></a><span><span><span class="pre">”</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">class</span></span></span></span></span><a class="headerlink" href="#rocq:warn.Ignored-instance-declaration-for-“‘ident’”:-“‘term’”-is-not-a-class" title="Link to this definition"></a></dt>
 <dd><p>Using the <code class="docutils literal notranslate"><span class="pre">::</span></code> syntax in the <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/records.html#grammar-token-record_definition"><span class="hole"><span class="pre">record_definition</span></span></a></span></code>
 or <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/inductive.html#grammar-token-constructor"><span class="hole"><span class="pre">constructor</span></span></a></span></code> with a right-hand-side that
 is not itself a Class has no effect (apart from emitting this warning).</p>
@@ -1762,9 +1762,9 @@ is not itself a Class has no effect (apart from emitting this warning).</p>
 
 </dd></dl>
 
-<dl class="coq cmd">
-<dt class="sig sig-object coq" id="coq:cmd.Instance">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Instance</span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../language/core/assumptions.html#grammar-token-ident_decl"><span class="hole"><span class="pre">ident_decl</span></span></a> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../language/core/assumptions.html#grammar-token-binder"><span class="hole"><span class="pre">binder</span></span></a></span><span class="notation-sup"><span class="pre">*</span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span> <span><span><span class="pre">:</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-type"><span class="hole"><span class="pre">type</span></span></a> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../proofs/automatic-tactics/auto.html#grammar-token-hint_info"><span class="hole"><span class="pre">hint_info</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span class="repeated-alternative"><span class="alternative-block"><span><span><span class="pre">:=</span></span></span> <span><span><span class="pre">{</span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../language/core/records.html#grammar-token-field_val"><span class="hole"><span class="pre">field_val</span></span></a></span><span class="notation-sup"><span class="pre">*</span></span></span> <span><span><span class="pre">}</span></span></span></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><span><span><span class="pre">:=</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-term"><span class="hole"><span class="pre">term</span></span></a></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span></span></span><a class="headerlink" href="#coq:cmd.Instance" title="Link to this definition"></a></dt>
+<dl class="rocq cmd">
+<dt class="sig sig-object rocq" id="rocq:cmd.Instance">
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Instance</span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../language/core/assumptions.html#grammar-token-ident_decl"><span class="hole"><span class="pre">ident_decl</span></span></a> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../language/core/assumptions.html#grammar-token-binder"><span class="hole"><span class="pre">binder</span></span></a></span><span class="notation-sup"><span class="pre">*</span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span> <span><span><span class="pre">:</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-type"><span class="hole"><span class="pre">type</span></span></a> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../proofs/automatic-tactics/auto.html#grammar-token-hint_info"><span class="hole"><span class="pre">hint_info</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span class="repeated-alternative"><span class="alternative-block"><span><span><span class="pre">:=</span></span></span> <span><span><span class="pre">{</span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../language/core/records.html#grammar-token-field_val"><span class="hole"><span class="pre">field_val</span></span></a></span><span class="notation-sup"><span class="pre">*</span></span></span> <span><span><span class="pre">}</span></span></span></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><span><span><span class="pre">:=</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-term"><span class="hole"><span class="pre">term</span></span></a></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span></span></span><a class="headerlink" href="#rocq:cmd.Instance" title="Link to this definition"></a></dt>
 <dd><p>Declares a typeclass instance named <a class="reference internal" href="../language/core/assumptions.html#grammar-token-ident_decl"><code class="xref std std-token docutils literal notranslate"><span class="pre">ident_decl</span></code></a> of the typeclass
 <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/basic.html#grammar-token-type"><span class="hole"><span class="pre">type</span></span></a></span></code> with the specified parameters and with
 fields defined by <a class="reference internal" href="../language/core/records.html#grammar-token-field_val"><code class="xref std std-token docutils literal notranslate"><span class="pre">field_val</span></code></a>, where each field must be a declared field of
@@ -1775,71 +1775,71 @@ is not specified, the default is the number of non-dependent binders of the
 instance.  If <a class="reference internal" href="../proofs/automatic-tactics/auto.html#grammar-token-one_pattern"><code class="xref std std-token docutils literal notranslate"><span class="pre">one_pattern</span></code></a> is given, terms
 matching that pattern will trigger use of the instance.  Otherwise,
 use is triggered based on the conclusion of the type.</p>
-<p>This command supports the <a class="reference internal" href="../language/core/modules.html#coq:attr.local" title="local"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">local</span></code></a>, <a class="reference internal" href="../language/core/modules.html#coq:attr.global" title="global"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">global</span></code></a> and <a class="reference internal" href="../language/core/modules.html#coq:attr.export" title="export"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">export</span></code></a>
+<p>This command supports the <a class="reference internal" href="../language/core/modules.html#rocq:attr.local" title="local"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">local</span></code></a>, <a class="reference internal" href="../language/core/modules.html#rocq:attr.global" title="global"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">global</span></code></a> and <a class="reference internal" href="../language/core/modules.html#rocq:attr.export" title="export"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">export</span></code></a>
 locality attributes.</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 8.18: </span>The default value for instance locality outside sections is
-now <a class="reference internal" href="../language/core/modules.html#coq:attr.export" title="export"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">export</span></code></a>. It used to be <a class="reference internal" href="../language/core/modules.html#coq:attr.global" title="global"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">global</span></code></a>.</p>
+now <a class="reference internal" href="../language/core/modules.html#rocq:attr.export" title="export"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">export</span></code></a>. It used to be <a class="reference internal" href="../language/core/modules.html#rocq:attr.global" title="global"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">global</span></code></a>.</p>
 </div>
-<p>Like <a class="reference internal" href="../language/core/definitions.html#coq:cmd.Definition" title="Definition"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Definition</span></code></a>, it also supports the <a class="reference internal" href="program.html#coq:attr.program" title="program"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">program</span></code></a>
+<p>Like <a class="reference internal" href="../language/core/definitions.html#rocq:cmd.Definition" title="Definition"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Definition</span></code></a>, it also supports the <a class="reference internal" href="program.html#rocq:attr.program" title="program"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">program</span></code></a>
 attribute to switch the type checking to <code class="docutils literal notranslate"><span class="pre">Program</span></code> (chapter
 <a class="reference internal" href="program.html#programs"><span class="std std-ref">Program</span></a>) and to use the obligation mechanism to manage missing
 fields.</p>
-<p>Finally, it supports the lighter <a class="reference internal" href="#coq:attr.refine" title="refine"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">refine</span></code></a> attribute:</p>
-<dl class="coq attr">
-<dt class="sig sig-object coq" id="coq:attr.refine">
-<em class="property"><span class="sigannot"><span class="pre">Attribute</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">refine</span></span></span></span></span><a class="headerlink" href="#coq:attr.refine" title="Link to this definition"></a></dt>
+<p>Finally, it supports the lighter <a class="reference internal" href="#rocq:attr.refine" title="refine"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">refine</span></code></a> attribute:</p>
+<dl class="rocq attr">
+<dt class="sig sig-object rocq" id="rocq:attr.refine">
+<em class="property"><span class="sigannot"><span class="pre">Attribute</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">refine</span></span></span></span></span><a class="headerlink" href="#rocq:attr.refine" title="Link to this definition"></a></dt>
 <dd><p>This <a class="reference internal" href="../language/core/basic.html#term-attribute"><span class="xref std std-term">attribute</span></a> can be used to leave holes or not provide all
 fields in the definition of an instance and open the tactic mode
 to fill them.  It works exactly as if no <a class="reference internal" href="../language/core/definitions.html#term-body"><span class="xref std std-term">body</span></a> had been given and
-the <a class="reference internal" href="../proof-engine/tactics.html#coq:tacn.refine" title="refine"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">refine</span></code></a> tactic has been used first.</p>
+the <a class="reference internal" href="../proof-engine/tactics.html#rocq:tacn.refine" title="refine"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">refine</span></code></a> tactic has been used first.</p>
 </dd></dl>
 
-<dl class="coq cmd">
-<dt class="sig sig-object coq" id="coq:cmd.Declare-Instance">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Declare</span></span></span> <span><span><span class="pre">Instance</span></span></span> <a class="reference internal" href="../language/core/assumptions.html#grammar-token-ident_decl"><span class="hole"><span class="pre">ident_decl</span></span></a> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../language/core/assumptions.html#grammar-token-binder"><span class="hole"><span class="pre">binder</span></span></a></span><span class="notation-sup"><span class="pre">*</span></span></span> <span><span><span class="pre">:</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-term"><span class="hole"><span class="pre">term</span></span></a> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../proofs/automatic-tactics/auto.html#grammar-token-hint_info"><span class="hole"><span class="pre">hint_info</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span></span></span><a class="headerlink" href="#coq:cmd.Declare-Instance" title="Link to this definition"></a></dt>
-<dd><p>In a <a class="reference internal" href="../language/core/modules.html#coq:cmd.Module-Type" title="Module Type"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Module</span> <span class="pre">Type</span></code></a>, declares that a corresponding concrete
-instance should exist in any implementation of this <a class="reference internal" href="../language/core/modules.html#coq:cmd.Module-Type" title="Module Type"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Module</span> <span class="pre">Type</span></code></a>. This
-is similar to the distinction between <a class="reference internal" href="../language/core/assumptions.html#coq:cmd.Parameter" title="Parameter"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Parameter</span></code></a> vs. <a class="reference internal" href="../language/core/definitions.html#coq:cmd.Definition" title="Definition"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Definition</span></code></a>, or
-between <a class="reference internal" href="../language/core/modules.html#coq:cmd.Declare-Module" title="Declare Module"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Declare</span> <span class="pre">Module</span></code></a> and <a class="reference internal" href="../language/core/modules.html#coq:cmd.Module" title="Module"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Module</span></code></a>.</p>
+<dl class="rocq cmd">
+<dt class="sig sig-object rocq" id="rocq:cmd.Declare-Instance">
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Declare</span></span></span> <span><span><span class="pre">Instance</span></span></span> <a class="reference internal" href="../language/core/assumptions.html#grammar-token-ident_decl"><span class="hole"><span class="pre">ident_decl</span></span></a> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../language/core/assumptions.html#grammar-token-binder"><span class="hole"><span class="pre">binder</span></span></a></span><span class="notation-sup"><span class="pre">*</span></span></span> <span><span><span class="pre">:</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-term"><span class="hole"><span class="pre">term</span></span></a> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../proofs/automatic-tactics/auto.html#grammar-token-hint_info"><span class="hole"><span class="pre">hint_info</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span></span></span><a class="headerlink" href="#rocq:cmd.Declare-Instance" title="Link to this definition"></a></dt>
+<dd><p>In a <a class="reference internal" href="../language/core/modules.html#rocq:cmd.Module-Type" title="Module Type"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Module</span> <span class="pre">Type</span></code></a>, declares that a corresponding concrete
+instance should exist in any implementation of this <a class="reference internal" href="../language/core/modules.html#rocq:cmd.Module-Type" title="Module Type"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Module</span> <span class="pre">Type</span></code></a>. This
+is similar to the distinction between <a class="reference internal" href="../language/core/assumptions.html#rocq:cmd.Parameter" title="Parameter"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Parameter</span></code></a> vs. <a class="reference internal" href="../language/core/definitions.html#rocq:cmd.Definition" title="Definition"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Definition</span></code></a>, or
+between <a class="reference internal" href="../language/core/modules.html#rocq:cmd.Declare-Module" title="Declare Module"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Declare</span> <span class="pre">Module</span></code></a> and <a class="reference internal" href="../language/core/modules.html#rocq:cmd.Module" title="Module"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Module</span></code></a>.</p>
 </dd></dl>
 
-<dl class="coq cmd">
-<dt class="sig sig-object coq" id="coq:cmd.Existing-Instance">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Existing</span></span></span> <span><span><span class="pre">Instance</span></span></span> <a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../proofs/automatic-tactics/auto.html#grammar-token-hint_info"><span class="hole"><span class="pre">hint_info</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span></span></span><a class="headerlink" href="#coq:cmd.Existing-Instance" title="Link to this definition"></a></dt>
-<dt class="sig sig-object coq" id="coq:cmd.Existing-Instances">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Existing</span></span></span> <span><span><span class="pre">Instances</span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">|</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-natural"><span class="hole"><span class="pre">natural</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span></span></span><a class="headerlink" href="#coq:cmd.Existing-Instances" title="Link to this definition"></a></dt>
+<dl class="rocq cmd">
+<dt class="sig sig-object rocq" id="rocq:cmd.Existing-Instance">
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Existing</span></span></span> <span><span><span class="pre">Instance</span></span></span> <a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../proofs/automatic-tactics/auto.html#grammar-token-hint_info"><span class="hole"><span class="pre">hint_info</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span></span></span><a class="headerlink" href="#rocq:cmd.Existing-Instance" title="Link to this definition"></a></dt>
+<dt class="sig sig-object rocq" id="rocq:cmd.Existing-Instances">
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Existing</span></span></span> <span><span><span class="pre">Instances</span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">|</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-natural"><span class="hole"><span class="pre">natural</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span></span></span><a class="headerlink" href="#rocq:cmd.Existing-Instances" title="Link to this definition"></a></dt>
 <dd><p>Adds a <a class="reference internal" href="../language/core/definitions.html#term-constant"><span class="xref std std-term">constant</span></a> whose type ends with
 an applied typeclass to the instance database with an optional
 priority <a class="reference internal" href="../language/core/basic.html#grammar-token-natural"><code class="xref std std-token docutils literal notranslate"><span class="pre">natural</span></code></a>.  It can be used for redeclaring instances at the end of
 sections, or declaring structure projections as instances. This is
 equivalent to <code class="docutils literal notranslate"><span class="pre">Hint</span> <span class="pre">Resolve</span> <span class="pre">ident</span> <span class="pre">:</span> <span class="pre">typeclass_instances</span></code>, except it
-registers instances for <a class="reference internal" href="#coq:cmd.Print-Instances" title="Print Instances"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Print</span> <span class="pre">Instances</span></code></a>.</p>
+registers instances for <a class="reference internal" href="#rocq:cmd.Print-Instances" title="Print Instances"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Print</span> <span class="pre">Instances</span></code></a>.</p>
 </dd></dl>
 
 </dd></dl>
 
-<dl class="coq cmd">
-<dt class="sig sig-object coq" id="coq:cmd.Print-Instances">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Print</span></span></span> <span><span><span class="pre">Instances</span></span></span> <a class="reference internal" href="../proof-engine/vernacular-commands.html#grammar-token-reference"><span class="hole"><span class="pre">reference</span></span></a></span></span><a class="headerlink" href="#coq:cmd.Print-Instances" title="Link to this definition"></a></dt>
+<dl class="rocq cmd">
+<dt class="sig sig-object rocq" id="rocq:cmd.Print-Instances">
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Print</span></span></span> <span><span><span class="pre">Instances</span></span></span> <a class="reference internal" href="../proof-engine/vernacular-commands.html#grammar-token-reference"><span class="hole"><span class="pre">reference</span></span></a></span></span><a class="headerlink" href="#rocq:cmd.Print-Instances" title="Link to this definition"></a></dt>
 <dd><p>Shows the list of instances associated with the typeclass <a class="reference internal" href="../proof-engine/vernacular-commands.html#grammar-token-reference"><code class="xref std std-token docutils literal notranslate"><span class="pre">reference</span></code></a>.</p>
 </dd></dl>
 
-<dl class="coq cmd">
-<dt class="sig sig-object coq" id="coq:cmd.Print-Typeclasses">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Print</span></span></span> <span><span><span class="pre">Typeclasses</span></span></span></span></span><a class="headerlink" href="#coq:cmd.Print-Typeclasses" title="Link to this definition"></a></dt>
+<dl class="rocq cmd">
+<dt class="sig sig-object rocq" id="rocq:cmd.Print-Typeclasses">
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Print</span></span></span> <span><span><span class="pre">Typeclasses</span></span></span></span></span><a class="headerlink" href="#rocq:cmd.Print-Typeclasses" title="Link to this definition"></a></dt>
 <dd><p>Shows the list of declared typeclasses.</p>
 </dd></dl>
 
-<dl class="coq tacn">
-<dt class="sig sig-object coq" id="coq:tacn.typeclasses-eauto">
-<em class="property"><span class="sigannot"><span class="pre">Tactic</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">typeclasses</span></span></span> <span><span><span class="pre">eauto</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span class="repeated-alternative"><span class="alternative-block"><span><span><span class="pre">bfs</span></span></span></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><span><span><span class="pre">dfs</span></span></span></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><span><span><span class="pre">best</span></span></span><span><span><span class="pre">_</span></span></span><span><span><span class="pre">effort</span></span></span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../proof-engine/tactics.html#grammar-token-nat_or_var"><span class="hole"><span class="pre">nat_or_var</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">with</span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span></span></span><a class="headerlink" href="#coq:tacn.typeclasses-eauto" title="Link to this definition"></a></dt>
+<dl class="rocq tacn">
+<dt class="sig sig-object rocq" id="rocq:tacn.typeclasses-eauto">
+<em class="property"><span class="sigannot"><span class="pre">Tactic</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">typeclasses</span></span></span> <span><span><span class="pre">eauto</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span class="repeated-alternative"><span class="alternative-block"><span><span><span class="pre">bfs</span></span></span></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><span><span><span class="pre">dfs</span></span></span></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><span><span><span class="pre">best</span></span></span><span><span><span class="pre">_</span></span></span><span><span><span class="pre">effort</span></span></span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../proof-engine/tactics.html#grammar-token-nat_or_var"><span class="hole"><span class="pre">nat_or_var</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">with</span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span></span></span><a class="headerlink" href="#rocq:tacn.typeclasses-eauto" title="Link to this definition"></a></dt>
 <dd><p>This proof search tactic uses the resolution engine that is run
 implicitly during type checking, known as <em>typeclass search</em>. This tactic uses a
 different resolution
-engine than <a class="reference internal" href="../proofs/automatic-tactics/auto.html#coq:tacn.eauto" title="eauto"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">eauto</span></code></a> and <a class="reference internal" href="../proofs/automatic-tactics/auto.html#coq:tacn.auto" title="auto"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">auto</span></code></a>. The main differences are the following:</p>
+engine than <a class="reference internal" href="../proofs/automatic-tactics/auto.html#rocq:tacn.eauto" title="eauto"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">eauto</span></code></a> and <a class="reference internal" href="../proofs/automatic-tactics/auto.html#rocq:tacn.auto" title="auto"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">auto</span></code></a>. The main differences are the following:</p>
 <ul class="simple">
-<li><p>Unlike <a class="reference internal" href="../proofs/automatic-tactics/auto.html#coq:tacn.eauto" title="eauto"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">eauto</span></code></a> and <a class="reference internal" href="../proofs/automatic-tactics/auto.html#coq:tacn.auto" title="auto"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">auto</span></code></a>, the resolution is done entirely in
+<li><p>Unlike <a class="reference internal" href="../proofs/automatic-tactics/auto.html#rocq:tacn.eauto" title="eauto"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">eauto</span></code></a> and <a class="reference internal" href="../proofs/automatic-tactics/auto.html#rocq:tacn.auto" title="auto"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">auto</span></code></a>, the resolution is done entirely in
 the proof engine, meaning that backtracking is
 available among dependent subgoals, and shelving goals is supported.
 <code class="docutils literal notranslate"><span class="pre">typeclasses</span> <span class="pre">eauto</span></code> is a multi-goal tactic. It analyses the dependencies
@@ -1849,14 +1849,14 @@ independent.</p></li>
 all hints declared in them. It is always used when calling the
 unifier. When considering local hypotheses, we use the transparent
 state of the first hint database given. Using an empty database
-(created with <a class="reference internal" href="../proofs/automatic-tactics/auto.html#coq:cmd.Create-HintDb" title="Create HintDb"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Create</span> <span class="pre">HintDb</span></code></a> for example) with unfoldable variables and
+(created with <a class="reference internal" href="../proofs/automatic-tactics/auto.html#rocq:cmd.Create-HintDb" title="Create HintDb"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Create</span> <span class="pre">HintDb</span></code></a> for example) with unfoldable variables and
 <a class="reference internal" href="../language/core/definitions.html#term-constant"><span class="xref std std-term">constants</span></a> as the first argument of <code class="docutils literal notranslate"><span class="pre">typeclasses</span> <span class="pre">eauto</span></code> hence makes
 resolution with the local hypotheses use full conversion during
 unification.</p></li>
-<li><p>The mode hints (see <a class="reference internal" href="../proofs/automatic-tactics/auto.html#coq:cmd.Hint-Mode" title="Hint Mode"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Hint</span> <span class="pre">Mode</span></code></a>) associated with a typeclass are
-taken into account by <a class="reference internal" href="#coq:tacn.typeclasses-eauto" title="typeclasses eauto"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">typeclasses</span> <span class="pre">eauto</span></code></a>. When a goal
+<li><p>The mode hints (see <a class="reference internal" href="../proofs/automatic-tactics/auto.html#rocq:cmd.Hint-Mode" title="Hint Mode"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Hint</span> <span class="pre">Mode</span></code></a>) associated with a typeclass are
+taken into account by <a class="reference internal" href="#rocq:tacn.typeclasses-eauto" title="typeclasses eauto"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">typeclasses</span> <span class="pre">eauto</span></code></a>. When a goal
 does not match any of the declared modes for its head (if any),
-instead of failing like <a class="reference internal" href="../proofs/automatic-tactics/auto.html#coq:tacn.eauto" title="eauto"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">eauto</span></code></a>, the goal is suspended and
+instead of failing like <a class="reference internal" href="../proofs/automatic-tactics/auto.html#rocq:tacn.eauto" title="eauto"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">eauto</span></code></a>, the goal is suspended and
 resolution proceeds on the remaining goals.
 If after one run of resolution, there remain suspended goals,
 resolution is launched against on them, until it reaches a fixed
@@ -1867,14 +1867,14 @@ no suspended goals remain.</p></li>
 declared in the given databases.</p></li>
 <li><p>The tactic may produce more than one success when used in
 backtracking tactics such as <code class="docutils literal notranslate"><span class="pre">typeclasses</span> <span class="pre">eauto;</span> <span class="pre">...</span></code>.
-See <a class="reference internal" href="../proof-engine/ltac.html#coq:tacn.ltac-seq" title="ltac-seq"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">ltac-seq</span></code></a>.</p></li>
-<li><p>Use the <a class="reference internal" href="#coq:cmd.Typeclasses-eauto" title="Typeclasses eauto"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Typeclasses</span> <span class="pre">eauto</span></code></a> command to customize the behavior of
+See <a class="reference internal" href="../proof-engine/ltac.html#rocq:tacn.ltac-seq" title="ltac-seq"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">ltac-seq</span></code></a>.</p></li>
+<li><p>Use the <a class="reference internal" href="#rocq:cmd.Typeclasses-eauto" title="Typeclasses eauto"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Typeclasses</span> <span class="pre">eauto</span></code></a> command to customize the behavior of
 this tactic.</p></li>
 </ul>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="notation"><span class="alternative"><span class="alternative-block"><span><span><span class="pre">bfs</span></span></span></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><span><span><span class="pre">dfs</span></span></span></span></span></span></code></dt><dd><p>Specifies whether to use breadth-first search or depth-first search.
 The default is depth-first search, which can be changed with the
-<a class="reference internal" href="#coq:flag.Typeclasses-Iterative-Deepening" title="Typeclasses Iterative Deepening"><code class="xref coq coq-flag docutils literal notranslate"><span class="pre">Typeclasses</span> <span class="pre">Iterative</span> <span class="pre">Deepening</span></code></a> flag.</p>
+<a class="reference internal" href="#rocq:flag.Typeclasses-Iterative-Deepening" title="Typeclasses Iterative Deepening"><code class="xref rocq rocq-flag docutils literal notranslate"><span class="pre">Typeclasses</span> <span class="pre">Iterative</span> <span class="pre">Deepening</span></code></a> flag.</p>
 </dd>
 </dl>
 <dl id="typeclasseseautobesteffort">
@@ -1899,10 +1899,10 @@ to check which instances/hints are missing for a typeclass resolution to succeed
 <div><div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>The semantics for the limit <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../proof-engine/tactics.html#grammar-token-nat_or_var"><span class="hole"><span class="pre">nat_or_var</span></span></a></span></code>
-are different than for <a class="reference internal" href="../proofs/automatic-tactics/auto.html#coq:tacn.auto" title="auto"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">auto</span></code></a>. By default, if no limit is given, the
-search is unbounded. Unlike <a class="reference internal" href="../proofs/automatic-tactics/auto.html#coq:tacn.auto" title="auto"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">auto</span></code></a>, introduction steps count against
+are different than for <a class="reference internal" href="../proofs/automatic-tactics/auto.html#rocq:tacn.auto" title="auto"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">auto</span></code></a>. By default, if no limit is given, the
+search is unbounded. Unlike <a class="reference internal" href="../proofs/automatic-tactics/auto.html#rocq:tacn.auto" title="auto"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">auto</span></code></a>, introduction steps count against
 the limit, which might result in larger limits being necessary when
-searching with <a class="reference internal" href="#coq:tacn.typeclasses-eauto" title="typeclasses eauto"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">typeclasses</span> <span class="pre">eauto</span></code></a> than with <a class="reference internal" href="../proofs/automatic-tactics/auto.html#coq:tacn.auto" title="auto"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">auto</span></code></a>.</p>
+searching with <a class="reference internal" href="#rocq:tacn.typeclasses-eauto" title="typeclasses eauto"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">typeclasses</span> <span class="pre">eauto</span></code></a> than with <a class="reference internal" href="../proofs/automatic-tactics/auto.html#rocq:tacn.auto" title="auto"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">auto</span></code></a>.</p>
 </div>
 </div></blockquote>
 </dd>
@@ -1910,7 +1910,7 @@ searching with <a class="reference internal" href="#coq:tacn.typeclasses-eauto" 
 typeclass subgoals the same as other subgoals (no shelving of
 non-typeclass goals in particular), while allowing shelved goals
 to remain at any point during search.</p>
-<p>When <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">with</span></span></span></span></code> is not specified, <a class="reference internal" href="#coq:tacn.typeclasses-eauto" title="typeclasses eauto"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">typeclasses</span> <span class="pre">eauto</span></code></a> uses
+<p>When <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">with</span></span></span></span></code> is not specified, <a class="reference internal" href="#rocq:tacn.typeclasses-eauto" title="typeclasses eauto"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">typeclasses</span> <span class="pre">eauto</span></code></a> uses
 the <code class="docutils literal notranslate"><span class="pre">typeclass_instances</span></code> database by default (instead of <code class="docutils literal notranslate"><span class="pre">core</span></code>).
 Dependent subgoals are automatically shelved, and shelved goals can
 remain after resolution ends (following the behavior of Coq 8.5).</p>
@@ -1928,12 +1928,12 @@ refinement engine will be able to backtrack.</p>
 </dl>
 </dd></dl>
 
-<dl class="coq tacn">
-<dt class="sig sig-object coq" id="coq:tacn.autoapply">
-<em class="property"><span class="sigannot"><span class="pre">Tactic</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">autoapply</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-one_term"><span class="hole"><span class="pre">one_term</span></span></a> <span><span><span class="pre">with</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></span><a class="headerlink" href="#coq:tacn.autoapply" title="Link to this definition"></a></dt>
+<dl class="rocq tacn">
+<dt class="sig sig-object rocq" id="rocq:tacn.autoapply">
+<em class="property"><span class="sigannot"><span class="pre">Tactic</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">autoapply</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-one_term"><span class="hole"><span class="pre">one_term</span></span></a> <span><span><span class="pre">with</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></span><a class="headerlink" href="#rocq:tacn.autoapply" title="Link to this definition"></a></dt>
 <dd><p>The tactic <code class="docutils literal notranslate"><span class="pre">autoapply</span></code> applies <a class="reference internal" href="../language/core/basic.html#grammar-token-one_term"><code class="xref std std-token docutils literal notranslate"><span class="pre">one_term</span></code></a> using the transparency information
 of the hint database <a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><code class="xref std std-token docutils literal notranslate"><span class="pre">ident</span></code></a>, and does <em>no</em> typeclass resolution. This can
-be used in <a class="reference internal" href="../proofs/automatic-tactics/auto.html#coq:cmd.Hint-Extern" title="Hint Extern"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Hint</span> <span class="pre">Extern</span></code></a>’s for typeclass instances (in the hint
+be used in <a class="reference internal" href="../proofs/automatic-tactics/auto.html#rocq:cmd.Hint-Extern" title="Hint Extern"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Hint</span> <span class="pre">Extern</span></code></a>’s for typeclass instances (in the hint
 database <code class="docutils literal notranslate"><span class="pre">typeclass_instances</span></code>) to allow backtracking on the typeclass
 subgoals created by the lemma application, rather than doing typeclass
 resolution locally at the hint application time.</p>
@@ -1941,19 +1941,19 @@ resolution locally at the hint application time.</p>
 
 <section id="typeclasses-transparent-typeclasses-opaque">
 <span id="typeclassestransparent"></span><h3>Typeclasses Transparent, Typeclasses Opaque<a class="headerlink" href="#typeclasses-transparent-typeclasses-opaque" title="Link to this heading"></a></h3>
-<dl class="coq cmd">
-<dt class="sig sig-object coq" id="coq:cmd.Typeclasses-Transparent">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Typeclasses</span></span></span> <span><span><span class="pre">Transparent</span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span></span></span></span><a class="headerlink" href="#coq:cmd.Typeclasses-Transparent" title="Link to this definition"></a></dt>
+<dl class="rocq cmd">
+<dt class="sig sig-object rocq" id="rocq:cmd.Typeclasses-Transparent">
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Typeclasses</span></span></span> <span><span><span class="pre">Transparent</span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span></span></span></span><a class="headerlink" href="#rocq:cmd.Typeclasses-Transparent" title="Link to this definition"></a></dt>
 <dd><p>Makes <a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><code class="xref std std-token docutils literal notranslate"><span class="pre">qualid</span></code></a> transparent during typeclass
 resolution.
-A shortcut for <a class="reference internal" href="../proofs/automatic-tactics/auto.html#coq:cmd.Hint-Transparent" title="Hint Transparent"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Hint</span> <span class="pre">Transparent</span></code></a> <code class="docutils literal notranslate"><span class="notation"><span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span></span> <span><span><span class="pre">:</span></span></span> <span><span><span class="pre">typeclass</span></span></span><span><span><span class="pre">_</span></span></span><span><span><span class="pre">instances</span></span></span></span></code></p>
+A shortcut for <a class="reference internal" href="../proofs/automatic-tactics/auto.html#rocq:cmd.Hint-Transparent" title="Hint Transparent"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Hint</span> <span class="pre">Transparent</span></code></a> <code class="docutils literal notranslate"><span class="notation"><span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span></span> <span><span><span class="pre">:</span></span></span> <span><span><span class="pre">typeclass</span></span></span><span><span><span class="pre">_</span></span></span><span><span><span class="pre">instances</span></span></span></span></code></p>
 </dd></dl>
 
-<dl class="coq cmd">
-<dt class="sig sig-object coq" id="coq:cmd.Typeclasses-Opaque">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Typeclasses</span></span></span> <span><span><span class="pre">Opaque</span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span></span></span></span><a class="headerlink" href="#coq:cmd.Typeclasses-Opaque" title="Link to this definition"></a></dt>
+<dl class="rocq cmd">
+<dt class="sig sig-object rocq" id="rocq:cmd.Typeclasses-Opaque">
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Typeclasses</span></span></span> <span><span><span class="pre">Opaque</span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span></span></span></span><a class="headerlink" href="#rocq:cmd.Typeclasses-Opaque" title="Link to this definition"></a></dt>
 <dd><p>Make <a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><code class="xref std std-token docutils literal notranslate"><span class="pre">qualid</span></code></a> opaque for typeclass search.
-A shortcut for <a class="reference internal" href="../proofs/automatic-tactics/auto.html#coq:cmd.Hint-Opaque" title="Hint Opaque"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Hint</span> <span class="pre">Opaque</span></code></a> <code class="docutils literal notranslate"><span class="notation"><span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span></span> <span><span><span class="pre">:</span></span></span> <span><span><span class="pre">typeclass</span></span></span><span><span><span class="pre">_</span></span></span><span><span><span class="pre">instances</span></span></span></span></code>.</p>
+A shortcut for <a class="reference internal" href="../proofs/automatic-tactics/auto.html#rocq:cmd.Hint-Opaque" title="Hint Opaque"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Hint</span> <span class="pre">Opaque</span></code></a> <code class="docutils literal notranslate"><span class="notation"><span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span></span> <span><span><span class="pre">:</span></span></span> <span><span><span class="pre">typeclass</span></span></span><span><span><span class="pre">_</span></span></span><span><span><span class="pre">instances</span></span></span></span></code>.</p>
 <p>It is useful when some <a class="reference internal" href="../language/core/definitions.html#term-constant"><span class="xref std std-term">constants</span></a> prevent some unifications and make
 resolution fail. It is also useful to declare constants which
 should never be unfolded during proof search, like fixpoints or
@@ -1966,33 +1966,33 @@ indexed by such rigid constants (see
 <p>By default, all <a class="reference internal" href="../language/core/definitions.html#term-constant"><span class="xref std std-term">constants</span></a> and local variables are considered transparent. One
 should take care not to make opaque any constant that is used to abbreviate a
 type, like:</p>
-<div class="coqdoc literal-block docutils container">
-<span><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">relation</span><span> </span><span class="coqdoc-var">A</span><span> := </span><span class="coqdoc-var">A</span><span> -&gt; </span><span class="coqdoc-var">A</span><span> -&gt; </span><span class="coqdoc-keyword">Prop</span><span>.</span><span>
+<div class="rocqdoc literal-block docutils container">
+<span><span></span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">relation</span><span> </span><span class="rocqdoc-var">A</span><span> := </span><span class="rocqdoc-var">A</span><span> -&gt; </span><span class="rocqdoc-var">A</span><span> -&gt; </span><span class="rocqdoc-keyword">Prop</span><span>.</span><span>
 </span></span></div>
 <div class="versionadded">
-<p><span class="versionmodified added">Added in version 8.15: </span><a class="reference internal" href="#coq:cmd.Typeclasses-Transparent" title="Typeclasses Transparent"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Typeclasses</span> <span class="pre">Transparent</span></code></a> and <a class="reference internal" href="#coq:cmd.Typeclasses-Opaque" title="Typeclasses Opaque"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Typeclasses</span> <span class="pre">Opaque</span></code></a>
-support locality attributes like <a class="reference internal" href="../proofs/automatic-tactics/auto.html#coq:cmd.Hint-Opaque" title="Hint Opaque"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Hint</span></code></a> commands.</p>
+<p><span class="versionmodified added">Added in version 8.15: </span><a class="reference internal" href="#rocq:cmd.Typeclasses-Transparent" title="Typeclasses Transparent"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Typeclasses</span> <span class="pre">Transparent</span></code></a> and <a class="reference internal" href="#rocq:cmd.Typeclasses-Opaque" title="Typeclasses Opaque"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Typeclasses</span> <span class="pre">Opaque</span></code></a>
+support locality attributes like <a class="reference internal" href="../proofs/automatic-tactics/auto.html#rocq:cmd.Hint-Opaque" title="Hint Opaque"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Hint</span></code></a> commands.</p>
 </div>
 <div class="deprecated">
 <p><span class="versionmodified deprecated">Deprecated since version 8.15: </span>The default value for typeclass transparency hints will change in a future
 release. Hints added outside of sections without an explicit
-locality are now deprecated. We recommend using <a class="reference internal" href="../language/core/modules.html#coq:attr.export" title="export"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">export</span></code></a>
+locality are now deprecated. We recommend using <a class="reference internal" href="../language/core/modules.html#rocq:attr.export" title="export"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">export</span></code></a>
 where possible.</p>
 </div>
 </section>
 <section id="settings">
 <h3>Settings<a class="headerlink" href="#settings" title="Link to this heading"></a></h3>
-<dl class="coq opt" id="typeclassesdefaultmode">
-<dt class="sig sig-object coq" id="coq:opt.Typeclasses-Default-Mode">
-<em class="property"><span class="sigannot"><span class="pre">Option</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Typeclasses</span></span></span> <span><span><span class="pre">Default</span></span></span> <span><span><span class="pre">Mode</span></span></span> <span class="alternative"><span class="alternative-block"><span><span><span class="pre">&quot;+&quot;</span></span></span></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><span><span><span class="pre">&quot;-&quot;</span></span></span></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><span><span><span class="pre">&quot;!&quot;</span></span></span></span></span><span><span><span class="pre">.</span></span></span></span></span><a class="headerlink" href="#coq:opt.Typeclasses-Default-Mode" title="Link to this definition"></a></dt>
-<dd><p>Sets the default mode declaration associated with a <a class="reference internal" href="#coq:cmd.Class" title="Class"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Class</span></code></a> or <a class="reference internal" href="#coq:cmd.Existing-Class" title="Existing Class"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Existing</span> <span class="pre">Class</span></code></a>
+<dl class="rocq opt" id="typeclassesdefaultmode">
+<dt class="sig sig-object rocq" id="rocq:opt.Typeclasses-Default-Mode">
+<em class="property"><span class="sigannot"><span class="pre">Option</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Typeclasses</span></span></span> <span><span><span class="pre">Default</span></span></span> <span><span><span class="pre">Mode</span></span></span> <span class="alternative"><span class="alternative-block"><span><span><span class="pre">&quot;+&quot;</span></span></span></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><span><span><span class="pre">&quot;-&quot;</span></span></span></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><span><span><span class="pre">&quot;!&quot;</span></span></span></span></span><span><span><span class="pre">.</span></span></span></span></span><a class="headerlink" href="#rocq:opt.Typeclasses-Default-Mode" title="Link to this definition"></a></dt>
+<dd><p>Sets the default mode declaration associated with a <a class="reference internal" href="#rocq:cmd.Class" title="Class"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Class</span></code></a> or <a class="reference internal" href="#rocq:cmd.Existing-Class" title="Existing Class"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Existing</span> <span class="pre">Class</span></code></a>
 declaration. It is set by default to &quot;-&quot;, i.e. doing no mode filtering
 by default. Each class declaration uses this default mode for <em>all</em> its parameters,
-unless a <a class="reference internal" href="#coq:attr.mode" title="mode"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">mode</span></code></a> attribute is used to set the mode explicitly.</p>
-<dl class="coq warn" id="class-declaration-default-mode">
-<dt class="sig sig-object coq" id="coq:warn.Using-inferred-default-mode:-“mode”-for-“‘ident’”">
-<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Using</span></span></span> <span><span><span class="pre">inferred</span></span></span> <span><span><span class="pre">default</span></span></span> <span><span><span class="pre">mode:</span></span></span> <span><span><span class="pre">“mode”</span></span></span> <span><span><span class="pre">for</span></span></span> <span><span><span class="pre">“</span></span></span><a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a><span><span><span class="pre">”</span></span></span></span></span><a class="headerlink" href="#coq:warn.Using-inferred-default-mode:-“mode”-for-“‘ident’”" title="Link to this definition"></a></dt>
-<dd><p>Indicates that the <a class="reference internal" href="#coq:attr.mode" title="mode"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">mode</span></code></a> for a <a class="reference internal" href="#coq:cmd.Class" title="Class"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Class</span></code></a> declaration has been
+unless a <a class="reference internal" href="#rocq:attr.mode" title="mode"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">mode</span></code></a> attribute is used to set the mode explicitly.</p>
+<dl class="rocq warn" id="class-declaration-default-mode">
+<dt class="sig sig-object rocq" id="rocq:warn.Using-inferred-default-mode:-“mode”-for-“‘ident’”">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Using</span></span></span> <span><span><span class="pre">inferred</span></span></span> <span><span><span class="pre">default</span></span></span> <span><span><span class="pre">mode:</span></span></span> <span><span><span class="pre">“mode”</span></span></span> <span><span><span class="pre">for</span></span></span> <span><span><span class="pre">“</span></span></span><a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a><span><span><span class="pre">”</span></span></span></span></span><a class="headerlink" href="#rocq:warn.Using-inferred-default-mode:-“mode”-for-“‘ident’”" title="Link to this definition"></a></dt>
+<dd><p>Indicates that the <a class="reference internal" href="#rocq:attr.mode" title="mode"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">mode</span></code></a> for a <a class="reference internal" href="#rocq:cmd.Class" title="Class"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Class</span></code></a> declaration has been
 assigned automatically using the default mode.
 This warning is named <code class="docutils literal notranslate"><span class="pre">class-declaration-default-mode</span></code>.
 It is disabled by default.
@@ -2001,9 +2001,9 @@ Enable it to find (and fix) any typeclasses that don't have explicit mode declar
 
 </dd></dl>
 
-<dl class="coq flag">
-<dt class="sig sig-object coq" id="coq:flag.Typeclasses-Dependency-Order">
-<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Typeclasses</span></span></span> <span><span><span class="pre">Dependency</span></span></span> <span><span><span class="pre">Order</span></span></span></span></span><a class="headerlink" href="#coq:flag.Typeclasses-Dependency-Order" title="Link to this definition"></a></dt>
+<dl class="rocq flag">
+<dt class="sig sig-object rocq" id="rocq:flag.Typeclasses-Dependency-Order">
+<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Typeclasses</span></span></span> <span><span><span class="pre">Dependency</span></span></span> <span><span><span class="pre">Order</span></span></span></span></span><a class="headerlink" href="#rocq:flag.Typeclasses-Dependency-Order" title="Link to this definition"></a></dt>
 <dd><p>This <a class="reference internal" href="../language/core/basic.html#term-flag"><span class="xref std std-term">flag</span></a> (off by default) respects the dependency order
 between subgoals, meaning that subgoals on which other subgoals depend
 come first, while the non-dependent subgoals were put before
@@ -2011,9 +2011,9 @@ the dependent ones previously (Coq 8.5 and below). This can result in
 quite different performance behaviors of proof search.</p>
 </dd></dl>
 
-<dl class="coq flag">
-<dt class="sig sig-object coq" id="coq:flag.Typeclasses-Limit-Intros">
-<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Typeclasses</span></span></span> <span><span><span class="pre">Limit</span></span></span> <span><span><span class="pre">Intros</span></span></span></span></span><a class="headerlink" href="#coq:flag.Typeclasses-Limit-Intros" title="Link to this definition"></a></dt>
+<dl class="rocq flag">
+<dt class="sig sig-object rocq" id="rocq:flag.Typeclasses-Limit-Intros">
+<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Typeclasses</span></span></span> <span><span><span class="pre">Limit</span></span></span> <span><span><span class="pre">Intros</span></span></span></span></span><a class="headerlink" href="#rocq:flag.Typeclasses-Limit-Intros" title="Link to this definition"></a></dt>
 <dd><p>This <a class="reference internal" href="../language/core/basic.html#term-flag"><span class="xref std std-term">flag</span></a> (on by default) controls the ability to apply hints while
 avoiding (functional) eta-expansions in the generated proof term. It
 does so by allowing hints that conclude in a product to apply to a
@@ -2027,18 +2027,18 @@ expensive proof search (i.e. more useless backtracking).</p>
 </div>
 </dd></dl>
 
-<dl class="coq flag">
-<dt class="sig sig-object coq" id="coq:flag.Typeclass-Resolution-For-Conversion">
-<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Typeclass</span></span></span> <span><span><span class="pre">Resolution</span></span></span> <span><span><span class="pre">For</span></span></span> <span><span><span class="pre">Conversion</span></span></span></span></span><a class="headerlink" href="#coq:flag.Typeclass-Resolution-For-Conversion" title="Link to this definition"></a></dt>
+<dl class="rocq flag">
+<dt class="sig sig-object rocq" id="rocq:flag.Typeclass-Resolution-For-Conversion">
+<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Typeclass</span></span></span> <span><span><span class="pre">Resolution</span></span></span> <span><span><span class="pre">For</span></span></span> <span><span><span class="pre">Conversion</span></span></span></span></span><a class="headerlink" href="#rocq:flag.Typeclass-Resolution-For-Conversion" title="Link to this definition"></a></dt>
 <dd><p>This <a class="reference internal" href="../language/core/basic.html#term-flag"><span class="xref std std-term">flag</span></a> (on by default) controls the use of typeclass resolution
 when a unification problem cannot be solved during elaboration/type
 inference. With this flag on, when a unification fails, typeclass
 resolution is tried before launching unification once again.</p>
 </dd></dl>
 
-<dl class="coq flag">
-<dt class="sig sig-object coq" id="coq:flag.Typeclasses-Strict-Resolution">
-<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Typeclasses</span></span></span> <span><span><span class="pre">Strict</span></span></span> <span><span><span class="pre">Resolution</span></span></span></span></span><a class="headerlink" href="#coq:flag.Typeclasses-Strict-Resolution" title="Link to this definition"></a></dt>
+<dl class="rocq flag">
+<dt class="sig sig-object rocq" id="rocq:flag.Typeclasses-Strict-Resolution">
+<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Typeclasses</span></span></span> <span><span><span class="pre">Strict</span></span></span> <span><span><span class="pre">Resolution</span></span></span></span></span><a class="headerlink" href="#rocq:flag.Typeclasses-Strict-Resolution" title="Link to this definition"></a></dt>
 <dd><p>Typeclass declarations introduced when this <a class="reference internal" href="../language/core/basic.html#term-flag"><span class="xref std std-term">flag</span></a> is set have a
 stricter resolution behavior (the flag is off by default). When
 looking for unifications of a goal with an instance of this typeclass, we
@@ -2047,74 +2047,74 @@ they are considered rigid during unification and cannot be
 instantiated.</p>
 </dd></dl>
 
-<dl class="coq flag">
-<dt class="sig sig-object coq" id="coq:flag.Typeclasses-Unique-Solutions">
-<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Typeclasses</span></span></span> <span><span><span class="pre">Unique</span></span></span> <span><span><span class="pre">Solutions</span></span></span></span></span><a class="headerlink" href="#coq:flag.Typeclasses-Unique-Solutions" title="Link to this definition"></a></dt>
+<dl class="rocq flag">
+<dt class="sig sig-object rocq" id="rocq:flag.Typeclasses-Unique-Solutions">
+<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Typeclasses</span></span></span> <span><span><span class="pre">Unique</span></span></span> <span><span><span class="pre">Solutions</span></span></span></span></span><a class="headerlink" href="#rocq:flag.Typeclasses-Unique-Solutions" title="Link to this definition"></a></dt>
 <dd><p>When a typeclass resolution is launched we ensure that it has a single
 solution or fail. This <a class="reference internal" href="../language/core/basic.html#term-flag"><span class="xref std std-term">flag</span></a> ensures that the resolution is canonical, but
 can make proof search much more expensive.</p>
 </dd></dl>
 
-<dl class="coq flag">
-<dt class="sig sig-object coq" id="coq:flag.Typeclasses-Unique-Instances">
-<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Typeclasses</span></span></span> <span><span><span class="pre">Unique</span></span></span> <span><span><span class="pre">Instances</span></span></span></span></span><a class="headerlink" href="#coq:flag.Typeclasses-Unique-Instances" title="Link to this definition"></a></dt>
+<dl class="rocq flag">
+<dt class="sig sig-object rocq" id="rocq:flag.Typeclasses-Unique-Instances">
+<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Typeclasses</span></span></span> <span><span><span class="pre">Unique</span></span></span> <span><span><span class="pre">Instances</span></span></span></span></span><a class="headerlink" href="#rocq:flag.Typeclasses-Unique-Instances" title="Link to this definition"></a></dt>
 <dd><p>Typeclass declarations introduced when this <a class="reference internal" href="../language/core/basic.html#term-flag"><span class="xref std std-term">flag</span></a> is set have a more
 efficient resolution behavior (the flag is off by default). When a
 solution to the typeclass goal of this typeclass is found, we never
 backtrack on it, assuming that it is canonical.</p>
 </dd></dl>
 
-<dl class="coq flag">
-<dt class="sig sig-object coq" id="coq:flag.Typeclasses-Iterative-Deepening">
-<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Typeclasses</span></span></span> <span><span><span class="pre">Iterative</span></span></span> <span><span><span class="pre">Deepening</span></span></span></span></span><a class="headerlink" href="#coq:flag.Typeclasses-Iterative-Deepening" title="Link to this definition"></a></dt>
+<dl class="rocq flag">
+<dt class="sig sig-object rocq" id="rocq:flag.Typeclasses-Iterative-Deepening">
+<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Typeclasses</span></span></span> <span><span><span class="pre">Iterative</span></span></span> <span><span><span class="pre">Deepening</span></span></span></span></span><a class="headerlink" href="#rocq:flag.Typeclasses-Iterative-Deepening" title="Link to this definition"></a></dt>
 <dd><p>When this <a class="reference internal" href="../language/core/basic.html#term-flag"><span class="xref std std-term">flag</span></a> is set, the proof search strategy is breadth-first search.
 Otherwise, the search strategy is depth-first search.  The default is off.
-<a class="reference internal" href="#coq:cmd.Typeclasses-eauto" title="Typeclasses eauto"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Typeclasses</span> <span class="pre">eauto</span></code></a> is another way to set this flag.</p>
+<a class="reference internal" href="#rocq:cmd.Typeclasses-eauto" title="Typeclasses eauto"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Typeclasses</span> <span class="pre">eauto</span></code></a> is another way to set this flag.</p>
 </dd></dl>
 
-<dl class="coq opt">
-<dt class="sig sig-object coq" id="coq:opt.Typeclasses-Depth">
-<em class="property"><span class="sigannot"><span class="pre">Option</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Typeclasses</span></span></span> <span><span><span class="pre">Depth</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-natural"><span class="hole"><span class="pre">natural</span></span></a></span></span><a class="headerlink" href="#coq:opt.Typeclasses-Depth" title="Link to this definition"></a></dt>
+<dl class="rocq opt">
+<dt class="sig sig-object rocq" id="rocq:opt.Typeclasses-Depth">
+<em class="property"><span class="sigannot"><span class="pre">Option</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Typeclasses</span></span></span> <span><span><span class="pre">Depth</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-natural"><span class="hole"><span class="pre">natural</span></span></a></span></span><a class="headerlink" href="#rocq:opt.Typeclasses-Depth" title="Link to this definition"></a></dt>
 <dd><p>This <a class="reference internal" href="../language/core/basic.html#term-option"><span class="xref std std-term">option</span></a> sets the maximum proof search depth.  The default is unbounded.
-<a class="reference internal" href="#coq:cmd.Typeclasses-eauto" title="Typeclasses eauto"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Typeclasses</span> <span class="pre">eauto</span></code></a> is another way to set this option.</p>
+<a class="reference internal" href="#rocq:cmd.Typeclasses-eauto" title="Typeclasses eauto"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Typeclasses</span> <span class="pre">eauto</span></code></a> is another way to set this option.</p>
 </dd></dl>
 
-<dl class="coq flag">
-<dt class="sig sig-object coq" id="coq:flag.Typeclasses-Debug">
-<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Typeclasses</span></span></span> <span><span><span class="pre">Debug</span></span></span></span></span><a class="headerlink" href="#coq:flag.Typeclasses-Debug" title="Link to this definition"></a></dt>
+<dl class="rocq flag">
+<dt class="sig sig-object rocq" id="rocq:flag.Typeclasses-Debug">
+<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Typeclasses</span></span></span> <span><span><span class="pre">Debug</span></span></span></span></span><a class="headerlink" href="#rocq:flag.Typeclasses-Debug" title="Link to this definition"></a></dt>
 <dd><p>Controls whether typeclass resolution steps are shown during search.  Setting this <a class="reference internal" href="../language/core/basic.html#term-flag"><span class="xref std std-term">flag</span></a>
-also sets <a class="reference internal" href="#coq:opt.Typeclasses-Debug-Verbosity" title="Typeclasses Debug Verbosity"><code class="xref coq coq-opt docutils literal notranslate"><span class="pre">Typeclasses</span> <span class="pre">Debug</span> <span class="pre">Verbosity</span></code></a> to 1.  <a class="reference internal" href="#coq:cmd.Typeclasses-eauto" title="Typeclasses eauto"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Typeclasses</span> <span class="pre">eauto</span></code></a>
+also sets <a class="reference internal" href="#rocq:opt.Typeclasses-Debug-Verbosity" title="Typeclasses Debug Verbosity"><code class="xref rocq rocq-opt docutils literal notranslate"><span class="pre">Typeclasses</span> <span class="pre">Debug</span> <span class="pre">Verbosity</span></code></a> to 1.  <a class="reference internal" href="#rocq:cmd.Typeclasses-eauto" title="Typeclasses eauto"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Typeclasses</span> <span class="pre">eauto</span></code></a>
 is another way to set this flag.</p>
 </dd></dl>
 
-<dl class="coq opt">
-<dt class="sig sig-object coq" id="coq:opt.Typeclasses-Debug-Verbosity">
-<em class="property"><span class="sigannot"><span class="pre">Option</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Typeclasses</span></span></span> <span><span><span class="pre">Debug</span></span></span> <span><span><span class="pre">Verbosity</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-natural"><span class="hole"><span class="pre">natural</span></span></a></span></span><a class="headerlink" href="#coq:opt.Typeclasses-Debug-Verbosity" title="Link to this definition"></a></dt>
+<dl class="rocq opt">
+<dt class="sig sig-object rocq" id="rocq:opt.Typeclasses-Debug-Verbosity">
+<em class="property"><span class="sigannot"><span class="pre">Option</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Typeclasses</span></span></span> <span><span><span class="pre">Debug</span></span></span> <span><span><span class="pre">Verbosity</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-natural"><span class="hole"><span class="pre">natural</span></span></a></span></span><a class="headerlink" href="#rocq:opt.Typeclasses-Debug-Verbosity" title="Link to this definition"></a></dt>
 <dd><p>Determines how much information is shown for typeclass resolution steps during search.
 1 is the default level.  2 shows additional information such as tried tactics and shelving
-of goals.  Setting this <a class="reference internal" href="../language/core/basic.html#term-option"><span class="xref std std-term">option</span></a> to 1 or 2 turns on the <a class="reference internal" href="#coq:flag.Typeclasses-Debug" title="Typeclasses Debug"><code class="xref coq coq-flag docutils literal notranslate"><span class="pre">Typeclasses</span> <span class="pre">Debug</span></code></a> flag; setting this
+of goals.  Setting this <a class="reference internal" href="../language/core/basic.html#term-option"><span class="xref std std-term">option</span></a> to 1 or 2 turns on the <a class="reference internal" href="#rocq:flag.Typeclasses-Debug" title="Typeclasses Debug"><code class="xref rocq rocq-flag docutils literal notranslate"><span class="pre">Typeclasses</span> <span class="pre">Debug</span></code></a> flag; setting this
 option to 0 turns that flag off.</p>
 </dd></dl>
 
 </section>
 <section id="typeclasses-eauto">
 <h3>Typeclasses eauto<a class="headerlink" href="#typeclasses-eauto" title="Link to this heading"></a></h3>
-<dl class="coq cmd">
-<dt class="sig sig-object coq" id="coq:cmd.Typeclasses-eauto">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Typeclasses</span></span></span> <span><span><span class="pre">eauto</span></span></span> <span><span><span class="pre">:=</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">debug</span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">(</span></span></span> <span class="alternative"><span class="alternative-block"><span><span><span class="pre">bfs</span></span></span></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><span><span><span class="pre">dfs</span></span></span></span></span> <span><span><span class="pre">)</span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../language/core/basic.html#grammar-token-natural"><span class="hole"><span class="pre">natural</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span></span></span><a class="headerlink" href="#coq:cmd.Typeclasses-eauto" title="Link to this definition"></a></dt>
-<dd><p>Allows more global customization of the <a class="reference internal" href="#coq:tacn.typeclasses-eauto" title="typeclasses eauto"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">typeclasses</span> <span class="pre">eauto</span></code></a> tactic.
+<dl class="rocq cmd">
+<dt class="sig sig-object rocq" id="rocq:cmd.Typeclasses-eauto">
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Typeclasses</span></span></span> <span><span><span class="pre">eauto</span></span></span> <span><span><span class="pre">:=</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">debug</span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">(</span></span></span> <span class="alternative"><span class="alternative-block"><span><span><span class="pre">bfs</span></span></span></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><span><span><span class="pre">dfs</span></span></span></span></span> <span><span><span class="pre">)</span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../language/core/basic.html#grammar-token-natural"><span class="hole"><span class="pre">natural</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span></span></span><a class="headerlink" href="#rocq:cmd.Typeclasses-eauto" title="Link to this definition"></a></dt>
+<dd><p>Allows more global customization of the <a class="reference internal" href="#rocq:tacn.typeclasses-eauto" title="typeclasses eauto"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">typeclasses</span> <span class="pre">eauto</span></code></a> tactic.
 The options are:</p>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">debug</span></code></dt><dd><p>Sets debug mode. In debug mode, a trace of
 successfully applied tactics is printed. Debug mode can also
-be set with <a class="reference internal" href="#coq:flag.Typeclasses-Debug" title="Typeclasses Debug"><code class="xref coq coq-flag docutils literal notranslate"><span class="pre">Typeclasses</span> <span class="pre">Debug</span></code></a>.</p>
+be set with <a class="reference internal" href="#rocq:flag.Typeclasses-Debug" title="Typeclasses Debug"><code class="xref rocq rocq-flag docutils literal notranslate"><span class="pre">Typeclasses</span> <span class="pre">Debug</span></code></a>.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="notation"><span class="alternative"><span class="alternative-block"><span><span><span class="pre">bfs</span></span></span></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><span><span><span class="pre">dfs</span></span></span></span></span></span></code></dt><dd><p>Specifies whether to use breadth-first search or depth-first search.
 The default is depth-first search, which can be changed with the
-<a class="reference internal" href="#coq:flag.Typeclasses-Iterative-Deepening" title="Typeclasses Iterative Deepening"><code class="xref coq coq-flag docutils literal notranslate"><span class="pre">Typeclasses</span> <span class="pre">Iterative</span> <span class="pre">Deepening</span></code></a> flag.</p>
+<a class="reference internal" href="#rocq:flag.Typeclasses-Iterative-Deepening" title="Typeclasses Iterative Deepening"><code class="xref rocq rocq-flag docutils literal notranslate"><span class="pre">Typeclasses</span> <span class="pre">Iterative</span> <span class="pre">Deepening</span></code></a> flag.</p>
 </dd>
 <dt><a class="reference internal" href="../language/core/basic.html#grammar-token-natural"><code class="xref std std-token docutils literal notranslate"><span class="pre">natural</span></code></a></dt><dd><p>Sets the depth limit for the search. The limit can also be set with
-<a class="reference internal" href="#coq:opt.Typeclasses-Depth" title="Typeclasses Depth"><code class="xref coq coq-opt docutils literal notranslate"><span class="pre">Typeclasses</span> <span class="pre">Depth</span></code></a>.</p>
+<a class="reference internal" href="#rocq:opt.Typeclasses-Depth" title="Typeclasses Depth"><code class="xref rocq rocq-opt docutils literal notranslate"><span class="pre">Typeclasses</span> <span class="pre">Depth</span></code></a>.</p>
 </dd>
 </dl>
 </dd></dl>

@@ -345,7 +345,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../language/extensions/arguments-command.html#automatic-declaration-of-implicit-arguments">Automatic declaration of implicit arguments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../language/extensions/arguments-command.html#renaming-implicit-arguments">Renaming implicit arguments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../language/extensions/arguments-command.html#binding-arguments-to-scopes">Binding arguments to scopes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../language/extensions/arguments-command.html#effects-of-arguments-on-unfolding">Effects of <code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Arguments</span></code> on unfolding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../language/extensions/arguments-command.html#effects-of-arguments-on-unfolding">Effects of <code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Arguments</span></code> on unfolding</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../language/extensions/arguments-command.html#bidirectionality-hints">Bidirectionality hints</a></li>
 </ul>
 </li>
@@ -506,7 +506,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../proofs/writing-proofs/reasoning-inductives.html#generation-of-inversion-principles-with-derive-inversion">Generation of inversion principles with <code class="docutils literal notranslate"><span class="pre">Derive</span></code> <code class="docutils literal notranslate"><span class="pre">Inversion</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../proofs/writing-proofs/reasoning-inductives.html#examples-of-dependent-destruction-dependent-induction">Examples of <code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">destruction</span></code> / <code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">induction</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../proofs/writing-proofs/reasoning-inductives.html#examples-of-dependent-destruction-dependent-induction">Examples of <code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">destruction</span></code> / <code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">induction</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../proofs/writing-proofs/reasoning-inductives.html#a-larger-example">A larger example</a></li>
 </ul>
 </li>
@@ -1321,20 +1321,20 @@ with this command:</p>
 </div>
 <p>While this is the easiest way to install packages, it is not the only way.</p>
 <p>You will then need to find the <a class="reference internal" href="../language/core/modules.html#term-logical-name"><span class="xref std std-term">logical name</span></a> used to refer to the package
-in <a class="reference internal" href="../proof-engine/vernacular-commands.html#coq:cmd.Require" title="Require"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Require</span></code></a> commands.  There are a couple ways to do this:</p>
+in <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.Require" title="Require"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Require</span></code></a> commands.  There are a couple ways to do this:</p>
 <ul class="simple">
 <li><p>If you installed with opam, use <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">opam</span></span></span> <span><span><span class="pre">show</span></span></span> <span><span><span class="pre">--list-files</span></span></span> <span><span><span class="pre">coq-bignums</span></span></span> <span class="pre">|</span> <span><span><span class="pre">head</span></span></span> <span><span><span class="pre">-n1</span></span></span></span></code> -
 the last component of the filename is the logical name (<code class="docutils literal notranslate"><span class="pre">Bignums</span></code>).</p></li>
 <li><p>On Linux, <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">ls</span></span></span> <span><span><span class="pre">$(rocq</span></span></span> <span><span><span class="pre">c</span></span></span> <span><span><span class="pre">-where)/user-contrib</span></span></span></span></code> shows the logical names of all
 installed user-contributed packages.  You should be able to guess which one you
 need.</p></li>
-<li><p>Use the <a class="reference internal" href="../proof-engine/vernacular-commands.html#coq:cmd.Print-LoadPath" title="Print LoadPath"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Print</span> <span class="pre">LoadPath</span></code></a> command when running Rocq, which shows the mapping
+<li><p>Use the <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.Print-LoadPath" title="Print LoadPath"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Print</span> <span class="pre">LoadPath</span></code></a> command when running Rocq, which shows the mapping
 from <a class="reference internal" href="../language/core/modules.html#term-logical-path"><span class="xref std std-term">logical path</span></a>s to directories.  Again, you should be able to guess.</p></li>
 </ul>
 <p>The last two methods work even if you didn't install with opam.  Perhaps in the
 future the package name to logical name mapping will be more readily available.</p>
 <p>Once you know the logical name of the package, use it to load compiled
-files from the package with the <a class="reference internal" href="../proof-engine/vernacular-commands.html#coq:cmd.Require" title="Require"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Require</span></code></a> command.</p>
+files from the package with the <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.Require" title="Require"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Require</span></code></a> command.</p>
 <p>A <span class="term-defn"><span class="target" id="term-package"></span>package</span> is a group of files in a top directory and its subdirectories
 that's installed as a unit.  Packages are compiled from <em>projects</em>.  These terms
 are virtually interchangeable.</p>
@@ -1356,10 +1356,10 @@ and then step through it in one of the IDEs for Rocq, such as
 <a class="reference external" href="https://github.com/coq-community/vscoq">vsCoq</a>
 and <a class="reference external" href="https://github.com/whonore/Coqtail">Coqtail</a>.</p>
 <p>If your project has multiple files in a single directory that depend on each
-other through <a class="reference internal" href="../proof-engine/vernacular-commands.html#coq:cmd.Require" title="Require"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Require</span></code></a> commands, they must be compiled in an order that
+other through <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.Require" title="Require"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Require</span></code></a> commands, they must be compiled in an order that
 matches their dependencies.
 Scripts in <code class="docutils literal notranslate"><span class="pre">.v</span></code> files must be compiled to <code class="docutils literal notranslate"><span class="pre">.vo</span></code> files using <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">compile</span></code> before they
-can be <a class="reference internal" href="../proof-engine/vernacular-commands.html#coq:cmd.Require" title="Require"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Require</span></code></a>d in other files.  Currently, the <code class="docutils literal notranslate"><span class="pre">.vo</span></code> file is created in
+can be <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.Require" title="Require"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Require</span></code></a>d in other files.  Currently, the <code class="docutils literal notranslate"><span class="pre">.vo</span></code> file is created in
 the same directory as its <code class="docutils literal notranslate"><span class="pre">.v</span></code> file.  For example,
 if B.v depends on A.v, then you should compile A.v before B.v.  You can do this
 with <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">rocq</span></span></span> <span><span><span class="pre">c</span></span></span> <span><span><span class="pre">A.v</span></span></span></span></code> followed by <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">rocq</span></span></span> <span><span><span class="pre">c</span></span></span> <span><span><span class="pre">B.v</span></span></span></span></code>, but you may find it tedious to
@@ -1416,7 +1416,7 @@ used packages, particularly if you plan to make your package available to others
 Or you can easily do a global replace, if necessary, on the package name
 before it is (widely) used.  After that, a name change may begin to impact
 a large number of users.  Alas, there's currently no easy way to discover what
-<a class="reference internal" href="../language/core/modules.html#term-logical-name"><span class="xref std std-term">logical name</span></a>s have already been used.  The <a class="reference internal" href="../proof-engine/vernacular-commands.html#coq:cmd.Print-LoadPath" title="Print LoadPath"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Print</span> <span class="pre">LoadPath</span></code></a> command helps
+<a class="reference internal" href="../language/core/modules.html#term-logical-name"><span class="xref std std-term">logical name</span></a>s have already been used.  The <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.Print-LoadPath" title="Print LoadPath"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Print</span> <span class="pre">LoadPath</span></code></a> command helps
 a bit; it shows the logical names defined in the Rocq process.</p>
 <p>Then:</p>
 <ul class="simple">
@@ -1437,9 +1437,9 @@ files it generates.</p>
 </section>
 <section id="logical-paths-and-the-load-path">
 <span id="logical-paths-load-path"></span><h3>Logical paths and the load path<a class="headerlink" href="#logical-paths-and-the-load-path" title="Link to this heading"></a></h3>
-<p>Commands such as <a class="reference internal" href="../proof-engine/vernacular-commands.html#coq:cmd.Require" title="Require"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Require</span></code></a> identify files with <a class="reference internal" href="../language/core/modules.html#term-logical-path"><span class="xref std std-term">logical paths</span></a> rather
+<p>Commands such as <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.Require" title="Require"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Require</span></code></a> identify files with <a class="reference internal" href="../language/core/modules.html#term-logical-path"><span class="xref std std-term">logical paths</span></a> rather
 than file system paths so that scripts don't have to be modified to run on
-different computers.  The <a class="reference internal" href="../proof-engine/vernacular-commands.html#coq:cmd.Print-LoadPath" title="Print LoadPath"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Print</span> <span class="pre">LoadPath</span></code></a> command displays the <span class="term-defn"><span class="target" id="term-load-path"></span>load path</span>,
+different computers.  The <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.Print-LoadPath" title="Print LoadPath"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Print</span> <span class="pre">LoadPath</span></code></a> command displays the <span class="term-defn"><span class="target" id="term-load-path"></span>load path</span>,
 which is a list of (logical path, <a class="reference internal" href="../language/core/modules.html#term-physical-path"><span class="xref std std-term">physical path</span></a>) pairs for directories.</p>
 <p>For example, you may see:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Logical Path / Physical path:
@@ -1468,7 +1468,7 @@ that the <a class="reference internal" href="../language/core/modules.html#term-
 permits loading files from the
 associated directory with just the basename of the script file,
 e.g. specify <code class="docutils literal notranslate"><span class="pre">Foo</span></code> to load <code class="docutils literal notranslate"><span class="pre">Foo.vo</span></code>.  This entry corresponds to the
-current directory when Rocq was started.  Note that the <a class="reference internal" href="../addendum/extraction.html#coq:cmd.Cd" title="Cd"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Cd</span></code></a> command
+current directory when Rocq was started.  Note that the <a class="reference internal" href="../addendum/extraction.html#rocq:cmd.Cd" title="Cd"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Cd</span></code></a> command
 doesn't change the associated directory--you would need to restart RocqIDE.</p>
 <p>With some exceptions noted below, the <a class="reference internal" href="#term-load-path"><span class="xref std std-term">load path</span></a> is generated from files loaded
 from the following directories and their subdirectories in the order shown.  The
@@ -1492,12 +1492,12 @@ setting this variable.</p></li>
 <p>Each directory may contain multiple <code class="docutils literal notranslate"><span class="pre">.v</span></code>/<code class="docutils literal notranslate"><span class="pre">.vo</span></code> files.  For example,
 <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">Require</span></span></span> <span><span><span class="pre">Import</span></span></span> <span><span><span class="pre">Stdlib.Numbers.Natural.Binary.NBinary</span></span></span></span></code> loads the file
 <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">NBinary.vo</span></span></span></span></code> from the associated directory.  Note that a short name
-is often sufficient in <a class="reference internal" href="../proof-engine/vernacular-commands.html#coq:cmd.Require" title="Require"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Require</span></code></a> instead of a fully qualified
+is often sufficient in <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.Require" title="Require"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Require</span></code></a> instead of a fully qualified
 name.</p>
-<p>In <a class="reference internal" href="../proof-engine/vernacular-commands.html#coq:cmd.Require" title="Require"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Require</span></code></a> commands referring to the current package (if <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code>
+<p>In <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.Require" title="Require"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Require</span></code></a> commands referring to the current package (if <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code>
 uses <code class="docutils literal notranslate"><span class="pre">-R</span></code>) can be referenced with a short name without
 a <code class="docutils literal notranslate"><span class="pre">From</span></code> clause provided that the logical path is unambiguous (as if they are
-available through <code class="docutils literal notranslate"><span class="pre">-R</span></code>).  In contrast, <a class="reference internal" href="../proof-engine/vernacular-commands.html#coq:cmd.Require" title="Require"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Require</span></code></a> commands that load files from other
+available through <code class="docutils literal notranslate"><span class="pre">-R</span></code>).  In contrast, <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.Require" title="Require"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Require</span></code></a> commands that load files from other
 locations such as <code class="docutils literal notranslate"><span class="pre">user-contrib</span></code> must either use an exact logical path
 or include a <code class="docutils literal notranslate"><span class="pre">From</span></code> clause (as if they are available through <code class="docutils literal notranslate"><span class="pre">-Q</span></code>).  This is done
 to reduce the number of ambiguous logical paths.  We encourage using <code class="docutils literal notranslate"><span class="pre">From</span></code>
@@ -1507,7 +1507,7 @@ If you use <code class="docutils literal notranslate"><span class="pre">ROCQPATH
 loaded with the logical name <code class="docutils literal notranslate"><span class="pre">MyPackage/theories/SubDir.File</span></code>, which may not be what you want.</p>
 <p>If you associate the same logical name with more than one directory, Rocq
 looks for the <code class="docutils literal notranslate"><span class="pre">.vo</span></code> file in the most recently added path first (i.e., the one
-that appears earlier in the <a class="reference internal" href="../proof-engine/vernacular-commands.html#coq:cmd.Print-LoadPath" title="Print LoadPath"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Print</span> <span class="pre">LoadPath</span></code></a> output).</p>
+that appears earlier in the <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.Print-LoadPath" title="Print LoadPath"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Print</span> <span class="pre">LoadPath</span></code></a> output).</p>
 </section>
 <section id="modifying-multiple-interdependent-projects-at-the-same-time">
 <h3>Modifying multiple interdependent projects at the same time<a class="headerlink" href="#modifying-multiple-interdependent-projects-at-the-same-time" title="Link to this heading"></a></h3>
@@ -1549,7 +1549,7 @@ the proofs therein), you may get unexpected failures for two reasons:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> files often have at least one <code class="docutils literal notranslate"><span class="pre">-R</span></code> parameter, while
 installed packages are loaded with the less-permissive <code class="docutils literal notranslate"><span class="pre">-Q</span></code> option described in
-the <a class="reference internal" href="../proof-engine/vernacular-commands.html#coq:cmd.Require" title="Require"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Require</span></code></a> command, which may cause a <a class="reference internal" href="../proof-engine/vernacular-commands.html#coq:cmd.Require" title="Require"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Require</span></code></a> to fail.  One workaround is
+the <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.Require" title="Require"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Require</span></code></a> command, which may cause a <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.Require" title="Require"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Require</span></code></a> to fail.  One workaround is
 to create a <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> file containing the line <code class="docutils literal notranslate"><span class="pre">-R</span> <span class="pre">.</span> <span class="pre">&lt;project</span> <span class="pre">directory&gt;</span></code> in
 <code class="docutils literal notranslate"><span class="pre">user-contrib/&lt;project</span> <span class="pre">directory&gt;</span></code>.  In this case, the <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> doesn't
 need to list all the source files.</p></li>
@@ -1617,7 +1617,7 @@ generate object files that are unusable except by experts.</p>
 If the project has only a single plugin, the <code class="docutils literal notranslate"><span class="pre">META</span></code> file can be
 generated automatically when the option <code class="docutils literal notranslate"><span class="pre">-generate-meta-for-package</span> <span class="pre">my-package</span></code>
 is given. The generated file makes the plugin available
-to the <a class="reference internal" href="../proof-engine/vernacular-commands.html#coq:cmd.Declare-ML-Module" title="Declare ML Module"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Declare</span> <span class="pre">ML</span> <span class="pre">Module</span></code></a> as <code class="docutils literal notranslate"><span class="pre">my-package.plugin</span></code>. If the generated file
+to the <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.Declare-ML-Module" title="Declare ML Module"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Declare</span> <span class="pre">ML</span> <span class="pre">Module</span></code></a> as <code class="docutils literal notranslate"><span class="pre">my-package.plugin</span></code>. If the generated file
 doesn't suit your needs (for instance because it depends on some OCaml
 packages) or your project has multiple plugins, then create a file named
 <code class="docutils literal notranslate"><span class="pre">META.my-package</span></code> and list it in the <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> file.
@@ -2321,15 +2321,15 @@ command for compatibility with current Dune versions (as of Coq 8.16):</p>
 programs, and prints the dependencies on the standard output in a
 format readable by make. When a directory is given as argument, it is
 recursively looked at.</p>
-<p>Dependencies of Rocq modules are computed by looking at <a class="reference internal" href="../proof-engine/vernacular-commands.html#coq:cmd.Require" title="Require"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Require</span></code></a>
-and <a class="reference internal" href="../proof-engine/vernacular-commands.html#coq:cmd.Declare-ML-Module" title="Declare ML Module"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Declare</span> <span class="pre">ML</span> <span class="pre">Module</span></code></a> commands.</p>
+<p>Dependencies of Rocq modules are computed by looking at <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.Require" title="Require"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Require</span></code></a>
+and <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.Declare-ML-Module" title="Declare ML Module"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Declare</span> <span class="pre">ML</span> <span class="pre">Module</span></code></a> commands.</p>
 <p>See the man page of <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">dep</span></code> for more details and options.</p>
 <p>Both Dune and <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">makefile</span></code> use <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">dep</span></code> to compute the
 dependencies among the files part of a Rocq project.</p>
 </section>
 <section id="split-compilation-of-native-computation-files">
 <span id="rocqnative"></span><h2>Split compilation of native computation files<a class="headerlink" href="#split-compilation-of-native-computation-files" title="Link to this heading"></a></h2>
-<p>Rocq features a <a class="reference internal" href="../proofs/writing-proofs/equality.html#coq:tacn.native_compute" title="native_compute"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">native_compute</span></code></a> tactic to provide fast computation in the
+<p>Rocq features a <a class="reference internal" href="../proofs/writing-proofs/equality.html#rocq:tacn.native_compute" title="native_compute"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">native_compute</span></code></a> tactic to provide fast computation in the
 kernel. This process performs compilation of Rocq terms to OCaml programs using
 the OCaml compiler, which may cause an important overhead. Hence native
 compilation is an opt-in configure flag.</p>

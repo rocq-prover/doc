@@ -345,7 +345,7 @@
 <li class="toctree-l3"><a class="reference internal" href="extensions/arguments-command.html#automatic-declaration-of-implicit-arguments">Automatic declaration of implicit arguments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="extensions/arguments-command.html#renaming-implicit-arguments">Renaming implicit arguments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="extensions/arguments-command.html#binding-arguments-to-scopes">Binding arguments to scopes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extensions/arguments-command.html#effects-of-arguments-on-unfolding">Effects of <code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Arguments</span></code> on unfolding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extensions/arguments-command.html#effects-of-arguments-on-unfolding">Effects of <code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Arguments</span></code> on unfolding</a></li>
 <li class="toctree-l3"><a class="reference internal" href="extensions/arguments-command.html#bidirectionality-hints">Bidirectionality hints</a></li>
 </ul>
 </li>
@@ -506,7 +506,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../proofs/writing-proofs/reasoning-inductives.html#generation-of-inversion-principles-with-derive-inversion">Generation of inversion principles with <code class="docutils literal notranslate"><span class="pre">Derive</span></code> <code class="docutils literal notranslate"><span class="pre">Inversion</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../proofs/writing-proofs/reasoning-inductives.html#examples-of-dependent-destruction-dependent-induction">Examples of <code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">destruction</span></code> / <code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">induction</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../proofs/writing-proofs/reasoning-inductives.html#examples-of-dependent-destruction-dependent-induction">Examples of <code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">destruction</span></code> / <code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">induction</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../proofs/writing-proofs/reasoning-inductives.html#a-larger-example">A larger example</a></li>
 </ul>
 </li>
@@ -1724,9 +1724,9 @@ option <code class="docutils literal notranslate"><span class="pre">-impredicati
 command, the following is rejected,</p>
 <div class="admonition note">
 <p class="admonition-title">Example</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-var">Fail</span><span> </span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">id</span><span>: </span><span class="coqdoc-keyword">Set</span><span> := </span><span class="coqdoc-keyword">forall</span><span> </span><span class="coqdoc-var">X</span><span>:</span><span class="coqdoc-keyword">Set</span><span>,</span><span class="coqdoc-var">X</span><span>-&gt;</span><span class="coqdoc-var">X</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-var">Fail</span><span> </span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">id</span><span>: </span><span class="rocqdoc-keyword">Set</span><span> := </span><span class="rocqdoc-keyword">forall</span><span> </span><span class="rocqdoc-var">X</span><span>:</span><span class="rocqdoc-keyword">Set</span><span>,</span><span class="rocqdoc-var">X</span><span>-&gt;</span><span class="rocqdoc-var">X</span><span>.</span><span>
 </span></dt><dd><span>The command has indeed failed with message:
 The term &quot;</span><span class="ansi-bold">forall</span><span> X : </span><span class="ansi-fg-yellow ansi-bold">Set</span><span>, X</span><span> -&gt;</span><span> X&quot; has type &quot;</span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&quot;
 while it is expected to have type &quot;</span><span class="ansi-fg-yellow ansi-bold">Set</span><span>&quot;

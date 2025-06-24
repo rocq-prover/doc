@@ -345,7 +345,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../extensions/arguments-command.html#automatic-declaration-of-implicit-arguments">Automatic declaration of implicit arguments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../extensions/arguments-command.html#renaming-implicit-arguments">Renaming implicit arguments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../extensions/arguments-command.html#binding-arguments-to-scopes">Binding arguments to scopes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../extensions/arguments-command.html#effects-of-arguments-on-unfolding">Effects of <code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Arguments</span></code> on unfolding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../extensions/arguments-command.html#effects-of-arguments-on-unfolding">Effects of <code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Arguments</span></code> on unfolding</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../extensions/arguments-command.html#bidirectionality-hints">Bidirectionality hints</a></li>
 </ul>
 </li>
@@ -506,7 +506,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#generation-of-inversion-principles-with-derive-inversion">Generation of inversion principles with <code class="docutils literal notranslate"><span class="pre">Derive</span></code> <code class="docutils literal notranslate"><span class="pre">Inversion</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#examples-of-dependent-destruction-dependent-induction">Examples of <code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">destruction</span></code> / <code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">induction</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#examples-of-dependent-destruction-dependent-induction">Examples of <code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">destruction</span></code> / <code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">induction</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#a-larger-example">A larger example</a></li>
 </ul>
 </li>
@@ -1282,47 +1282,47 @@
 <span id="section-mechanism"></span><h1>Sections<a class="headerlink" href="#sections" title="Link to this heading"></a></h1>
 <p>Sections are naming scopes that permit creating section-local declarations that can
 be used by other declarations in the section. Declarations made with
-<a class="reference internal" href="assumptions.html#coq:cmd.Variable" title="Variable"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Variable</span></code></a>, <a class="reference internal" href="assumptions.html#coq:cmd.Hypothesis" title="Hypothesis"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Hypothesis</span></code></a>, <a class="reference internal" href="#coq:cmd.Context" title="Context"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Context</span></code></a>
+<a class="reference internal" href="assumptions.html#rocq:cmd.Variable" title="Variable"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Variable</span></code></a>, <a class="reference internal" href="assumptions.html#rocq:cmd.Hypothesis" title="Hypothesis"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Hypothesis</span></code></a>, <a class="reference internal" href="#rocq:cmd.Context" title="Context"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Context</span></code></a>
 (or the plural variants of the first two)
 and definitions made with
-<a class="reference internal" href="#coq:cmd.Let" title="Let"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Let</span></code></a>, <a class="reference internal" href="#coq:cmd.Let-Fixpoint" title="Let Fixpoint"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Let</span> <span class="pre">Fixpoint</span></code></a> and <a class="reference internal" href="#coq:cmd.Let-CoFixpoint" title="Let CoFixpoint"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Let</span> <span class="pre">CoFixpoint</span></code></a>
+<a class="reference internal" href="#rocq:cmd.Let" title="Let"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Let</span></code></a>, <a class="reference internal" href="#rocq:cmd.Let-Fixpoint" title="Let Fixpoint"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Let</span> <span class="pre">Fixpoint</span></code></a> and <a class="reference internal" href="#rocq:cmd.Let-CoFixpoint" title="Let CoFixpoint"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Let</span> <span class="pre">CoFixpoint</span></code></a>
 within sections are local to the section.</p>
 <p>In proofs done within the section, section-local declarations
 are included in the <a class="reference internal" href="../../proofs/writing-proofs/proof-mode.html#term-local-context"><span class="xref std std-term">local context</span></a> of the initial goal of the proof.
-They are also accessible in definitions made with the <a class="reference internal" href="definitions.html#coq:cmd.Definition" title="Definition"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Definition</span></code></a> command.</p>
+They are also accessible in definitions made with the <a class="reference internal" href="definitions.html#rocq:cmd.Definition" title="Definition"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Definition</span></code></a> command.</p>
 <section id="using-sections">
 <h2>Using sections<a class="headerlink" href="#using-sections" title="Link to this heading"></a></h2>
-<p>Sections are opened by the <a class="reference internal" href="#coq:cmd.Section" title="Section"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Section</span></code></a> command, and closed by <a class="reference internal" href="#coq:cmd.End" title="End"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">End</span></code></a>.
+<p>Sections are opened by the <a class="reference internal" href="#rocq:cmd.Section" title="Section"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Section</span></code></a> command, and closed by <a class="reference internal" href="#rocq:cmd.End" title="End"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">End</span></code></a>.
 Sections can be nested.
 When a section is closed, its local declarations are no longer available.
 Global declarations that refer to them will be adjusted so they're still
 usable outside the section as shown in this <a class="reference internal" href="#section-local-declarations"><span class="std std-ref">example</span></a>.</p>
-<dl class="coq cmd">
-<dt class="sig sig-object coq" id="coq:cmd.Section">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Section</span></span></span> <a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></span><a class="headerlink" href="#coq:cmd.Section" title="Link to this definition"></a></dt>
+<dl class="rocq cmd">
+<dt class="sig sig-object rocq" id="rocq:cmd.Section">
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Section</span></span></span> <a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></span><a class="headerlink" href="#rocq:cmd.Section" title="Link to this definition"></a></dt>
 <dd><p>Opens the section named <a class="reference internal" href="basic.html#grammar-token-ident"><code class="xref std std-token docutils literal notranslate"><span class="pre">ident</span></code></a>.
 Section names do not need to be unique.</p>
 </dd></dl>
 
-<dl class="coq cmd">
-<dt class="sig sig-object coq" id="coq:cmd.End">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">End</span></span></span> <a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></span><a class="headerlink" href="#coq:cmd.End" title="Link to this definition"></a></dt>
+<dl class="rocq cmd">
+<dt class="sig sig-object rocq" id="rocq:cmd.End">
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">End</span></span></span> <a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></span><a class="headerlink" href="#rocq:cmd.End" title="Link to this definition"></a></dt>
 <dd><p>Closes the section or module named <a class="reference internal" href="basic.html#grammar-token-ident"><code class="xref std std-token docutils literal notranslate"><span class="pre">ident</span></code></a>.
 See <a class="reference internal" href="modules.html#terminating-module"><span class="std std-ref">Terminating an interactive module or module type definition</span></a>
 for a description of its use with modules.</p>
 <p>After closing the section, the section-local declarations (variables and
-<span class="term-defn"><span class="target" id="term-section-local-definition"></span>section-local definitions</span>, see <a class="reference internal" href="assumptions.html#coq:cmd.Variable" title="Variable"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Variable</span></code></a>) are
+<span class="term-defn"><span class="target" id="term-section-local-definition"></span>section-local definitions</span>, see <a class="reference internal" href="assumptions.html#rocq:cmd.Variable" title="Variable"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Variable</span></code></a>) are
 <em>discharged</em>, meaning that they stop being visible and that all global
 objects defined in the section are generalized with respect to the
 variables and local definitions they each depended on in the section.</p>
-<dl class="coq exn">
-<dt class="sig sig-object coq" id="coq:exn.There-is-nothing-to-end">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">There</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">nothing</span></span></span> <span><span><span class="pre">to</span></span></span> <span><span><span class="pre">end.</span></span></span></span></span><a class="headerlink" href="#coq:exn.There-is-nothing-to-end" title="Link to this definition"></a></dt>
+<dl class="rocq exn">
+<dt class="sig sig-object rocq" id="rocq:exn.There-is-nothing-to-end">
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">There</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">nothing</span></span></span> <span><span><span class="pre">to</span></span></span> <span><span><span class="pre">end.</span></span></span></span></span><a class="headerlink" href="#rocq:exn.There-is-nothing-to-end" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
-<dl class="coq exn">
-<dt class="sig sig-object coq" id="coq:exn.Last-block-to-end-has-name-‘ident’">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Last</span></span></span> <span><span><span class="pre">block</span></span></span> <span><span><span class="pre">to</span></span></span> <span><span><span class="pre">end</span></span></span> <span><span><span class="pre">has</span></span></span> <span><span><span class="pre">name</span></span></span> <a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a><span><span><span class="pre">.</span></span></span></span></span><a class="headerlink" href="#coq:exn.Last-block-to-end-has-name-‘ident’" title="Link to this definition"></a></dt>
+<dl class="rocq exn">
+<dt class="sig sig-object rocq" id="rocq:exn.Last-block-to-end-has-name-‘ident’">
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Last</span></span></span> <span><span><span class="pre">block</span></span></span> <span><span><span class="pre">to</span></span></span> <span><span><span class="pre">end</span></span></span> <span><span><span class="pre">has</span></span></span> <span><span><span class="pre">name</span></span></span> <a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a><span><span><span class="pre">.</span></span></span></span></span><a class="headerlink" href="#rocq:exn.Last-block-to-end-has-name-‘ident’" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1330,57 +1330,57 @@ variables and local definitions they each depended on in the section.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Most commands, such as the <a class="reference internal" href="../../proofs/automatic-tactics/auto.html#creating-hints"><span class="std std-ref">Hint</span></a> commands,
-<a class="reference internal" href="../../user-extensions/syntax-extensions.html#coq:cmd.Notation" title="Notation"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Notation</span></code></a> and option management commands that
+<a class="reference internal" href="../../user-extensions/syntax-extensions.html#rocq:cmd.Notation" title="Notation"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Notation</span></code></a> and option management commands that
 appear inside a section are canceled when the section is closed.
 In some cases, this behaviour can be tuned with locality attributes.
 See <a class="reference internal" href="#visibility-attributes-sections"><span class="std std-ref">this table</span></a>.</p>
 </div>
-<dl class="coq cmd">
-<dt class="sig sig-object coq" id="coq:cmd.Let">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Let</span></span></span> <a class="reference internal" href="assumptions.html#grammar-token-ident_decl"><span class="hole"><span class="pre">ident_decl</span></span></a> <a class="reference internal" href="definitions.html#grammar-token-def_body"><span class="hole"><span class="pre">def_body</span></span></a></span></span><a class="headerlink" href="#coq:cmd.Let" title="Link to this definition"></a></dt>
-<dt class="sig sig-object coq" id="coq:cmd.Let-Fixpoint">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Let</span></span></span> <span><span><span class="pre">Fixpoint</span></span></span> <a class="reference internal" href="inductive.html#grammar-token-fix_definition"><span class="hole"><span class="pre">fix_definition</span></span></a> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">with</span></span></span> <a class="reference internal" href="inductive.html#grammar-token-fix_definition"><span class="hole"><span class="pre">fix_definition</span></span></a></span><span class="notation-sup"><span class="pre">*</span></span></span></span></span><a class="headerlink" href="#coq:cmd.Let-Fixpoint" title="Link to this definition"></a></dt>
-<dt class="sig sig-object coq" id="coq:cmd.Let-CoFixpoint">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Let</span></span></span> <span><span><span class="pre">CoFixpoint</span></span></span> <a class="reference internal" href="coinductive.html#grammar-token-cofix_definition"><span class="hole"><span class="pre">cofix_definition</span></span></a> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">with</span></span></span> <a class="reference internal" href="coinductive.html#grammar-token-cofix_definition"><span class="hole"><span class="pre">cofix_definition</span></span></a></span><span class="notation-sup"><span class="pre">*</span></span></span></span></span><a class="headerlink" href="#coq:cmd.Let-CoFixpoint" title="Link to this definition"></a></dt>
-<dd><p>These are similar to <a class="reference internal" href="definitions.html#coq:cmd.Definition" title="Definition"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Definition</span></code></a>, <a class="reference internal" href="inductive.html#coq:cmd.Fixpoint" title="Fixpoint"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Fixpoint</span></code></a> and <a class="reference internal" href="coinductive.html#coq:cmd.CoFixpoint" title="CoFixpoint"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">CoFixpoint</span></code></a>, except that
+<dl class="rocq cmd">
+<dt class="sig sig-object rocq" id="rocq:cmd.Let">
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Let</span></span></span> <a class="reference internal" href="assumptions.html#grammar-token-ident_decl"><span class="hole"><span class="pre">ident_decl</span></span></a> <a class="reference internal" href="definitions.html#grammar-token-def_body"><span class="hole"><span class="pre">def_body</span></span></a></span></span><a class="headerlink" href="#rocq:cmd.Let" title="Link to this definition"></a></dt>
+<dt class="sig sig-object rocq" id="rocq:cmd.Let-Fixpoint">
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Let</span></span></span> <span><span><span class="pre">Fixpoint</span></span></span> <a class="reference internal" href="inductive.html#grammar-token-fix_definition"><span class="hole"><span class="pre">fix_definition</span></span></a> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">with</span></span></span> <a class="reference internal" href="inductive.html#grammar-token-fix_definition"><span class="hole"><span class="pre">fix_definition</span></span></a></span><span class="notation-sup"><span class="pre">*</span></span></span></span></span><a class="headerlink" href="#rocq:cmd.Let-Fixpoint" title="Link to this definition"></a></dt>
+<dt class="sig sig-object rocq" id="rocq:cmd.Let-CoFixpoint">
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Let</span></span></span> <span><span><span class="pre">CoFixpoint</span></span></span> <a class="reference internal" href="coinductive.html#grammar-token-cofix_definition"><span class="hole"><span class="pre">cofix_definition</span></span></a> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">with</span></span></span> <a class="reference internal" href="coinductive.html#grammar-token-cofix_definition"><span class="hole"><span class="pre">cofix_definition</span></span></a></span><span class="notation-sup"><span class="pre">*</span></span></span></span></span><a class="headerlink" href="#rocq:cmd.Let-CoFixpoint" title="Link to this definition"></a></dt>
+<dd><p>These are similar to <a class="reference internal" href="definitions.html#rocq:cmd.Definition" title="Definition"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Definition</span></code></a>, <a class="reference internal" href="inductive.html#rocq:cmd.Fixpoint" title="Fixpoint"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Fixpoint</span></code></a> and <a class="reference internal" href="coinductive.html#rocq:cmd.CoFixpoint" title="CoFixpoint"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">CoFixpoint</span></code></a>, except that
 the declared <a class="reference internal" href="definitions.html#term-constant"><span class="xref std std-term">constant</span></a> is local to the current section.
 When the section is closed, all persistent
 definitions and theorems within it that depend on the constant
 will be wrapped with a <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="definitions.html#grammar-token-term_let"><span class="hole"><span class="pre">term_let</span></span></a></span></code> with the same declaration.</p>
-<p>As for <a class="reference internal" href="definitions.html#coq:cmd.Definition" title="Definition"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Definition</span></code></a>, <a class="reference internal" href="inductive.html#coq:cmd.Fixpoint" title="Fixpoint"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Fixpoint</span></code></a> and <a class="reference internal" href="coinductive.html#coq:cmd.CoFixpoint" title="CoFixpoint"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">CoFixpoint</span></code></a>,
+<p>As for <a class="reference internal" href="definitions.html#rocq:cmd.Definition" title="Definition"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Definition</span></code></a>, <a class="reference internal" href="inductive.html#rocq:cmd.Fixpoint" title="Fixpoint"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Fixpoint</span></code></a> and <a class="reference internal" href="coinductive.html#rocq:cmd.CoFixpoint" title="CoFixpoint"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">CoFixpoint</span></code></a>,
 if <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="basic.html#grammar-token-term"><span class="hole"><span class="pre">term</span></span></a></span></code> is omitted, <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="basic.html#grammar-token-type"><span class="hole"><span class="pre">type</span></span></a></span></code> is required and Rocq enters proof mode.
 This can be used to define a term incrementally,
-in particular by relying on the <a class="reference internal" href="../../proof-engine/tactics.html#coq:tacn.refine" title="refine"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">refine</span></code></a> tactic.
+in particular by relying on the <a class="reference internal" href="../../proof-engine/tactics.html#rocq:tacn.refine" title="refine"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">refine</span></code></a> tactic.
 See <a class="reference internal" href="../../proofs/writing-proofs/proof-mode.html#proof-editing-mode"><span class="std std-ref">Entering and exiting proof mode</span></a>.</p>
 </dd></dl>
 
-<dl class="coq attr">
-<dt class="sig sig-object coq" id="coq:attr.clearbody">
-<em class="property"><span class="sigannot"><span class="pre">Attribute</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">clearbody</span></span></span></span></span><a class="headerlink" href="#coq:attr.clearbody" title="Link to this definition"></a></dt>
-<dd><p>When used with <a class="reference internal" href="#coq:cmd.Let" title="Let"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Let</span></code></a> in a section,
+<dl class="rocq attr">
+<dt class="sig sig-object rocq" id="rocq:attr.clearbody">
+<em class="property"><span class="sigannot"><span class="pre">Attribute</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">clearbody</span></span></span></span></span><a class="headerlink" href="#rocq:attr.clearbody" title="Link to this definition"></a></dt>
+<dd><p>When used with <a class="reference internal" href="#rocq:cmd.Let" title="Let"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Let</span></code></a> in a section,
 clears the body of the definition in the proof context of following proofs.
 The kernel will still use the body when checking.</p>
 </dd></dl>
 
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Terminating the proof for a <a class="reference internal" href="#coq:cmd.Let" title="Let"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Let</span></code></a> with <a class="reference internal" href="../../proofs/writing-proofs/proof-mode.html#coq:cmd.Qed" title="Qed"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Qed</span></code></a> produces an opaque side definition.
+<p>Terminating the proof for a <a class="reference internal" href="#rocq:cmd.Let" title="Let"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Let</span></code></a> with <a class="reference internal" href="../../proofs/writing-proofs/proof-mode.html#rocq:cmd.Qed" title="Qed"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Qed</span></code></a> produces an opaque side definition.
 <code class="docutils literal notranslate"><span class="pre">Let</span> <span class="pre">foo</span> <span class="pre">:</span> <span class="pre">T.</span> <span class="pre">Proof.</span> <span class="pre">tactics.</span> <span class="pre">Qed.</span></code> is equivalent to</p>
-<div class="coqdoc literal-block docutils container">
-<span><span></span><span class="coqdoc-keyword">Lemma</span><span> </span><span class="coqdoc-var">foo_subproof</span><span> : </span><span class="coqdoc-var">T</span><span>. </span><span class="coqdoc-keyword">Proof</span><span>. </span><span class="coqdoc-var">tactics</span><span>. </span><span class="coqdoc-keyword">Qed</span><span>.</span><span>
-#[</span><span class="coqdoc-var">clearbody</span><span>] </span><span class="coqdoc-keyword">Let</span><span> </span><span class="coqdoc-var">foo</span><span> := </span><span class="coqdoc-var">foo_subproof</span><span>.</span><span>
+<div class="rocqdoc literal-block docutils container">
+<span><span></span><span class="rocqdoc-keyword">Lemma</span><span> </span><span class="rocqdoc-var">foo_subproof</span><span> : </span><span class="rocqdoc-var">T</span><span>. </span><span class="rocqdoc-keyword">Proof</span><span>. </span><span class="rocqdoc-var">tactics</span><span>. </span><span class="rocqdoc-keyword">Qed</span><span>.</span><span>
+#[</span><span class="rocqdoc-var">clearbody</span><span>] </span><span class="rocqdoc-keyword">Let</span><span> </span><span class="rocqdoc-var">foo</span><span> := </span><span class="rocqdoc-var">foo_subproof</span><span>.</span><span>
 </span></span></div>
 </div>
-<dl class="coq cmd">
-<dt class="sig sig-object coq" id="coq:cmd.Context">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Context</span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="assumptions.html#grammar-token-binder"><span class="hole"><span class="pre">binder</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span></span></span></span><a class="headerlink" href="#coq:cmd.Context" title="Link to this definition"></a></dt>
-<dd><p>Declare variables in the context of the current section, like <a class="reference internal" href="assumptions.html#coq:cmd.Variable" title="Variable"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Variable</span></code></a>,
+<dl class="rocq cmd">
+<dt class="sig sig-object rocq" id="rocq:cmd.Context">
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Context</span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="assumptions.html#grammar-token-binder"><span class="hole"><span class="pre">binder</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span></span></span></span><a class="headerlink" href="#rocq:cmd.Context" title="Link to this definition"></a></dt>
+<dd><p>Declare variables in the context of the current section, like <a class="reference internal" href="assumptions.html#rocq:cmd.Variable" title="Variable"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Variable</span></code></a>,
 but also allowing implicit variables, <a class="reference internal" href="../extensions/implicit-arguments.html#implicit-generalization"><span class="std std-ref">Implicit generalization</span></a>, and
 let-binders.</p>
-<div class="coqdoc literal-block docutils container">
-<span><span></span><span class="coqdoc-keyword">Context</span><span> {</span><span class="coqdoc-var">A</span><span> : </span><span class="coqdoc-keyword">Type</span><span>} (</span><span class="coqdoc-var">a</span><span> </span><span class="coqdoc-var">b</span><span> : </span><span class="coqdoc-var">A</span><span>).</span><span>
-</span><span class="coqdoc-keyword">Context</span><span> `{</span><span class="coqdoc-var">EqDec</span><span> </span><span class="coqdoc-var">A</span><span>}.</span><span>
-</span><span class="coqdoc-keyword">Context</span><span> (</span><span class="coqdoc-var">b'</span><span> := </span><span class="coqdoc-var">b</span><span>).</span><span>
+<div class="rocqdoc literal-block docutils container">
+<span><span></span><span class="rocqdoc-keyword">Context</span><span> {</span><span class="rocqdoc-var">A</span><span> : </span><span class="rocqdoc-keyword">Type</span><span>} (</span><span class="rocqdoc-var">a</span><span> </span><span class="rocqdoc-var">b</span><span> : </span><span class="rocqdoc-var">A</span><span>).</span><span>
+</span><span class="rocqdoc-keyword">Context</span><span> `{</span><span class="rocqdoc-var">EqDec</span><span> </span><span class="rocqdoc-var">A</span><span>}.</span><span>
+</span><span class="rocqdoc-keyword">Context</span><span> (</span><span class="rocqdoc-var">b'</span><span> := </span><span class="rocqdoc-var">b</span><span>).</span><span>
 </span></span></div>
 </dd></dl>
 
@@ -1390,55 +1390,55 @@ let-binders.</p>
 </div>
 <div class="admonition note" id="section-local-declarations">
 <p class="admonition-title">Example: Section-local declarations</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl class="simple">
-<dt><span></span><span class="coqdoc-keyword">Section</span><span> </span><span class="coqdoc-var">s1</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Section</span><span> </span><span class="rocqdoc-var">s1</span><span>.</span><span>
 </span></dt></dl>
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Variables</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span> : </span><span class="coqdoc-var">nat</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Variables</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> : </span><span class="rocqdoc-var">nat</span><span>.</span><span>
 </span></dt><dd><span>x is declared
 y is declared
 </span></dd>
 </dl>
 </div>
-<p>The command <a class="reference internal" href="#coq:cmd.Let" title="Let"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Let</span></code></a> introduces section-wide <a class="reference internal" href="definitions.html#let-in"><span class="std std-ref">Let-in definitions</span></a>. These definitions
+<p>The command <a class="reference internal" href="#rocq:cmd.Let" title="Let"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Let</span></code></a> introduces section-wide <a class="reference internal" href="definitions.html#let-in"><span class="std std-ref">Let-in definitions</span></a>. These definitions
 won't persist when the section is closed, and all persistent definitions which
 depend on <code class="docutils literal notranslate"><span class="pre">y'</span></code> will be prefixed with <code class="docutils literal notranslate"><span class="pre">let</span> <span class="pre">y'</span> <span class="pre">:=</span> <span class="pre">y</span> <span class="pre">in</span></code>.</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Let</span><span> </span><span class="coqdoc-var">y'</span><span> := </span><span class="coqdoc-var">y</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>y' is defined
+<dt><span></span><span class="rocqdoc-keyword">Let</span><span> </span><span class="rocqdoc-var">y'</span><span> := </span><span class="rocqdoc-var">y</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>y' is defined
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">x'</span><span> := </span><span class="coqdoc-var">S</span><span> </span><span class="coqdoc-var">x</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>x' is defined
+<dt><span></span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">x'</span><span> := </span><span class="rocqdoc-var">S</span><span> </span><span class="rocqdoc-var">x</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>x' is defined
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">x''</span><span> := </span><span class="coqdoc-var">x'</span><span> + </span><span class="coqdoc-var">y'</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>x'' is defined
+<dt><span></span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">x''</span><span> := </span><span class="rocqdoc-var">x'</span><span> + </span><span class="rocqdoc-var">y'</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>x'' is defined
 </span></dd>
 </dl>
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Print</span><span> </span><span class="coqdoc-var">x'</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Print</span><span> </span><span class="rocqdoc-var">x'</span><span>.</span><span>
 </span></dt><dd><span>x' = S x
      : nat
 
 x' uses section variable x.
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Print</span><span> </span><span class="coqdoc-var">x''</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Print</span><span> </span><span class="rocqdoc-var">x''</span><span>.</span><span>
 </span></dt><dd><span>x'' = x'</span><span> +</span><span> y'
      : nat
 
 x'' uses section variables x y.
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">End</span><span> </span><span class="coqdoc-var">s1</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">End</span><span> </span><span class="rocqdoc-var">s1</span><span>.</span><span>
 </span></dt><dt><span></span><span>
-</span><span class="coqdoc-keyword">Print</span><span> </span><span class="coqdoc-var">x'</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Print</span><span> </span><span class="rocqdoc-var">x'</span><span>.</span><span>
 </span></dt><dd><span>x' = </span><span class="ansi-bold">fun</span><span> x : nat =&gt; S x
      : nat</span><span> -&gt;</span><span> nat
 
 Arguments </span><span class="ansi-fg-light-green">x'</span><span> x%_nat_scope
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Print</span><span> </span><span class="coqdoc-var">x''</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Print</span><span> </span><span class="rocqdoc-var">x''</span><span>.</span><span>
 </span></dt><dd><span>x'' = </span><span class="ansi-bold">fun</span><span> x y : nat =&gt; </span><span class="ansi-bold">let</span><span> y' := y </span><span class="ansi-bold">in</span><span> x' x</span><span> +</span><span> y'
      : nat</span><span> -&gt;</span><span> nat</span><span> -&gt;</span><span> nat
 
@@ -1453,103 +1453,103 @@ Arguments </span><span class="ansi-fg-light-green">x''</span><span> (x y)%_nat_s
 <section id="summary-of-locality-attributes-in-a-section">
 <span id="visibility-attributes-sections"></span><h2>Summary of locality attributes in a section<a class="headerlink" href="#summary-of-locality-attributes-in-a-section" title="Link to this heading"></a></h2>
 <p>This table sums up the effect of locality attributes on the scope of vernacular
-commands in a <a class="reference internal" href="#coq:cmd.Section" title="Section"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Section</span></code></a>, when outside the <a class="reference internal" href="#coq:cmd.Section" title="Section"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Section</span></code></a> where they were entered. In the
+commands in a <a class="reference internal" href="#rocq:cmd.Section" title="Section"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Section</span></code></a>, when outside the <a class="reference internal" href="#rocq:cmd.Section" title="Section"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Section</span></code></a> where they were entered. In the
 following table:</p>
 <ul class="simple">
 <li><p>a cross (❌) marks an unsupported attribute (compilation error);</p></li>
-<li><p>“not available” means that the command has no effect outside the <a class="reference internal" href="#coq:cmd.Section" title="Section"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Section</span></code></a> it
+<li><p>“not available” means that the command has no effect outside the <a class="reference internal" href="#rocq:cmd.Section" title="Section"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Section</span></code></a> it
 was entered;</p></li>
-<li><p>“available” means that the effects of the command persists outside the <a class="reference internal" href="#coq:cmd.Section" title="Section"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Section</span></code></a>.</p></li>
-<li><p>For <a class="reference internal" href="definitions.html#coq:cmd.Definition" title="Definition"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Definition</span></code></a> (and <a class="reference internal" href="definitions.html#coq:cmd.Lemma" title="Lemma"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Lemma</span></code></a>, ...), <a class="reference internal" href="../extensions/canonical.html#coq:cmd.Canonical-Structure" title="Canonical Structure"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Canonical</span> <span class="pre">Structure</span></code></a>,
-<a class="reference internal" href="../../addendum/implicit-coercions.html#coq:cmd.Coercion" title="Coercion"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Coercion</span></code></a> and <a class="reference internal" href="basic.html#coq:cmd.Set" title="Set"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Set</span></code></a> (and <a class="reference internal" href="basic.html#coq:cmd.Unset" title="Unset"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Unset</span></code></a>), some locality attributes
-will be passed on to the <a class="reference internal" href="modules.html#coq:cmd.Module" title="Module"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Module</span></code></a> containing the current <a class="reference internal" href="#coq:cmd.Section" title="Section"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Section</span></code></a>,
+<li><p>“available” means that the effects of the command persists outside the <a class="reference internal" href="#rocq:cmd.Section" title="Section"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Section</span></code></a>.</p></li>
+<li><p>For <a class="reference internal" href="definitions.html#rocq:cmd.Definition" title="Definition"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Definition</span></code></a> (and <a class="reference internal" href="definitions.html#rocq:cmd.Lemma" title="Lemma"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Lemma</span></code></a>, ...), <a class="reference internal" href="../extensions/canonical.html#rocq:cmd.Canonical-Structure" title="Canonical Structure"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Canonical</span> <span class="pre">Structure</span></code></a>,
+<a class="reference internal" href="../../addendum/implicit-coercions.html#rocq:cmd.Coercion" title="Coercion"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Coercion</span></code></a> and <a class="reference internal" href="basic.html#rocq:cmd.Set" title="Set"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Set</span></code></a> (and <a class="reference internal" href="basic.html#rocq:cmd.Unset" title="Unset"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Unset</span></code></a>), some locality attributes
+will be passed on to the <a class="reference internal" href="modules.html#rocq:cmd.Module" title="Module"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Module</span></code></a> containing the current <a class="reference internal" href="#rocq:cmd.Section" title="Section"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Section</span></code></a>,
 see the associated footnotes.</p></li>
 </ul>
-<p>A similar table for <a class="reference internal" href="modules.html#coq:cmd.Module" title="Module"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Module</span></code></a> can be found
+<p>A similar table for <a class="reference internal" href="modules.html#rocq:cmd.Module" title="Module"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Module</span></code></a> can be found
 <a class="reference internal" href="modules.html#visibility-attributes-modules"><span class="std std-ref">here</span></a>.</p>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p><code class="docutils literal notranslate"><span class="pre">Command</span></code></p></th>
 <th class="head"><p>no attribute</p></th>
-<th class="head"><p><a class="reference internal" href="modules.html#coq:attr.local" title="local"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">local</span></code></a></p></th>
-<th class="head"><p><a class="reference internal" href="modules.html#coq:attr.export" title="export"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">export</span></code></a></p></th>
-<th class="head"><p><a class="reference internal" href="modules.html#coq:attr.global" title="global"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">global</span></code></a></p></th>
+<th class="head"><p><a class="reference internal" href="modules.html#rocq:attr.local" title="local"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">local</span></code></a></p></th>
+<th class="head"><p><a class="reference internal" href="modules.html#rocq:attr.export" title="export"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">export</span></code></a></p></th>
+<th class="head"><p><a class="reference internal" href="modules.html#rocq:attr.global" title="global"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">global</span></code></a></p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><a class="reference internal" href="definitions.html#coq:cmd.Definition" title="Definition"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Definition</span></code></a>, <a class="reference internal" href="definitions.html#coq:cmd.Lemma" title="Lemma"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Lemma</span></code></a>, <a class="reference internal" href="assumptions.html#coq:cmd.Axiom" title="Axiom"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Axiom</span></code></a>, ...</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="definitions.html#rocq:cmd.Definition" title="Definition"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Definition</span></code></a>, <a class="reference internal" href="definitions.html#rocq:cmd.Lemma" title="Lemma"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Lemma</span></code></a>, <a class="reference internal" href="assumptions.html#rocq:cmd.Axiom" title="Axiom"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Axiom</span></code></a>, ...</p></td>
 <td><p>available <a class="footnote-reference brackets" href="#note1" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
-<td><p><a class="reference internal" href="modules.html#coq:attr.local" title="local"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">local</span></code></a> in</p>
+<td><p><a class="reference internal" href="modules.html#rocq:attr.local" title="local"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">local</span></code></a> in</p>
 <p>module <a class="footnote-reference brackets" href="#note1" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p>
 </td>
 <td><p>❌</p></td>
 <td><p>❌</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../../proof-engine/ltac.html#coq:cmd.Ltac" title="Ltac"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Ltac</span></code></a></p></td>
-<td><p><a class="reference internal" href="modules.html#coq:attr.local" title="local"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">local</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../proof-engine/ltac.html#rocq:cmd.Ltac" title="Ltac"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Ltac</span></code></a></p></td>
+<td><p><a class="reference internal" href="modules.html#rocq:attr.local" title="local"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">local</span></code></a></p></td>
 <td><p>not available</p></td>
 <td><p>❌</p></td>
 <td><p>❌</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../../proof-engine/ltac2.html#coq:cmd.Ltac2" title="Ltac2"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Ltac2</span></code></a></p></td>
-<td><p><a class="reference internal" href="modules.html#coq:attr.local" title="local"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">local</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../../proof-engine/ltac2.html#rocq:cmd.Ltac2" title="Ltac2"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Ltac2</span></code></a></p></td>
+<td><p><a class="reference internal" href="modules.html#rocq:attr.local" title="local"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">local</span></code></a></p></td>
 <td><p>not available</p></td>
 <td><p>❌</p></td>
 <td><p>❌</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../../user-extensions/syntax-extensions.html#coq:cmd.Notation-(abbreviation)" title="Notation (abbreviation)"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Notation</span> <span class="pre">(abbreviation)</span></code></a></p></td>
-<td><p><a class="reference internal" href="modules.html#coq:attr.local" title="local"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">local</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../user-extensions/syntax-extensions.html#rocq:cmd.Notation-(abbreviation)" title="Notation (abbreviation)"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Notation</span> <span class="pre">(abbreviation)</span></code></a></p></td>
+<td><p><a class="reference internal" href="modules.html#rocq:attr.local" title="local"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">local</span></code></a></p></td>
 <td><p>not available</p></td>
 <td><p>❌</p></td>
 <td><p>❌</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../../user-extensions/syntax-extensions.html#coq:cmd.Notation" title="Notation"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Notation</span></code></a></p></td>
-<td><p><a class="reference internal" href="modules.html#coq:attr.local" title="local"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">local</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../../user-extensions/syntax-extensions.html#rocq:cmd.Notation" title="Notation"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Notation</span></code></a></p></td>
+<td><p><a class="reference internal" href="modules.html#rocq:attr.local" title="local"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">local</span></code></a></p></td>
 <td><p>not available</p></td>
 <td><p>❌</p></td>
 <td><p>❌</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../../user-extensions/syntax-extensions.html#coq:cmd.Tactic-Notation" title="Tactic Notation"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Tactic</span> <span class="pre">Notation</span></code></a></p></td>
-<td><p><a class="reference internal" href="modules.html#coq:attr.local" title="local"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">local</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../user-extensions/syntax-extensions.html#rocq:cmd.Tactic-Notation" title="Tactic Notation"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Tactic</span> <span class="pre">Notation</span></code></a></p></td>
+<td><p><a class="reference internal" href="modules.html#rocq:attr.local" title="local"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">local</span></code></a></p></td>
 <td><p>not available</p></td>
 <td><p>❌</p></td>
 <td><p>❌</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../../proof-engine/ltac2.html#coq:cmd.Ltac2-Notation" title="Ltac2 Notation"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Ltac2</span> <span class="pre">Notation</span></code></a></p></td>
-<td><p><a class="reference internal" href="modules.html#coq:attr.local" title="local"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">local</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../../proof-engine/ltac2.html#rocq:cmd.Ltac2-Notation" title="Ltac2 Notation"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Ltac2</span> <span class="pre">Notation</span></code></a></p></td>
+<td><p><a class="reference internal" href="modules.html#rocq:attr.local" title="local"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">local</span></code></a></p></td>
 <td><p>not available</p></td>
 <td><p>❌</p></td>
 <td><p>❌</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../../addendum/implicit-coercions.html#coq:cmd.Coercion" title="Coercion"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Coercion</span></code></a></p></td>
-<td><p><a class="reference internal" href="modules.html#coq:attr.global" title="global"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">global</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../addendum/implicit-coercions.html#rocq:cmd.Coercion" title="Coercion"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Coercion</span></code></a></p></td>
+<td><p><a class="reference internal" href="modules.html#rocq:attr.global" title="global"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">global</span></code></a></p></td>
 <td><p>not available</p></td>
 <td><p>❌</p></td>
-<td><p><a class="reference internal" href="modules.html#coq:attr.global" title="global"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">global</span></code></a> in</p>
+<td><p><a class="reference internal" href="modules.html#rocq:attr.global" title="global"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">global</span></code></a> in</p>
 <p>module <a class="footnote-reference brackets" href="#note2" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a></p>
 </td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../extensions/canonical.html#coq:cmd.Canonical-Structure" title="Canonical Structure"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Canonical</span> <span class="pre">Structure</span></code></a></p></td>
-<td><p><a class="reference internal" href="modules.html#coq:attr.global" title="global"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">global</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../extensions/canonical.html#rocq:cmd.Canonical-Structure" title="Canonical Structure"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Canonical</span> <span class="pre">Structure</span></code></a></p></td>
+<td><p><a class="reference internal" href="modules.html#rocq:attr.global" title="global"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">global</span></code></a></p></td>
 <td><p>not available</p></td>
 <td><p>❌</p></td>
-<td><p><a class="reference internal" href="modules.html#coq:attr.global" title="global"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">global</span></code></a> in</p>
+<td><p><a class="reference internal" href="modules.html#rocq:attr.global" title="global"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">global</span></code></a> in</p>
 <p>module <a class="footnote-reference brackets" href="#note2" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a></p>
 </td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Hints</span></code> (and <a class="reference internal" href="../../addendum/type-classes.html#coq:cmd.Instance" title="Instance"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Instance</span></code></a>)</p></td>
-<td><p><a class="reference internal" href="modules.html#coq:attr.local" title="local"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">local</span></code></a></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Hints</span></code> (and <a class="reference internal" href="../../addendum/type-classes.html#rocq:cmd.Instance" title="Instance"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Instance</span></code></a>)</p></td>
+<td><p><a class="reference internal" href="modules.html#rocq:attr.local" title="local"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">local</span></code></a></p></td>
 <td><p>not available</p></td>
 <td><p>❌</p></td>
 <td><p>❌</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="basic.html#coq:cmd.Set" title="Set"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Set</span></code></a> or <a class="reference internal" href="basic.html#coq:cmd.Unset" title="Unset"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Unset</span></code></a> a flag</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="basic.html#rocq:cmd.Set" title="Set"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Set</span></code></a> or <a class="reference internal" href="basic.html#rocq:cmd.Unset" title="Unset"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Unset</span></code></a> a flag</p></td>
 <td><p>available <a class="footnote-reference brackets" href="#note3" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a></p></td>
 <td><p>not available</p></td>
-<td><p><a class="reference internal" href="modules.html#coq:attr.export" title="export"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">export</span></code></a> in</p>
+<td><p><a class="reference internal" href="modules.html#rocq:attr.export" title="export"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">export</span></code></a> in</p>
 <p>module <a class="footnote-reference brackets" href="#note3" id="id6" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a></p>
 </td>
-<td><p><a class="reference internal" href="modules.html#coq:attr.global" title="global"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">global</span></code></a> in</p>
+<td><p><a class="reference internal" href="modules.html#rocq:attr.global" title="global"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">global</span></code></a> in</p>
 <p>module <a class="footnote-reference brackets" href="#note3" id="id7" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a></p>
 </td>
 </tr>
@@ -1559,34 +1559,34 @@ see the associated footnotes.</p></li>
 <aside class="footnote brackets" id="note1" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
 <span class="backrefs">(<a role="doc-backlink" href="#id1">1</a>,<a role="doc-backlink" href="#id2">2</a>)</span>
-<p>For <a class="reference internal" href="definitions.html#coq:cmd.Definition" title="Definition"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Definition</span></code></a>, <a class="reference internal" href="definitions.html#coq:cmd.Lemma" title="Lemma"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Lemma</span></code></a>, ... the default visibility is
+<p>For <a class="reference internal" href="definitions.html#rocq:cmd.Definition" title="Definition"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Definition</span></code></a>, <a class="reference internal" href="definitions.html#rocq:cmd.Lemma" title="Lemma"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Lemma</span></code></a>, ... the default visibility is
 to be available outside the section and available with a short name when the
-current <a class="reference internal" href="modules.html#coq:cmd.Module" title="Module"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Module</span></code></a> is imported (with <a class="reference internal" href="modules.html#coq:cmd.Import" title="Import"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Import</span></code></a> or <a class="reference internal" href="modules.html#coq:cmd.Export" title="Export"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Export</span></code></a>)
-outside the current <a class="reference internal" href="modules.html#coq:cmd.Module" title="Module"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Module</span></code></a>.
-The <a class="reference internal" href="modules.html#coq:attr.local" title="local"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">local</span></code></a> attribute make the corresponding identifiers available in
-the current <a class="reference internal" href="modules.html#coq:cmd.Module" title="Module"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Module</span></code></a> but only with a fully qualified name outside the
-current <a class="reference internal" href="modules.html#coq:cmd.Module" title="Module"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Module</span></code></a>.</p>
+current <a class="reference internal" href="modules.html#rocq:cmd.Module" title="Module"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Module</span></code></a> is imported (with <a class="reference internal" href="modules.html#rocq:cmd.Import" title="Import"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Import</span></code></a> or <a class="reference internal" href="modules.html#rocq:cmd.Export" title="Export"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Export</span></code></a>)
+outside the current <a class="reference internal" href="modules.html#rocq:cmd.Module" title="Module"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Module</span></code></a>.
+The <a class="reference internal" href="modules.html#rocq:attr.local" title="local"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">local</span></code></a> attribute make the corresponding identifiers available in
+the current <a class="reference internal" href="modules.html#rocq:cmd.Module" title="Module"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Module</span></code></a> but only with a fully qualified name outside the
+current <a class="reference internal" href="modules.html#rocq:cmd.Module" title="Module"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Module</span></code></a>.</p>
 </aside>
 <aside class="footnote brackets" id="note2" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></span>
 <span class="backrefs">(<a role="doc-backlink" href="#id3">1</a>,<a role="doc-backlink" href="#id4">2</a>)</span>
-<p>For <a class="reference internal" href="../../addendum/implicit-coercions.html#coq:cmd.Coercion" title="Coercion"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Coercion</span></code></a> and <a class="reference internal" href="../extensions/canonical.html#coq:cmd.Canonical-Structure" title="Canonical Structure"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Canonical</span> <span class="pre">Structure</span></code></a>, the
-<a class="reference internal" href="modules.html#coq:attr.global" title="global"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">global</span></code></a> visibility, which is the default, makes them available outside
-the section, in the current <a class="reference internal" href="modules.html#coq:cmd.Module" title="Module"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Module</span></code></a>, and outside the current
-<a class="reference internal" href="modules.html#coq:cmd.Module" title="Module"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Module</span></code></a> when it is imported (with <a class="reference internal" href="modules.html#coq:cmd.Import" title="Import"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Import</span></code></a> or <a class="reference internal" href="modules.html#coq:cmd.Export" title="Export"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Export</span></code></a>).</p>
+<p>For <a class="reference internal" href="../../addendum/implicit-coercions.html#rocq:cmd.Coercion" title="Coercion"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Coercion</span></code></a> and <a class="reference internal" href="../extensions/canonical.html#rocq:cmd.Canonical-Structure" title="Canonical Structure"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Canonical</span> <span class="pre">Structure</span></code></a>, the
+<a class="reference internal" href="modules.html#rocq:attr.global" title="global"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">global</span></code></a> visibility, which is the default, makes them available outside
+the section, in the current <a class="reference internal" href="modules.html#rocq:cmd.Module" title="Module"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Module</span></code></a>, and outside the current
+<a class="reference internal" href="modules.html#rocq:cmd.Module" title="Module"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Module</span></code></a> when it is imported (with <a class="reference internal" href="modules.html#rocq:cmd.Import" title="Import"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Import</span></code></a> or <a class="reference internal" href="modules.html#rocq:cmd.Export" title="Export"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Export</span></code></a>).</p>
 </aside>
 <aside class="footnote brackets" id="note3" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></span>
 <span class="backrefs">(<a role="doc-backlink" href="#id5">1</a>,<a role="doc-backlink" href="#id6">2</a>,<a role="doc-backlink" href="#id7">3</a>)</span>
-<p>For <a class="reference internal" href="basic.html#coq:cmd.Set" title="Set"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Set</span></code></a> and <a class="reference internal" href="basic.html#coq:cmd.Unset" title="Unset"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Unset</span></code></a>, the <a class="reference internal" href="modules.html#coq:attr.export" title="export"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">export</span></code></a> and
-<a class="reference internal" href="modules.html#coq:attr.global" title="global"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">global</span></code></a> attributes both make the command's effects persist outside the
-current section, in the current <a class="reference internal" href="modules.html#coq:cmd.Module" title="Module"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Module</span></code></a>.
-It will also persist outside the current <a class="reference internal" href="modules.html#coq:cmd.Module" title="Module"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Module</span></code></a> with the
-<a class="reference internal" href="modules.html#coq:attr.global" title="global"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">global</span></code></a> attribute, or with the <a class="reference internal" href="modules.html#coq:attr.export" title="export"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">export</span></code></a> attribute, when the
-<a class="reference internal" href="modules.html#coq:cmd.Module" title="Module"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Module</span></code></a> is imported (with <a class="reference internal" href="modules.html#coq:cmd.Import" title="Import"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Import</span></code></a> or <a class="reference internal" href="modules.html#coq:cmd.Export" title="Export"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Export</span></code></a>).
+<p>For <a class="reference internal" href="basic.html#rocq:cmd.Set" title="Set"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Set</span></code></a> and <a class="reference internal" href="basic.html#rocq:cmd.Unset" title="Unset"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Unset</span></code></a>, the <a class="reference internal" href="modules.html#rocq:attr.export" title="export"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">export</span></code></a> and
+<a class="reference internal" href="modules.html#rocq:attr.global" title="global"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">global</span></code></a> attributes both make the command's effects persist outside the
+current section, in the current <a class="reference internal" href="modules.html#rocq:cmd.Module" title="Module"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Module</span></code></a>.
+It will also persist outside the current <a class="reference internal" href="modules.html#rocq:cmd.Module" title="Module"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Module</span></code></a> with the
+<a class="reference internal" href="modules.html#rocq:attr.global" title="global"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">global</span></code></a> attribute, or with the <a class="reference internal" href="modules.html#rocq:attr.export" title="export"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">export</span></code></a> attribute, when the
+<a class="reference internal" href="modules.html#rocq:cmd.Module" title="Module"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Module</span></code></a> is imported (with <a class="reference internal" href="modules.html#rocq:cmd.Import" title="Import"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Import</span></code></a> or <a class="reference internal" href="modules.html#rocq:cmd.Export" title="Export"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Export</span></code></a>).
 The default behaviour (no attribute) is to make the setting persist outside
-the section in the current <a class="reference internal" href="modules.html#coq:cmd.Module" title="Module"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Module</span></code></a>, but not outside the current
-<a class="reference internal" href="modules.html#coq:cmd.Module" title="Module"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Module</span></code></a>.</p>
+the section in the current <a class="reference internal" href="modules.html#rocq:cmd.Module" title="Module"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Module</span></code></a>, but not outside the current
+<a class="reference internal" href="modules.html#rocq:cmd.Module" title="Module"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Module</span></code></a>.</p>
 </aside>
 </aside>
 </section>

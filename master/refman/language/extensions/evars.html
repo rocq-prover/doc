@@ -345,7 +345,7 @@
 <li class="toctree-l3"><a class="reference internal" href="arguments-command.html#automatic-declaration-of-implicit-arguments">Automatic declaration of implicit arguments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="arguments-command.html#renaming-implicit-arguments">Renaming implicit arguments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="arguments-command.html#binding-arguments-to-scopes">Binding arguments to scopes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="arguments-command.html#effects-of-arguments-on-unfolding">Effects of <code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Arguments</span></code> on unfolding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="arguments-command.html#effects-of-arguments-on-unfolding">Effects of <code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Arguments</span></code> on unfolding</a></li>
 <li class="toctree-l3"><a class="reference internal" href="arguments-command.html#bidirectionality-hints">Bidirectionality hints</a></li>
 </ul>
 </li>
@@ -506,7 +506,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#generation-of-inversion-principles-with-derive-inversion">Generation of inversion principles with <code class="docutils literal notranslate"><span class="pre">Derive</span></code> <code class="docutils literal notranslate"><span class="pre">Inversion</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#examples-of-dependent-destruction-dependent-induction">Examples of <code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">destruction</span></code> / <code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">induction</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#examples-of-dependent-destruction-dependent-induction">Examples of <code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">destruction</span></code> / <code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">induction</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#a-larger-example">A larger example</a></li>
 </ul>
 </li>
@@ -1287,8 +1287,8 @@ subterms that are eventually replaced with actual subterms.</p>
 <p>Existential variables are generated in place of unsolved implicit
 arguments or “_” placeholders when using commands such as <code class="docutils literal notranslate"><span class="pre">Check</span></code> (see
 Section <a class="reference internal" href="../../proof-engine/vernacular-commands.html#requests-to-the-environment"><span class="std std-ref">Requests to the environment</span></a>) or when using tactics such as
-<a class="reference internal" href="../../proof-engine/tactics.html#coq:tacn.refine" title="refine"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">refine</span></code></a>, as well as in place of unsolved instances when using
-tactics such that <a class="reference internal" href="../../proof-engine/tactics.html#coq:tacn.eapply" title="eapply"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">eapply</span></code></a>. An existential
+<a class="reference internal" href="../../proof-engine/tactics.html#rocq:tacn.refine" title="refine"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">refine</span></code></a>, as well as in place of unsolved instances when using
+tactics such that <a class="reference internal" href="../../proof-engine/tactics.html#rocq:tacn.eapply" title="eapply"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">eapply</span></code></a>. An existential
 variable is defined in a context, which is the context of variables of
 the placeholder which generated the existential variable, and a type,
 which is the expected type of the placeholder.</p>
@@ -1300,13 +1300,13 @@ In the simple case, when an existential variable denotes the
 placeholder which generated it, or is used in the same context as the
 one in which it was generated, the context is not displayed and the
 existential variable is represented by “?” followed by an identifier.</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Parameter</span><span> </span><span class="coqdoc-var">identity</span><span> : </span><span class="coqdoc-keyword">forall</span><span> (</span><span class="coqdoc-var">X</span><span>:</span><span class="coqdoc-keyword">Set</span><span>), </span><span class="coqdoc-var">X</span><span> -&gt; </span><span class="coqdoc-var">X</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Parameter</span><span> </span><span class="rocqdoc-var">identity</span><span> : </span><span class="rocqdoc-keyword">forall</span><span> (</span><span class="rocqdoc-var">X</span><span>:</span><span class="rocqdoc-keyword">Set</span><span>), </span><span class="rocqdoc-var">X</span><span> -&gt; </span><span class="rocqdoc-var">X</span><span>.</span><span>
 </span></dt><dd><span>identity is declared
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-var">identity</span><span> </span><span class="coqdoc-var">_</span><span> </span><span class="coqdoc-var">_</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-var">identity</span><span> </span><span class="rocqdoc-var">_</span><span> </span><span class="rocqdoc-var">_</span><span>.</span><span>
 </span></dt><dd><span>identity </span><span class="ansi-fg-light-blue">?X</span><span> </span><span class="ansi-fg-light-blue">?y</span><span>
      : </span><span class="ansi-fg-light-blue">?X</span><span>
 where
@@ -1314,7 +1314,7 @@ where
 ?y : [ |- </span><span class="ansi-fg-light-blue">?X</span><span>]
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-var">identity</span><span> </span><span class="coqdoc-var">_</span><span> (</span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">x</span><span> =&gt; </span><span class="coqdoc-var">_</span><span>).</span><span>
+</span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-var">identity</span><span> </span><span class="rocqdoc-var">_</span><span> (</span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">x</span><span> =&gt; </span><span class="rocqdoc-var">_</span><span>).</span><span>
 </span></dt><dd><span>identity (</span><span class="ansi-bold">forall</span><span> x : </span><span class="ansi-fg-light-blue">?S</span><span>, </span><span class="ansi-fg-light-blue">?S0</span><span>) (</span><span class="ansi-bold">fun</span><span> x : </span><span class="ansi-fg-light-blue">?S</span><span> =&gt; </span><span class="ansi-fg-light-blue">?y</span><span>)
      : </span><span class="ansi-bold">forall</span><span> x : </span><span class="ansi-fg-light-blue">?S</span><span>, </span><span class="ansi-fg-light-blue">?S0</span><span>
 where
@@ -1332,9 +1332,9 @@ Only the variables that are defined in another context are displayed:
 this is why an existential variable used in the same context as its
 context of definition is written with no instance.
 This behavior may be changed: see <a class="reference internal" href="#explicit-display-existentials"><span class="std std-ref">Explicit display of existential instances for pretty-printing</span></a>.</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Check</span><span> (</span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span> =&gt; </span><span class="coqdoc-var">_</span><span>) 0 1.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Check</span><span> (</span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> =&gt; </span><span class="rocqdoc-var">_</span><span>) 0 1.</span><span>
 </span></dt><dd><span>(</span><span class="ansi-bold">fun</span><span> x y : nat =&gt; </span><span class="ansi-fg-light-blue">?y</span><span>) 0 1
      : </span><span class="ansi-fg-light-blue">?T</span><span>&#64;{x:=0; y:=1}
 where
@@ -1359,24 +1359,24 @@ guess the missing piece of information.</p>
 when the base tactic would fail because of uninstantiated variables.
 The companion tactic names begin with an <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">e</span></span></span></span></code> followed by the name of the
 base tactic.
-For example, <a class="reference internal" href="../../proof-engine/tactics.html#coq:tacn.eapply" title="eapply"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">eapply</span></code></a> works the same way as <a class="reference internal" href="../../proof-engine/tactics.html#coq:tacn.apply" title="apply"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">apply</span></code></a>, except that
-it will create new existential variable(s) when <a class="reference internal" href="../../proof-engine/tactics.html#coq:tacn.apply" title="apply"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">apply</span></code></a> would fail.</p>
+For example, <a class="reference internal" href="../../proof-engine/tactics.html#rocq:tacn.eapply" title="eapply"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">eapply</span></code></a> works the same way as <a class="reference internal" href="../../proof-engine/tactics.html#rocq:tacn.apply" title="apply"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">apply</span></code></a>, except that
+it will create new existential variable(s) when <a class="reference internal" href="../../proof-engine/tactics.html#rocq:tacn.apply" title="apply"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">apply</span></code></a> would fail.</p>
 <blockquote>
 <div><div class="admonition note">
 <p class="admonition-title">Example: apply vs eapply</p>
 <p>Both tactics unify the goal with <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">x</span></span></span> <span><span><span class="pre">=</span></span></span> <span><span><span class="pre">z</span></span></span></span></code> in the theorem.  <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">y</span></span></span></span></code> is
-unspecified.  This makes <a class="reference internal" href="../../proof-engine/tactics.html#coq:tacn.apply" title="apply"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">apply</span></code></a> fail, while <a class="reference internal" href="../../proof-engine/tactics.html#coq:tacn.eapply" title="eapply"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">eapply</span></code></a>
+unspecified.  This makes <a class="reference internal" href="../../proof-engine/tactics.html#rocq:tacn.apply" title="apply"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">apply</span></code></a> fail, while <a class="reference internal" href="../../proof-engine/tactics.html#rocq:tacn.eapply" title="eapply"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">eapply</span></code></a>
 creates a new existential variable <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">?y</span></span></span></span></code>.</p>
-<div class="coqtop literal-block docutils container">
-<span class="coqtop-reset"></span><dl>
-<dt class="coqtop-hidden"><span></span><span class="coqdoc-keyword">Goal</span><span> </span><span class="coqdoc-keyword">forall</span><span> </span><span class="coqdoc-var">i</span><span> </span><span class="coqdoc-var">j</span><span> : </span><span class="coqdoc-var">nat</span><span>, </span><span class="coqdoc-var">i</span><span> = </span><span class="coqdoc-var">j</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>1 goal
+<div class="rocqtop literal-block docutils container">
+<span class="rocqtop-reset"></span><dl>
+<dt class="rocqtop-hidden"><span></span><span class="rocqdoc-keyword">Goal</span><span> </span><span class="rocqdoc-keyword">forall</span><span> </span><span class="rocqdoc-var">i</span><span> </span><span class="rocqdoc-var">j</span><span> : </span><span class="rocqdoc-var">nat</span><span>, </span><span class="rocqdoc-var">i</span><span> = </span><span class="rocqdoc-var">j</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>1 goal
   
   ============================
   </span><span class="ansi-bold">forall</span><span> i j : nat, i</span><span> =</span><span> j
 </span></dd>
-<dt class="coqtop-hidden"><span></span><span class="coqdoc-tactic">intros</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>1 goal
+<dt class="rocqtop-hidden"><span></span><span class="rocqdoc-tactic">intros</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>1 goal
   
   i, j : nat
   ============================
@@ -1384,13 +1384,13 @@ creates a new existential variable <code class="docutils literal notranslate"><s
 </span></dd>
 </dl>
 <span></span><dl>
-<dt><span></span><span class="coqdoc-comment">(* Theorem eq_trans : forall (A : Type) (x y z : A), x = y -&gt; y = z -&gt; x = z. *)</span><span>
+<dt><span></span><span class="rocqdoc-comment">(* Theorem eq_trans : forall (A : Type) (x y z : A), x = y -&gt; y = z -&gt; x = z. *)</span><span>
 </span><span>
-</span><span class="coqdoc-var">Fail</span><span> </span><span class="coqdoc-tactic">apply</span><span> </span><span class="coqdoc-var">eq_trans</span><span>.</span><span>
+</span><span class="rocqdoc-var">Fail</span><span> </span><span class="rocqdoc-tactic">apply</span><span> </span><span class="rocqdoc-var">eq_trans</span><span>.</span><span>
 </span></dt><dd><span>The command has indeed failed with message:
 Unable to find an instance for the variable y.
 </span></dd>
-<dt><span></span><span class="coqdoc-tactic">eapply</span><span> </span><span class="coqdoc-var">eq_trans</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-tactic">eapply</span><span> </span><span class="rocqdoc-var">eq_trans</span><span>.</span><span>
 </span></dt><dd><span>2 focused goals (shelved: 1)
   
   i, j : nat
@@ -1408,40 +1408,40 @@ goal 2 is:
 <blockquote>
 <div><table class="docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="../../proof-engine/tactics.html#coq:tacn.eapply" title="eapply"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">eapply</span></code></a></p></td>
-<td><p><a class="reference internal" href="../../proof-engine/tactics.html#coq:tacn.eassert" title="eassert"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">eassert</span></code></a></p></td>
-<td><p><a class="reference internal" href="../../proof-engine/tactics.html#coq:tacn.eassumption" title="eassumption"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">eassumption</span></code></a></p></td>
-<td><p><a class="reference internal" href="../../proofs/automatic-tactics/auto.html#coq:tacn.eauto" title="eauto"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">eauto</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../proof-engine/tactics.html#rocq:tacn.eapply" title="eapply"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">eapply</span></code></a></p></td>
+<td><p><a class="reference internal" href="../../proof-engine/tactics.html#rocq:tacn.eassert" title="eassert"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">eassert</span></code></a></p></td>
+<td><p><a class="reference internal" href="../../proof-engine/tactics.html#rocq:tacn.eassumption" title="eassumption"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">eassumption</span></code></a></p></td>
+<td><p><a class="reference internal" href="../../proofs/automatic-tactics/auto.html#rocq:tacn.eauto" title="eauto"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">eauto</span></code></a></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#coq:tacn.ecase" title="ecase"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">ecase</span></code></a></p></td>
-<td><p><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#coq:tacn.econstructor" title="econstructor"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">econstructor</span></code></a></p></td>
-<td><p><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#coq:tacn.edestruct" title="edestruct"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">edestruct</span></code></a></p></td>
-<td><p><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#coq:tacn.ediscriminate" title="ediscriminate"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">ediscriminate</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#rocq:tacn.ecase" title="ecase"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">ecase</span></code></a></p></td>
+<td><p><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#rocq:tacn.econstructor" title="econstructor"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">econstructor</span></code></a></p></td>
+<td><p><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#rocq:tacn.edestruct" title="edestruct"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">edestruct</span></code></a></p></td>
+<td><p><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#rocq:tacn.ediscriminate" title="ediscriminate"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">ediscriminate</span></code></a></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#coq:tacn.eelim" title="eelim"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">eelim</span></code></a></p></td>
-<td><p><a class="reference internal" href="../../proof-engine/tactics.html#coq:tacn.eenough" title="eenough"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">eenough</span></code></a></p></td>
-<td><p><a class="reference internal" href="../../proof-engine/tactics.html#coq:tacn.eexact" title="eexact"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">eexact</span></code></a></p></td>
-<td><p><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#coq:tacn.eexists" title="eexists"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">eexists</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#rocq:tacn.eelim" title="eelim"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">eelim</span></code></a></p></td>
+<td><p><a class="reference internal" href="../../proof-engine/tactics.html#rocq:tacn.eenough" title="eenough"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">eenough</span></code></a></p></td>
+<td><p><a class="reference internal" href="../../proof-engine/tactics.html#rocq:tacn.eexact" title="eexact"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">eexact</span></code></a></p></td>
+<td><p><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#rocq:tacn.eexists" title="eexists"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">eexists</span></code></a></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#coq:tacn.einduction" title="einduction"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">einduction</span></code></a></p></td>
-<td><p><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#coq:tacn.einjection" title="einjection"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">einjection</span></code></a></p></td>
-<td><p><a class="reference internal" href="../../proof-engine/tactics.html#coq:tacn.eintros" title="eintros"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">eintros</span></code></a></p></td>
-<td><p><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#coq:tacn.eleft" title="eleft"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">eleft</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#rocq:tacn.einduction" title="einduction"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">einduction</span></code></a></p></td>
+<td><p><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#rocq:tacn.einjection" title="einjection"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">einjection</span></code></a></p></td>
+<td><p><a class="reference internal" href="../../proof-engine/tactics.html#rocq:tacn.eintros" title="eintros"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">eintros</span></code></a></p></td>
+<td><p><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#rocq:tacn.eleft" title="eleft"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">eleft</span></code></a></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../../proof-engine/tactics.html#coq:tacn.epose" title="epose"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">epose</span></code></a></p></td>
-<td><p><a class="reference internal" href="../../proof-engine/tactics.html#coq:tacn.eremember" title="eremember"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">eremember</span></code></a></p></td>
-<td><p><a class="reference internal" href="../../proofs/writing-proofs/equality.html#coq:tacn.erewrite" title="erewrite"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">erewrite</span></code></a></p></td>
-<td><p><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#coq:tacn.eright" title="eright"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">eright</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../proof-engine/tactics.html#rocq:tacn.epose" title="epose"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">epose</span></code></a></p></td>
+<td><p><a class="reference internal" href="../../proof-engine/tactics.html#rocq:tacn.eremember" title="eremember"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">eremember</span></code></a></p></td>
+<td><p><a class="reference internal" href="../../proofs/writing-proofs/equality.html#rocq:tacn.erewrite" title="erewrite"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">erewrite</span></code></a></p></td>
+<td><p><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#rocq:tacn.eright" title="eright"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">eright</span></code></a></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../../proof-engine/tactics.html#coq:tacn.eset" title="eset"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">eset</span></code></a></p></td>
-<td><p><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#coq:tacn.esimplify_eq" title="esimplify_eq"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">esimplify_eq</span></code></a></p></td>
-<td><p><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#coq:tacn.esplit" title="esplit"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">esplit</span></code></a></p></td>
-<td><p><a class="reference internal" href="../../proofs/writing-proofs/equality.html#coq:tacn.etransitivity" title="etransitivity"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">etransitivity</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../../proof-engine/tactics.html#rocq:tacn.eset" title="eset"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">eset</span></code></a></p></td>
+<td><p><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#rocq:tacn.esimplify_eq" title="esimplify_eq"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">esimplify_eq</span></code></a></p></td>
+<td><p><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#rocq:tacn.esplit" title="esplit"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">esplit</span></code></a></p></td>
+<td><p><a class="reference internal" href="../../proofs/writing-proofs/equality.html#rocq:tacn.etransitivity" title="etransitivity"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">etransitivity</span></code></a></p></td>
 </tr>
 </tbody>
 </table>
 </div></blockquote>
-<p>Note that <a class="reference internal" href="../../proof-engine/tactics.html#coq:tacn.eassumption" title="eassumption"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">eassumption</span></code></a> and <a class="reference internal" href="../../proofs/automatic-tactics/auto.html#coq:tacn.eauto" title="eauto"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">eauto</span></code></a> behave differently from the
+<p>Note that <a class="reference internal" href="../../proof-engine/tactics.html#rocq:tacn.eassumption" title="eassumption"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">eassumption</span></code></a> and <a class="reference internal" href="../../proofs/automatic-tactics/auto.html#rocq:tacn.eauto" title="eauto"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">eauto</span></code></a> behave differently from the
 others.</p>
 </section>
 <section id="automatic-resolution-of-existential-variables">
@@ -1450,22 +1450,22 @@ others.</p>
 automatically as a side effect of other tactics.</p>
 <div class="admonition note" id="automatic-evar-resolution">
 <p class="admonition-title">Example: Automatic resolution of existential variables</p>
-<p><code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">?y</span></span></span></span></code> is used in other goals.  The <a class="reference internal" href="../../proof-engine/tactics.html#coq:tacn.exact" title="exact"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">exact</span></code></a>
+<p><code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">?y</span></span></span></span></code> is used in other goals.  The <a class="reference internal" href="../../proof-engine/tactics.html#rocq:tacn.exact" title="exact"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">exact</span></code></a>
 shown below determines the value of this variable by unification,
 which resolves it.</p>
-<div class="coqtop literal-block docutils container">
-<span class="coqtop-reset"></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Set</span><span> </span><span class="coqdoc-keyword">Printing</span><span> </span><span class="coqdoc-keyword">Goal</span><span> </span><span class="coqdoc-var">Names</span><span>.</span><span>
+<div class="rocqtop literal-block docutils container">
+<span class="rocqtop-reset"></span><dl>
+<dt><span></span><span class="rocqdoc-keyword">Set</span><span> </span><span class="rocqdoc-keyword">Printing</span><span> </span><span class="rocqdoc-keyword">Goal</span><span> </span><span class="rocqdoc-var">Names</span><span>.</span><span>
 </span></dt><dt><span></span><span>
-</span><span class="coqdoc-keyword">Goal</span><span> </span><span class="coqdoc-keyword">forall</span><span> </span><span class="coqdoc-var">p</span><span> </span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-var">m</span><span> : </span><span class="coqdoc-var">nat</span><span>, </span><span class="coqdoc-var">n</span><span> = </span><span class="coqdoc-var">p</span><span> -&gt; </span><span class="coqdoc-var">p</span><span> = </span><span class="coqdoc-var">m</span><span> -&gt; </span><span class="coqdoc-var">n</span><span> = </span><span class="coqdoc-var">m</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>1 goal (?Goal)
+</span><span class="rocqdoc-keyword">Goal</span><span> </span><span class="rocqdoc-keyword">forall</span><span> </span><span class="rocqdoc-var">p</span><span> </span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-var">m</span><span> : </span><span class="rocqdoc-var">nat</span><span>, </span><span class="rocqdoc-var">n</span><span> = </span><span class="rocqdoc-var">p</span><span> -&gt; </span><span class="rocqdoc-var">p</span><span> = </span><span class="rocqdoc-var">m</span><span> -&gt; </span><span class="rocqdoc-var">n</span><span> = </span><span class="rocqdoc-var">m</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>1 goal (?Goal)
   
   ============================
   </span><span class="ansi-bold">forall</span><span> p n m : nat, n</span><span> =</span><span> p</span><span> -&gt;</span><span> p</span><span> =</span><span> m</span><span> -&gt;</span><span> n</span><span> =</span><span> m
 </span></dd>
 </dl>
 <span></span><dl>
-<dt><span></span><span class="coqdoc-tactic">intros</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span> </span><span class="coqdoc-var">z</span><span> </span><span class="coqdoc-var">H1</span><span> </span><span class="coqdoc-var">H2</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-tactic">intros</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> </span><span class="rocqdoc-var">z</span><span> </span><span class="rocqdoc-var">H1</span><span> </span><span class="rocqdoc-var">H2</span><span>.</span><span>
 </span></dt><dd><span>1 goal (?Goal)
   
   x, y, z : nat
@@ -1474,7 +1474,7 @@ which resolves it.</p>
   ============================
   y</span><span> =</span><span> z
 </span></dd>
-<dt><span></span><span class="coqdoc-tactic">eapply</span><span> </span><span class="coqdoc-var">eq_trans</span><span>. </span><span class="coqdoc-comment">(* creates ?y : nat as a shelved goal *)</span><span>
+<dt><span></span><span class="rocqdoc-tactic">eapply</span><span> </span><span class="rocqdoc-var">eq_trans</span><span>. </span><span class="rocqdoc-comment">(* creates ?y : nat as a shelved goal *)</span><span>
 </span></dt><dd><span>2 focused goals (shelved: 1), goal 1 (?Goal)
   
   x, y, z : nat
@@ -1486,7 +1486,7 @@ which resolves it.</p>
 goal 2 (?Goal0) is:
  </span><span class="ansi-fg-light-blue">?y</span><span> =</span><span> z
 </span></dd>
-<dt><span></span><span class="coqdoc-var">Unshelve</span><span>. </span><span class="coqdoc-comment">(* moves the shelved goals into focus--not needed and usually not done *)</span><span>
+<dt><span></span><span class="rocqdoc-var">Unshelve</span><span>. </span><span class="rocqdoc-comment">(* moves the shelved goals into focus--not needed and usually not done *)</span><span>
 </span></dt><dd><span>3 goals, goal 1 (?Goal)
   
   x, y, z : nat
@@ -1500,7 +1500,7 @@ goal 2 (?Goal0) is:
 goal 3 (?y) is:
  nat
 </span></dd>
-<dt><span></span><span class="coqdoc-tactic">exact</span><span> </span><span class="coqdoc-var">H1</span><span>. </span><span class="coqdoc-comment">(* resolves the first goal and by side effect ?y *)</span></dt><dd><span>1 goal (?Goal)
+<dt><span></span><span class="rocqdoc-tactic">exact</span><span> </span><span class="rocqdoc-var">H1</span><span>. </span><span class="rocqdoc-comment">(* resolves the first goal and by side effect ?y *)</span></dt><dd><span>1 goal (?Goal)
   
   x, y, z : nat
   H1 : y</span><span> =</span><span> x
@@ -1515,18 +1515,18 @@ goal 3 (?y) is:
 by applying a constructor of <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">nat</span></span></span></span></code>, which assigns values for <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">?y</span></span></span></span></code>.
 However if you choose poorly, you can end up with unprovable goals
 (in this case <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">x</span></span></span> <span><span><span class="pre">=</span></span></span> <span><span><span class="pre">0</span></span></span></span></code>).  Like this:</p>
-<div class="coqtop literal-block docutils container">
-<span class="coqtop-reset"></span><dl>
-<dt class="coqtop-hidden"><span></span><span class="coqdoc-keyword">Set</span><span> </span><span class="coqdoc-keyword">Printing</span><span> </span><span class="coqdoc-keyword">Goal</span><span> </span><span class="coqdoc-var">Names</span><span>.</span><span>
-</span></dt><dt class="coqtop-hidden"><span></span><span>
-</span><span class="coqdoc-keyword">Goal</span><span> </span><span class="coqdoc-keyword">forall</span><span> </span><span class="coqdoc-var">p</span><span> </span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-var">m</span><span> : </span><span class="coqdoc-var">nat</span><span>, </span><span class="coqdoc-var">n</span><span> = </span><span class="coqdoc-var">p</span><span> -&gt; </span><span class="coqdoc-var">p</span><span> = </span><span class="coqdoc-var">m</span><span> -&gt; </span><span class="coqdoc-var">n</span><span> = </span><span class="coqdoc-var">m</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>1 goal (?Goal)
+<div class="rocqtop literal-block docutils container">
+<span class="rocqtop-reset"></span><dl>
+<dt class="rocqtop-hidden"><span></span><span class="rocqdoc-keyword">Set</span><span> </span><span class="rocqdoc-keyword">Printing</span><span> </span><span class="rocqdoc-keyword">Goal</span><span> </span><span class="rocqdoc-var">Names</span><span>.</span><span>
+</span></dt><dt class="rocqtop-hidden"><span></span><span>
+</span><span class="rocqdoc-keyword">Goal</span><span> </span><span class="rocqdoc-keyword">forall</span><span> </span><span class="rocqdoc-var">p</span><span> </span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-var">m</span><span> : </span><span class="rocqdoc-var">nat</span><span>, </span><span class="rocqdoc-var">n</span><span> = </span><span class="rocqdoc-var">p</span><span> -&gt; </span><span class="rocqdoc-var">p</span><span> = </span><span class="rocqdoc-var">m</span><span> -&gt; </span><span class="rocqdoc-var">n</span><span> = </span><span class="rocqdoc-var">m</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>1 goal (?Goal)
   
   ============================
   </span><span class="ansi-bold">forall</span><span> p n m : nat, n</span><span> =</span><span> p</span><span> -&gt;</span><span> p</span><span> =</span><span> m</span><span> -&gt;</span><span> n</span><span> =</span><span> m
 </span></dd>
-<dt class="coqtop-hidden"><span></span><span class="coqdoc-tactic">intros</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span> </span><span class="coqdoc-var">z</span><span> </span><span class="coqdoc-var">H1</span><span> </span><span class="coqdoc-var">H2</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>1 goal (?Goal)
+<dt class="rocqtop-hidden"><span></span><span class="rocqdoc-tactic">intros</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> </span><span class="rocqdoc-var">z</span><span> </span><span class="rocqdoc-var">H1</span><span> </span><span class="rocqdoc-var">H2</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>1 goal (?Goal)
   
   x, y, z : nat
   H1 : y</span><span> =</span><span> x
@@ -1534,7 +1534,7 @@ However if you choose poorly, you can end up with unprovable goals
   ============================
   y</span><span> =</span><span> z
 </span></dd>
-<dt class="coqtop-hidden"><span></span><span class="coqdoc-tactic">eapply</span><span> </span><span class="coqdoc-var">eq_trans</span><span>. </span><span class="coqdoc-comment">(* creates ?y : nat as a shelved goal *)</span></dt><dd class="coqtop-hidden"><span>2 focused goals (shelved: 1), goal 1 (?Goal)
+<dt class="rocqtop-hidden"><span></span><span class="rocqdoc-tactic">eapply</span><span> </span><span class="rocqdoc-var">eq_trans</span><span>. </span><span class="rocqdoc-comment">(* creates ?y : nat as a shelved goal *)</span></dt><dd class="rocqtop-hidden"><span>2 focused goals (shelved: 1), goal 1 (?Goal)
   
   x, y, z : nat
   H1 : y</span><span> =</span><span> x
@@ -1547,7 +1547,7 @@ goal 2 (?Goal0) is:
 </span></dd>
 </dl>
 <span></span><dl>
-<dt class="coqtop-hidden"><span></span><span class="coqdoc-var">Unshelve</span><span>. </span><span class="coqdoc-comment">(* moves the shelved goals into focus--not needed and usually not done *)</span></dt><dd><span>3 goals, goal 1 (?Goal)
+<dt class="rocqtop-hidden"><span></span><span class="rocqdoc-var">Unshelve</span><span>. </span><span class="rocqdoc-comment">(* moves the shelved goals into focus--not needed and usually not done *)</span></dt><dd><span>3 goals, goal 1 (?Goal)
   
   x, y, z : nat
   H1 : y</span><span> =</span><span> x
@@ -1562,7 +1562,7 @@ goal 3 (?y) is:
 </span></dd>
 </dl>
 <span></span><dl>
-<dt><span>3: </span><span class="coqdoc-tactic">apply</span><span> 0. </span><span class="coqdoc-comment">(* assigns value to ?y *)</span></dt><dd><span>2 goals, goal 1 (?Goal)
+<dt><span>3: </span><span class="rocqdoc-tactic">apply</span><span> 0. </span><span class="rocqdoc-comment">(* assigns value to ?y *)</span></dt><dd><span>2 goals, goal 1 (?Goal)
   
   x, y, z : nat
   H1 : y</span><span> =</span><span> x
@@ -1579,17 +1579,17 @@ goal 2 (?Goal0) is:
 </section>
 <section id="explicit-display-of-existential-instances-for-pretty-printing">
 <span id="explicit-display-existentials"></span><h2>Explicit display of existential instances for pretty-printing<a class="headerlink" href="#explicit-display-of-existential-instances-for-pretty-printing" title="Link to this heading"></a></h2>
-<dl class="coq flag">
-<dt class="sig sig-object coq" id="coq:flag.Printing-Existential-Instances">
-<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Existential</span></span></span> <span><span><span class="pre">Instances</span></span></span></span></span><a class="headerlink" href="#coq:flag.Printing-Existential-Instances" title="Link to this definition"></a></dt>
+<dl class="rocq flag">
+<dt class="sig sig-object rocq" id="rocq:flag.Printing-Existential-Instances">
+<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Existential</span></span></span> <span><span><span class="pre">Instances</span></span></span></span></span><a class="headerlink" href="#rocq:flag.Printing-Existential-Instances" title="Link to this definition"></a></dt>
 <dd><p>Activates the full display of how the
 context of an existential variable is instantiated at each of the
 occurrences of the existential variable.  Off by default.</p>
 </dd></dl>
 
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Check</span><span> (</span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span> =&gt; </span><span class="coqdoc-var">_</span><span>) 0 1.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Check</span><span> (</span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> =&gt; </span><span class="rocqdoc-var">_</span><span>) 0 1.</span><span>
 </span></dt><dd><span>(</span><span class="ansi-bold">fun</span><span> x0 y0 : nat =&gt; </span><span class="ansi-fg-light-blue">?y</span><span>&#64;{x0:=x; y0:=y; x:=x0; y:=y0}) 0 1
      : </span><span class="ansi-fg-light-blue">?T</span><span>&#64;{x0:=x; y0:=y; x:=0; y:=1}
 where
@@ -1601,9 +1601,9 @@ where
   |- </span><span class="ansi-fg-light-blue">?T</span><span>]
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">Set</span><span> </span><span class="coqdoc-keyword">Printing</span><span> </span><span class="coqdoc-var">Existential</span><span> </span><span class="coqdoc-var">Instances</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Set</span><span> </span><span class="rocqdoc-keyword">Printing</span><span> </span><span class="rocqdoc-var">Existential</span><span> </span><span class="rocqdoc-var">Instances</span><span>.</span><span>
 </span></dt><dt><span></span><span>
-</span><span class="coqdoc-keyword">Check</span><span> (</span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span> =&gt; </span><span class="coqdoc-var">_</span><span>) 0 1.</span><span>
+</span><span class="rocqdoc-keyword">Check</span><span> (</span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> =&gt; </span><span class="rocqdoc-var">_</span><span>) 0 1.</span><span>
 </span></dt><dd><span>(</span><span class="ansi-bold">fun</span><span> x0 y0 : nat =&gt; </span><span class="ansi-fg-light-blue">?y</span><span>&#64;{x0:=x; y0:=y; z:=z; H1:=H1; H2:=H2; x:=x0; y:=y0}) 0
   1
      : </span><span class="ansi-fg-light-blue">?T</span><span>&#64;{x0:=x; y0:=y; z:=z; H1:=H1; H2:=H2; x:=0; y:=1}
@@ -1629,9 +1629,9 @@ use any variable defined in its scope, including repeated alternations
 between variables introduced by term binding as well as those
 introduced by tactic binding. The expression <code class="docutils literal notranslate"><span class="pre">tacexpr</span></code> can be any tactic
 expression as described in <a class="reference internal" href="../../proof-engine/ltac.html#ltac"><span class="std std-ref">Ltac</span></a>.</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">foo</span><span> (</span><span class="coqdoc-var">x</span><span> : </span><span class="coqdoc-var">nat</span><span>) : </span><span class="coqdoc-var">nat</span><span> := </span><span class="coqdoc-keyword">ltac</span><span>:(</span><span class="coqdoc-tactic">exact</span><span> </span><span class="coqdoc-var">x</span><span>).</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">foo</span><span> (</span><span class="rocqdoc-var">x</span><span> : </span><span class="rocqdoc-var">nat</span><span>) : </span><span class="rocqdoc-var">nat</span><span> := </span><span class="rocqdoc-keyword">ltac</span><span>:(</span><span class="rocqdoc-tactic">exact</span><span> </span><span class="rocqdoc-var">x</span><span>).</span><span>
 </span></dt><dd><span>foo is defined
 </span></dd>
 </dl>

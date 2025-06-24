@@ -345,7 +345,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../language/extensions/arguments-command.html#automatic-declaration-of-implicit-arguments">Automatic declaration of implicit arguments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../language/extensions/arguments-command.html#renaming-implicit-arguments">Renaming implicit arguments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../language/extensions/arguments-command.html#binding-arguments-to-scopes">Binding arguments to scopes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../language/extensions/arguments-command.html#effects-of-arguments-on-unfolding">Effects of <code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Arguments</span></code> on unfolding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../language/extensions/arguments-command.html#effects-of-arguments-on-unfolding">Effects of <code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Arguments</span></code> on unfolding</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../language/extensions/arguments-command.html#bidirectionality-hints">Bidirectionality hints</a></li>
 </ul>
 </li>
@@ -506,7 +506,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#generation-of-inversion-principles-with-derive-inversion">Generation of inversion principles with <code class="docutils literal notranslate"><span class="pre">Derive</span></code> <code class="docutils literal notranslate"><span class="pre">Inversion</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#examples-of-dependent-destruction-dependent-induction">Examples of <code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">destruction</span></code> / <code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">induction</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#examples-of-dependent-destruction-dependent-induction">Examples of <code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">destruction</span></code> / <code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">induction</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#a-larger-example">A larger example</a></li>
 </ul>
 </li>
@@ -1298,45 +1298,45 @@ yet because porting code from FunInd to Equations can be difficult
 <section id="advanced-recursive-functions">
 <span id="id1"></span><h2>Advanced recursive functions<a class="headerlink" href="#advanced-recursive-functions" title="Link to this heading"></a></h2>
 <p>The following command is available when the <code class="docutils literal notranslate"><span class="pre">FunInd</span></code> library has been loaded via <code class="docutils literal notranslate"><span class="pre">From</span> <span class="pre">Stdlib</span> <span class="pre">Require</span> <span class="pre">Import</span> <span class="pre">FunInd</span></code>:</p>
-<dl class="coq cmd">
-<dt class="sig sig-object coq" id="coq:cmd.Function">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Function</span></span></span> <a class="reference internal" href="../../language/core/inductive.html#grammar-token-fix_definition"><span class="hole"><span class="pre">fix_definition</span></span></a> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">with</span></span></span> <a class="reference internal" href="../../language/core/inductive.html#grammar-token-fix_definition"><span class="hole"><span class="pre">fix_definition</span></span></a></span><span class="notation-sup"><span class="pre">*</span></span></span></span></span><a class="headerlink" href="#coq:cmd.Function" title="Link to this definition"></a></dt>
-<dd><p>This command is a generalization of <a class="reference internal" href="../../language/core/inductive.html#coq:cmd.Fixpoint" title="Fixpoint"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Fixpoint</span></code></a>. It is a wrapper
+<dl class="rocq cmd">
+<dt class="sig sig-object rocq" id="rocq:cmd.Function">
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Function</span></span></span> <a class="reference internal" href="../../language/core/inductive.html#grammar-token-fix_definition"><span class="hole"><span class="pre">fix_definition</span></span></a> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">with</span></span></span> <a class="reference internal" href="../../language/core/inductive.html#grammar-token-fix_definition"><span class="hole"><span class="pre">fix_definition</span></span></a></span><span class="notation-sup"><span class="pre">*</span></span></span></span></span><a class="headerlink" href="#rocq:cmd.Function" title="Link to this definition"></a></dt>
+<dd><p>This command is a generalization of <a class="reference internal" href="../../language/core/inductive.html#rocq:cmd.Fixpoint" title="Fixpoint"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Fixpoint</span></code></a>. It is a wrapper
 for several ways of defining a function <em>and</em> other useful related
 objects, namely: an induction principle that reflects the recursive
-structure of the function (see <a class="reference internal" href="#coq:tacn.functional-induction" title="functional induction"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">functional</span> <span class="pre">induction</span></code></a>) and its fixpoint equality.
-This defines a function similar to those defined by <a class="reference internal" href="../../language/core/inductive.html#coq:cmd.Fixpoint" title="Fixpoint"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Fixpoint</span></code></a>.
-As in <a class="reference internal" href="../../language/core/inductive.html#coq:cmd.Fixpoint" title="Fixpoint"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Fixpoint</span></code></a>, the decreasing argument must
+structure of the function (see <a class="reference internal" href="#rocq:tacn.functional-induction" title="functional induction"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">functional</span> <span class="pre">induction</span></code></a>) and its fixpoint equality.
+This defines a function similar to those defined by <a class="reference internal" href="../../language/core/inductive.html#rocq:cmd.Fixpoint" title="Fixpoint"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Fixpoint</span></code></a>.
+As in <a class="reference internal" href="../../language/core/inductive.html#rocq:cmd.Fixpoint" title="Fixpoint"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Fixpoint</span></code></a>, the decreasing argument must
 be given (unless the function is not recursive), but it might not
 necessarily be <em>structurally</em> decreasing. Use the <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/inductive.html#grammar-token-fixannot"><span class="hole"><span class="pre">fixannot</span></span></a></span></code> clause
 to name the decreasing argument <em>and</em> to describe which kind of
 decreasing criteria to use to ensure termination of recursive
 calls.</p>
-<p><a class="reference internal" href="#coq:cmd.Function" title="Function"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Function</span></code></a> also supports the <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">with</span></span></span></span></code> clause to create
+<p><a class="reference internal" href="#rocq:cmd.Function" title="Function"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Function</span></code></a> also supports the <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">with</span></span></span></span></code> clause to create
 mutually recursive definitions, however this feature is limited
 to structurally recursive functions (i.e. when <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/inductive.html#grammar-token-fixannot"><span class="hole"><span class="pre">fixannot</span></span></a></span></code> is a <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">struct</span></span></span></span></code>
 clause).</p>
-<p>See <a class="reference internal" href="#coq:tacn.functional-induction" title="functional induction"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">functional</span> <span class="pre">induction</span></code></a> and <a class="reference internal" href="#coq:cmd.Functional-Scheme" title="Functional Scheme"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Functional</span> <span class="pre">Scheme</span></code></a> for how to use
+<p>See <a class="reference internal" href="#rocq:tacn.functional-induction" title="functional induction"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">functional</span> <span class="pre">induction</span></code></a> and <a class="reference internal" href="#rocq:cmd.Functional-Scheme" title="Functional Scheme"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Functional</span> <span class="pre">Scheme</span></code></a> for how to use
 the induction principle to reason easily about the function.</p>
-<p>The form of the <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/inductive.html#grammar-token-fixannot"><span class="hole"><span class="pre">fixannot</span></span></a></span></code> clause determines which definition mechanism <a class="reference internal" href="#coq:cmd.Function" title="Function"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Function</span></code></a> uses.
+<p>The form of the <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/inductive.html#grammar-token-fixannot"><span class="hole"><span class="pre">fixannot</span></span></a></span></code> clause determines which definition mechanism <a class="reference internal" href="#rocq:cmd.Function" title="Function"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Function</span></code></a> uses.
 (Note that references to <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">ident</span></span></span></span></code> below refer to the name of the function being defined.):</p>
 <ul>
-<li><p>If <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/inductive.html#grammar-token-fixannot"><span class="hole"><span class="pre">fixannot</span></span></a></span></code> is not specified, <a class="reference internal" href="#coq:cmd.Function" title="Function"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Function</span></code></a>
+<li><p>If <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/inductive.html#grammar-token-fixannot"><span class="hole"><span class="pre">fixannot</span></span></a></span></code> is not specified, <a class="reference internal" href="#rocq:cmd.Function" title="Function"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Function</span></code></a>
 defines the nonrecursive function <a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><code class="xref std std-token docutils literal notranslate"><span class="pre">ident</span></code></a> as if it was declared with
-<a class="reference internal" href="../../language/core/definitions.html#coq:cmd.Definition" title="Definition"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Definition</span></code></a>. In addition, the following are defined:</p>
+<a class="reference internal" href="../../language/core/definitions.html#rocq:cmd.Definition" title="Definition"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Definition</span></code></a>. In addition, the following are defined:</p>
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><code class="xref std std-token docutils literal notranslate"><span class="pre">ident</span></code></a><code class="docutils literal notranslate"><span class="pre">_rect</span></code>, <a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><code class="xref std std-token docutils literal notranslate"><span class="pre">ident</span></code></a><code class="docutils literal notranslate"><span class="pre">_rec</span></code> and <a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><code class="xref std std-token docutils literal notranslate"><span class="pre">ident</span></code></a><code class="docutils literal notranslate"><span class="pre">_ind</span></code>,
-which reflect the pattern matching structure of <a class="reference internal" href="../../language/core/basic.html#grammar-token-term"><code class="xref std std-token docutils literal notranslate"><span class="pre">term</span></code></a> (see <a class="reference internal" href="../../language/core/inductive.html#coq:cmd.Inductive" title="Inductive"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Inductive</span></code></a>);</p></li>
+which reflect the pattern matching structure of <a class="reference internal" href="../../language/core/basic.html#grammar-token-term"><code class="xref std std-token docutils literal notranslate"><span class="pre">term</span></code></a> (see <a class="reference internal" href="../../language/core/inductive.html#rocq:cmd.Inductive" title="Inductive"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Inductive</span></code></a>);</p></li>
 <li><p>The inductive <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">R</span></span></span><span><span><span class="pre">_</span></span></span><a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></code> corresponding to the graph of <a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><code class="xref std std-token docutils literal notranslate"><span class="pre">ident</span></code></a> (silently);</p></li>
 <li><p><a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><code class="xref std std-token docutils literal notranslate"><span class="pre">ident</span></code></a><code class="docutils literal notranslate"><span class="pre">_complete</span></code> and <a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><code class="xref std std-token docutils literal notranslate"><span class="pre">ident</span></code></a><code class="docutils literal notranslate"><span class="pre">_correct</span></code> which
 are inversion information linking the function and its graph.</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p>If <code class="docutils literal notranslate"><span class="notation"><span class="curlies"><span class="pre">{</span> <span><span><span class="pre">struct</span></span></span> <span><span><span class="pre">...</span></span></span> <span class="pre">}</span></span></span></code> is specified, <a class="reference internal" href="#coq:cmd.Function" title="Function"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Function</span></code></a>
+<li><p>If <code class="docutils literal notranslate"><span class="notation"><span class="curlies"><span class="pre">{</span> <span><span><span class="pre">struct</span></span></span> <span><span><span class="pre">...</span></span></span> <span class="pre">}</span></span></span></code> is specified, <a class="reference internal" href="#rocq:cmd.Function" title="Function"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Function</span></code></a>
 defines the structural recursive function <a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><code class="xref std std-token docutils literal notranslate"><span class="pre">ident</span></code></a> as if it was declared
-with <a class="reference internal" href="../../language/core/inductive.html#coq:cmd.Fixpoint" title="Fixpoint"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Fixpoint</span></code></a>. In addition, the following are defined:</p>
+with <a class="reference internal" href="../../language/core/inductive.html#rocq:cmd.Fixpoint" title="Fixpoint"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Fixpoint</span></code></a>. In addition, the following are defined:</p>
 <blockquote>
 <div><ul class="simple">
 <li><p>The same objects as above;</p></li>
@@ -1344,7 +1344,7 @@ with <a class="reference internal" href="../../language/core/inductive.html#coq:
 </ul>
 </div></blockquote>
 </li>
-<li><p>If <code class="docutils literal notranslate"><span class="notation"><span class="curlies"><span class="pre">{</span> <span><span><span class="pre">measure</span></span></span> <span><span><span class="pre">...</span></span></span> <span class="pre">}</span></span></span></code> or <code class="docutils literal notranslate"><span class="notation"><span class="curlies"><span class="pre">{</span> <span><span><span class="pre">wf</span></span></span> <span><span><span class="pre">...</span></span></span> <span class="pre">}</span></span></span></code> are specified, <a class="reference internal" href="#coq:cmd.Function" title="Function"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Function</span></code></a>
+<li><p>If <code class="docutils literal notranslate"><span class="notation"><span class="curlies"><span class="pre">{</span> <span><span><span class="pre">measure</span></span></span> <span><span><span class="pre">...</span></span></span> <span class="pre">}</span></span></span></code> or <code class="docutils literal notranslate"><span class="notation"><span class="curlies"><span class="pre">{</span> <span><span><span class="pre">wf</span></span></span> <span><span><span class="pre">...</span></span></span> <span class="pre">}</span></span></span></code> are specified, <a class="reference internal" href="#rocq:cmd.Function" title="Function"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Function</span></code></a>
 defines a recursive function by well-founded recursion. The module <code class="docutils literal notranslate"><span class="pre">Recdef</span></code>
 of the standard library must be loaded for this feature.</p>
 <blockquote>
@@ -1389,19 +1389,19 @@ hand.</p>
 <p>To obtain the right principle, it is better to put rigid
 parameters of the function as first arguments. For example it is
 better to define plus like this:</p>
-<div class="coqtop literal-block docutils container">
-<span class="coqtop-reset"></span><dl>
-<dt class="coqtop-hidden"><span></span><span class="coqdoc-keyword">From</span><span> </span><span class="coqdoc-var">Stdlib</span><span> </span><span class="coqdoc-keyword">Require</span><span> </span><span class="coqdoc-keyword">Import</span><span> </span><span class="coqdoc-var">FunInd</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>[Loading ML file rocq-runtime.plugins.extraction ... done]
+<div class="rocqtop literal-block docutils container">
+<span class="rocqtop-reset"></span><dl>
+<dt class="rocqtop-hidden"><span></span><span class="rocqdoc-keyword">From</span><span> </span><span class="rocqdoc-var">Stdlib</span><span> </span><span class="rocqdoc-keyword">Require</span><span> </span><span class="rocqdoc-keyword">Import</span><span> </span><span class="rocqdoc-var">FunInd</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>[Loading ML file rocq-runtime.plugins.extraction ... done]
 [Loading ML file rocq-runtime.plugins.funind ... done]
 </span></dd>
 </dl>
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Function</span><span> </span><span class="coqdoc-var">plus</span><span> (</span><span class="coqdoc-var">m</span><span> </span><span class="coqdoc-var">n</span><span> : </span><span class="coqdoc-var">nat</span><span>) {</span><span class="coqdoc-keyword">struct</span><span> </span><span class="coqdoc-var">n</span><span>} : </span><span class="coqdoc-var">nat</span><span> :=</span><span>
-</span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-keyword">with</span><span>
-| 0 =&gt; </span><span class="coqdoc-var">m</span><span>
-| </span><span class="coqdoc-var">S</span><span> </span><span class="coqdoc-var">p</span><span> =&gt; </span><span class="coqdoc-var">S</span><span> (</span><span class="coqdoc-var">plus</span><span> </span><span class="coqdoc-var">m</span><span> </span><span class="coqdoc-var">p</span><span>)</span><span>
-</span><span class="coqdoc-keyword">end</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Function</span><span> </span><span class="rocqdoc-var">plus</span><span> (</span><span class="rocqdoc-var">m</span><span> </span><span class="rocqdoc-var">n</span><span> : </span><span class="rocqdoc-var">nat</span><span>) {</span><span class="rocqdoc-keyword">struct</span><span> </span><span class="rocqdoc-var">n</span><span>} : </span><span class="rocqdoc-var">nat</span><span> :=</span><span>
+</span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-keyword">with</span><span>
+| 0 =&gt; </span><span class="rocqdoc-var">m</span><span>
+| </span><span class="rocqdoc-var">S</span><span> </span><span class="rocqdoc-var">p</span><span> =&gt; </span><span class="rocqdoc-var">S</span><span> (</span><span class="rocqdoc-var">plus</span><span> </span><span class="rocqdoc-var">m</span><span> </span><span class="rocqdoc-var">p</span><span>)</span><span>
+</span><span class="rocqdoc-keyword">end</span><span>.</span><span>
 </span></dt><dd><span>plus is defined
 plus is recursively defined (guarded on 2nd argument)
 plus_equation is defined
@@ -1414,16 +1414,16 @@ R_plus_complete is defined
 </dl>
 </div>
 <p>than like this:</p>
-<div class="coqtop literal-block docutils container">
-<span class="coqtop-reset"></span><dl class="simple">
-<dt class="coqtop-hidden"><span></span><span class="coqdoc-keyword">From</span><span> </span><span class="coqdoc-var">Stdlib</span><span> </span><span class="coqdoc-keyword">Require</span><span> </span><span class="coqdoc-keyword">Import</span><span> </span><span class="coqdoc-var">FunInd</span><span>.</span><span>
+<div class="rocqtop literal-block docutils container">
+<span class="rocqtop-reset"></span><dl class="simple">
+<dt class="rocqtop-hidden"><span></span><span class="rocqdoc-keyword">From</span><span> </span><span class="rocqdoc-var">Stdlib</span><span> </span><span class="rocqdoc-keyword">Require</span><span> </span><span class="rocqdoc-keyword">Import</span><span> </span><span class="rocqdoc-var">FunInd</span><span>.</span><span>
 </span></dt></dl>
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Function</span><span> </span><span class="coqdoc-var">plus</span><span> (</span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-var">m</span><span> : </span><span class="coqdoc-var">nat</span><span>) {</span><span class="coqdoc-keyword">struct</span><span> </span><span class="coqdoc-var">n</span><span>} : </span><span class="coqdoc-var">nat</span><span> :=</span><span>
-</span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-keyword">with</span><span>
-| 0 =&gt; </span><span class="coqdoc-var">m</span><span>
-| </span><span class="coqdoc-var">S</span><span> </span><span class="coqdoc-var">p</span><span> =&gt; </span><span class="coqdoc-var">S</span><span> (</span><span class="coqdoc-var">plus</span><span> </span><span class="coqdoc-var">p</span><span> </span><span class="coqdoc-var">m</span><span>)</span><span>
-</span><span class="coqdoc-keyword">end</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Function</span><span> </span><span class="rocqdoc-var">plus</span><span> (</span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-var">m</span><span> : </span><span class="rocqdoc-var">nat</span><span>) {</span><span class="rocqdoc-keyword">struct</span><span> </span><span class="rocqdoc-var">n</span><span>} : </span><span class="rocqdoc-var">nat</span><span> :=</span><span>
+</span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-keyword">with</span><span>
+| 0 =&gt; </span><span class="rocqdoc-var">m</span><span>
+| </span><span class="rocqdoc-var">S</span><span> </span><span class="rocqdoc-var">p</span><span> =&gt; </span><span class="rocqdoc-var">S</span><span> (</span><span class="rocqdoc-var">plus</span><span> </span><span class="rocqdoc-var">p</span><span> </span><span class="rocqdoc-var">m</span><span>)</span><span>
+</span><span class="rocqdoc-keyword">end</span><span>.</span><span>
 </span></dt><dd><span>plus is defined
 plus is recursively defined (guarded on 1st argument)
 plus_equation is defined
@@ -1439,17 +1439,17 @@ R_plus_complete is defined
 <p><em>Limitations</em></p>
 <p><a class="reference internal" href="../../language/core/basic.html#grammar-token-term"><code class="xref std std-token docutils literal notranslate"><span class="pre">term</span></code></a> must be built as a <em>pure pattern matching tree</em> (<code class="code Coq docutils literal notranslate"><span class="keyword"><span class="pre">match</span></span> <span class="name builtin pseudo"><span class="pre">…</span></span> <span class="keyword"><span class="pre">with</span></span></code>)
 with applications only <em>at the end</em> of each branch.</p>
-<p><a class="reference internal" href="#coq:cmd.Function" title="Function"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Function</span></code></a> does not support partial application of the function being
+<p><a class="reference internal" href="#rocq:cmd.Function" title="Function"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Function</span></code></a> does not support partial application of the function being
 defined. Thus, the following example cannot be accepted due to the
 presence of partial application of <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">wrong</span></span></code> in the body of <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">wrong</span></span></code>:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl class="simple">
-<dt class="coqtop-hidden"><span></span><span class="coqdoc-keyword">From</span><span> </span><span class="coqdoc-var">Stdlib</span><span> </span><span class="coqdoc-keyword">Require</span><span> </span><span class="coqdoc-var">List</span><span>.</span><span>
-</span></dt><dt class="coqtop-hidden"><span></span><span class="coqdoc-keyword">Import</span><span> </span><span class="coqdoc-var">List.ListNotations</span><span>.</span><span>
+<dt class="rocqtop-hidden"><span></span><span class="rocqdoc-keyword">From</span><span> </span><span class="rocqdoc-var">Stdlib</span><span> </span><span class="rocqdoc-keyword">Require</span><span> </span><span class="rocqdoc-var">List</span><span>.</span><span>
+</span></dt><dt class="rocqtop-hidden"><span></span><span class="rocqdoc-keyword">Import</span><span> </span><span class="rocqdoc-var">List.ListNotations</span><span>.</span><span>
 </span></dt></dl>
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Function</span><span> </span><span class="coqdoc-var">wrong</span><span> (</span><span class="coqdoc-var">C</span><span>:</span><span class="coqdoc-var">nat</span><span>) : </span><span class="coqdoc-var">nat</span><span> :=</span><span>
-  </span><span class="coqdoc-var">List.hd</span><span> 0 (</span><span class="coqdoc-var">List.map</span><span> </span><span class="coqdoc-var">wrong</span><span> (</span><span class="coqdoc-var">C</span><span>::</span><span class="coqdoc-var">nil</span><span>)).</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Function</span><span> </span><span class="rocqdoc-var">wrong</span><span> (</span><span class="rocqdoc-var">C</span><span>:</span><span class="rocqdoc-var">nat</span><span>) : </span><span class="rocqdoc-var">nat</span><span> :=</span><span>
+  </span><span class="rocqdoc-var">List.hd</span><span> 0 (</span><span class="rocqdoc-var">List.map</span><span> </span><span class="rocqdoc-var">wrong</span><span> (</span><span class="rocqdoc-var">C</span><span>::</span><span class="rocqdoc-var">nil</span><span>)).</span><span>
 </span></dt><dd><span>Toplevel input, characters 0-70:
 &gt; Function wrong (C:nat) : nat :=   List.hd 0 (List.map wrong (C::nil)).
 &gt; ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1469,59 +1469,59 @@ Recursive definition is: &quot;</span><span class="ansi-bold">fun</span><span> C
 </div>
 <p>For now, dependent cases are not treated for non-structurally
 terminating functions.</p>
-<dl class="coq exn">
-<dt class="sig sig-object coq" id="coq:exn.The-recursive-argument-must-be-specified">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">The</span></span></span> <span><span><span class="pre">recursive</span></span></span> <span><span><span class="pre">argument</span></span></span> <span><span><span class="pre">must</span></span></span> <span><span><span class="pre">be</span></span></span> <span><span><span class="pre">specified.</span></span></span></span></span><a class="headerlink" href="#coq:exn.The-recursive-argument-must-be-specified" title="Link to this definition"></a></dt>
+<dl class="rocq exn">
+<dt class="sig sig-object rocq" id="rocq:exn.The-recursive-argument-must-be-specified">
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">The</span></span></span> <span><span><span class="pre">recursive</span></span></span> <span><span><span class="pre">argument</span></span></span> <span><span><span class="pre">must</span></span></span> <span><span><span class="pre">be</span></span></span> <span><span><span class="pre">specified.</span></span></span></span></span><a class="headerlink" href="#rocq:exn.The-recursive-argument-must-be-specified" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
-<dl class="coq exn">
-<dt class="sig sig-object coq" id="coq:exn.No-argument-name-‘ident’">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">No</span></span></span> <span><span><span class="pre">argument</span></span></span> <span><span><span class="pre">name</span></span></span> <a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a><span><span><span class="pre">.</span></span></span></span></span><a class="headerlink" href="#coq:exn.No-argument-name-‘ident’" title="Link to this definition"></a></dt>
+<dl class="rocq exn">
+<dt class="sig sig-object rocq" id="rocq:exn.No-argument-name-‘ident’">
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">No</span></span></span> <span><span><span class="pre">argument</span></span></span> <span><span><span class="pre">name</span></span></span> <a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a><span><span><span class="pre">.</span></span></span></span></span><a class="headerlink" href="#rocq:exn.No-argument-name-‘ident’" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
-<dl class="coq exn">
-<dt class="sig sig-object coq" id="coq:exn.Cannot-use-mutual-definition-with-well-founded-recursion-or-measure">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Cannot</span></span></span> <span><span><span class="pre">use</span></span></span> <span><span><span class="pre">mutual</span></span></span> <span><span><span class="pre">definition</span></span></span> <span><span><span class="pre">with</span></span></span> <span><span><span class="pre">well-founded</span></span></span> <span><span><span class="pre">recursion</span></span></span> <span><span><span class="pre">or</span></span></span> <span><span><span class="pre">measure.</span></span></span></span></span><a class="headerlink" href="#coq:exn.Cannot-use-mutual-definition-with-well-founded-recursion-or-measure" title="Link to this definition"></a></dt>
+<dl class="rocq exn">
+<dt class="sig sig-object rocq" id="rocq:exn.Cannot-use-mutual-definition-with-well-founded-recursion-or-measure">
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Cannot</span></span></span> <span><span><span class="pre">use</span></span></span> <span><span><span class="pre">mutual</span></span></span> <span><span><span class="pre">definition</span></span></span> <span><span><span class="pre">with</span></span></span> <span><span><span class="pre">well-founded</span></span></span> <span><span><span class="pre">recursion</span></span></span> <span><span><span class="pre">or</span></span></span> <span><span><span class="pre">measure.</span></span></span></span></span><a class="headerlink" href="#rocq:exn.Cannot-use-mutual-definition-with-well-founded-recursion-or-measure" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
-<dl class="coq warn">
-<dt class="sig sig-object coq" id="coq:warn.Cannot-define-graph-for-‘ident’">
-<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Cannot</span></span></span> <span><span><span class="pre">define</span></span></span> <span><span><span class="pre">graph</span></span></span> <span><span><span class="pre">for</span></span></span> <a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a><span><span><span class="pre">.</span></span></span></span></span><a class="headerlink" href="#coq:warn.Cannot-define-graph-for-‘ident’" title="Link to this definition"></a></dt>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.Cannot-define-graph-for-‘ident’">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Cannot</span></span></span> <span><span><span class="pre">define</span></span></span> <span><span><span class="pre">graph</span></span></span> <span><span><span class="pre">for</span></span></span> <a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a><span><span><span class="pre">.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.Cannot-define-graph-for-‘ident’" title="Link to this definition"></a></dt>
 <dd><p>The generation of the graph relation (<code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">R</span></span></span><span><span><span class="pre">_</span></span></span><a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></code>) used to compute the induction scheme of ident
 raised a typing error. Only <a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><code class="xref std std-token docutils literal notranslate"><span class="pre">ident</span></code></a> is defined; the induction scheme
 will not be generated. This error happens generally when:</p>
 <ul class="simple">
 <li><p>the definition uses pattern matching on dependent types,
-which <a class="reference internal" href="#coq:cmd.Function" title="Function"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Function</span></code></a> cannot deal with yet.</p></li>
+which <a class="reference internal" href="#rocq:cmd.Function" title="Function"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Function</span></code></a> cannot deal with yet.</p></li>
 <li><p>the definition is not a <em>pattern matching tree</em> as explained above.</p></li>
 </ul>
 </dd></dl>
 
-<dl class="coq warn">
-<dt class="sig sig-object coq" id="coq:warn.Cannot-define-principle(s)-for-‘ident’">
-<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Cannot</span></span></span> <span><span><span class="pre">define</span></span></span> <span><span><span class="pre">principle(s)</span></span></span> <span><span><span class="pre">for</span></span></span> <a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a><span><span><span class="pre">.</span></span></span></span></span><a class="headerlink" href="#coq:warn.Cannot-define-principle(s)-for-‘ident’" title="Link to this definition"></a></dt>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.Cannot-define-principle(s)-for-‘ident’">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Cannot</span></span></span> <span><span><span class="pre">define</span></span></span> <span><span><span class="pre">principle(s)</span></span></span> <span><span><span class="pre">for</span></span></span> <a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a><span><span><span class="pre">.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.Cannot-define-principle(s)-for-‘ident’" title="Link to this definition"></a></dt>
 <dd><p>The generation of the graph relation (<code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">R</span></span></span><span><span><span class="pre">_</span></span></span><a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></code>) succeeded but the induction principle
 could not be built. Only <a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><code class="xref std std-token docutils literal notranslate"><span class="pre">ident</span></code></a> is defined. Please report.</p>
 </dd></dl>
 
-<dl class="coq warn">
-<dt class="sig sig-object coq" id="coq:warn.Cannot-build-functional-inversion-principle">
-<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Cannot</span></span></span> <span><span><span class="pre">build</span></span></span> <span><span><span class="pre">functional</span></span></span> <span><span><span class="pre">inversion</span></span></span> <span><span><span class="pre">principle.</span></span></span></span></span><a class="headerlink" href="#coq:warn.Cannot-build-functional-inversion-principle" title="Link to this definition"></a></dt>
-<dd><p><a class="reference internal" href="#coq:tacn.functional-inversion" title="functional inversion"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">functional</span> <span class="pre">inversion</span></code></a> will not be available for the function.</p>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.Cannot-build-functional-inversion-principle">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Cannot</span></span></span> <span><span><span class="pre">build</span></span></span> <span><span><span class="pre">functional</span></span></span> <span><span><span class="pre">inversion</span></span></span> <span><span><span class="pre">principle.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.Cannot-build-functional-inversion-principle" title="Link to this definition"></a></dt>
+<dd><p><a class="reference internal" href="#rocq:tacn.functional-inversion" title="functional inversion"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">functional</span> <span class="pre">inversion</span></code></a> will not be available for the function.</p>
 </dd></dl>
 
 </section>
 <section id="tactics">
 <h2>Tactics<a class="headerlink" href="#tactics" title="Link to this heading"></a></h2>
-<dl class="coq tacn">
-<dt class="sig sig-object coq" id="coq:tacn.functional-induction">
-<em class="property"><span class="sigannot"><span class="pre">Tactic</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">functional</span></span></span> <span><span><span class="pre">induction</span></span></span> <a class="reference internal" href="../../language/core/basic.html#grammar-token-term"><span class="hole"><span class="pre">term</span></span></a> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">using</span></span></span> <a class="reference internal" href="../../proof-engine/tactics.html#grammar-token-one_term_with_bindings"><span class="hole"><span class="pre">one_term_with_bindings</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">as</span></span></span> <a class="reference internal" href="../../proof-engine/tactics.html#grammar-token-simple_intropattern"><span class="hole"><span class="pre">simple_intropattern</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span></span></span><a class="headerlink" href="#coq:tacn.functional-induction" title="Link to this definition"></a></dt>
+<dl class="rocq tacn">
+<dt class="sig sig-object rocq" id="rocq:tacn.functional-induction">
+<em class="property"><span class="sigannot"><span class="pre">Tactic</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">functional</span></span></span> <span><span><span class="pre">induction</span></span></span> <a class="reference internal" href="../../language/core/basic.html#grammar-token-term"><span class="hole"><span class="pre">term</span></span></a> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">using</span></span></span> <a class="reference internal" href="../../proof-engine/tactics.html#grammar-token-one_term_with_bindings"><span class="hole"><span class="pre">one_term_with_bindings</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">as</span></span></span> <a class="reference internal" href="../../proof-engine/tactics.html#grammar-token-simple_intropattern"><span class="hole"><span class="pre">simple_intropattern</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span></span></span><a class="headerlink" href="#rocq:tacn.functional-induction" title="Link to this definition"></a></dt>
 <dd><p>Performs case analysis and induction following the definition of a function
 <a class="reference internal" href="../../language/core/modules.html#grammar-token-qualid"><code class="xref std std-token docutils literal notranslate"><span class="pre">qualid</span></code></a>, which must be fully applied to its arguments as part of
 <a class="reference internal" href="../../language/core/basic.html#grammar-token-term"><code class="xref std std-token docutils literal notranslate"><span class="pre">term</span></code></a>. It uses a principle
-generated by <a class="reference internal" href="#coq:cmd.Function" title="Function"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Function</span></code></a> or <a class="reference internal" href="#coq:cmd.Functional-Scheme" title="Functional Scheme"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Functional</span> <span class="pre">Scheme</span></code></a>.
+generated by <a class="reference internal" href="#rocq:cmd.Function" title="Function"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Function</span></code></a> or <a class="reference internal" href="#rocq:cmd.Functional-Scheme" title="Functional Scheme"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Functional</span> <span class="pre">Scheme</span></code></a>.
 Note that this tactic is only available after a <code class="docutils literal notranslate"><span class="pre">From</span> <span class="pre">Stdlib</span> <span class="pre">Require</span> <span class="pre">Import</span> <span class="pre">FunInd</span></code>.
-See the <a class="reference internal" href="#coq:cmd.Function" title="Function"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Function</span></code></a> command.</p>
+See the <a class="reference internal" href="#rocq:cmd.Function" title="Function"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Function</span></code></a> command.</p>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">using</span></span></span> <a class="reference internal" href="../../language/core/basic.html#grammar-token-one_term"><span class="hole"><span class="pre">one_term</span></span></a></span></code></dt><dd><p>Specifies the induction principle (aka elimination scheme).</p>
 </dd>
@@ -1532,14 +1532,14 @@ See the <a class="reference internal" href="#coq:cmd.Function" title="Function">
 </dl>
 <div class="admonition note">
 <p class="admonition-title">Example</p>
-<div class="coqtop literal-block docutils container">
-<span class="coqtop-reset"></span><dl>
-<dt><span></span><span class="coqdoc-keyword">From</span><span> </span><span class="coqdoc-var">Stdlib</span><span> </span><span class="coqdoc-keyword">Require</span><span> </span><span class="coqdoc-keyword">Import</span><span> </span><span class="coqdoc-var">FunInd</span><span>.</span><span>
-</span></dt><dt><span></span><span class="coqdoc-keyword">Functional Scheme</span><span> </span><span class="coqdoc-var">minus_ind</span><span> := </span><span class="coqdoc-keyword">Induction</span><span> </span><span class="coqdoc-keyword">for</span><span> </span><span class="coqdoc-var">minus</span><span> </span><span class="coqdoc-keyword">Sort</span><span> </span><span class="coqdoc-keyword">Prop</span><span>.</span><span>
+<div class="rocqtop literal-block docutils container">
+<span class="rocqtop-reset"></span><dl>
+<dt><span></span><span class="rocqdoc-keyword">From</span><span> </span><span class="rocqdoc-var">Stdlib</span><span> </span><span class="rocqdoc-keyword">Require</span><span> </span><span class="rocqdoc-keyword">Import</span><span> </span><span class="rocqdoc-var">FunInd</span><span>.</span><span>
+</span></dt><dt><span></span><span class="rocqdoc-keyword">Functional Scheme</span><span> </span><span class="rocqdoc-var">minus_ind</span><span> := </span><span class="rocqdoc-keyword">Induction</span><span> </span><span class="rocqdoc-keyword">for</span><span> </span><span class="rocqdoc-var">minus</span><span> </span><span class="rocqdoc-keyword">Sort</span><span> </span><span class="rocqdoc-keyword">Prop</span><span>.</span><span>
 </span></dt><dd><span>sub_equation is defined
 minus_ind is defined
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-var">minus_ind</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-var">minus_ind</span><span>.</span><span>
 </span></dt><dd><span>minus_ind
      : </span><span class="ansi-bold">forall</span><span> P : nat</span><span> -&gt;</span><span> nat</span><span> -&gt;</span><span> nat</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Prop</span><span>,
        (</span><span class="ansi-bold">forall</span><span> n m : nat, n</span><span> =</span><span> 0</span><span> -&gt;</span><span> P 0 m n)</span><span> -&gt;</span><span>
@@ -1549,17 +1549,17 @@ minus_ind is defined
         </span><span class="ansi-bold">forall</span><span> l : nat, m</span><span> =</span><span> S l</span><span> -&gt;</span><span> P k l (k</span><span> -</span><span> l)</span><span> -&gt;</span><span> P (S k) (S l) (k</span><span> -</span><span> l))</span><span> -&gt;</span><span>
        </span><span class="ansi-bold">forall</span><span> n m : nat, P n m (n</span><span> -</span><span> m)
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Lemma</span><span> </span><span class="coqdoc-var">le_minus</span><span> (</span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-var">m</span><span>:</span><span class="coqdoc-var">nat</span><span>) : </span><span class="coqdoc-var">n</span><span> - </span><span class="coqdoc-var">m</span><span> &lt;= </span><span class="coqdoc-var">n</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Lemma</span><span> </span><span class="rocqdoc-var">le_minus</span><span> (</span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-var">m</span><span>:</span><span class="rocqdoc-var">nat</span><span>) : </span><span class="rocqdoc-var">n</span><span> - </span><span class="rocqdoc-var">m</span><span> &lt;= </span><span class="rocqdoc-var">n</span><span>.</span><span>
 </span></dt><dd><span>1 goal
   
   n, m : nat
   ============================
   n</span><span> -</span><span> m</span><span> &lt;=</span><span> n
 </span></dd>
-<dt><span></span><span class="coqdoc-var">functional</span><span> </span><span class="coqdoc-tactic">induction</span><span> (</span><span class="coqdoc-var">minus</span><span> </span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-var">m</span><span>) </span><span class="coqdoc-keyword">using</span><span> </span><span class="coqdoc-var">minus_ind</span><span>; </span><span class="coqdoc-tactic">simpl</span><span>; </span><span class="coqdoc-tactic">auto</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-var">functional</span><span> </span><span class="rocqdoc-tactic">induction</span><span> (</span><span class="rocqdoc-var">minus</span><span> </span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-var">m</span><span>) </span><span class="rocqdoc-keyword">using</span><span> </span><span class="rocqdoc-var">minus_ind</span><span>; </span><span class="rocqdoc-tactic">simpl</span><span>; </span><span class="rocqdoc-tactic">auto</span><span>.</span><span>
 </span></dt><dd><span>No more goals.
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Qed</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Qed</span><span>.</span><span>
 </span></dt></dl>
 </div>
 </div>
@@ -1568,41 +1568,41 @@ minus_ind is defined
 <p><code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">functional</span></span></span> <span><span><span class="pre">induction</span></span></span> <span><span><span class="pre">(f</span></span></span> <span><span><span class="pre">x1</span></span></span> <span><span><span class="pre">x2</span></span></span> <span><span><span class="pre">x3)</span></span></span></span></code> is actually a wrapper for
 <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">induction</span></span></span> <span><span><span class="pre">x1,</span></span></span> <span><span><span class="pre">x2,</span></span></span> <span><span><span class="pre">x3,</span></span></span> <span><span><span class="pre">(f</span></span></span> <span><span><span class="pre">x1</span></span></span> <span><span><span class="pre">x2</span></span></span> <span><span><span class="pre">x3)</span></span></span> <span><span><span class="pre">using</span></span></span> <a class="reference internal" href="../../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></code> followed by a cleaning
 phase, where <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></code> is the induction principle registered for <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">f</span></span></code>
-(by the <a class="reference internal" href="#coq:cmd.Function" title="Function"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Function</span></code></a> or <a class="reference internal" href="#coq:cmd.Functional-Scheme" title="Functional Scheme"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Functional</span> <span class="pre">Scheme</span></code></a> command)
+(by the <a class="reference internal" href="#rocq:cmd.Function" title="Function"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Function</span></code></a> or <a class="reference internal" href="#rocq:cmd.Functional-Scheme" title="Functional Scheme"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Functional</span> <span class="pre">Scheme</span></code></a> command)
 corresponding to the sort of the goal. Therefore
-<a class="reference internal" href="#coq:tacn.functional-induction" title="functional induction"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">functional</span> <span class="pre">induction</span></code></a> may fail if the induction scheme <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></code> is not
+<a class="reference internal" href="#rocq:tacn.functional-induction" title="functional induction"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">functional</span> <span class="pre">induction</span></code></a> may fail if the induction scheme <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></code> is not
 defined.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>There is a difference between obtaining an induction scheme
-for a function by using <a class="reference internal" href="#coq:cmd.Function" title="Function"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Function</span></code></a>
-and by using <a class="reference internal" href="#coq:cmd.Functional-Scheme" title="Functional Scheme"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Functional</span> <span class="pre">Scheme</span></code></a> after a normal definition using
-<a class="reference internal" href="../../language/core/inductive.html#coq:cmd.Fixpoint" title="Fixpoint"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Fixpoint</span></code></a> or <a class="reference internal" href="../../language/core/definitions.html#coq:cmd.Definition" title="Definition"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Definition</span></code></a>.</p>
+for a function by using <a class="reference internal" href="#rocq:cmd.Function" title="Function"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Function</span></code></a>
+and by using <a class="reference internal" href="#rocq:cmd.Functional-Scheme" title="Functional Scheme"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Functional</span> <span class="pre">Scheme</span></code></a> after a normal definition using
+<a class="reference internal" href="../../language/core/inductive.html#rocq:cmd.Fixpoint" title="Fixpoint"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Fixpoint</span></code></a> or <a class="reference internal" href="../../language/core/definitions.html#rocq:cmd.Definition" title="Definition"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Definition</span></code></a>.</p>
 </div>
-<dl class="coq exn">
-<dt class="sig sig-object coq" id="coq:exn.Cannot-find-induction-information-on-‘qualid’">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Cannot</span></span></span> <span><span><span class="pre">find</span></span></span> <span><span><span class="pre">induction</span></span></span> <span><span><span class="pre">information</span></span></span> <span><span><span class="pre">on</span></span></span> <a class="reference internal" href="../../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a><span><span><span class="pre">.</span></span></span></span></span><a class="headerlink" href="#coq:exn.Cannot-find-induction-information-on-‘qualid’" title="Link to this definition"></a></dt>
+<dl class="rocq exn">
+<dt class="sig sig-object rocq" id="rocq:exn.Cannot-find-induction-information-on-‘qualid’">
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Cannot</span></span></span> <span><span><span class="pre">find</span></span></span> <span><span><span class="pre">induction</span></span></span> <span><span><span class="pre">information</span></span></span> <span><span><span class="pre">on</span></span></span> <a class="reference internal" href="../../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a><span><span><span class="pre">.</span></span></span></span></span><a class="headerlink" href="#rocq:exn.Cannot-find-induction-information-on-‘qualid’" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
-<dl class="coq exn">
-<dt class="sig sig-object coq" id="coq:exn.Not-the-right-number-of-induction-arguments">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Not</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">right</span></span></span> <span><span><span class="pre">number</span></span></span> <span><span><span class="pre">of</span></span></span> <span><span><span class="pre">induction</span></span></span> <span><span><span class="pre">arguments.</span></span></span></span></span><a class="headerlink" href="#coq:exn.Not-the-right-number-of-induction-arguments" title="Link to this definition"></a></dt>
+<dl class="rocq exn">
+<dt class="sig sig-object rocq" id="rocq:exn.Not-the-right-number-of-induction-arguments">
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Not</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">right</span></span></span> <span><span><span class="pre">number</span></span></span> <span><span><span class="pre">of</span></span></span> <span><span><span class="pre">induction</span></span></span> <span><span><span class="pre">arguments.</span></span></span></span></span><a class="headerlink" href="#rocq:exn.Not-the-right-number-of-induction-arguments" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="coq tacn">
-<dt class="sig sig-object coq" id="coq:tacn.soft-functional-induction">
-<em class="property"><span class="sigannot"><span class="pre">Tactic</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">soft</span></span></span> <span><span><span class="pre">functional</span></span></span> <span><span><span class="pre">induction</span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../../language/core/basic.html#grammar-token-one_term"><span class="hole"><span class="pre">one_term</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">using</span></span></span> <a class="reference internal" href="../../proof-engine/tactics.html#grammar-token-one_term_with_bindings"><span class="hole"><span class="pre">one_term_with_bindings</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">as</span></span></span> <a class="reference internal" href="../../proof-engine/tactics.html#grammar-token-simple_intropattern"><span class="hole"><span class="pre">simple_intropattern</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span></span></span><a class="headerlink" href="#coq:tacn.soft-functional-induction" title="Link to this definition"></a></dt>
+<dl class="rocq tacn">
+<dt class="sig sig-object rocq" id="rocq:tacn.soft-functional-induction">
+<em class="property"><span class="sigannot"><span class="pre">Tactic</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">soft</span></span></span> <span><span><span class="pre">functional</span></span></span> <span><span><span class="pre">induction</span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../../language/core/basic.html#grammar-token-one_term"><span class="hole"><span class="pre">one_term</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">using</span></span></span> <a class="reference internal" href="../../proof-engine/tactics.html#grammar-token-one_term_with_bindings"><span class="hole"><span class="pre">one_term_with_bindings</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">as</span></span></span> <a class="reference internal" href="../../proof-engine/tactics.html#grammar-token-simple_intropattern"><span class="hole"><span class="pre">simple_intropattern</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span></span></span><a class="headerlink" href="#rocq:tacn.soft-functional-induction" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
-<dl class="coq tacn">
-<dt class="sig sig-object coq" id="coq:tacn.functional-inversion">
-<em class="property"><span class="sigannot"><span class="pre">Tactic</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">functional</span></span></span> <span><span><span class="pre">inversion</span></span></span> <span class="alternative"><span class="alternative-block"><a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><a class="reference internal" href="../../language/core/basic.html#grammar-token-natural"><span class="hole"><span class="pre">natural</span></span></a></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span></span></span><a class="headerlink" href="#coq:tacn.functional-inversion" title="Link to this definition"></a></dt>
+<dl class="rocq tacn">
+<dt class="sig sig-object rocq" id="rocq:tacn.functional-inversion">
+<em class="property"><span class="sigannot"><span class="pre">Tactic</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">functional</span></span></span> <span><span><span class="pre">inversion</span></span></span> <span class="alternative"><span class="alternative-block"><a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><a class="reference internal" href="../../language/core/basic.html#grammar-token-natural"><span class="hole"><span class="pre">natural</span></span></a></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span></span></span><a class="headerlink" href="#rocq:tacn.functional-inversion" title="Link to this definition"></a></dt>
 <dd><p>Performs inversion on hypothesis
 <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></code> of the form <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../../language/core/basic.html#grammar-token-term"><span class="hole"><span class="pre">term</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span></span> <span><span><span class="pre">=</span></span></span> <a class="reference internal" href="../../language/core/basic.html#grammar-token-term"><span class="hole"><span class="pre">term</span></span></a></span></code> or
-<code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/basic.html#grammar-token-term"><span class="hole"><span class="pre">term</span></span></a> <span><span><span class="pre">=</span></span></span> <a class="reference internal" href="../../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../../language/core/basic.html#grammar-token-term"><span class="hole"><span class="pre">term</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span></span></span></code> when <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></code> is defined using <a class="reference internal" href="#coq:cmd.Function" title="Function"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Function</span></code></a>.
+<code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/basic.html#grammar-token-term"><span class="hole"><span class="pre">term</span></span></a> <span><span><span class="pre">=</span></span></span> <a class="reference internal" href="../../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../../language/core/basic.html#grammar-token-term"><span class="hole"><span class="pre">term</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span></span></span></code> when <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></code> is defined using <a class="reference internal" href="#rocq:cmd.Function" title="Function"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Function</span></code></a>.
 Note that this tactic is only available after a <code class="docutils literal notranslate"><span class="pre">From</span> <span class="pre">Stdlib</span> <span class="pre">Require</span> <span class="pre">Import</span> <span class="pre">FunInd</span></code>.</p>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/basic.html#grammar-token-natural"><span class="hole"><span class="pre">natural</span></span></a></span></code></dt><dd><p>Does the same thing as <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">intros</span></span></span> <span><span><span class="pre">until</span></span></span> <a class="reference internal" href="../../language/core/basic.html#grammar-token-natural"><span class="hole"><span class="pre">natural</span></span></a></span></code> followed by
@@ -1616,14 +1616,14 @@ functional inversion, this variant allows choosing which <a class="reference int
 is inverted.</p>
 </dd>
 </dl>
-<dl class="coq exn">
-<dt class="sig sig-object coq" id="coq:exn.Hypothesis-‘ident’-must-contain-at-least-one-Function">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Hypothesis</span></span></span> <a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">must</span></span></span> <span><span><span class="pre">contain</span></span></span> <span><span><span class="pre">at</span></span></span> <span><span><span class="pre">least</span></span></span> <span><span><span class="pre">one</span></span></span> <span><span><span class="pre">Function.</span></span></span></span></span><a class="headerlink" href="#coq:exn.Hypothesis-‘ident’-must-contain-at-least-one-Function" title="Link to this definition"></a></dt>
+<dl class="rocq exn">
+<dt class="sig sig-object rocq" id="rocq:exn.Hypothesis-‘ident’-must-contain-at-least-one-Function">
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Hypothesis</span></span></span> <a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">must</span></span></span> <span><span><span class="pre">contain</span></span></span> <span><span><span class="pre">at</span></span></span> <span><span><span class="pre">least</span></span></span> <span><span><span class="pre">one</span></span></span> <span><span><span class="pre">Function.</span></span></span></span></span><a class="headerlink" href="#rocq:exn.Hypothesis-‘ident’-must-contain-at-least-one-Function" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
-<dl class="coq exn">
-<dt class="sig sig-object coq" id="coq:exn.Cannot-find-inversion-information-for-hypothesis-‘ident’">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Cannot</span></span></span> <span><span><span class="pre">find</span></span></span> <span><span><span class="pre">inversion</span></span></span> <span><span><span class="pre">information</span></span></span> <span><span><span class="pre">for</span></span></span> <span><span><span class="pre">hypothesis</span></span></span> <a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a><span><span><span class="pre">.</span></span></span></span></span><a class="headerlink" href="#coq:exn.Cannot-find-inversion-information-for-hypothesis-‘ident’" title="Link to this definition"></a></dt>
+<dl class="rocq exn">
+<dt class="sig sig-object rocq" id="rocq:exn.Cannot-find-inversion-information-for-hypothesis-‘ident’">
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Cannot</span></span></span> <span><span><span class="pre">find</span></span></span> <span><span><span class="pre">inversion</span></span></span> <span><span><span class="pre">information</span></span></span> <span><span><span class="pre">for</span></span></span> <span><span><span class="pre">hypothesis</span></span></span> <a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a><span><span><span class="pre">.</span></span></span></span></span><a class="headerlink" href="#rocq:exn.Cannot-find-inversion-information-for-hypothesis-‘ident’" title="Link to this definition"></a></dt>
 <dd><p>This error may be raised when some inversion lemma failed to be generated by
 Function.</p>
 </dd></dl>
@@ -1633,41 +1633,41 @@ Function.</p>
 </section>
 <section id="generation-of-induction-principles-with-functional-scheme">
 <span id="functional-scheme"></span><h2>Generation of induction principles with <code class="docutils literal notranslate"><span class="pre">Functional</span></code> <code class="docutils literal notranslate"><span class="pre">Scheme</span></code><a class="headerlink" href="#generation-of-induction-principles-with-functional-scheme" title="Link to this heading"></a></h2>
-<dl class="coq cmd">
-<dt class="sig sig-object coq" id="coq:cmd.Functional-Scheme">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Functional</span></span></span> <span><span><span class="pre">Scheme</span></span></span> <a class="reference internal" href="#grammar-token-func_scheme_def"><span class="hole"><span class="pre">func_scheme_def</span></span></a> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">with</span></span></span> <a class="reference internal" href="#grammar-token-func_scheme_def"><span class="hole"><span class="pre">func_scheme_def</span></span></a></span><span class="notation-sup"><span class="pre">*</span></span></span></span></span><a class="headerlink" href="#coq:cmd.Functional-Scheme" title="Link to this definition"></a></dt>
+<dl class="rocq cmd">
+<dt class="sig sig-object rocq" id="rocq:cmd.Functional-Scheme">
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Functional</span></span></span> <span><span><span class="pre">Scheme</span></span></span> <a class="reference internal" href="#grammar-token-func_scheme_def"><span class="hole"><span class="pre">func_scheme_def</span></span></a> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">with</span></span></span> <a class="reference internal" href="#grammar-token-func_scheme_def"><span class="hole"><span class="pre">func_scheme_def</span></span></a></span><span class="notation-sup"><span class="pre">*</span></span></span></span></span><a class="headerlink" href="#rocq:cmd.Functional-Scheme" title="Link to this definition"></a></dt>
 <dd><span class="prodn-table"><span class="prodn-column-group"><span class="prodn-column"></span><span class="prodn-column"></span><span class="prodn-column"></span><span class="prodn-column"></span></span><span class="prodn-row-group"><span class="prodn-row"><span class="prodn-cell-nonterminal"><span class="prodn-target"><span class="target" id="grammar-token-func_scheme_def"></span></span><span class="notation"><a class="reference internal" href="#grammar-token-func_scheme_def"><span class="hole">func_scheme_def</span></a></span></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">::=</span></code></span><span class="prodn-cell-production"><span class="notation"><a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole">ident</span></a> <span><span>:=</span></span> <span><span>Induction</span></span> <span><span>for</span></span> <a class="reference internal" href="../../language/core/modules.html#grammar-token-qualid"><span class="hole">qualid</span></a> <span><span>Sort</span></span> <a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#grammar-token-sort_quality_or_set"><span class="hole">sort_quality_or_set</span></a></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span></span></span><p>An experimental high-level tool that
 automatically generates induction principles corresponding to functions that
 may be mutually recursive.  The command generates an
 induction principle named <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></code> for each given function named <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></code>.
 The <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></code>s must be given in the same order as when they were defined.</p>
-<p>Note the command must be made available via <code class="docutils literal notranslate"><span class="pre">From</span> <span class="pre">Stdlib</span></code> <a class="reference internal" href="../../proof-engine/vernacular-commands.html#coq:cmd.Require-Import" title="Require Import"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Require</span> <span class="pre">Import</span></code></a> <code class="docutils literal notranslate"><span class="pre">FunInd</span></code>.</p>
+<p>Note the command must be made available via <code class="docutils literal notranslate"><span class="pre">From</span> <span class="pre">Stdlib</span></code> <a class="reference internal" href="../../proof-engine/vernacular-commands.html#rocq:cmd.Require-Import" title="Require Import"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Require</span> <span class="pre">Import</span></code></a> <code class="docutils literal notranslate"><span class="pre">FunInd</span></code>.</p>
 </dd></dl>
 
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>There is a difference between induction schemes generated by the command
-<a class="reference internal" href="#coq:cmd.Functional-Scheme" title="Functional Scheme"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Functional</span> <span class="pre">Scheme</span></code></a> and these generated by the <a class="reference internal" href="#coq:cmd.Function" title="Function"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Function</span></code></a>. Indeed,
-<a class="reference internal" href="#coq:cmd.Function" title="Function"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Function</span></code></a> generally produces smaller principles that are closer to how
+<a class="reference internal" href="#rocq:cmd.Functional-Scheme" title="Functional Scheme"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Functional</span> <span class="pre">Scheme</span></code></a> and these generated by the <a class="reference internal" href="#rocq:cmd.Function" title="Function"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Function</span></code></a>. Indeed,
+<a class="reference internal" href="#rocq:cmd.Function" title="Function"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Function</span></code></a> generally produces smaller principles that are closer to how
 a user would implement them. See <a class="reference internal" href="#advanced-recursive-functions"><span class="std std-ref">Advanced recursive functions</span></a> for details.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Example</p>
 <p>Induction scheme for div2.</p>
 <p>We define the function div2 as follows:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">From</span><span> </span><span class="coqdoc-var">Stdlib</span><span> </span><span class="coqdoc-keyword">Require</span><span> </span><span class="coqdoc-keyword">Import</span><span> </span><span class="coqdoc-var">FunInd</span><span>.</span><span>
-</span></dt><dt><span></span><span class="coqdoc-keyword">From</span><span> </span><span class="coqdoc-var">Stdlib</span><span> </span><span class="coqdoc-keyword">Require</span><span> </span><span class="coqdoc-keyword">Import</span><span> </span><span class="coqdoc-var">Arith</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">From</span><span> </span><span class="rocqdoc-var">Stdlib</span><span> </span><span class="rocqdoc-keyword">Require</span><span> </span><span class="rocqdoc-keyword">Import</span><span> </span><span class="rocqdoc-var">FunInd</span><span>.</span><span>
+</span></dt><dt><span></span><span class="rocqdoc-keyword">From</span><span> </span><span class="rocqdoc-var">Stdlib</span><span> </span><span class="rocqdoc-keyword">Require</span><span> </span><span class="rocqdoc-keyword">Import</span><span> </span><span class="rocqdoc-var">Arith</span><span>.</span><span>
 </span></dt><dd><span>[Loading ML file rocq-runtime.plugins.ring ... done]
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">Fixpoint</span><span> </span><span class="coqdoc-var">div2</span><span> (</span><span class="coqdoc-var">n</span><span>:</span><span class="coqdoc-var">nat</span><span>) : </span><span class="coqdoc-var">nat</span><span> :=</span><span>
-</span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-keyword">with</span><span>
-| </span><span class="coqdoc-var">O</span><span> =&gt; 0</span><span>
-| </span><span class="coqdoc-var">S</span><span> </span><span class="coqdoc-var">O</span><span> =&gt; 0</span><span>
-| </span><span class="coqdoc-var">S</span><span> (</span><span class="coqdoc-var">S</span><span> </span><span class="coqdoc-var">n'</span><span>) =&gt; </span><span class="coqdoc-var">S</span><span> (</span><span class="coqdoc-var">div2</span><span> </span><span class="coqdoc-var">n'</span><span>)</span><span>
-</span><span class="coqdoc-keyword">end</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Fixpoint</span><span> </span><span class="rocqdoc-var">div2</span><span> (</span><span class="rocqdoc-var">n</span><span>:</span><span class="rocqdoc-var">nat</span><span>) : </span><span class="rocqdoc-var">nat</span><span> :=</span><span>
+</span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-keyword">with</span><span>
+| </span><span class="rocqdoc-var">O</span><span> =&gt; 0</span><span>
+| </span><span class="rocqdoc-var">S</span><span> </span><span class="rocqdoc-var">O</span><span> =&gt; 0</span><span>
+| </span><span class="rocqdoc-var">S</span><span> (</span><span class="rocqdoc-var">S</span><span> </span><span class="rocqdoc-var">n'</span><span>) =&gt; </span><span class="rocqdoc-var">S</span><span> (</span><span class="rocqdoc-var">div2</span><span> </span><span class="rocqdoc-var">n'</span><span>)</span><span>
+</span><span class="rocqdoc-keyword">end</span><span>.</span><span>
 </span></dt><dd><span>div2 is defined
 div2 is recursively defined (guarded on 1st argument)
 </span></dd>
@@ -1675,18 +1675,18 @@ div2 is recursively defined (guarded on 1st argument)
 </div>
 <p>The definition of a principle of induction corresponding to the
 recursive structure of <code class="docutils literal notranslate"><span class="pre">div2</span></code> is defined by the command:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Functional Scheme</span><span> </span><span class="coqdoc-var">div2_ind</span><span> := </span><span class="coqdoc-keyword">Induction</span><span> </span><span class="coqdoc-keyword">for</span><span> </span><span class="coqdoc-var">div2</span><span> </span><span class="coqdoc-keyword">Sort</span><span> </span><span class="coqdoc-keyword">Prop</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Functional Scheme</span><span> </span><span class="rocqdoc-var">div2_ind</span><span> := </span><span class="rocqdoc-keyword">Induction</span><span> </span><span class="rocqdoc-keyword">for</span><span> </span><span class="rocqdoc-var">div2</span><span> </span><span class="rocqdoc-keyword">Sort</span><span> </span><span class="rocqdoc-keyword">Prop</span><span>.</span><span>
 </span></dt><dd><span>div2_equation is defined
 div2_ind is defined
 </span></dd>
 </dl>
 </div>
 <p>You may now look at the type of div2_ind:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-var">div2_ind</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-var">div2_ind</span><span>.</span><span>
 </span></dt><dd><span>div2_ind
      : </span><span class="ansi-bold">forall</span><span> P : nat</span><span> -&gt;</span><span> nat</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Prop</span><span>,
        (</span><span class="ansi-bold">forall</span><span> n : nat, n</span><span> =</span><span> 0</span><span> -&gt;</span><span> P 0 0)</span><span> -&gt;</span><span>
@@ -1700,29 +1700,29 @@ div2_ind is defined
 </dl>
 </div>
 <p>We can now prove the following lemma using this principle:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Lemma</span><span> </span><span class="coqdoc-var">div2_le'</span><span> : </span><span class="coqdoc-keyword">forall</span><span> </span><span class="coqdoc-var">n</span><span>:</span><span class="coqdoc-var">nat</span><span>, </span><span class="coqdoc-var">div2</span><span> </span><span class="coqdoc-var">n</span><span> &lt;= </span><span class="coqdoc-var">n</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Lemma</span><span> </span><span class="rocqdoc-var">div2_le'</span><span> : </span><span class="rocqdoc-keyword">forall</span><span> </span><span class="rocqdoc-var">n</span><span>:</span><span class="rocqdoc-var">nat</span><span>, </span><span class="rocqdoc-var">div2</span><span> </span><span class="rocqdoc-var">n</span><span> &lt;= </span><span class="rocqdoc-var">n</span><span>.</span><span>
 </span></dt><dd><span>1 goal
   
   ============================
   </span><span class="ansi-bold">forall</span><span> n : nat, div2 n</span><span> &lt;=</span><span> n
 </span></dd>
-<dt><span></span><span class="coqdoc-tactic">intro</span><span> </span><span class="coqdoc-var">n</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-tactic">intro</span><span> </span><span class="rocqdoc-var">n</span><span>.</span><span>
 </span></dt><dd><span>1 goal
   
   n : nat
   ============================
   div2 n</span><span> &lt;=</span><span> n
 </span></dd>
-<dt><span></span><span class="coqdoc-tactic">pattern</span><span> </span><span class="coqdoc-var">n</span><span>, (</span><span class="coqdoc-var">div2</span><span> </span><span class="coqdoc-var">n</span><span>).</span><span>
+<dt><span></span><span class="rocqdoc-tactic">pattern</span><span> </span><span class="rocqdoc-var">n</span><span>, (</span><span class="rocqdoc-var">div2</span><span> </span><span class="rocqdoc-var">n</span><span>).</span><span>
 </span></dt><dd><span>1 goal
   
   n : nat
   ============================
   (</span><span class="ansi-bold">fun</span><span> n0 n1 : nat =&gt; n1</span><span> &lt;=</span><span> n0) n (div2 n)
 </span></dd>
-<dt><span></span><span class="coqdoc-tactic">apply</span><span> </span><span class="coqdoc-var">div2_ind</span><span>; </span><span class="coqdoc-tactic">intros</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-tactic">apply</span><span> </span><span class="rocqdoc-var">div2_ind</span><span>; </span><span class="rocqdoc-tactic">intros</span><span>.</span><span>
 </span></dt><dd><span>3 goals
   
   n, n0 : nat
@@ -1735,7 +1735,7 @@ goal 2 is:
 goal 3 is:
  S (div2 n')</span><span> &lt;=</span><span> S (S n')
 </span></dd>
-<dt><span></span><span class="coqdoc-tactic">auto</span><span> </span><span class="coqdoc-keyword">with</span><span> </span><span class="coqdoc-var">arith</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-tactic">auto</span><span> </span><span class="rocqdoc-keyword">with</span><span> </span><span class="rocqdoc-var">arith</span><span>.</span><span>
 </span></dt><dd><span>2 goals
   
   n, n0, n1 : nat
@@ -1747,7 +1747,7 @@ goal 3 is:
 goal 2 is:
  S (div2 n')</span><span> &lt;=</span><span> S (S n')
 </span></dd>
-<dt><span></span><span class="coqdoc-tactic">auto</span><span> </span><span class="coqdoc-keyword">with</span><span> </span><span class="coqdoc-var">arith</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-tactic">auto</span><span> </span><span class="rocqdoc-keyword">with</span><span> </span><span class="rocqdoc-var">arith</span><span>.</span><span>
 </span></dt><dd><span>1 goal
   
   n, n0, n1 : nat
@@ -1758,32 +1758,32 @@ goal 2 is:
   ============================
   S (div2 n')</span><span> &lt;=</span><span> S (S n')
 </span></dd>
-<dt><span></span><span class="coqdoc-tactic">simpl</span><span>; </span><span class="coqdoc-tactic">auto</span><span> </span><span class="coqdoc-keyword">with</span><span> </span><span class="coqdoc-var">arith</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-tactic">simpl</span><span>; </span><span class="rocqdoc-tactic">auto</span><span> </span><span class="rocqdoc-keyword">with</span><span> </span><span class="rocqdoc-var">arith</span><span>.</span><span>
 </span></dt><dd><span>No more goals.
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Qed</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Qed</span><span>.</span><span>
 </span></dt></dl>
 </div>
-<p>We can use directly the functional induction (<a class="reference internal" href="#coq:tacn.functional-induction" title="functional induction"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">functional</span> <span class="pre">induction</span></code></a>) tactic instead
+<p>We can use directly the functional induction (<a class="reference internal" href="#rocq:tacn.functional-induction" title="functional induction"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">functional</span> <span class="pre">induction</span></code></a>) tactic instead
 of the pattern/apply trick:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Reset</span><span> </span><span class="coqdoc-var">div2_le'</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Reset</span><span> </span><span class="rocqdoc-var">div2_le'</span><span>.</span><span>
 </span></dt><dt><span></span><span>
-</span><span class="coqdoc-keyword">Lemma</span><span> </span><span class="coqdoc-var">div2_le</span><span> : </span><span class="coqdoc-keyword">forall</span><span> </span><span class="coqdoc-var">n</span><span>:</span><span class="coqdoc-var">nat</span><span>, </span><span class="coqdoc-var">div2</span><span> </span><span class="coqdoc-var">n</span><span> &lt;= </span><span class="coqdoc-var">n</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Lemma</span><span> </span><span class="rocqdoc-var">div2_le</span><span> : </span><span class="rocqdoc-keyword">forall</span><span> </span><span class="rocqdoc-var">n</span><span>:</span><span class="rocqdoc-var">nat</span><span>, </span><span class="rocqdoc-var">div2</span><span> </span><span class="rocqdoc-var">n</span><span> &lt;= </span><span class="rocqdoc-var">n</span><span>.</span><span>
 </span></dt><dd><span>1 goal
   
   ============================
   </span><span class="ansi-bold">forall</span><span> n : nat, div2 n</span><span> &lt;=</span><span> n
 </span></dd>
-<dt><span></span><span class="coqdoc-tactic">intro</span><span> </span><span class="coqdoc-var">n</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-tactic">intro</span><span> </span><span class="rocqdoc-var">n</span><span>.</span><span>
 </span></dt><dd><span>1 goal
   
   n : nat
   ============================
   div2 n</span><span> &lt;=</span><span> n
 </span></dd>
-<dt><span></span><span class="coqdoc-var">functional</span><span> </span><span class="coqdoc-tactic">induction</span><span> (</span><span class="coqdoc-var">div2</span><span> </span><span class="coqdoc-var">n</span><span>).</span><span>
+<dt><span></span><span class="rocqdoc-var">functional</span><span> </span><span class="rocqdoc-tactic">induction</span><span> (</span><span class="rocqdoc-var">div2</span><span> </span><span class="rocqdoc-var">n</span><span>).</span><span>
 </span></dt><dd><span>3 goals
   
   ============================
@@ -1794,7 +1794,7 @@ goal 2 is:
 goal 3 is:
  S (div2 n')</span><span> &lt;=</span><span> S (S n')
 </span></dd>
-<dt><span></span><span class="coqdoc-tactic">auto</span><span> </span><span class="coqdoc-keyword">with</span><span> </span><span class="coqdoc-var">arith</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-tactic">auto</span><span> </span><span class="rocqdoc-keyword">with</span><span> </span><span class="rocqdoc-var">arith</span><span>.</span><span>
 </span></dt><dd><span>2 goals
   
   ============================
@@ -1803,7 +1803,7 @@ goal 3 is:
 goal 2 is:
  S (div2 n')</span><span> &lt;=</span><span> S (S n')
 </span></dd>
-<dt><span></span><span class="coqdoc-tactic">auto</span><span> </span><span class="coqdoc-keyword">with</span><span> </span><span class="coqdoc-var">arith</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-tactic">auto</span><span> </span><span class="rocqdoc-keyword">with</span><span> </span><span class="rocqdoc-var">arith</span><span>.</span><span>
 </span></dt><dd><span>1 goal
   
   n' : nat
@@ -1811,10 +1811,10 @@ goal 2 is:
   ============================
   S (div2 n')</span><span> &lt;=</span><span> S (S n')
 </span></dd>
-<dt><span></span><span class="coqdoc-tactic">auto</span><span> </span><span class="coqdoc-keyword">with</span><span> </span><span class="coqdoc-var">arith</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-tactic">auto</span><span> </span><span class="rocqdoc-keyword">with</span><span> </span><span class="rocqdoc-var">arith</span><span>.</span><span>
 </span></dt><dd><span>No more goals.
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Qed</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Qed</span><span>.</span><span>
 </span></dt></dl>
 </div>
 </div>
@@ -1822,17 +1822,17 @@ goal 2 is:
 <p class="admonition-title">Example</p>
 <p>Induction scheme for tree_size.</p>
 <p>We define trees by the following mutual inductive type:</p>
-<div class="coqtop literal-block docutils container">
-<span class="coqtop-reset"></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Axiom</span><span> </span><span class="coqdoc-var">A</span><span> : </span><span class="coqdoc-keyword">Set</span><span>.</span><span>
+<div class="rocqtop literal-block docutils container">
+<span class="rocqtop-reset"></span><dl>
+<dt><span></span><span class="rocqdoc-keyword">Axiom</span><span> </span><span class="rocqdoc-var">A</span><span> : </span><span class="rocqdoc-keyword">Set</span><span>.</span><span>
 </span></dt><dd><span>A is declared
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">Inductive</span><span> </span><span class="coqdoc-var">tree</span><span> : </span><span class="coqdoc-keyword">Set</span><span> :=</span><span>
-</span><span class="coqdoc-var">node</span><span> : </span><span class="coqdoc-var">A</span><span> -&gt; </span><span class="coqdoc-var">forest</span><span> -&gt; </span><span class="coqdoc-var">tree</span><span>
-</span><span class="coqdoc-keyword">with</span><span> </span><span class="coqdoc-var">forest</span><span> : </span><span class="coqdoc-keyword">Set</span><span> :=</span><span>
-| </span><span class="coqdoc-var">empty</span><span> : </span><span class="coqdoc-var">forest</span><span>
-| </span><span class="coqdoc-var">cons</span><span> : </span><span class="coqdoc-var">tree</span><span> -&gt; </span><span class="coqdoc-var">forest</span><span> -&gt; </span><span class="coqdoc-var">forest</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Inductive</span><span> </span><span class="rocqdoc-var">tree</span><span> : </span><span class="rocqdoc-keyword">Set</span><span> :=</span><span>
+</span><span class="rocqdoc-var">node</span><span> : </span><span class="rocqdoc-var">A</span><span> -&gt; </span><span class="rocqdoc-var">forest</span><span> -&gt; </span><span class="rocqdoc-var">tree</span><span>
+</span><span class="rocqdoc-keyword">with</span><span> </span><span class="rocqdoc-var">forest</span><span> : </span><span class="rocqdoc-keyword">Set</span><span> :=</span><span>
+| </span><span class="rocqdoc-var">empty</span><span> : </span><span class="rocqdoc-var">forest</span><span>
+| </span><span class="rocqdoc-var">cons</span><span> : </span><span class="rocqdoc-var">tree</span><span> -&gt; </span><span class="rocqdoc-var">forest</span><span> -&gt; </span><span class="rocqdoc-var">forest</span><span>.</span><span>
 </span></dt><dd><span>tree, forest are defined
 tree_rect is defined
 tree_ind is defined
@@ -1848,19 +1848,19 @@ forest_sind is defined
 <p>We define the function tree_size that computes the size of a tree or a
 forest. Note that we use <code class="docutils literal notranslate"><span class="pre">Function</span></code> which generally produces better
 principles.</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">From</span><span> </span><span class="coqdoc-var">Stdlib</span><span> </span><span class="coqdoc-keyword">Require</span><span> </span><span class="coqdoc-keyword">Import</span><span> </span><span class="coqdoc-var">FunInd</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">From</span><span> </span><span class="rocqdoc-var">Stdlib</span><span> </span><span class="rocqdoc-keyword">Require</span><span> </span><span class="rocqdoc-keyword">Import</span><span> </span><span class="rocqdoc-var">FunInd</span><span>.</span><span>
 </span></dt><dt><span></span><span>
-</span><span class="coqdoc-keyword">Function</span><span> </span><span class="coqdoc-var">tree_size</span><span> (</span><span class="coqdoc-var">t</span><span>:</span><span class="coqdoc-var">tree</span><span>) : </span><span class="coqdoc-var">nat</span><span> :=</span><span>
-</span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">t</span><span> </span><span class="coqdoc-keyword">with</span><span>
-| </span><span class="coqdoc-var">node</span><span> </span><span class="coqdoc-var">A</span><span> </span><span class="coqdoc-var">f</span><span> =&gt; </span><span class="coqdoc-var">S</span><span> (</span><span class="coqdoc-var">forest_size</span><span> </span><span class="coqdoc-var">f</span><span>)</span><span>
-</span><span class="coqdoc-keyword">end</span><span>
-</span><span class="coqdoc-keyword">with</span><span> </span><span class="coqdoc-var">forest_size</span><span> (</span><span class="coqdoc-var">f</span><span>:</span><span class="coqdoc-var">forest</span><span>) : </span><span class="coqdoc-var">nat</span><span> :=</span><span>
-</span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">f</span><span> </span><span class="coqdoc-keyword">with</span><span>
-| </span><span class="coqdoc-var">empty</span><span> =&gt; 0</span><span>
-| </span><span class="coqdoc-var">cons</span><span> </span><span class="coqdoc-var">t</span><span> </span><span class="coqdoc-var">f'</span><span> =&gt; (</span><span class="coqdoc-var">tree_size</span><span> </span><span class="coqdoc-var">t</span><span> + </span><span class="coqdoc-var">forest_size</span><span> </span><span class="coqdoc-var">f'</span><span>)</span><span>
-</span><span class="coqdoc-keyword">end</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Function</span><span> </span><span class="rocqdoc-var">tree_size</span><span> (</span><span class="rocqdoc-var">t</span><span>:</span><span class="rocqdoc-var">tree</span><span>) : </span><span class="rocqdoc-var">nat</span><span> :=</span><span>
+</span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">t</span><span> </span><span class="rocqdoc-keyword">with</span><span>
+| </span><span class="rocqdoc-var">node</span><span> </span><span class="rocqdoc-var">A</span><span> </span><span class="rocqdoc-var">f</span><span> =&gt; </span><span class="rocqdoc-var">S</span><span> (</span><span class="rocqdoc-var">forest_size</span><span> </span><span class="rocqdoc-var">f</span><span>)</span><span>
+</span><span class="rocqdoc-keyword">end</span><span>
+</span><span class="rocqdoc-keyword">with</span><span> </span><span class="rocqdoc-var">forest_size</span><span> (</span><span class="rocqdoc-var">f</span><span>:</span><span class="rocqdoc-var">forest</span><span>) : </span><span class="rocqdoc-var">nat</span><span> :=</span><span>
+</span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">f</span><span> </span><span class="rocqdoc-keyword">with</span><span>
+| </span><span class="rocqdoc-var">empty</span><span> =&gt; 0</span><span>
+| </span><span class="rocqdoc-var">cons</span><span> </span><span class="rocqdoc-var">t</span><span> </span><span class="rocqdoc-var">f'</span><span> =&gt; (</span><span class="rocqdoc-var">tree_size</span><span> </span><span class="rocqdoc-var">t</span><span> + </span><span class="rocqdoc-var">forest_size</span><span> </span><span class="rocqdoc-var">f'</span><span>)</span><span>
+</span><span class="rocqdoc-keyword">end</span><span>.</span><span>
 </span></dt><dd><span>tree_size is defined
 forest_size is defined
 tree_size, forest_size are recursively defined (guarded respectively on 1st,
@@ -1882,9 +1882,9 @@ R_forest_size_complete is defined
 </div>
 <p>Notice that the induction principles <code class="docutils literal notranslate"><span class="pre">tree_size_ind</span></code> and <code class="docutils literal notranslate"><span class="pre">forest_size_ind</span></code>
 generated by <code class="docutils literal notranslate"><span class="pre">Function</span></code> are not mutual.</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-var">tree_size_ind</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-var">tree_size_ind</span><span>.</span><span>
 </span></dt><dd><span>tree_size_ind
      : </span><span class="ansi-bold">forall</span><span> P : tree</span><span> -&gt;</span><span> nat</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Prop</span><span>,
        (</span><span class="ansi-bold">forall</span><span> (t : tree) (A : A) (f : forest),
@@ -1895,19 +1895,19 @@ generated by <code class="docutils literal notranslate"><span class="pre">Functi
 </div>
 <p>Mutual induction principles following the recursive structure of <code class="docutils literal notranslate"><span class="pre">tree_size</span></code>
 and <code class="docutils literal notranslate"><span class="pre">forest_size</span></code> can be generated by the following command:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Functional Scheme</span><span> </span><span class="coqdoc-var">tree_size_ind2</span><span> := </span><span class="coqdoc-keyword">Induction</span><span> </span><span class="coqdoc-keyword">for</span><span> </span><span class="coqdoc-var">tree_size</span><span> </span><span class="coqdoc-keyword">Sort</span><span> </span><span class="coqdoc-keyword">Prop</span><span>
-</span><span class="coqdoc-keyword">with</span><span> </span><span class="coqdoc-var">forest_size_ind2</span><span> := </span><span class="coqdoc-keyword">Induction</span><span> </span><span class="coqdoc-keyword">for</span><span> </span><span class="coqdoc-var">forest_size</span><span> </span><span class="coqdoc-keyword">Sort</span><span> </span><span class="coqdoc-keyword">Prop</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Functional Scheme</span><span> </span><span class="rocqdoc-var">tree_size_ind2</span><span> := </span><span class="rocqdoc-keyword">Induction</span><span> </span><span class="rocqdoc-keyword">for</span><span> </span><span class="rocqdoc-var">tree_size</span><span> </span><span class="rocqdoc-keyword">Sort</span><span> </span><span class="rocqdoc-keyword">Prop</span><span>
+</span><span class="rocqdoc-keyword">with</span><span> </span><span class="rocqdoc-var">forest_size_ind2</span><span> := </span><span class="rocqdoc-keyword">Induction</span><span> </span><span class="rocqdoc-keyword">for</span><span> </span><span class="rocqdoc-var">forest_size</span><span> </span><span class="rocqdoc-keyword">Sort</span><span> </span><span class="rocqdoc-keyword">Prop</span><span>.</span><span>
 </span></dt><dd><span>tree_size_ind2 is defined
 forest_size_ind2 is defined
 </span></dd>
 </dl>
 </div>
 <p>You may now look at the type of <code class="docutils literal notranslate"><span class="pre">tree_size_ind2</span></code>:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-var">tree_size_ind2</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-var">tree_size_ind2</span><span>.</span><span>
 </span></dt><dd><span>tree_size_ind2
      : </span><span class="ansi-bold">forall</span><span> (P : tree</span><span> -&gt;</span><span> nat</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Prop</span><span>) (P0 : forest</span><span> -&gt;</span><span> nat</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Prop</span><span>),
        (</span><span class="ansi-bold">forall</span><span> (t : tree) (A : A) (f : forest),
@@ -1924,27 +1924,27 @@ forest_size_ind2 is defined
 </dl>
 </div>
 </div>
-<dl class="coq cmd">
-<dt class="sig sig-object coq" id="coq:cmd.Functional-Case">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Functional</span></span></span> <span><span><span class="pre">Case</span></span></span> <a class="reference internal" href="#grammar-token-func_scheme_def"><span class="hole"><span class="pre">func_scheme_def</span></span></a></span></span><a class="headerlink" href="#coq:cmd.Functional-Case" title="Link to this definition"></a></dt>
-<dt class="sig sig-object coq" id="coq:cmd.Generate-graph-for">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Generate</span></span></span> <span><span><span class="pre">graph</span></span></span> <span><span><span class="pre">for</span></span></span> <a class="reference internal" href="../../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></span><a class="headerlink" href="#coq:cmd.Generate-graph-for" title="Link to this definition"></a></dt>
+<dl class="rocq cmd">
+<dt class="sig sig-object rocq" id="rocq:cmd.Functional-Case">
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Functional</span></span></span> <span><span><span class="pre">Case</span></span></span> <a class="reference internal" href="#grammar-token-func_scheme_def"><span class="hole"><span class="pre">func_scheme_def</span></span></a></span></span><a class="headerlink" href="#rocq:cmd.Functional-Case" title="Link to this definition"></a></dt>
+<dt class="sig sig-object rocq" id="rocq:cmd.Generate-graph-for">
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Generate</span></span></span> <span><span><span class="pre">graph</span></span></span> <span><span><span class="pre">for</span></span></span> <a class="reference internal" href="../../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></span><a class="headerlink" href="#rocq:cmd.Generate-graph-for" title="Link to this definition"></a></dt>
 <dd><p>Internal debugging commands.</p>
 </dd></dl>
 
 </section>
 <section id="flags">
 <h2>Flags<a class="headerlink" href="#flags" title="Link to this heading"></a></h2>
-<dl class="coq flag">
-<dt class="sig sig-object coq" id="coq:flag.Functional-Induction-Rewrite-Dependent">
-<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Functional</span></span></span> <span><span><span class="pre">Induction</span></span></span> <span><span><span class="pre">Rewrite</span></span></span> <span><span><span class="pre">Dependent</span></span></span></span></span><a class="headerlink" href="#coq:flag.Functional-Induction-Rewrite-Dependent" title="Link to this definition"></a></dt>
-<dd><p>Makes FunInd use dependent <a class="reference internal" href="../../proofs/writing-proofs/equality.html#coq:tacn.subst" title="subst"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">subst</span></code></a>  instead of <a class="reference internal" href="../../proofs/writing-proofs/equality.html#coq:tacn.simple-subst" title="simple subst"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">simple</span> <span class="pre">subst</span></code></a>.
+<dl class="rocq flag">
+<dt class="sig sig-object rocq" id="rocq:flag.Functional-Induction-Rewrite-Dependent">
+<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Functional</span></span></span> <span><span><span class="pre">Induction</span></span></span> <span><span><span class="pre">Rewrite</span></span></span> <span><span><span class="pre">Dependent</span></span></span></span></span><a class="headerlink" href="#rocq:flag.Functional-Induction-Rewrite-Dependent" title="Link to this definition"></a></dt>
+<dd><p>Makes FunInd use dependent <a class="reference internal" href="../../proofs/writing-proofs/equality.html#rocq:tacn.subst" title="subst"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">subst</span></code></a>  instead of <a class="reference internal" href="../../proofs/writing-proofs/equality.html#rocq:tacn.simple-subst" title="simple subst"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">simple</span> <span class="pre">subst</span></code></a>.
 On by default.</p>
 </dd></dl>
 
-<dl class="coq flag">
-<dt class="sig sig-object coq" id="coq:flag.Function_raw_tcc">
-<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Function</span></span></span><span><span><span class="pre">_</span></span></span><span><span><span class="pre">raw</span></span></span><span><span><span class="pre">_</span></span></span><span><span><span class="pre">tcc</span></span></span></span></span><a class="headerlink" href="#coq:flag.Function_raw_tcc" title="Link to this definition"></a></dt>
+<dl class="rocq flag">
+<dt class="sig sig-object rocq" id="rocq:flag.Function_raw_tcc">
+<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Function</span></span></span><span><span><span class="pre">_</span></span></span><span><span><span class="pre">raw</span></span></span><span><span><span class="pre">_</span></span></span><span><span><span class="pre">tcc</span></span></span></span></span><a class="headerlink" href="#rocq:flag.Function_raw_tcc" title="Link to this definition"></a></dt>
 <dd><p>When Function is using a well-founded relation, this flag (when
 set) prevents the post-processing of the tcc (type checking
 conditions) generated for termination. (The post-processing is

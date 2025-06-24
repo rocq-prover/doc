@@ -345,7 +345,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../language/extensions/arguments-command.html#automatic-declaration-of-implicit-arguments">Automatic declaration of implicit arguments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../language/extensions/arguments-command.html#renaming-implicit-arguments">Renaming implicit arguments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../language/extensions/arguments-command.html#binding-arguments-to-scopes">Binding arguments to scopes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../language/extensions/arguments-command.html#effects-of-arguments-on-unfolding">Effects of <code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Arguments</span></code> on unfolding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../language/extensions/arguments-command.html#effects-of-arguments-on-unfolding">Effects of <code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Arguments</span></code> on unfolding</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../language/extensions/arguments-command.html#bidirectionality-hints">Bidirectionality hints</a></li>
 </ul>
 </li>
@@ -506,7 +506,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../proofs/writing-proofs/reasoning-inductives.html#generation-of-inversion-principles-with-derive-inversion">Generation of inversion principles with <code class="docutils literal notranslate"><span class="pre">Derive</span></code> <code class="docutils literal notranslate"><span class="pre">Inversion</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../proofs/writing-proofs/reasoning-inductives.html#examples-of-dependent-destruction-dependent-induction">Examples of <code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">destruction</span></code> / <code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">induction</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../proofs/writing-proofs/reasoning-inductives.html#examples-of-dependent-destruction-dependent-induction">Examples of <code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">destruction</span></code> / <code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">induction</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../proofs/writing-proofs/reasoning-inductives.html#a-larger-example">A larger example</a></li>
 </ul>
 </li>
@@ -1299,8 +1299,8 @@ unsuitable for some use cases.</p>
 <p>For example, in interactive mode, some errors coming from the kernel
 of Rocq are signaled late. The type of errors belonging to this
 category are universe inconsistencies.</p>
-<p>At the time of writing, only opaque proofs (ending with <a class="reference internal" href="../proofs/writing-proofs/proof-mode.html#coq:cmd.Qed" title="Qed"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Qed</span></code></a> or
-<a class="reference internal" href="../proofs/writing-proofs/proof-mode.html#coq:cmd.Admitted" title="Admitted"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Admitted</span></code></a>) can be processed asynchronously.</p>
+<p>At the time of writing, only opaque proofs (ending with <a class="reference internal" href="../proofs/writing-proofs/proof-mode.html#rocq:cmd.Qed" title="Qed"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Qed</span></code></a> or
+<a class="reference internal" href="../proofs/writing-proofs/proof-mode.html#rocq:cmd.Admitted" title="Admitted"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Admitted</span></code></a>) can be processed asynchronously.</p>
 <p>Finally, asynchronous processing is disabled when running RocqIDE in
 Windows. The current implementation of the feature is not stable on
 Windows. It can be enabled, as described below at <a class="reference internal" href="#interactive-mode"><span class="std std-ref">Interactive mode</span></a>,
@@ -1315,13 +1315,13 @@ Section <a class="reference internal" href="../language/core/sections.html#secti
 section variables are actually used and hence have to be quantified in
 the statement of the theorem. To avoid making the construction of
 proofs mandatory when ending a section, one can start each proof with
-the <a class="reference internal" href="../proofs/writing-proofs/proof-mode.html#coq:cmd.Proof-using" title="Proof using"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Proof</span> <span class="pre">using</span></code></a> command (Section <a class="reference internal" href="../proofs/writing-proofs/proof-mode.html#proof-editing-mode"><span class="std std-ref">Entering and exiting proof mode</span></a>) that
+the <a class="reference internal" href="../proofs/writing-proofs/proof-mode.html#rocq:cmd.Proof-using" title="Proof using"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Proof</span> <span class="pre">using</span></code></a> command (Section <a class="reference internal" href="../proofs/writing-proofs/proof-mode.html#proof-editing-mode"><span class="std std-ref">Entering and exiting proof mode</span></a>) that
 declares which section variables the theorem uses.</p>
-<p>The presence of <a class="reference internal" href="../proofs/writing-proofs/proof-mode.html#coq:cmd.Proof-using" title="Proof using"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Proof</span> <span class="pre">using</span></code></a> is needed to process proofs asynchronously
+<p>The presence of <a class="reference internal" href="../proofs/writing-proofs/proof-mode.html#rocq:cmd.Proof-using" title="Proof using"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Proof</span> <span class="pre">using</span></code></a> is needed to process proofs asynchronously
 in interactive mode.</p>
 <p>It is not strictly mandatory in batch mode if it is not the first time
 the file is compiled and if the file itself did not change. When the
-proof does not begin with <a class="reference internal" href="../proofs/writing-proofs/proof-mode.html#coq:cmd.Proof-using" title="Proof using"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Proof</span> <span class="pre">using</span></code></a>, the system records in an
+proof does not begin with <a class="reference internal" href="../proofs/writing-proofs/proof-mode.html#rocq:cmd.Proof-using" title="Proof using"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Proof</span> <span class="pre">using</span></code></a>, the system records in an
 auxiliary file, produced along with the <code class="docutils literal notranslate"><span class="pre">.vo</span></code> file, the list of section
 variables used.</p>
 <p>If a theorem has an incorrect annotation that omits a needed variable, you may see
@@ -1339,11 +1339,11 @@ Proof using FtoRradix b pGivesBound precision precisionNotZero radix radixMoreTh
 </pre></div>
 </div>
 </div></blockquote>
-<p>In this case the minimal annotation suggested by the <a class="reference internal" href="../proofs/writing-proofs/proof-mode.html#coq:flag.Suggest-Proof-Using" title="Suggest Proof Using"><code class="xref coq coq-flag docutils literal notranslate"><span class="pre">Suggest</span> <span class="pre">Proof</span> <span class="pre">Using</span></code></a> flag is
+<p>In this case the minimal annotation suggested by the <a class="reference internal" href="../proofs/writing-proofs/proof-mode.html#rocq:flag.Suggest-Proof-Using" title="Suggest Proof Using"><code class="xref rocq rocq-flag docutils literal notranslate"><span class="pre">Suggest</span> <span class="pre">Proof</span> <span class="pre">Using</span></code></a> flag is
 <code class="docutils literal notranslate"><span class="pre">Print</span> <span class="pre">Using</span> <span class="pre">pGivesBound</span> <span class="pre">precisionNotZero</span> <span class="pre">radixMoreThanOne.</span></code>  The other variables
 in the suggestion are unnecessary because they will be transitively included from
 the minimal annotation.</p>
-<p>Alternatively, if the <a class="reference internal" href="../proofs/writing-proofs/proof-mode.html#coq:cmd.Proof-using" title="Proof using"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Proof</span> <span class="pre">using</span></code></a> included unneeded variables, they become
+<p>Alternatively, if the <a class="reference internal" href="../proofs/writing-proofs/proof-mode.html#rocq:cmd.Proof-using" title="Proof using"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Proof</span> <span class="pre">using</span></code></a> included unneeded variables, they become
 extra parameters of the theorem, which may generate errors.
 This <a class="reference internal" href="../proofs/writing-proofs/proof-mode.html#example-print-using"><span class="std std-ref">example</span></a> shows an example of an unneeded variable.
 One possible error is <code class="docutils literal notranslate"><span class="pre">(in</span> <span class="pre">proof</span> <span class="pre">&lt;theorem</span> <span class="pre">name&gt;)</span> <span class="pre">Attempt</span> <span class="pre">to</span> <span class="pre">save</span> <span class="pre">an</span> <span class="pre">incomplete</span> <span class="pre">proof</span></code>,
@@ -1351,7 +1351,7 @@ which may indicate that the named theorem refers to an earlier theorem that has
 an incorrect annotation.</p>
 <section id="automatic-suggestion-of-proof-annotations">
 <h3>Automatic suggestion of proof annotations<a class="headerlink" href="#automatic-suggestion-of-proof-annotations" title="Link to this heading"></a></h3>
-<p>The <a class="reference internal" href="../proofs/writing-proofs/proof-mode.html#coq:flag.Suggest-Proof-Using" title="Suggest Proof Using"><code class="xref coq coq-flag docutils literal notranslate"><span class="pre">Suggest</span> <span class="pre">Proof</span> <span class="pre">Using</span></code></a> flag makes Rocq suggest, when a <a class="reference internal" href="../proofs/writing-proofs/proof-mode.html#coq:cmd.Qed" title="Qed"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Qed</span></code></a>
+<p>The <a class="reference internal" href="../proofs/writing-proofs/proof-mode.html#rocq:flag.Suggest-Proof-Using" title="Suggest Proof Using"><code class="xref rocq rocq-flag docutils literal notranslate"><span class="pre">Suggest</span> <span class="pre">Proof</span> <span class="pre">Using</span></code></a> flag makes Rocq suggest, when a <a class="reference internal" href="../proofs/writing-proofs/proof-mode.html#rocq:cmd.Qed" title="Qed"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Qed</span></code></a>
 command is processed, a correct proof annotation. It is up to the user
 to modify the proof script accordingly.</p>
 </section>
@@ -1416,7 +1416,7 @@ window shows the status of each worker process.
 If a proof contains an error, it's reported in red in the label of
 the very same button, that can also be used to see the list of errors
 and jump to the corresponding line.</p>
-<p>If a proof is processed asynchronously the corresponding <a class="reference internal" href="../proofs/writing-proofs/proof-mode.html#coq:cmd.Qed" title="Qed"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Qed</span></code></a> command
+<p>If a proof is processed asynchronously the corresponding <a class="reference internal" href="../proofs/writing-proofs/proof-mode.html#rocq:cmd.Qed" title="Qed"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Qed</span></code></a> command
 is colored using a lighter color than usual. This signals that the
 proof has been delegated to a worker process (or will be processed
 lazily if the <code class="docutils literal notranslate"><span class="pre">-async-proofs</span> <span class="pre">lazy</span></code> option is used). Once finished, the

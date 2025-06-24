@@ -345,7 +345,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../language/extensions/arguments-command.html#automatic-declaration-of-implicit-arguments">Automatic declaration of implicit arguments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../language/extensions/arguments-command.html#renaming-implicit-arguments">Renaming implicit arguments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../language/extensions/arguments-command.html#binding-arguments-to-scopes">Binding arguments to scopes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../language/extensions/arguments-command.html#effects-of-arguments-on-unfolding">Effects of <code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Arguments</span></code> on unfolding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../language/extensions/arguments-command.html#effects-of-arguments-on-unfolding">Effects of <code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Arguments</span></code> on unfolding</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../language/extensions/arguments-command.html#bidirectionality-hints">Bidirectionality hints</a></li>
 </ul>
 </li>
@@ -506,7 +506,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../proofs/writing-proofs/reasoning-inductives.html#generation-of-inversion-principles-with-derive-inversion">Generation of inversion principles with <code class="docutils literal notranslate"><span class="pre">Derive</span></code> <code class="docutils literal notranslate"><span class="pre">Inversion</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../proofs/writing-proofs/reasoning-inductives.html#examples-of-dependent-destruction-dependent-induction">Examples of <code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">destruction</span></code> / <code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">induction</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../proofs/writing-proofs/reasoning-inductives.html#examples-of-dependent-destruction-dependent-induction">Examples of <code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">destruction</span></code> / <code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">induction</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../proofs/writing-proofs/reasoning-inductives.html#a-larger-example">A larger example</a></li>
 </ul>
 </li>
@@ -1285,10 +1285,10 @@ derivation. Typically in the style of Bird and Meertens formalism or derivations
 of program refinements. To use the Derive extension it must first be
 required with <code class="docutils literal notranslate"><span class="pre">From</span> <span class="pre">Corelib</span> <span class="pre">Require</span> <span class="pre">Derive</span></code>. When the extension is loaded,
 it provides the following command:</p>
-<dl class="coq cmd">
-<dt class="sig sig-object coq" id="coq:cmd.Derive">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Derive</span></span></span> <a class="reference internal" href="../language/core/assumptions.html#grammar-token-open_binders"><span class="hole"><span class="pre">open_binders</span></span></a> <span><span><span class="pre">in</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-type"><span class="hole"><span class="pre">type</span></span></a> <span><span><span class="pre">as</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></span><a class="headerlink" href="#coq:cmd.Derive" title="Link to this definition"></a></dt>
-<dt class="sig sig-object coq">
+<dl class="rocq cmd">
+<dt class="sig sig-object rocq" id="rocq:cmd.Derive">
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Derive</span></span></span> <a class="reference internal" href="../language/core/assumptions.html#grammar-token-open_binders"><span class="hole"><span class="pre">open_binders</span></span></a> <span><span><span class="pre">in</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-type"><span class="hole"><span class="pre">type</span></span></a> <span><span><span class="pre">as</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></span><a class="headerlink" href="#rocq:cmd.Derive" title="Link to this definition"></a></dt>
+<dt class="sig sig-object rocq">
 <em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Derive</span></span></span> <a class="reference internal" href="../language/core/assumptions.html#grammar-token-open_binders"><span class="hole"><span class="pre">open_binders</span></span></a> <span><span><span class="pre">SuchThat</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-type"><span class="hole"><span class="pre">type</span></span></a> <span><span><span class="pre">As</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></span></dt>
 <dd><p>where <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/assumptions.html#grammar-token-open_binders"><span class="hole"><span class="pre">open_binders</span></span></a></span></code> is a list of the form
 <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span><sub><span class="pre">i</span></sub></span></a> <span><span><span class="pre">:</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-type"><span class="hole"><span class="pre">type</span><sub><span class="pre">i</span></sub></span></a></span></code> which can appear in <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/basic.html#grammar-token-type"><span class="hole"><span class="pre">type</span></span></a></span></code>. This
@@ -1296,7 +1296,7 @@ command opens a new proof presenting the user with a goal for
 <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/basic.html#grammar-token-type"><span class="hole"><span class="pre">type</span></span></a></span></code> in which each name <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span><sub><span class="pre">i</span></sub></span></a></span></code> is bound to an
 existential variable of same name <code class="code Coq docutils literal notranslate"><span class="operator"><span class="pre">?</span></span><span class="name"><span class="pre">ident__i</span></span></code> (these
 existential variables are shelved goals, as
-described in <a class="reference internal" href="../proofs/writing-proofs/proof-mode.html#coq:tacn.shelve" title="shelve"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">shelve</span></code></a>).</p>
+described in <a class="reference internal" href="../proofs/writing-proofs/proof-mode.html#rocq:tacn.shelve" title="shelve"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">shelve</span></code></a>).</p>
 <p>When the proof is complete, Rocq defines <a class="reference internal" href="../language/core/definitions.html#term-constant"><span class="xref std std-term">constants</span></a>
 for each <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span><sub><span class="pre">i</span></sub></span></a></span></code> and for <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></code>:</p>
 <ul class="simple">
@@ -1305,38 +1305,38 @@ shelved goals (which are also the value of <code class="docutils literal notrans
 transparent.</p></li>
 <li><p>The final one is named <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></code>. It has type <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/basic.html#grammar-token-type"><span class="hole"><span class="pre">type</span></span></a></span></code>, and its <a class="reference internal" href="../language/core/definitions.html#term-body"><span class="xref std std-term">body</span></a> is
 the proof of the initially visible goal. It is opaque if the proof
-ends with <a class="reference internal" href="../proofs/writing-proofs/proof-mode.html#coq:cmd.Qed" title="Qed"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Qed</span></code></a>, and transparent if the proof ends with <a class="reference internal" href="../proofs/writing-proofs/proof-mode.html#coq:cmd.Defined" title="Defined"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Defined</span></code></a>.</p></li>
+ends with <a class="reference internal" href="../proofs/writing-proofs/proof-mode.html#rocq:cmd.Qed" title="Qed"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Qed</span></code></a>, and transparent if the proof ends with <a class="reference internal" href="../proofs/writing-proofs/proof-mode.html#rocq:cmd.Defined" title="Defined"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Defined</span></code></a>.</p></li>
 </ul>
 </dd></dl>
 
 <div class="admonition note">
 <p class="admonition-title">Example</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt class="coqtop-hidden"><span></span><span class="coqdoc-keyword">Module</span><span> </span><span class="coqdoc-var">Nat</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>Interactive Module Nat started
+<dt class="rocqtop-hidden"><span></span><span class="rocqdoc-keyword">Module</span><span> </span><span class="rocqdoc-var">Nat</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>Interactive Module Nat started
 </span></dd>
-<dt class="coqtop-hidden"><span></span><span class="coqdoc-keyword">Axiom</span><span> </span><span class="coqdoc-var">mul_add_distr_l</span><span> : </span><span class="coqdoc-keyword">forall</span><span> </span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-var">m</span><span> </span><span class="coqdoc-var">p</span><span> : </span><span class="coqdoc-var">nat</span><span>, </span><span class="coqdoc-var">n</span><span> * (</span><span class="coqdoc-var">m</span><span> + </span><span class="coqdoc-var">p</span><span>) = </span><span class="coqdoc-var">n</span><span> * </span><span class="coqdoc-var">m</span><span> + </span><span class="coqdoc-var">n</span><span> * </span><span class="coqdoc-var">p</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>mul_add_distr_l is declared
+<dt class="rocqtop-hidden"><span></span><span class="rocqdoc-keyword">Axiom</span><span> </span><span class="rocqdoc-var">mul_add_distr_l</span><span> : </span><span class="rocqdoc-keyword">forall</span><span> </span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-var">m</span><span> </span><span class="rocqdoc-var">p</span><span> : </span><span class="rocqdoc-var">nat</span><span>, </span><span class="rocqdoc-var">n</span><span> * (</span><span class="rocqdoc-var">m</span><span> + </span><span class="rocqdoc-var">p</span><span>) = </span><span class="rocqdoc-var">n</span><span> * </span><span class="rocqdoc-var">m</span><span> + </span><span class="rocqdoc-var">n</span><span> * </span><span class="rocqdoc-var">p</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>mul_add_distr_l is declared
 </span></dd>
-<dt class="coqtop-hidden"><span></span><span class="coqdoc-keyword">End</span><span> </span><span class="coqdoc-var">Nat</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>Module Nat is defined
+<dt class="rocqtop-hidden"><span></span><span class="rocqdoc-keyword">End</span><span> </span><span class="rocqdoc-var">Nat</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>Module Nat is defined
 </span></dd>
 </dl>
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">From</span><span> </span><span class="coqdoc-var">Corelib</span><span> </span><span class="coqdoc-keyword">Require</span><span> </span><span class="coqdoc-var">Derive</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">From</span><span> </span><span class="rocqdoc-var">Corelib</span><span> </span><span class="rocqdoc-keyword">Require</span><span> </span><span class="rocqdoc-var">Derive</span><span>.</span><span>
 </span></dt><dd><span>[Loading ML file rocq-runtime.plugins.derive ... done]
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">Section</span><span> </span><span class="coqdoc-var">P</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Section</span><span> </span><span class="rocqdoc-var">P</span><span>.</span><span>
 </span></dt><dt><span></span><span>
-</span><span class="coqdoc-keyword">Variables</span><span> (</span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-var">m</span><span> </span><span class="coqdoc-var">k</span><span>:</span><span class="coqdoc-var">nat</span><span>).</span><span>
+</span><span class="rocqdoc-keyword">Variables</span><span> (</span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-var">m</span><span> </span><span class="rocqdoc-var">k</span><span>:</span><span class="rocqdoc-var">nat</span><span>).</span><span>
 </span></dt><dd><span>n is declared
 m is declared
 k is declared
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">Derive</span><span> </span><span class="coqdoc-var">j</span><span> </span><span class="coqdoc-var">p</span><span> </span><span class="coqdoc-tactic">in</span><span> ((</span><span class="coqdoc-var">k</span><span>*</span><span class="coqdoc-var">n</span><span>)+(</span><span class="coqdoc-var">k</span><span>*</span><span class="coqdoc-var">m</span><span>) = </span><span class="coqdoc-var">j</span><span>*</span><span class="coqdoc-var">p</span><span>) </span><span class="coqdoc-keyword">as</span><span> </span><span class="coqdoc-var">h</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Derive</span><span> </span><span class="rocqdoc-var">j</span><span> </span><span class="rocqdoc-var">p</span><span> </span><span class="rocqdoc-tactic">in</span><span> ((</span><span class="rocqdoc-var">k</span><span>*</span><span class="rocqdoc-var">n</span><span>)+(</span><span class="rocqdoc-var">k</span><span>*</span><span class="rocqdoc-var">m</span><span>) = </span><span class="rocqdoc-var">j</span><span>*</span><span class="rocqdoc-var">p</span><span>) </span><span class="rocqdoc-keyword">as</span><span> </span><span class="rocqdoc-var">h</span><span>.</span><span>
 </span></dt><dd><span>1 focused goal (shelved: 2)
   
   n, m, k : nat
@@ -1345,8 +1345,8 @@ k is declared
   ============================
   k</span><span> *</span><span> n</span><span> +</span><span> k</span><span> *</span><span> m</span><span> =</span><span> j</span><span> *</span><span> p
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Proof</span><span>.</span><span>
-</span></dt><dt><span></span><span class="coqdoc-tactic">rewrite</span><span> &lt;- </span><span class="coqdoc-var">Nat.mul_add_distr_l</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Proof</span><span>.</span><span>
+</span></dt><dt><span></span><span class="rocqdoc-tactic">rewrite</span><span> &lt;- </span><span class="rocqdoc-var">Nat.mul_add_distr_l</span><span>.</span><span>
 </span></dt><dd><span>1 focused goal (shelved: 2)
   
   n, m, k : nat
@@ -1355,33 +1355,33 @@ k is declared
   ============================
   k</span><span> *</span><span> (n</span><span> +</span><span> m)</span><span> =</span><span> j</span><span> *</span><span> p
 </span></dd>
-<dt><span></span><span class="coqdoc-tactic">subst</span><span> </span><span class="coqdoc-var">j</span><span> </span><span class="coqdoc-var">p</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-tactic">subst</span><span> </span><span class="rocqdoc-var">j</span><span> </span><span class="rocqdoc-var">p</span><span>.</span><span>
 </span></dt><dd><span>1 focused goal (shelved: 2)
   
   n, m, k : nat
   ============================
   k</span><span> *</span><span> (n</span><span> +</span><span> m)</span><span> =</span><span> </span><span class="ansi-fg-light-blue">?Goal0</span><span> *</span><span> </span><span class="ansi-fg-light-blue">?Goal</span><span>
 </span></dd>
-<dt><span></span><span class="coqdoc-tactic">reflexivity</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-tactic">reflexivity</span><span>.</span><span>
 </span></dt><dd><span>No more goals.
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Qed</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Qed</span><span>.</span><span>
 </span></dt><dt><span></span><span>
-</span><span class="coqdoc-keyword">End</span><span> </span><span class="coqdoc-var">P</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">End</span><span> </span><span class="rocqdoc-var">P</span><span>.</span><span>
 </span></dt><dt><span></span><span>
-</span><span class="coqdoc-keyword">Print</span><span> </span><span class="coqdoc-var">j</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Print</span><span> </span><span class="rocqdoc-var">j</span><span>.</span><span>
 </span></dt><dd><span>j = </span><span class="ansi-bold">fun</span><span> k : nat =&gt; k
      : nat</span><span> -&gt;</span><span> nat
 
 Arguments </span><span class="ansi-fg-light-green">j</span><span> k%_nat_scope
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Print</span><span> </span><span class="coqdoc-var">p</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Print</span><span> </span><span class="rocqdoc-var">p</span><span>.</span><span>
 </span></dt><dd><span>p = </span><span class="ansi-bold">fun</span><span> n m : nat =&gt; n</span><span> +</span><span> m
      : nat</span><span> -&gt;</span><span> nat</span><span> -&gt;</span><span> nat
 
 Arguments </span><span class="ansi-fg-light-green">p</span><span> (n m)%_nat_scope
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-var">h</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-var">h</span><span>.</span><span>
 </span></dt><dd><span>h
      : </span><span class="ansi-bold">forall</span><span> n m k : nat, k</span><span> *</span><span> n</span><span> +</span><span> k</span><span> *</span><span> m</span><span> =</span><span> j k</span><span> *</span><span> p n m
 </span></dd>

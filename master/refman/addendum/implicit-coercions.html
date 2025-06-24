@@ -345,7 +345,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../language/extensions/arguments-command.html#automatic-declaration-of-implicit-arguments">Automatic declaration of implicit arguments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../language/extensions/arguments-command.html#renaming-implicit-arguments">Renaming implicit arguments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../language/extensions/arguments-command.html#binding-arguments-to-scopes">Binding arguments to scopes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../language/extensions/arguments-command.html#effects-of-arguments-on-unfolding">Effects of <code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Arguments</span></code> on unfolding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../language/extensions/arguments-command.html#effects-of-arguments-on-unfolding">Effects of <code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Arguments</span></code> on unfolding</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../language/extensions/arguments-command.html#bidirectionality-hints">Bidirectionality hints</a></li>
 </ul>
 </li>
@@ -506,7 +506,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../proofs/writing-proofs/reasoning-inductives.html#generation-of-inversion-principles-with-derive-inversion">Generation of inversion principles with <code class="docutils literal notranslate"><span class="pre">Derive</span></code> <code class="docutils literal notranslate"><span class="pre">Inversion</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../proofs/writing-proofs/reasoning-inductives.html#examples-of-dependent-destruction-dependent-induction">Examples of <code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">destruction</span></code> / <code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">induction</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../proofs/writing-proofs/reasoning-inductives.html#examples-of-dependent-destruction-dependent-induction">Examples of <code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">destruction</span></code> / <code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">induction</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../proofs/writing-proofs/reasoning-inductives.html#a-larger-example">A larger example</a></li>
 </ul>
 </li>
@@ -1325,7 +1325,7 @@ type, i.e. of form <code class="code Coq docutils literal notranslate"><span cla
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Don't confuse coercion classes with typeclasses, which are records with
-special properties defined with the <a class="reference internal" href="type-classes.html#coq:cmd.Class" title="Class"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Class</span></code></a> command.</p>
+special properties defined with the <a class="reference internal" href="type-classes.html#rocq:cmd.Class" title="Class"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Class</span></code></a> command.</p>
 </div>
 </section>
 <section id="id1">
@@ -1345,7 +1345,7 @@ is the number of parameters of <code class="docutils literal notranslate"><span 
 </ul>
 </div></blockquote>
 <p>We then write <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">f</span></span> <span class="operator"><span class="pre">:</span></span> <span class="name"><span class="pre">C</span></span> <span class="operator"><span class="pre">&gt;-&gt;</span></span> <span class="name"><span class="pre">D</span></span></code>.</p>
-<p id="ambiguous-paths">When you declare a new coercion (e.g. with <a class="reference internal" href="#coq:cmd.Coercion" title="Coercion"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Coercion</span></code></a>), new coercion
+<p id="ambiguous-paths">When you declare a new coercion (e.g. with <a class="reference internal" href="#rocq:cmd.Coercion" title="Coercion"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Coercion</span></code></a>), new coercion
 paths with the same classes as existing ones are ignored. Rocq will generate
 a warning when the two paths may be non convertible. When the <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">x₁</span></span><span class="operator"><span class="pre">..</span></span><span class="name"><span class="pre">xₖ</span></span></code> are exactly
 the <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">v₁</span></span><span class="operator"><span class="pre">..</span></span><span class="name"><span class="pre">vₙ</span></span></code> (in the same order), the coercion is said to satisfy
@@ -1364,7 +1364,7 @@ then an object of <code class="docutils literal notranslate"><span class="pre">D
 <section id="reversible-coercions">
 <h2>Reversible Coercions<a class="headerlink" href="#reversible-coercions" title="Link to this heading"></a></h2>
 <p>When a term cannot be coerced (directly) to its expected type, Rocq tries to
-use a <span class="term-defn"><span class="target" id="term-reversible-coercion"></span>reversible coercion</span> (see the <a class="reference internal" href="#coq:attr.reversible" title="reversible"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">reversible</span></code></a> attribute). Intuitively,
+use a <span class="term-defn"><span class="target" id="term-reversible-coercion"></span>reversible coercion</span> (see the <a class="reference internal" href="#rocq:attr.reversible" title="reversible"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">reversible</span></code></a> attribute). Intuitively,
 Rocq synthesizes a new term of the right type that can be coerced
 to the original one. The new term is obtained by reversing the coercion, that
 is guessing its input given the output.</p>
@@ -1388,7 +1388,7 @@ inferring <code class="code Coq docutils literal notranslate"><span class="opera
 <section id="identity-coercions">
 <h2>Identity Coercions<a class="headerlink" href="#identity-coercions" title="Link to this heading"></a></h2>
 <p>To make coercions work for both a named class and for
-<code class="docutils literal notranslate"><span class="pre">Sortclass</span></code> or <code class="docutils literal notranslate"><span class="pre">Funclass</span></code>, use the <a class="reference internal" href="#coq:cmd.Identity-Coercion" title="Identity Coercion"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Identity</span> <span class="pre">Coercion</span></code></a> command.
+<code class="docutils literal notranslate"><span class="pre">Sortclass</span></code> or <code class="docutils literal notranslate"><span class="pre">Funclass</span></code>, use the <a class="reference internal" href="#rocq:cmd.Identity-Coercion" title="Identity Coercion"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Identity</span> <span class="pre">Coercion</span></code></a> command.
 There is an example <a class="reference internal" href="#example-identity-coercion"><span class="std std-ref">here</span></a>.</p>
 </section>
 <section id="inheritance-graph">
@@ -1410,101 +1410,101 @@ term consists of the successive application of its coercions.</p>
 </section>
 <section id="id2">
 <h2>Coercion Classes<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
-<dl class="coq cmd">
-<dt class="sig sig-object coq" id="coq:cmd.Coercion">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Coercion</span></span></span> <a class="reference internal" href="../proof-engine/vernacular-commands.html#grammar-token-reference"><span class="hole"><span class="pre">reference</span></span></a> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">:</span></span></span> <a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span></span></a> <span><span><span class="pre">&gt;-&gt;</span></span></span> <a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span></span></span><a class="headerlink" href="#coq:cmd.Coercion" title="Link to this definition"></a></dt>
-<dt class="sig sig-object coq">
+<dl class="rocq cmd">
+<dt class="sig sig-object rocq" id="rocq:cmd.Coercion">
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Coercion</span></span></span> <a class="reference internal" href="../proof-engine/vernacular-commands.html#grammar-token-reference"><span class="hole"><span class="pre">reference</span></span></a> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">:</span></span></span> <a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span></span></a> <span><span><span class="pre">&gt;-&gt;</span></span></span> <a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span></span></span><a class="headerlink" href="#rocq:cmd.Coercion" title="Link to this definition"></a></dt>
+<dt class="sig sig-object rocq">
 <em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Coercion</span></span></span> <a class="reference internal" href="../language/core/assumptions.html#grammar-token-ident_decl"><span class="hole"><span class="pre">ident_decl</span></span></a> <a class="reference internal" href="../language/core/definitions.html#grammar-token-def_body"><span class="hole"><span class="pre">def_body</span></span></a></span></span></dt>
 <dd><p>The first form declares the construction denoted by <a class="reference internal" href="../proof-engine/vernacular-commands.html#grammar-token-reference"><code class="xref std std-token docutils literal notranslate"><span class="pre">reference</span></code></a> as a coercion between
 the two given classes.  The second form defines <a class="reference internal" href="../language/core/assumptions.html#grammar-token-ident_decl"><code class="xref std std-token docutils literal notranslate"><span class="pre">ident_decl</span></code></a>
-just like <a class="reference internal" href="../language/core/definitions.html#coq:cmd.Definition" title="Definition"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Definition</span></code></a> <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/assumptions.html#grammar-token-ident_decl"><span class="hole"><span class="pre">ident_decl</span></span></a> <a class="reference internal" href="../language/core/definitions.html#grammar-token-def_body"><span class="hole"><span class="pre">def_body</span></span></a></span></code>
+just like <a class="reference internal" href="../language/core/definitions.html#rocq:cmd.Definition" title="Definition"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Definition</span></code></a> <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/assumptions.html#grammar-token-ident_decl"><span class="hole"><span class="pre">ident_decl</span></span></a> <a class="reference internal" href="../language/core/definitions.html#grammar-token-def_body"><span class="hole"><span class="pre">def_body</span></span></a></span></code>
 and then declares <a class="reference internal" href="../language/core/assumptions.html#grammar-token-ident_decl"><code class="xref std std-token docutils literal notranslate"><span class="pre">ident_decl</span></code></a> as a coercion between it source and its target.
-Both forms support the <a class="reference internal" href="../language/core/modules.html#coq:attr.local" title="local"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">local</span></code></a> attribute, which makes the coercion local to the current section.</p>
+Both forms support the <a class="reference internal" href="../language/core/modules.html#rocq:attr.local" title="local"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">local</span></code></a> attribute, which makes the coercion local to the current section.</p>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="notation"><span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">:</span></span></span> <a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span></span></a> <span><span><span class="pre">&gt;-&gt;</span></span></span> <a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span></span></code></dt><dd><p>The source and target classes of the coercion.
 If unspecified, <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../proof-engine/vernacular-commands.html#grammar-token-reference"><span class="hole"><span class="pre">reference</span></span></a></span></code> must already be a coercion, which
-enables modifying the <a class="reference internal" href="#coq:attr.reversible" title="reversible"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">reversible</span></code></a> attribute of <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../proof-engine/vernacular-commands.html#grammar-token-reference"><span class="hole"><span class="pre">reference</span></span></a></span></code>.
+enables modifying the <a class="reference internal" href="#rocq:attr.reversible" title="reversible"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">reversible</span></code></a> attribute of <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../proof-engine/vernacular-commands.html#grammar-token-reference"><span class="hole"><span class="pre">reference</span></span></a></span></code>.
 See the <a class="reference internal" href="#example-reversible-coercion-attribute"><span class="std std-ref">example</span></a> below.</p>
 </dd>
 </dl>
-<dl class="coq attr">
-<dt class="sig sig-object coq" id="coq:attr.reversible">
-<em class="property"><span class="sigannot"><span class="pre">Attribute</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">reversible</span></span></span><span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">=</span></span></span> <span class="alternative"><span class="alternative-block"><span><span><span class="pre">yes</span></span></span></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><span><span><span class="pre">no</span></span></span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span></span></span><a class="headerlink" href="#coq:attr.reversible" title="Link to this definition"></a></dt>
+<dl class="rocq attr">
+<dt class="sig sig-object rocq" id="rocq:attr.reversible">
+<em class="property"><span class="sigannot"><span class="pre">Attribute</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">reversible</span></span></span><span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">=</span></span></span> <span class="alternative"><span class="alternative-block"><span><span><span class="pre">yes</span></span></span></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><span><span><span class="pre">no</span></span></span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span></span></span><a class="headerlink" href="#rocq:attr.reversible" title="Link to this definition"></a></dt>
 <dd><p>This <a class="reference internal" href="../language/core/basic.html#term-attribute"><span class="xref std std-term">attribute</span></a> allows the coercion to be used as a
 <a class="reference internal" href="#term-reversible-coercion"><span class="xref std std-term">reversible coercion</span></a>. By default coercions are not reversible except for
-<a class="reference internal" href="../language/core/records.html#coq:cmd.Record" title="Record"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Record</span></code></a> fields specified using <code class="code Coq docutils literal notranslate"><span class="operator"><span class="pre">:&gt;</span></span></code>.</p>
+<a class="reference internal" href="../language/core/records.html#rocq:cmd.Record" title="Record"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Record</span></code></a> fields specified using <code class="code Coq docutils literal notranslate"><span class="operator"><span class="pre">:&gt;</span></span></code>.</p>
 </dd></dl>
 
-<dl class="coq attr">
-<dt class="sig sig-object coq" id="coq:attr.nonuniform">
-<em class="property"><span class="sigannot"><span class="pre">Attribute</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">nonuniform</span></span></span></span></span><a class="headerlink" href="#coq:attr.nonuniform" title="Link to this definition"></a></dt>
+<dl class="rocq attr">
+<dt class="sig sig-object rocq" id="rocq:attr.nonuniform">
+<em class="property"><span class="sigannot"><span class="pre">Attribute</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">nonuniform</span></span></span></span></span><a class="headerlink" href="#rocq:attr.nonuniform" title="Link to this definition"></a></dt>
 <dd><p>Silence the non uniform inheritance warning.</p>
 <div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 8.18: </span>Use the <a class="reference internal" href="../language/core/basic.html#coq:attr.warnings" title="warnings"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">warnings</span></code></a> attribute instead with &quot;-uniform-inheritance&quot;.</p>
+<p><span class="versionmodified deprecated">Deprecated since version 8.18: </span>Use the <a class="reference internal" href="../language/core/basic.html#rocq:attr.warnings" title="warnings"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">warnings</span></code></a> attribute instead with &quot;-uniform-inheritance&quot;.</p>
 </div>
 </dd></dl>
 
-<dl class="coq exn">
-<dt class="sig sig-object coq" id="coq:exn.‘qualid’-not-declared">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">declared.</span></span></span></span></span><a class="headerlink" href="#coq:exn.‘qualid’-not-declared" title="Link to this definition"></a></dt>
+<dl class="rocq exn">
+<dt class="sig sig-object rocq" id="rocq:exn.‘qualid’-not-declared">
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">declared.</span></span></span></span></span><a class="headerlink" href="#rocq:exn.‘qualid’-not-declared" title="Link to this definition"></a></dt>
 <dd><p><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><code class="xref std std-token docutils literal notranslate"><span class="pre">qualid</span></code></a> is not defined globally.</p>
 </dd></dl>
 
-<dl class="coq exn">
-<dt class="sig sig-object coq" id="coq:exn.‘qualid’-is-already-a-coercion">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">already</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">coercion.</span></span></span></span></span><a class="headerlink" href="#coq:exn.‘qualid’-is-already-a-coercion" title="Link to this definition"></a></dt>
+<dl class="rocq exn">
+<dt class="sig sig-object rocq" id="rocq:exn.‘qualid’-is-already-a-coercion">
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">already</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">coercion.</span></span></span></span></span><a class="headerlink" href="#rocq:exn.‘qualid’-is-already-a-coercion" title="Link to this definition"></a></dt>
 <dd><p><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><code class="xref std std-token docutils literal notranslate"><span class="pre">qualid</span></code></a> is already registered as a coercion.</p>
 </dd></dl>
 
-<dl class="coq exn">
-<dt class="sig sig-object coq" id="coq:exn.Funclass-cannot-be-a-source-class">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Funclass</span></span></span> <span><span><span class="pre">cannot</span></span></span> <span><span><span class="pre">be</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">source</span></span></span> <span><span><span class="pre">class.</span></span></span></span></span><a class="headerlink" href="#coq:exn.Funclass-cannot-be-a-source-class" title="Link to this definition"></a></dt>
+<dl class="rocq exn">
+<dt class="sig sig-object rocq" id="rocq:exn.Funclass-cannot-be-a-source-class">
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Funclass</span></span></span> <span><span><span class="pre">cannot</span></span></span> <span><span><span class="pre">be</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">source</span></span></span> <span><span><span class="pre">class.</span></span></span></span></span><a class="headerlink" href="#rocq:exn.Funclass-cannot-be-a-source-class" title="Link to this definition"></a></dt>
 <dd><p>Funclass as a source class is currently not supported. This may change in
 the future.</p>
 </dd></dl>
 
-<dl class="coq exn">
-<dt class="sig sig-object coq" id="coq:exn.‘qualid’-is-not-a-function">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">function.</span></span></span></span></span><a class="headerlink" href="#coq:exn.‘qualid’-is-not-a-function" title="Link to this definition"></a></dt>
+<dl class="rocq exn">
+<dt class="sig sig-object rocq" id="rocq:exn.‘qualid’-is-not-a-function">
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">function.</span></span></span></span></span><a class="headerlink" href="#rocq:exn.‘qualid’-is-not-a-function" title="Link to this definition"></a></dt>
 <dd><p><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><code class="xref std std-token docutils literal notranslate"><span class="pre">qualid</span></code></a> is not a function, so it cannot be used as a coercion.</p>
 </dd></dl>
 
-<dl class="coq exn">
-<dt class="sig sig-object coq" id="coq:exn.Cannot-find-the-source-class-of-‘qualid’">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Cannot</span></span></span> <span><span><span class="pre">find</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">source</span></span></span> <span><span><span class="pre">class</span></span></span> <span><span><span class="pre">of</span></span></span> <a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a><span><span><span class="pre">.</span></span></span></span></span><a class="headerlink" href="#coq:exn.Cannot-find-the-source-class-of-‘qualid’" title="Link to this definition"></a></dt>
+<dl class="rocq exn">
+<dt class="sig sig-object rocq" id="rocq:exn.Cannot-find-the-source-class-of-‘qualid’">
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Cannot</span></span></span> <span><span><span class="pre">find</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">source</span></span></span> <span><span><span class="pre">class</span></span></span> <span><span><span class="pre">of</span></span></span> <a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a><span><span><span class="pre">.</span></span></span></span></span><a class="headerlink" href="#rocq:exn.Cannot-find-the-source-class-of-‘qualid’" title="Link to this definition"></a></dt>
 <dd><p>Rocq can not infer a valid source class.</p>
 </dd></dl>
 
-<dl class="coq exn">
-<dt class="sig sig-object coq" id="coq:exn.Cannot-recognize-‘coercion_class’-as-a-source-class-of-‘qualid’">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Cannot</span></span></span> <span><span><span class="pre">recognize</span></span></span> <a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span></span></a> <span><span><span class="pre">as</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">source</span></span></span> <span><span><span class="pre">class</span></span></span> <span><span><span class="pre">of</span></span></span> <a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a><span><span><span class="pre">.</span></span></span></span></span><a class="headerlink" href="#coq:exn.Cannot-recognize-‘coercion_class’-as-a-source-class-of-‘qualid’" title="Link to this definition"></a></dt>
+<dl class="rocq exn">
+<dt class="sig sig-object rocq" id="rocq:exn.Cannot-recognize-‘coercion_class’-as-a-source-class-of-‘qualid’">
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Cannot</span></span></span> <span><span><span class="pre">recognize</span></span></span> <a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span></span></a> <span><span><span class="pre">as</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">source</span></span></span> <span><span><span class="pre">class</span></span></span> <span><span><span class="pre">of</span></span></span> <a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a><span><span><span class="pre">.</span></span></span></span></span><a class="headerlink" href="#rocq:exn.Cannot-recognize-‘coercion_class’-as-a-source-class-of-‘qualid’" title="Link to this definition"></a></dt>
 <dd><p>The inferred source class of the coercion differs from the one specified.</p>
 </dd></dl>
 
-<dl class="coq exn">
-<dt class="sig sig-object coq" id="coq:exn.Cannot-find-the-target-class">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Cannot</span></span></span> <span><span><span class="pre">find</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">target</span></span></span> <span><span><span class="pre">class</span></span></span></span></span><a class="headerlink" href="#coq:exn.Cannot-find-the-target-class" title="Link to this definition"></a></dt>
+<dl class="rocq exn">
+<dt class="sig sig-object rocq" id="rocq:exn.Cannot-find-the-target-class">
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Cannot</span></span></span> <span><span><span class="pre">find</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">target</span></span></span> <span><span><span class="pre">class</span></span></span></span></span><a class="headerlink" href="#rocq:exn.Cannot-find-the-target-class" title="Link to this definition"></a></dt>
 <dd><p>The target class of the coercion is not specified and cannot be inferred.
 Make sure that the target is not a variable.</p>
 </dd></dl>
 
-<dl class="coq exn">
-<dt class="sig sig-object coq" id="coq:exn.Found-target-class-‘coercion_class’-instead-of-‘coercion_class’">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Found</span></span></span> <span><span><span class="pre">target</span></span></span> <span><span><span class="pre">class</span></span></span> <a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span></span></a> <span><span><span class="pre">instead</span></span></span> <span><span><span class="pre">of</span></span></span> <a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span></span></a></span></span><a class="headerlink" href="#coq:exn.Found-target-class-‘coercion_class’-instead-of-‘coercion_class’" title="Link to this definition"></a></dt>
+<dl class="rocq exn">
+<dt class="sig sig-object rocq" id="rocq:exn.Found-target-class-‘coercion_class’-instead-of-‘coercion_class’">
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Found</span></span></span> <span><span><span class="pre">target</span></span></span> <span><span><span class="pre">class</span></span></span> <a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span></span></a> <span><span><span class="pre">instead</span></span></span> <span><span><span class="pre">of</span></span></span> <a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span></span></a></span></span><a class="headerlink" href="#rocq:exn.Found-target-class-‘coercion_class’-instead-of-‘coercion_class’" title="Link to this definition"></a></dt>
 <dd><p>The inferred target class of the coercion differs from the one specified.</p>
 </dd></dl>
 
-<dl class="coq warn">
-<dt class="sig sig-object coq" id="coq:warn.‘qualid’-does-not-respect-the-uniform-inheritance-condition">
-<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a> <span><span><span class="pre">does</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">respect</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">uniform</span></span></span> <span><span><span class="pre">inheritance</span></span></span> <span><span><span class="pre">condition.</span></span></span></span></span><a class="headerlink" href="#coq:warn.‘qualid’-does-not-respect-the-uniform-inheritance-condition" title="Link to this definition"></a></dt>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.‘qualid’-does-not-respect-the-uniform-inheritance-condition">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a> <span><span><span class="pre">does</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">respect</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">uniform</span></span></span> <span><span><span class="pre">inheritance</span></span></span> <span><span><span class="pre">condition.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.‘qualid’-does-not-respect-the-uniform-inheritance-condition" title="Link to this definition"></a></dt>
 <dd><p>The <a class="reference internal" href="#ambiguous-paths"><span class="std std-ref">test for ambiguous coercion paths</span></a>
 may yield false positives involving the coercion <a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><code class="xref std std-token docutils literal notranslate"><span class="pre">qualid</span></code></a>.
-Use the <a class="reference internal" href="../language/core/basic.html#coq:attr.warnings" title="warnings"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">warnings</span></code></a> attribute with &quot;-uniform-inheritance&quot; to silence this warning.</p>
+Use the <a class="reference internal" href="../language/core/basic.html#rocq:attr.warnings" title="warnings"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">warnings</span></code></a> attribute with &quot;-uniform-inheritance&quot; to silence this warning.</p>
 </dd></dl>
 
-<dl class="coq warn">
-<dt class="sig sig-object coq" id="coq:warn.New-coercion-path-...-is-ambiguous-with-existing-...">
-<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">New</span></span></span> <span><span><span class="pre">coercion</span></span></span> <span><span><span class="pre">path</span></span></span> <span><span><span class="pre">...</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">ambiguous</span></span></span> <span><span><span class="pre">with</span></span></span> <span><span><span class="pre">existing</span></span></span> <span><span><span class="pre">...</span></span></span></span></span><a class="headerlink" href="#coq:warn.New-coercion-path-...-is-ambiguous-with-existing-..." title="Link to this definition"></a></dt>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.New-coercion-path-...-is-ambiguous-with-existing-...">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">New</span></span></span> <span><span><span class="pre">coercion</span></span></span> <span><span><span class="pre">path</span></span></span> <span><span><span class="pre">...</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">ambiguous</span></span></span> <span><span><span class="pre">with</span></span></span> <span><span><span class="pre">existing</span></span></span> <span><span><span class="pre">...</span></span></span></span></span><a class="headerlink" href="#rocq:warn.New-coercion-path-...-is-ambiguous-with-existing-..." title="Link to this definition"></a></dt>
 <dd><p>The check for <a class="reference internal" href="#ambiguous-paths"><span class="std std-ref">ambiguous paths</span></a> failed.
 The paths for which this check fails are displayed by a warning
 in the form <code class="code Coq docutils literal notranslate"><span class="operator"><span class="pre">[</span></span><span class="name"><span class="pre">f₁</span></span><span class="operator"><span class="pre">;..;</span></span><span class="name"><span class="pre">fₙ</span></span><span class="operator"><span class="pre">]</span></span> <span class="operator"><span class="pre">:</span></span> <span class="name"><span class="pre">C</span></span> <span class="operator"><span class="pre">&gt;-&gt;</span></span> <span class="name"><span class="pre">D</span></span></code>.</p>
@@ -1515,9 +1515,9 @@ convertible with existing ones when they have coercions that don't satisfy
 this condition.</p>
 </dd></dl>
 
-<dl class="coq warn">
-<dt class="sig sig-object coq" id="coq:warn....-is-not-definitionally-an-identity-function">
-<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">...</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">definitionally</span></span></span> <span><span><span class="pre">an</span></span></span> <span><span><span class="pre">identity</span></span></span> <span><span><span class="pre">function.</span></span></span></span></span><a class="headerlink" href="#coq:warn....-is-not-definitionally-an-identity-function" title="Link to this definition"></a></dt>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn....-is-not-definitionally-an-identity-function">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">...</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">definitionally</span></span></span> <span><span><span class="pre">an</span></span></span> <span><span><span class="pre">identity</span></span></span> <span><span><span class="pre">function.</span></span></span></span></span><a class="headerlink" href="#rocq:warn....-is-not-definitionally-an-identity-function" title="Link to this definition"></a></dt>
 <dd><p>If a coercion path has the same source and target class, that is said to be
 circular. When a new circular coercion path is not convertible with the
 identity function, it will be reported as ambiguous.</p>
@@ -1530,31 +1530,31 @@ This applies to <a class="reference internal" href="../language/core/assumptions
 constructors of <a class="reference internal" href="../language/core/inductive.html#gallina-inductive-definitions"><span class="std std-ref">inductive types and record fields</span></a>.
 Use <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">:&gt;</span></span></span></span></code> instead of <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">:</span></span></span></span></code> before the
 type of the assumption to do so.  See <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/assumptions.html#grammar-token-of_type"><span class="hole"><span class="pre">of_type</span></span></a></span></code>.</p>
-<dl class="coq cmd">
-<dt class="sig sig-object coq" id="coq:cmd.Identity-Coercion">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Identity</span></span></span> <span><span><span class="pre">Coercion</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">:</span></span></span> <a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span><sub><span class="pre">src</span></sub></span></a> <span><span><span class="pre">&gt;-&gt;</span></span></span> <a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span><sub><span class="pre">dest</span></sub></span></a></span></span><a class="headerlink" href="#coq:cmd.Identity-Coercion" title="Link to this definition"></a></dt>
+<dl class="rocq cmd">
+<dt class="sig sig-object rocq" id="rocq:cmd.Identity-Coercion">
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Identity</span></span></span> <span><span><span class="pre">Coercion</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">:</span></span></span> <a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span><sub><span class="pre">src</span></sub></span></a> <span><span><span class="pre">&gt;-&gt;</span></span></span> <a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span><sub><span class="pre">dest</span></sub></span></a></span></span><a class="headerlink" href="#rocq:cmd.Identity-Coercion" title="Link to this definition"></a></dt>
 <dd><p>Checks that <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span><sub><span class="pre">src</span></sub></span></a></span></code> is a <a class="reference internal" href="../language/core/definitions.html#term-constant"><span class="xref std std-term">constant</span></a> with a <a class="reference internal" href="../language/core/definitions.html#term-body"><span class="xref std std-term">body</span></a> of the form
 <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">fun</span></span></span> <span><span><span class="pre">(x₁:T₁)..(xₙ:Tₙ)</span></span></span> <span><span><span class="pre">=&gt;</span></span></span> <a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span><sub><span class="pre">dest</span></sub></span></a> <span><span><span class="pre">t₁..tₘ</span></span></span></span></code> where <code class="docutils literal notranslate"><span class="pre">m</span></code> is the
 number of parameters of <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span><sub><span class="pre">dest</span></sub></span></a></span></code>.  Then we define an identity
 function with type <code class="code Coq docutils literal notranslate"><span class="keyword"><span class="pre">forall</span></span> <span class="operator"><span class="pre">(</span></span><span class="name"><span class="pre">x₁</span></span><span class="operator"><span class="pre">:</span></span><span class="name"><span class="pre">T₁</span></span><span class="operator"><span class="pre">)..(</span></span><span class="name"><span class="pre">xₙ</span></span><span class="operator"><span class="pre">:</span></span><span class="name"><span class="pre">Tₙ</span></span><span class="operator"><span class="pre">)(</span></span><span class="name"><span class="pre">y</span></span><span class="operator"><span class="pre">:</span></span><span class="name"><span class="pre">C</span></span> <span class="name"><span class="pre">x₁</span></span><span class="operator"><span class="pre">..</span></span><span class="name"><span class="pre">xₙ</span></span><span class="operator"><span class="pre">),</span></span><span class="name"><span class="pre">D</span></span> <span class="name"><span class="pre">t₁</span></span><span class="operator"><span class="pre">..</span></span><span class="name"><span class="pre">tₘ</span></span></code>,
 and we declare it as an identity coercion between <code class="docutils literal notranslate"><span class="pre">C</span></code> and <code class="docutils literal notranslate"><span class="pre">D</span></code>.
 See below for an <a class="reference internal" href="#example-identity-coercion"><span class="std std-ref">example</span></a>.</p>
-<p>This command supports the <a class="reference internal" href="../language/core/modules.html#coq:attr.local" title="local"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">local</span></code></a> attribute, which makes the coercion local to the current section.</p>
-<dl class="coq exn">
-<dt class="sig sig-object coq" id="coq:exn.‘coercion_class’-must-be-a-transparent-constant">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span></span></a> <span><span><span class="pre">must</span></span></span> <span><span><span class="pre">be</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">transparent</span></span></span> <span><span><span class="pre">constant.</span></span></span></span></span><a class="headerlink" href="#coq:exn.‘coercion_class’-must-be-a-transparent-constant" title="Link to this definition"></a></dt>
+<p>This command supports the <a class="reference internal" href="../language/core/modules.html#rocq:attr.local" title="local"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">local</span></code></a> attribute, which makes the coercion local to the current section.</p>
+<dl class="rocq exn">
+<dt class="sig sig-object rocq" id="rocq:exn.‘coercion_class’-must-be-a-transparent-constant">
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span></span></a> <span><span><span class="pre">must</span></span></span> <span><span><span class="pre">be</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">transparent</span></span></span> <span><span><span class="pre">constant.</span></span></span></span></span><a class="headerlink" href="#rocq:exn.‘coercion_class’-must-be-a-transparent-constant" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
-<dl class="coq cmd">
-<dt class="sig sig-object coq" id="coq:cmd.SubClass">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">SubClass</span></span></span> <a class="reference internal" href="../language/core/assumptions.html#grammar-token-ident_decl"><span class="hole"><span class="pre">ident_decl</span></span></a> <a class="reference internal" href="../language/core/definitions.html#grammar-token-def_body"><span class="hole"><span class="pre">def_body</span></span></a></span></span><a class="headerlink" href="#coq:cmd.SubClass" title="Link to this definition"></a></dt>
+<dl class="rocq cmd">
+<dt class="sig sig-object rocq" id="rocq:cmd.SubClass">
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">SubClass</span></span></span> <a class="reference internal" href="../language/core/assumptions.html#grammar-token-ident_decl"><span class="hole"><span class="pre">ident_decl</span></span></a> <a class="reference internal" href="../language/core/definitions.html#grammar-token-def_body"><span class="hole"><span class="pre">def_body</span></span></a></span></span><a class="headerlink" href="#rocq:cmd.SubClass" title="Link to this definition"></a></dt>
 <dd><p>If <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/basic.html#grammar-token-type"><span class="hole"><span class="pre">type</span></span></a></span></code> is a coercion class <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a><span>'</span></span></code> applied to some arguments then
 <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></code> is defined and an identity coercion of name
 <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">Id</span></span></span><span><span><span class="pre">_</span></span></span><a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a><span><span><span class="pre">_</span></span></span><a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a><span>'</span></span></code> is
 declared. In other words, this is an abbreviation for</p>
 <p><code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">Definition</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">:=</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-type"><span class="hole"><span class="pre">type</span></span></a><span><span><span class="pre">.</span></span></span></span></code>
 <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">Identity</span></span></span> <span><span><span class="pre">Coercion</span></span></span> <span><span><span class="pre">Id</span></span></span><span><span><span class="pre">_</span></span></span><a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a><span><span><span class="pre">_</span></span></span><a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a><span>'</span> <span><span><span class="pre">:</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">&gt;-&gt;</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a><span>'</span></span></code>.</p>
-<p>This command supports the <a class="reference internal" href="../language/core/modules.html#coq:attr.local" title="local"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">local</span></code></a> attribute, which makes the coercion local to the current section.</p>
+<p>This command supports the <a class="reference internal" href="../language/core/modules.html#rocq:attr.local" title="local"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">local</span></code></a> attribute, which makes the coercion local to the current section.</p>
 </dd></dl>
 
 </dd></dl>
@@ -1562,57 +1562,57 @@ declared. In other words, this is an abbreviation for</p>
 </section>
 <section id="displaying-available-coercions">
 <h2>Displaying Available Coercions<a class="headerlink" href="#displaying-available-coercions" title="Link to this heading"></a></h2>
-<dl class="coq cmd">
-<dt class="sig sig-object coq" id="coq:cmd.Print-Classes">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Print</span></span></span> <span><span><span class="pre">Classes</span></span></span></span></span><a class="headerlink" href="#coq:cmd.Print-Classes" title="Link to this definition"></a></dt>
+<dl class="rocq cmd">
+<dt class="sig sig-object rocq" id="rocq:cmd.Print-Classes">
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Print</span></span></span> <span><span><span class="pre">Classes</span></span></span></span></span><a class="headerlink" href="#rocq:cmd.Print-Classes" title="Link to this definition"></a></dt>
 <dd><p>Print the list of declared coercion classes in the current context.</p>
 </dd></dl>
 
-<dl class="coq cmd">
-<dt class="sig sig-object coq" id="coq:cmd.Print-Coercions">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Print</span></span></span> <span><span><span class="pre">Coercions</span></span></span></span></span><a class="headerlink" href="#coq:cmd.Print-Coercions" title="Link to this definition"></a></dt>
+<dl class="rocq cmd">
+<dt class="sig sig-object rocq" id="rocq:cmd.Print-Coercions">
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Print</span></span></span> <span><span><span class="pre">Coercions</span></span></span></span></span><a class="headerlink" href="#rocq:cmd.Print-Coercions" title="Link to this definition"></a></dt>
 <dd><p>Print the list of declared coercions in the current context.</p>
 </dd></dl>
 
-<dl class="coq cmd">
-<dt class="sig sig-object coq" id="coq:cmd.Print-Graph">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Print</span></span></span> <span><span><span class="pre">Graph</span></span></span></span></span><a class="headerlink" href="#coq:cmd.Print-Graph" title="Link to this definition"></a></dt>
+<dl class="rocq cmd">
+<dt class="sig sig-object rocq" id="rocq:cmd.Print-Graph">
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Print</span></span></span> <span><span><span class="pre">Graph</span></span></span></span></span><a class="headerlink" href="#rocq:cmd.Print-Graph" title="Link to this definition"></a></dt>
 <dd><p>Print the list of valid coercion paths in the current context.</p>
 </dd></dl>
 
-<dl class="coq cmd">
-<dt class="sig sig-object coq" id="coq:cmd.Print-Coercion-Paths">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Print</span></span></span> <span><span><span class="pre">Coercion</span></span></span> <span><span><span class="pre">Paths</span></span></span> <a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span></span></a> <a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span></span></a></span></span><a class="headerlink" href="#coq:cmd.Print-Coercion-Paths" title="Link to this definition"></a></dt>
+<dl class="rocq cmd">
+<dt class="sig sig-object rocq" id="rocq:cmd.Print-Coercion-Paths">
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Print</span></span></span> <span><span><span class="pre">Coercion</span></span></span> <span><span><span class="pre">Paths</span></span></span> <a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span></span></a> <a class="reference internal" href="#grammar-token-coercion_class"><span class="hole"><span class="pre">coercion_class</span></span></a></span></span><a class="headerlink" href="#rocq:cmd.Print-Coercion-Paths" title="Link to this definition"></a></dt>
 <dd><p>Print the list of valid coercion paths between the two given classes.</p>
 </dd></dl>
 
 </section>
 <section id="activating-the-printing-of-coercions">
 <h2>Activating the Printing of Coercions<a class="headerlink" href="#activating-the-printing-of-coercions" title="Link to this heading"></a></h2>
-<dl class="coq flag">
-<dt class="sig sig-object coq" id="coq:flag.Printing-Coercions">
-<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Coercions</span></span></span></span></span><a class="headerlink" href="#coq:flag.Printing-Coercions" title="Link to this definition"></a></dt>
+<dl class="rocq flag">
+<dt class="sig sig-object rocq" id="rocq:flag.Printing-Coercions">
+<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Coercions</span></span></span></span></span><a class="headerlink" href="#rocq:flag.Printing-Coercions" title="Link to this definition"></a></dt>
 <dd><p>When on, this <a class="reference internal" href="../language/core/basic.html#term-flag"><span class="xref std std-term">flag</span></a> forces all the coercions to be printed.
 By default, coercions are not printed.</p>
 </dd></dl>
 
-<dl class="coq table">
-<dt class="sig sig-object coq" id="coq:table.Printing-Coercion">
-<em class="property"><span class="sigannot"><span class="pre">Table</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Coercion</span></span></span> <a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></span><a class="headerlink" href="#coq:table.Printing-Coercion" title="Link to this definition"></a></dt>
+<dl class="rocq table">
+<dt class="sig sig-object rocq" id="rocq:table.Printing-Coercion">
+<em class="property"><span class="sigannot"><span class="pre">Table</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Coercion</span></span></span> <a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></span><a class="headerlink" href="#rocq:table.Printing-Coercion" title="Link to this definition"></a></dt>
 <dd><p>This <a class="reference internal" href="../language/core/basic.html#term-table"><span class="xref std std-term">table</span></a> specifies a set of qualids for which coercions are always displayed.  Use the
-<a class="reference internal" href="../language/core/basic.html#coq:cmd.Add" title="Add"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Add</span></code></a> and <a class="reference internal" href="../language/core/basic.html#coq:cmd.Remove" title="Remove"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Remove</span></code></a> commands to update the set of qualids.</p>
+<a class="reference internal" href="../language/core/basic.html#rocq:cmd.Add" title="Add"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Add</span></code></a> and <a class="reference internal" href="../language/core/basic.html#rocq:cmd.Remove" title="Remove"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Remove</span></code></a> commands to update the set of qualids.</p>
 </dd></dl>
 
 </section>
 <section id="classes-as-records">
 <span id="coercions-classes-as-records"></span><h2>Classes as Records<a class="headerlink" href="#classes-as-records" title="Link to this heading"></a></h2>
-<p id="index-0"><em>Structures with Inheritance</em> may be defined using the <a class="reference internal" href="../language/core/records.html#coq:cmd.Record" title="Record"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Record</span></code></a> command.</p>
+<p id="index-0"><em>Structures with Inheritance</em> may be defined using the <a class="reference internal" href="../language/core/records.html#rocq:cmd.Record" title="Record"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Record</span></code></a> command.</p>
 <p>Use <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> before the record name to declare the constructor name as
 a coercion from the class of the last field type to the record name.
 See <a class="reference internal" href="../language/core/records.html#grammar-token-record_definition"><code class="xref std std-token docutils literal notranslate"><span class="pre">record_definition</span></code></a>.</p>
 <p>Use <code class="docutils literal notranslate"><span class="pre">:&gt;</span></code> in the field type to declare the field as a coercion from the
 record name to the class of the field type. For these coercions, the
-<a class="reference internal" href="#coq:attr.reversible" title="reversible"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">reversible</span></code></a> attribute defaults to <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">yes</span></span></code>. See <a class="reference internal" href="../language/core/assumptions.html#grammar-token-of_type"><code class="xref std std-token docutils literal notranslate"><span class="pre">of_type</span></code></a>.</p>
+<a class="reference internal" href="#rocq:attr.reversible" title="reversible"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">reversible</span></code></a> attribute defaults to <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">yes</span></span></code>. See <a class="reference internal" href="../language/core/assumptions.html#grammar-token-of_type"><code class="xref std std-token docutils literal notranslate"><span class="pre">of_type</span></code></a>.</p>
 </section>
 <section id="coercions-and-sections">
 <h2>Coercions and Sections<a class="headerlink" href="#coercions-and-sections" title="Link to this heading"></a></h2>
@@ -1639,24 +1639,24 @@ coercion path between <code class="docutils literal notranslate"><span class="pr
 <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">f</span></span> <span class="name"><span class="pre">a'</span></span></code> where <code class="docutils literal notranslate"><span class="pre">a'</span></code> is the result of the application of this
 coercion path to <code class="docutils literal notranslate"><span class="pre">a</span></code>.</p>
 <p>We first give an example of coercion between atomic inductive types</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">bool_in_nat</span><span> (</span><span class="coqdoc-var">b</span><span>:</span><span class="coqdoc-var">bool</span><span>) := </span><span class="coqdoc-keyword">if</span><span> </span><span class="coqdoc-var">b</span><span> </span><span class="coqdoc-keyword">then</span><span> 0 </span><span class="coqdoc-keyword">else</span><span> 1.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">bool_in_nat</span><span> (</span><span class="rocqdoc-var">b</span><span>:</span><span class="rocqdoc-var">bool</span><span>) := </span><span class="rocqdoc-keyword">if</span><span> </span><span class="rocqdoc-var">b</span><span> </span><span class="rocqdoc-keyword">then</span><span> 0 </span><span class="rocqdoc-keyword">else</span><span> 1.</span><span>
 </span></dt><dd><span>bool_in_nat is defined
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Coercion</span><span> </span><span class="coqdoc-var">bool_in_nat</span><span> : </span><span class="coqdoc-var">bool</span><span> &gt;-&gt; </span><span class="coqdoc-var">nat</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Coercion</span><span> </span><span class="rocqdoc-var">bool_in_nat</span><span> : </span><span class="rocqdoc-var">bool</span><span> &gt;-&gt; </span><span class="rocqdoc-var">nat</span><span>.</span><span>
 </span></dt><dd><span>bool_in_nat is now a coercion
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Check</span><span> (0 = </span><span class="coqdoc-var">true</span><span>).</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Check</span><span> (0 = </span><span class="rocqdoc-var">true</span><span>).</span><span>
 </span></dt><dd><span>0</span><span> =</span><span> true
      : </span><span class="ansi-fg-yellow ansi-bold">Prop</span><span>
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Set Printing Coercions</span><span>.</span><span>
-</span></dt><dt><span></span><span class="coqdoc-keyword">Check</span><span> (0 = </span><span class="coqdoc-var">true</span><span>).</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Set Printing Coercions</span><span>.</span><span>
+</span></dt><dt><span></span><span class="rocqdoc-keyword">Check</span><span> (0 = </span><span class="rocqdoc-var">true</span><span>).</span><span>
 </span></dt><dd><span>0</span><span> =</span><span> bool_in_nat true
      : </span><span class="ansi-fg-yellow ansi-bold">Prop</span><span>
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Unset Printing Coercions</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Unset Printing Coercions</span><span>.</span><span>
 </span></dt></dl>
 </div>
 <div class="admonition warning">
@@ -1666,95 +1666,95 @@ coercions. To validate <code class="docutils literal notranslate"><span class="p
 <code class="docutils literal notranslate"><span class="pre">nat</span></code> to <code class="docutils literal notranslate"><span class="pre">bool</span></code>. There is none.</p>
 </div>
 <p>We give an example of coercion between classes with parameters.</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Parameters</span><span> (</span><span class="coqdoc-var">C</span><span> : </span><span class="coqdoc-var">nat</span><span> -&gt; </span><span class="coqdoc-keyword">Set</span><span>) (</span><span class="coqdoc-var">D</span><span> : </span><span class="coqdoc-var">nat</span><span> -&gt; </span><span class="coqdoc-var">bool</span><span> -&gt; </span><span class="coqdoc-keyword">Set</span><span>) (</span><span class="coqdoc-var">E</span><span> : </span><span class="coqdoc-var">bool</span><span> -&gt; </span><span class="coqdoc-keyword">Set</span><span>).</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Parameters</span><span> (</span><span class="rocqdoc-var">C</span><span> : </span><span class="rocqdoc-var">nat</span><span> -&gt; </span><span class="rocqdoc-keyword">Set</span><span>) (</span><span class="rocqdoc-var">D</span><span> : </span><span class="rocqdoc-var">nat</span><span> -&gt; </span><span class="rocqdoc-var">bool</span><span> -&gt; </span><span class="rocqdoc-keyword">Set</span><span>) (</span><span class="rocqdoc-var">E</span><span> : </span><span class="rocqdoc-var">bool</span><span> -&gt; </span><span class="rocqdoc-keyword">Set</span><span>).</span><span>
 </span></dt><dd><span>C is declared
 D is declared
 E is declared
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Parameter</span><span> </span><span class="coqdoc-var">f</span><span> : </span><span class="coqdoc-keyword">forall</span><span> </span><span class="coqdoc-var">n</span><span>:</span><span class="coqdoc-var">nat</span><span>, </span><span class="coqdoc-var">C</span><span> </span><span class="coqdoc-var">n</span><span> -&gt; </span><span class="coqdoc-var">D</span><span> (</span><span class="coqdoc-var">S</span><span> </span><span class="coqdoc-var">n</span><span>) </span><span class="coqdoc-var">true</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Parameter</span><span> </span><span class="rocqdoc-var">f</span><span> : </span><span class="rocqdoc-keyword">forall</span><span> </span><span class="rocqdoc-var">n</span><span>:</span><span class="rocqdoc-var">nat</span><span>, </span><span class="rocqdoc-var">C</span><span> </span><span class="rocqdoc-var">n</span><span> -&gt; </span><span class="rocqdoc-var">D</span><span> (</span><span class="rocqdoc-var">S</span><span> </span><span class="rocqdoc-var">n</span><span>) </span><span class="rocqdoc-var">true</span><span>.</span><span>
 </span></dt><dd><span>f is declared
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Coercion</span><span> </span><span class="coqdoc-var">f</span><span> : </span><span class="coqdoc-var">C</span><span> &gt;-&gt; </span><span class="coqdoc-var">D</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Coercion</span><span> </span><span class="rocqdoc-var">f</span><span> : </span><span class="rocqdoc-var">C</span><span> &gt;-&gt; </span><span class="rocqdoc-var">D</span><span>.</span><span>
 </span></dt><dd><span>f is now a coercion
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Parameter</span><span> </span><span class="coqdoc-var">g</span><span> : </span><span class="coqdoc-keyword">forall</span><span> (</span><span class="coqdoc-var">n</span><span>:</span><span class="coqdoc-var">nat</span><span>) (</span><span class="coqdoc-var">b</span><span>:</span><span class="coqdoc-var">bool</span><span>), </span><span class="coqdoc-var">D</span><span> </span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-var">b</span><span> -&gt; </span><span class="coqdoc-var">E</span><span> </span><span class="coqdoc-var">b</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Parameter</span><span> </span><span class="rocqdoc-var">g</span><span> : </span><span class="rocqdoc-keyword">forall</span><span> (</span><span class="rocqdoc-var">n</span><span>:</span><span class="rocqdoc-var">nat</span><span>) (</span><span class="rocqdoc-var">b</span><span>:</span><span class="rocqdoc-var">bool</span><span>), </span><span class="rocqdoc-var">D</span><span> </span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-var">b</span><span> -&gt; </span><span class="rocqdoc-var">E</span><span> </span><span class="rocqdoc-var">b</span><span>.</span><span>
 </span></dt><dd><span>g is declared
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Coercion</span><span> </span><span class="coqdoc-var">g</span><span> : </span><span class="coqdoc-var">D</span><span> &gt;-&gt; </span><span class="coqdoc-var">E</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Coercion</span><span> </span><span class="rocqdoc-var">g</span><span> : </span><span class="rocqdoc-var">D</span><span> &gt;-&gt; </span><span class="rocqdoc-var">E</span><span>.</span><span>
 </span></dt><dd><span>g is now a coercion
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Parameter</span><span> </span><span class="coqdoc-var">c</span><span> : </span><span class="coqdoc-var">C</span><span> 0.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Parameter</span><span> </span><span class="rocqdoc-var">c</span><span> : </span><span class="rocqdoc-var">C</span><span> 0.</span><span>
 </span></dt><dd><span>c is declared
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Parameter</span><span> </span><span class="coqdoc-var">T</span><span> : </span><span class="coqdoc-var">E</span><span> </span><span class="coqdoc-var">true</span><span> -&gt; </span><span class="coqdoc-var">nat</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Parameter</span><span> </span><span class="rocqdoc-var">T</span><span> : </span><span class="rocqdoc-var">E</span><span> </span><span class="rocqdoc-var">true</span><span> -&gt; </span><span class="rocqdoc-var">nat</span><span>.</span><span>
 </span></dt><dd><span>T is declared
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Check</span><span> (</span><span class="coqdoc-var">T</span><span> </span><span class="coqdoc-var">c</span><span>).</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Check</span><span> (</span><span class="rocqdoc-var">T</span><span> </span><span class="rocqdoc-var">c</span><span>).</span><span>
 </span></dt><dd><span>T c
      : nat
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Set Printing Coercions</span><span>.</span><span>
-</span></dt><dt><span></span><span class="coqdoc-keyword">Check</span><span> (</span><span class="coqdoc-var">T</span><span> </span><span class="coqdoc-var">c</span><span>).</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Set Printing Coercions</span><span>.</span><span>
+</span></dt><dt><span></span><span class="rocqdoc-keyword">Check</span><span> (</span><span class="rocqdoc-var">T</span><span> </span><span class="rocqdoc-var">c</span><span>).</span><span>
 </span></dt><dd><span>T (g 1 true (f 0 c))
      : nat
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Unset Printing Coercions</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Unset Printing Coercions</span><span>.</span><span>
 </span></dt></dl>
 </div>
 <p>In the case of functional arguments, we use the monotonic rule of
 sub-typing. To coerce <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">t</span></span> <span class="operator"><span class="pre">:</span></span> <span class="keyword"><span class="pre">forall</span></span> <span class="name"><span class="pre">x</span></span> <span class="operator"><span class="pre">:</span></span> <span class="name"><span class="pre">A</span></span><span class="operator"><span class="pre">,</span></span> <span class="name"><span class="pre">B</span></span></code> towards
 <code class="code Coq docutils literal notranslate"><span class="keyword"><span class="pre">forall</span></span> <span class="name"><span class="pre">x</span></span> <span class="operator"><span class="pre">:</span></span> <span class="name"><span class="pre">A'</span></span><span class="operator"><span class="pre">,</span></span> <span class="name"><span class="pre">B'</span></span></code>, we have to coerce <code class="docutils literal notranslate"><span class="pre">A'</span></code> towards <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code>
 towards <code class="docutils literal notranslate"><span class="pre">B'</span></code>. An example is given below:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Parameters</span><span> (</span><span class="coqdoc-var">A</span><span> </span><span class="coqdoc-var">B</span><span> : </span><span class="coqdoc-keyword">Set</span><span>) (</span><span class="coqdoc-var">h</span><span> : </span><span class="coqdoc-var">A</span><span> -&gt; </span><span class="coqdoc-var">B</span><span>).</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Parameters</span><span> (</span><span class="rocqdoc-var">A</span><span> </span><span class="rocqdoc-var">B</span><span> : </span><span class="rocqdoc-keyword">Set</span><span>) (</span><span class="rocqdoc-var">h</span><span> : </span><span class="rocqdoc-var">A</span><span> -&gt; </span><span class="rocqdoc-var">B</span><span>).</span><span>
 </span></dt><dd><span>A is declared
 B is declared
 h is declared
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Coercion</span><span> </span><span class="coqdoc-var">h</span><span> : </span><span class="coqdoc-var">A</span><span> &gt;-&gt; </span><span class="coqdoc-var">B</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Coercion</span><span> </span><span class="rocqdoc-var">h</span><span> : </span><span class="rocqdoc-var">A</span><span> &gt;-&gt; </span><span class="rocqdoc-var">B</span><span>.</span><span>
 </span></dt><dd><span>h is now a coercion
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Parameter</span><span> </span><span class="coqdoc-var">U</span><span> : (</span><span class="coqdoc-var">A</span><span> -&gt; </span><span class="coqdoc-var">E</span><span> </span><span class="coqdoc-var">true</span><span>) -&gt; </span><span class="coqdoc-var">nat</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Parameter</span><span> </span><span class="rocqdoc-var">U</span><span> : (</span><span class="rocqdoc-var">A</span><span> -&gt; </span><span class="rocqdoc-var">E</span><span> </span><span class="rocqdoc-var">true</span><span>) -&gt; </span><span class="rocqdoc-var">nat</span><span>.</span><span>
 </span></dt><dd><span>U is declared
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Parameter</span><span> </span><span class="coqdoc-var">t</span><span> : </span><span class="coqdoc-var">B</span><span> -&gt; </span><span class="coqdoc-var">C</span><span> 0.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Parameter</span><span> </span><span class="rocqdoc-var">t</span><span> : </span><span class="rocqdoc-var">B</span><span> -&gt; </span><span class="rocqdoc-var">C</span><span> 0.</span><span>
 </span></dt><dd><span>t is declared
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Check</span><span> (</span><span class="coqdoc-var">U</span><span> </span><span class="coqdoc-var">t</span><span>).</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Check</span><span> (</span><span class="rocqdoc-var">U</span><span> </span><span class="rocqdoc-var">t</span><span>).</span><span>
 </span></dt><dd><span>U (</span><span class="ansi-bold">fun</span><span> x : A =&gt; t x)
      : nat
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Set Printing Coercions</span><span>.</span><span>
-</span></dt><dt><span></span><span class="coqdoc-keyword">Check</span><span> (</span><span class="coqdoc-var">U</span><span> </span><span class="coqdoc-var">t</span><span>).</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Set Printing Coercions</span><span>.</span><span>
+</span></dt><dt><span></span><span class="rocqdoc-keyword">Check</span><span> (</span><span class="rocqdoc-var">U</span><span> </span><span class="rocqdoc-var">t</span><span>).</span><span>
 </span></dt><dd><span>U (</span><span class="ansi-bold">fun</span><span> x : A =&gt; g 1 true (f 0 (t (h x))))
      : nat
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Unset Printing Coercions</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Unset Printing Coercions</span><span>.</span><span>
 </span></dt></dl>
 </div>
 <p>Remark the changes in the result following the modification of the
 previous example.</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Parameter</span><span> </span><span class="coqdoc-var">U'</span><span> : (</span><span class="coqdoc-var">C</span><span> 0 -&gt; </span><span class="coqdoc-var">B</span><span>) -&gt; </span><span class="coqdoc-var">nat</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Parameter</span><span> </span><span class="rocqdoc-var">U'</span><span> : (</span><span class="rocqdoc-var">C</span><span> 0 -&gt; </span><span class="rocqdoc-var">B</span><span>) -&gt; </span><span class="rocqdoc-var">nat</span><span>.</span><span>
 </span></dt><dd><span>U' is declared
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Parameter</span><span> </span><span class="coqdoc-var">t'</span><span> : </span><span class="coqdoc-var">E</span><span> </span><span class="coqdoc-var">true</span><span> -&gt; </span><span class="coqdoc-var">A</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Parameter</span><span> </span><span class="rocqdoc-var">t'</span><span> : </span><span class="rocqdoc-var">E</span><span> </span><span class="rocqdoc-var">true</span><span> -&gt; </span><span class="rocqdoc-var">A</span><span>.</span><span>
 </span></dt><dd><span>t' is declared
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Check</span><span> (</span><span class="coqdoc-var">U'</span><span> </span><span class="coqdoc-var">t'</span><span>).</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Check</span><span> (</span><span class="rocqdoc-var">U'</span><span> </span><span class="rocqdoc-var">t'</span><span>).</span><span>
 </span></dt><dd><span>U' (</span><span class="ansi-bold">fun</span><span> x : C 0 =&gt; t' x)
      : nat
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Set Printing Coercions</span><span>.</span><span>
-</span></dt><dt><span></span><span class="coqdoc-keyword">Check</span><span> (</span><span class="coqdoc-var">U'</span><span> </span><span class="coqdoc-var">t'</span><span>).</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Set Printing Coercions</span><span>.</span><span>
+</span></dt><dt><span></span><span class="rocqdoc-keyword">Check</span><span> (</span><span class="rocqdoc-var">U'</span><span> </span><span class="rocqdoc-var">t'</span><span>).</span><span>
 </span></dt><dd><span>U' (</span><span class="ansi-bold">fun</span><span> x : C 0 =&gt; h (t' (g 1 true (f 0 x))))
      : nat
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Unset Printing Coercions</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Unset Printing Coercions</span><span>.</span><span>
 </span></dt></dl>
 </div>
 </div>
@@ -1768,40 +1768,40 @@ replaced by <code class="docutils literal notranslate"><span class="pre">x:A'</s
 variables and parameters of (co)inductive definitions and
 functions. In <code class="code Coq docutils literal notranslate"><span class="keyword"><span class="pre">forall</span></span> <span class="name"><span class="pre">x</span></span><span class="operator"><span class="pre">:</span></span><span class="name"><span class="pre">A</span></span><span class="operator"><span class="pre">,</span></span><span class="name"><span class="pre">B</span></span></code>, such a coercion path may also be applied
 to <code class="docutils literal notranslate"><span class="pre">B</span></code> if necessary.</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Parameter</span><span> </span><span class="coqdoc-var">Graph</span><span> : </span><span class="coqdoc-keyword">Type</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Parameter</span><span> </span><span class="rocqdoc-var">Graph</span><span> : </span><span class="rocqdoc-keyword">Type</span><span>.</span><span>
 </span></dt><dd><span>Graph is declared
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Parameter</span><span> </span><span class="coqdoc-var">Node</span><span> : </span><span class="coqdoc-var">Graph</span><span> -&gt; </span><span class="coqdoc-keyword">Type</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Parameter</span><span> </span><span class="rocqdoc-var">Node</span><span> : </span><span class="rocqdoc-var">Graph</span><span> -&gt; </span><span class="rocqdoc-keyword">Type</span><span>.</span><span>
 </span></dt><dd><span>Node is declared
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Coercion</span><span> </span><span class="coqdoc-var">Node</span><span> : </span><span class="coqdoc-var">Graph</span><span> &gt;-&gt; </span><span class="coqdoc-var">Sortclass</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Coercion</span><span> </span><span class="rocqdoc-var">Node</span><span> : </span><span class="rocqdoc-var">Graph</span><span> &gt;-&gt; </span><span class="rocqdoc-var">Sortclass</span><span>.</span><span>
 </span></dt><dd><span>Node is now a coercion
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Parameter</span><span> </span><span class="coqdoc-var">G</span><span> : </span><span class="coqdoc-var">Graph</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Parameter</span><span> </span><span class="rocqdoc-var">G</span><span> : </span><span class="rocqdoc-var">Graph</span><span>.</span><span>
 </span></dt><dd><span>G is declared
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Parameter</span><span> </span><span class="coqdoc-var">Arrows</span><span> : </span><span class="coqdoc-var">G</span><span> -&gt; </span><span class="coqdoc-var">G</span><span> -&gt; </span><span class="coqdoc-keyword">Type</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Parameter</span><span> </span><span class="rocqdoc-var">Arrows</span><span> : </span><span class="rocqdoc-var">G</span><span> -&gt; </span><span class="rocqdoc-var">G</span><span> -&gt; </span><span class="rocqdoc-keyword">Type</span><span>.</span><span>
 </span></dt><dd><span>Arrows is declared
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-var">Arrows</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-var">Arrows</span><span>.</span><span>
 </span></dt><dd><span>Arrows
      : G</span><span> -&gt;</span><span> G</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Parameter</span><span> </span><span class="coqdoc-var">fg</span><span> : </span><span class="coqdoc-var">G</span><span> -&gt; </span><span class="coqdoc-var">G</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Parameter</span><span> </span><span class="rocqdoc-var">fg</span><span> : </span><span class="rocqdoc-var">G</span><span> -&gt; </span><span class="rocqdoc-var">G</span><span>.</span><span>
 </span></dt><dd><span>fg is declared
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-var">fg</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-var">fg</span><span>.</span><span>
 </span></dt><dd><span>fg
      : G</span><span> -&gt;</span><span> G
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Set Printing Coercions</span><span>.</span><span>
-</span></dt><dt><span></span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-var">fg</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Set Printing Coercions</span><span>.</span><span>
+</span></dt><dt><span></span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-var">fg</span><span>.</span><span>
 </span></dt><dd><span>fg
      : Node G</span><span> -&gt;</span><span> Node G
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Unset Printing Coercions</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Unset Printing Coercions</span><span>.</span><span>
 </span></dt></dl>
 </div>
 </div>
@@ -1810,55 +1810,55 @@ to <code class="docutils literal notranslate"><span class="pre">B</span></code> 
 <p><code class="docutils literal notranslate"><span class="pre">f</span> <span class="pre">a</span></code> is ill-typed because <code class="docutils literal notranslate"><span class="pre">f:A</span></code> is not a function. The term
 <code class="docutils literal notranslate"><span class="pre">f</span></code> is replaced by the term obtained by applying to <code class="docutils literal notranslate"><span class="pre">f</span></code> the
 coercion path between <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">Funclass</span></code> if it exists.</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Parameter</span><span> </span><span class="coqdoc-var">bij</span><span> : </span><span class="coqdoc-keyword">Set</span><span> -&gt; </span><span class="coqdoc-keyword">Set</span><span> -&gt; </span><span class="coqdoc-keyword">Set</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Parameter</span><span> </span><span class="rocqdoc-var">bij</span><span> : </span><span class="rocqdoc-keyword">Set</span><span> -&gt; </span><span class="rocqdoc-keyword">Set</span><span> -&gt; </span><span class="rocqdoc-keyword">Set</span><span>.</span><span>
 </span></dt><dd><span>bij is declared
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Parameter</span><span> </span><span class="coqdoc-var">ap</span><span> : </span><span class="coqdoc-keyword">forall</span><span> </span><span class="coqdoc-var">A</span><span> </span><span class="coqdoc-var">B</span><span>:</span><span class="coqdoc-keyword">Set</span><span>, </span><span class="coqdoc-var">bij</span><span> </span><span class="coqdoc-var">A</span><span> </span><span class="coqdoc-var">B</span><span> -&gt; </span><span class="coqdoc-var">A</span><span> -&gt; </span><span class="coqdoc-var">B</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Parameter</span><span> </span><span class="rocqdoc-var">ap</span><span> : </span><span class="rocqdoc-keyword">forall</span><span> </span><span class="rocqdoc-var">A</span><span> </span><span class="rocqdoc-var">B</span><span>:</span><span class="rocqdoc-keyword">Set</span><span>, </span><span class="rocqdoc-var">bij</span><span> </span><span class="rocqdoc-var">A</span><span> </span><span class="rocqdoc-var">B</span><span> -&gt; </span><span class="rocqdoc-var">A</span><span> -&gt; </span><span class="rocqdoc-var">B</span><span>.</span><span>
 </span></dt><dd><span>ap is declared
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Coercion</span><span> </span><span class="coqdoc-var">ap</span><span> : </span><span class="coqdoc-var">bij</span><span> &gt;-&gt; </span><span class="coqdoc-var">Funclass</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Coercion</span><span> </span><span class="rocqdoc-var">ap</span><span> : </span><span class="rocqdoc-var">bij</span><span> &gt;-&gt; </span><span class="rocqdoc-var">Funclass</span><span>.</span><span>
 </span></dt><dd><span>ap is now a coercion
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Parameter</span><span> </span><span class="coqdoc-var">b</span><span> : </span><span class="coqdoc-var">bij</span><span> </span><span class="coqdoc-var">nat</span><span> </span><span class="coqdoc-var">nat</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Parameter</span><span> </span><span class="rocqdoc-var">b</span><span> : </span><span class="rocqdoc-var">bij</span><span> </span><span class="rocqdoc-var">nat</span><span> </span><span class="rocqdoc-var">nat</span><span>.</span><span>
 </span></dt><dd><span>b is declared
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Check</span><span> (</span><span class="coqdoc-var">b</span><span> 0).</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Check</span><span> (</span><span class="rocqdoc-var">b</span><span> 0).</span><span>
 </span></dt><dd><span>b 0
      : nat
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Set Printing Coercions</span><span>.</span><span>
-</span></dt><dt><span></span><span class="coqdoc-keyword">Check</span><span> (</span><span class="coqdoc-var">b</span><span> 0).</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Set Printing Coercions</span><span>.</span><span>
+</span></dt><dt><span></span><span class="rocqdoc-keyword">Check</span><span> (</span><span class="rocqdoc-var">b</span><span> 0).</span><span>
 </span></dt><dd><span>ap nat nat b 0
      : nat
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Unset Printing Coercions</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Unset Printing Coercions</span><span>.</span><span>
 </span></dt></dl>
 </div>
 </div>
 <div class="admonition note" id="example-reversible-coercion">
 <p class="admonition-title">Example: Reversible coercions</p>
 <p>Notice the <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">:&gt;</span></span></span></span></code> on <code class="docutils literal notranslate"><span class="pre">ssort</span></code> making it a <a class="reference internal" href="#term-reversible-coercion"><span class="xref std std-term">reversible coercion</span></a>.</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Structure</span><span> </span><span class="coqdoc-var">S</span><span> := {</span><span>
-  </span><span class="coqdoc-var">ssort</span><span> :&gt; </span><span class="coqdoc-keyword">Type</span><span>;</span><span>
-  </span><span class="coqdoc-var">sstuff</span><span> : </span><span class="coqdoc-var">ssort</span><span>;</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Structure</span><span> </span><span class="rocqdoc-var">S</span><span> := {</span><span>
+  </span><span class="rocqdoc-var">ssort</span><span> :&gt; </span><span class="rocqdoc-keyword">Type</span><span>;</span><span>
+  </span><span class="rocqdoc-var">sstuff</span><span> : </span><span class="rocqdoc-var">ssort</span><span>;</span><span>
 }.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>S is defined
+</span></dt><dd class="rocqtop-hidden"><span>S is defined
 ssort is defined
 sstuff is defined
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">test</span><span> (</span><span class="coqdoc-var">s</span><span> : </span><span class="coqdoc-var">S</span><span>) := </span><span class="coqdoc-var">sstuff</span><span> </span><span class="coqdoc-var">s</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>test is defined
+<dt><span></span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">test</span><span> (</span><span class="rocqdoc-var">s</span><span> : </span><span class="rocqdoc-var">S</span><span>) := </span><span class="rocqdoc-var">sstuff</span><span> </span><span class="rocqdoc-var">s</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>test is defined
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Canonical</span><span> </span><span class="coqdoc-keyword">Structure</span><span> </span><span class="coqdoc-var">S_nat</span><span> := {| </span><span class="coqdoc-var">ssort</span><span> := </span><span class="coqdoc-var">nat</span><span>; </span><span class="coqdoc-var">sstuff</span><span> := 0; |}.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>S_nat is defined
+<dt><span></span><span class="rocqdoc-keyword">Canonical</span><span> </span><span class="rocqdoc-keyword">Structure</span><span> </span><span class="rocqdoc-var">S_nat</span><span> := {| </span><span class="rocqdoc-var">ssort</span><span> := </span><span class="rocqdoc-var">nat</span><span>; </span><span class="rocqdoc-var">sstuff</span><span> := 0; |}.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>S_nat is defined
 </span></dd>
 </dl>
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-var">test</span><span> (</span><span class="coqdoc-var">nat</span><span> : </span><span class="coqdoc-keyword">Type</span><span>).</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-var">test</span><span> (</span><span class="rocqdoc-var">nat</span><span> : </span><span class="rocqdoc-keyword">Type</span><span>).</span><span>
 </span></dt><dd><span>test (nat : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>)
      : nat
 </span></dd>
@@ -1866,44 +1866,44 @@ sstuff is defined
 </div>
 </div>
 <div class="admonition note" id="example-reversible-coercion-attribute">
-<p class="admonition-title">Example: Reversible coercions using the <a class="reference internal" href="#coq:attr.reversible" title="reversible"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">reversible</span></code></a> attribute</p>
-<p>Notice there is no <code class="docutils literal notranslate"><span class="pre">:&gt;</span></code> on <code class="docutils literal notranslate"><span class="pre">ssort'</span></code> and the added <a class="reference internal" href="#coq:cmd.Coercion" title="Coercion"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Coercion</span></code></a> compared
+<p class="admonition-title">Example: Reversible coercions using the <a class="reference internal" href="#rocq:attr.reversible" title="reversible"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">reversible</span></code></a> attribute</p>
+<p>Notice there is no <code class="docutils literal notranslate"><span class="pre">:&gt;</span></code> on <code class="docutils literal notranslate"><span class="pre">ssort'</span></code> and the added <a class="reference internal" href="#rocq:cmd.Coercion" title="Coercion"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Coercion</span></code></a> compared
 to the previous example.</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Structure</span><span> </span><span class="coqdoc-var">S'</span><span> := {</span><span>
-  </span><span class="coqdoc-var">ssort'</span><span> : </span><span class="coqdoc-keyword">Type</span><span>;</span><span>
-  </span><span class="coqdoc-var">sstuff'</span><span> : </span><span class="coqdoc-var">ssort'</span><span>;</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Structure</span><span> </span><span class="rocqdoc-var">S'</span><span> := {</span><span>
+  </span><span class="rocqdoc-var">ssort'</span><span> : </span><span class="rocqdoc-keyword">Type</span><span>;</span><span>
+  </span><span class="rocqdoc-var">sstuff'</span><span> : </span><span class="rocqdoc-var">ssort'</span><span>;</span><span>
 }.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>S' is defined
+</span></dt><dd class="rocqtop-hidden"><span>S' is defined
 ssort' is defined
 sstuff' is defined
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Coercion</span><span> </span><span class="coqdoc-var">ssort'</span><span> : </span><span class="coqdoc-var">S'</span><span> &gt;-&gt; </span><span class="coqdoc-var">Sortclass</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>ssort' is now a coercion
+<dt><span></span><span class="rocqdoc-keyword">Coercion</span><span> </span><span class="rocqdoc-var">ssort'</span><span> : </span><span class="rocqdoc-var">S'</span><span> &gt;-&gt; </span><span class="rocqdoc-var">Sortclass</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>ssort' is now a coercion
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">test'</span><span> (</span><span class="coqdoc-var">s</span><span> : </span><span class="coqdoc-var">S'</span><span>) := </span><span class="coqdoc-var">sstuff'</span><span> </span><span class="coqdoc-var">s</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>test' is defined
+<dt><span></span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">test'</span><span> (</span><span class="rocqdoc-var">s</span><span> : </span><span class="rocqdoc-var">S'</span><span>) := </span><span class="rocqdoc-var">sstuff'</span><span> </span><span class="rocqdoc-var">s</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>test' is defined
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Canonical</span><span> </span><span class="coqdoc-keyword">Structure</span><span> </span><span class="coqdoc-var">S_nat'</span><span> := {| </span><span class="coqdoc-var">ssort'</span><span> := </span><span class="coqdoc-var">nat</span><span>; </span><span class="coqdoc-var">sstuff'</span><span> := 0; |}.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>S_nat' is defined
+<dt><span></span><span class="rocqdoc-keyword">Canonical</span><span> </span><span class="rocqdoc-keyword">Structure</span><span> </span><span class="rocqdoc-var">S_nat'</span><span> := {| </span><span class="rocqdoc-var">ssort'</span><span> := </span><span class="rocqdoc-var">nat</span><span>; </span><span class="rocqdoc-var">sstuff'</span><span> := 0; |}.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>S_nat' is defined
 </span></dd>
 </dl>
 </div>
-<p>Since there's no <code class="docutils literal notranslate"><span class="pre">:&gt;</span></code> on the definition of <code class="docutils literal notranslate"><span class="pre">ssort'</span></code>, the <a class="reference internal" href="#coq:attr.reversible" title="reversible"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">reversible</span></code></a> attribute is not set:</p>
-<div class="coqtop literal-block docutils container">
+<p>Since there's no <code class="docutils literal notranslate"><span class="pre">:&gt;</span></code> on the definition of <code class="docutils literal notranslate"><span class="pre">ssort'</span></code>, the <a class="reference internal" href="#rocq:attr.reversible" title="reversible"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">reversible</span></code></a> attribute is not set:</p>
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-var">Fail</span><span> </span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-var">test'</span><span> (</span><span class="coqdoc-var">nat</span><span> : </span><span class="coqdoc-keyword">Type</span><span>).</span><span>
+<dt><span></span><span class="rocqdoc-var">Fail</span><span> </span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-var">test'</span><span> (</span><span class="rocqdoc-var">nat</span><span> : </span><span class="rocqdoc-keyword">Type</span><span>).</span><span>
 </span></dt><dd><span>The command has indeed failed with message:
 The term &quot;nat : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&quot; has type &quot;</span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&quot; while it is expected to have type &quot;S'&quot;.
 </span></dd>
 </dl>
 </div>
 <p>The attribute can be set after declaring the coercion:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span>#[</span><span class="coqdoc-var">reversible</span><span>] </span><span class="coqdoc-keyword">Coercion</span><span> </span><span class="coqdoc-var">ssort'</span><span>.</span><span>
-</span></dt><dt><span></span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-var">test'</span><span> (</span><span class="coqdoc-var">nat</span><span> : </span><span class="coqdoc-keyword">Type</span><span>).</span><span>
+<dt><span>#[</span><span class="rocqdoc-var">reversible</span><span>] </span><span class="rocqdoc-keyword">Coercion</span><span> </span><span class="rocqdoc-var">ssort'</span><span>.</span><span>
+</span></dt><dt><span></span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-var">test'</span><span> (</span><span class="rocqdoc-var">nat</span><span> : </span><span class="rocqdoc-keyword">Type</span><span>).</span><span>
 </span></dt><dd><span>test' (nat : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>)
      : nat
 </span></dd>
@@ -1912,46 +1912,46 @@ The term &quot;nat : </span><span class="ansi-fg-yellow ansi-bold">Type</span><s
 </div>
 <div class="admonition note" id="example-identity-coercion">
 <p class="admonition-title">Example: Identity coercions.</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">fct</span><span> := </span><span class="coqdoc-var">nat</span><span> -&gt; </span><span class="coqdoc-var">nat</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>fct is defined
+<dt><span></span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">fct</span><span> := </span><span class="rocqdoc-var">nat</span><span> -&gt; </span><span class="rocqdoc-var">nat</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>fct is defined
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Parameter</span><span> </span><span class="coqdoc-var">incr_fct</span><span> : </span><span class="coqdoc-keyword">Set</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>incr_fct is declared
+<dt><span></span><span class="rocqdoc-keyword">Parameter</span><span> </span><span class="rocqdoc-var">incr_fct</span><span> : </span><span class="rocqdoc-keyword">Set</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>incr_fct is declared
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Parameter</span><span> </span><span class="coqdoc-var">fct_of_incr_fct</span><span> : </span><span class="coqdoc-var">incr_fct</span><span> -&gt; </span><span class="coqdoc-var">fct</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>fct_of_incr_fct is declared
+<dt><span></span><span class="rocqdoc-keyword">Parameter</span><span> </span><span class="rocqdoc-var">fct_of_incr_fct</span><span> : </span><span class="rocqdoc-var">incr_fct</span><span> -&gt; </span><span class="rocqdoc-var">fct</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>fct_of_incr_fct is declared
 </span></dd>
 </dl>
 <span></span><dl>
-<dt><span></span><span class="coqdoc-var">Fail</span><span> </span><span class="coqdoc-keyword">Coercion</span><span> </span><span class="coqdoc-var">fct_of_incr_fct</span><span> : </span><span class="coqdoc-var">incr_fct</span><span> &gt;-&gt; </span><span class="coqdoc-var">Funclass</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-var">Fail</span><span> </span><span class="rocqdoc-keyword">Coercion</span><span> </span><span class="rocqdoc-var">fct_of_incr_fct</span><span> : </span><span class="rocqdoc-var">incr_fct</span><span> &gt;-&gt; </span><span class="rocqdoc-var">Funclass</span><span>.</span><span>
 </span></dt><dd><span>The command has indeed failed with message:
 Found target class Funclass instead of fct.
 </span></dd>
 </dl>
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Coercion</span><span> </span><span class="coqdoc-var">fct_of_incr_fct</span><span> : </span><span class="coqdoc-var">incr_fct</span><span> &gt;-&gt; </span><span class="coqdoc-var">fct</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>fct_of_incr_fct is now a coercion
+<dt><span></span><span class="rocqdoc-keyword">Coercion</span><span> </span><span class="rocqdoc-var">fct_of_incr_fct</span><span> : </span><span class="rocqdoc-var">incr_fct</span><span> &gt;-&gt; </span><span class="rocqdoc-var">fct</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>fct_of_incr_fct is now a coercion
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Parameter</span><span> </span><span class="coqdoc-var">f'</span><span> : </span><span class="coqdoc-var">incr_fct</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>f' is declared
+<dt><span></span><span class="rocqdoc-keyword">Parameter</span><span> </span><span class="rocqdoc-var">f'</span><span> : </span><span class="rocqdoc-var">incr_fct</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>f' is declared
 </span></dd>
 </dl>
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-var">f'</span><span> : </span><span class="coqdoc-var">fct</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-var">f'</span><span> : </span><span class="rocqdoc-var">fct</span><span>.</span><span>
 </span></dt><dd><span>f' : fct
      : fct
 </span></dd>
-<dt><span></span><span class="coqdoc-var">Fail</span><span> </span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-var">f'</span><span> 0.</span><span>
+<dt><span></span><span class="rocqdoc-var">Fail</span><span> </span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-var">f'</span><span> 0.</span><span>
 </span></dt><dd><span>The command has indeed failed with message:
 Illegal application (Non-functional construction): 
 The expression &quot;f'&quot; of type &quot;incr_fct&quot;
 cannot be applied to the term
  &quot;0&quot; : &quot;nat&quot;
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Identity</span><span> </span><span class="coqdoc-keyword">Coercion</span><span> </span><span class="coqdoc-var">Id_fct_Funclass</span><span> : </span><span class="coqdoc-var">fct</span><span> &gt;-&gt; </span><span class="coqdoc-var">Funclass</span><span>.</span><span>
-</span></dt><dt><span></span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-var">f'</span><span> 0.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Identity</span><span> </span><span class="rocqdoc-keyword">Coercion</span><span> </span><span class="rocqdoc-var">Id_fct_Funclass</span><span> : </span><span class="rocqdoc-var">fct</span><span> &gt;-&gt; </span><span class="rocqdoc-var">Funclass</span><span>.</span><span>
+</span></dt><dt><span></span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-var">f'</span><span> 0.</span><span>
 </span></dt><dd><span>f' 0
      : nat
 </span></dd>
@@ -1961,9 +1961,9 @@ cannot be applied to the term
 <div class="admonition note">
 <p class="admonition-title">Example: Inheritance Graph</p>
 <p>Let us see the resulting graph after all these examples.</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Print</span><span> </span><span class="coqdoc-var">Graph</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Print</span><span> </span><span class="rocqdoc-var">Graph</span><span>.</span><span>
 </span></dt><dd><span>[h] : A &gt;-&gt; B
 [f] : C &gt;-&gt; D
 [f; g] : C &gt;-&gt; E

@@ -345,7 +345,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../language/extensions/arguments-command.html#automatic-declaration-of-implicit-arguments">Automatic declaration of implicit arguments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../language/extensions/arguments-command.html#renaming-implicit-arguments">Renaming implicit arguments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../language/extensions/arguments-command.html#binding-arguments-to-scopes">Binding arguments to scopes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../language/extensions/arguments-command.html#effects-of-arguments-on-unfolding">Effects of <code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Arguments</span></code> on unfolding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../language/extensions/arguments-command.html#effects-of-arguments-on-unfolding">Effects of <code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Arguments</span></code> on unfolding</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../language/extensions/arguments-command.html#bidirectionality-hints">Bidirectionality hints</a></li>
 </ul>
 </li>
@@ -506,7 +506,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../proofs/writing-proofs/reasoning-inductives.html#generation-of-inversion-principles-with-derive-inversion">Generation of inversion principles with <code class="docutils literal notranslate"><span class="pre">Derive</span></code> <code class="docutils literal notranslate"><span class="pre">Inversion</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../proofs/writing-proofs/reasoning-inductives.html#examples-of-dependent-destruction-dependent-induction">Examples of <code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">destruction</span></code> / <code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">induction</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../proofs/writing-proofs/reasoning-inductives.html#examples-of-dependent-destruction-dependent-induction">Examples of <code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">destruction</span></code> / <code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">induction</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../proofs/writing-proofs/reasoning-inductives.html#a-larger-example">A larger example</a></li>
 </ul>
 </li>
@@ -1291,16 +1291,16 @@ proof irrelevant propositions (types in the sort <span class="math notranslate n
 known as strict propositions) as described in
 <span id="id1">[<a class="reference internal" href="../zebibliography.html#id22" title="Gaëtan Gilbert, Jesper Cockx, Matthieu Sozeau, and Nicolas Tabareau. Definitional Proof Irrelevance Without K. Proc. ACM Program. Lang., 3(POPL):3:1–3:28, 2019. URL: http://doi.acm.org/10.1145/3290316.">GCST19</a>]</span>.</p>
 <p>Use of <span class="math notranslate nohighlight">\(\SProp\)</span> may be disabled by passing <code class="docutils literal notranslate"><span class="pre">-disallow-sprop</span></code> to the
-Rocq program or by turning the <a class="reference internal" href="#coq:flag.Allow-StrictProp" title="Allow StrictProp"><code class="xref coq coq-flag docutils literal notranslate"><span class="pre">Allow</span> <span class="pre">StrictProp</span></code></a> flag off.</p>
-<dl class="coq flag">
-<dt class="sig sig-object coq" id="coq:flag.Allow-StrictProp">
-<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Allow</span></span></span> <span><span><span class="pre">StrictProp</span></span></span></span></span><a class="headerlink" href="#coq:flag.Allow-StrictProp" title="Link to this definition"></a></dt>
+Rocq program or by turning the <a class="reference internal" href="#rocq:flag.Allow-StrictProp" title="Allow StrictProp"><code class="xref rocq rocq-flag docutils literal notranslate"><span class="pre">Allow</span> <span class="pre">StrictProp</span></code></a> flag off.</p>
+<dl class="rocq flag">
+<dt class="sig sig-object rocq" id="rocq:flag.Allow-StrictProp">
+<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Allow</span></span></span> <span><span><span class="pre">StrictProp</span></span></span></span></span><a class="headerlink" href="#rocq:flag.Allow-StrictProp" title="Link to this definition"></a></dt>
 <dd><p>This <a class="reference internal" href="../language/core/basic.html#term-flag"><span class="xref std std-term">flag</span></a> enables or disables the use of <span class="math notranslate nohighlight">\(\SProp\)</span>.  It is enabled by default.
 The command-line flag <code class="docutils literal notranslate"><span class="pre">-disallow-sprop</span></code> disables <span class="math notranslate nohighlight">\(\SProp\)</span> at
 startup.</p>
-<dl class="coq exn">
-<dt class="sig sig-object coq" id="coq:exn.SProp-is-disallowed-because-the-&quot;Allow-StrictProp&quot;-flag-is-off">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">SProp</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">disallowed</span></span></span> <span><span><span class="pre">because</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">&quot;Allow</span></span></span> <span><span><span class="pre">StrictProp&quot;</span></span></span> <span><span><span class="pre">flag</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">off.</span></span></span></span></span><a class="headerlink" href="#coq:exn.SProp-is-disallowed-because-the-"Allow-StrictProp"-flag-is-off" title="Link to this definition"></a></dt>
+<dl class="rocq exn">
+<dt class="sig sig-object rocq" id="rocq:exn.SProp-is-disallowed-because-the-&quot;Allow-StrictProp&quot;-flag-is-off">
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">SProp</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">disallowed</span></span></span> <span><span><span class="pre">because</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">&quot;Allow</span></span></span> <span><span><span class="pre">StrictProp&quot;</span></span></span> <span><span><span class="pre">flag</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">off.</span></span></span></span></span><a class="headerlink" href="#rocq:exn.SProp-is-disallowed-because-the-"Allow-StrictProp"-flag-is-off" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1311,9 +1311,9 @@ through <code class="docutils literal notranslate"><span class="pre">Stdlib.Logi
 <h2>Basic constructs<a class="headerlink" href="#basic-constructs" title="Link to this heading"></a></h2>
 <p>The purpose of <span class="math notranslate nohighlight">\(\SProp\)</span> is to provide types where all elements
 are convertible:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Theorem</span><span> </span><span class="coqdoc-var">irrelevance</span><span> (</span><span class="coqdoc-var">A</span><span> : </span><span class="coqdoc-var">SProp</span><span>) (</span><span class="coqdoc-var">P</span><span> : </span><span class="coqdoc-var">A</span><span> -&gt; </span><span class="coqdoc-keyword">Prop</span><span>) : </span><span class="coqdoc-keyword">forall</span><span> </span><span class="coqdoc-var">x</span><span> : </span><span class="coqdoc-var">A</span><span>, </span><span class="coqdoc-var">P</span><span> </span><span class="coqdoc-var">x</span><span> -&gt; </span><span class="coqdoc-keyword">forall</span><span> </span><span class="coqdoc-var">y</span><span> : </span><span class="coqdoc-var">A</span><span>, </span><span class="coqdoc-var">P</span><span> </span><span class="coqdoc-var">y</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Theorem</span><span> </span><span class="rocqdoc-var">irrelevance</span><span> (</span><span class="rocqdoc-var">A</span><span> : </span><span class="rocqdoc-var">SProp</span><span>) (</span><span class="rocqdoc-var">P</span><span> : </span><span class="rocqdoc-var">A</span><span> -&gt; </span><span class="rocqdoc-keyword">Prop</span><span>) : </span><span class="rocqdoc-keyword">forall</span><span> </span><span class="rocqdoc-var">x</span><span> : </span><span class="rocqdoc-var">A</span><span>, </span><span class="rocqdoc-var">P</span><span> </span><span class="rocqdoc-var">x</span><span> -&gt; </span><span class="rocqdoc-keyword">forall</span><span> </span><span class="rocqdoc-var">y</span><span> : </span><span class="rocqdoc-var">A</span><span>, </span><span class="rocqdoc-var">P</span><span> </span><span class="rocqdoc-var">y</span><span>.</span><span>
 </span></dt><dd><span>1 goal
   
   A : </span><span class="ansi-fg-yellow ansi-bold">SProp</span><span>
@@ -1321,8 +1321,8 @@ are convertible:</p>
   ============================
   </span><span class="ansi-bold">forall</span><span> x : A, P x</span><span> -&gt;</span><span> </span><span class="ansi-bold">forall</span><span> y : A, P y
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Proof</span><span>.</span><span>
-</span></dt><dt><span></span><span class="coqdoc-tactic">intros</span><span> * </span><span class="coqdoc-var">Hx</span><span> *.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Proof</span><span>.</span><span>
+</span></dt><dt><span></span><span class="rocqdoc-tactic">intros</span><span> * </span><span class="rocqdoc-var">Hx</span><span> *.</span><span>
 </span></dt><dd><span>1 goal
   
   A : </span><span class="ansi-fg-yellow ansi-bold">SProp</span><span>
@@ -1333,18 +1333,18 @@ are convertible:</p>
   ============================
   P y
 </span></dd>
-<dt><span></span><span class="coqdoc-tactic">exact</span><span> </span><span class="coqdoc-var">Hx</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-tactic">exact</span><span> </span><span class="rocqdoc-var">Hx</span><span>.</span><span>
 </span></dt><dd><span>No more goals.
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Qed</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Qed</span><span>.</span><span>
 </span></dt></dl>
 </div>
 <p>Since we have definitional <a class="reference internal" href="../language/core/conversion.html#eta-expansion-sect"><span class="std std-ref">η-expansion</span></a> for
 functions, the property of being a type of definitionally irrelevant
 values is impredicative, and so is <span class="math notranslate nohighlight">\(\SProp\)</span>:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-keyword">fun</span><span> (</span><span class="coqdoc-var">A</span><span>:</span><span class="coqdoc-keyword">Type</span><span>) (</span><span class="coqdoc-var">B</span><span>:</span><span class="coqdoc-var">A</span><span> -&gt; </span><span class="coqdoc-var">SProp</span><span>) =&gt; (</span><span class="coqdoc-keyword">forall</span><span> </span><span class="coqdoc-var">x</span><span>:</span><span class="coqdoc-var">A</span><span>, </span><span class="coqdoc-var">B</span><span> </span><span class="coqdoc-var">x</span><span>) : </span><span class="coqdoc-var">SProp</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-keyword">fun</span><span> (</span><span class="rocqdoc-var">A</span><span>:</span><span class="rocqdoc-keyword">Type</span><span>) (</span><span class="rocqdoc-var">B</span><span>:</span><span class="rocqdoc-var">A</span><span> -&gt; </span><span class="rocqdoc-var">SProp</span><span>) =&gt; (</span><span class="rocqdoc-keyword">forall</span><span> </span><span class="rocqdoc-var">x</span><span>:</span><span class="rocqdoc-var">A</span><span>, </span><span class="rocqdoc-var">B</span><span> </span><span class="rocqdoc-var">x</span><span>) : </span><span class="rocqdoc-var">SProp</span><span>.</span><span>
 </span></dt><dd><span class="ansi-bold">fun</span><span> (A : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>) (B : A</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">SProp</span><span>) =&gt; (</span><span class="ansi-bold">forall</span><span> x : A, B x) : </span><span class="ansi-fg-yellow ansi-bold">SProp</span><span>
      : </span><span class="ansi-bold">forall</span><span> A : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>, (A</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">SProp</span><span>)</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">SProp</span><span>
 </span></dd>
@@ -1352,9 +1352,9 @@ values is impredicative, and so is <span class="math notranslate nohighlight">\(
 </div>
 <p>In order to keep conversion tractable, cumulativity for <span class="math notranslate nohighlight">\(\SProp\)</span>
 is forbidden.</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-var">Fail</span><span> </span><span class="coqdoc-keyword">Check</span><span> (</span><span class="coqdoc-keyword">fun</span><span> (</span><span class="coqdoc-var">A</span><span>:</span><span class="coqdoc-var">SProp</span><span>) =&gt; </span><span class="coqdoc-var">A</span><span> : </span><span class="coqdoc-keyword">Type</span><span>).</span><span>
+<dt><span></span><span class="rocqdoc-var">Fail</span><span> </span><span class="rocqdoc-keyword">Check</span><span> (</span><span class="rocqdoc-keyword">fun</span><span> (</span><span class="rocqdoc-var">A</span><span>:</span><span class="rocqdoc-var">SProp</span><span>) =&gt; </span><span class="rocqdoc-var">A</span><span> : </span><span class="rocqdoc-keyword">Type</span><span>).</span><span>
 </span></dt><dd><span>The command has indeed failed with message:
 In environment
 A : </span><span class="ansi-fg-yellow ansi-bold">SProp</span><span>
@@ -1366,19 +1366,19 @@ The term &quot;A&quot; has type &quot;</span><span class="ansi-fg-yellow ansi-bo
 <p>We can explicitly lift strict propositions into the relevant world by
 using a wrapping inductive type. The inductive stops definitional
 proof irrelevance from escaping.</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Inductive</span><span> </span><span class="coqdoc-var">Box</span><span> (</span><span class="coqdoc-var">A</span><span>:</span><span class="coqdoc-var">SProp</span><span>) : </span><span class="coqdoc-keyword">Prop</span><span> := </span><span class="coqdoc-var">box</span><span> : </span><span class="coqdoc-var">A</span><span> -&gt; </span><span class="coqdoc-var">Box</span><span> </span><span class="coqdoc-var">A</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>Box is defined
+<dt><span></span><span class="rocqdoc-keyword">Inductive</span><span> </span><span class="rocqdoc-var">Box</span><span> (</span><span class="rocqdoc-var">A</span><span>:</span><span class="rocqdoc-var">SProp</span><span>) : </span><span class="rocqdoc-keyword">Prop</span><span> := </span><span class="rocqdoc-var">box</span><span> : </span><span class="rocqdoc-var">A</span><span> -&gt; </span><span class="rocqdoc-var">Box</span><span> </span><span class="rocqdoc-var">A</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>Box is defined
 Box_rect is defined
 Box_ind is defined
 Box_rec is defined
 Box_sind is defined
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Arguments</span><span> </span><span class="coqdoc-var">box</span><span> {</span><span class="coqdoc-var">_</span><span>} </span><span class="coqdoc-var">_</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Arguments</span><span> </span><span class="rocqdoc-var">box</span><span> {</span><span class="rocqdoc-var">_</span><span>} </span><span class="rocqdoc-var">_</span><span>.</span><span>
 </span></dt></dl>
 <span></span><dl>
-<dt><span></span><span class="coqdoc-var">Fail</span><span> </span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-keyword">fun</span><span> (</span><span class="coqdoc-var">A</span><span>:</span><span class="coqdoc-var">SProp</span><span>) (</span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span> : </span><span class="coqdoc-var">Box</span><span> </span><span class="coqdoc-var">A</span><span>) =&gt; </span><span class="coqdoc-var">eq_refl</span><span> : </span><span class="coqdoc-var">x</span><span> = </span><span class="coqdoc-var">y</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-var">Fail</span><span> </span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-keyword">fun</span><span> (</span><span class="rocqdoc-var">A</span><span>:</span><span class="rocqdoc-var">SProp</span><span>) (</span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> : </span><span class="rocqdoc-var">Box</span><span> </span><span class="rocqdoc-var">A</span><span>) =&gt; </span><span class="rocqdoc-var">eq_refl</span><span> : </span><span class="rocqdoc-var">x</span><span> = </span><span class="rocqdoc-var">y</span><span>.</span><span>
 </span></dt><dd><span>The command has indeed failed with message:
 In environment
 A : </span><span class="ansi-fg-yellow ansi-bold">SProp</span><span>
@@ -1389,36 +1389,36 @@ The term &quot;eq_refl&quot; has type &quot;x</span><span> =</span><span> x&quot
 </span></dd>
 </dl>
 </div>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">box_irrelevant</span><span> (</span><span class="coqdoc-var">A</span><span>:</span><span class="coqdoc-var">SProp</span><span>) (</span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span> : </span><span class="coqdoc-var">Box</span><span> </span><span class="coqdoc-var">A</span><span>) : </span><span class="coqdoc-var">x</span><span> = </span><span class="coqdoc-var">y</span><span>
-  := </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">x</span><span>, </span><span class="coqdoc-var">y</span><span> </span><span class="coqdoc-keyword">with</span><span> </span><span class="coqdoc-var">box</span><span> </span><span class="coqdoc-var">x</span><span>, </span><span class="coqdoc-var">box</span><span> </span><span class="coqdoc-var">y</span><span> =&gt; </span><span class="coqdoc-var">eq_refl</span><span> </span><span class="coqdoc-keyword">end</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>box_irrelevant is defined
+<dt><span></span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">box_irrelevant</span><span> (</span><span class="rocqdoc-var">A</span><span>:</span><span class="rocqdoc-var">SProp</span><span>) (</span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> : </span><span class="rocqdoc-var">Box</span><span> </span><span class="rocqdoc-var">A</span><span>) : </span><span class="rocqdoc-var">x</span><span> = </span><span class="rocqdoc-var">y</span><span>
+  := </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">x</span><span>, </span><span class="rocqdoc-var">y</span><span> </span><span class="rocqdoc-keyword">with</span><span> </span><span class="rocqdoc-var">box</span><span> </span><span class="rocqdoc-var">x</span><span>, </span><span class="rocqdoc-var">box</span><span> </span><span class="rocqdoc-var">y</span><span> =&gt; </span><span class="rocqdoc-var">eq_refl</span><span> </span><span class="rocqdoc-keyword">end</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>box_irrelevant is defined
 </span></dd>
 </dl>
 </div>
 <p>In the other direction, we can use impredicativity to &quot;squash&quot; a
 relevant type, making an irrelevant approximation.</p>
-<div class="coqdoc literal-block docutils container">
-<span><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">iSquash</span><span> (</span><span class="coqdoc-var">A</span><span>:</span><span class="coqdoc-keyword">Type</span><span>) : </span><span class="coqdoc-var">SProp</span><span>
-  := </span><span class="coqdoc-keyword">forall</span><span> </span><span class="coqdoc-var">P</span><span> : </span><span class="coqdoc-var">SProp</span><span>, (</span><span class="coqdoc-var">A</span><span> -&gt; </span><span class="coqdoc-var">P</span><span>) -&gt; </span><span class="coqdoc-var">P</span><span>.</span><span>
-</span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">isquash</span><span> </span><span class="coqdoc-var">A</span><span> : </span><span class="coqdoc-var">A</span><span> -&gt; </span><span class="coqdoc-var">iSquash</span><span> </span><span class="coqdoc-var">A</span><span>
-  := </span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">a</span><span> </span><span class="coqdoc-var">P</span><span> </span><span class="coqdoc-var">f</span><span> =&gt; </span><span class="coqdoc-var">f</span><span> </span><span class="coqdoc-var">a</span><span>.</span><span>
-</span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">iSquash_sind</span><span> </span><span class="coqdoc-var">A</span><span> (</span><span class="coqdoc-var">P</span><span> : </span><span class="coqdoc-var">iSquash</span><span> </span><span class="coqdoc-var">A</span><span> -&gt; </span><span class="coqdoc-var">SProp</span><span>) (</span><span class="coqdoc-var">H</span><span> : </span><span class="coqdoc-keyword">forall</span><span> </span><span class="coqdoc-var">x</span><span> : </span><span class="coqdoc-var">A</span><span>, </span><span class="coqdoc-var">P</span><span> (</span><span class="coqdoc-var">isquash</span><span> </span><span class="coqdoc-var">A</span><span> </span><span class="coqdoc-var">x</span><span>))</span><span>
-  : </span><span class="coqdoc-keyword">forall</span><span> </span><span class="coqdoc-var">x</span><span> : </span><span class="coqdoc-var">iSquash</span><span> </span><span class="coqdoc-var">A</span><span>, </span><span class="coqdoc-var">P</span><span> </span><span class="coqdoc-var">x</span><span>
-  := </span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">x</span><span> =&gt; </span><span class="coqdoc-var">x</span><span> (</span><span class="coqdoc-var">P</span><span> </span><span class="coqdoc-var">x</span><span>) (</span><span class="coqdoc-var">H</span><span> : </span><span class="coqdoc-var">A</span><span> -&gt; </span><span class="coqdoc-var">P</span><span> </span><span class="coqdoc-var">x</span><span>).</span><span>
+<div class="rocqdoc literal-block docutils container">
+<span><span></span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">iSquash</span><span> (</span><span class="rocqdoc-var">A</span><span>:</span><span class="rocqdoc-keyword">Type</span><span>) : </span><span class="rocqdoc-var">SProp</span><span>
+  := </span><span class="rocqdoc-keyword">forall</span><span> </span><span class="rocqdoc-var">P</span><span> : </span><span class="rocqdoc-var">SProp</span><span>, (</span><span class="rocqdoc-var">A</span><span> -&gt; </span><span class="rocqdoc-var">P</span><span>) -&gt; </span><span class="rocqdoc-var">P</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">isquash</span><span> </span><span class="rocqdoc-var">A</span><span> : </span><span class="rocqdoc-var">A</span><span> -&gt; </span><span class="rocqdoc-var">iSquash</span><span> </span><span class="rocqdoc-var">A</span><span>
+  := </span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">a</span><span> </span><span class="rocqdoc-var">P</span><span> </span><span class="rocqdoc-var">f</span><span> =&gt; </span><span class="rocqdoc-var">f</span><span> </span><span class="rocqdoc-var">a</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">iSquash_sind</span><span> </span><span class="rocqdoc-var">A</span><span> (</span><span class="rocqdoc-var">P</span><span> : </span><span class="rocqdoc-var">iSquash</span><span> </span><span class="rocqdoc-var">A</span><span> -&gt; </span><span class="rocqdoc-var">SProp</span><span>) (</span><span class="rocqdoc-var">H</span><span> : </span><span class="rocqdoc-keyword">forall</span><span> </span><span class="rocqdoc-var">x</span><span> : </span><span class="rocqdoc-var">A</span><span>, </span><span class="rocqdoc-var">P</span><span> (</span><span class="rocqdoc-var">isquash</span><span> </span><span class="rocqdoc-var">A</span><span> </span><span class="rocqdoc-var">x</span><span>))</span><span>
+  : </span><span class="rocqdoc-keyword">forall</span><span> </span><span class="rocqdoc-var">x</span><span> : </span><span class="rocqdoc-var">iSquash</span><span> </span><span class="rocqdoc-var">A</span><span>, </span><span class="rocqdoc-var">P</span><span> </span><span class="rocqdoc-var">x</span><span>
+  := </span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">x</span><span> =&gt; </span><span class="rocqdoc-var">x</span><span> (</span><span class="rocqdoc-var">P</span><span> </span><span class="rocqdoc-var">x</span><span>) (</span><span class="rocqdoc-var">H</span><span> : </span><span class="rocqdoc-var">A</span><span> -&gt; </span><span class="rocqdoc-var">P</span><span> </span><span class="rocqdoc-var">x</span><span>).</span><span>
 </span></span></div>
 <p>Or more conveniently (but equivalently)</p>
-<div class="coqdoc literal-block docutils container">
-<span><span></span><span class="coqdoc-keyword">Inductive</span><span> </span><span class="coqdoc-var">Squash</span><span> (</span><span class="coqdoc-var">A</span><span>:</span><span class="coqdoc-keyword">Type</span><span>) : </span><span class="coqdoc-var">SProp</span><span> := </span><span class="coqdoc-var">squash</span><span> : </span><span class="coqdoc-var">A</span><span> -&gt; </span><span class="coqdoc-var">Squash</span><span> </span><span class="coqdoc-var">A</span><span>.</span><span>
+<div class="rocqdoc literal-block docutils container">
+<span><span></span><span class="rocqdoc-keyword">Inductive</span><span> </span><span class="rocqdoc-var">Squash</span><span> (</span><span class="rocqdoc-var">A</span><span>:</span><span class="rocqdoc-keyword">Type</span><span>) : </span><span class="rocqdoc-var">SProp</span><span> := </span><span class="rocqdoc-var">squash</span><span> : </span><span class="rocqdoc-var">A</span><span> -&gt; </span><span class="rocqdoc-var">Squash</span><span> </span><span class="rocqdoc-var">A</span><span>.</span><span>
 </span></span></div>
 <p>Most inductives types defined in <span class="math notranslate nohighlight">\(\SProp\)</span> are squashed types,
 i.e. they can only be eliminated to construct proofs of other strict
 propositions. Empty types are the only exception.</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Inductive</span><span> </span><span class="coqdoc-var">sEmpty</span><span> : </span><span class="coqdoc-var">SProp</span><span> := .</span><span>
-</span></dt><dd class="coqtop-hidden"><span>sEmpty is defined
+<dt><span></span><span class="rocqdoc-keyword">Inductive</span><span> </span><span class="rocqdoc-var">sEmpty</span><span> : </span><span class="rocqdoc-var">SProp</span><span> := .</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>sEmpty is defined
 sEmpty_rect is defined
 sEmpty_ind is defined
 sEmpty_rec is defined
@@ -1426,7 +1426,7 @@ sEmpty_sind is defined
 </span></dd>
 </dl>
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-var">sEmpty_rect</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-var">sEmpty_rect</span><span>.</span><span>
 </span></dt><dd><span>sEmpty_rect
      : </span><span class="ansi-bold">forall</span><span> (P : sEmpty</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>) (s : sEmpty), P s
 </span></dd>
@@ -1439,11 +1439,11 @@ same way that eliminators to propositions are called <code class="docutils liter
 </div>
 <p>Primitive records in <span class="math notranslate nohighlight">\(\SProp\)</span> are allowed when fields are strict
 propositions, for instance:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Set</span><span> </span><span class="coqdoc-var">Primitive</span><span> </span><span class="coqdoc-var">Projections</span><span>.</span><span>
-</span></dt><dt><span></span><span class="coqdoc-keyword">Record</span><span> </span><span class="coqdoc-var">sProd</span><span> (</span><span class="coqdoc-var">A</span><span> </span><span class="coqdoc-var">B</span><span> : </span><span class="coqdoc-var">SProp</span><span>) : </span><span class="coqdoc-var">SProp</span><span> := { </span><span class="coqdoc-var">sfst</span><span> : </span><span class="coqdoc-var">A</span><span>; </span><span class="coqdoc-var">ssnd</span><span> : </span><span class="coqdoc-var">B</span><span> }.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>sProd is defined
+<dt><span></span><span class="rocqdoc-keyword">Set</span><span> </span><span class="rocqdoc-var">Primitive</span><span> </span><span class="rocqdoc-var">Projections</span><span>.</span><span>
+</span></dt><dt><span></span><span class="rocqdoc-keyword">Record</span><span> </span><span class="rocqdoc-var">sProd</span><span> (</span><span class="rocqdoc-var">A</span><span> </span><span class="rocqdoc-var">B</span><span> : </span><span class="rocqdoc-var">SProp</span><span>) : </span><span class="rocqdoc-var">SProp</span><span> := { </span><span class="rocqdoc-var">sfst</span><span> : </span><span class="rocqdoc-var">A</span><span>; </span><span class="rocqdoc-var">ssnd</span><span> : </span><span class="rocqdoc-var">B</span><span> }.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>sProd is defined
 sfst is defined
 ssnd is defined
 </span></dd>
@@ -1452,10 +1452,10 @@ ssnd is defined
 <p>On the other hand, to avoid having definitionally irrelevant types in
 non-<span class="math notranslate nohighlight">\(\SProp\)</span> sorts (through record η-extensionality), primitive
 records in relevant sorts must have at least one relevant field.</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Set</span><span> </span><span class="coqdoc-var">Warnings</span><span> &quot;+non-primitive-record&quot;.</span><span>
-</span></dt><dt><span></span><span class="coqdoc-var">Fail</span><span> </span><span class="coqdoc-keyword">Record</span><span> </span><span class="coqdoc-var">rBox</span><span> (</span><span class="coqdoc-var">A</span><span>:</span><span class="coqdoc-var">SProp</span><span>) : </span><span class="coqdoc-keyword">Prop</span><span> := </span><span class="coqdoc-var">rbox</span><span> { </span><span class="coqdoc-var">runbox</span><span> : </span><span class="coqdoc-var">A</span><span> }.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Set</span><span> </span><span class="rocqdoc-var">Warnings</span><span> &quot;+non-primitive-record&quot;.</span><span>
+</span></dt><dt><span></span><span class="rocqdoc-var">Fail</span><span> </span><span class="rocqdoc-keyword">Record</span><span> </span><span class="rocqdoc-var">rBox</span><span> (</span><span class="rocqdoc-var">A</span><span>:</span><span class="rocqdoc-var">SProp</span><span>) : </span><span class="rocqdoc-keyword">Prop</span><span> := </span><span class="rocqdoc-var">rbox</span><span> { </span><span class="rocqdoc-var">runbox</span><span> : </span><span class="rocqdoc-var">A</span><span> }.</span><span>
 </span></dt><dd><span>The command has indeed failed with message:
 The record rBox could not be defined as a primitive record because it is not
 in SProp but all projections may be irrelevant.
@@ -1463,8 +1463,8 @@ in SProp but all projections may be irrelevant.
 </span></dd>
 </dl>
 </div>
-<div class="coqdoc literal-block docutils container">
-<span><span></span><span class="coqdoc-keyword">Record</span><span> </span><span class="coqdoc-var">ssig</span><span> (</span><span class="coqdoc-var">A</span><span>:</span><span class="coqdoc-keyword">Type</span><span>) (</span><span class="coqdoc-var">P</span><span>:</span><span class="coqdoc-var">A</span><span> -&gt; </span><span class="coqdoc-var">SProp</span><span>) : </span><span class="coqdoc-keyword">Type</span><span> := { </span><span class="coqdoc-var">spr1</span><span> : </span><span class="coqdoc-var">A</span><span>; </span><span class="coqdoc-var">spr2</span><span> : </span><span class="coqdoc-var">P</span><span> </span><span class="coqdoc-var">spr1</span><span> }.</span><span>
+<div class="rocqdoc literal-block docutils container">
+<span><span></span><span class="rocqdoc-keyword">Record</span><span> </span><span class="rocqdoc-var">ssig</span><span> (</span><span class="rocqdoc-var">A</span><span>:</span><span class="rocqdoc-keyword">Type</span><span>) (</span><span class="rocqdoc-var">P</span><span>:</span><span class="rocqdoc-var">A</span><span> -&gt; </span><span class="rocqdoc-var">SProp</span><span>) : </span><span class="rocqdoc-keyword">Type</span><span> := { </span><span class="rocqdoc-var">spr1</span><span> : </span><span class="rocqdoc-var">A</span><span>; </span><span class="rocqdoc-var">spr2</span><span> : </span><span class="rocqdoc-var">P</span><span> </span><span class="rocqdoc-var">spr1</span><span> }.</span><span>
 </span></span></div>
 <p>Note that <code class="docutils literal notranslate"><span class="pre">rBox</span></code> works as an emulated record, which is equivalent to
 the Box inductive.</p>
@@ -1473,63 +1473,63 @@ the Box inductive.</p>
 <h2>Encodings for strict propositions<a class="headerlink" href="#encodings-for-strict-propositions" title="Link to this heading"></a></h2>
 <p>The elimination for unit types can be encoded by a trivial function
 thanks to proof irrelevance:</p>
-<div class="coqdoc literal-block docutils container">
-<span><span></span><span class="coqdoc-keyword">Inductive</span><span> </span><span class="coqdoc-var">sUnit</span><span> : </span><span class="coqdoc-var">SProp</span><span> := </span><span class="coqdoc-var">stt</span><span>.</span><span>
-</span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">sUnit_rect</span><span> (</span><span class="coqdoc-var">P</span><span>:</span><span class="coqdoc-var">sUnit</span><span>-&gt;</span><span class="coqdoc-keyword">Type</span><span>) (</span><span class="coqdoc-var">v</span><span>:</span><span class="coqdoc-var">P</span><span> </span><span class="coqdoc-var">stt</span><span>) (</span><span class="coqdoc-var">x</span><span>:</span><span class="coqdoc-var">sUnit</span><span>) : </span><span class="coqdoc-var">P</span><span> </span><span class="coqdoc-var">x</span><span> := </span><span class="coqdoc-var">v</span><span>.</span><span>
+<div class="rocqdoc literal-block docutils container">
+<span><span></span><span class="rocqdoc-keyword">Inductive</span><span> </span><span class="rocqdoc-var">sUnit</span><span> : </span><span class="rocqdoc-var">SProp</span><span> := </span><span class="rocqdoc-var">stt</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">sUnit_rect</span><span> (</span><span class="rocqdoc-var">P</span><span>:</span><span class="rocqdoc-var">sUnit</span><span>-&gt;</span><span class="rocqdoc-keyword">Type</span><span>) (</span><span class="rocqdoc-var">v</span><span>:</span><span class="rocqdoc-var">P</span><span> </span><span class="rocqdoc-var">stt</span><span>) (</span><span class="rocqdoc-var">x</span><span>:</span><span class="rocqdoc-var">sUnit</span><span>) : </span><span class="rocqdoc-var">P</span><span> </span><span class="rocqdoc-var">x</span><span> := </span><span class="rocqdoc-var">v</span><span>.</span><span>
 </span></span></div>
 <p>By using empty and unit types as base values, we can encode other
 strict propositions. For instance:</p>
-<div class="coqdoc literal-block docutils container">
-<span><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">is_true</span><span> (</span><span class="coqdoc-var">b</span><span>:</span><span class="coqdoc-var">bool</span><span>) : </span><span class="coqdoc-var">SProp</span><span> := </span><span class="coqdoc-keyword">if</span><span> </span><span class="coqdoc-var">b</span><span> </span><span class="coqdoc-keyword">then</span><span> </span><span class="coqdoc-var">sUnit</span><span> </span><span class="coqdoc-keyword">else</span><span> </span><span class="coqdoc-var">sEmpty</span><span>.</span><span>
+<div class="rocqdoc literal-block docutils container">
+<span><span></span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">is_true</span><span> (</span><span class="rocqdoc-var">b</span><span>:</span><span class="rocqdoc-var">bool</span><span>) : </span><span class="rocqdoc-var">SProp</span><span> := </span><span class="rocqdoc-keyword">if</span><span> </span><span class="rocqdoc-var">b</span><span> </span><span class="rocqdoc-keyword">then</span><span> </span><span class="rocqdoc-var">sUnit</span><span> </span><span class="rocqdoc-keyword">else</span><span> </span><span class="rocqdoc-var">sEmpty</span><span>.</span><span>
 </span><span>
-</span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">is_true_eq_true</span><span> </span><span class="coqdoc-var">b</span><span> : </span><span class="coqdoc-var">is_true</span><span> </span><span class="coqdoc-var">b</span><span> -&gt; </span><span class="coqdoc-var">true</span><span> = </span><span class="coqdoc-var">b</span><span>
-  := </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">b</span><span> </span><span class="coqdoc-keyword">with</span><span>
-     | </span><span class="coqdoc-var">true</span><span> =&gt; </span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">_</span><span> =&gt; </span><span class="coqdoc-var">eq_refl</span><span>
-     | </span><span class="coqdoc-var">false</span><span> =&gt; </span><span class="coqdoc-var">sEmpty_ind</span><span> </span><span class="coqdoc-var">_</span><span>
-     </span><span class="coqdoc-keyword">end</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">is_true_eq_true</span><span> </span><span class="rocqdoc-var">b</span><span> : </span><span class="rocqdoc-var">is_true</span><span> </span><span class="rocqdoc-var">b</span><span> -&gt; </span><span class="rocqdoc-var">true</span><span> = </span><span class="rocqdoc-var">b</span><span>
+  := </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">b</span><span> </span><span class="rocqdoc-keyword">with</span><span>
+     | </span><span class="rocqdoc-var">true</span><span> =&gt; </span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">_</span><span> =&gt; </span><span class="rocqdoc-var">eq_refl</span><span>
+     | </span><span class="rocqdoc-var">false</span><span> =&gt; </span><span class="rocqdoc-var">sEmpty_ind</span><span> </span><span class="rocqdoc-var">_</span><span>
+     </span><span class="rocqdoc-keyword">end</span><span>.</span><span>
 </span><span>
-</span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">eq_true_is_true</span><span> </span><span class="coqdoc-var">b</span><span> (</span><span class="coqdoc-var">H</span><span>:</span><span class="coqdoc-var">true</span><span>=</span><span class="coqdoc-var">b</span><span>) : </span><span class="coqdoc-var">is_true</span><span> </span><span class="coqdoc-var">b</span><span>
-  := </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">H</span><span> </span><span class="coqdoc-tactic">in</span><span> </span><span class="coqdoc-var">_</span><span> = </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-keyword">return</span><span> </span><span class="coqdoc-var">is_true</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-keyword">with</span><span> </span><span class="coqdoc-var">eq_refl</span><span> =&gt; </span><span class="coqdoc-var">stt</span><span> </span><span class="coqdoc-keyword">end</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">eq_true_is_true</span><span> </span><span class="rocqdoc-var">b</span><span> (</span><span class="rocqdoc-var">H</span><span>:</span><span class="rocqdoc-var">true</span><span>=</span><span class="rocqdoc-var">b</span><span>) : </span><span class="rocqdoc-var">is_true</span><span> </span><span class="rocqdoc-var">b</span><span>
+  := </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">H</span><span> </span><span class="rocqdoc-tactic">in</span><span> </span><span class="rocqdoc-var">_</span><span> = </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-keyword">return</span><span> </span><span class="rocqdoc-var">is_true</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-keyword">with</span><span> </span><span class="rocqdoc-var">eq_refl</span><span> =&gt; </span><span class="rocqdoc-var">stt</span><span> </span><span class="rocqdoc-keyword">end</span><span>.</span><span>
 </span></span></div>
 </section>
 <section id="definitional-uip">
 <h2>Definitional UIP<a class="headerlink" href="#definitional-uip" title="Link to this heading"></a></h2>
-<dl class="coq flag">
-<dt class="sig sig-object coq" id="coq:flag.Definitional-UIP">
-<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Definitional</span></span></span> <span><span><span class="pre">UIP</span></span></span></span></span><a class="headerlink" href="#coq:flag.Definitional-UIP" title="Link to this definition"></a></dt>
+<dl class="rocq flag">
+<dt class="sig sig-object rocq" id="rocq:flag.Definitional-UIP">
+<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Definitional</span></span></span> <span><span><span class="pre">UIP</span></span></span></span></span><a class="headerlink" href="#rocq:flag.Definitional-UIP" title="Link to this definition"></a></dt>
 <dd><p>This <a class="reference internal" href="../language/core/basic.html#term-flag"><span class="xref std std-term">flag</span></a>, off by default, allows the declaration of non-squashed
 inductive types in <span class="math notranslate nohighlight">\(\SProp\)</span> with 1 constructor which takes no non-parameter arguments.
 Since this includes equality types, it provides
 definitional uniqueness of identity proofs.</p>
 <p>Because squashing is a universe restriction, unsetting
-<a class="reference internal" href="../proof-engine/vernacular-commands.html#coq:flag.Universe-Checking" title="Universe Checking"><code class="xref coq coq-flag docutils literal notranslate"><span class="pre">Universe</span> <span class="pre">Checking</span></code></a> is stronger than setting
-<a class="reference internal" href="#coq:flag.Definitional-UIP" title="Definitional UIP"><code class="xref coq coq-flag docutils literal notranslate"><span class="pre">Definitional</span> <span class="pre">UIP</span></code></a>.</p>
+<a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:flag.Universe-Checking" title="Universe Checking"><code class="xref rocq rocq-flag docutils literal notranslate"><span class="pre">Universe</span> <span class="pre">Checking</span></code></a> is stronger than setting
+<a class="reference internal" href="#rocq:flag.Definitional-UIP" title="Definitional UIP"><code class="xref rocq rocq-flag docutils literal notranslate"><span class="pre">Definitional</span> <span class="pre">UIP</span></code></a>.</p>
 </dd></dl>
 
 <p>Definitional UIP involves a special reduction rule through which
 reduction depends on conversion. Consider the following code:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Set</span><span> </span><span class="coqdoc-var">Definitional</span><span> </span><span class="coqdoc-var">UIP</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Set</span><span> </span><span class="rocqdoc-var">Definitional</span><span> </span><span class="rocqdoc-var">UIP</span><span>.</span><span>
 </span></dt><dt><span></span><span>
-</span><span class="coqdoc-keyword">Inductive</span><span> </span><span class="coqdoc-var">seq</span><span> {</span><span class="coqdoc-var">A</span><span>} (</span><span class="coqdoc-var">a</span><span>:</span><span class="coqdoc-var">A</span><span>) : </span><span class="coqdoc-var">A</span><span> -&gt; </span><span class="coqdoc-var">SProp</span><span> :=</span><span>
-  </span><span class="coqdoc-var">srefl</span><span> : </span><span class="coqdoc-var">seq</span><span> </span><span class="coqdoc-var">a</span><span> </span><span class="coqdoc-var">a</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>seq is defined
+</span><span class="rocqdoc-keyword">Inductive</span><span> </span><span class="rocqdoc-var">seq</span><span> {</span><span class="rocqdoc-var">A</span><span>} (</span><span class="rocqdoc-var">a</span><span>:</span><span class="rocqdoc-var">A</span><span>) : </span><span class="rocqdoc-var">A</span><span> -&gt; </span><span class="rocqdoc-var">SProp</span><span> :=</span><span>
+  </span><span class="rocqdoc-var">srefl</span><span> : </span><span class="rocqdoc-var">seq</span><span> </span><span class="rocqdoc-var">a</span><span> </span><span class="rocqdoc-var">a</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>seq is defined
 seq_rect is defined
 seq_ind is defined
 seq_rec is defined
 seq_sind is defined
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">Axiom</span><span> </span><span class="coqdoc-var">e</span><span> : </span><span class="coqdoc-var">seq</span><span> 0 0.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>e is declared
+</span><span class="rocqdoc-keyword">Axiom</span><span> </span><span class="rocqdoc-var">e</span><span> : </span><span class="rocqdoc-var">seq</span><span> 0 0.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>e is declared
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">hidden_arrow</span><span> := </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">e</span><span> </span><span class="coqdoc-keyword">return</span><span> </span><span class="coqdoc-keyword">Set</span><span> </span><span class="coqdoc-keyword">with</span><span> </span><span class="coqdoc-var">srefl</span><span> </span><span class="coqdoc-var">_</span><span> =&gt; </span><span class="coqdoc-var">nat</span><span> -&gt; </span><span class="coqdoc-var">nat</span><span> </span><span class="coqdoc-keyword">end</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>hidden_arrow is defined
+<dt><span></span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">hidden_arrow</span><span> := </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">e</span><span> </span><span class="rocqdoc-keyword">return</span><span> </span><span class="rocqdoc-keyword">Set</span><span> </span><span class="rocqdoc-keyword">with</span><span> </span><span class="rocqdoc-var">srefl</span><span> </span><span class="rocqdoc-var">_</span><span> =&gt; </span><span class="rocqdoc-var">nat</span><span> -&gt; </span><span class="rocqdoc-var">nat</span><span> </span><span class="rocqdoc-keyword">end</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>hidden_arrow is defined
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">Check</span><span> (</span><span class="coqdoc-keyword">fun</span><span> (</span><span class="coqdoc-var">f</span><span> : </span><span class="coqdoc-var">hidden_arrow</span><span>) (</span><span class="coqdoc-var">x</span><span>:</span><span class="coqdoc-var">nat</span><span>) =&gt; (</span><span class="coqdoc-var">f</span><span> : </span><span class="coqdoc-var">nat</span><span> -&gt; </span><span class="coqdoc-var">nat</span><span>) </span><span class="coqdoc-var">x</span><span>).</span><span>
-</span></dt><dd class="coqtop-hidden"><span class="ansi-bold">fun</span><span> (f : hidden_arrow) (x : nat) =&gt; (f : nat</span><span> -&gt;</span><span> nat) x
+</span><span class="rocqdoc-keyword">Check</span><span> (</span><span class="rocqdoc-keyword">fun</span><span> (</span><span class="rocqdoc-var">f</span><span> : </span><span class="rocqdoc-var">hidden_arrow</span><span>) (</span><span class="rocqdoc-var">x</span><span>:</span><span class="rocqdoc-var">nat</span><span>) =&gt; (</span><span class="rocqdoc-var">f</span><span> : </span><span class="rocqdoc-var">nat</span><span> -&gt; </span><span class="rocqdoc-var">nat</span><span>) </span><span class="rocqdoc-var">x</span><span>).</span><span>
+</span></dt><dd class="rocqtop-hidden"><span class="ansi-bold">fun</span><span> (f : hidden_arrow) (x : nat) =&gt; (f : nat</span><span> -&gt;</span><span> nat) x
      : hidden_arrow</span><span> -&gt;</span><span> nat</span><span> -&gt;</span><span> nat
 </span></dd>
 </dl>
@@ -1543,9 +1543,9 @@ constructor. For <code class="docutils literal notranslate"><span class="pre">se
 <span class="pre">y</span></code> reduces if and only if <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> are convertible.</p>
 <p>Such matches are indicated in the printed representation by inserting
 a cast around the discriminee:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt class="coqtop-hidden"><span></span><span class="coqdoc-keyword">Print</span><span> </span><span class="coqdoc-var">hidden_arrow</span><span>.</span><span>
+<dt class="rocqtop-hidden"><span></span><span class="rocqdoc-keyword">Print</span><span> </span><span class="rocqdoc-var">hidden_arrow</span><span>.</span><span>
 </span></dt><dd><span>hidden_arrow = </span><span class="ansi-bold">match</span><span> e </span><span class="ansi-bold">with</span><span>
                | srefl _ =&gt; nat</span><span> -&gt;</span><span> nat
                </span><span class="ansi-bold">end</span><span>
@@ -1558,32 +1558,32 @@ a cast around the discriminee:</p>
 <p>The special reduction rule of UIP combined with an impredicative sort
 breaks termination of reduction
 <span id="id2">[<a class="reference internal" href="../zebibliography.html#id56" title="Andreas Abel and Thierry Coquand. Failure of Normalization in Impredicative Type Theory with Proof-Irrelevant Propositional Equality. Technical Report, Chalmers and Gothenburg University, 2019.">AC19</a>]</span>:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Axiom</span><span> </span><span class="coqdoc-var">all_eq</span><span> : </span><span class="coqdoc-keyword">forall</span><span> (</span><span class="coqdoc-var">P</span><span> </span><span class="coqdoc-var">Q</span><span>:</span><span class="coqdoc-keyword">Prop</span><span>), </span><span class="coqdoc-var">P</span><span> -&gt; </span><span class="coqdoc-var">Q</span><span> -&gt; </span><span class="coqdoc-var">seq</span><span> </span><span class="coqdoc-var">P</span><span> </span><span class="coqdoc-var">Q</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Axiom</span><span> </span><span class="rocqdoc-var">all_eq</span><span> : </span><span class="rocqdoc-keyword">forall</span><span> (</span><span class="rocqdoc-var">P</span><span> </span><span class="rocqdoc-var">Q</span><span>:</span><span class="rocqdoc-keyword">Prop</span><span>), </span><span class="rocqdoc-var">P</span><span> -&gt; </span><span class="rocqdoc-var">Q</span><span> -&gt; </span><span class="rocqdoc-var">seq</span><span> </span><span class="rocqdoc-var">P</span><span> </span><span class="rocqdoc-var">Q</span><span>.</span><span>
 </span></dt><dd><span>all_eq is declared
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">transport</span><span> (</span><span class="coqdoc-var">P</span><span> </span><span class="coqdoc-var">Q</span><span>:</span><span class="coqdoc-keyword">Prop</span><span>) (</span><span class="coqdoc-var">x</span><span>:</span><span class="coqdoc-var">P</span><span>) (</span><span class="coqdoc-var">y</span><span>:</span><span class="coqdoc-var">Q</span><span>) : </span><span class="coqdoc-var">Q</span><span>
-:= </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">all_eq</span><span> </span><span class="coqdoc-var">P</span><span> </span><span class="coqdoc-var">Q</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span> </span><span class="coqdoc-keyword">with</span><span> </span><span class="coqdoc-var">srefl</span><span> </span><span class="coqdoc-var">_</span><span> =&gt; </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-keyword">end</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">transport</span><span> (</span><span class="rocqdoc-var">P</span><span> </span><span class="rocqdoc-var">Q</span><span>:</span><span class="rocqdoc-keyword">Prop</span><span>) (</span><span class="rocqdoc-var">x</span><span>:</span><span class="rocqdoc-var">P</span><span>) (</span><span class="rocqdoc-var">y</span><span>:</span><span class="rocqdoc-var">Q</span><span>) : </span><span class="rocqdoc-var">Q</span><span>
+:= </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">all_eq</span><span> </span><span class="rocqdoc-var">P</span><span> </span><span class="rocqdoc-var">Q</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> </span><span class="rocqdoc-keyword">with</span><span> </span><span class="rocqdoc-var">srefl</span><span> </span><span class="rocqdoc-var">_</span><span> =&gt; </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-keyword">end</span><span>.</span><span>
 </span></dt><dd><span>transport is defined
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">top</span><span> : </span><span class="coqdoc-keyword">Prop</span><span> := </span><span class="coqdoc-keyword">forall</span><span> </span><span class="coqdoc-var">P</span><span> : </span><span class="coqdoc-keyword">Prop</span><span>, </span><span class="coqdoc-var">P</span><span> -&gt; </span><span class="coqdoc-var">P</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">top</span><span> : </span><span class="rocqdoc-keyword">Prop</span><span> := </span><span class="rocqdoc-keyword">forall</span><span> </span><span class="rocqdoc-var">P</span><span> : </span><span class="rocqdoc-keyword">Prop</span><span>, </span><span class="rocqdoc-var">P</span><span> -&gt; </span><span class="rocqdoc-var">P</span><span>.</span><span>
 </span></dt><dd><span>top is defined
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">c</span><span> : </span><span class="coqdoc-var">top</span><span> :=</span><span>
-  </span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">P</span><span> </span><span class="coqdoc-var">p</span><span> =&gt;</span><span>
-  </span><span class="coqdoc-var">transport</span><span>
-  (</span><span class="coqdoc-var">top</span><span> -&gt; </span><span class="coqdoc-var">top</span><span>)</span><span>
-  </span><span class="coqdoc-var">P</span><span>
-  (</span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">x</span><span> : </span><span class="coqdoc-var">top</span><span> =&gt; </span><span class="coqdoc-var">x</span><span> (</span><span class="coqdoc-var">top</span><span> -&gt; </span><span class="coqdoc-var">top</span><span>) (</span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">x</span><span> =&gt; </span><span class="coqdoc-var">x</span><span>) </span><span class="coqdoc-var">x</span><span>)</span><span>
-  </span><span class="coqdoc-var">p</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">c</span><span> : </span><span class="rocqdoc-var">top</span><span> :=</span><span>
+  </span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">P</span><span> </span><span class="rocqdoc-var">p</span><span> =&gt;</span><span>
+  </span><span class="rocqdoc-var">transport</span><span>
+  (</span><span class="rocqdoc-var">top</span><span> -&gt; </span><span class="rocqdoc-var">top</span><span>)</span><span>
+  </span><span class="rocqdoc-var">P</span><span>
+  (</span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">x</span><span> : </span><span class="rocqdoc-var">top</span><span> =&gt; </span><span class="rocqdoc-var">x</span><span> (</span><span class="rocqdoc-var">top</span><span> -&gt; </span><span class="rocqdoc-var">top</span><span>) (</span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">x</span><span> =&gt; </span><span class="rocqdoc-var">x</span><span>) </span><span class="rocqdoc-var">x</span><span>)</span><span>
+  </span><span class="rocqdoc-var">p</span><span>.</span><span>
 </span></dt><dd><span>c is defined
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-var">Fail</span><span> </span><span class="coqdoc-var">Timeout</span><span> 1 </span><span class="coqdoc-keyword">Eval</span><span> </span><span class="coqdoc-tactic">lazy</span><span> </span><span class="coqdoc-tactic">in</span><span> </span><span class="coqdoc-var">c</span><span> (</span><span class="coqdoc-var">top</span><span> -&gt; </span><span class="coqdoc-var">top</span><span>) (</span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">x</span><span> =&gt; </span><span class="coqdoc-var">x</span><span>) </span><span class="coqdoc-var">c</span><span>.</span><span>
+</span><span class="rocqdoc-var">Fail</span><span> </span><span class="rocqdoc-var">Timeout</span><span> 1 </span><span class="rocqdoc-keyword">Eval</span><span> </span><span class="rocqdoc-tactic">lazy</span><span> </span><span class="rocqdoc-tactic">in</span><span> </span><span class="rocqdoc-var">c</span><span> (</span><span class="rocqdoc-var">top</span><span> -&gt; </span><span class="rocqdoc-var">top</span><span>) (</span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">x</span><span> =&gt; </span><span class="rocqdoc-var">x</span><span>) </span><span class="rocqdoc-var">c</span><span>.</span><span>
 </span></dt><dd><span>The command has indeed failed with message:
 Timeout!
 </span></dd>
@@ -1603,9 +1603,9 @@ default they are not displayed. However code outside the kernel may
 generate incorrect marks resulting in bugs. Typically this means a
 conversion will incorrectly fail as a variable was incorrectly marked
 proof relevant.</p>
-<dl class="coq warn">
-<dt class="sig sig-object coq" id="coq:warn.Bad-relevance">
-<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Bad</span></span></span> <span><span><span class="pre">relevance</span></span></span></span></span><a class="headerlink" href="#coq:warn.Bad-relevance" title="Link to this definition"></a></dt>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.Bad-relevance">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Bad</span></span></span> <span><span><span class="pre">relevance</span></span></span></span></span><a class="headerlink" href="#rocq:warn.Bad-relevance" title="Link to this definition"></a></dt>
 <dd><p>This is a developer warning, which is treated as an error by default. It is
 emitted by the kernel when it is passed a term with incorrect relevance marks.
 This is always caused by a bug in Rocq (or a plugin), which should thus be reported and
@@ -1614,20 +1614,20 @@ ability to unset the <code class="docutils literal notranslate"><span class="pre
 kernel will silently repair the proof term instead of failing.</p>
 </dd></dl>
 
-<dl class="coq flag">
-<dt class="sig sig-object coq" id="coq:flag.Printing-Relevance-Marks">
-<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Relevance</span></span></span> <span><span><span class="pre">Marks</span></span></span></span></span><a class="headerlink" href="#coq:flag.Printing-Relevance-Marks" title="Link to this definition"></a></dt>
+<dl class="rocq flag">
+<dt class="sig sig-object rocq" id="rocq:flag.Printing-Relevance-Marks">
+<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Relevance</span></span></span> <span><span><span class="pre">Marks</span></span></span></span></span><a class="headerlink" href="#rocq:flag.Printing-Relevance-Marks" title="Link to this definition"></a></dt>
 <dd><p>This <a class="reference internal" href="../language/core/basic.html#term-flag"><span class="xref std std-term">flag</span></a> enables debug printing of relevance marks. It is off by default.
-Note that <a class="reference internal" href="../proof-engine/vernacular-commands.html#coq:flag.Printing-All" title="Printing All"><code class="xref coq coq-flag docutils literal notranslate"><span class="pre">Printing</span> <span class="pre">All</span></code></a> does not affect printing of relevance marks.</p>
-<div class="coqtop literal-block docutils container">
+Note that <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:flag.Printing-All" title="Printing All"><code class="xref rocq rocq-flag docutils literal notranslate"><span class="pre">Printing</span> <span class="pre">All</span></code></a> does not affect printing of relevance marks.</p>
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Set</span><span> </span><span class="coqdoc-keyword">Printing</span><span> </span><span class="coqdoc-var">Relevance</span><span> </span><span class="coqdoc-var">Marks</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Set</span><span> </span><span class="rocqdoc-keyword">Printing</span><span> </span><span class="rocqdoc-var">Relevance</span><span> </span><span class="rocqdoc-var">Marks</span><span>.</span><span>
 </span></dt><dt><span></span><span>
-</span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">x</span><span> : </span><span class="coqdoc-var">nat</span><span> =&gt; </span><span class="coqdoc-var">x</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">x</span><span> : </span><span class="rocqdoc-var">nat</span><span> =&gt; </span><span class="rocqdoc-var">x</span><span>.</span><span>
 </span></dt><dd><span class="ansi-bold">fun</span><span> x : (* Relevant *) nat =&gt; x
      : nat</span><span> -&gt;</span><span> nat
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-keyword">fun</span><span> (</span><span class="coqdoc-var">P</span><span>:</span><span class="coqdoc-var">SProp</span><span>) (</span><span class="coqdoc-var">p</span><span>:</span><span class="coqdoc-var">P</span><span>) =&gt; </span><span class="coqdoc-var">p</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-keyword">fun</span><span> (</span><span class="rocqdoc-var">P</span><span>:</span><span class="rocqdoc-var">SProp</span><span>) (</span><span class="rocqdoc-var">p</span><span>:</span><span class="rocqdoc-var">P</span><span>) =&gt; </span><span class="rocqdoc-var">p</span><span>.</span><span>
 </span></dt><dd><span class="ansi-bold">fun</span><span> (P : (* Relevant *) </span><span class="ansi-fg-yellow ansi-bold">SProp</span><span>) (p : (* Irrelevant *) P) =&gt; p
      : </span><span class="ansi-bold">forall</span><span> P : (* Relevant *) </span><span class="ansi-fg-yellow ansi-bold">SProp</span><span>, P</span><span> -&gt;</span><span> P
 </span></dd>

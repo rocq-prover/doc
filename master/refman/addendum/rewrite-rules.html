@@ -345,7 +345,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../language/extensions/arguments-command.html#automatic-declaration-of-implicit-arguments">Automatic declaration of implicit arguments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../language/extensions/arguments-command.html#renaming-implicit-arguments">Renaming implicit arguments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../language/extensions/arguments-command.html#binding-arguments-to-scopes">Binding arguments to scopes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../language/extensions/arguments-command.html#effects-of-arguments-on-unfolding">Effects of <code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Arguments</span></code> on unfolding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../language/extensions/arguments-command.html#effects-of-arguments-on-unfolding">Effects of <code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Arguments</span></code> on unfolding</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../language/extensions/arguments-command.html#bidirectionality-hints">Bidirectionality hints</a></li>
 </ul>
 </li>
@@ -506,7 +506,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../proofs/writing-proofs/reasoning-inductives.html#generation-of-inversion-principles-with-derive-inversion">Generation of inversion principles with <code class="docutils literal notranslate"><span class="pre">Derive</span></code> <code class="docutils literal notranslate"><span class="pre">Inversion</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../proofs/writing-proofs/reasoning-inductives.html#examples-of-dependent-destruction-dependent-induction">Examples of <code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">destruction</span></code> / <code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">induction</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../proofs/writing-proofs/reasoning-inductives.html#examples-of-dependent-destruction-dependent-induction">Examples of <code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">destruction</span></code> / <code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">induction</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../proofs/writing-proofs/reasoning-inductives.html#a-larger-example">A larger example</a></li>
 </ul>
 </li>
@@ -1292,9 +1292,9 @@ or <a class="reference internal" href="generalized-rewriting.html#generalizedrew
 <p>Rewrite rules need to be enabled by passing the option <code class="docutils literal notranslate"><span class="pre">-allow-rewrite-rules</span></code>
 to the Rocq program.</p>
 <blockquote>
-<div><dl class="coq exn">
-<dt class="sig sig-object coq" id="coq:exn.Rewrite-rule-declaration-requires-passing-the-flag-&quot;-allow-rewrite-rules&quot;">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Rewrite</span></span></span> <span><span><span class="pre">rule</span></span></span> <span><span><span class="pre">declaration</span></span></span> <span><span><span class="pre">requires</span></span></span> <span><span><span class="pre">passing</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">flag</span></span></span> <span><span><span class="pre">&quot;-allow-rewrite-rules&quot;.</span></span></span></span></span><a class="headerlink" href="#coq:exn.Rewrite-rule-declaration-requires-passing-the-flag-"-allow-rewrite-rules"" title="Link to this definition"></a></dt>
+<div><dl class="rocq exn">
+<dt class="sig sig-object rocq" id="rocq:exn.Rewrite-rule-declaration-requires-passing-the-flag-&quot;-allow-rewrite-rules&quot;">
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Rewrite</span></span></span> <span><span><span class="pre">rule</span></span></span> <span><span><span class="pre">declaration</span></span></span> <span><span><span class="pre">requires</span></span></span> <span><span><span class="pre">passing</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">flag</span></span></span> <span><span><span class="pre">&quot;-allow-rewrite-rules&quot;.</span></span></span></span></span><a class="headerlink" href="#rocq:exn.Rewrite-rule-declaration-requires-passing-the-flag-"-allow-rewrite-rules"" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </div></blockquote>
@@ -1304,26 +1304,34 @@ to the Rocq program.</p>
 They stand in-between defined constants and axioms,
 in that they don't always reduce as defined constants do,
 but they may still reduce using the provided rules, unlike axioms.</p>
-<dl class="coq cmd">
-<dt class="sig sig-object coq" id="coq:cmd.Symbol">
-<span id="coq:cmd.Symbols"></span><em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span class="alternative"><span class="alternative-block"><span><span><span class="pre">Symbol</span></span></span></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><span><span><span class="pre">Symbols</span></span></span></span></span> <span class="alternative"><span class="alternative-block"><a class="reference internal" href="../language/core/assumptions.html#grammar-token-assumpt"><span class="hole"><span class="pre">assumpt</span></span></a></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">(</span></span></span> <a class="reference internal" href="../language/core/assumptions.html#grammar-token-assumpt"><span class="hole"><span class="pre">assumpt</span></span></a> <span><span><span class="pre">)</span></span></span></span><span class="notation-sup"><span class="pre">+</span></span></span></span></span></span></span><a class="headerlink" href="#coq:cmd.Symbol" title="Link to this definition"></a></dt>
+<dl class="rocq cmd">
+<dt class="sig sig-object rocq" id="rocq:cmd.Symbol">
+<span id="rocq:cmd.Symbols"></span><em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span class="alternative"><span class="alternative-block"><span><span><span class="pre">Symbol</span></span></span></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><span><span><span class="pre">Symbols</span></span></span></span></span> <span class="alternative"><span class="alternative-block"><a class="reference internal" href="../language/core/assumptions.html#grammar-token-assumpt"><span class="hole"><span class="pre">assumpt</span></span></a></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">(</span></span></span> <a class="reference internal" href="../language/core/assumptions.html#grammar-token-assumpt"><span class="hole"><span class="pre">assumpt</span></span></a> <span><span><span class="pre">)</span></span></span></span><span class="notation-sup"><span class="pre">+</span></span></span></span></span></span></span><a class="headerlink" href="#rocq:cmd.Symbol" title="Link to this definition"></a></dt>
 <dd><p>Binds an <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></code> to a <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/basic.html#grammar-token-type"><span class="hole"><span class="pre">type</span></span></a></span></code> as a symbol.</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-var">Symbol</span><span> </span><span class="coqdoc-var">pplus</span><span> : </span><span class="coqdoc-var">nat</span><span> -&gt; </span><span class="coqdoc-var">nat</span><span> -&gt; </span><span class="coqdoc-var">nat</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>pplus is declared
+<dt><span></span><span class="rocqdoc-var">Symbol</span><span> </span><span class="rocqdoc-var">pplus</span><span> : </span><span class="rocqdoc-var">nat</span><span> -&gt; </span><span class="rocqdoc-var">nat</span><span> -&gt; </span><span class="rocqdoc-var">nat</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>Toplevel input, characters 0-33:
+&gt; Symbol pplus : nat -&gt; nat -&gt; nat.
+&gt; ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+</span><span class="ansi-fg-white ansi-bg-red ansi-bold">Error:</span><span> Symbol declaration requires passing the flag &quot;-allow-rewrite-rules&quot;.
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Notation</span><span> &quot;a ++ b&quot; := (</span><span class="coqdoc-var">pplus</span><span> </span><span class="coqdoc-var">a</span><span> </span><span class="coqdoc-var">b</span><span>).</span><span>
-</span></dt></dl>
+<dt><span></span><span class="rocqdoc-keyword">Notation</span><span> &quot;a ++ b&quot; := (</span><span class="rocqdoc-var">pplus</span><span> </span><span class="rocqdoc-var">a</span><span> </span><span class="rocqdoc-var">b</span><span>).</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>Toplevel input, characters 22-27:
+&gt; Notation &quot;a ++ b&quot; := (pplus a b).
+&gt;                       ^^^^^
+</span><span class="ansi-fg-white ansi-bg-red ansi-bold">Error:</span><span> The reference pplus was not found in the current environment.
+</span></dd>
+</dl>
 </div>
 </dd></dl>
 
 </section>
 <section id="id1">
 <h2>Rewrite rules<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
-<dl class="coq cmd">
-<dt class="sig sig-object coq" id="coq:cmd.Rewrite-Rule">
-<span id="coq:cmd.Rewrite-Rules"></span><em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Rewrite</span></span></span> <span class="alternative"><span class="alternative-block"><span><span><span class="pre">Rule</span></span></span></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><span><span><span class="pre">Rules</span></span></span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">:=</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">|</span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span> <span class="repeat-wrapper-with-sub"><span class="repeat"><a class="reference internal" href="#grammar-token-rewrite_rule"><span class="hole"><span class="pre">rewrite_rule</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span><span class="notation-sub"><span class="pre">|</span></span></span></span></span><a class="headerlink" href="#coq:cmd.Rewrite-Rule" title="Link to this definition"></a></dt>
+<dl class="rocq cmd">
+<dt class="sig sig-object rocq" id="rocq:cmd.Rewrite-Rule">
+<span id="rocq:cmd.Rewrite-Rules"></span><em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Rewrite</span></span></span> <span class="alternative"><span class="alternative-block"><span><span><span class="pre">Rule</span></span></span></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><span><span><span class="pre">Rules</span></span></span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">:=</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">|</span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span> <span class="repeat-wrapper-with-sub"><span class="repeat"><a class="reference internal" href="#grammar-token-rewrite_rule"><span class="hole"><span class="pre">rewrite_rule</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span><span class="notation-sub"><span class="pre">|</span></span></span></span></span><a class="headerlink" href="#rocq:cmd.Rewrite-Rule" title="Link to this definition"></a></dt>
 <dd><span class="prodn-table"><span class="prodn-column-group"><span class="prodn-column"></span><span class="prodn-column"></span><span class="prodn-column"></span><span class="prodn-column"></span></span><span class="prodn-row-group"><span class="prodn-row"><span class="prodn-cell-nonterminal"><span class="prodn-target"><span class="target" id="grammar-token-rewrite_rule"></span></span><span class="notation"><a class="reference internal" href="#grammar-token-rewrite_rule"><span class="hole">rewrite_rule</span></a></span></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">::=</span></code></span><span class="prodn-cell-production"><span class="notation"><span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="universe-polymorphism.html#grammar-token-univ_decl"><span class="hole">univ_decl</span></a> <span><span>|-</span></span></span><span class="notation-sup">?</span></span> <a class="reference internal" href="#grammar-token-rw_pattern"><span class="hole">rw_pattern</span></a> <span><span>=&gt;</span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-term"><span class="hole">term</span></a></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span></span></span></dd></dl>
 
 <p>Declares a named block of rewrite rules. The name is declared in the same namespace as constants and inductives.</p>
@@ -1335,14 +1343,20 @@ When a rule is applied, the term is matched against the pattern,
 subterms aligned with pattern variables are collected
 and then substituted into the replacement, which is returned.</p>
 <blockquote>
-<div><div class="coqtop literal-block docutils container">
-<span></span><dl class="simple">
-<dt><span></span><span class="coqdoc-keyword">Rewrite</span><span> </span><span class="coqdoc-var">Rule</span><span> </span><span class="coqdoc-var">pplus_rewrite</span><span> :=</span><span>
-| ?</span><span class="coqdoc-var">n</span><span> ++ 0 =&gt; ?</span><span class="coqdoc-var">n</span><span>
-| ?</span><span class="coqdoc-var">n</span><span> ++ </span><span class="coqdoc-var">S</span><span> ?</span><span class="coqdoc-var">m</span><span> =&gt; </span><span class="coqdoc-var">S</span><span> (?</span><span class="coqdoc-var">n</span><span> ++ ?</span><span class="coqdoc-var">m</span><span>)</span><span>
-| 0 ++ ?</span><span class="coqdoc-var">n</span><span> =&gt; ?</span><span class="coqdoc-var">n</span><span>
-| </span><span class="coqdoc-var">S</span><span> ?</span><span class="coqdoc-var">n</span><span> ++ ?</span><span class="coqdoc-var">m</span><span> =&gt; </span><span class="coqdoc-var">S</span><span> (?</span><span class="coqdoc-var">n</span><span> ++ ?</span><span class="coqdoc-var">m</span><span>).</span><span>
-</span></dt></dl>
+<div><div class="rocqtop literal-block docutils container">
+<span></span><dl>
+<dt><span></span><span class="rocqdoc-keyword">Rewrite</span><span> </span><span class="rocqdoc-var">Rule</span><span> </span><span class="rocqdoc-var">pplus_rewrite</span><span> :=</span><span>
+| ?</span><span class="rocqdoc-var">n</span><span> ++ 0 =&gt; ?</span><span class="rocqdoc-var">n</span><span>
+| ?</span><span class="rocqdoc-var">n</span><span> ++ </span><span class="rocqdoc-var">S</span><span> ?</span><span class="rocqdoc-var">m</span><span> =&gt; </span><span class="rocqdoc-var">S</span><span> (?</span><span class="rocqdoc-var">n</span><span> ++ ?</span><span class="rocqdoc-var">m</span><span>)</span><span>
+| 0 ++ ?</span><span class="rocqdoc-var">n</span><span> =&gt; ?</span><span class="rocqdoc-var">n</span><span>
+| </span><span class="rocqdoc-var">S</span><span> ?</span><span class="rocqdoc-var">n</span><span> ++ ?</span><span class="rocqdoc-var">m</span><span> =&gt; </span><span class="rocqdoc-var">S</span><span> (?</span><span class="rocqdoc-var">n</span><span> ++ ?</span><span class="rocqdoc-var">m</span><span>).</span><span>
+</span></dt><dd><span>Toplevel input, characters 0-120:
+&gt; Rewrite Rule pplus_rewrite := | ?n ++ 0 =&gt; ?n | ?n ++ S ?m =&gt; S (?n ++ ?m) | 0 ++ ?n =&gt; ?n | S ?n ++ ?m =&gt; S (?n ++ ?m).
+&gt; ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+</span><span class="ansi-fg-white ansi-bg-red ansi-bold">Error:</span><span> Rewrite rule declaration requires passing the flag
+&quot;-allow-rewrite-rules&quot;.
+</span></dd>
+</dl>
 </div>
 </div></blockquote>
 </section>
@@ -1369,29 +1383,40 @@ using the syntax <code class="docutils literal notranslate"><span class="notatio
 Note that if in the replacement, the context was extended with a variable bearing the same name,
 this explicit substitution is inferred automatically (like for existential variable instantiations).</p>
 <blockquote>
-<div><div class="coqtop literal-block docutils container">
+<div><div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-var">Symbol</span><span> </span><span class="coqdoc-var">raise</span><span> : </span><span class="coqdoc-keyword">forall</span><span> (</span><span class="coqdoc-var">A</span><span> : </span><span class="coqdoc-keyword">Type</span><span>), </span><span class="coqdoc-var">A</span><span>.</span><span>
-</span></dt><dd><span>raise is declared
+<dt><span></span><span class="rocqdoc-var">Symbol</span><span> </span><span class="rocqdoc-var">raise</span><span> : </span><span class="rocqdoc-keyword">forall</span><span> (</span><span class="rocqdoc-var">A</span><span> : </span><span class="rocqdoc-keyword">Type</span><span>), </span><span class="rocqdoc-var">A</span><span>.</span><span>
+</span></dt><dd><span>Toplevel input, characters 0-36:
+&gt; Symbol raise : forall (A : Type), A.
+&gt; ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+</span><span class="ansi-fg-white ansi-bg-red ansi-bold">Error:</span><span> Symbol declaration requires passing the flag &quot;-allow-rewrite-rules&quot;.
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Rewrite</span><span> </span><span class="coqdoc-var">Rule</span><span> </span><span class="coqdoc-var">raise_nat</span><span> :=</span><span>
-  </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">raise</span><span> </span><span class="coqdoc-var">nat</span><span> </span><span class="coqdoc-keyword">as</span><span> </span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-keyword">return</span><span> ?</span><span class="coqdoc-var">P</span><span>
-  </span><span class="coqdoc-keyword">with</span><span> 0 =&gt; </span><span class="coqdoc-var">_</span><span> | </span><span class="coqdoc-var">S</span><span> </span><span class="coqdoc-var">_</span><span> =&gt; </span><span class="coqdoc-var">_</span><span> </span><span class="coqdoc-keyword">end</span><span>
-  =&gt; </span><span class="coqdoc-var">raise</span><span> ?</span><span class="coqdoc-var">P&#64;</span><span>{</span><span class="coqdoc-var">n</span><span> := </span><span class="coqdoc-var">raise</span><span> </span><span class="coqdoc-var">nat</span><span>}.</span><span>
-</span></dt><dd><span>Toplevel input, characters 93-118:
+<dt><span></span><span class="rocqdoc-keyword">Rewrite</span><span> </span><span class="rocqdoc-var">Rule</span><span> </span><span class="rocqdoc-var">raise_nat</span><span> :=</span><span>
+  </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">raise</span><span> </span><span class="rocqdoc-var">nat</span><span> </span><span class="rocqdoc-keyword">as</span><span> </span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-keyword">return</span><span> ?</span><span class="rocqdoc-var">P</span><span>
+  </span><span class="rocqdoc-keyword">with</span><span> 0 =&gt; </span><span class="rocqdoc-var">_</span><span> | </span><span class="rocqdoc-var">S</span><span> </span><span class="rocqdoc-var">_</span><span> =&gt; </span><span class="rocqdoc-var">_</span><span> </span><span class="rocqdoc-keyword">end</span><span>
+  =&gt; </span><span class="rocqdoc-var">raise</span><span> ?</span><span class="rocqdoc-var">P&#64;</span><span>{</span><span class="rocqdoc-var">n</span><span> := </span><span class="rocqdoc-var">raise</span><span> </span><span class="rocqdoc-var">nat</span><span>}.</span><span>
+</span></dt><dd><span>Toplevel input, characters 0-119:
 &gt; Rewrite Rule raise_nat :=   match raise nat as n return ?P   with 0 =&gt; _ | S _ =&gt; _ end   =&gt; raise ?P&#64;{n := raise nat}.
-&gt;                                                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^
-</span><span class="ansi-fg-white ansi-bg-yellow ansi-bold">Warning:</span><span> This rewrite rule breaks subject reduction
-(universe inconsistency, missing constraints: Top.22 &lt;= raise.u0).
-[rewrite-rules-break-SR,rewrite-rules,default]
+&gt; ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+</span><span class="ansi-fg-white ansi-bg-red ansi-bold">Error:</span><span> Rewrite rule declaration requires passing the flag
+&quot;-allow-rewrite-rules&quot;.
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-var">Symbol</span><span> </span><span class="coqdoc-var">id</span><span> : </span><span class="coqdoc-keyword">forall</span><span> (</span><span class="coqdoc-var">A</span><span> : </span><span class="coqdoc-keyword">Type</span><span>), </span><span class="coqdoc-var">A</span><span> -&gt; </span><span class="coqdoc-var">A</span><span>.</span><span>
-</span></dt><dd><span>id is declared
+</span><span class="rocqdoc-var">Symbol</span><span> </span><span class="rocqdoc-var">id</span><span> : </span><span class="rocqdoc-keyword">forall</span><span> (</span><span class="rocqdoc-var">A</span><span> : </span><span class="rocqdoc-keyword">Type</span><span>), </span><span class="rocqdoc-var">A</span><span> -&gt; </span><span class="rocqdoc-var">A</span><span>.</span><span>
+</span></dt><dd><span>Toplevel input, characters 0-38:
+&gt; Symbol id : forall (A : Type), A -&gt; A.
+&gt; ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+</span><span class="ansi-fg-white ansi-bg-red ansi-bold">Error:</span><span> Symbol declaration requires passing the flag &quot;-allow-rewrite-rules&quot;.
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Rewrite</span><span> </span><span class="coqdoc-var">Rule</span><span> </span><span class="coqdoc-var">id_rew</span><span> :=</span><span>
-  </span><span class="coqdoc-var">id</span><span> (</span><span class="coqdoc-keyword">forall</span><span> (</span><span class="coqdoc-var">x</span><span> : ?</span><span class="coqdoc-var">A</span><span>), ?</span><span class="coqdoc-var">P</span><span>) ?</span><span class="coqdoc-var">f</span><span> =&gt; </span><span class="coqdoc-keyword">fun</span><span> (</span><span class="coqdoc-var">x</span><span> : ?</span><span class="coqdoc-var">A</span><span>) =&gt; </span><span class="coqdoc-var">id</span><span> ?</span><span class="coqdoc-var">P</span><span> (?</span><span class="coqdoc-var">f</span><span> </span><span class="coqdoc-var">x</span><span>).</span><span>
-</span></dt></dl>
+<dt><span></span><span class="rocqdoc-keyword">Rewrite</span><span> </span><span class="rocqdoc-var">Rule</span><span> </span><span class="rocqdoc-var">id_rew</span><span> :=</span><span>
+  </span><span class="rocqdoc-var">id</span><span> (</span><span class="rocqdoc-keyword">forall</span><span> (</span><span class="rocqdoc-var">x</span><span> : ?</span><span class="rocqdoc-var">A</span><span>), ?</span><span class="rocqdoc-var">P</span><span>) ?</span><span class="rocqdoc-var">f</span><span> =&gt; </span><span class="rocqdoc-keyword">fun</span><span> (</span><span class="rocqdoc-var">x</span><span> : ?</span><span class="rocqdoc-var">A</span><span>) =&gt; </span><span class="rocqdoc-var">id</span><span> ?</span><span class="rocqdoc-var">P</span><span> (?</span><span class="rocqdoc-var">f</span><span> </span><span class="rocqdoc-var">x</span><span>).</span><span>
+</span></dt><dd><span>Toplevel input, characters 0-85:
+&gt; Rewrite Rule id_rew :=   id (forall (x : ?A), ?P) ?f =&gt; fun (x : ?A) =&gt; id ?P (?f x).
+&gt; ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+</span><span class="ansi-fg-white ansi-bg-red ansi-bold">Error:</span><span> Rewrite rule declaration requires passing the flag
+&quot;-allow-rewrite-rules&quot;.
+</span></dd>
+</dl>
 </div>
 </div></blockquote>
 </section>
@@ -1409,14 +1434,23 @@ which in turn must imply the constraints needed for the replacement.
 You can make the declared constraints extensible
 so all inferred constraints from the left-hand side are used for the replacement.</p>
 <blockquote>
-<div><div class="coqtop literal-block docutils container">
-<span class="coqtop-reset"></span><dl>
-<dt><span>#[</span><span class="coqdoc-var">universes</span><span>(</span><span class="coqdoc-var">polymorphic</span><span>)] </span><span class="coqdoc-var">Symbol</span><span> </span><span class="coqdoc-var">raise&#64;</span><span>{</span><span class="coqdoc-var">q</span><span>;</span><span class="coqdoc-var">u</span><span>} : </span><span class="coqdoc-keyword">forall</span><span> (</span><span class="coqdoc-var">A</span><span> : </span><span class="coqdoc-var">Type&#64;</span><span>{</span><span class="coqdoc-var">q</span><span>;</span><span class="coqdoc-var">u</span><span>}), </span><span class="coqdoc-var">A</span><span>.</span><span>
-</span></dt><dd><span>raise is declared
+<div><div class="rocqtop literal-block docutils container">
+<span class="rocqtop-reset"></span><dl>
+<dt><span>#[</span><span class="rocqdoc-var">universes</span><span>(</span><span class="rocqdoc-var">polymorphic</span><span>)] </span><span class="rocqdoc-var">Symbol</span><span> </span><span class="rocqdoc-var">raise&#64;</span><span>{</span><span class="rocqdoc-var">q</span><span>;</span><span class="rocqdoc-var">u</span><span>} : </span><span class="rocqdoc-keyword">forall</span><span> (</span><span class="rocqdoc-var">A</span><span> : </span><span class="rocqdoc-var">Type&#64;</span><span>{</span><span class="rocqdoc-var">q</span><span>;</span><span class="rocqdoc-var">u</span><span>}), </span><span class="rocqdoc-var">A</span><span>.</span><span>
+</span></dt><dd><span>Toplevel input, characters 0-74:
+&gt; #[universes(polymorphic)] Symbol raise&#64;{q;u} : forall (A : Type&#64;{q;u}), A.
+&gt; ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+</span><span class="ansi-fg-white ansi-bg-red ansi-bold">Error:</span><span> Symbol declaration requires passing the flag &quot;-allow-rewrite-rules&quot;.
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Rewrite</span><span> </span><span class="coqdoc-var">Rule</span><span> </span><span class="coqdoc-var">raise_nat</span><span> :=</span><span>
-  &#64;{</span><span class="coqdoc-var">q</span><span>;</span><span class="coqdoc-var">u</span><span>+|+} |- </span><span class="coqdoc-var">raise&#64;</span><span>{</span><span class="coqdoc-var">q</span><span>;</span><span class="coqdoc-var">u</span><span>} (</span><span class="coqdoc-keyword">forall</span><span> (</span><span class="coqdoc-var">x</span><span> : ?</span><span class="coqdoc-var">A</span><span>), ?</span><span class="coqdoc-var">P</span><span>) =&gt; </span><span class="coqdoc-keyword">fun</span><span> (</span><span class="coqdoc-var">x</span><span> : ?</span><span class="coqdoc-var">A</span><span>) =&gt; </span><span class="coqdoc-var">raise&#64;</span><span>{</span><span class="coqdoc-var">q</span><span>;</span><span class="coqdoc-var">u</span><span>} ?</span><span class="coqdoc-var">P</span><span>.</span><span>
-</span></dt></dl>
+<dt><span></span><span class="rocqdoc-keyword">Rewrite</span><span> </span><span class="rocqdoc-var">Rule</span><span> </span><span class="rocqdoc-var">raise_nat</span><span> :=</span><span>
+  &#64;{</span><span class="rocqdoc-var">q</span><span>;</span><span class="rocqdoc-var">u</span><span>+|+} |- </span><span class="rocqdoc-var">raise&#64;</span><span>{</span><span class="rocqdoc-var">q</span><span>;</span><span class="rocqdoc-var">u</span><span>} (</span><span class="rocqdoc-keyword">forall</span><span> (</span><span class="rocqdoc-var">x</span><span> : ?</span><span class="rocqdoc-var">A</span><span>), ?</span><span class="rocqdoc-var">P</span><span>) =&gt; </span><span class="rocqdoc-keyword">fun</span><span> (</span><span class="rocqdoc-var">x</span><span> : ?</span><span class="rocqdoc-var">A</span><span>) =&gt; </span><span class="rocqdoc-var">raise&#64;</span><span>{</span><span class="rocqdoc-var">q</span><span>;</span><span class="rocqdoc-var">u</span><span>} ?</span><span class="rocqdoc-var">P</span><span>.</span><span>
+</span></dt><dd><span>Toplevel input, characters 0-109:
+&gt; Rewrite Rule raise_nat :=   &#64;{q;u+|+} |- raise&#64;{q;u} (forall (x : ?A), ?P) =&gt; fun (x : ?A) =&gt; raise&#64;{q;u} ?P.
+&gt; ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+</span><span class="ansi-fg-white ansi-bg-red ansi-bold">Error:</span><span> Rewrite rule declaration requires passing the flag
+&quot;-allow-rewrite-rules&quot;.
+</span></dd>
+</dl>
 </div>
 </div></blockquote>
 </section>

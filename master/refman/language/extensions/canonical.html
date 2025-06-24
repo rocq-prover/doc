@@ -345,7 +345,7 @@
 <li class="toctree-l3"><a class="reference internal" href="arguments-command.html#automatic-declaration-of-implicit-arguments">Automatic declaration of implicit arguments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="arguments-command.html#renaming-implicit-arguments">Renaming implicit arguments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="arguments-command.html#binding-arguments-to-scopes">Binding arguments to scopes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="arguments-command.html#effects-of-arguments-on-unfolding">Effects of <code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Arguments</span></code> on unfolding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="arguments-command.html#effects-of-arguments-on-unfolding">Effects of <code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Arguments</span></code> on unfolding</a></li>
 <li class="toctree-l3"><a class="reference internal" href="arguments-command.html#bidirectionality-hints">Bidirectionality hints</a></li>
 </ul>
 </li>
@@ -506,7 +506,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#generation-of-inversion-principles-with-derive-inversion">Generation of inversion principles with <code class="docutils literal notranslate"><span class="pre">Derive</span></code> <code class="docutils literal notranslate"><span class="pre">Inversion</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#examples-of-dependent-destruction-dependent-induction">Examples of <code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">destruction</span></code> / <code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">induction</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#examples-of-dependent-destruction-dependent-induction">Examples of <code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">destruction</span></code> / <code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">induction</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#a-larger-example">A larger example</a></li>
 </ul>
 </li>
@@ -1302,20 +1302,20 @@ can be used to solve unification problems involving a projection
 applied to an unknown structure instance (an implicit argument) and a
 value. The complete documentation of canonical structures can be found
 in <a class="reference internal" href="#canonicalstructures"><span class="std std-ref">Canonical Structures</span></a>; here only a simple example is given.</p>
-<dl class="coq cmd">
-<dt class="sig sig-object coq" id="coq:cmd.Canonical-Structure">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Canonical</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">Structure</span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span> <a class="reference internal" href="../../proof-engine/vernacular-commands.html#grammar-token-reference"><span class="hole"><span class="pre">reference</span></span></a></span></span><a class="headerlink" href="#coq:cmd.Canonical-Structure" title="Link to this definition"></a></dt>
-<dt class="sig sig-object coq" id="id3">
+<dl class="rocq cmd">
+<dt class="sig sig-object rocq" id="rocq:cmd.Canonical-Structure">
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Canonical</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">Structure</span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span> <a class="reference internal" href="../../proof-engine/vernacular-commands.html#grammar-token-reference"><span class="hole"><span class="pre">reference</span></span></a></span></span><a class="headerlink" href="#rocq:cmd.Canonical-Structure" title="Link to this definition"></a></dt>
+<dt class="sig sig-object rocq" id="id3">
 <em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Canonical</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">Structure</span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span> <a class="reference internal" href="../core/assumptions.html#grammar-token-ident_decl"><span class="hole"><span class="pre">ident_decl</span></span></a> <a class="reference internal" href="../core/definitions.html#grammar-token-def_body"><span class="hole"><span class="pre">def_body</span></span></a></span></span><a class="headerlink" href="#id3" title="Link to this definition"></a></dt>
 <dd><p>The first form of this command declares an existing <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../proof-engine/vernacular-commands.html#grammar-token-reference"><span class="hole"><span class="pre">reference</span></span></a></span></code> as a
 canonical instance of a structure (a record).</p>
-<p>The second form defines a new <a class="reference internal" href="../core/definitions.html#term-constant"><span class="xref std std-term">constant</span></a> as if the <a class="reference internal" href="../core/definitions.html#coq:cmd.Definition" title="Definition"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Definition</span></code></a> command
+<p>The second form defines a new <a class="reference internal" href="../core/definitions.html#term-constant"><span class="xref std std-term">constant</span></a> as if the <a class="reference internal" href="../core/definitions.html#rocq:cmd.Definition" title="Definition"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Definition</span></code></a> command
 had been used, then declares it as a canonical instance as if the first
 form had been used on the defined object.</p>
-<p>This command supports the <a class="reference internal" href="../core/modules.html#coq:attr.local" title="local"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">local</span></code></a> attribute.  When used, the
-structure is canonical only within the <a class="reference internal" href="../core/sections.html#coq:cmd.Section" title="Section"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Section</span></code></a> containing it.</p>
-<p>Outside a <a class="reference internal" href="../core/sections.html#coq:cmd.Section" title="Section"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Section</span></code></a>, the structure is canonical as soon as
-<a class="reference internal" href="../core/modules.html#coq:cmd.Import" title="Import"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Import</span></code></a> (or one of its variants) has been used on the <a class="reference internal" href="../core/modules.html#coq:cmd.Module" title="Module"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Module</span></code></a>
+<p>This command supports the <a class="reference internal" href="../core/modules.html#rocq:attr.local" title="local"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">local</span></code></a> attribute.  When used, the
+structure is canonical only within the <a class="reference internal" href="../core/sections.html#rocq:cmd.Section" title="Section"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Section</span></code></a> containing it.</p>
+<p>Outside a <a class="reference internal" href="../core/sections.html#rocq:cmd.Section" title="Section"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Section</span></code></a>, the structure is canonical as soon as
+<a class="reference internal" href="../core/modules.html#rocq:cmd.Import" title="Import"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Import</span></code></a> (or one of its variants) has been used on the <a class="reference internal" href="../core/modules.html#rocq:cmd.Module" title="Module"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Module</span></code></a>
 in which it is defined, regardless of its locality attribute, if any.</p>
 <p><a class="reference internal" href="../core/modules.html#grammar-token-qualid"><code class="xref std std-token docutils literal notranslate"><span class="pre">qualid</span></code></a> (in <a class="reference internal" href="../../proof-engine/vernacular-commands.html#grammar-token-reference"><code class="xref std std-token docutils literal notranslate"><span class="pre">reference</span></code></a>) denotes an object <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">(Build</span></span></span><span><span><span class="pre">_</span></span></span><span><span><span class="pre">struct</span></span></span> <span><span><span class="pre">c</span></span><sub><span class="pre">1</span></sub></span> <span><span><span class="pre">…</span></span></span> <span><span><span class="pre">c</span></span><sub><span class="pre">n</span></sub></span><span><span><span class="pre">)</span></span></span></span></code> in the
 structure <code class="code Coq docutils literal notranslate"><span class="keyword"><span class="pre">struct</span></span></code> for which the fields are <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">x</span></span><sub><span class="pre">1</span></sub></span><span><span><span class="pre">,</span></span></span> <span><span><span class="pre">…,</span></span></span> <span><span><span class="pre">x</span></span><sub><span class="pre">n</span></sub></span></span></code>.
@@ -1368,45 +1368,45 @@ and strict implicit arguments.</p>
 <div class="admonition note">
 <p class="admonition-title">Example</p>
 <p>Here is an example.</p>
-<div class="coqtop literal-block docutils container">
-<span class="coqtop-reset"></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Require</span><span> </span><span class="coqdoc-keyword">Import</span><span> </span><span class="coqdoc-var">Relation_Definitions</span><span>.</span><span>
+<div class="rocqtop literal-block docutils container">
+<span class="rocqtop-reset"></span><dl>
+<dt><span></span><span class="rocqdoc-keyword">Require</span><span> </span><span class="rocqdoc-keyword">Import</span><span> </span><span class="rocqdoc-var">Relation_Definitions</span><span>.</span><span>
 </span></dt><dt><span></span><span>
-</span><span class="coqdoc-keyword">Set Implicit Arguments</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Set Implicit Arguments</span><span>.</span><span>
 </span></dt><dt><span></span><span>
-</span><span class="coqdoc-keyword">Unset</span><span> </span><span class="coqdoc-keyword">Strict</span><span> </span><span class="coqdoc-keyword">Implicit</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Unset</span><span> </span><span class="rocqdoc-keyword">Strict</span><span> </span><span class="rocqdoc-keyword">Implicit</span><span>.</span><span>
 </span></dt><dt><span></span><span>
-</span><span class="coqdoc-keyword">Structure</span><span> </span><span class="coqdoc-var">Setoid</span><span> : </span><span class="coqdoc-keyword">Type</span><span> := {</span><span class="coqdoc-var">Carrier</span><span> :&gt; </span><span class="coqdoc-keyword">Set</span><span>; </span><span class="coqdoc-var">Equal</span><span> : </span><span class="coqdoc-var">relation</span><span> </span><span class="coqdoc-var">Carrier</span><span>;</span><span>
-                            </span><span class="coqdoc-var">Prf_equiv</span><span> : </span><span class="coqdoc-var">equivalence</span><span> </span><span class="coqdoc-var">Carrier</span><span> </span><span class="coqdoc-var">Equal</span><span>}.</span><span>
+</span><span class="rocqdoc-keyword">Structure</span><span> </span><span class="rocqdoc-var">Setoid</span><span> : </span><span class="rocqdoc-keyword">Type</span><span> := {</span><span class="rocqdoc-var">Carrier</span><span> :&gt; </span><span class="rocqdoc-keyword">Set</span><span>; </span><span class="rocqdoc-var">Equal</span><span> : </span><span class="rocqdoc-var">relation</span><span> </span><span class="rocqdoc-var">Carrier</span><span>;</span><span>
+                            </span><span class="rocqdoc-var">Prf_equiv</span><span> : </span><span class="rocqdoc-var">equivalence</span><span> </span><span class="rocqdoc-var">Carrier</span><span> </span><span class="rocqdoc-var">Equal</span><span>}.</span><span>
 </span></dt><dd><span>Setoid is defined
 Carrier is defined
 Equal is defined
 Prf_equiv is defined
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">is_law</span><span> (</span><span class="coqdoc-var">A</span><span> </span><span class="coqdoc-var">B</span><span>:</span><span class="coqdoc-var">Setoid</span><span>) (</span><span class="coqdoc-var">f</span><span>:</span><span class="coqdoc-var">A</span><span> -&gt; </span><span class="coqdoc-var">B</span><span>) := </span><span class="coqdoc-keyword">forall</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span>:</span><span class="coqdoc-var">A</span><span>, </span><span class="coqdoc-var">Equal</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span> -&gt; </span><span class="coqdoc-var">Equal</span><span> (</span><span class="coqdoc-var">f</span><span> </span><span class="coqdoc-var">x</span><span>) (</span><span class="coqdoc-var">f</span><span> </span><span class="coqdoc-var">y</span><span>).</span><span>
+</span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">is_law</span><span> (</span><span class="rocqdoc-var">A</span><span> </span><span class="rocqdoc-var">B</span><span>:</span><span class="rocqdoc-var">Setoid</span><span>) (</span><span class="rocqdoc-var">f</span><span>:</span><span class="rocqdoc-var">A</span><span> -&gt; </span><span class="rocqdoc-var">B</span><span>) := </span><span class="rocqdoc-keyword">forall</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span>:</span><span class="rocqdoc-var">A</span><span>, </span><span class="rocqdoc-var">Equal</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> -&gt; </span><span class="rocqdoc-var">Equal</span><span> (</span><span class="rocqdoc-var">f</span><span> </span><span class="rocqdoc-var">x</span><span>) (</span><span class="rocqdoc-var">f</span><span> </span><span class="rocqdoc-var">y</span><span>).</span><span>
 </span></dt><dd><span>is_law is defined
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">Parameter</span><span> </span><span class="coqdoc-var">eq_nat</span><span> : </span><span class="coqdoc-var">relation</span><span> </span><span class="coqdoc-var">nat</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Parameter</span><span> </span><span class="rocqdoc-var">eq_nat</span><span> : </span><span class="rocqdoc-var">relation</span><span> </span><span class="rocqdoc-var">nat</span><span>.</span><span>
 </span></dt><dd><span>eq_nat is declared
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Axiom</span><span> </span><span class="coqdoc-var">eq_nat_equiv</span><span> : </span><span class="coqdoc-var">equivalence</span><span> </span><span class="coqdoc-var">nat</span><span> </span><span class="coqdoc-var">eq_nat</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Axiom</span><span> </span><span class="rocqdoc-var">eq_nat_equiv</span><span> : </span><span class="rocqdoc-var">equivalence</span><span> </span><span class="rocqdoc-var">nat</span><span> </span><span class="rocqdoc-var">eq_nat</span><span>.</span><span>
 </span></dt><dd><span>eq_nat_equiv is declared
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">nat_setoid</span><span> : </span><span class="coqdoc-var">Setoid</span><span> := </span><span class="coqdoc-var">Build_Setoid</span><span> </span><span class="coqdoc-var">eq_nat_equiv</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">nat_setoid</span><span> : </span><span class="rocqdoc-var">Setoid</span><span> := </span><span class="rocqdoc-var">Build_Setoid</span><span> </span><span class="rocqdoc-var">eq_nat_equiv</span><span>.</span><span>
 </span></dt><dd><span>nat_setoid is defined
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">Canonical</span><span> </span><span class="coqdoc-var">nat_setoid</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Canonical</span><span> </span><span class="rocqdoc-var">nat_setoid</span><span>.</span><span>
 </span></dt></dl>
 </div>
 <p>Thanks to <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">nat_setoid</span></span></code> declared as canonical, the implicit arguments <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">A</span></span></code>
 and <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">B</span></span></code> can be synthesized in the next statement.</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Lemma</span><span> </span><span class="coqdoc-var">is_law_S</span><span> : </span><span class="coqdoc-var">is_law</span><span> </span><span class="coqdoc-var">S</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Lemma</span><span> </span><span class="rocqdoc-var">is_law_S</span><span> : </span><span class="rocqdoc-var">is_law</span><span> </span><span class="rocqdoc-var">S</span><span>.</span><span>
 </span></dt><dd><span>1 goal
   
   ============================
@@ -1422,11 +1422,11 @@ only the structure declared first as canonical is considered.</p>
 </div>
 </dd></dl>
 
-<dl class="coq attr">
-<dt class="sig sig-object coq" id="coq:attr.canonical">
-<em class="property"><span class="sigannot"><span class="pre">Attribute</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">canonical</span></span></span><span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">=</span></span></span> <span class="alternative"><span class="alternative-block"><span><span><span class="pre">yes</span></span></span></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><span><span><span class="pre">no</span></span></span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span></span></span><a class="headerlink" href="#coq:attr.canonical" title="Link to this definition"></a></dt>
-<dd><p>This <a class="reference internal" href="../core/basic.html#term-boolean-attribute"><span class="xref std std-term">boolean attribute</span></a> can decorate a <a class="reference internal" href="../core/definitions.html#coq:cmd.Definition" title="Definition"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Definition</span></code></a> or
-<a class="reference internal" href="../core/sections.html#coq:cmd.Let" title="Let"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Let</span></code></a> command.  It is equivalent to having a <a class="reference internal" href="#coq:cmd.Canonical-Structure" title="Canonical Structure"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Canonical</span>
+<dl class="rocq attr">
+<dt class="sig sig-object rocq" id="rocq:attr.canonical">
+<em class="property"><span class="sigannot"><span class="pre">Attribute</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">canonical</span></span></span><span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">=</span></span></span> <span class="alternative"><span class="alternative-block"><span><span><span class="pre">yes</span></span></span></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><span><span><span class="pre">no</span></span></span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span></span></span><a class="headerlink" href="#rocq:attr.canonical" title="Link to this definition"></a></dt>
+<dd><p>This <a class="reference internal" href="../core/basic.html#term-boolean-attribute"><span class="xref std std-term">boolean attribute</span></a> can decorate a <a class="reference internal" href="../core/definitions.html#rocq:cmd.Definition" title="Definition"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Definition</span></code></a> or
+<a class="reference internal" href="../core/sections.html#rocq:cmd.Let" title="Let"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Let</span></code></a> command.  It is equivalent to having a <a class="reference internal" href="#rocq:cmd.Canonical-Structure" title="Canonical Structure"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Canonical</span>
 <span class="pre">Structure</span></code></a> declaration just after the command.</p>
 <p>To prevent a field from being involved in the inference of
 canonical instances, its declaration can be annotated with
@@ -1435,15 +1435,15 @@ canonical instances, its declaration can be annotated with
 <p class="admonition-title">Example</p>
 <p>For instance, when declaring the <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">Setoid</span></span></code> structure above, the
 <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">Prf_equiv</span></span></code> field declaration could be written as follows.</p>
-<div class="coqdoc literal-block docutils container">
-<span><span>#[</span><span class="coqdoc-var">canonical</span><span>=</span><span class="coqdoc-keyword">no</span><span>] </span><span class="coqdoc-var">Prf_equiv</span><span> : </span><span class="coqdoc-var">equivalence</span><span> </span><span class="coqdoc-var">Carrier</span><span> </span><span class="coqdoc-var">Equal</span></span></div>
+<div class="rocqdoc literal-block docutils container">
+<span><span>#[</span><span class="rocqdoc-var">canonical</span><span>=</span><span class="rocqdoc-keyword">no</span><span>] </span><span class="rocqdoc-var">Prf_equiv</span><span> : </span><span class="rocqdoc-var">equivalence</span><span> </span><span class="rocqdoc-var">Carrier</span><span> </span><span class="rocqdoc-var">Equal</span></span></div>
 </div>
 <p>See <a class="reference internal" href="#hierarchy-of-structures"><span class="std std-ref">Hierarchy of structures</span></a> for a more realistic example.</p>
 </dd></dl>
 
-<dl class="coq cmd">
-<dt class="sig sig-object coq" id="coq:cmd.Print-Canonical-Projections">
-<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Print</span></span></span> <span><span><span class="pre">Canonical</span></span></span> <span><span><span class="pre">Projections</span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../../proof-engine/vernacular-commands.html#grammar-token-reference"><span class="hole"><span class="pre">reference</span></span></a></span><span class="notation-sup"><span class="pre">*</span></span></span></span></span><a class="headerlink" href="#coq:cmd.Print-Canonical-Projections" title="Link to this definition"></a></dt>
+<dl class="rocq cmd">
+<dt class="sig sig-object rocq" id="rocq:cmd.Print-Canonical-Projections">
+<em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Print</span></span></span> <span><span><span class="pre">Canonical</span></span></span> <span><span><span class="pre">Projections</span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../../proof-engine/vernacular-commands.html#grammar-token-reference"><span class="hole"><span class="pre">reference</span></span></a></span><span class="notation-sup"><span class="pre">*</span></span></span></span></span><a class="headerlink" href="#rocq:cmd.Print-Canonical-Projections" title="Link to this definition"></a></dt>
 <dd><p>This displays the list of global names that are components of some
 canonical structure. For each of them, the canonical structure of
 which it is a projection is indicated. If <a class="reference internal" href="../core/definitions.html#term-constant"><span class="xref std std-term">constants</span></a> are given as
@@ -1452,16 +1452,16 @@ synthesized from simultaneously all given constants will be shown.</p>
 <div class="admonition note">
 <p class="admonition-title">Example</p>
 <p>For instance, the above example gives the following output:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Print</span><span> </span><span class="coqdoc-var">Canonical</span><span> </span><span class="coqdoc-var">Projections</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Print</span><span> </span><span class="rocqdoc-var">Canonical</span><span> </span><span class="rocqdoc-var">Projections</span><span>.</span><span>
 </span></dt><dd><span>nat &lt;- Carrier ( nat_setoid )
 eq_nat &lt;- Equal ( nat_setoid )
 eq_nat_equiv &lt;- Prf_equiv ( nat_setoid )
 </span></dd>
 </dl>
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Print</span><span> </span><span class="coqdoc-var">Canonical</span><span> </span><span class="coqdoc-var">Projections</span><span> </span><span class="coqdoc-var">nat</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Print</span><span> </span><span class="rocqdoc-var">Canonical</span><span> </span><span class="rocqdoc-var">Projections</span><span> </span><span class="rocqdoc-var">nat</span><span>.</span><span>
 </span></dt><dd><span>nat &lt;- Carrier ( nat_setoid )
 </span></dd>
 </dl>
@@ -1481,38 +1481,38 @@ canonical, as described above.</p>
 <p>We build an infix notation == for a comparison predicate. Such
 notation will be overloaded, and its meaning will depend on the types
 of the terms that are compared.</p>
-<div class="coqtop literal-block docutils container">
-<span class="coqtop-reset"></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Module</span><span> </span><span class="coqdoc-var">EQ</span><span>.</span><span>
+<div class="rocqtop literal-block docutils container">
+<span class="rocqtop-reset"></span><dl>
+<dt><span></span><span class="rocqdoc-keyword">Module</span><span> </span><span class="rocqdoc-var">EQ</span><span>.</span><span>
 </span></dt><dd><span>Interactive Module EQ started
 </span></dd>
-<dt><span>  </span><span class="coqdoc-keyword">Record</span><span> </span><span class="coqdoc-var">class</span><span> (</span><span class="coqdoc-var">T</span><span> : </span><span class="coqdoc-keyword">Type</span><span>) := </span><span class="coqdoc-keyword">Class</span><span> { </span><span class="coqdoc-var">cmp</span><span> : </span><span class="coqdoc-var">T</span><span> -&gt; </span><span class="coqdoc-var">T</span><span> -&gt; </span><span class="coqdoc-keyword">Prop</span><span> }.</span><span>
+<dt><span>  </span><span class="rocqdoc-keyword">Record</span><span> </span><span class="rocqdoc-var">class</span><span> (</span><span class="rocqdoc-var">T</span><span> : </span><span class="rocqdoc-keyword">Type</span><span>) := </span><span class="rocqdoc-keyword">Class</span><span> { </span><span class="rocqdoc-var">cmp</span><span> : </span><span class="rocqdoc-var">T</span><span> -&gt; </span><span class="rocqdoc-var">T</span><span> -&gt; </span><span class="rocqdoc-keyword">Prop</span><span> }.</span><span>
 </span></dt><dd><span>class is defined
 cmp is defined
 </span></dd>
-<dt><span>  </span><span class="coqdoc-keyword">Structure</span><span> </span><span class="coqdoc-keyword">type</span><span> := </span><span class="coqdoc-var">Pack</span><span> { </span><span class="coqdoc-var">obj</span><span> : </span><span class="coqdoc-keyword">Type</span><span>; </span><span class="coqdoc-var">class_of</span><span> : </span><span class="coqdoc-var">class</span><span> </span><span class="coqdoc-var">obj</span><span> }.</span><span>
+<dt><span>  </span><span class="rocqdoc-keyword">Structure</span><span> </span><span class="rocqdoc-keyword">type</span><span> := </span><span class="rocqdoc-var">Pack</span><span> { </span><span class="rocqdoc-var">obj</span><span> : </span><span class="rocqdoc-keyword">Type</span><span>; </span><span class="rocqdoc-var">class_of</span><span> : </span><span class="rocqdoc-var">class</span><span> </span><span class="rocqdoc-var">obj</span><span> }.</span><span>
 </span></dt><dd><span>type is defined
 obj is defined
 class_of is defined
 </span></dd>
-<dt><span>  </span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">op</span><span> (</span><span class="coqdoc-var">e</span><span> : </span><span class="coqdoc-keyword">type</span><span>) : </span><span class="coqdoc-var">obj</span><span> </span><span class="coqdoc-var">e</span><span> -&gt; </span><span class="coqdoc-var">obj</span><span> </span><span class="coqdoc-var">e</span><span> -&gt; </span><span class="coqdoc-keyword">Prop</span><span> :=</span><span>
-    </span><span class="coqdoc-keyword">let</span><span> '</span><span class="coqdoc-var">Pack</span><span> </span><span class="coqdoc-var">_</span><span> (</span><span class="coqdoc-keyword">Class</span><span> </span><span class="coqdoc-var">_</span><span> </span><span class="coqdoc-var">the_cmp</span><span>) := </span><span class="coqdoc-var">e</span><span> </span><span class="coqdoc-tactic">in</span><span> </span><span class="coqdoc-var">the_cmp</span><span>.</span><span>
+<dt><span>  </span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">op</span><span> (</span><span class="rocqdoc-var">e</span><span> : </span><span class="rocqdoc-keyword">type</span><span>) : </span><span class="rocqdoc-var">obj</span><span> </span><span class="rocqdoc-var">e</span><span> -&gt; </span><span class="rocqdoc-var">obj</span><span> </span><span class="rocqdoc-var">e</span><span> -&gt; </span><span class="rocqdoc-keyword">Prop</span><span> :=</span><span>
+    </span><span class="rocqdoc-keyword">let</span><span> '</span><span class="rocqdoc-var">Pack</span><span> </span><span class="rocqdoc-var">_</span><span> (</span><span class="rocqdoc-keyword">Class</span><span> </span><span class="rocqdoc-var">_</span><span> </span><span class="rocqdoc-var">the_cmp</span><span>) := </span><span class="rocqdoc-var">e</span><span> </span><span class="rocqdoc-tactic">in</span><span> </span><span class="rocqdoc-var">the_cmp</span><span>.</span><span>
 </span></dt><dd><span>op is defined
 </span></dd>
-<dt><span>  </span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-var">op</span><span>.</span><span>
+<dt><span>  </span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-var">op</span><span>.</span><span>
 </span></dt><dd><span>op
      : </span><span class="ansi-bold">forall</span><span> e : type, obj e</span><span> -&gt;</span><span> obj e</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Prop</span><span>
 </span></dd>
-<dt><span>  </span><span class="coqdoc-keyword">Arguments</span><span> </span><span class="coqdoc-var">op</span><span> {</span><span class="coqdoc-var">e</span><span>} </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span> : </span><span class="coqdoc-tactic">simpl</span><span> </span><span class="coqdoc-var">never</span><span>.</span><span>
-</span></dt><dt><span>  </span><span class="coqdoc-keyword">Arguments</span><span> </span><span class="coqdoc-keyword">Class</span><span> {</span><span class="coqdoc-var">T</span><span>} </span><span class="coqdoc-var">cmp</span><span>.</span><span>
-</span></dt><dt><span>  </span><span class="coqdoc-keyword">Module</span><span> </span><span class="coqdoc-var">theory</span><span>.</span><span>
+<dt><span>  </span><span class="rocqdoc-keyword">Arguments</span><span> </span><span class="rocqdoc-var">op</span><span> {</span><span class="rocqdoc-var">e</span><span>} </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> : </span><span class="rocqdoc-tactic">simpl</span><span> </span><span class="rocqdoc-var">never</span><span>.</span><span>
+</span></dt><dt><span>  </span><span class="rocqdoc-keyword">Arguments</span><span> </span><span class="rocqdoc-keyword">Class</span><span> {</span><span class="rocqdoc-var">T</span><span>} </span><span class="rocqdoc-var">cmp</span><span>.</span><span>
+</span></dt><dt><span>  </span><span class="rocqdoc-keyword">Module</span><span> </span><span class="rocqdoc-var">theory</span><span>.</span><span>
 </span></dt><dd><span>Interactive Module theory started
 </span></dd>
-<dt><span>    </span><span class="coqdoc-keyword">Notation</span><span> &quot;x == y&quot; := (</span><span class="coqdoc-var">op</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span>) (</span><span class="coqdoc-tactic">at</span><span> </span><span class="coqdoc-keyword">level</span><span> 70).</span><span>
-</span></dt><dt><span>  </span><span class="coqdoc-keyword">End</span><span> </span><span class="coqdoc-var">theory</span><span>.</span><span>
+<dt><span>    </span><span class="rocqdoc-keyword">Notation</span><span> &quot;x == y&quot; := (</span><span class="rocqdoc-var">op</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span>) (</span><span class="rocqdoc-tactic">at</span><span> </span><span class="rocqdoc-keyword">level</span><span> 70).</span><span>
+</span></dt><dt><span>  </span><span class="rocqdoc-keyword">End</span><span> </span><span class="rocqdoc-var">theory</span><span>.</span><span>
 </span></dt><dd><span>Module theory is defined
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">End</span><span> </span><span class="coqdoc-var">EQ</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">End</span><span> </span><span class="rocqdoc-var">EQ</span><span>.</span><span>
 </span></dt><dd><span>Module EQ is defined
 </span></dd>
 </dl>
@@ -1530,41 +1530,41 @@ algebraic structure (in this case there are no lemmas).</p>
 coercion, but we will not do that here.</p>
 <p>The following line tests that, when we assume a type <code class="docutils literal notranslate"><span class="pre">e</span></code> that is in
 the <code class="docutils literal notranslate"><span class="pre">EQ</span></code> class, we can relate two of its objects with <code class="docutils literal notranslate"><span class="pre">==</span></code>.</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Import</span><span> </span><span class="coqdoc-var">EQ.theory</span><span>.</span><span>
-</span></dt><dt><span></span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-keyword">forall</span><span> (</span><span class="coqdoc-var">e</span><span> : </span><span class="coqdoc-var">EQ.type</span><span>) (</span><span class="coqdoc-var">a</span><span> </span><span class="coqdoc-var">b</span><span> : </span><span class="coqdoc-var">EQ.obj</span><span> </span><span class="coqdoc-var">e</span><span>), </span><span class="coqdoc-var">a</span><span> == </span><span class="coqdoc-var">b</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Import</span><span> </span><span class="rocqdoc-var">EQ.theory</span><span>.</span><span>
+</span></dt><dt><span></span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-keyword">forall</span><span> (</span><span class="rocqdoc-var">e</span><span> : </span><span class="rocqdoc-var">EQ.type</span><span>) (</span><span class="rocqdoc-var">a</span><span> </span><span class="rocqdoc-var">b</span><span> : </span><span class="rocqdoc-var">EQ.obj</span><span> </span><span class="rocqdoc-var">e</span><span>), </span><span class="rocqdoc-var">a</span><span> == </span><span class="rocqdoc-var">b</span><span>.</span><span>
 </span></dt><dd><span class="ansi-bold">forall</span><span> (e : </span><span class="ansi-fg-light-magenta">EQ</span><span>.</span><span class="ansi-fg-light-green">type</span><span>) (a b : </span><span class="ansi-fg-light-magenta">EQ</span><span>.</span><span class="ansi-fg-light-green">obj</span><span> e), a</span><span> ==</span><span> b
      : </span><span class="ansi-fg-yellow ansi-bold">Prop</span><span>
 </span></dd>
 </dl>
 </div>
 <p>Still, no concrete type is in the <code class="docutils literal notranslate"><span class="pre">EQ</span></code> class.</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-var">Fail</span><span> </span><span class="coqdoc-keyword">Check</span><span> 3 == 3.</span><span>
+<dt><span></span><span class="rocqdoc-var">Fail</span><span> </span><span class="rocqdoc-keyword">Check</span><span> 3 == 3.</span><span>
 </span></dt><dd><span>The command has indeed failed with message:
 The term &quot;3&quot; has type &quot;nat&quot; while it is expected to have type &quot;</span><span class="ansi-fg-light-magenta">EQ</span><span>.</span><span class="ansi-fg-light-green">obj</span><span> </span><span class="ansi-fg-light-blue">?e</span><span>&quot;.
 </span></dd>
 </dl>
 </div>
 <p>We amend that by equipping <code class="docutils literal notranslate"><span class="pre">nat</span></code> with a comparison relation.</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">nat_eq</span><span> (</span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span> : </span><span class="coqdoc-var">nat</span><span>) := </span><span class="coqdoc-var">Nat.compare</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span> = </span><span class="coqdoc-var">Eq</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">nat_eq</span><span> (</span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> : </span><span class="rocqdoc-var">nat</span><span>) := </span><span class="rocqdoc-var">Nat.compare</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> = </span><span class="rocqdoc-var">Eq</span><span>.</span><span>
 </span></dt><dd><span>nat_eq is defined
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">nat_EQcl</span><span> : </span><span class="coqdoc-var">EQ.class</span><span> </span><span class="coqdoc-var">nat</span><span> := </span><span class="coqdoc-var">EQ.Class</span><span> </span><span class="coqdoc-var">nat_eq</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">nat_EQcl</span><span> : </span><span class="rocqdoc-var">EQ.class</span><span> </span><span class="rocqdoc-var">nat</span><span> := </span><span class="rocqdoc-var">EQ.Class</span><span> </span><span class="rocqdoc-var">nat_eq</span><span>.</span><span>
 </span></dt><dd><span>nat_EQcl is defined
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Canonical</span><span> </span><span class="coqdoc-keyword">Structure</span><span> </span><span class="coqdoc-var">nat_EQty</span><span> : </span><span class="coqdoc-var">EQ.type</span><span> := </span><span class="coqdoc-var">EQ.Pack</span><span> </span><span class="coqdoc-var">nat</span><span> </span><span class="coqdoc-var">nat_EQcl</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Canonical</span><span> </span><span class="rocqdoc-keyword">Structure</span><span> </span><span class="rocqdoc-var">nat_EQty</span><span> : </span><span class="rocqdoc-var">EQ.type</span><span> := </span><span class="rocqdoc-var">EQ.Pack</span><span> </span><span class="rocqdoc-var">nat</span><span> </span><span class="rocqdoc-var">nat_EQcl</span><span>.</span><span>
 </span></dt><dd><span>nat_EQty is defined
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Check</span><span> 3 == 3.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Check</span><span> 3 == 3.</span><span>
 </span></dt><dd><span>3</span><span> ==</span><span> 3
      : </span><span class="ansi-fg-yellow ansi-bold">Prop</span><span>
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Eval</span><span> </span><span class="coqdoc-tactic">compute</span><span> </span><span class="coqdoc-tactic">in</span><span> 3 == 4.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Eval</span><span> </span><span class="rocqdoc-tactic">compute</span><span> </span><span class="rocqdoc-tactic">in</span><span> 3 == 4.</span><span>
 </span></dt><dd><span>     = Lt</span><span> =</span><span> Eq
      : </span><span class="ansi-fg-yellow ansi-bold">Prop</span><span>
 </span></dd>
@@ -1587,9 +1587,9 @@ and use the <code class="docutils literal notranslate"><span class="pre">==</spa
 <p>We know how to use <code class="docutils literal notranslate"><span class="pre">==</span></code> on base types, like <code class="docutils literal notranslate"><span class="pre">nat</span></code>, <code class="docutils literal notranslate"><span class="pre">bool</span></code>, <code class="docutils literal notranslate"><span class="pre">Z</span></code>. Here we show
 how to deal with type constructors, i.e. how to make the following
 example work:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-var">Fail</span><span> </span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-keyword">forall</span><span> (</span><span class="coqdoc-var">e</span><span> : </span><span class="coqdoc-var">EQ.type</span><span>) (</span><span class="coqdoc-var">a</span><span> </span><span class="coqdoc-var">b</span><span> : </span><span class="coqdoc-var">EQ.obj</span><span> </span><span class="coqdoc-var">e</span><span>), (</span><span class="coqdoc-var">a</span><span>, </span><span class="coqdoc-var">b</span><span>) == (</span><span class="coqdoc-var">a</span><span>, </span><span class="coqdoc-var">b</span><span>).</span><span>
+<dt><span></span><span class="rocqdoc-var">Fail</span><span> </span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-keyword">forall</span><span> (</span><span class="rocqdoc-var">e</span><span> : </span><span class="rocqdoc-var">EQ.type</span><span>) (</span><span class="rocqdoc-var">a</span><span> </span><span class="rocqdoc-var">b</span><span> : </span><span class="rocqdoc-var">EQ.obj</span><span> </span><span class="rocqdoc-var">e</span><span>), (</span><span class="rocqdoc-var">a</span><span>, </span><span class="rocqdoc-var">b</span><span>) == (</span><span class="rocqdoc-var">a</span><span>, </span><span class="rocqdoc-var">b</span><span>).</span><span>
 </span></dt><dd><span>The command has indeed failed with message:
 In environment
 e : </span><span class="ansi-fg-light-magenta">EQ</span><span>.</span><span class="ansi-fg-light-green">type</span><span>
@@ -1603,28 +1603,28 @@ while it is expected to have type &quot;</span><span class="ansi-fg-light-magent
 <p>The error message is telling that Rocq has no idea on how to compare
 pairs of objects. The following construction is telling Rocq exactly
 how to do that.</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">pair_eq</span><span> (</span><span class="coqdoc-var">e1</span><span> </span><span class="coqdoc-var">e2</span><span> : </span><span class="coqdoc-var">EQ.type</span><span>) (</span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span> : </span><span class="coqdoc-var">EQ.obj</span><span> </span><span class="coqdoc-var">e1</span><span> * </span><span class="coqdoc-var">EQ.obj</span><span> </span><span class="coqdoc-var">e2</span><span>) :=</span><span>
-  </span><span class="coqdoc-var">fst</span><span> </span><span class="coqdoc-var">x</span><span> == </span><span class="coqdoc-var">fst</span><span> </span><span class="coqdoc-var">y</span><span> /\ </span><span class="coqdoc-var">snd</span><span> </span><span class="coqdoc-var">x</span><span> == </span><span class="coqdoc-var">snd</span><span> </span><span class="coqdoc-var">y</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">pair_eq</span><span> (</span><span class="rocqdoc-var">e1</span><span> </span><span class="rocqdoc-var">e2</span><span> : </span><span class="rocqdoc-var">EQ.type</span><span>) (</span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> : </span><span class="rocqdoc-var">EQ.obj</span><span> </span><span class="rocqdoc-var">e1</span><span> * </span><span class="rocqdoc-var">EQ.obj</span><span> </span><span class="rocqdoc-var">e2</span><span>) :=</span><span>
+  </span><span class="rocqdoc-var">fst</span><span> </span><span class="rocqdoc-var">x</span><span> == </span><span class="rocqdoc-var">fst</span><span> </span><span class="rocqdoc-var">y</span><span> /\ </span><span class="rocqdoc-var">snd</span><span> </span><span class="rocqdoc-var">x</span><span> == </span><span class="rocqdoc-var">snd</span><span> </span><span class="rocqdoc-var">y</span><span>.</span><span>
 </span></dt><dd><span>pair_eq is defined
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">pair_EQcl</span><span> </span><span class="coqdoc-var">e1</span><span> </span><span class="coqdoc-var">e2</span><span> := </span><span class="coqdoc-var">EQ.Class</span><span> (</span><span class="coqdoc-var">pair_eq</span><span> </span><span class="coqdoc-var">e1</span><span> </span><span class="coqdoc-var">e2</span><span>).</span><span>
+</span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">pair_EQcl</span><span> </span><span class="rocqdoc-var">e1</span><span> </span><span class="rocqdoc-var">e2</span><span> := </span><span class="rocqdoc-var">EQ.Class</span><span> (</span><span class="rocqdoc-var">pair_eq</span><span> </span><span class="rocqdoc-var">e1</span><span> </span><span class="rocqdoc-var">e2</span><span>).</span><span>
 </span></dt><dd><span>pair_EQcl is defined
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">Canonical</span><span> </span><span class="coqdoc-keyword">Structure</span><span> </span><span class="coqdoc-var">pair_EQty</span><span> (</span><span class="coqdoc-var">e1</span><span> </span><span class="coqdoc-var">e2</span><span> : </span><span class="coqdoc-var">EQ.type</span><span>) : </span><span class="coqdoc-var">EQ.type</span><span> :=</span><span>
-    </span><span class="coqdoc-var">EQ.Pack</span><span> (</span><span class="coqdoc-var">EQ.obj</span><span> </span><span class="coqdoc-var">e1</span><span> * </span><span class="coqdoc-var">EQ.obj</span><span> </span><span class="coqdoc-var">e2</span><span>) (</span><span class="coqdoc-var">pair_EQcl</span><span> </span><span class="coqdoc-var">e1</span><span> </span><span class="coqdoc-var">e2</span><span>).</span><span>
+</span><span class="rocqdoc-keyword">Canonical</span><span> </span><span class="rocqdoc-keyword">Structure</span><span> </span><span class="rocqdoc-var">pair_EQty</span><span> (</span><span class="rocqdoc-var">e1</span><span> </span><span class="rocqdoc-var">e2</span><span> : </span><span class="rocqdoc-var">EQ.type</span><span>) : </span><span class="rocqdoc-var">EQ.type</span><span> :=</span><span>
+    </span><span class="rocqdoc-var">EQ.Pack</span><span> (</span><span class="rocqdoc-var">EQ.obj</span><span> </span><span class="rocqdoc-var">e1</span><span> * </span><span class="rocqdoc-var">EQ.obj</span><span> </span><span class="rocqdoc-var">e2</span><span>) (</span><span class="rocqdoc-var">pair_EQcl</span><span> </span><span class="rocqdoc-var">e1</span><span> </span><span class="rocqdoc-var">e2</span><span>).</span><span>
 </span></dt><dd><span>pair_EQty is defined
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-keyword">forall</span><span> (</span><span class="coqdoc-var">e</span><span> : </span><span class="coqdoc-var">EQ.type</span><span>) (</span><span class="coqdoc-var">a</span><span> </span><span class="coqdoc-var">b</span><span> : </span><span class="coqdoc-var">EQ.obj</span><span> </span><span class="coqdoc-var">e</span><span>), (</span><span class="coqdoc-var">a</span><span>, </span><span class="coqdoc-var">b</span><span>) == (</span><span class="coqdoc-var">a</span><span>, </span><span class="coqdoc-var">b</span><span>).</span><span>
+</span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-keyword">forall</span><span> (</span><span class="rocqdoc-var">e</span><span> : </span><span class="rocqdoc-var">EQ.type</span><span>) (</span><span class="rocqdoc-var">a</span><span> </span><span class="rocqdoc-var">b</span><span> : </span><span class="rocqdoc-var">EQ.obj</span><span> </span><span class="rocqdoc-var">e</span><span>), (</span><span class="rocqdoc-var">a</span><span>, </span><span class="rocqdoc-var">b</span><span>) == (</span><span class="rocqdoc-var">a</span><span>, </span><span class="rocqdoc-var">b</span><span>).</span><span>
 </span></dt><dd><span class="ansi-bold">forall</span><span> (e : </span><span class="ansi-fg-light-magenta">EQ</span><span>.</span><span class="ansi-fg-light-green">type</span><span>) (a b : </span><span class="ansi-fg-light-magenta">EQ</span><span>.</span><span class="ansi-fg-light-green">obj</span><span> e), </span><span>(</span><span>a</span><span>,</span><span> b</span><span>)</span><span> ==</span><span> </span><span>(</span><span>a</span><span>,</span><span> b</span><span>)</span><span>
      : </span><span class="ansi-fg-yellow ansi-bold">Prop</span><span>
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-keyword">forall</span><span> </span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-var">m</span><span> : </span><span class="coqdoc-var">nat</span><span>, (3, 4) == (</span><span class="coqdoc-var">n</span><span>, </span><span class="coqdoc-var">m</span><span>).</span><span>
+</span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-keyword">forall</span><span> </span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-var">m</span><span> : </span><span class="rocqdoc-var">nat</span><span>, (3, 4) == (</span><span class="rocqdoc-var">n</span><span>, </span><span class="rocqdoc-var">m</span><span>).</span><span>
 </span></dt><dd><span class="ansi-bold">forall</span><span> n m : nat, </span><span>(</span><span>3</span><span>,</span><span> 4</span><span>)</span><span> ==</span><span> </span><span>(</span><span>n</span><span>,</span><span> m</span><span>)</span><span>
      : </span><span class="ansi-fg-yellow ansi-bold">Prop</span><span>
 </span></dd>
@@ -1643,86 +1643,86 @@ types being themselves in the <code class="docutils literal notranslate"><span c
 <p>To get to an interesting example we need another base class to be
 available. We choose the class of types that are equipped with an
 order relation, to which we associate the infix <code class="docutils literal notranslate"><span class="pre">&lt;=</span></code> notation.</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Module</span><span> </span><span class="coqdoc-var">LE</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Module</span><span> </span><span class="rocqdoc-var">LE</span><span>.</span><span>
 </span></dt><dd><span>Interactive Module LE started
 </span></dd>
 <dt><span></span><span>
-  </span><span class="coqdoc-keyword">Record</span><span> </span><span class="coqdoc-var">class</span><span> </span><span class="coqdoc-var">T</span><span> := </span><span class="coqdoc-keyword">Class</span><span> { </span><span class="coqdoc-var">cmp</span><span> : </span><span class="coqdoc-var">T</span><span> -&gt; </span><span class="coqdoc-var">T</span><span> -&gt; </span><span class="coqdoc-keyword">Prop</span><span> }.</span><span>
+  </span><span class="rocqdoc-keyword">Record</span><span> </span><span class="rocqdoc-var">class</span><span> </span><span class="rocqdoc-var">T</span><span> := </span><span class="rocqdoc-keyword">Class</span><span> { </span><span class="rocqdoc-var">cmp</span><span> : </span><span class="rocqdoc-var">T</span><span> -&gt; </span><span class="rocqdoc-var">T</span><span> -&gt; </span><span class="rocqdoc-keyword">Prop</span><span> }.</span><span>
 </span></dt><dd><span>class is defined
 cmp is defined
 </span></dd>
 <dt><span></span><span>
-  </span><span class="coqdoc-keyword">Structure</span><span> </span><span class="coqdoc-keyword">type</span><span> := </span><span class="coqdoc-var">Pack</span><span> { </span><span class="coqdoc-var">obj</span><span> : </span><span class="coqdoc-keyword">Type</span><span>; </span><span class="coqdoc-var">class_of</span><span> : </span><span class="coqdoc-var">class</span><span> </span><span class="coqdoc-var">obj</span><span> }.</span><span>
+  </span><span class="rocqdoc-keyword">Structure</span><span> </span><span class="rocqdoc-keyword">type</span><span> := </span><span class="rocqdoc-var">Pack</span><span> { </span><span class="rocqdoc-var">obj</span><span> : </span><span class="rocqdoc-keyword">Type</span><span>; </span><span class="rocqdoc-var">class_of</span><span> : </span><span class="rocqdoc-var">class</span><span> </span><span class="rocqdoc-var">obj</span><span> }.</span><span>
 </span></dt><dd><span>type is defined
 obj is defined
 class_of is defined
 </span></dd>
 <dt><span></span><span>
-  </span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">op</span><span> (</span><span class="coqdoc-var">e</span><span> : </span><span class="coqdoc-keyword">type</span><span>) : </span><span class="coqdoc-var">obj</span><span> </span><span class="coqdoc-var">e</span><span> -&gt; </span><span class="coqdoc-var">obj</span><span> </span><span class="coqdoc-var">e</span><span> -&gt; </span><span class="coqdoc-keyword">Prop</span><span> :=</span><span>
-    </span><span class="coqdoc-keyword">let</span><span> '</span><span class="coqdoc-var">Pack</span><span> </span><span class="coqdoc-var">_</span><span> (</span><span class="coqdoc-keyword">Class</span><span> </span><span class="coqdoc-var">_</span><span> </span><span class="coqdoc-var">f</span><span>) := </span><span class="coqdoc-var">e</span><span> </span><span class="coqdoc-tactic">in</span><span> </span><span class="coqdoc-var">f</span><span>.</span><span>
+  </span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">op</span><span> (</span><span class="rocqdoc-var">e</span><span> : </span><span class="rocqdoc-keyword">type</span><span>) : </span><span class="rocqdoc-var">obj</span><span> </span><span class="rocqdoc-var">e</span><span> -&gt; </span><span class="rocqdoc-var">obj</span><span> </span><span class="rocqdoc-var">e</span><span> -&gt; </span><span class="rocqdoc-keyword">Prop</span><span> :=</span><span>
+    </span><span class="rocqdoc-keyword">let</span><span> '</span><span class="rocqdoc-var">Pack</span><span> </span><span class="rocqdoc-var">_</span><span> (</span><span class="rocqdoc-keyword">Class</span><span> </span><span class="rocqdoc-var">_</span><span> </span><span class="rocqdoc-var">f</span><span>) := </span><span class="rocqdoc-var">e</span><span> </span><span class="rocqdoc-tactic">in</span><span> </span><span class="rocqdoc-var">f</span><span>.</span><span>
 </span></dt><dd><span>op is defined
 </span></dd>
 <dt><span></span><span>
-  </span><span class="coqdoc-keyword">Arguments</span><span> </span><span class="coqdoc-var">op</span><span> {</span><span class="coqdoc-var">_</span><span>} </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span> : </span><span class="coqdoc-tactic">simpl</span><span> </span><span class="coqdoc-var">never</span><span>.</span><span>
+  </span><span class="rocqdoc-keyword">Arguments</span><span> </span><span class="rocqdoc-var">op</span><span> {</span><span class="rocqdoc-var">_</span><span>} </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> : </span><span class="rocqdoc-tactic">simpl</span><span> </span><span class="rocqdoc-var">never</span><span>.</span><span>
 </span></dt><dt><span></span><span>
-  </span><span class="coqdoc-keyword">Arguments</span><span> </span><span class="coqdoc-keyword">Class</span><span> {</span><span class="coqdoc-var">T</span><span>} </span><span class="coqdoc-var">cmp</span><span>.</span><span>
+  </span><span class="rocqdoc-keyword">Arguments</span><span> </span><span class="rocqdoc-keyword">Class</span><span> {</span><span class="rocqdoc-var">T</span><span>} </span><span class="rocqdoc-var">cmp</span><span>.</span><span>
 </span></dt><dt><span></span><span>
-  </span><span class="coqdoc-keyword">Module</span><span> </span><span class="coqdoc-var">theory</span><span>.</span><span>
+  </span><span class="rocqdoc-keyword">Module</span><span> </span><span class="rocqdoc-var">theory</span><span>.</span><span>
 </span></dt><dd><span>Interactive Module theory started
 </span></dd>
 <dt><span></span><span>
-    </span><span class="coqdoc-keyword">Notation</span><span> &quot;x &lt;= y&quot; := (</span><span class="coqdoc-var">op</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span>) (</span><span class="coqdoc-tactic">at</span><span> </span><span class="coqdoc-keyword">level</span><span> 70).</span><span>
+    </span><span class="rocqdoc-keyword">Notation</span><span> &quot;x &lt;= y&quot; := (</span><span class="rocqdoc-var">op</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span>) (</span><span class="rocqdoc-tactic">at</span><span> </span><span class="rocqdoc-keyword">level</span><span> 70).</span><span>
 </span></dt><dd><span>Setting y constr at next level
 to match previous notation with longest common prefix: &quot;_ &lt;= _&quot;.
 </span></dd>
 <dt><span></span><span>
-  </span><span class="coqdoc-keyword">End</span><span> </span><span class="coqdoc-var">theory</span><span>.</span><span>
+  </span><span class="rocqdoc-keyword">End</span><span> </span><span class="rocqdoc-var">theory</span><span>.</span><span>
 </span></dt><dd><span>Module theory is defined
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">End</span><span> </span><span class="coqdoc-var">LE</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">End</span><span> </span><span class="rocqdoc-var">LE</span><span>.</span><span>
 </span></dt><dd><span>Module LE is defined
 </span></dd>
 </dl>
 </div>
 <p>As before we register a canonical <code class="docutils literal notranslate"><span class="pre">LE</span></code> class for <code class="docutils literal notranslate"><span class="pre">nat</span></code>.</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Import</span><span> </span><span class="coqdoc-var">LE.theory</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Import</span><span> </span><span class="rocqdoc-var">LE.theory</span><span>.</span><span>
 </span></dt><dt><span></span><span>
-</span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">nat_le</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span> := </span><span class="coqdoc-var">Nat.compare</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span> &lt;&gt; </span><span class="coqdoc-var">Gt</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">nat_le</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> := </span><span class="rocqdoc-var">Nat.compare</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> &lt;&gt; </span><span class="rocqdoc-var">Gt</span><span>.</span><span>
 </span></dt><dd><span>nat_le is defined
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">nat_LEcl</span><span> : </span><span class="coqdoc-var">LE.class</span><span> </span><span class="coqdoc-var">nat</span><span> := </span><span class="coqdoc-var">LE.Class</span><span> </span><span class="coqdoc-var">nat_le</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">nat_LEcl</span><span> : </span><span class="rocqdoc-var">LE.class</span><span> </span><span class="rocqdoc-var">nat</span><span> := </span><span class="rocqdoc-var">LE.Class</span><span> </span><span class="rocqdoc-var">nat_le</span><span>.</span><span>
 </span></dt><dd><span>nat_LEcl is defined
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">Canonical</span><span> </span><span class="coqdoc-keyword">Structure</span><span> </span><span class="coqdoc-var">nat_LEty</span><span> : </span><span class="coqdoc-var">LE.type</span><span> := </span><span class="coqdoc-var">LE.Pack</span><span> </span><span class="coqdoc-var">nat</span><span> </span><span class="coqdoc-var">nat_LEcl</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Canonical</span><span> </span><span class="rocqdoc-keyword">Structure</span><span> </span><span class="rocqdoc-var">nat_LEty</span><span> : </span><span class="rocqdoc-var">LE.type</span><span> := </span><span class="rocqdoc-var">LE.Pack</span><span> </span><span class="rocqdoc-var">nat</span><span> </span><span class="rocqdoc-var">nat_LEcl</span><span>.</span><span>
 </span></dt><dd><span>nat_LEty is defined
 </span></dd>
 </dl>
 </div>
 <p>And we enable Rocq to relate pair of terms with <code class="docutils literal notranslate"><span class="pre">&lt;=</span></code>.</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">pair_le</span><span> </span><span class="coqdoc-var">e1</span><span> </span><span class="coqdoc-var">e2</span><span> (</span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span> : </span><span class="coqdoc-var">LE.obj</span><span> </span><span class="coqdoc-var">e1</span><span> * </span><span class="coqdoc-var">LE.obj</span><span> </span><span class="coqdoc-var">e2</span><span>) :=</span><span>
-   </span><span class="coqdoc-var">fst</span><span> </span><span class="coqdoc-var">x</span><span> &lt;= </span><span class="coqdoc-var">fst</span><span> </span><span class="coqdoc-var">y</span><span> /\ </span><span class="coqdoc-var">snd</span><span> </span><span class="coqdoc-var">x</span><span> &lt;= </span><span class="coqdoc-var">snd</span><span> </span><span class="coqdoc-var">y</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">pair_le</span><span> </span><span class="rocqdoc-var">e1</span><span> </span><span class="rocqdoc-var">e2</span><span> (</span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> : </span><span class="rocqdoc-var">LE.obj</span><span> </span><span class="rocqdoc-var">e1</span><span> * </span><span class="rocqdoc-var">LE.obj</span><span> </span><span class="rocqdoc-var">e2</span><span>) :=</span><span>
+   </span><span class="rocqdoc-var">fst</span><span> </span><span class="rocqdoc-var">x</span><span> &lt;= </span><span class="rocqdoc-var">fst</span><span> </span><span class="rocqdoc-var">y</span><span> /\ </span><span class="rocqdoc-var">snd</span><span> </span><span class="rocqdoc-var">x</span><span> &lt;= </span><span class="rocqdoc-var">snd</span><span> </span><span class="rocqdoc-var">y</span><span>.</span><span>
 </span></dt><dd><span>pair_le is defined
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">pair_LEcl</span><span> </span><span class="coqdoc-var">e1</span><span> </span><span class="coqdoc-var">e2</span><span> := </span><span class="coqdoc-var">LE.Class</span><span> (</span><span class="coqdoc-var">pair_le</span><span> </span><span class="coqdoc-var">e1</span><span> </span><span class="coqdoc-var">e2</span><span>).</span><span>
+</span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">pair_LEcl</span><span> </span><span class="rocqdoc-var">e1</span><span> </span><span class="rocqdoc-var">e2</span><span> := </span><span class="rocqdoc-var">LE.Class</span><span> (</span><span class="rocqdoc-var">pair_le</span><span> </span><span class="rocqdoc-var">e1</span><span> </span><span class="rocqdoc-var">e2</span><span>).</span><span>
 </span></dt><dd><span>pair_LEcl is defined
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">Canonical</span><span> </span><span class="coqdoc-keyword">Structure</span><span> </span><span class="coqdoc-var">pair_LEty</span><span> (</span><span class="coqdoc-var">e1</span><span> </span><span class="coqdoc-var">e2</span><span> : </span><span class="coqdoc-var">LE.type</span><span>) : </span><span class="coqdoc-var">LE.type</span><span> :=</span><span>
-   </span><span class="coqdoc-var">LE.Pack</span><span> (</span><span class="coqdoc-var">LE.obj</span><span> </span><span class="coqdoc-var">e1</span><span> * </span><span class="coqdoc-var">LE.obj</span><span> </span><span class="coqdoc-var">e2</span><span>) (</span><span class="coqdoc-var">pair_LEcl</span><span> </span><span class="coqdoc-var">e1</span><span> </span><span class="coqdoc-var">e2</span><span>).</span><span>
+</span><span class="rocqdoc-keyword">Canonical</span><span> </span><span class="rocqdoc-keyword">Structure</span><span> </span><span class="rocqdoc-var">pair_LEty</span><span> (</span><span class="rocqdoc-var">e1</span><span> </span><span class="rocqdoc-var">e2</span><span> : </span><span class="rocqdoc-var">LE.type</span><span>) : </span><span class="rocqdoc-var">LE.type</span><span> :=</span><span>
+   </span><span class="rocqdoc-var">LE.Pack</span><span> (</span><span class="rocqdoc-var">LE.obj</span><span> </span><span class="rocqdoc-var">e1</span><span> * </span><span class="rocqdoc-var">LE.obj</span><span> </span><span class="rocqdoc-var">e2</span><span>) (</span><span class="rocqdoc-var">pair_LEcl</span><span> </span><span class="rocqdoc-var">e1</span><span> </span><span class="rocqdoc-var">e2</span><span>).</span><span>
 </span></dt><dd><span>pair_LEty is defined
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">Check</span><span> (3,4,5) &lt;= (3,4,5).</span><span>
+</span><span class="rocqdoc-keyword">Check</span><span> (3,4,5) &lt;= (3,4,5).</span><span>
 </span></dt><dd><span>(</span><span>3</span><span>,</span><span> 4</span><span>,</span><span> 5</span><span>)</span><span> &lt;=</span><span> </span><span>(</span><span>3</span><span>,</span><span> 4</span><span>,</span><span> 5</span><span>)</span><span>
      : </span><span class="ansi-fg-yellow ansi-bold">Prop</span><span>
 </span></dd>
@@ -1731,14 +1731,14 @@ to match previous notation with longest common prefix: &quot;_ &lt;= _&quot;.
 <p>At the current stage we can use <code class="docutils literal notranslate"><span class="pre">==</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;=</span></code> on concrete types, like
 tuples of natural numbers, but we can’t develop an algebraic theory
 over the types that are equipped with both relations.</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Check</span><span> 2 &lt;= 3 /\ 2 == 2.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Check</span><span> 2 &lt;= 3 /\ 2 == 2.</span><span>
 </span></dt><dd><span>2</span><span> &lt;=</span><span> 3</span><span> /\</span><span> 2</span><span> ==</span><span> 2
      : </span><span class="ansi-fg-yellow ansi-bold">Prop</span><span>
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-var">Fail</span><span> </span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-keyword">forall</span><span> (</span><span class="coqdoc-var">e</span><span> : </span><span class="coqdoc-var">EQ.type</span><span>) (</span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span> : </span><span class="coqdoc-var">EQ.obj</span><span> </span><span class="coqdoc-var">e</span><span>), </span><span class="coqdoc-var">x</span><span> &lt;= </span><span class="coqdoc-var">y</span><span> -&gt; </span><span class="coqdoc-var">y</span><span> &lt;= </span><span class="coqdoc-var">x</span><span> -&gt; </span><span class="coqdoc-var">x</span><span> == </span><span class="coqdoc-var">y</span><span>.</span><span>
+</span><span class="rocqdoc-var">Fail</span><span> </span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-keyword">forall</span><span> (</span><span class="rocqdoc-var">e</span><span> : </span><span class="rocqdoc-var">EQ.type</span><span>) (</span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> : </span><span class="rocqdoc-var">EQ.obj</span><span> </span><span class="rocqdoc-var">e</span><span>), </span><span class="rocqdoc-var">x</span><span> &lt;= </span><span class="rocqdoc-var">y</span><span> -&gt; </span><span class="rocqdoc-var">y</span><span> &lt;= </span><span class="rocqdoc-var">x</span><span> -&gt; </span><span class="rocqdoc-var">x</span><span> == </span><span class="rocqdoc-var">y</span><span>.</span><span>
 </span></dt><dd><span>The command has indeed failed with message:
 In environment
 e : </span><span class="ansi-fg-light-magenta">EQ</span><span>.</span><span class="ansi-fg-light-green">type</span><span>
@@ -1748,7 +1748,7 @@ The term &quot;x&quot; has type &quot;</span><span class="ansi-fg-light-magenta"
  &quot;</span><span class="ansi-fg-light-magenta">LE</span><span>.</span><span class="ansi-fg-light-green">obj</span><span> </span><span class="ansi-fg-light-blue">?e</span><span>&quot;.
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-var">Fail</span><span> </span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-keyword">forall</span><span> (</span><span class="coqdoc-var">e</span><span> : </span><span class="coqdoc-var">LE.type</span><span>) (</span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span> : </span><span class="coqdoc-var">LE.obj</span><span> </span><span class="coqdoc-var">e</span><span>), </span><span class="coqdoc-var">x</span><span> &lt;= </span><span class="coqdoc-var">y</span><span> -&gt; </span><span class="coqdoc-var">y</span><span> &lt;= </span><span class="coqdoc-var">x</span><span> -&gt; </span><span class="coqdoc-var">x</span><span> == </span><span class="coqdoc-var">y</span><span>.</span><span>
+</span><span class="rocqdoc-var">Fail</span><span> </span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-keyword">forall</span><span> (</span><span class="rocqdoc-var">e</span><span> : </span><span class="rocqdoc-var">LE.type</span><span>) (</span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> : </span><span class="rocqdoc-var">LE.obj</span><span> </span><span class="rocqdoc-var">e</span><span>), </span><span class="rocqdoc-var">x</span><span> &lt;= </span><span class="rocqdoc-var">y</span><span> -&gt; </span><span class="rocqdoc-var">y</span><span> &lt;= </span><span class="rocqdoc-var">x</span><span> -&gt; </span><span class="rocqdoc-var">x</span><span> == </span><span class="rocqdoc-var">y</span><span>.</span><span>
 </span></dt><dd><span>The command has indeed failed with message:
 In environment
 e : </span><span class="ansi-fg-light-magenta">LE</span><span>.</span><span class="ansi-fg-light-green">type</span><span>
@@ -1760,37 +1760,37 @@ The term &quot;x&quot; has type &quot;</span><span class="ansi-fg-light-magenta"
 </dl>
 </div>
 <p>We need to define a new class that inherits from both <code class="docutils literal notranslate"><span class="pre">EQ</span></code> and <code class="docutils literal notranslate"><span class="pre">LE</span></code>.</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Module</span><span> </span><span class="coqdoc-var">LEQ</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Module</span><span> </span><span class="rocqdoc-var">LEQ</span><span>.</span><span>
 </span></dt><dd><span>Interactive Module LEQ started
 </span></dd>
 <dt><span></span><span>
-  </span><span class="coqdoc-keyword">Record</span><span> </span><span class="coqdoc-var">mixin</span><span> (</span><span class="coqdoc-var">e</span><span> : </span><span class="coqdoc-var">EQ.type</span><span>) (</span><span class="coqdoc-var">le</span><span> : </span><span class="coqdoc-var">EQ.obj</span><span> </span><span class="coqdoc-var">e</span><span> -&gt; </span><span class="coqdoc-var">EQ.obj</span><span> </span><span class="coqdoc-var">e</span><span> -&gt; </span><span class="coqdoc-keyword">Prop</span><span>) :=</span><span>
-    </span><span class="coqdoc-var">Mixin</span><span> { </span><span class="coqdoc-var">compat</span><span> : </span><span class="coqdoc-keyword">forall</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span> : </span><span class="coqdoc-var">EQ.obj</span><span> </span><span class="coqdoc-var">e</span><span>, </span><span class="coqdoc-var">le</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span> /\ </span><span class="coqdoc-var">le</span><span> </span><span class="coqdoc-var">y</span><span> </span><span class="coqdoc-var">x</span><span> &lt;-&gt; </span><span class="coqdoc-var">x</span><span> == </span><span class="coqdoc-var">y</span><span> }.</span><span>
+  </span><span class="rocqdoc-keyword">Record</span><span> </span><span class="rocqdoc-var">mixin</span><span> (</span><span class="rocqdoc-var">e</span><span> : </span><span class="rocqdoc-var">EQ.type</span><span>) (</span><span class="rocqdoc-var">le</span><span> : </span><span class="rocqdoc-var">EQ.obj</span><span> </span><span class="rocqdoc-var">e</span><span> -&gt; </span><span class="rocqdoc-var">EQ.obj</span><span> </span><span class="rocqdoc-var">e</span><span> -&gt; </span><span class="rocqdoc-keyword">Prop</span><span>) :=</span><span>
+    </span><span class="rocqdoc-var">Mixin</span><span> { </span><span class="rocqdoc-var">compat</span><span> : </span><span class="rocqdoc-keyword">forall</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> : </span><span class="rocqdoc-var">EQ.obj</span><span> </span><span class="rocqdoc-var">e</span><span>, </span><span class="rocqdoc-var">le</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> /\ </span><span class="rocqdoc-var">le</span><span> </span><span class="rocqdoc-var">y</span><span> </span><span class="rocqdoc-var">x</span><span> &lt;-&gt; </span><span class="rocqdoc-var">x</span><span> == </span><span class="rocqdoc-var">y</span><span> }.</span><span>
 </span></dt><dd><span>mixin is defined
 compat is defined
 </span></dd>
 <dt><span></span><span>
-  </span><span class="coqdoc-keyword">Record</span><span> </span><span class="coqdoc-var">class</span><span> </span><span class="coqdoc-var">T</span><span> := </span><span class="coqdoc-keyword">Class</span><span> {</span><span>
-                      </span><span class="coqdoc-var">EQ_class</span><span> : </span><span class="coqdoc-var">EQ.class</span><span> </span><span class="coqdoc-var">T</span><span>;</span><span>
-                      </span><span class="coqdoc-var">LE_class</span><span> : </span><span class="coqdoc-var">LE.class</span><span> </span><span class="coqdoc-var">T</span><span>;</span><span>
-                      </span><span class="coqdoc-var">extra</span><span> : </span><span class="coqdoc-var">mixin</span><span> (</span><span class="coqdoc-var">EQ.Pack</span><span> </span><span class="coqdoc-var">T</span><span> </span><span class="coqdoc-var">EQ_class</span><span>) (</span><span class="coqdoc-var">LE.cmp</span><span> </span><span class="coqdoc-var">T</span><span> </span><span class="coqdoc-var">LE_class</span><span>) }.</span><span>
+  </span><span class="rocqdoc-keyword">Record</span><span> </span><span class="rocqdoc-var">class</span><span> </span><span class="rocqdoc-var">T</span><span> := </span><span class="rocqdoc-keyword">Class</span><span> {</span><span>
+                      </span><span class="rocqdoc-var">EQ_class</span><span> : </span><span class="rocqdoc-var">EQ.class</span><span> </span><span class="rocqdoc-var">T</span><span>;</span><span>
+                      </span><span class="rocqdoc-var">LE_class</span><span> : </span><span class="rocqdoc-var">LE.class</span><span> </span><span class="rocqdoc-var">T</span><span>;</span><span>
+                      </span><span class="rocqdoc-var">extra</span><span> : </span><span class="rocqdoc-var">mixin</span><span> (</span><span class="rocqdoc-var">EQ.Pack</span><span> </span><span class="rocqdoc-var">T</span><span> </span><span class="rocqdoc-var">EQ_class</span><span>) (</span><span class="rocqdoc-var">LE.cmp</span><span> </span><span class="rocqdoc-var">T</span><span> </span><span class="rocqdoc-var">LE_class</span><span>) }.</span><span>
 </span></dt><dd><span>class is defined
 EQ_class is defined
 LE_class is defined
 extra is defined
 </span></dd>
 <dt><span></span><span>
-  </span><span class="coqdoc-keyword">Structure</span><span> </span><span class="coqdoc-keyword">type</span><span> := </span><span class="coqdoc-var">_Pack</span><span> { </span><span class="coqdoc-var">obj</span><span> : </span><span class="coqdoc-keyword">Type</span><span>; #[</span><span class="coqdoc-var">canonical</span><span>=</span><span class="coqdoc-keyword">no</span><span>] </span><span class="coqdoc-var">class_of</span><span> : </span><span class="coqdoc-var">class</span><span> </span><span class="coqdoc-var">obj</span><span> }.</span><span>
+  </span><span class="rocqdoc-keyword">Structure</span><span> </span><span class="rocqdoc-keyword">type</span><span> := </span><span class="rocqdoc-var">_Pack</span><span> { </span><span class="rocqdoc-var">obj</span><span> : </span><span class="rocqdoc-keyword">Type</span><span>; #[</span><span class="rocqdoc-var">canonical</span><span>=</span><span class="rocqdoc-keyword">no</span><span>] </span><span class="rocqdoc-var">class_of</span><span> : </span><span class="rocqdoc-var">class</span><span> </span><span class="rocqdoc-var">obj</span><span> }.</span><span>
 </span></dt><dd><span>type is defined
 obj is defined
 class_of is defined
 </span></dd>
 <dt><span></span><span>
-  </span><span class="coqdoc-keyword">Arguments</span><span> </span><span class="coqdoc-var">Mixin</span><span> {</span><span class="coqdoc-var">e</span><span> </span><span class="coqdoc-var">le</span><span>} </span><span class="coqdoc-var">_</span><span>.</span><span>
+  </span><span class="rocqdoc-keyword">Arguments</span><span> </span><span class="rocqdoc-var">Mixin</span><span> {</span><span class="rocqdoc-var">e</span><span> </span><span class="rocqdoc-var">le</span><span>} </span><span class="rocqdoc-var">_</span><span>.</span><span>
 </span></dt><dt><span></span><span>
-  </span><span class="coqdoc-keyword">Arguments</span><span> </span><span class="coqdoc-keyword">Class</span><span> {</span><span class="coqdoc-var">T</span><span>} </span><span class="coqdoc-var">_</span><span> </span><span class="coqdoc-var">_</span><span> </span><span class="coqdoc-var">_</span><span>.</span><span>
+  </span><span class="rocqdoc-keyword">Arguments</span><span> </span><span class="rocqdoc-keyword">Class</span><span> {</span><span class="rocqdoc-var">T</span><span>} </span><span class="rocqdoc-var">_</span><span> </span><span class="rocqdoc-var">_</span><span> </span><span class="rocqdoc-var">_</span><span>.</span><span>
 </span></dt></dl>
 </div>
 <p>The mixin component of the <code class="docutils literal notranslate"><span class="pre">LEQ</span></code> class contains all the extra content we
@@ -1800,13 +1800,13 @@ that the two relations we are combining are compatible.</p>
 it plays no role in the search for instances.</p>
 <p>Unfortunately there is still an obstacle to developing the algebraic
 theory of this new class.</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Module</span><span> </span><span class="coqdoc-var">theory</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Module</span><span> </span><span class="rocqdoc-var">theory</span><span>.</span><span>
 </span></dt><dd><span>Interactive Module theory started
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-var">Fail</span><span> </span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-keyword">forall</span><span> (</span><span class="coqdoc-var">le</span><span> : </span><span class="coqdoc-keyword">type</span><span>) (</span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-var">m</span><span> : </span><span class="coqdoc-var">obj</span><span> </span><span class="coqdoc-var">le</span><span>), </span><span class="coqdoc-var">n</span><span> &lt;= </span><span class="coqdoc-var">m</span><span> -&gt; </span><span class="coqdoc-var">n</span><span> &lt;= </span><span class="coqdoc-var">m</span><span> -&gt; </span><span class="coqdoc-var">n</span><span> == </span><span class="coqdoc-var">m</span><span>.</span><span>
+</span><span class="rocqdoc-var">Fail</span><span> </span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-keyword">forall</span><span> (</span><span class="rocqdoc-var">le</span><span> : </span><span class="rocqdoc-keyword">type</span><span>) (</span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-var">m</span><span> : </span><span class="rocqdoc-var">obj</span><span> </span><span class="rocqdoc-var">le</span><span>), </span><span class="rocqdoc-var">n</span><span> &lt;= </span><span class="rocqdoc-var">m</span><span> -&gt; </span><span class="rocqdoc-var">n</span><span> &lt;= </span><span class="rocqdoc-var">m</span><span> -&gt; </span><span class="rocqdoc-var">n</span><span> == </span><span class="rocqdoc-var">m</span><span>.</span><span>
 </span></dt><dd><span>The command has indeed failed with message:
 In environment
 le : type
@@ -1822,28 +1822,28 @@ the <code class="docutils literal notranslate"><span class="pre">LEQ</span></cod
 <p>The following two constructions tell Rocq how to canonically build the
 <code class="docutils literal notranslate"><span class="pre">LE.type</span></code> and <code class="docutils literal notranslate"><span class="pre">EQ.type</span></code> structure given an <code class="docutils literal notranslate"><span class="pre">LEQ.type</span></code> structure on the same
 type.</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">to_EQ</span><span> (</span><span class="coqdoc-var">e</span><span> : </span><span class="coqdoc-keyword">type</span><span>) : </span><span class="coqdoc-var">EQ.type</span><span> :=</span><span>
-   </span><span class="coqdoc-var">EQ.Pack</span><span> (</span><span class="coqdoc-var">obj</span><span> </span><span class="coqdoc-var">e</span><span>) (</span><span class="coqdoc-var">EQ_class</span><span> </span><span class="coqdoc-var">_</span><span> (</span><span class="coqdoc-var">class_of</span><span> </span><span class="coqdoc-var">e</span><span>)).</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">to_EQ</span><span> (</span><span class="rocqdoc-var">e</span><span> : </span><span class="rocqdoc-keyword">type</span><span>) : </span><span class="rocqdoc-var">EQ.type</span><span> :=</span><span>
+   </span><span class="rocqdoc-var">EQ.Pack</span><span> (</span><span class="rocqdoc-var">obj</span><span> </span><span class="rocqdoc-var">e</span><span>) (</span><span class="rocqdoc-var">EQ_class</span><span> </span><span class="rocqdoc-var">_</span><span> (</span><span class="rocqdoc-var">class_of</span><span> </span><span class="rocqdoc-var">e</span><span>)).</span><span>
 </span></dt><dd><span>to_EQ is defined
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">Canonical</span><span> </span><span class="coqdoc-keyword">Structure</span><span> </span><span class="coqdoc-var">to_EQ</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Canonical</span><span> </span><span class="rocqdoc-keyword">Structure</span><span> </span><span class="rocqdoc-var">to_EQ</span><span>.</span><span>
 </span></dt><dt><span></span><span>
-</span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">to_LE</span><span> (</span><span class="coqdoc-var">e</span><span> : </span><span class="coqdoc-keyword">type</span><span>) : </span><span class="coqdoc-var">LE.type</span><span> :=</span><span>
-   </span><span class="coqdoc-var">LE.Pack</span><span> (</span><span class="coqdoc-var">obj</span><span> </span><span class="coqdoc-var">e</span><span>) (</span><span class="coqdoc-var">LE_class</span><span> </span><span class="coqdoc-var">_</span><span> (</span><span class="coqdoc-var">class_of</span><span> </span><span class="coqdoc-var">e</span><span>)).</span><span>
+</span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">to_LE</span><span> (</span><span class="rocqdoc-var">e</span><span> : </span><span class="rocqdoc-keyword">type</span><span>) : </span><span class="rocqdoc-var">LE.type</span><span> :=</span><span>
+   </span><span class="rocqdoc-var">LE.Pack</span><span> (</span><span class="rocqdoc-var">obj</span><span> </span><span class="rocqdoc-var">e</span><span>) (</span><span class="rocqdoc-var">LE_class</span><span> </span><span class="rocqdoc-var">_</span><span> (</span><span class="rocqdoc-var">class_of</span><span> </span><span class="rocqdoc-var">e</span><span>)).</span><span>
 </span></dt><dd><span>to_LE is defined
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">Canonical</span><span> </span><span class="coqdoc-keyword">Structure</span><span> </span><span class="coqdoc-var">to_LE</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Canonical</span><span> </span><span class="rocqdoc-keyword">Structure</span><span> </span><span class="rocqdoc-var">to_LE</span><span>.</span><span>
 </span></dt></dl>
 </div>
 <p>We can now formulate out first theorem on the objects of the <code class="docutils literal notranslate"><span class="pre">LEQ</span></code>
 structure.</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Lemma</span><span> </span><span class="coqdoc-var">lele_eq</span><span> (</span><span class="coqdoc-var">e</span><span> : </span><span class="coqdoc-keyword">type</span><span>) (</span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span> : </span><span class="coqdoc-var">obj</span><span> </span><span class="coqdoc-var">e</span><span>) : </span><span class="coqdoc-var">x</span><span> &lt;= </span><span class="coqdoc-var">y</span><span> -&gt; </span><span class="coqdoc-var">y</span><span> &lt;= </span><span class="coqdoc-var">x</span><span> -&gt; </span><span class="coqdoc-var">x</span><span> == </span><span class="coqdoc-var">y</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Lemma</span><span> </span><span class="rocqdoc-var">lele_eq</span><span> (</span><span class="rocqdoc-var">e</span><span> : </span><span class="rocqdoc-keyword">type</span><span>) (</span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> : </span><span class="rocqdoc-var">obj</span><span> </span><span class="rocqdoc-var">e</span><span>) : </span><span class="rocqdoc-var">x</span><span> &lt;= </span><span class="rocqdoc-var">y</span><span> -&gt; </span><span class="rocqdoc-var">y</span><span> &lt;= </span><span class="rocqdoc-var">x</span><span> -&gt; </span><span class="rocqdoc-var">x</span><span> == </span><span class="rocqdoc-var">y</span><span>.</span><span>
 </span></dt><dd><span>1 goal
   
   e : type
@@ -1852,25 +1852,25 @@ structure.</p>
   x</span><span> &lt;=</span><span> y</span><span> -&gt;</span><span> y</span><span> &lt;=</span><span> x</span><span> -&gt;</span><span> x</span><span> ==</span><span> y
 </span></dd>
 <dt><span></span><span>
-   </span><span class="coqdoc-var">now</span><span> </span><span class="coqdoc-tactic">intros</span><span>; </span><span class="coqdoc-tactic">apply</span><span> (</span><span class="coqdoc-var">compat</span><span> </span><span class="coqdoc-var">_</span><span> </span><span class="coqdoc-var">_</span><span> (</span><span class="coqdoc-var">extra</span><span> </span><span class="coqdoc-var">_</span><span> (</span><span class="coqdoc-var">class_of</span><span> </span><span class="coqdoc-var">e</span><span>)) </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span>); </span><span class="coqdoc-tactic">split</span><span>.</span><span>
+   </span><span class="rocqdoc-var">now</span><span> </span><span class="rocqdoc-tactic">intros</span><span>; </span><span class="rocqdoc-tactic">apply</span><span> (</span><span class="rocqdoc-var">compat</span><span> </span><span class="rocqdoc-var">_</span><span> </span><span class="rocqdoc-var">_</span><span> (</span><span class="rocqdoc-var">extra</span><span> </span><span class="rocqdoc-var">_</span><span> (</span><span class="rocqdoc-var">class_of</span><span> </span><span class="rocqdoc-var">e</span><span>)) </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span>); </span><span class="rocqdoc-tactic">split</span><span>.</span><span>
 </span></dt><dd><span>No more goals.
 </span></dd>
 <dt><span></span><span>
-   </span><span class="coqdoc-keyword">Qed</span><span>.</span><span>
+   </span><span class="rocqdoc-keyword">Qed</span><span>.</span><span>
 </span></dt><dt><span></span><span>
-   </span><span class="coqdoc-keyword">Arguments</span><span> </span><span class="coqdoc-var">lele_eq</span><span> {</span><span class="coqdoc-var">e</span><span>} </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span> </span><span class="coqdoc-var">_</span><span> </span><span class="coqdoc-var">_</span><span>.</span><span>
+   </span><span class="rocqdoc-keyword">Arguments</span><span> </span><span class="rocqdoc-var">lele_eq</span><span> {</span><span class="rocqdoc-var">e</span><span>} </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> </span><span class="rocqdoc-var">_</span><span> </span><span class="rocqdoc-var">_</span><span>.</span><span>
 </span></dt><dt><span></span><span>
-   </span><span class="coqdoc-keyword">End</span><span> </span><span class="coqdoc-var">theory</span><span>.</span><span>
+   </span><span class="rocqdoc-keyword">End</span><span> </span><span class="rocqdoc-var">theory</span><span>.</span><span>
 </span></dt><dd><span>Module theory is defined
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">End</span><span> </span><span class="coqdoc-var">LEQ</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">End</span><span> </span><span class="rocqdoc-var">LEQ</span><span>.</span><span>
 </span></dt><dd><span>Module LEQ is defined
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">Import</span><span> </span><span class="coqdoc-var">LEQ.theory</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Import</span><span> </span><span class="rocqdoc-var">LEQ.theory</span><span>.</span><span>
 </span></dt><dt><span></span><span>
-</span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-var">lele_eq</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-var">lele_eq</span><span>.</span><span>
 </span></dt><dd><span>lele_eq
      : </span><span class="ansi-bold">forall</span><span> x y : </span><span class="ansi-fg-light-magenta">LEQ</span><span>.</span><span class="ansi-fg-light-green">obj</span><span> </span><span class="ansi-fg-light-blue">?e</span><span>, x</span><span> &lt;=</span><span> y</span><span> -&gt;</span><span> y</span><span> &lt;=</span><span> x</span><span> -&gt;</span><span> x</span><span> ==</span><span> y
 where
@@ -1880,9 +1880,9 @@ where
 </div>
 <p>Of course one would like to apply results proved in the algebraic
 setting to any concrete instate of the algebraic structure.</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Example</span><span> </span><span class="coqdoc-var">test_algebraic</span><span> (</span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-var">m</span><span> : </span><span class="coqdoc-var">nat</span><span>) : </span><span class="coqdoc-var">n</span><span> &lt;= </span><span class="coqdoc-var">m</span><span> -&gt; </span><span class="coqdoc-var">m</span><span> &lt;= </span><span class="coqdoc-var">n</span><span> -&gt; </span><span class="coqdoc-var">n</span><span> == </span><span class="coqdoc-var">m</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Example</span><span> </span><span class="rocqdoc-var">test_algebraic</span><span> (</span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-var">m</span><span> : </span><span class="rocqdoc-var">nat</span><span>) : </span><span class="rocqdoc-var">n</span><span> &lt;= </span><span class="rocqdoc-var">m</span><span> -&gt; </span><span class="rocqdoc-var">m</span><span> &lt;= </span><span class="rocqdoc-var">n</span><span> -&gt; </span><span class="rocqdoc-var">n</span><span> == </span><span class="rocqdoc-var">m</span><span>.</span><span>
 </span></dt><dd><span>1 goal
   
   n, m : nat
@@ -1890,17 +1890,17 @@ setting to any concrete instate of the algebraic structure.</p>
   n</span><span> &lt;=</span><span> m</span><span> -&gt;</span><span> m</span><span> &lt;=</span><span> n</span><span> -&gt;</span><span> n</span><span> ==</span><span> m
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-var">Fail</span><span> </span><span class="coqdoc-tactic">apply</span><span> (</span><span class="coqdoc-var">lele_eq</span><span> </span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-var">m</span><span>).</span><span>
+</span><span class="rocqdoc-var">Fail</span><span> </span><span class="rocqdoc-tactic">apply</span><span> (</span><span class="rocqdoc-var">lele_eq</span><span> </span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-var">m</span><span>).</span><span>
 </span></dt><dd><span>The command has indeed failed with message:
 In environment
 n, m : nat
 The term &quot;n&quot; has type &quot;nat&quot; while it is expected to have type &quot;</span><span class="ansi-fg-light-magenta">LEQ</span><span>.</span><span class="ansi-fg-light-green">obj</span><span> </span><span class="ansi-fg-light-blue">?e</span><span>&quot;.
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">Abort</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Abort</span><span>.</span><span>
 </span></dt><dt><span></span><span>
-</span><span class="coqdoc-keyword">Example</span><span> </span><span class="coqdoc-var">test_algebraic2</span><span> (</span><span class="coqdoc-var">l1</span><span> </span><span class="coqdoc-var">l2</span><span> : </span><span class="coqdoc-var">LEQ.type</span><span>) (</span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-var">m</span><span> : </span><span class="coqdoc-var">LEQ.obj</span><span> </span><span class="coqdoc-var">l1</span><span> * </span><span class="coqdoc-var">LEQ.obj</span><span> </span><span class="coqdoc-var">l2</span><span>) :</span><span>
-     </span><span class="coqdoc-var">n</span><span> &lt;= </span><span class="coqdoc-var">m</span><span> -&gt; </span><span class="coqdoc-var">m</span><span> &lt;= </span><span class="coqdoc-var">n</span><span> -&gt; </span><span class="coqdoc-var">n</span><span> == </span><span class="coqdoc-var">m</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Example</span><span> </span><span class="rocqdoc-var">test_algebraic2</span><span> (</span><span class="rocqdoc-var">l1</span><span> </span><span class="rocqdoc-var">l2</span><span> : </span><span class="rocqdoc-var">LEQ.type</span><span>) (</span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-var">m</span><span> : </span><span class="rocqdoc-var">LEQ.obj</span><span> </span><span class="rocqdoc-var">l1</span><span> * </span><span class="rocqdoc-var">LEQ.obj</span><span> </span><span class="rocqdoc-var">l2</span><span>) :</span><span>
+     </span><span class="rocqdoc-var">n</span><span> &lt;= </span><span class="rocqdoc-var">m</span><span> -&gt; </span><span class="rocqdoc-var">m</span><span> &lt;= </span><span class="rocqdoc-var">n</span><span> -&gt; </span><span class="rocqdoc-var">n</span><span> == </span><span class="rocqdoc-var">m</span><span>.</span><span>
 </span></dt><dd><span>1 goal
   
   l1, l2 : </span><span class="ansi-fg-light-magenta">LEQ</span><span>.</span><span class="ansi-fg-light-green">type</span><span>
@@ -1909,7 +1909,7 @@ The term &quot;n&quot; has type &quot;nat&quot; while it is expected to have typ
   n</span><span> &lt;=</span><span> m</span><span> -&gt;</span><span> m</span><span> &lt;=</span><span> n</span><span> -&gt;</span><span> n</span><span> ==</span><span> m
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-var">Fail</span><span> </span><span class="coqdoc-tactic">apply</span><span> (</span><span class="coqdoc-var">lele_eq</span><span> </span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-var">m</span><span>).</span><span>
+</span><span class="rocqdoc-var">Fail</span><span> </span><span class="rocqdoc-tactic">apply</span><span> (</span><span class="rocqdoc-var">lele_eq</span><span> </span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-var">m</span><span>).</span><span>
 </span></dt><dd><span>The command has indeed failed with message:
 In environment
 l1, l2 : </span><span class="ansi-fg-light-magenta">LEQ</span><span>.</span><span class="ansi-fg-light-green">type</span><span>
@@ -1918,15 +1918,15 @@ The term &quot;n&quot; has type &quot;(</span><span class="ansi-fg-light-magenta
 while it is expected to have type &quot;</span><span class="ansi-fg-light-magenta">LEQ</span><span>.</span><span class="ansi-fg-light-green">obj</span><span> </span><span class="ansi-fg-light-blue">?e</span><span>&quot;.
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">Abort</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Abort</span><span>.</span><span>
 </span></dt></dl>
 </div>
 <p>Again one has to tell Rocq that the type <code class="docutils literal notranslate"><span class="pre">nat</span></code> is in the <code class="docutils literal notranslate"><span class="pre">LEQ</span></code> class, and
 how the type constructor <code class="docutils literal notranslate"><span class="pre">*</span></code> interacts with the <code class="docutils literal notranslate"><span class="pre">LEQ</span></code> class. In the
 following proofs are omitted for brevity.</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Lemma</span><span> </span><span class="coqdoc-var">nat_LEQ_compat</span><span> (</span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-var">m</span><span> : </span><span class="coqdoc-var">nat</span><span>) : </span><span class="coqdoc-var">n</span><span> &lt;= </span><span class="coqdoc-var">m</span><span> /\ </span><span class="coqdoc-var">m</span><span> &lt;= </span><span class="coqdoc-var">n</span><span> &lt;-&gt; </span><span class="coqdoc-var">n</span><span> == </span><span class="coqdoc-var">m</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Lemma</span><span> </span><span class="rocqdoc-var">nat_LEQ_compat</span><span> (</span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-var">m</span><span> : </span><span class="rocqdoc-var">nat</span><span>) : </span><span class="rocqdoc-var">n</span><span> &lt;= </span><span class="rocqdoc-var">m</span><span> /\ </span><span class="rocqdoc-var">m</span><span> &lt;= </span><span class="rocqdoc-var">n</span><span> &lt;-&gt; </span><span class="rocqdoc-var">n</span><span> == </span><span class="rocqdoc-var">m</span><span>.</span><span>
 </span></dt><dd><span>1 goal
   
   n, m : nat
@@ -1934,16 +1934,16 @@ following proofs are omitted for brevity.</p>
   n</span><span> &lt;=</span><span> m</span><span> /\</span><span> m</span><span> &lt;=</span><span> n</span><span> &lt;-&gt;</span><span> n</span><span> ==</span><span> m
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-var">Admitted</span><span>.</span><span>
+</span><span class="rocqdoc-var">Admitted</span><span>.</span><span>
 </span></dt><dd><span>nat_LEQ_compat is declared
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">nat_LEQmx</span><span> := </span><span class="coqdoc-var">LEQ.Mixin</span><span> </span><span class="coqdoc-var">nat_LEQ_compat</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">nat_LEQmx</span><span> := </span><span class="rocqdoc-var">LEQ.Mixin</span><span> </span><span class="rocqdoc-var">nat_LEQ_compat</span><span>.</span><span>
 </span></dt><dd><span>nat_LEQmx is defined
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">Lemma</span><span> </span><span class="coqdoc-var">pair_LEQ_compat</span><span> (</span><span class="coqdoc-var">l1</span><span> </span><span class="coqdoc-var">l2</span><span> : </span><span class="coqdoc-var">LEQ.type</span><span>) (</span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-var">m</span><span> : </span><span class="coqdoc-var">LEQ.obj</span><span> </span><span class="coqdoc-var">l1</span><span> * </span><span class="coqdoc-var">LEQ.obj</span><span> </span><span class="coqdoc-var">l2</span><span>) :</span><span>
-   </span><span class="coqdoc-var">n</span><span> &lt;= </span><span class="coqdoc-var">m</span><span> /\ </span><span class="coqdoc-var">m</span><span> &lt;= </span><span class="coqdoc-var">n</span><span> &lt;-&gt; </span><span class="coqdoc-var">n</span><span> == </span><span class="coqdoc-var">m</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Lemma</span><span> </span><span class="rocqdoc-var">pair_LEQ_compat</span><span> (</span><span class="rocqdoc-var">l1</span><span> </span><span class="rocqdoc-var">l2</span><span> : </span><span class="rocqdoc-var">LEQ.type</span><span>) (</span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-var">m</span><span> : </span><span class="rocqdoc-var">LEQ.obj</span><span> </span><span class="rocqdoc-var">l1</span><span> * </span><span class="rocqdoc-var">LEQ.obj</span><span> </span><span class="rocqdoc-var">l2</span><span>) :</span><span>
+   </span><span class="rocqdoc-var">n</span><span> &lt;= </span><span class="rocqdoc-var">m</span><span> /\ </span><span class="rocqdoc-var">m</span><span> &lt;= </span><span class="rocqdoc-var">n</span><span> &lt;-&gt; </span><span class="rocqdoc-var">n</span><span> == </span><span class="rocqdoc-var">m</span><span>.</span><span>
 </span></dt><dd><span>1 goal
   
   l1, l2 : </span><span class="ansi-fg-light-magenta">LEQ</span><span>.</span><span class="ansi-fg-light-green">type</span><span>
@@ -1952,11 +1952,11 @@ following proofs are omitted for brevity.</p>
   n</span><span> &lt;=</span><span> m</span><span> /\</span><span> m</span><span> &lt;=</span><span> n</span><span> &lt;-&gt;</span><span> n</span><span> ==</span><span> m
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-var">Admitted</span><span>.</span><span>
+</span><span class="rocqdoc-var">Admitted</span><span>.</span><span>
 </span></dt><dd><span>pair_LEQ_compat is declared
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">pair_LEQmx</span><span> </span><span class="coqdoc-var">l1</span><span> </span><span class="coqdoc-var">l2</span><span> := </span><span class="coqdoc-var">LEQ.Mixin</span><span> (</span><span class="coqdoc-var">pair_LEQ_compat</span><span> </span><span class="coqdoc-var">l1</span><span> </span><span class="coqdoc-var">l2</span><span>).</span><span>
+</span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">pair_LEQmx</span><span> </span><span class="rocqdoc-var">l1</span><span> </span><span class="rocqdoc-var">l2</span><span> := </span><span class="rocqdoc-var">LEQ.Mixin</span><span> (</span><span class="rocqdoc-var">pair_LEQ_compat</span><span> </span><span class="rocqdoc-var">l1</span><span> </span><span class="rocqdoc-var">l2</span><span>).</span><span>
 </span></dt><dd><span>pair_LEQmx is defined
 </span></dd>
 </dl>
@@ -1965,27 +1965,27 @@ following proofs are omitted for brevity.</p>
 constructor <code class="docutils literal notranslate"><span class="pre">*</span></code>. It also tests that they work as expected.</p>
 <p>Unfortunately, these declarations are very verbose. In the following
 subsection we show how to make them more compact.</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Module</span><span> </span><span class="coqdoc-var">Add_instance_attempt</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Module</span><span> </span><span class="rocqdoc-var">Add_instance_attempt</span><span>.</span><span>
 </span></dt><dd><span>Interactive Module Add_instance_attempt started
 </span></dd>
 <dt><span></span><span>
-  </span><span class="coqdoc-keyword">Canonical</span><span> </span><span class="coqdoc-keyword">Structure</span><span> </span><span class="coqdoc-var">nat_LEQty</span><span> : </span><span class="coqdoc-var">LEQ.type</span><span> :=</span><span>
-    </span><span class="coqdoc-var">LEQ._Pack</span><span> </span><span class="coqdoc-var">nat</span><span> (</span><span class="coqdoc-var">LEQ.Class</span><span> </span><span class="coqdoc-var">nat_EQcl</span><span> </span><span class="coqdoc-var">nat_LEcl</span><span> </span><span class="coqdoc-var">nat_LEQmx</span><span>).</span><span>
+  </span><span class="rocqdoc-keyword">Canonical</span><span> </span><span class="rocqdoc-keyword">Structure</span><span> </span><span class="rocqdoc-var">nat_LEQty</span><span> : </span><span class="rocqdoc-var">LEQ.type</span><span> :=</span><span>
+    </span><span class="rocqdoc-var">LEQ._Pack</span><span> </span><span class="rocqdoc-var">nat</span><span> (</span><span class="rocqdoc-var">LEQ.Class</span><span> </span><span class="rocqdoc-var">nat_EQcl</span><span> </span><span class="rocqdoc-var">nat_LEcl</span><span> </span><span class="rocqdoc-var">nat_LEQmx</span><span>).</span><span>
 </span></dt><dd><span>nat_LEQty is defined
 </span></dd>
 <dt><span></span><span>
-  </span><span class="coqdoc-keyword">Canonical</span><span> </span><span class="coqdoc-keyword">Structure</span><span> </span><span class="coqdoc-var">pair_LEQty</span><span> (</span><span class="coqdoc-var">l1</span><span> </span><span class="coqdoc-var">l2</span><span> : </span><span class="coqdoc-var">LEQ.type</span><span>) : </span><span class="coqdoc-var">LEQ.type</span><span> :=</span><span>
-    </span><span class="coqdoc-var">LEQ._Pack</span><span> (</span><span class="coqdoc-var">LEQ.obj</span><span> </span><span class="coqdoc-var">l1</span><span> * </span><span class="coqdoc-var">LEQ.obj</span><span> </span><span class="coqdoc-var">l2</span><span>)</span><span>
-      (</span><span class="coqdoc-var">LEQ.Class</span><span>
-         (</span><span class="coqdoc-var">EQ.class_of</span><span> (</span><span class="coqdoc-var">pair_EQty</span><span> (</span><span class="coqdoc-var">to_EQ</span><span> </span><span class="coqdoc-var">l1</span><span>) (</span><span class="coqdoc-var">to_EQ</span><span> </span><span class="coqdoc-var">l2</span><span>)))</span><span>
-         (</span><span class="coqdoc-var">LE.class_of</span><span> (</span><span class="coqdoc-var">pair_LEty</span><span> (</span><span class="coqdoc-var">to_LE</span><span> </span><span class="coqdoc-var">l1</span><span>) (</span><span class="coqdoc-var">to_LE</span><span> </span><span class="coqdoc-var">l2</span><span>)))</span><span>
-         (</span><span class="coqdoc-var">pair_LEQmx</span><span> </span><span class="coqdoc-var">l1</span><span> </span><span class="coqdoc-var">l2</span><span>)).</span><span>
+  </span><span class="rocqdoc-keyword">Canonical</span><span> </span><span class="rocqdoc-keyword">Structure</span><span> </span><span class="rocqdoc-var">pair_LEQty</span><span> (</span><span class="rocqdoc-var">l1</span><span> </span><span class="rocqdoc-var">l2</span><span> : </span><span class="rocqdoc-var">LEQ.type</span><span>) : </span><span class="rocqdoc-var">LEQ.type</span><span> :=</span><span>
+    </span><span class="rocqdoc-var">LEQ._Pack</span><span> (</span><span class="rocqdoc-var">LEQ.obj</span><span> </span><span class="rocqdoc-var">l1</span><span> * </span><span class="rocqdoc-var">LEQ.obj</span><span> </span><span class="rocqdoc-var">l2</span><span>)</span><span>
+      (</span><span class="rocqdoc-var">LEQ.Class</span><span>
+         (</span><span class="rocqdoc-var">EQ.class_of</span><span> (</span><span class="rocqdoc-var">pair_EQty</span><span> (</span><span class="rocqdoc-var">to_EQ</span><span> </span><span class="rocqdoc-var">l1</span><span>) (</span><span class="rocqdoc-var">to_EQ</span><span> </span><span class="rocqdoc-var">l2</span><span>)))</span><span>
+         (</span><span class="rocqdoc-var">LE.class_of</span><span> (</span><span class="rocqdoc-var">pair_LEty</span><span> (</span><span class="rocqdoc-var">to_LE</span><span> </span><span class="rocqdoc-var">l1</span><span>) (</span><span class="rocqdoc-var">to_LE</span><span> </span><span class="rocqdoc-var">l2</span><span>)))</span><span>
+         (</span><span class="rocqdoc-var">pair_LEQmx</span><span> </span><span class="rocqdoc-var">l1</span><span> </span><span class="rocqdoc-var">l2</span><span>)).</span><span>
 </span></dt><dd><span>pair_LEQty is defined
 </span></dd>
 <dt><span></span><span>
-   </span><span class="coqdoc-keyword">Example</span><span> </span><span class="coqdoc-var">test_algebraic</span><span> (</span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-var">m</span><span> : </span><span class="coqdoc-var">nat</span><span>) : </span><span class="coqdoc-var">n</span><span> &lt;= </span><span class="coqdoc-var">m</span><span> -&gt; </span><span class="coqdoc-var">m</span><span> &lt;= </span><span class="coqdoc-var">n</span><span> -&gt; </span><span class="coqdoc-var">n</span><span> == </span><span class="coqdoc-var">m</span><span>.</span><span>
+   </span><span class="rocqdoc-keyword">Example</span><span> </span><span class="rocqdoc-var">test_algebraic</span><span> (</span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-var">m</span><span> : </span><span class="rocqdoc-var">nat</span><span>) : </span><span class="rocqdoc-var">n</span><span> &lt;= </span><span class="rocqdoc-var">m</span><span> -&gt; </span><span class="rocqdoc-var">m</span><span> &lt;= </span><span class="rocqdoc-var">n</span><span> -&gt; </span><span class="rocqdoc-var">n</span><span> == </span><span class="rocqdoc-var">m</span><span>.</span><span>
 </span></dt><dd><span>1 goal
   
   n, m : nat
@@ -1993,13 +1993,13 @@ subsection we show how to make them more compact.</p>
   n</span><span> &lt;=</span><span> m</span><span> -&gt;</span><span> m</span><span> &lt;=</span><span> n</span><span> -&gt;</span><span> n</span><span> ==</span><span> m
 </span></dd>
 <dt><span></span><span>
-   </span><span class="coqdoc-var">now</span><span> </span><span class="coqdoc-tactic">apply</span><span> (</span><span class="coqdoc-var">lele_eq</span><span> </span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-var">m</span><span>).</span><span>
+   </span><span class="rocqdoc-var">now</span><span> </span><span class="rocqdoc-tactic">apply</span><span> (</span><span class="rocqdoc-var">lele_eq</span><span> </span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-var">m</span><span>).</span><span>
 </span></dt><dd><span>No more goals.
 </span></dd>
 <dt><span></span><span>
-   </span><span class="coqdoc-keyword">Qed</span><span>.</span><span>
+   </span><span class="rocqdoc-keyword">Qed</span><span>.</span><span>
 </span></dt><dt><span></span><span>
-   </span><span class="coqdoc-keyword">Example</span><span> </span><span class="coqdoc-var">test_algebraic2</span><span> (</span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-var">m</span><span> : </span><span class="coqdoc-var">nat</span><span> * </span><span class="coqdoc-var">nat</span><span>) : </span><span class="coqdoc-var">n</span><span> &lt;= </span><span class="coqdoc-var">m</span><span> -&gt; </span><span class="coqdoc-var">m</span><span> &lt;= </span><span class="coqdoc-var">n</span><span> -&gt; </span><span class="coqdoc-var">n</span><span> == </span><span class="coqdoc-var">m</span><span>.</span><span>
+   </span><span class="rocqdoc-keyword">Example</span><span> </span><span class="rocqdoc-var">test_algebraic2</span><span> (</span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-var">m</span><span> : </span><span class="rocqdoc-var">nat</span><span> * </span><span class="rocqdoc-var">nat</span><span>) : </span><span class="rocqdoc-var">n</span><span> &lt;= </span><span class="rocqdoc-var">m</span><span> -&gt; </span><span class="rocqdoc-var">m</span><span> &lt;= </span><span class="rocqdoc-var">n</span><span> -&gt; </span><span class="rocqdoc-var">n</span><span> == </span><span class="rocqdoc-var">m</span><span>.</span><span>
 </span></dt><dd><span>1 goal
   
   n, m : nat</span><span> *</span><span> nat
@@ -2007,12 +2007,12 @@ subsection we show how to make them more compact.</p>
   n</span><span> &lt;=</span><span> m</span><span> -&gt;</span><span> m</span><span> &lt;=</span><span> n</span><span> -&gt;</span><span> n</span><span> ==</span><span> m
 </span></dd>
 <dt><span></span><span>
-   </span><span class="coqdoc-var">now</span><span> </span><span class="coqdoc-tactic">apply</span><span> (</span><span class="coqdoc-var">lele_eq</span><span> </span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-var">m</span><span>). </span><span class="coqdoc-keyword">Qed</span><span>.</span><span>
+   </span><span class="rocqdoc-var">now</span><span> </span><span class="rocqdoc-tactic">apply</span><span> (</span><span class="rocqdoc-var">lele_eq</span><span> </span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-var">m</span><span>). </span><span class="rocqdoc-keyword">Qed</span><span>.</span><span>
 </span></dt><dd><span>No more goals.
 
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">End</span><span> </span><span class="coqdoc-var">Add_instance_attempt</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">End</span><span> </span><span class="rocqdoc-var">Add_instance_attempt</span><span>.</span><span>
 </span></dt><dd><span>Module Add_instance_attempt is defined
 </span></dd>
 </dl>
@@ -2026,13 +2026,13 @@ while inferring canonical structures.</p>
 <section id="compact-declaration-of-canonical-structures">
 <h3>Compact declaration of Canonical Structures<a class="headerlink" href="#compact-declaration-of-canonical-structures" title="Link to this heading"></a></h3>
 <p>We need some infrastructure for that.</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Module</span><span> </span><span class="coqdoc-var">infrastructure</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Module</span><span> </span><span class="rocqdoc-var">infrastructure</span><span>.</span><span>
 </span></dt><dd><span>Interactive Module infrastructure started
 </span></dd>
 <dt><span></span><span>
-  </span><span class="coqdoc-keyword">Inductive</span><span> </span><span class="coqdoc-var">phantom</span><span> {</span><span class="coqdoc-var">T</span><span> : </span><span class="coqdoc-keyword">Type</span><span>} (</span><span class="coqdoc-var">t</span><span> : </span><span class="coqdoc-var">T</span><span>) := </span><span class="coqdoc-var">Phantom</span><span>.</span><span>
+  </span><span class="rocqdoc-keyword">Inductive</span><span> </span><span class="rocqdoc-var">phantom</span><span> {</span><span class="rocqdoc-var">T</span><span> : </span><span class="rocqdoc-keyword">Type</span><span>} (</span><span class="rocqdoc-var">t</span><span> : </span><span class="rocqdoc-var">T</span><span>) := </span><span class="rocqdoc-var">Phantom</span><span>.</span><span>
 </span></dt><dd><span>phantom is defined
 phantom_rect is defined
 phantom_ind is defined
@@ -2040,32 +2040,32 @@ phantom_rec is defined
 phantom_sind is defined
 </span></dd>
 <dt><span></span><span>
-  </span><span class="coqdoc-keyword">Variant</span><span> </span><span class="coqdoc-var">err</span><span> :=</span><span>
-    | </span><span class="coqdoc-var">Is_not_an_EQ_type</span><span>
-    | </span><span class="coqdoc-var">Is_not_an_LE_type</span><span>
-    | </span><span class="coqdoc-var">Is_not_the_right_mixin</span><span>.</span><span>
+  </span><span class="rocqdoc-keyword">Variant</span><span> </span><span class="rocqdoc-var">err</span><span> :=</span><span>
+    | </span><span class="rocqdoc-var">Is_not_an_EQ_type</span><span>
+    | </span><span class="rocqdoc-var">Is_not_an_LE_type</span><span>
+    | </span><span class="rocqdoc-var">Is_not_the_right_mixin</span><span>.</span><span>
 </span></dt><dd><span>err is defined
 </span></dd>
 <dt><span></span><span>
-  </span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">unify</span><span> {</span><span class="coqdoc-var">T1</span><span> </span><span class="coqdoc-var">T2</span><span>} (</span><span class="coqdoc-var">t1</span><span> : </span><span class="coqdoc-var">T1</span><span>) (</span><span class="coqdoc-var">t2</span><span> : </span><span class="coqdoc-var">T2</span><span>) (</span><span class="coqdoc-var">s</span><span> : </span><span class="coqdoc-var">option</span><span> </span><span class="coqdoc-var">err</span><span>) :=</span><span>
-    </span><span class="coqdoc-var">phantom</span><span> </span><span class="coqdoc-var">t1</span><span> -&gt; </span><span class="coqdoc-var">phantom</span><span> </span><span class="coqdoc-var">t2</span><span>.</span><span>
+  </span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">unify</span><span> {</span><span class="rocqdoc-var">T1</span><span> </span><span class="rocqdoc-var">T2</span><span>} (</span><span class="rocqdoc-var">t1</span><span> : </span><span class="rocqdoc-var">T1</span><span>) (</span><span class="rocqdoc-var">t2</span><span> : </span><span class="rocqdoc-var">T2</span><span>) (</span><span class="rocqdoc-var">s</span><span> : </span><span class="rocqdoc-var">option</span><span> </span><span class="rocqdoc-var">err</span><span>) :=</span><span>
+    </span><span class="rocqdoc-var">phantom</span><span> </span><span class="rocqdoc-var">t1</span><span> -&gt; </span><span class="rocqdoc-var">phantom</span><span> </span><span class="rocqdoc-var">t2</span><span>.</span><span>
 </span></dt><dd><span>unify is defined
 </span></dd>
 <dt><span></span><span>
-  </span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">id</span><span> {</span><span class="coqdoc-var">T</span><span>} {</span><span class="coqdoc-var">t</span><span> : </span><span class="coqdoc-var">T</span><span>} (</span><span class="coqdoc-var">x</span><span> : </span><span class="coqdoc-var">phantom</span><span> </span><span class="coqdoc-var">t</span><span>) := </span><span class="coqdoc-var">x</span><span>.</span><span>
+  </span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">id</span><span> {</span><span class="rocqdoc-var">T</span><span>} {</span><span class="rocqdoc-var">t</span><span> : </span><span class="rocqdoc-var">T</span><span>} (</span><span class="rocqdoc-var">x</span><span> : </span><span class="rocqdoc-var">phantom</span><span> </span><span class="rocqdoc-var">t</span><span>) := </span><span class="rocqdoc-var">x</span><span>.</span><span>
 </span></dt><dd><span>id is defined
 </span></dd>
 <dt><span></span><span>
-  </span><span class="coqdoc-keyword">Notation</span><span> &quot;[find v | t1 ~ t2 ] p&quot; := (</span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">v</span><span> (</span><span class="coqdoc-var">_</span><span> : </span><span class="coqdoc-var">unify</span><span> </span><span class="coqdoc-var">t1</span><span> </span><span class="coqdoc-var">t2</span><span> </span><span class="coqdoc-var">None</span><span>) =&gt; </span><span class="coqdoc-var">p</span><span>)</span><span>
-    (</span><span class="coqdoc-tactic">at</span><span> </span><span class="coqdoc-keyword">level</span><span> 50, </span><span class="coqdoc-var">v</span><span> </span><span class="coqdoc-var">name</span><span>, </span><span class="coqdoc-var">only</span><span> </span><span class="coqdoc-var">parsing</span><span>).</span><span>
+  </span><span class="rocqdoc-keyword">Notation</span><span> &quot;[find v | t1 ~ t2 ] p&quot; := (</span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">v</span><span> (</span><span class="rocqdoc-var">_</span><span> : </span><span class="rocqdoc-var">unify</span><span> </span><span class="rocqdoc-var">t1</span><span> </span><span class="rocqdoc-var">t2</span><span> </span><span class="rocqdoc-var">None</span><span>) =&gt; </span><span class="rocqdoc-var">p</span><span>)</span><span>
+    (</span><span class="rocqdoc-tactic">at</span><span> </span><span class="rocqdoc-keyword">level</span><span> 50, </span><span class="rocqdoc-var">v</span><span> </span><span class="rocqdoc-var">name</span><span>, </span><span class="rocqdoc-var">only</span><span> </span><span class="rocqdoc-var">parsing</span><span>).</span><span>
 </span></dt><dt><span></span><span>
-  </span><span class="coqdoc-keyword">Notation</span><span> &quot;[find v | t1 ~ t2 | s ] p&quot; := (</span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">v</span><span> (</span><span class="coqdoc-var">_</span><span> : </span><span class="coqdoc-var">unify</span><span> </span><span class="coqdoc-var">t1</span><span> </span><span class="coqdoc-var">t2</span><span> (</span><span class="coqdoc-var">Some</span><span> </span><span class="coqdoc-var">s</span><span>)) =&gt; </span><span class="coqdoc-var">p</span><span>)</span><span>
-    (</span><span class="coqdoc-tactic">at</span><span> </span><span class="coqdoc-keyword">level</span><span> 50, </span><span class="coqdoc-var">v</span><span> </span><span class="coqdoc-var">name</span><span>, </span><span class="coqdoc-var">only</span><span> </span><span class="coqdoc-var">parsing</span><span>).</span><span>
+  </span><span class="rocqdoc-keyword">Notation</span><span> &quot;[find v | t1 ~ t2 | s ] p&quot; := (</span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">v</span><span> (</span><span class="rocqdoc-var">_</span><span> : </span><span class="rocqdoc-var">unify</span><span> </span><span class="rocqdoc-var">t1</span><span> </span><span class="rocqdoc-var">t2</span><span> (</span><span class="rocqdoc-var">Some</span><span> </span><span class="rocqdoc-var">s</span><span>)) =&gt; </span><span class="rocqdoc-var">p</span><span>)</span><span>
+    (</span><span class="rocqdoc-tactic">at</span><span> </span><span class="rocqdoc-keyword">level</span><span> 50, </span><span class="rocqdoc-var">v</span><span> </span><span class="rocqdoc-var">name</span><span>, </span><span class="rocqdoc-var">only</span><span> </span><span class="rocqdoc-var">parsing</span><span>).</span><span>
 </span></dt><dt><span></span><span>
-  </span><span class="coqdoc-keyword">Notation</span><span> &quot;'Error : t : s&quot; := (</span><span class="coqdoc-var">unify</span><span> </span><span class="coqdoc-var">_</span><span> </span><span class="coqdoc-var">t</span><span> (</span><span class="coqdoc-var">Some</span><span> </span><span class="coqdoc-var">s</span><span>))</span><span>
-    (</span><span class="coqdoc-tactic">at</span><span> </span><span class="coqdoc-keyword">level</span><span> 50, </span><span class="coqdoc-var">format</span><span> &quot;''Error' : t : s&quot;).</span><span>
+  </span><span class="rocqdoc-keyword">Notation</span><span> &quot;'Error : t : s&quot; := (</span><span class="rocqdoc-var">unify</span><span> </span><span class="rocqdoc-var">_</span><span> </span><span class="rocqdoc-var">t</span><span> (</span><span class="rocqdoc-var">Some</span><span> </span><span class="rocqdoc-var">s</span><span>))</span><span>
+    (</span><span class="rocqdoc-tactic">at</span><span> </span><span class="rocqdoc-keyword">level</span><span> 50, </span><span class="rocqdoc-var">format</span><span> &quot;''Error' : t : s&quot;).</span><span>
 </span></dt><dt><span></span><span>
-</span><span class="coqdoc-keyword">End</span><span> </span><span class="coqdoc-var">infrastructure</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">End</span><span> </span><span class="rocqdoc-var">infrastructure</span><span>.</span><span>
 </span></dt><dd><span>Module infrastructure is defined
 </span></dd>
 </dl>
@@ -2079,21 +2079,21 @@ problem, that will in turn require the inference of some canonical structures.
 They are explained in more details in <span id="id5">[<a class="reference internal" href="../../zebibliography.html#id18" title="Assia Mahboubi and Enrico Tassi. Canonical Structures for the working Coq user. In Sandrine Blazy, Christine Paulin, and David Pichardie, editors, ITP 2013, 4th Conference on Interactive Theorem Proving, volume 7998 of LNCS, 19-34. Rennes, France, 2013. Springer. URL: http://hal.inria.fr/hal-00816703, doi:10.1007/978-3-642-39634-2_5.">MT13</a>]</span>.</p>
 <p>We now have all we need to create a compact “packager” to declare
 instances of the <code class="docutils literal notranslate"><span class="pre">LEQ</span></code> class.</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Import</span><span> </span><span class="coqdoc-var">infrastructure</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Import</span><span> </span><span class="rocqdoc-var">infrastructure</span><span>.</span><span>
 </span></dt><dt><span></span><span>
-</span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">packager</span><span> </span><span class="coqdoc-var">T</span><span> </span><span class="coqdoc-var">e0</span><span> </span><span class="coqdoc-var">le0</span><span> (</span><span class="coqdoc-var">m0</span><span> : </span><span class="coqdoc-var">LEQ.mixin</span><span> </span><span class="coqdoc-var">e0</span><span> </span><span class="coqdoc-var">le0</span><span>) :=</span><span>
-  [</span><span class="coqdoc-var">find</span><span> </span><span class="coqdoc-var">e</span><span> | </span><span class="coqdoc-var">EQ.obj</span><span> </span><span class="coqdoc-var">e</span><span> ~ </span><span class="coqdoc-var">T</span><span> | </span><span class="coqdoc-var">Is_not_an_EQ_type</span><span> ]</span><span>
-  [</span><span class="coqdoc-var">find</span><span> </span><span class="coqdoc-var">o</span><span> | </span><span class="coqdoc-var">LE.obj</span><span> </span><span class="coqdoc-var">o</span><span> ~ </span><span class="coqdoc-var">T</span><span> | </span><span class="coqdoc-var">Is_not_an_LE_type</span><span> ]</span><span>
-  [</span><span class="coqdoc-var">find</span><span> </span><span class="coqdoc-var">ce</span><span> | </span><span class="coqdoc-var">EQ.class_of</span><span> </span><span class="coqdoc-var">e</span><span> ~ </span><span class="coqdoc-var">ce</span><span> ]</span><span>
-  [</span><span class="coqdoc-var">find</span><span> </span><span class="coqdoc-var">co</span><span> | </span><span class="coqdoc-var">LE.class_of</span><span> </span><span class="coqdoc-var">o</span><span> ~ </span><span class="coqdoc-var">co</span><span> ]</span><span>
-  [</span><span class="coqdoc-var">find</span><span> </span><span class="coqdoc-var">m</span><span> | </span><span class="coqdoc-var">m</span><span> ~ </span><span class="coqdoc-var">m0</span><span> | </span><span class="coqdoc-var">Is_not_the_right_mixin</span><span> ]</span><span>
-  </span><span class="coqdoc-var">LEQ._Pack</span><span> </span><span class="coqdoc-var">T</span><span> (</span><span class="coqdoc-var">LEQ.Class</span><span> </span><span class="coqdoc-var">ce</span><span> </span><span class="coqdoc-var">co</span><span> </span><span class="coqdoc-var">m</span><span>).</span><span>
+</span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">packager</span><span> </span><span class="rocqdoc-var">T</span><span> </span><span class="rocqdoc-var">e0</span><span> </span><span class="rocqdoc-var">le0</span><span> (</span><span class="rocqdoc-var">m0</span><span> : </span><span class="rocqdoc-var">LEQ.mixin</span><span> </span><span class="rocqdoc-var">e0</span><span> </span><span class="rocqdoc-var">le0</span><span>) :=</span><span>
+  [</span><span class="rocqdoc-var">find</span><span> </span><span class="rocqdoc-var">e</span><span> | </span><span class="rocqdoc-var">EQ.obj</span><span> </span><span class="rocqdoc-var">e</span><span> ~ </span><span class="rocqdoc-var">T</span><span> | </span><span class="rocqdoc-var">Is_not_an_EQ_type</span><span> ]</span><span>
+  [</span><span class="rocqdoc-var">find</span><span> </span><span class="rocqdoc-var">o</span><span> | </span><span class="rocqdoc-var">LE.obj</span><span> </span><span class="rocqdoc-var">o</span><span> ~ </span><span class="rocqdoc-var">T</span><span> | </span><span class="rocqdoc-var">Is_not_an_LE_type</span><span> ]</span><span>
+  [</span><span class="rocqdoc-var">find</span><span> </span><span class="rocqdoc-var">ce</span><span> | </span><span class="rocqdoc-var">EQ.class_of</span><span> </span><span class="rocqdoc-var">e</span><span> ~ </span><span class="rocqdoc-var">ce</span><span> ]</span><span>
+  [</span><span class="rocqdoc-var">find</span><span> </span><span class="rocqdoc-var">co</span><span> | </span><span class="rocqdoc-var">LE.class_of</span><span> </span><span class="rocqdoc-var">o</span><span> ~ </span><span class="rocqdoc-var">co</span><span> ]</span><span>
+  [</span><span class="rocqdoc-var">find</span><span> </span><span class="rocqdoc-var">m</span><span> | </span><span class="rocqdoc-var">m</span><span> ~ </span><span class="rocqdoc-var">m0</span><span> | </span><span class="rocqdoc-var">Is_not_the_right_mixin</span><span> ]</span><span>
+  </span><span class="rocqdoc-var">LEQ._Pack</span><span> </span><span class="rocqdoc-var">T</span><span> (</span><span class="rocqdoc-var">LEQ.Class</span><span> </span><span class="rocqdoc-var">ce</span><span> </span><span class="rocqdoc-var">co</span><span> </span><span class="rocqdoc-var">m</span><span>).</span><span>
 </span></dt><dd><span>packager is defined
 </span></dd>
 <dt><span></span><span>
- </span><span class="coqdoc-keyword">Notation</span><span> </span><span class="coqdoc-var">Pack</span><span> </span><span class="coqdoc-var">T</span><span> </span><span class="coqdoc-var">m</span><span> := (</span><span class="coqdoc-var">packager</span><span> </span><span class="coqdoc-var">T</span><span> </span><span class="coqdoc-var">_</span><span> </span><span class="coqdoc-var">_</span><span> </span><span class="coqdoc-var">m</span><span> </span><span class="coqdoc-var">_</span><span> </span><span class="coqdoc-var">id</span><span> </span><span class="coqdoc-var">_</span><span> </span><span class="coqdoc-var">id</span><span> </span><span class="coqdoc-var">_</span><span> </span><span class="coqdoc-var">id</span><span> </span><span class="coqdoc-var">_</span><span> </span><span class="coqdoc-var">id</span><span> </span><span class="coqdoc-var">_</span><span> </span><span class="coqdoc-var">id</span><span>).</span><span>
+ </span><span class="rocqdoc-keyword">Notation</span><span> </span><span class="rocqdoc-var">Pack</span><span> </span><span class="rocqdoc-var">T</span><span> </span><span class="rocqdoc-var">m</span><span> := (</span><span class="rocqdoc-var">packager</span><span> </span><span class="rocqdoc-var">T</span><span> </span><span class="rocqdoc-var">_</span><span> </span><span class="rocqdoc-var">_</span><span> </span><span class="rocqdoc-var">m</span><span> </span><span class="rocqdoc-var">_</span><span> </span><span class="rocqdoc-var">id</span><span> </span><span class="rocqdoc-var">_</span><span> </span><span class="rocqdoc-var">id</span><span> </span><span class="rocqdoc-var">_</span><span> </span><span class="rocqdoc-var">id</span><span> </span><span class="rocqdoc-var">_</span><span> </span><span class="rocqdoc-var">id</span><span> </span><span class="rocqdoc-var">_</span><span> </span><span class="rocqdoc-var">id</span><span>).</span><span>
 </span></dt></dl>
 </div>
 <p>The object <code class="docutils literal notranslate"><span class="pre">Pack</span></code> takes a type <code class="docutils literal notranslate"><span class="pre">T</span></code> (the key) and a mixin <code class="docutils literal notranslate"><span class="pre">m</span></code>. It infers all
@@ -2108,23 +2108,23 @@ packager represent respectively the classes to be inferred (like <code class="do
 etc) and a token (<code class="docutils literal notranslate"><span class="pre">id</span></code>) to force their inference. Again, for all the details
 the reader can refer to <span id="id6">[<a class="reference internal" href="../../zebibliography.html#id18" title="Assia Mahboubi and Enrico Tassi. Canonical Structures for the working Coq user. In Sandrine Blazy, Christine Paulin, and David Pichardie, editors, ITP 2013, 4th Conference on Interactive Theorem Proving, volume 7998 of LNCS, 19-34. Rennes, France, 2013. Springer. URL: http://hal.inria.fr/hal-00816703, doi:10.1007/978-3-642-39634-2_5.">MT13</a>]</span>.</p>
 <p>The declaration of canonical instances can now be way more compact:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Canonical</span><span> </span><span class="coqdoc-keyword">Structure</span><span> </span><span class="coqdoc-var">nat_LEQty</span><span> := </span><span class="coqdoc-keyword">Eval</span><span> </span><span class="coqdoc-tactic">hnf</span><span> </span><span class="coqdoc-tactic">in</span><span> </span><span class="coqdoc-var">Pack</span><span> </span><span class="coqdoc-var">nat</span><span> </span><span class="coqdoc-var">nat_LEQmx</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Canonical</span><span> </span><span class="rocqdoc-keyword">Structure</span><span> </span><span class="rocqdoc-var">nat_LEQty</span><span> := </span><span class="rocqdoc-keyword">Eval</span><span> </span><span class="rocqdoc-tactic">hnf</span><span> </span><span class="rocqdoc-tactic">in</span><span> </span><span class="rocqdoc-var">Pack</span><span> </span><span class="rocqdoc-var">nat</span><span> </span><span class="rocqdoc-var">nat_LEQmx</span><span>.</span><span>
 </span></dt><dd><span>nat_LEQty is defined
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">Canonical</span><span> </span><span class="coqdoc-keyword">Structure</span><span> </span><span class="coqdoc-var">pair_LEQty</span><span> (</span><span class="coqdoc-var">l1</span><span> </span><span class="coqdoc-var">l2</span><span> : </span><span class="coqdoc-var">LEQ.type</span><span>) :=</span><span>
-   </span><span class="coqdoc-keyword">Eval</span><span> </span><span class="coqdoc-tactic">hnf</span><span> </span><span class="coqdoc-tactic">in</span><span> </span><span class="coqdoc-var">Pack</span><span> (</span><span class="coqdoc-var">LEQ.obj</span><span> </span><span class="coqdoc-var">l1</span><span> * </span><span class="coqdoc-var">LEQ.obj</span><span> </span><span class="coqdoc-var">l2</span><span>) (</span><span class="coqdoc-var">pair_LEQmx</span><span> </span><span class="coqdoc-var">l1</span><span> </span><span class="coqdoc-var">l2</span><span>).</span><span>
+</span><span class="rocqdoc-keyword">Canonical</span><span> </span><span class="rocqdoc-keyword">Structure</span><span> </span><span class="rocqdoc-var">pair_LEQty</span><span> (</span><span class="rocqdoc-var">l1</span><span> </span><span class="rocqdoc-var">l2</span><span> : </span><span class="rocqdoc-var">LEQ.type</span><span>) :=</span><span>
+   </span><span class="rocqdoc-keyword">Eval</span><span> </span><span class="rocqdoc-tactic">hnf</span><span> </span><span class="rocqdoc-tactic">in</span><span> </span><span class="rocqdoc-var">Pack</span><span> (</span><span class="rocqdoc-var">LEQ.obj</span><span> </span><span class="rocqdoc-var">l1</span><span> * </span><span class="rocqdoc-var">LEQ.obj</span><span> </span><span class="rocqdoc-var">l2</span><span>) (</span><span class="rocqdoc-var">pair_LEQmx</span><span> </span><span class="rocqdoc-var">l1</span><span> </span><span class="rocqdoc-var">l2</span><span>).</span><span>
 </span></dt><dd><span>pair_LEQty is defined
 </span></dd>
 </dl>
 </div>
 <p>Error messages are also quite intelligible (if one skips to the end of
 the message).</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-var">Fail</span><span> </span><span class="coqdoc-var">Canonical</span><span> </span><span class="coqdoc-keyword">Structure</span><span> </span><span class="coqdoc-var">err</span><span> := </span><span class="coqdoc-keyword">Eval</span><span> </span><span class="coqdoc-tactic">hnf</span><span> </span><span class="coqdoc-tactic">in</span><span> </span><span class="coqdoc-var">Pack</span><span> </span><span class="coqdoc-var">bool</span><span> </span><span class="coqdoc-var">nat_LEQmx</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-var">Fail</span><span> </span><span class="rocqdoc-var">Canonical</span><span> </span><span class="rocqdoc-keyword">Structure</span><span> </span><span class="rocqdoc-var">err</span><span> := </span><span class="rocqdoc-keyword">Eval</span><span> </span><span class="rocqdoc-tactic">hnf</span><span> </span><span class="rocqdoc-tactic">in</span><span> </span><span class="rocqdoc-var">Pack</span><span> </span><span class="rocqdoc-var">bool</span><span> </span><span class="rocqdoc-var">nat_LEQmx</span><span>.</span><span>
 </span></dt><dd><span>The command has indeed failed with message:
 The term &quot;id&quot; has type &quot;phantom (</span><span class="ansi-fg-light-magenta">EQ</span><span>.</span><span class="ansi-fg-light-green">obj</span><span> </span><span class="ansi-fg-light-blue">?e</span><span>)</span><span> -&gt;</span><span> phantom (</span><span class="ansi-fg-light-magenta">EQ</span><span>.</span><span class="ansi-fg-light-green">obj</span><span> </span><span class="ansi-fg-light-blue">?e</span><span>)&quot;
 while it is expected to have type &quot;</span><span>'Error</span><span>:</span><span>bool</span><span>:</span><span>Is_not_an_EQ_type&quot;.

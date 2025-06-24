@@ -345,7 +345,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../extensions/arguments-command.html#automatic-declaration-of-implicit-arguments">Automatic declaration of implicit arguments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../extensions/arguments-command.html#renaming-implicit-arguments">Renaming implicit arguments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../extensions/arguments-command.html#binding-arguments-to-scopes">Binding arguments to scopes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../extensions/arguments-command.html#effects-of-arguments-on-unfolding">Effects of <code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Arguments</span></code> on unfolding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../extensions/arguments-command.html#effects-of-arguments-on-unfolding">Effects of <code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Arguments</span></code> on unfolding</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../extensions/arguments-command.html#bidirectionality-hints">Bidirectionality hints</a></li>
 </ul>
 </li>
@@ -506,7 +506,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#generation-of-inversion-principles-with-derive-inversion">Generation of inversion principles with <code class="docutils literal notranslate"><span class="pre">Derive</span></code> <code class="docutils literal notranslate"><span class="pre">Inversion</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#examples-of-dependent-destruction-dependent-induction">Examples of <code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">destruction</span></code> / <code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">induction</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#examples-of-dependent-destruction-dependent-induction">Examples of <code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">destruction</span></code> / <code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">induction</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#a-larger-example">A larger example</a></li>
 </ul>
 </li>
@@ -1296,9 +1296,9 @@ closer to its normal form.  For example, <a class="reference internal" href="#te
 <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">let</span></span></span> <a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">:=</span></span></span> <a class="reference internal" href="basic.html#grammar-token-term"><span class="hole"><span class="pre">term</span><sub><span class="pre">1</span></sub></span></a> <span><span><span class="pre">in</span></span></span> <a class="reference internal" href="basic.html#grammar-token-term"><span class="hole"><span class="pre">term</span><sub><span class="pre">2</span></sub></span></a></span></code> constructs from a term by replacing
 <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></code> with <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="basic.html#grammar-token-term"><span class="hole"><span class="pre">term</span><sub><span class="pre">1</span></sub></span></a></span></code> wherever <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></code> appears in <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="basic.html#grammar-token-term"><span class="hole"><span class="pre">term</span><sub><span class="pre">2</span></sub></span></a></span></code>.
 The resulting term may be longer or shorter than the original.</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Eval</span><span> </span><span class="coqdoc-tactic">cbv</span><span> </span><span class="coqdoc-keyword">zeta</span><span> </span><span class="coqdoc-tactic">in</span><span> </span><span class="coqdoc-keyword">let</span><span> </span><span class="coqdoc-var">i</span><span> := 1 </span><span class="coqdoc-tactic">in</span><span> </span><span class="coqdoc-var">i</span><span> + </span><span class="coqdoc-var">i</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Eval</span><span> </span><span class="rocqdoc-tactic">cbv</span><span> </span><span class="rocqdoc-keyword">zeta</span><span> </span><span class="rocqdoc-tactic">in</span><span> </span><span class="rocqdoc-keyword">let</span><span> </span><span class="rocqdoc-var">i</span><span> := 1 </span><span class="rocqdoc-tactic">in</span><span> </span><span class="rocqdoc-var">i</span><span> + </span><span class="rocqdoc-var">i</span><span>.</span><span>
 </span></dt><dd><span>     = 1</span><span> +</span><span> 1
      : nat
 </span></dd>
@@ -1318,7 +1318,7 @@ repeatedly until it's no longer possible to apply any of them.</p>
 reduction rules repeatedly.  In other cases, it may yield an expression containing
 variables, axioms or opaque contants that can't be reduced.</p>
 <p>The useful conversion rules are shown below.  All of them except for eta-expansion
-can be applied with conversion tactics such as <a class="reference internal" href="../../proofs/writing-proofs/equality.html#coq:tacn.cbv" title="cbv"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">cbv</span></code></a>:</p>
+can be applied with conversion tactics such as <a class="reference internal" href="../../proofs/writing-proofs/equality.html#rocq:tacn.cbv" title="cbv"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">cbv</span></code></a>:</p>
 <blockquote>
 <div><table class="docutils align-default">
 <thead>
@@ -1490,10 +1490,10 @@ convertible to the type of the original term <span class="math notranslate nohig
 <div><div class="admonition note">
 <p class="admonition-title">Example: Simple delta, fix, beta and match reductions</p>
 <p><code class="docutils literal notranslate"><span class="pre">+</span></code> is a <a class="reference internal" href="../../user-extensions/syntax-extensions.html#notations"><span class="std std-ref">notation</span></a> for <code class="docutils literal notranslate"><span class="pre">Nat.add</span></code>, which is defined
-with a <a class="reference internal" href="inductive.html#coq:cmd.Fixpoint" title="Fixpoint"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Fixpoint</span></code></a>.</p>
-<div class="coqtop literal-block docutils container">
+with a <a class="reference internal" href="inductive.html#rocq:cmd.Fixpoint" title="Fixpoint"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Fixpoint</span></code></a>.</p>
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Print</span><span> </span><span class="coqdoc-var">Nat.add</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Print</span><span> </span><span class="rocqdoc-var">Nat.add</span><span>.</span><span>
 </span></dt><dd><span>Nat.add =
 fix add (n m : nat) {</span><span class="ansi-bold">struct</span><span> n} : nat :=
   </span><span class="ansi-bold">match</span><span> n </span><span class="ansi-bold">with</span><span>
@@ -1504,13 +1504,13 @@ fix add (n m : nat) {</span><span class="ansi-bold">struct</span><span> n} : nat
 
 Arguments </span><span class="ansi-fg-light-magenta">Nat</span><span>.</span><span class="ansi-fg-light-green">add</span><span> (n m)%_nat_scope
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Goal</span><span> 1 + 1 = 2.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Goal</span><span> 1 + 1 = 2.</span><span>
 </span></dt><dd><span>1 goal
   
   ============================
   1</span><span> +</span><span> 1</span><span> =</span><span> 2
 </span></dd>
-<dt><span></span><span class="coqdoc-tactic">cbv</span><span> </span><span class="coqdoc-keyword">delta</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-tactic">cbv</span><span> </span><span class="rocqdoc-keyword">delta</span><span>.</span><span>
 </span></dt><dd><span>1 goal
   
   ============================
@@ -1522,7 +1522,7 @@ Arguments </span><span class="ansi-fg-light-magenta">Nat</span><span>.</span><sp
     1 1</span><span> =</span><span>
   2
 </span></dd>
-<dt><span></span><span class="coqdoc-tactic">cbv</span><span> </span><span class="coqdoc-keyword">fix</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-tactic">cbv</span><span> </span><span class="rocqdoc-keyword">fix</span><span>.</span><span>
 </span></dt><dd><span>1 goal
   
   ============================
@@ -1540,7 +1540,7 @@ Arguments </span><span class="ansi-fg-light-magenta">Nat</span><span>.</span><sp
    </span><span class="ansi-bold">end</span><span>) 1 1</span><span> =</span><span>
   2
 </span></dd>
-<dt><span></span><span class="coqdoc-tactic">cbv</span><span> </span><span class="coqdoc-keyword">beta</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-tactic">cbv</span><span> </span><span class="rocqdoc-keyword">beta</span><span>.</span><span>
 </span></dt><dd><span>1 goal
   
   ============================
@@ -1556,7 +1556,7 @@ Arguments </span><span class="ansi-fg-light-magenta">Nat</span><span>.</span><sp
            p 1)
   </span><span class="ansi-bold">end</span><span> =</span><span> 2
 </span></dd>
-<dt><span></span><span class="coqdoc-tactic">cbv</span><span> </span><span class="coqdoc-keyword">match</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-tactic">cbv</span><span> </span><span class="rocqdoc-keyword">match</span><span>.</span><span>
 </span></dt><dd><span>1 goal
   
   ============================
@@ -1572,15 +1572,15 @@ Arguments </span><span class="ansi-fg-light-magenta">Nat</span><span>.</span><sp
 </dl>
 </div>
 <p>The term can be fully reduced with <code class="docutils literal notranslate"><span class="pre">cbv</span></code>:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Goal</span><span> 1 + 1 = 2.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Goal</span><span> 1 + 1 = 2.</span><span>
 </span></dt><dd><span>1 goal
   
   ============================
   1</span><span> +</span><span> 1</span><span> =</span><span> 2
 </span></dd>
-<dt><span></span><span class="coqdoc-tactic">cbv</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-tactic">cbv</span><span>.</span><span>
 </span></dt><dd><span>1 goal
   
   ============================

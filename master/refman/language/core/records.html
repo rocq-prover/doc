@@ -345,7 +345,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../extensions/arguments-command.html#automatic-declaration-of-implicit-arguments">Automatic declaration of implicit arguments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../extensions/arguments-command.html#renaming-implicit-arguments">Renaming implicit arguments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../extensions/arguments-command.html#binding-arguments-to-scopes">Binding arguments to scopes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../extensions/arguments-command.html#effects-of-arguments-on-unfolding">Effects of <code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Arguments</span></code> on unfolding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../extensions/arguments-command.html#effects-of-arguments-on-unfolding">Effects of <code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Arguments</span></code> on unfolding</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../extensions/arguments-command.html#bidirectionality-hints">Bidirectionality hints</a></li>
 </ul>
 </li>
@@ -506,7 +506,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#generation-of-inversion-principles-with-derive-inversion">Generation of inversion principles with <code class="docutils literal notranslate"><span class="pre">Derive</span></code> <code class="docutils literal notranslate"><span class="pre">Inversion</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#examples-of-dependent-destruction-dependent-induction">Examples of <code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">destruction</span></code> / <code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">induction</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#examples-of-dependent-destruction-dependent-induction">Examples of <code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">destruction</span></code> / <code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">induction</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#a-larger-example">A larger example</a></li>
 </ul>
 </li>
@@ -1280,28 +1280,28 @@
 \end{split}\]</div>
 <section id="record-types">
 <span id="id1"></span><h1>Record types<a class="headerlink" href="#record-types" title="Link to this heading"></a></h1>
-<p>The <a class="reference internal" href="#coq:cmd.Record" title="Record"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Record</span></code></a> command defines types similar to <span class="term-defn"><span class="target" id="term-records"></span>records</span>
+<p>The <a class="reference internal" href="#rocq:cmd.Record" title="Record"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Record</span></code></a> command defines types similar to <span class="term-defn"><span class="target" id="term-records"></span>records</span>
 in programming languages. Those types describe tuples whose
 components, called <span class="term-defn"><span class="target" id="term-field"></span>fields</span>, can be accessed with
 <span class="term-defn"><span class="target" id="term-projection"></span>projections</span>. Records can also be used to describe
 mathematical structures, such as groups or rings, hence the
-synonym <a class="reference internal" href="#coq:cmd.Structure" title="Structure"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Structure</span></code></a>.</p>
+synonym <a class="reference internal" href="#rocq:cmd.Structure" title="Structure"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Structure</span></code></a>.</p>
 <section id="defining-record-types">
 <h2>Defining record types<a class="headerlink" href="#defining-record-types" title="Link to this heading"></a></h2>
-<dl class="coq cmd" id="record-grammar">
-<dt class="sig sig-object coq" id="coq:cmd.Record">
-<span id="coq:cmd.Structure"></span><em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span class="alternative"><span class="alternative-block"><span><span><span class="pre">Record</span></span></span></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><span><span><span class="pre">Structure</span></span></span></span></span> <a class="reference internal" href="#grammar-token-record_definition"><span class="hole"><span class="pre">record_definition</span></span></a></span></span><a class="headerlink" href="#coq:cmd.Record" title="Link to this definition"></a></dt>
+<dl class="rocq cmd" id="record-grammar">
+<dt class="sig sig-object rocq" id="rocq:cmd.Record">
+<span id="rocq:cmd.Structure"></span><em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span class="alternative"><span class="alternative-block"><span><span><span class="pre">Record</span></span></span></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><span><span><span class="pre">Structure</span></span></span></span></span> <a class="reference internal" href="#grammar-token-record_definition"><span class="hole"><span class="pre">record_definition</span></span></a></span></span><a class="headerlink" href="#rocq:cmd.Record" title="Link to this definition"></a></dt>
 <dd><span class="prodn-table"><span class="prodn-column-group"><span class="prodn-column"></span><span class="prodn-column"></span><span class="prodn-column"></span><span class="prodn-column"></span></span><span class="prodn-row-group"><span class="prodn-row"><span class="prodn-cell-nonterminal"><span class="prodn-target"><span class="target" id="grammar-token-record_definition"></span></span><span class="notation"><a class="reference internal" href="#grammar-token-record_definition"><span class="hole">record_definition</span></a></span></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">::=</span></code></span><span class="prodn-cell-production"><span class="notation"><span class="repeat-wrapper"><span class="repeat"><span><span>&gt;</span></span></span><span class="notation-sup">?</span></span> <a class="reference internal" href="assumptions.html#grammar-token-ident_decl"><span class="hole">ident_decl</span></a> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="assumptions.html#grammar-token-binder"><span class="hole">binder</span></a></span><span class="notation-sup">*</span></span> <span class="repeat-wrapper"><span class="repeat"><span><span>:</span></span> <a class="reference internal" href="sorts.html#grammar-token-sort"><span class="hole">sort</span></a></span><span class="notation-sup">?</span></span> <span class="repeat-wrapper"><span class="repeat"><span><span>:=</span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole">ident</span></a></span><span class="notation-sup">?</span></span> <span><span>{</span></span> <span class="repeat-wrapper"><span class="repeat"><span class="repeat-wrapper-with-sub"><span class="repeat"><a class="reference internal" href="#grammar-token-record_field"><span class="hole">record_field</span></a></span><span class="notation-sup">+</span><span class="notation-sub">;</span></span> <span class="repeat-wrapper"><span class="repeat"><span><span>;</span></span></span><span class="notation-sup">?</span></span></span><span class="notation-sup">?</span></span> <span><span>}</span></span> <span class="repeat-wrapper"><span class="repeat"><span><span>as</span></span> <a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole">ident</span></a></span><span class="notation-sup">?</span></span></span><span class="notation-sup">?</span></span></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span><span class="prodn-row"><span class="prodn-cell-nonterminal"><span class="prodn-target"><span class="target" id="grammar-token-record_field"></span></span><span class="notation"><a class="reference internal" href="#grammar-token-record_field"><span class="hole">record_field</span></a></span></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">::=</span></code></span><span class="prodn-cell-production"><span class="notation"><span class="repeat-wrapper"><span class="repeat"><span><span>#[</span></span> <span class="repeat-wrapper-with-sub"><span class="repeat"><a class="reference internal" href="basic.html#grammar-token-attribute"><span class="hole">attribute</span></a></span><span class="notation-sup">+</span><span class="notation-sub">,</span></span> <span><span>]</span></span></span><span class="notation-sup">*</span></span> <a class="reference internal" href="assumptions.html#grammar-token-name"><span class="hole">name</span></a> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="#grammar-token-field_spec"><span class="hole">field_spec</span></a></span><span class="notation-sup">?</span></span> <span class="repeat-wrapper"><span class="repeat"><span><span>|</span></span> <a class="reference internal" href="basic.html#grammar-token-natural"><span class="hole">natural</span></a></span><span class="notation-sup">?</span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../../user-extensions/syntax-extensions.html#grammar-token-decl_notations"><span class="hole">decl_notations</span></a></span><span class="notation-sup">?</span></span></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span><span class="prodn-row"><span class="prodn-cell-nonterminal"><span class="prodn-target"><span class="target" id="grammar-token-field_spec"></span></span><span class="notation"><a class="reference internal" href="#grammar-token-field_spec"><span class="hole">field_spec</span></a></span></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">::=</span></code></span><span class="prodn-cell-production"><span class="notation"><span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="assumptions.html#grammar-token-binder"><span class="hole">binder</span></a></span><span class="notation-sup">*</span></span> <a class="reference internal" href="#grammar-token-of_type_inst"><span class="hole">of_type_inst</span></a></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span><span class="prodn-row"><span class="prodn-cell-nonterminal"><code class="docutils literal notranslate"></code></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">|</span></code></span><span class="prodn-cell-production"><span class="notation"><span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="assumptions.html#grammar-token-binder"><span class="hole">binder</span></a></span><span class="notation-sup">*</span></span> <span><span>:=</span></span> <a class="reference internal" href="basic.html#grammar-token-term"><span class="hole">term</span></a></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span><span class="prodn-row"><span class="prodn-cell-nonterminal"><code class="docutils literal notranslate"></code></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">|</span></code></span><span class="prodn-cell-production"><span class="notation"><span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="assumptions.html#grammar-token-binder"><span class="hole">binder</span></a></span><span class="notation-sup">*</span></span> <a class="reference internal" href="#grammar-token-of_type_inst"><span class="hole">of_type_inst</span></a> <span><span>:=</span></span> <a class="reference internal" href="basic.html#grammar-token-term"><span class="hole">term</span></a></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span><span class="prodn-row"><span class="prodn-cell-nonterminal"><span class="prodn-target"><span class="target" id="grammar-token-of_type_inst"></span></span><span class="notation"><a class="reference internal" href="#grammar-token-of_type_inst"><span class="hole">of_type_inst</span></a></span></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">::=</span></code></span><span class="prodn-cell-production"><span class="notation"><span class="alternative"><span class="alternative-block"><span><span>:</span></span></span><span class="alternative-separator">​</span><span class="alternative-block"><span><span>:&gt;</span></span></span><span class="alternative-separator">​</span><span class="alternative-block"><span><span>::</span></span></span><span class="alternative-separator">​</span><span class="alternative-block"><span><span>::&gt;</span></span></span></span> <a class="reference internal" href="basic.html#grammar-token-type"><span class="hole">type</span></a></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span></span></span><p>Defines a non-recursive record type, creating projections for each field
 that has a name other than <code class="docutils literal notranslate"><span class="pre">_</span></code>. The field body and type can depend on previous
 fields, so the order of fields in the definition may matter.</p>
-<p>Use the <a class="reference internal" href="inductive.html#coq:cmd.Inductive" title="Inductive"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Inductive</span></code></a> and <a class="reference internal" href="coinductive.html#coq:cmd.CoInductive" title="CoInductive"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">CoInductive</span></code></a> commands to define recursive
+<p>Use the <a class="reference internal" href="inductive.html#rocq:cmd.Inductive" title="Inductive"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Inductive</span></code></a> and <a class="reference internal" href="coinductive.html#rocq:cmd.CoInductive" title="CoInductive"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">CoInductive</span></code></a> commands to define recursive
 (inductive or coinductive) records.  These commands also permit defining
 mutually recursive records provided that all of
 the types in the block are records.  These commands automatically generate
-induction schemes.  Enable the <a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#coq:flag.Nonrecursive-Elimination-Schemes" title="Nonrecursive Elimination Schemes"><code class="xref coq coq-flag docutils literal notranslate"><span class="pre">Nonrecursive</span> <span class="pre">Elimination</span> <span class="pre">Schemes</span></code></a> flag
-to enable automatic generation of elimination schemes for <a class="reference internal" href="#coq:cmd.Record" title="Record"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Record</span></code></a>.
+induction schemes.  Enable the <a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#rocq:flag.Nonrecursive-Elimination-Schemes" title="Nonrecursive Elimination Schemes"><code class="xref rocq rocq-flag docutils literal notranslate"><span class="pre">Nonrecursive</span> <span class="pre">Elimination</span> <span class="pre">Schemes</span></code></a> flag
+to enable automatic generation of elimination schemes for <a class="reference internal" href="#rocq:cmd.Record" title="Record"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Record</span></code></a>.
 See <a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#proofschemes-induction-principles"><span class="std std-ref">Generation of induction principles with Scheme</span></a>.</p>
-<p>The <a class="reference internal" href="../../addendum/type-classes.html#coq:cmd.Class" title="Class"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Class</span></code></a> command can be used to define records that are also
+<p>The <a class="reference internal" href="../../addendum/type-classes.html#rocq:cmd.Class" title="Class"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Class</span></code></a> command can be used to define records that are also
 <a class="reference internal" href="../../addendum/type-classes.html#typeclasses"><span class="std std-ref">Typeclasses</span></a>, which permit Rocq to automatically infer the inhabitants of
 the record.</p>
 <dl class="simple">
@@ -1322,13 +1322,13 @@ the name defaults to <code class="docutils literal notranslate"><span class="not
 <dt><code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">as</span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span></span></code></dt><dd><p>Specifies the name used to refer to the argument corresponding to the
 record in the type of projections.  If not specified, the name is the first
 letter of the record name converted to lowercase (see <a class="reference internal" href="#record-as-clause"><span class="std std-ref">example</span></a>).
-In constrast, <a class="reference internal" href="../../addendum/type-classes.html#coq:cmd.Class" title="Class"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Class</span></code></a> command uses the record name as the default
+In constrast, <a class="reference internal" href="../../addendum/type-classes.html#rocq:cmd.Class" title="Class"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Class</span></code></a> command uses the record name as the default
 (see <a class="reference internal" href="#class-arg-name"><span class="std std-ref">example</span></a>).</p>
 </dd>
 </dl>
 <p>In <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="#grammar-token-record_field"><span class="hole"><span class="pre">record_field</span></span></a></span></code>:</p>
 <blockquote>
-<div><p><code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="basic.html#grammar-token-attribute"><span class="hole"><span class="pre">attribute</span></span></a></span></code>, if specified, can only be <a class="reference internal" href="../extensions/canonical.html#coq:attr.canonical" title="canonical"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">canonical</span></code></a>.</p>
+<div><p><code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="basic.html#grammar-token-attribute"><span class="hole"><span class="pre">attribute</span></span></a></span></code>, if specified, can only be <a class="reference internal" href="../extensions/canonical.html#rocq:attr.canonical" title="canonical"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">canonical</span></code></a>.</p>
 <p><code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="assumptions.html#grammar-token-name"><span class="hole"><span class="pre">name</span></span></a></span></code> is the field name.  Since field names define projections, you can't
 reuse the same field name in two different records in the same module.  This
 <a class="reference internal" href="#reuse-field-name"><span class="std std-ref">example</span></a> shows how to reuse the same field
@@ -1337,10 +1337,10 @@ name in multiple records.</p>
 from other fields. For example: the type of <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">n</span></span></span></span></code> can be inferred from
 <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">npos</span></span></span></span></code> in <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">Record</span></span></span> <span><span><span class="pre">positive</span></span></span> <span><span><span class="pre">:=</span></span></span> <span class="curlies"><span class="pre">{</span> <span><span><span class="pre">n;</span></span></span> <span><span><span class="pre">npos</span></span></span> <span><span><span class="pre">:</span></span></span> <span><span><span class="pre">0</span></span></span> <span><span><span class="pre">&lt;</span></span></span> <span><span><span class="pre">n</span></span></span> <span class="pre">}</span></span></span></code>.</p>
 <dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="notation"><span class="pre">|</span> <a class="reference internal" href="basic.html#grammar-token-natural"><span class="hole"><span class="pre">natural</span></span></a></span></code></dt><dd><p>Specifies the priority of the field.  It is only allowed in <a class="reference internal" href="../../addendum/type-classes.html#coq:cmd.Class" title="Class"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Class</span></code></a> commands.</p>
+<dt><code class="docutils literal notranslate"><span class="notation"><span class="pre">|</span> <a class="reference internal" href="basic.html#grammar-token-natural"><span class="hole"><span class="pre">natural</span></span></a></span></code></dt><dd><p>Specifies the priority of the field.  It is only allowed in <a class="reference internal" href="../../addendum/type-classes.html#rocq:cmd.Class" title="Class"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Class</span></code></a> commands.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="notation"><span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../../user-extensions/syntax-extensions.html#grammar-token-decl_notations"><span class="hole"><span class="pre">decl_notations</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span></span></code></dt><dd><p>Defines notations that are active in subsequent fields, not in the field
-itself, until the end of the <a class="reference internal" href="#coq:cmd.Record" title="Record"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Record</span></code></a> (see <a class="reference internal" href="#record-where-clause"><span class="std std-ref">example</span></a>). Note that <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">where</span></span></code> clauses cannot be added at
+itself, until the end of the <a class="reference internal" href="#rocq:cmd.Record" title="Record"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Record</span></code></a> (see <a class="reference internal" href="#record-where-clause"><span class="std std-ref">example</span></a>). Note that <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">where</span></span></code> clauses cannot be added at
 the record level.</p>
 </dd>
 </dl>
@@ -1368,21 +1368,21 @@ of the field type. See <a class="reference internal" href="../../addendum/type-c
 </dd>
 </dl>
 </div></blockquote>
-<p>The <a class="reference internal" href="#coq:cmd.Record" title="Record"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Record</span></code></a> command supports the <a class="reference internal" href="../../addendum/universe-polymorphism.html#coq:attr.universes(polymorphic)" title="universes(polymorphic)"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">universes(polymorphic)</span></code></a>,
-<a class="reference internal" href="inductive.html#coq:attr.universes(template)" title="universes(template)"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">universes(template)</span></code></a>, <a class="reference internal" href="../../addendum/universe-polymorphism.html#coq:attr.universes(cumulative)" title="universes(cumulative)"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">universes(cumulative)</span></code></a>,
-<a class="reference internal" href="variants.html#coq:attr.private(matching)" title="private(matching)"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">private(matching)</span></code></a> and <a class="reference internal" href="#coq:attr.projections(primitive)" title="projections(primitive)"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">projections(primitive)</span></code></a> attributes.</p>
+<p>The <a class="reference internal" href="#rocq:cmd.Record" title="Record"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Record</span></code></a> command supports the <a class="reference internal" href="../../addendum/universe-polymorphism.html#rocq:attr.universes(polymorphic)" title="universes(polymorphic)"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">universes(polymorphic)</span></code></a>,
+<a class="reference internal" href="inductive.html#rocq:attr.universes(template)" title="universes(template)"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">universes(template)</span></code></a>, <a class="reference internal" href="../../addendum/universe-polymorphism.html#rocq:attr.universes(cumulative)" title="universes(cumulative)"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">universes(cumulative)</span></code></a>,
+<a class="reference internal" href="variants.html#rocq:attr.private(matching)" title="private(matching)"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">private(matching)</span></code></a> and <a class="reference internal" href="#rocq:attr.projections(primitive)" title="projections(primitive)"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">projections(primitive)</span></code></a> attributes.</p>
 <div class="admonition note">
 <p class="admonition-title">Example: Defining a record</p>
 <p>The set of rational numbers may be defined as:</p>
-<div class="coqtop literal-block docutils container">
-<span class="coqtop-reset"></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Record</span><span> </span><span class="coqdoc-var">Rat</span><span> : </span><span class="coqdoc-keyword">Set</span><span> := </span><span class="coqdoc-var">mkRat</span><span>
- { </span><span class="coqdoc-var">negative</span><span> : </span><span class="coqdoc-var">bool</span><span>
- ; </span><span class="coqdoc-var">top</span><span> : </span><span class="coqdoc-var">nat</span><span>
- ; </span><span class="coqdoc-var">bottom</span><span> : </span><span class="coqdoc-var">nat</span><span>
- ; </span><span class="coqdoc-var">Rat_bottom_nonzero</span><span> : 0 &lt;&gt; </span><span class="coqdoc-var">bottom</span><span>
- ; </span><span class="coqdoc-var">Rat_irreducible</span><span> :</span><span>
-     </span><span class="coqdoc-keyword">forall</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span> </span><span class="coqdoc-var">z</span><span>:</span><span class="coqdoc-var">nat</span><span>, (</span><span class="coqdoc-var">x</span><span> * </span><span class="coqdoc-var">y</span><span>) = </span><span class="coqdoc-var">top</span><span> /\ (</span><span class="coqdoc-var">x</span><span> * </span><span class="coqdoc-var">z</span><span>) = </span><span class="coqdoc-var">bottom</span><span> -&gt; </span><span class="coqdoc-var">x</span><span> = 1</span><span>
+<div class="rocqtop literal-block docutils container">
+<span class="rocqtop-reset"></span><dl>
+<dt><span></span><span class="rocqdoc-keyword">Record</span><span> </span><span class="rocqdoc-var">Rat</span><span> : </span><span class="rocqdoc-keyword">Set</span><span> := </span><span class="rocqdoc-var">mkRat</span><span>
+ { </span><span class="rocqdoc-var">negative</span><span> : </span><span class="rocqdoc-var">bool</span><span>
+ ; </span><span class="rocqdoc-var">top</span><span> : </span><span class="rocqdoc-var">nat</span><span>
+ ; </span><span class="rocqdoc-var">bottom</span><span> : </span><span class="rocqdoc-var">nat</span><span>
+ ; </span><span class="rocqdoc-var">Rat_bottom_nonzero</span><span> : 0 &lt;&gt; </span><span class="rocqdoc-var">bottom</span><span>
+ ; </span><span class="rocqdoc-var">Rat_irreducible</span><span> :</span><span>
+     </span><span class="rocqdoc-keyword">forall</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> </span><span class="rocqdoc-var">z</span><span>:</span><span class="rocqdoc-var">nat</span><span>, (</span><span class="rocqdoc-var">x</span><span> * </span><span class="rocqdoc-var">y</span><span>) = </span><span class="rocqdoc-var">top</span><span> /\ (</span><span class="rocqdoc-var">x</span><span> * </span><span class="rocqdoc-var">z</span><span>) = </span><span class="rocqdoc-var">bottom</span><span> -&gt; </span><span class="rocqdoc-var">x</span><span> = 1</span><span>
  }.</span><span>
 </span></dt><dd><span>Rat is defined
 negative is defined
@@ -1403,18 +1403,18 @@ lowest terms.</p>
 <blockquote id="reuse-field-name">
 <div><div class="admonition note">
 <p class="admonition-title">Example: Reusing a field name in multiple records</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Module</span><span> </span><span class="coqdoc-var">A</span><span>. </span><span class="coqdoc-keyword">Record</span><span> </span><span class="coqdoc-var">R</span><span> := { </span><span class="coqdoc-var">f</span><span> : </span><span class="coqdoc-var">nat</span><span> }. </span><span class="coqdoc-keyword">End</span><span> </span><span class="coqdoc-var">A</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>Interactive Module A started
+<dt><span></span><span class="rocqdoc-keyword">Module</span><span> </span><span class="rocqdoc-var">A</span><span>. </span><span class="rocqdoc-keyword">Record</span><span> </span><span class="rocqdoc-var">R</span><span> := { </span><span class="rocqdoc-var">f</span><span> : </span><span class="rocqdoc-var">nat</span><span> }. </span><span class="rocqdoc-keyword">End</span><span> </span><span class="rocqdoc-var">A</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>Interactive Module A started
 
 R is defined
 f is defined
 
 Module A is defined
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Module</span><span> </span><span class="coqdoc-var">B</span><span>. </span><span class="coqdoc-keyword">Record</span><span> </span><span class="coqdoc-var">S</span><span> := { </span><span class="coqdoc-var">f</span><span> : </span><span class="coqdoc-var">nat</span><span> }. </span><span class="coqdoc-keyword">End</span><span> </span><span class="coqdoc-var">B</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>Interactive Module B started
+<dt><span></span><span class="rocqdoc-keyword">Module</span><span> </span><span class="rocqdoc-var">B</span><span>. </span><span class="rocqdoc-keyword">Record</span><span> </span><span class="rocqdoc-var">S</span><span> := { </span><span class="rocqdoc-var">f</span><span> : </span><span class="rocqdoc-var">nat</span><span> }. </span><span class="rocqdoc-keyword">End</span><span> </span><span class="rocqdoc-var">B</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>Interactive Module B started
 
 S is defined
 f is defined
@@ -1423,11 +1423,11 @@ Module B is defined
 </span></dd>
 </dl>
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Check</span><span> {| </span><span class="coqdoc-var">A.f</span><span> := 0 |}.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Check</span><span> {| </span><span class="rocqdoc-var">A.f</span><span> := 0 |}.</span><span>
 </span></dt><dd><span>{| </span><span class="ansi-fg-light-magenta">A</span><span>.</span><span class="ansi-fg-light-green">f</span><span> := 0 |}
      : </span><span class="ansi-fg-light-magenta">A</span><span>.</span><span class="ansi-fg-light-green">R</span><span>
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Check</span><span> {| </span><span class="coqdoc-var">B.f</span><span> := 0 |}.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Check</span><span> {| </span><span class="rocqdoc-var">B.f</span><span> := 0 |}.</span><span>
 </span></dt><dd><span>{| </span><span class="ansi-fg-light-magenta">B</span><span>.</span><span class="ansi-fg-light-green">f</span><span> := 0 |}
      : </span><span class="ansi-fg-light-magenta">B</span><span>.</span><span class="ansi-fg-light-green">S</span><span>
 </span></dd>
@@ -1438,13 +1438,13 @@ Module B is defined
 <blockquote id="record-as-clause">
 <div><div class="admonition note">
 <p class="admonition-title">Example: Using the &quot;as&quot; clause in a record definition</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Record</span><span> </span><span class="coqdoc-var">MyRecord</span><span> := { </span><span class="coqdoc-var">myfield</span><span> : </span><span class="coqdoc-var">nat</span><span> } </span><span class="coqdoc-keyword">as</span><span> </span><span class="coqdoc-var">VarName</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Record</span><span> </span><span class="rocqdoc-var">MyRecord</span><span> := { </span><span class="rocqdoc-var">myfield</span><span> : </span><span class="rocqdoc-var">nat</span><span> } </span><span class="rocqdoc-keyword">as</span><span> </span><span class="rocqdoc-var">VarName</span><span>.</span><span>
 </span></dt><dd><span>MyRecord is defined
 myfield is defined
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">About</span><span> </span><span class="coqdoc-var">myfield</span><span>. </span><span class="coqdoc-comment">(* observe the MyRecord variable is named &quot;VarName&quot; *)</span><span>
+<dt><span></span><span class="rocqdoc-keyword">About</span><span> </span><span class="rocqdoc-var">myfield</span><span>. </span><span class="rocqdoc-comment">(* observe the MyRecord variable is named &quot;VarName&quot; *)</span><span>
 </span></dt><dd><span>myfield : MyRecord</span><span> -&gt;</span><span> nat
 
 myfield is not universe polymorphic
@@ -1452,19 +1452,19 @@ myfield is a projection of MyRecord
 Arguments </span><span class="ansi-fg-light-green">myfield</span><span> VarName
 myfield is transparent
 Expands to: Constant Top.myfield
-Declared in toplevel input, characters 467-474
+Declared in toplevel input, characters 469-476
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-comment">(* make &quot;VarName&quot; implicit without having to rename the variable,</span><span class="coqdoc-comment">
+</span><span class="rocqdoc-comment">(* make &quot;VarName&quot; implicit without having to rename the variable,</span><span class="rocqdoc-comment">
    which would be necessary without the &quot;as&quot; clause *)</span><span>
-</span><span class="coqdoc-keyword">Arguments</span><span> </span><span class="coqdoc-var">myfield</span><span> {</span><span class="coqdoc-var">VarName</span><span>}. </span><span class="coqdoc-comment">(* make &quot;VarName&quot; an implicit parameter *)</span><span>
-</span></dt><dt><span></span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-var">myfield</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Arguments</span><span> </span><span class="rocqdoc-var">myfield</span><span> {</span><span class="rocqdoc-var">VarName</span><span>}. </span><span class="rocqdoc-comment">(* make &quot;VarName&quot; an implicit parameter *)</span><span>
+</span></dt><dt><span></span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-var">myfield</span><span>.</span><span>
 </span></dt><dd><span>myfield
      : nat
 where
 ?VarName : [ |- MyRecord]
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Check</span><span> (</span><span class="coqdoc-var">myfield</span><span> (</span><span class="coqdoc-var">VarName</span><span>:={| </span><span class="coqdoc-var">myfield</span><span> := 0 |})).</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Check</span><span> (</span><span class="rocqdoc-var">myfield</span><span> (</span><span class="rocqdoc-var">VarName</span><span>:={| </span><span class="rocqdoc-var">myfield</span><span> := 0 |})).</span><span>
 </span></dt><dd><span>myfield
      : nat
 </span></dd>
@@ -1474,22 +1474,22 @@ where
 </div></blockquote>
 <blockquote id="class-arg-name">
 <div><div class="admonition note">
-<p class="admonition-title">Example: Argument name for a record type created using <a class="reference internal" href="../../addendum/type-classes.html#coq:cmd.Class" title="Class"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Class</span></code></a></p>
-<p>Compare to <a class="reference internal" href="#coq:cmd.Record" title="Record"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Record</span></code></a> in the previous example:</p>
-<div class="coqtop literal-block docutils container">
+<p class="admonition-title">Example: Argument name for a record type created using <a class="reference internal" href="../../addendum/type-classes.html#rocq:cmd.Class" title="Class"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Class</span></code></a></p>
+<p>Compare to <a class="reference internal" href="#rocq:cmd.Record" title="Record"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Record</span></code></a> in the previous example:</p>
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Class</span><span> </span><span class="coqdoc-var">MyClass</span><span> := { </span><span class="coqdoc-var">myfield2</span><span> : </span><span class="coqdoc-var">nat</span><span> }.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Class</span><span> </span><span class="rocqdoc-var">MyClass</span><span> := { </span><span class="rocqdoc-var">myfield2</span><span> : </span><span class="rocqdoc-var">nat</span><span> }.</span><span>
 </span></dt><dd><span>MyClass is defined
 myfield2 is defined
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">About</span><span> </span><span class="coqdoc-var">myfield2</span><span>. </span><span class="coqdoc-comment">(* Argument name defaults to the class name and is marked implicit *)</span></dt><dd><span>myfield2 : MyClass</span><span> -&gt;</span><span> nat
+<dt><span></span><span class="rocqdoc-keyword">About</span><span> </span><span class="rocqdoc-var">myfield2</span><span>. </span><span class="rocqdoc-comment">(* Argument name defaults to the class name and is marked implicit *)</span></dt><dd><span>myfield2 : MyClass</span><span> -&gt;</span><span> nat
 
 myfield2 is not universe polymorphic
 myfield2 is a projection of MyClass
 Arguments </span><span class="ansi-fg-light-green">myfield2</span><span> {MyClass}
 myfield2 is transparent
 Expands to: Constant Top.myfield2
-Declared in toplevel input, characters 841-849
+Declared in toplevel input, characters 843-851
 </span></dd>
 </dl>
 </div>
@@ -1498,16 +1498,16 @@ Declared in toplevel input, characters 841-849
 <blockquote id="record-where-clause">
 <div><div class="admonition note">
 <p class="admonition-title">Example: Using a <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">where</span></span></code> clause in a record field</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Reserved Notation</span><span> &quot;a &amp; b&quot; (</span><span class="coqdoc-tactic">at</span><span> </span><span class="coqdoc-keyword">level</span><span> 40, </span><span class="coqdoc-tactic">left</span><span> </span><span class="coqdoc-keyword">associativity</span><span>).</span><span>
-</span></dt><dt><span></span><span class="coqdoc-keyword">Record</span><span> </span><span class="coqdoc-var">nat_comoid</span><span> :=</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Reserved Notation</span><span> &quot;a &amp; b&quot; (</span><span class="rocqdoc-tactic">at</span><span> </span><span class="rocqdoc-keyword">level</span><span> 40, </span><span class="rocqdoc-tactic">left</span><span> </span><span class="rocqdoc-keyword">associativity</span><span>).</span><span>
+</span></dt><dt><span></span><span class="rocqdoc-keyword">Record</span><span> </span><span class="rocqdoc-var">nat_comoid</span><span> :=</span><span>
 {</span><span>
-  </span><span class="coqdoc-var">op</span><span> : </span><span class="coqdoc-var">nat</span><span> -&gt; </span><span class="coqdoc-var">nat</span><span> -&gt; </span><span class="coqdoc-var">nat</span><span> </span><span class="coqdoc-keyword">where</span><span> &quot;a &amp; b&quot; := (</span><span class="coqdoc-var">op</span><span> </span><span class="coqdoc-var">a</span><span> </span><span class="coqdoc-var">b</span><span>);</span><span>
-  </span><span class="coqdoc-var">identity</span><span> : </span><span class="coqdoc-var">nat</span><span>;</span><span>
-  </span><span class="coqdoc-var">identity_cond</span><span> : </span><span class="coqdoc-keyword">forall</span><span> </span><span class="coqdoc-var">n</span><span>, </span><span class="coqdoc-var">identity</span><span> &amp; </span><span class="coqdoc-var">n</span><span> = </span><span class="coqdoc-var">n</span><span>;</span><span>
-  </span><span class="coqdoc-var">comm</span><span>: </span><span class="coqdoc-keyword">forall</span><span> </span><span class="coqdoc-var">a</span><span> </span><span class="coqdoc-var">b</span><span>, </span><span class="coqdoc-var">a</span><span> &amp; </span><span class="coqdoc-var">b</span><span> = </span><span class="coqdoc-var">b</span><span> &amp; </span><span class="coqdoc-var">a</span><span>;</span><span>
-  </span><span class="coqdoc-var">assoc</span><span>: </span><span class="coqdoc-keyword">forall</span><span> </span><span class="coqdoc-var">a</span><span> </span><span class="coqdoc-var">b</span><span> </span><span class="coqdoc-var">c</span><span>, </span><span class="coqdoc-var">a</span><span> &amp; (</span><span class="coqdoc-var">b</span><span> &amp; </span><span class="coqdoc-var">c</span><span>) = </span><span class="coqdoc-var">a</span><span> &amp; </span><span class="coqdoc-var">b</span><span> &amp; </span><span class="coqdoc-var">c</span><span>
+  </span><span class="rocqdoc-var">op</span><span> : </span><span class="rocqdoc-var">nat</span><span> -&gt; </span><span class="rocqdoc-var">nat</span><span> -&gt; </span><span class="rocqdoc-var">nat</span><span> </span><span class="rocqdoc-keyword">where</span><span> &quot;a &amp; b&quot; := (</span><span class="rocqdoc-var">op</span><span> </span><span class="rocqdoc-var">a</span><span> </span><span class="rocqdoc-var">b</span><span>);</span><span>
+  </span><span class="rocqdoc-var">identity</span><span> : </span><span class="rocqdoc-var">nat</span><span>;</span><span>
+  </span><span class="rocqdoc-var">identity_cond</span><span> : </span><span class="rocqdoc-keyword">forall</span><span> </span><span class="rocqdoc-var">n</span><span>, </span><span class="rocqdoc-var">identity</span><span> &amp; </span><span class="rocqdoc-var">n</span><span> = </span><span class="rocqdoc-var">n</span><span>;</span><span>
+  </span><span class="rocqdoc-var">comm</span><span>: </span><span class="rocqdoc-keyword">forall</span><span> </span><span class="rocqdoc-var">a</span><span> </span><span class="rocqdoc-var">b</span><span>, </span><span class="rocqdoc-var">a</span><span> &amp; </span><span class="rocqdoc-var">b</span><span> = </span><span class="rocqdoc-var">b</span><span> &amp; </span><span class="rocqdoc-var">a</span><span>;</span><span>
+  </span><span class="rocqdoc-var">assoc</span><span>: </span><span class="rocqdoc-keyword">forall</span><span> </span><span class="rocqdoc-var">a</span><span> </span><span class="rocqdoc-var">b</span><span> </span><span class="rocqdoc-var">c</span><span>, </span><span class="rocqdoc-var">a</span><span> &amp; (</span><span class="rocqdoc-var">b</span><span> &amp; </span><span class="rocqdoc-var">c</span><span>) = </span><span class="rocqdoc-var">a</span><span> &amp; </span><span class="rocqdoc-var">b</span><span> &amp; </span><span class="rocqdoc-var">c</span><span>
 }.</span><span>
 </span></dt><dd><span>nat_comoid is defined
 op is defined
@@ -1519,48 +1519,48 @@ assoc is defined
 </dl>
 </div>
 </div>
-<dl class="coq exn">
-<dt class="sig sig-object coq" id="coq:exn.Error:-&quot;where&quot;-clause-not-supported-for-records">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Error:</span></span></span> <span><span><span class="pre">&quot;where&quot;</span></span></span> <span><span><span class="pre">clause</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">supported</span></span></span> <span><span><span class="pre">for</span></span></span> <span><span><span class="pre">records.</span></span></span></span></span><a class="headerlink" href="#coq:exn.Error:-"where"-clause-not-supported-for-records" title="Link to this definition"></a></dt>
+<dl class="rocq exn">
+<dt class="sig sig-object rocq" id="rocq:exn.Error:-&quot;where&quot;-clause-not-supported-for-records">
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Error:</span></span></span> <span><span><span class="pre">&quot;where&quot;</span></span></span> <span><span><span class="pre">clause</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">supported</span></span></span> <span><span><span class="pre">for</span></span></span> <span><span><span class="pre">records.</span></span></span></span></span><a class="headerlink" href="#rocq:exn.Error:-"where"-clause-not-supported-for-records" title="Link to this definition"></a></dt>
 <dd><p><code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">where</span></span></code> clauses are only supported for <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="#grammar-token-record_field"><span class="hole"><span class="pre">record_field</span></span></a></span></code>s, not for the overall
 record definition.</p>
 </dd></dl>
 
-<dl class="coq exn">
-<dt class="sig sig-object coq" id="coq:exn.Records-declared-with-the-keyword-Record-or-Structure-cannot-be-recursive">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Records</span></span></span> <span><span><span class="pre">declared</span></span></span> <span><span><span class="pre">with</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">keyword</span></span></span> <span><span><span class="pre">Record</span></span></span> <span><span><span class="pre">or</span></span></span> <span><span><span class="pre">Structure</span></span></span> <span><span><span class="pre">cannot</span></span></span> <span><span><span class="pre">be</span></span></span> <span><span><span class="pre">recursive.</span></span></span></span></span><a class="headerlink" href="#coq:exn.Records-declared-with-the-keyword-Record-or-Structure-cannot-be-recursive" title="Link to this definition"></a></dt>
+<dl class="rocq exn">
+<dt class="sig sig-object rocq" id="rocq:exn.Records-declared-with-the-keyword-Record-or-Structure-cannot-be-recursive">
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Records</span></span></span> <span><span><span class="pre">declared</span></span></span> <span><span><span class="pre">with</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">keyword</span></span></span> <span><span><span class="pre">Record</span></span></span> <span><span><span class="pre">or</span></span></span> <span><span><span class="pre">Structure</span></span></span> <span><span><span class="pre">cannot</span></span></span> <span><span><span class="pre">be</span></span></span> <span><span><span class="pre">recursive.</span></span></span></span></span><a class="headerlink" href="#rocq:exn.Records-declared-with-the-keyword-Record-or-Structure-cannot-be-recursive" title="Link to this definition"></a></dt>
 <dd><p>The record name <a class="reference internal" href="basic.html#grammar-token-ident"><code class="xref std std-token docutils literal notranslate"><span class="pre">ident</span></code></a> appears in the type of its fields, but uses
-the <a class="reference internal" href="#coq:cmd.Record" title="Record"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Record</span></code></a> command. Use  the <a class="reference internal" href="inductive.html#coq:cmd.Inductive" title="Inductive"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Inductive</span></code></a> or
-<a class="reference internal" href="coinductive.html#coq:cmd.CoInductive" title="CoInductive"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">CoInductive</span></code></a> command instead.</p>
+the <a class="reference internal" href="#rocq:cmd.Record" title="Record"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Record</span></code></a> command. Use  the <a class="reference internal" href="inductive.html#rocq:cmd.Inductive" title="Inductive"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Inductive</span></code></a> or
+<a class="reference internal" href="coinductive.html#rocq:cmd.CoInductive" title="CoInductive"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">CoInductive</span></code></a> command instead.</p>
 </dd></dl>
 
-<dl class="coq exn">
-<dt class="sig sig-object coq" id="coq:exn.‘ident’-already-exists">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">already</span></span></span> <span><span><span class="pre">exists</span></span></span></span></span><a class="headerlink" href="#coq:exn.‘ident’-already-exists" title="Link to this definition"></a></dt>
+<dl class="rocq exn">
+<dt class="sig sig-object rocq" id="rocq:exn.‘ident’-already-exists">
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">already</span></span></span> <span><span><span class="pre">exists</span></span></span></span></span><a class="headerlink" href="#rocq:exn.‘ident’-already-exists" title="Link to this definition"></a></dt>
 <dd><p>The fieldname <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></code> is already defined as a global.</p>
 </dd></dl>
 
-<dl class="coq warn">
-<dt class="sig sig-object coq" id="coq:warn.‘ident’-cannot-be-defined-because-the-projection-‘ident’-was-not-defined">
-<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span><sub><span class="pre">1</span></sub></span></a> <span><span><span class="pre">cannot</span></span></span> <span><span><span class="pre">be</span></span></span> <span><span><span class="pre">defined</span></span></span> <span><span><span class="pre">because</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">projection</span></span></span> <a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span><sub><span class="pre">2</span></sub></span></a> <span><span><span class="pre">was</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">defined</span></span></span></span></span><a class="headerlink" href="#coq:warn.‘ident’-cannot-be-defined-because-the-projection-‘ident’-was-not-defined" title="Link to this definition"></a></dt>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.‘ident’-cannot-be-defined-because-the-projection-‘ident’-was-not-defined">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span><sub><span class="pre">1</span></sub></span></a> <span><span><span class="pre">cannot</span></span></span> <span><span><span class="pre">be</span></span></span> <span><span><span class="pre">defined</span></span></span> <span><span><span class="pre">because</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">projection</span></span></span> <a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span><sub><span class="pre">2</span></sub></span></a> <span><span><span class="pre">was</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">defined</span></span></span></span></span><a class="headerlink" href="#rocq:warn.‘ident’-cannot-be-defined-because-the-projection-‘ident’-was-not-defined" title="Link to this definition"></a></dt>
 <dd><p>The type of the projection <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span><sub><span class="pre">1</span></sub></span></a></span></code> depends on previous projections which
 themselves could not be defined.</p>
 </dd></dl>
 
-<dl class="coq warn">
-<dt class="sig sig-object coq" id="coq:warn.‘ident’-cannot-be-defined">
-<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">cannot</span></span></span> <span><span><span class="pre">be</span></span></span> <span><span><span class="pre">defined.</span></span></span></span></span><a class="headerlink" href="#coq:warn.‘ident’-cannot-be-defined" title="Link to this definition"></a></dt>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.‘ident’-cannot-be-defined">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">cannot</span></span></span> <span><span><span class="pre">be</span></span></span> <span><span><span class="pre">defined.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.‘ident’-cannot-be-defined" title="Link to this definition"></a></dt>
 <dd><p>The projection cannot be defined.  This message is followed by an explanation
 of why it's not possible, such as:</p>
 <ol class="arabic simple">
 <li><p>The <a class="reference internal" href="definitions.html#term-body"><span class="xref std std-term">body</span></a> of <a class="reference internal" href="basic.html#grammar-token-ident"><code class="xref std std-token docutils literal notranslate"><span class="pre">ident</span></code></a> uses an incorrect elimination for
-<a class="reference internal" href="basic.html#grammar-token-ident"><code class="xref std std-token docutils literal notranslate"><span class="pre">ident</span></code></a> (see <a class="reference internal" href="inductive.html#coq:cmd.Fixpoint" title="Fixpoint"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Fixpoint</span></code></a> and <a class="reference internal" href="inductive.html#destructors"><span class="std std-ref">Destructors</span></a>).</p></li>
+<a class="reference internal" href="basic.html#grammar-token-ident"><code class="xref std std-token docutils literal notranslate"><span class="pre">ident</span></code></a> (see <a class="reference internal" href="inductive.html#rocq:cmd.Fixpoint" title="Fixpoint"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Fixpoint</span></code></a> and <a class="reference internal" href="inductive.html#destructors"><span class="std std-ref">Destructors</span></a>).</p></li>
 </ol>
 </dd></dl>
 
-<dl class="coq warn">
-<dt class="sig sig-object coq" id="coq:warn.‘ident’-cannot-be-defined-because-it-is-informative-and-‘ident’-is-not">
-<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span><sub><span class="pre">field</span></sub></span></a> <span><span><span class="pre">cannot</span></span></span> <span><span><span class="pre">be</span></span></span> <span><span><span class="pre">defined</span></span></span> <span><span><span class="pre">because</span></span></span> <span><span><span class="pre">it</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">informative</span></span></span> <span><span><span class="pre">and</span></span></span> <a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span><sub><span class="pre">record</span></sub></span></a> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">not</span></span></span></span></span><a class="headerlink" href="#coq:warn.‘ident’-cannot-be-defined-because-it-is-informative-and-‘ident’-is-not" title="Link to this definition"></a></dt>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.‘ident’-cannot-be-defined-because-it-is-informative-and-‘ident’-is-not">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span><sub><span class="pre">field</span></sub></span></a> <span><span><span class="pre">cannot</span></span></span> <span><span><span class="pre">be</span></span></span> <span><span><span class="pre">defined</span></span></span> <span><span><span class="pre">because</span></span></span> <span><span><span class="pre">it</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">informative</span></span></span> <span><span><span class="pre">and</span></span></span> <a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span><sub><span class="pre">record</span></sub></span></a> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">not</span></span></span></span></span><a class="headerlink" href="#rocq:warn.‘ident’-cannot-be-defined-because-it-is-informative-and-‘ident’-is-not" title="Link to this definition"></a></dt>
 <dd><p>The projection for the named field <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span><sub><span class="pre">field</span></sub></span></a></span></code> can't be defined.
 For example, <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">Record</span></span></span> <span><span><span class="pre">R:Prop</span></span></span> <span><span><span class="pre">:=</span></span></span> <span class="curlies"><span class="pre">{</span> <span><span><span class="pre">f:nat</span></span></span> <span class="pre">}</span></span></span></code> generates the message
 &quot;f cannot be defined ... and R is not&quot;.  Records of sort <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">Prop</span></span></span></span></code>
@@ -1604,30 +1604,30 @@ as arguments to the constructor.</p>
 <div class="admonition note">
 <p class="admonition-title">Example: Constructing 1/2 as a record</p>
 <p>Constructing the rational <span class="math notranslate nohighlight">\(1/2\)</span> using either the record or application syntax:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Theorem</span><span> </span><span class="coqdoc-var">one_two_irred</span><span> : </span><span class="coqdoc-keyword">forall</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span> </span><span class="coqdoc-var">z</span><span>:</span><span class="coqdoc-var">nat</span><span>, </span><span class="coqdoc-var">x</span><span> * </span><span class="coqdoc-var">y</span><span> = 1 /\ </span><span class="coqdoc-var">x</span><span> * </span><span class="coqdoc-var">z</span><span> = 2 -&gt; </span><span class="coqdoc-var">x</span><span> = 1.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>1 goal
+<dt><span></span><span class="rocqdoc-keyword">Theorem</span><span> </span><span class="rocqdoc-var">one_two_irred</span><span> : </span><span class="rocqdoc-keyword">forall</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> </span><span class="rocqdoc-var">z</span><span>:</span><span class="rocqdoc-var">nat</span><span>, </span><span class="rocqdoc-var">x</span><span> * </span><span class="rocqdoc-var">y</span><span> = 1 /\ </span><span class="rocqdoc-var">x</span><span> * </span><span class="rocqdoc-var">z</span><span> = 2 -&gt; </span><span class="rocqdoc-var">x</span><span> = 1.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>1 goal
   
   ============================
   </span><span class="ansi-bold">forall</span><span> x y z : nat, x</span><span> *</span><span> y</span><span> =</span><span> 1</span><span> /\</span><span> x</span><span> *</span><span> z</span><span> =</span><span> 2</span><span> -&gt;</span><span> x</span><span> =</span><span> 1
 </span></dd>
-<dt><span></span><span class="coqdoc-var">Admitted</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>one_two_irred is declared
+<dt><span></span><span class="rocqdoc-var">Admitted</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>one_two_irred is declared
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-comment">(* Record form: top and bottom can be inferred from other fields *)</span><span>
-</span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">half</span><span> :=</span><span>
-  {| </span><span class="coqdoc-var">negative</span><span> := </span><span class="coqdoc-var">false</span><span>;</span><span>
-     </span><span class="coqdoc-var">Rat_bottom_nonzero</span><span> := </span><span class="coqdoc-var">O_S</span><span> 1;</span><span>
-     </span><span class="coqdoc-var">Rat_irreducible</span><span> := </span><span class="coqdoc-var">one_two_irred</span><span> |}.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>half is defined
+</span><span class="rocqdoc-comment">(* Record form: top and bottom can be inferred from other fields *)</span><span>
+</span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">half</span><span> :=</span><span>
+  {| </span><span class="rocqdoc-var">negative</span><span> := </span><span class="rocqdoc-var">false</span><span>;</span><span>
+     </span><span class="rocqdoc-var">Rat_bottom_nonzero</span><span> := </span><span class="rocqdoc-var">O_S</span><span> 1;</span><span>
+     </span><span class="rocqdoc-var">Rat_irreducible</span><span> := </span><span class="rocqdoc-var">one_two_irred</span><span> |}.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>half is defined
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-comment">(* Application form: use the constructor and provide values for all the fields</span><span class="coqdoc-comment">
+</span><span class="rocqdoc-comment">(* Application form: use the constructor and provide values for all the fields</span><span class="rocqdoc-comment">
    in order.  &quot;mkRat&quot; is defined by the Record command *)</span><span>
-</span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">half'</span><span> := </span><span class="coqdoc-var">mkRat</span><span> </span><span class="coqdoc-var">true</span><span> 1 2 (</span><span class="coqdoc-var">O_S</span><span> 1) </span><span class="coqdoc-var">one_two_irred</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>half' is defined
+</span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">half'</span><span> := </span><span class="rocqdoc-var">mkRat</span><span> </span><span class="rocqdoc-var">true</span><span> 1 2 (</span><span class="rocqdoc-var">O_S</span><span> 1) </span><span class="rocqdoc-var">one_two_irred</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>half' is defined
 </span></dd>
 </dl>
 </div>
@@ -1653,16 +1653,16 @@ considered an explicit argument of <a class="reference internal" href="modules.h
 formally declared as implicit (see <a class="reference internal" href="../extensions/implicit-arguments.html#implicitarguments"><span class="std std-ref">Implicit arguments</span></a>).</p>
 <div class="admonition note">
 <p class="admonition-title">Example: Accessing record fields</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-comment">(* projection form *)</span><span>
-</span><span class="coqdoc-keyword">Eval</span><span> </span><span class="coqdoc-tactic">compute</span><span> </span><span class="coqdoc-tactic">in</span><span> </span><span class="coqdoc-var">half</span><span>.(</span><span class="coqdoc-var">top</span><span>).</span><span>
+<dt><span></span><span class="rocqdoc-comment">(* projection form *)</span><span>
+</span><span class="rocqdoc-keyword">Eval</span><span> </span><span class="rocqdoc-tactic">compute</span><span> </span><span class="rocqdoc-tactic">in</span><span> </span><span class="rocqdoc-var">half</span><span>.(</span><span class="rocqdoc-var">top</span><span>).</span><span>
 </span></dt><dd><span>     = 1
      : nat
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-comment">(* application form *)</span><span>
-</span><span class="coqdoc-keyword">Eval</span><span> </span><span class="coqdoc-tactic">compute</span><span> </span><span class="coqdoc-tactic">in</span><span> </span><span class="coqdoc-var">top</span><span> </span><span class="coqdoc-var">half</span><span>.</span><span>
+</span><span class="rocqdoc-comment">(* application form *)</span><span>
+</span><span class="rocqdoc-keyword">Eval</span><span> </span><span class="rocqdoc-tactic">compute</span><span> </span><span class="rocqdoc-tactic">in</span><span> </span><span class="rocqdoc-var">top</span><span> </span><span class="rocqdoc-var">half</span><span>.</span><span>
 </span></dt><dd><span>     = 1
      : nat
 </span></dd>
@@ -1671,13 +1671,13 @@ formally declared as implicit (see <a class="reference internal" href="../extens
 </div>
 <div class="admonition note">
 <p class="admonition-title">Example: Matching on records</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Eval</span><span> </span><span class="coqdoc-tactic">compute</span><span> </span><span class="coqdoc-tactic">in</span><span> (</span><span>
-  </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">half</span><span> </span><span class="coqdoc-keyword">with</span><span>
-  | {| </span><span class="coqdoc-var">negative</span><span> := </span><span class="coqdoc-var">false</span><span>; </span><span class="coqdoc-var">top</span><span> := </span><span class="coqdoc-var">n</span><span> |} =&gt; </span><span class="coqdoc-var">n</span><span>
-  | </span><span class="coqdoc-var">_</span><span> =&gt; 0</span><span>
-  </span><span class="coqdoc-keyword">end</span><span>).</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Eval</span><span> </span><span class="rocqdoc-tactic">compute</span><span> </span><span class="rocqdoc-tactic">in</span><span> (</span><span>
+  </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">half</span><span> </span><span class="rocqdoc-keyword">with</span><span>
+  | {| </span><span class="rocqdoc-var">negative</span><span> := </span><span class="rocqdoc-var">false</span><span>; </span><span class="rocqdoc-var">top</span><span> := </span><span class="rocqdoc-var">n</span><span> |} =&gt; </span><span class="rocqdoc-var">n</span><span>
+  | </span><span class="rocqdoc-var">_</span><span> =&gt; 0</span><span>
+  </span><span class="rocqdoc-keyword">end</span><span>).</span><span>
 </span></dt><dd><span>     = 1
      : nat
 </span></dd>
@@ -1686,20 +1686,20 @@ formally declared as implicit (see <a class="reference internal" href="../extens
 </div>
 <div class="admonition note">
 <p class="admonition-title">Example: Accessing anonymous record fields with match</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Record</span><span> </span><span class="coqdoc-var">T</span><span> := </span><span class="coqdoc-var">const</span><span> { </span><span class="coqdoc-var">_</span><span> : </span><span class="coqdoc-var">nat</span><span> }.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>T is defined
+<dt><span></span><span class="rocqdoc-keyword">Record</span><span> </span><span class="rocqdoc-var">T</span><span> := </span><span class="rocqdoc-var">const</span><span> { </span><span class="rocqdoc-var">_</span><span> : </span><span class="rocqdoc-var">nat</span><span> }.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>T is defined
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">gett</span><span> </span><span class="coqdoc-var">x</span><span> := </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-keyword">with</span><span> </span><span class="coqdoc-var">const</span><span> </span><span class="coqdoc-var">n</span><span> =&gt; </span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-keyword">end</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>gett is defined
+<dt><span></span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">gett</span><span> </span><span class="rocqdoc-var">x</span><span> := </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-keyword">with</span><span> </span><span class="rocqdoc-var">const</span><span> </span><span class="rocqdoc-var">n</span><span> =&gt; </span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-keyword">end</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>gett is defined
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">inst</span><span> := </span><span class="coqdoc-var">const</span><span> 3.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>inst is defined
+<dt><span></span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">inst</span><span> := </span><span class="rocqdoc-var">const</span><span> 3.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>inst is defined
 </span></dd>
 </dl>
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Eval</span><span> </span><span class="coqdoc-tactic">compute</span><span> </span><span class="coqdoc-tactic">in</span><span> </span><span class="coqdoc-var">gett</span><span> </span><span class="coqdoc-var">inst</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Eval</span><span> </span><span class="rocqdoc-tactic">compute</span><span> </span><span class="rocqdoc-tactic">in</span><span> </span><span class="rocqdoc-var">gett</span><span> </span><span class="rocqdoc-var">inst</span><span>.</span><span>
 </span></dt><dd><span>     = 3
      : nat
 </span></dd>
@@ -1711,42 +1711,42 @@ formally declared as implicit (see <a class="reference internal" href="../extens
 <section id="settings-for-printing-records">
 <h2>Settings for printing records<a class="headerlink" href="#settings-for-printing-records" title="Link to this heading"></a></h2>
 <p>The following settings let you control the display format for record types:</p>
-<dl class="coq flag">
-<dt class="sig sig-object coq" id="coq:flag.Printing-Records">
-<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Records</span></span></span></span></span><a class="headerlink" href="#coq:flag.Printing-Records" title="Link to this definition"></a></dt>
+<dl class="rocq flag">
+<dt class="sig sig-object rocq" id="rocq:flag.Printing-Records">
+<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Records</span></span></span></span></span><a class="headerlink" href="#rocq:flag.Printing-Records" title="Link to this definition"></a></dt>
 <dd><p>When this <a class="reference internal" href="basic.html#term-flag"><span class="xref std std-term">flag</span></a> is on (this is the default),
 use the record syntax (shown above) as the default display format.</p>
 </dd></dl>
 
 <p>You can override the display format for specified record types by adding entries to these tables:</p>
-<dl class="coq table">
-<dt class="sig sig-object coq" id="coq:table.Printing-Record">
-<em class="property"><span class="sigannot"><span class="pre">Table</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Record</span></span></span> <a class="reference internal" href="modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></span><a class="headerlink" href="#coq:table.Printing-Record" title="Link to this definition"></a></dt>
+<dl class="rocq table">
+<dt class="sig sig-object rocq" id="rocq:table.Printing-Record">
+<em class="property"><span class="sigannot"><span class="pre">Table</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Record</span></span></span> <a class="reference internal" href="modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></span><a class="headerlink" href="#rocq:table.Printing-Record" title="Link to this definition"></a></dt>
 <dd><p>This <a class="reference internal" href="basic.html#term-table"><span class="xref std std-term">table</span></a> specifies a set of qualids which are displayed as records.  Use the
-<a class="reference internal" href="basic.html#coq:cmd.Add" title="Add"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Add</span></code></a> and <a class="reference internal" href="basic.html#coq:cmd.Remove" title="Remove"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Remove</span></code></a> commands to update the set of qualids.</p>
+<a class="reference internal" href="basic.html#rocq:cmd.Add" title="Add"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Add</span></code></a> and <a class="reference internal" href="basic.html#rocq:cmd.Remove" title="Remove"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Remove</span></code></a> commands to update the set of qualids.</p>
 </dd></dl>
 
-<dl class="coq table">
-<dt class="sig sig-object coq" id="coq:table.Printing-Constructor">
-<em class="property"><span class="sigannot"><span class="pre">Table</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Constructor</span></span></span> <a class="reference internal" href="modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></span><a class="headerlink" href="#coq:table.Printing-Constructor" title="Link to this definition"></a></dt>
+<dl class="rocq table">
+<dt class="sig sig-object rocq" id="rocq:table.Printing-Constructor">
+<em class="property"><span class="sigannot"><span class="pre">Table</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Constructor</span></span></span> <a class="reference internal" href="modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></span><a class="headerlink" href="#rocq:table.Printing-Constructor" title="Link to this definition"></a></dt>
 <dd><p>This <a class="reference internal" href="basic.html#term-table"><span class="xref std std-term">table</span></a> specifies a set of qualids which are displayed as constructors.  Use the
-<a class="reference internal" href="basic.html#coq:cmd.Add" title="Add"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Add</span></code></a> and <a class="reference internal" href="basic.html#coq:cmd.Remove" title="Remove"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Remove</span></code></a> commands to update the set of qualids.</p>
+<a class="reference internal" href="basic.html#rocq:cmd.Add" title="Add"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Add</span></code></a> and <a class="reference internal" href="basic.html#rocq:cmd.Remove" title="Remove"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Remove</span></code></a> commands to update the set of qualids.</p>
 </dd></dl>
 
-<dl class="coq flag">
-<dt class="sig sig-object coq" id="coq:flag.Printing-Projections">
-<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Projections</span></span></span></span></span><a class="headerlink" href="#coq:flag.Printing-Projections" title="Link to this definition"></a></dt>
+<dl class="rocq flag">
+<dt class="sig sig-object rocq" id="rocq:flag.Printing-Projections">
+<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Projections</span></span></span></span></span><a class="headerlink" href="#rocq:flag.Printing-Projections" title="Link to this definition"></a></dt>
 <dd><p>Activates the projection form (dot notation) for printing projections (off by default).</p>
 <div class="admonition note">
 <p class="admonition-title">Example</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-var">top</span><span> </span><span class="coqdoc-var">half</span><span>. </span><span class="coqdoc-comment">(* off: application form *)</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-var">top</span><span> </span><span class="rocqdoc-var">half</span><span>. </span><span class="rocqdoc-comment">(* off: application form *)</span><span>
 </span></dt><dd><span>top half
      : nat
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Set</span><span> </span><span class="coqdoc-keyword">Printing</span><span> </span><span class="coqdoc-var">Projections</span><span>.</span><span>
-</span></dt><dt><span></span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-var">top</span><span> </span><span class="coqdoc-var">half</span><span>. </span><span class="coqdoc-comment">(* on:  projection form *)</span></dt><dd><span>half.(top)
+<dt><span></span><span class="rocqdoc-keyword">Set</span><span> </span><span class="rocqdoc-keyword">Printing</span><span> </span><span class="rocqdoc-var">Projections</span><span>.</span><span>
+</span></dt><dt><span></span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-var">top</span><span> </span><span class="rocqdoc-var">half</span><span>. </span><span class="rocqdoc-comment">(* on:  projection form *)</span></dt><dd><span>half.(top)
      : nat
 </span></dd>
 </dl>
@@ -1758,35 +1758,35 @@ use the record syntax (shown above) as the default display format.</p>
 <section id="primitive-projections">
 <span id="id2"></span><h2>Primitive Projections<a class="headerlink" href="#primitive-projections" title="Link to this heading"></a></h2>
 <p>Note: the design of primitive projections is still evolving.</p>
-<p>When the <a class="reference internal" href="#coq:flag.Primitive-Projections" title="Primitive Projections"><code class="xref coq coq-flag docutils literal notranslate"><span class="pre">Primitive</span> <span class="pre">Projections</span></code></a> flag is on or the
-<a class="reference internal" href="#coq:attr.projections(primitive)" title="projections(primitive)"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">projections(primitive)</span></code></a> attribute is supplied for a <a class="reference internal" href="#coq:cmd.Record" title="Record"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Record</span></code></a> definition, its
+<p>When the <a class="reference internal" href="#rocq:flag.Primitive-Projections" title="Primitive Projections"><code class="xref rocq rocq-flag docutils literal notranslate"><span class="pre">Primitive</span> <span class="pre">Projections</span></code></a> flag is on or the
+<a class="reference internal" href="#rocq:attr.projections(primitive)" title="projections(primitive)"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">projections(primitive)</span></code></a> attribute is supplied for a <a class="reference internal" href="#rocq:cmd.Record" title="Record"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Record</span></code></a> definition, its
 <code class="code Coq docutils literal notranslate"><span class="keyword"><span class="pre">match</span></span></code> construct is disabled. To eliminate the record type, one must
 use its defined primitive projections.</p>
 <p>For compatibility, the parameters still appear when printing terms
 even though they are absent in the actual AST manipulated by the kernel. This
-can be changed by unsetting the <a class="reference internal" href="#coq:flag.Printing-Primitive-Projection-Parameters" title="Printing Primitive Projection Parameters"><code class="xref coq coq-flag docutils literal notranslate"><span class="pre">Printing</span> <span class="pre">Primitive</span> <span class="pre">Projection</span> <span class="pre">Parameters</span></code></a>
+can be changed by unsetting the <a class="reference internal" href="#rocq:flag.Printing-Primitive-Projection-Parameters" title="Printing Primitive Projection Parameters"><code class="xref rocq rocq-flag docutils literal notranslate"><span class="pre">Printing</span> <span class="pre">Primitive</span> <span class="pre">Projection</span> <span class="pre">Parameters</span></code></a>
 flag.</p>
 <p>There are currently two ways to introduce primitive records types:</p>
 <ol class="arabic simple">
-<li><p>Through the <a class="reference internal" href="#coq:cmd.Record" title="Record"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Record</span></code></a> command, in which case the type has to be
+<li><p>Through the <a class="reference internal" href="#rocq:cmd.Record" title="Record"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Record</span></code></a> command, in which case the type has to be
 non-recursive. The defined type enjoys eta-conversion definitionally,
 that is the generalized form of surjective pairing for records:
 <code class="docutils literal notranslate"><span class="pre">r</span></code> <code class="docutils literal notranslate"><span class="pre">=</span> <span class="pre">Build_</span></code><code class="docutils literal notranslate"><span class="pre">R</span></code> <code class="docutils literal notranslate"><span class="pre">(</span></code><code class="docutils literal notranslate"><span class="pre">r</span></code><code class="docutils literal notranslate"><span class="pre">.(</span></code><code class="docutils literal notranslate"><span class="pre">p</span></code><span class="math notranslate nohighlight">\(_{1}\)</span><code class="docutils literal notranslate"><span class="pre">)</span> <span class="pre">…</span></code> <code class="docutils literal notranslate"><span class="pre">r</span></code><code class="docutils literal notranslate"><span class="pre">.(</span></code><code class="docutils literal notranslate"><span class="pre">p</span></code><span class="math notranslate nohighlight">\(_{n}\)</span><code class="docutils literal notranslate"><span class="pre">))</span></code>.
 Eta-conversion allows to define dependent elimination for these types as well.</p></li>
-<li><p>Through the <a class="reference internal" href="inductive.html#coq:cmd.Inductive" title="Inductive"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Inductive</span></code></a> and <a class="reference internal" href="coinductive.html#coq:cmd.CoInductive" title="CoInductive"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">CoInductive</span></code></a> commands, when
+<li><p>Through the <a class="reference internal" href="inductive.html#rocq:cmd.Inductive" title="Inductive"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Inductive</span></code></a> and <a class="reference internal" href="coinductive.html#rocq:cmd.CoInductive" title="CoInductive"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">CoInductive</span></code></a> commands, when
 the <a class="reference internal" href="definitions.html#term-body"><span class="xref std std-term">body</span></a> of the definition is a record declaration of the form
 <code class="docutils literal notranslate"><span class="pre">Build_</span></code><code class="docutils literal notranslate"><span class="pre">R</span></code> <code class="docutils literal notranslate"><span class="pre">{</span></code> <code class="docutils literal notranslate"><span class="pre">p</span></code><span class="math notranslate nohighlight">\(_{1}\)</span> <code class="docutils literal notranslate"><span class="pre">:</span></code> <code class="docutils literal notranslate"><span class="pre">t</span></code><span class="math notranslate nohighlight">\(_{1}\)</span><code class="docutils literal notranslate"><span class="pre">;</span> <span class="pre">…</span> <span class="pre">;</span></code> <code class="docutils literal notranslate"><span class="pre">p</span></code><span class="math notranslate nohighlight">\(_{n}\)</span> <code class="docutils literal notranslate"><span class="pre">:</span></code> <code class="docutils literal notranslate"><span class="pre">t</span></code><span class="math notranslate nohighlight">\(_{n}\)</span> <code class="docutils literal notranslate"><span class="pre">}</span></code>.
 In this case the types can be recursive and eta-conversion is disallowed.
 Dependent elimination is not available for such types;
 you must use non-dependent case analysis for these.</p></li>
 </ol>
-<p>For both cases the <a class="reference internal" href="#coq:flag.Primitive-Projections" title="Primitive Projections"><code class="xref coq coq-flag docutils literal notranslate"><span class="pre">Primitive</span> <span class="pre">Projections</span></code></a> <a class="reference internal" href="basic.html#term-flag"><span class="xref std std-term">flag</span></a> must be set or
-the <a class="reference internal" href="#coq:attr.projections(primitive)" title="projections(primitive)"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">projections(primitive)</span></code></a> <a class="reference internal" href="basic.html#term-attribute"><span class="xref std std-term">attribute</span></a>  must be supplied.</p>
-<dl class="coq flag">
-<dt class="sig sig-object coq" id="coq:flag.Primitive-Projections">
-<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Primitive</span></span></span> <span><span><span class="pre">Projections</span></span></span></span></span><a class="headerlink" href="#coq:flag.Primitive-Projections" title="Link to this definition"></a></dt>
+<p>For both cases the <a class="reference internal" href="#rocq:flag.Primitive-Projections" title="Primitive Projections"><code class="xref rocq rocq-flag docutils literal notranslate"><span class="pre">Primitive</span> <span class="pre">Projections</span></code></a> <a class="reference internal" href="basic.html#term-flag"><span class="xref std std-term">flag</span></a> must be set or
+the <a class="reference internal" href="#rocq:attr.projections(primitive)" title="projections(primitive)"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">projections(primitive)</span></code></a> <a class="reference internal" href="basic.html#term-attribute"><span class="xref std std-term">attribute</span></a>  must be supplied.</p>
+<dl class="rocq flag">
+<dt class="sig sig-object rocq" id="rocq:flag.Primitive-Projections">
+<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Primitive</span></span></span> <span><span><span class="pre">Projections</span></span></span></span></span><a class="headerlink" href="#rocq:flag.Primitive-Projections" title="Link to this definition"></a></dt>
 <dd><p>This <a class="reference internal" href="basic.html#term-flag"><span class="xref std std-term">flag</span></a> turns on the use of primitive projections when defining
-subsequent records (even through the <a class="reference internal" href="inductive.html#coq:cmd.Inductive" title="Inductive"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Inductive</span></code></a> and <a class="reference internal" href="coinductive.html#coq:cmd.CoInductive" title="CoInductive"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">CoInductive</span></code></a>
+subsequent records (even through the <a class="reference internal" href="inductive.html#rocq:cmd.Inductive" title="Inductive"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Inductive</span></code></a> and <a class="reference internal" href="coinductive.html#rocq:cmd.CoInductive" title="CoInductive"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">CoInductive</span></code></a>
 commands). Primitive projections extend the Calculus of Inductive
 Constructions with a new binary term constructor <code class="docutils literal notranslate"><span class="pre">r.(p)</span></code> representing a
 primitive projection <code class="docutils literal notranslate"><span class="pre">p</span></code> applied to a record object <code class="docutils literal notranslate"><span class="pre">r</span></code> (i.e., primitive
@@ -1798,17 +1798,17 @@ projections can be used as a replacement for the usual defined ones, although
 there are a few notable differences.</p>
 </dd></dl>
 
-<dl class="coq attr">
-<dt class="sig sig-object coq" id="coq:attr.projections(primitive)">
-<em class="property"><span class="sigannot"><span class="pre">Attribute</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">projections(primitive</span></span></span><span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">=</span></span></span> <span class="alternative"><span class="alternative-block"><span><span><span class="pre">yes</span></span></span></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><span><span><span class="pre">no</span></span></span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span><span><span><span class="pre">)</span></span></span></span></span><a class="headerlink" href="#coq:attr.projections(primitive)" title="Link to this definition"></a></dt>
+<dl class="rocq attr">
+<dt class="sig sig-object rocq" id="rocq:attr.projections(primitive)">
+<em class="property"><span class="sigannot"><span class="pre">Attribute</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">projections(primitive</span></span></span><span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">=</span></span></span> <span class="alternative"><span class="alternative-block"><span><span><span class="pre">yes</span></span></span></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><span><span><span class="pre">no</span></span></span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span><span><span><span class="pre">)</span></span></span></span></span><a class="headerlink" href="#rocq:attr.projections(primitive)" title="Link to this definition"></a></dt>
 <dd><p>This <a class="reference internal" href="basic.html#term-boolean-attribute"><span class="xref std std-term">boolean attribute</span></a> can be used to override the value of the
-<a class="reference internal" href="#coq:flag.Primitive-Projections" title="Primitive Projections"><code class="xref coq coq-flag docutils literal notranslate"><span class="pre">Primitive</span> <span class="pre">Projections</span></code></a> <a class="reference internal" href="basic.html#term-flag"><span class="xref std std-term">flag</span></a> for the record type being
+<a class="reference internal" href="#rocq:flag.Primitive-Projections" title="Primitive Projections"><code class="xref rocq rocq-flag docutils literal notranslate"><span class="pre">Primitive</span> <span class="pre">Projections</span></code></a> <a class="reference internal" href="basic.html#term-flag"><span class="xref std std-term">flag</span></a> for the record type being
 defined.</p>
 </dd></dl>
 
-<dl class="coq flag">
-<dt class="sig sig-object coq" id="coq:flag.Printing-Primitive-Projection-Parameters">
-<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Primitive</span></span></span> <span><span><span class="pre">Projection</span></span></span> <span><span><span class="pre">Parameters</span></span></span></span></span><a class="headerlink" href="#coq:flag.Printing-Primitive-Projection-Parameters" title="Link to this definition"></a></dt>
+<dl class="rocq flag">
+<dt class="sig sig-object rocq" id="rocq:flag.Printing-Primitive-Projection-Parameters">
+<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Primitive</span></span></span> <span><span><span class="pre">Projection</span></span></span> <span><span><span class="pre">Parameters</span></span></span></span></span><a class="headerlink" href="#rocq:flag.Printing-Primitive-Projection-Parameters" title="Link to this definition"></a></dt>
 <dd><p>This compatibility <a class="reference internal" href="basic.html#term-flag"><span class="xref std std-term">flag</span></a> (off by default) reconstructs
 internally omitted parameters at printing time (even though they
 are absent in the actual AST manipulated by the kernel).</p>
@@ -1822,7 +1822,7 @@ However, to take the δ flag into account, projections can be in two states:
 folded or unfolded. An unfolded primitive projection application obeys the rule
 above, while the folded version delta-reduces to the unfolded version. This
 allows to precisely mimic the usual unfolding rules of <a class="reference internal" href="definitions.html#term-constant"><span class="xref std std-term">constants</span></a>.
-Projections obey the usual <code class="docutils literal notranslate"><span class="pre">simpl</span></code> flags of the <a class="reference internal" href="../extensions/arguments-command.html#coq:cmd.Arguments" title="Arguments"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Arguments</span></code></a>
+Projections obey the usual <code class="docutils literal notranslate"><span class="pre">simpl</span></code> flags of the <a class="reference internal" href="../extensions/arguments-command.html#rocq:cmd.Arguments" title="Arguments"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Arguments</span></code></a>
 command in particular.</p>
 <p>Unfolded primitive projections can be built using the compatibility
 match syntax for primitive records, or by reducing the compatibility constant.</p>
@@ -1830,26 +1830,26 @@ match syntax for primitive records, or by reducing the compatibility constant.</
 desugared using the unfolded primitive projections and <code class="docutils literal notranslate"><span class="pre">let</span></code> bindings.</p>
 <div class="admonition note">
 <p class="admonition-title">Example</p>
-<div class="coqtop literal-block docutils container">
-<span class="coqtop-reset"></span><dl>
-<dt><span>#[</span><span class="coqdoc-var">projections</span><span>(</span><span class="coqdoc-var">primitive</span><span>)] </span><span class="coqdoc-keyword">Record</span><span> </span><span class="coqdoc-var">Sigma</span><span> </span><span class="coqdoc-var">A</span><span> </span><span class="coqdoc-var">B</span><span> := </span><span class="coqdoc-var">sigma</span><span> { </span><span class="coqdoc-var">p1</span><span> : </span><span class="coqdoc-var">A</span><span>; </span><span class="coqdoc-var">p2</span><span> : </span><span class="coqdoc-var">B</span><span> </span><span class="coqdoc-var">p1</span><span> }.</span><span>
+<div class="rocqtop literal-block docutils container">
+<span class="rocqtop-reset"></span><dl>
+<dt><span>#[</span><span class="rocqdoc-var">projections</span><span>(</span><span class="rocqdoc-var">primitive</span><span>)] </span><span class="rocqdoc-keyword">Record</span><span> </span><span class="rocqdoc-var">Sigma</span><span> </span><span class="rocqdoc-var">A</span><span> </span><span class="rocqdoc-var">B</span><span> := </span><span class="rocqdoc-var">sigma</span><span> { </span><span class="rocqdoc-var">p1</span><span> : </span><span class="rocqdoc-var">A</span><span>; </span><span class="rocqdoc-var">p2</span><span> : </span><span class="rocqdoc-var">B</span><span> </span><span class="rocqdoc-var">p1</span><span> }.</span><span>
 </span></dt><dd><span>Sigma is defined
 p1 is defined
 p2 is defined
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Arguments</span><span> </span><span class="coqdoc-var">sigma</span><span> {</span><span class="coqdoc-var">_</span><span> </span><span class="coqdoc-var">_</span><span>} </span><span class="coqdoc-var">_</span><span> </span><span class="coqdoc-var">_</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Arguments</span><span> </span><span class="rocqdoc-var">sigma</span><span> {</span><span class="rocqdoc-var">_</span><span> </span><span class="rocqdoc-var">_</span><span>} </span><span class="rocqdoc-var">_</span><span> </span><span class="rocqdoc-var">_</span><span>.</span><span>
 </span></dt><dt><span></span><span>
-</span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">x</span><span> : </span><span class="coqdoc-var">Sigma</span><span> </span><span class="coqdoc-var">nat</span><span> (</span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">_</span><span> =&gt; </span><span class="coqdoc-var">nat</span><span>) =&gt;</span><span>
-  </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-keyword">with</span><span> </span><span class="coqdoc-var">sigma</span><span> </span><span class="coqdoc-var">v</span><span> </span><span class="coqdoc-var">_</span><span> =&gt; </span><span class="coqdoc-var">v</span><span> + </span><span class="coqdoc-var">v</span><span> </span><span class="coqdoc-keyword">end</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">x</span><span> : </span><span class="rocqdoc-var">Sigma</span><span> </span><span class="rocqdoc-var">nat</span><span> (</span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">_</span><span> =&gt; </span><span class="rocqdoc-var">nat</span><span>) =&gt;</span><span>
+  </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-keyword">with</span><span> </span><span class="rocqdoc-var">sigma</span><span> </span><span class="rocqdoc-var">v</span><span> </span><span class="rocqdoc-var">_</span><span> =&gt; </span><span class="rocqdoc-var">v</span><span> + </span><span class="rocqdoc-var">v</span><span> </span><span class="rocqdoc-keyword">end</span><span>.</span><span>
 </span></dt><dd><span class="ansi-bold">fun</span><span> x : Sigma nat (</span><span class="ansi-bold">fun</span><span> _ : nat =&gt; nat) =&gt;
 </span><span class="ansi-bold">let</span><span> x0 := x </span><span class="ansi-bold">in</span><span> </span><span class="ansi-bold">let</span><span> v := p1 _ _ x0 </span><span class="ansi-bold">in</span><span> </span><span class="ansi-bold">let</span><span> p2 := p2 _ _ x0 </span><span class="ansi-bold">in</span><span> v</span><span> +</span><span> v
      : Sigma nat (</span><span class="ansi-bold">fun</span><span> _ : nat =&gt; nat)</span><span> -&gt;</span><span> nat
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">x</span><span> : </span><span class="coqdoc-var">Sigma</span><span> </span><span class="coqdoc-var">nat</span><span> (</span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">x</span><span> =&gt; </span><span class="coqdoc-var">x</span><span> = 0) =&gt;</span><span>
-  </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-keyword">return</span><span> </span><span class="coqdoc-tactic">exists</span><span> </span><span class="coqdoc-var">y</span><span>, </span><span class="coqdoc-var">y</span><span> = 0 </span><span class="coqdoc-keyword">with</span><span>
-    </span><span class="coqdoc-var">sigma</span><span> </span><span class="coqdoc-var">v</span><span> </span><span class="coqdoc-var">e</span><span> =&gt; </span><span class="coqdoc-var">ex_intro</span><span> </span><span class="coqdoc-var">_</span><span> </span><span class="coqdoc-var">v</span><span> </span><span class="coqdoc-var">e</span><span>
-  </span><span class="coqdoc-keyword">end</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">x</span><span> : </span><span class="rocqdoc-var">Sigma</span><span> </span><span class="rocqdoc-var">nat</span><span> (</span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">x</span><span> =&gt; </span><span class="rocqdoc-var">x</span><span> = 0) =&gt;</span><span>
+  </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-keyword">return</span><span> </span><span class="rocqdoc-tactic">exists</span><span> </span><span class="rocqdoc-var">y</span><span>, </span><span class="rocqdoc-var">y</span><span> = 0 </span><span class="rocqdoc-keyword">with</span><span>
+    </span><span class="rocqdoc-var">sigma</span><span> </span><span class="rocqdoc-var">v</span><span> </span><span class="rocqdoc-var">e</span><span> =&gt; </span><span class="rocqdoc-var">ex_intro</span><span> </span><span class="rocqdoc-var">_</span><span> </span><span class="rocqdoc-var">v</span><span> </span><span class="rocqdoc-var">e</span><span>
+  </span><span class="rocqdoc-keyword">end</span><span>.</span><span>
 </span></dt><dd><span class="ansi-bold">fun</span><span> x : Sigma nat (</span><span class="ansi-bold">fun</span><span> x : nat =&gt; x</span><span> =</span><span> 0) =&gt;
 </span><span class="ansi-bold">let</span><span> x0 := x </span><span class="ansi-bold">in</span><span>
 </span><span class="ansi-bold">let</span><span> v := p1 _ _ x0 </span><span class="ansi-bold">in</span><span>
@@ -1859,20 +1859,20 @@ p2 is defined
 </dl>
 </div>
 <p>Matches which are equivalent to just a projection have adhoc handling to avoid generating useless <code class="docutils literal notranslate"><span class="pre">let</span></code>:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Arguments</span><span> </span><span class="coqdoc-var">p1</span><span> {</span><span class="coqdoc-var">_</span><span> </span><span class="coqdoc-var">_</span><span>} </span><span class="coqdoc-var">_</span><span>.</span><span>
-</span></dt><dt><span></span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">x</span><span> : </span><span class="coqdoc-var">Sigma</span><span> </span><span class="coqdoc-var">nat</span><span> (</span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">x</span><span> =&gt; </span><span class="coqdoc-var">x</span><span> = 0) =&gt;</span><span>
-  </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-keyword">return</span><span> </span><span class="coqdoc-var">x</span><span>.(</span><span class="coqdoc-var">p1</span><span>) = 0 </span><span class="coqdoc-keyword">with</span><span> </span><span class="coqdoc-var">sigma</span><span> </span><span class="coqdoc-var">v</span><span> </span><span class="coqdoc-var">e</span><span> =&gt; </span><span class="coqdoc-var">e</span><span> </span><span class="coqdoc-keyword">end</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Arguments</span><span> </span><span class="rocqdoc-var">p1</span><span> {</span><span class="rocqdoc-var">_</span><span> </span><span class="rocqdoc-var">_</span><span>} </span><span class="rocqdoc-var">_</span><span>.</span><span>
+</span></dt><dt><span></span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">x</span><span> : </span><span class="rocqdoc-var">Sigma</span><span> </span><span class="rocqdoc-var">nat</span><span> (</span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">x</span><span> =&gt; </span><span class="rocqdoc-var">x</span><span> = 0) =&gt;</span><span>
+  </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-keyword">return</span><span> </span><span class="rocqdoc-var">x</span><span>.(</span><span class="rocqdoc-var">p1</span><span>) = 0 </span><span class="rocqdoc-keyword">with</span><span> </span><span class="rocqdoc-var">sigma</span><span> </span><span class="rocqdoc-var">v</span><span> </span><span class="rocqdoc-var">e</span><span> =&gt; </span><span class="rocqdoc-var">e</span><span> </span><span class="rocqdoc-keyword">end</span><span>.</span><span>
 </span></dt><dd><span class="ansi-bold">fun</span><span> x : Sigma nat (</span><span class="ansi-bold">fun</span><span> x : nat =&gt; x</span><span> =</span><span> 0) =&gt; p2 _ _ x
      : </span><span class="ansi-bold">forall</span><span> x : Sigma nat (</span><span class="ansi-bold">fun</span><span> x : nat =&gt; x</span><span> =</span><span> 0), p1 x</span><span> =</span><span> 0
 </span></dd>
 </dl>
 </div>
 </div>
-<dl class="coq flag">
-<dt class="sig sig-object coq" id="coq:flag.Printing-Unfolded-Projection-As-Match">
-<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Unfolded</span></span></span> <span><span><span class="pre">Projection</span></span></span> <span><span><span class="pre">As</span></span></span> <span><span><span class="pre">Match</span></span></span></span></span><a class="headerlink" href="#coq:flag.Printing-Unfolded-Projection-As-Match" title="Link to this definition"></a></dt>
+<dl class="rocq flag">
+<dt class="sig sig-object rocq" id="rocq:flag.Printing-Unfolded-Projection-As-Match">
+<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Unfolded</span></span></span> <span><span><span class="pre">Projection</span></span></span> <span><span><span class="pre">As</span></span></span> <span><span><span class="pre">Match</span></span></span></span></span><a class="headerlink" href="#rocq:flag.Printing-Unfolded-Projection-As-Match" title="Link to this definition"></a></dt>
 <dd><p>By default this flag is off and unfolded primitive projections are
 printed the same as folded primitive projections. By setting this
 flag, unfolded primitive projections are instead printed as
@@ -1887,7 +1887,7 @@ also defined as an ordinary <a class="reference internal" href="definitions.html
 the record type as arguments, and whose <a class="reference internal" href="definitions.html#term-body"><span class="xref std std-term">body</span></a> is an application of the
 unfolded primitive projection of the same name. These constants are used when
 elaborating partial applications of the projection. One can distinguish them
-from applications of the primitive projection if the <a class="reference internal" href="#coq:flag.Printing-Primitive-Projection-Parameters" title="Printing Primitive Projection Parameters"><code class="xref coq coq-flag docutils literal notranslate"><span class="pre">Printing</span> <span class="pre">Primitive</span>
+from applications of the primitive projection if the <a class="reference internal" href="#rocq:flag.Printing-Primitive-Projection-Parameters" title="Printing Primitive Projection Parameters"><code class="xref rocq rocq-flag docutils literal notranslate"><span class="pre">Printing</span> <span class="pre">Primitive</span>
 <span class="pre">Projection</span> <span class="pre">Parameters</span></code></a> flag is off: For a primitive projection application,
 parameters are printed as underscores while for the compatibility projections
 they are printed as usual. They cannot be distinguished if the record has no parameters.</p>

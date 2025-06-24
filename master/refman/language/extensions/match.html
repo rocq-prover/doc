@@ -345,7 +345,7 @@
 <li class="toctree-l3"><a class="reference internal" href="arguments-command.html#automatic-declaration-of-implicit-arguments">Automatic declaration of implicit arguments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="arguments-command.html#renaming-implicit-arguments">Renaming implicit arguments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="arguments-command.html#binding-arguments-to-scopes">Binding arguments to scopes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="arguments-command.html#effects-of-arguments-on-unfolding">Effects of <code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Arguments</span></code> on unfolding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="arguments-command.html#effects-of-arguments-on-unfolding">Effects of <code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Arguments</span></code> on unfolding</a></li>
 <li class="toctree-l3"><a class="reference internal" href="arguments-command.html#bidirectionality-hints">Bidirectionality hints</a></li>
 </ul>
 </li>
@@ -506,7 +506,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#generation-of-inversion-principles-with-derive-inversion">Generation of inversion principles with <code class="docutils literal notranslate"><span class="pre">Derive</span></code> <code class="docutils literal notranslate"><span class="pre">Inversion</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#examples-of-dependent-destruction-dependent-induction">Examples of <code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">destruction</span></code> / <code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">induction</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#examples-of-dependent-destruction-dependent-induction">Examples of <code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">destruction</span></code> / <code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">induction</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#a-larger-example">A larger example</a></li>
 </ul>
 </li>
@@ -1297,28 +1297,28 @@ patterns are allowed, as in ML-like languages
 <p>The extension just acts as a macro that is expanded during parsing
 into a sequence of match on simple patterns. Especially, a
 construction defined using the extended match is generally printed
-under its expanded form (see <a class="reference internal" href="#coq:flag.Printing-Matching" title="Printing Matching"><code class="xref coq coq-flag docutils literal notranslate"><span class="pre">Printing</span> <span class="pre">Matching</span></code></a>).</p>
+under its expanded form (see <a class="reference internal" href="#rocq:flag.Printing-Matching" title="Printing Matching"><code class="xref rocq rocq-flag docutils literal notranslate"><span class="pre">Printing</span> <span class="pre">Matching</span></code></a>).</p>
 </section>
 <section id="pattern-matching-on-boolean-values-the-if-expression">
 <span id="if-then-else"></span><h3>Pattern-matching on boolean values: the if expression<a class="headerlink" href="#pattern-matching-on-boolean-values-the-if-expression" title="Link to this heading"></a></h3>
 <span class="prodn-table"><span class="prodn-column-group"><span class="prodn-column"></span><span class="prodn-column"></span><span class="prodn-column"></span><span class="prodn-column"></span></span><span class="prodn-row-group"><span class="prodn-row"><span class="prodn-cell-nonterminal"><span class="prodn-target"><span class="target" id="grammar-token-term_if"></span></span><span class="notation"><a class="reference internal" href="#grammar-token-term_if"><span class="hole">term_if</span></a></span></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">::=</span></code></span><span class="prodn-cell-production"><span class="notation"><span><span>if</span></span> <a class="reference internal" href="../core/basic.html#grammar-token-term"><span class="hole">term</span></a> <span class="repeat-wrapper"><span class="repeat"><span class="repeat-wrapper"><span class="repeat"><span><span>as</span></span> <a class="reference internal" href="../core/assumptions.html#grammar-token-name"><span class="hole">name</span></a></span><span class="notation-sup">?</span></span> <span><span>return</span></span> <a class="reference internal" href="../core/basic.html#grammar-token-term100"><span class="hole">term100</span></a></span><span class="notation-sup">?</span></span> <span><span>then</span></span> <a class="reference internal" href="../core/basic.html#grammar-token-term"><span class="hole">term</span></a> <span><span>else</span></span> <a class="reference internal" href="../core/basic.html#grammar-token-term"><span class="hole">term</span></a></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span></span></span><p>For inductive types with exactly two constructors and for pattern matching
 expressions that do not depend on the arguments of the constructors, it is possible
 to use a <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">…</span> <span class="pre">then</span> <span class="pre">…</span> <span class="pre">else</span></code> notation. For instance, the definition</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">not</span><span> (</span><span class="coqdoc-var">b</span><span>:</span><span class="coqdoc-var">bool</span><span>) :=</span><span>
-</span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">b</span><span> </span><span class="coqdoc-keyword">with</span><span>
-| </span><span class="coqdoc-var">true</span><span> =&gt; </span><span class="coqdoc-var">false</span><span>
-| </span><span class="coqdoc-var">false</span><span> =&gt; </span><span class="coqdoc-var">true</span><span>
-</span><span class="coqdoc-keyword">end</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">not</span><span> (</span><span class="rocqdoc-var">b</span><span>:</span><span class="rocqdoc-var">bool</span><span>) :=</span><span>
+</span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">b</span><span> </span><span class="rocqdoc-keyword">with</span><span>
+| </span><span class="rocqdoc-var">true</span><span> =&gt; </span><span class="rocqdoc-var">false</span><span>
+| </span><span class="rocqdoc-var">false</span><span> =&gt; </span><span class="rocqdoc-var">true</span><span>
+</span><span class="rocqdoc-keyword">end</span><span>.</span><span>
 </span></dt><dd><span>not is defined
 </span></dd>
 </dl>
 </div>
 <p>can be alternatively written</p>
-<div class="coqtop literal-block docutils container">
-<span class="coqtop-reset"></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">not</span><span> (</span><span class="coqdoc-var">b</span><span>:</span><span class="coqdoc-var">bool</span><span>) := </span><span class="coqdoc-keyword">if</span><span> </span><span class="coqdoc-var">b</span><span> </span><span class="coqdoc-keyword">then</span><span> </span><span class="coqdoc-var">false</span><span> </span><span class="coqdoc-keyword">else</span><span> </span><span class="coqdoc-var">true</span><span>.</span><span>
+<div class="rocqtop literal-block docutils container">
+<span class="rocqtop-reset"></span><dl>
+<dt><span></span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">not</span><span> (</span><span class="rocqdoc-var">b</span><span>:</span><span class="rocqdoc-var">bool</span><span>) := </span><span class="rocqdoc-keyword">if</span><span> </span><span class="rocqdoc-var">b</span><span> </span><span class="rocqdoc-keyword">then</span><span> </span><span class="rocqdoc-var">false</span><span> </span><span class="rocqdoc-keyword">else</span><span> </span><span class="rocqdoc-var">true</span><span>.</span><span>
 </span></dt><dd><span>not is defined
 </span></dd>
 </dl>
@@ -1329,13 +1329,13 @@ and <code class="docutils literal notranslate"><span class="notation"><a class="
 <p><code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">match</span></span></span> <a class="reference internal" href="../core/basic.html#grammar-token-term"><span class="hole"><span class="pre">term</span><sub><span class="pre">0</span></sub></span></a> <span class="repeat-wrapper"><span class="repeat"><span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">as</span></span></span> <a class="reference internal" href="../core/assumptions.html#grammar-token-name"><span class="hole"><span class="pre">name</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span> <span><span><span class="pre">return</span></span></span> <a class="reference internal" href="../core/basic.html#grammar-token-term"><span class="hole"><span class="pre">term</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span> <span><span><span class="pre">with</span></span></span> <span class="pre">|</span> <a class="reference internal" href="../core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span><sub><span class="pre">1</span></sub></span></a> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">_</span></span></span></span><span class="notation-sup"><span class="pre">*</span></span></span> <span><span><span class="pre">=&gt;</span></span></span> <a class="reference internal" href="../core/basic.html#grammar-token-term"><span class="hole"><span class="pre">term</span><sub><span class="pre">1</span></sub></span></a> <span class="pre">|</span> <a class="reference internal" href="../core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span><sub><span class="pre">2</span></sub></span></a> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">_</span></span></span></span><span class="notation-sup"><span class="pre">*</span></span></span> <span><span><span class="pre">=&gt;</span></span></span> <a class="reference internal" href="../core/basic.html#grammar-token-term"><span class="hole"><span class="pre">term</span><sub><span class="pre">2</span></sub></span></a> <span><span><span class="pre">end</span></span></span></span></code></p>
 <div class="admonition note">
 <p class="admonition-title">Example</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Check</span><span> (</span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">x</span><span> (</span><span class="coqdoc-var">H</span><span>:{</span><span class="coqdoc-var">x</span><span>=0}+{</span><span class="coqdoc-var">x</span><span>&lt;&gt;0}) =&gt;</span><span>
-</span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">H</span><span> </span><span class="coqdoc-keyword">with</span><span>
-| </span><span class="coqdoc-tactic">left</span><span> </span><span class="coqdoc-var">_</span><span> =&gt; </span><span class="coqdoc-var">true</span><span>
-| </span><span class="coqdoc-tactic">right</span><span> </span><span class="coqdoc-var">_</span><span> =&gt; </span><span class="coqdoc-var">false</span><span>
-</span><span class="coqdoc-keyword">end</span><span>).</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Check</span><span> (</span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">x</span><span> (</span><span class="rocqdoc-var">H</span><span>:{</span><span class="rocqdoc-var">x</span><span>=0}+{</span><span class="rocqdoc-var">x</span><span>&lt;&gt;0}) =&gt;</span><span>
+</span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">H</span><span> </span><span class="rocqdoc-keyword">with</span><span>
+| </span><span class="rocqdoc-tactic">left</span><span> </span><span class="rocqdoc-var">_</span><span> =&gt; </span><span class="rocqdoc-var">true</span><span>
+| </span><span class="rocqdoc-tactic">right</span><span> </span><span class="rocqdoc-var">_</span><span> =&gt; </span><span class="rocqdoc-var">false</span><span>
+</span><span class="rocqdoc-keyword">end</span><span>).</span><span>
 </span></dt><dd><span class="ansi-bold">fun</span><span> (x : nat) (H : </span><span>{</span><span>x</span><span> =</span><span> 0</span><span>}</span><span> </span><span>+</span><span> </span><span>{</span><span>x</span><span> &lt;&gt;</span><span> 0</span><span>}</span><span>) =&gt; </span><span class="ansi-bold">if</span><span> H </span><span class="ansi-bold">then</span><span> true </span><span class="ansi-bold">else</span><span> false
      : </span><span class="ansi-bold">forall</span><span> x : nat, </span><span>{</span><span>x</span><span> =</span><span> 0</span><span>}</span><span> </span><span>+</span><span> </span><span>{</span><span>x</span><span> &lt;&gt;</span><span> 0</span><span>}</span><span> -&gt;</span><span> bool
 </span></dd>
@@ -1359,19 +1359,19 @@ inductive type with exactly one constructor.  The number of variables
 constructor.  Then, in <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../core/basic.html#grammar-token-term"><span class="hole"><span class="pre">term</span><sub><span class="pre">1</span></sub></span></a></span></code>, these variables are bound to the
 arguments of the constructor in <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../core/basic.html#grammar-token-term"><span class="hole"><span class="pre">term</span><sub><span class="pre">0</span></sub></span></a></span></code>.  For instance, the
 definition</p>
-<div class="coqtop literal-block docutils container">
-<span class="coqtop-reset"></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">fst</span><span> (</span><span class="coqdoc-var">A</span><span> </span><span class="coqdoc-var">B</span><span>:</span><span class="coqdoc-keyword">Set</span><span>) (</span><span class="coqdoc-var">H</span><span>:</span><span class="coqdoc-var">A</span><span> * </span><span class="coqdoc-var">B</span><span>) := </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">H</span><span> </span><span class="coqdoc-keyword">with</span><span>
-| </span><span class="coqdoc-var">pair</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span> =&gt; </span><span class="coqdoc-var">x</span><span>
-</span><span class="coqdoc-keyword">end</span><span>.</span><span>
+<div class="rocqtop literal-block docutils container">
+<span class="rocqtop-reset"></span><dl>
+<dt><span></span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">fst</span><span> (</span><span class="rocqdoc-var">A</span><span> </span><span class="rocqdoc-var">B</span><span>:</span><span class="rocqdoc-keyword">Set</span><span>) (</span><span class="rocqdoc-var">H</span><span>:</span><span class="rocqdoc-var">A</span><span> * </span><span class="rocqdoc-var">B</span><span>) := </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">H</span><span> </span><span class="rocqdoc-keyword">with</span><span>
+| </span><span class="rocqdoc-var">pair</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> =&gt; </span><span class="rocqdoc-var">x</span><span>
+</span><span class="rocqdoc-keyword">end</span><span>.</span><span>
 </span></dt><dd><span>fst is defined
 </span></dd>
 </dl>
 </div>
 <p>can be alternatively written</p>
-<div class="coqtop literal-block docutils container">
-<span class="coqtop-reset"></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">fst</span><span> (</span><span class="coqdoc-var">A</span><span> </span><span class="coqdoc-var">B</span><span>:</span><span class="coqdoc-keyword">Set</span><span>) (</span><span class="coqdoc-var">p</span><span>:</span><span class="coqdoc-var">A</span><span> * </span><span class="coqdoc-var">B</span><span>) := </span><span class="coqdoc-keyword">let</span><span> (</span><span class="coqdoc-var">x</span><span>, </span><span class="coqdoc-var">_</span><span>) := </span><span class="coqdoc-var">p</span><span> </span><span class="coqdoc-tactic">in</span><span> </span><span class="coqdoc-var">x</span><span>.</span><span>
+<div class="rocqtop literal-block docutils container">
+<span class="rocqtop-reset"></span><dl>
+<dt><span></span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">fst</span><span> (</span><span class="rocqdoc-var">A</span><span> </span><span class="rocqdoc-var">B</span><span>:</span><span class="rocqdoc-keyword">Set</span><span>) (</span><span class="rocqdoc-var">p</span><span>:</span><span class="rocqdoc-var">A</span><span> * </span><span class="rocqdoc-var">B</span><span>) := </span><span class="rocqdoc-keyword">let</span><span> (</span><span class="rocqdoc-var">x</span><span>, </span><span class="rocqdoc-var">_</span><span>) := </span><span class="rocqdoc-var">p</span><span> </span><span class="rocqdoc-tactic">in</span><span> </span><span class="rocqdoc-var">x</span><span>.</span><span>
 </span></dt><dd><span>fst is defined
 </span></dd>
 </dl>
@@ -1400,9 +1400,9 @@ end
 one constructor by giving an arbitrary pattern instead of just a tuple
 for all the arguments. For example, the preceding example can be
 written:</p>
-<div class="coqtop literal-block docutils container">
-<span class="coqtop-reset"></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">fst</span><span> (</span><span class="coqdoc-var">A</span><span> </span><span class="coqdoc-var">B</span><span>:</span><span class="coqdoc-keyword">Set</span><span>) (</span><span class="coqdoc-var">p</span><span>:</span><span class="coqdoc-var">A</span><span>*</span><span class="coqdoc-var">B</span><span>) := </span><span class="coqdoc-keyword">let</span><span> '</span><span class="coqdoc-var">pair</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">_</span><span> := </span><span class="coqdoc-var">p</span><span> </span><span class="coqdoc-tactic">in</span><span> </span><span class="coqdoc-var">x</span><span>.</span><span>
+<div class="rocqtop literal-block docutils container">
+<span class="rocqtop-reset"></span><dl>
+<dt><span></span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">fst</span><span> (</span><span class="rocqdoc-var">A</span><span> </span><span class="rocqdoc-var">B</span><span>:</span><span class="rocqdoc-keyword">Set</span><span>) (</span><span class="rocqdoc-var">p</span><span>:</span><span class="rocqdoc-var">A</span><span>*</span><span class="rocqdoc-var">B</span><span>) := </span><span class="rocqdoc-keyword">let</span><span> '</span><span class="rocqdoc-var">pair</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">_</span><span> := </span><span class="rocqdoc-var">p</span><span> </span><span class="rocqdoc-tactic">in</span><span> </span><span class="rocqdoc-var">x</span><span>.</span><span>
 </span></dt><dd><span>fst is defined
 </span></dd>
 </dl>
@@ -1410,19 +1410,19 @@ written:</p>
 <p>This is useful to match deeper inside tuples and also to use notations
 for the pattern, as the syntax <code class="code Coq docutils literal notranslate"><span class="keyword"><span class="pre">let</span></span> <span class="name builtin pseudo"><span class="pre">’</span></span><span class="name"><span class="pre">p</span></span> <span class="operator"><span class="pre">:=</span></span> <span class="name"><span class="pre">t</span></span> <span class="keyword"><span class="pre">in</span></span> <span class="name"><span class="pre">b</span></span></code> allows arbitrary
 patterns to do the deconstruction. For example:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">deep_tuple</span><span> (</span><span class="coqdoc-var">A</span><span>:</span><span class="coqdoc-keyword">Set</span><span>) (</span><span class="coqdoc-var">x</span><span>:(</span><span class="coqdoc-var">A</span><span>*</span><span class="coqdoc-var">A</span><span>)*(</span><span class="coqdoc-var">A</span><span>*</span><span class="coqdoc-var">A</span><span>)) : </span><span class="coqdoc-var">A</span><span>*</span><span class="coqdoc-var">A</span><span>*</span><span class="coqdoc-var">A</span><span>*</span><span class="coqdoc-var">A</span><span> :=</span><span>
-</span><span class="coqdoc-keyword">let</span><span> '((</span><span class="coqdoc-var">a</span><span>,</span><span class="coqdoc-var">b</span><span>), (</span><span class="coqdoc-var">c</span><span>, </span><span class="coqdoc-var">d</span><span>)) := </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-tactic">in</span><span> (</span><span class="coqdoc-var">a</span><span>,</span><span class="coqdoc-var">b</span><span>,</span><span class="coqdoc-var">c</span><span>,</span><span class="coqdoc-var">d</span><span>).</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">deep_tuple</span><span> (</span><span class="rocqdoc-var">A</span><span>:</span><span class="rocqdoc-keyword">Set</span><span>) (</span><span class="rocqdoc-var">x</span><span>:(</span><span class="rocqdoc-var">A</span><span>*</span><span class="rocqdoc-var">A</span><span>)*(</span><span class="rocqdoc-var">A</span><span>*</span><span class="rocqdoc-var">A</span><span>)) : </span><span class="rocqdoc-var">A</span><span>*</span><span class="rocqdoc-var">A</span><span>*</span><span class="rocqdoc-var">A</span><span>*</span><span class="rocqdoc-var">A</span><span> :=</span><span>
+</span><span class="rocqdoc-keyword">let</span><span> '((</span><span class="rocqdoc-var">a</span><span>,</span><span class="rocqdoc-var">b</span><span>), (</span><span class="rocqdoc-var">c</span><span>, </span><span class="rocqdoc-var">d</span><span>)) := </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-tactic">in</span><span> (</span><span class="rocqdoc-var">a</span><span>,</span><span class="rocqdoc-var">b</span><span>,</span><span class="rocqdoc-var">c</span><span>,</span><span class="rocqdoc-var">d</span><span>).</span><span>
 </span></dt><dd><span>deep_tuple is defined
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">Notation</span><span> &quot; x 'With' p &quot; := (</span><span class="coqdoc-var">exist</span><span> </span><span class="coqdoc-var">_</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">p</span><span>) (</span><span class="coqdoc-tactic">at</span><span> </span><span class="coqdoc-keyword">level</span><span> 20).</span><span>
+</span><span class="rocqdoc-keyword">Notation</span><span> &quot; x 'With' p &quot; := (</span><span class="rocqdoc-var">exist</span><span> </span><span class="rocqdoc-var">_</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">p</span><span>) (</span><span class="rocqdoc-tactic">at</span><span> </span><span class="rocqdoc-keyword">level</span><span> 20).</span><span>
 </span></dt><dd><span>Identifier 'With' now a keyword
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">proj1_sig'</span><span> (</span><span class="coqdoc-var">A</span><span>:</span><span class="coqdoc-keyword">Set</span><span>) (</span><span class="coqdoc-var">P</span><span>:</span><span class="coqdoc-var">A</span><span>-&gt;</span><span class="coqdoc-keyword">Prop</span><span>) (</span><span class="coqdoc-var">t</span><span>:{ </span><span class="coqdoc-var">x</span><span>:</span><span class="coqdoc-var">A</span><span> | </span><span class="coqdoc-var">P</span><span> </span><span class="coqdoc-var">x</span><span> }) : </span><span class="coqdoc-var">A</span><span> :=</span><span>
-</span><span class="coqdoc-keyword">let</span><span> '</span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">With</span><span> </span><span class="coqdoc-var">p</span><span> := </span><span class="coqdoc-var">t</span><span> </span><span class="coqdoc-tactic">in</span><span> </span><span class="coqdoc-var">x</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">proj1_sig'</span><span> (</span><span class="rocqdoc-var">A</span><span>:</span><span class="rocqdoc-keyword">Set</span><span>) (</span><span class="rocqdoc-var">P</span><span>:</span><span class="rocqdoc-var">A</span><span>-&gt;</span><span class="rocqdoc-keyword">Prop</span><span>) (</span><span class="rocqdoc-var">t</span><span>:{ </span><span class="rocqdoc-var">x</span><span>:</span><span class="rocqdoc-var">A</span><span> | </span><span class="rocqdoc-var">P</span><span> </span><span class="rocqdoc-var">x</span><span> }) : </span><span class="rocqdoc-var">A</span><span> :=</span><span>
+</span><span class="rocqdoc-keyword">let</span><span> '</span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">With</span><span> </span><span class="rocqdoc-var">p</span><span> := </span><span class="rocqdoc-var">t</span><span> </span><span class="rocqdoc-tactic">in</span><span> </span><span class="rocqdoc-var">x</span><span>.</span><span>
 </span></dt><dd><span>proj1_sig' is defined
 </span></dd>
 </dl>
@@ -1438,9 +1438,9 @@ consideration (see Section <a class="reference internal" href="#controlling-matc
 of <code class="code Coq docutils literal notranslate"><span class="keyword"><span class="pre">match</span></span></code> expressions.</p>
 <section id="printing-nested-patterns">
 <h4>Printing nested patterns<a class="headerlink" href="#printing-nested-patterns" title="Link to this heading"></a></h4>
-<dl class="coq flag">
-<dt class="sig sig-object coq" id="coq:flag.Printing-Matching">
-<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Matching</span></span></span></span></span><a class="headerlink" href="#coq:flag.Printing-Matching" title="Link to this definition"></a></dt>
+<dl class="rocq flag">
+<dt class="sig sig-object rocq" id="rocq:flag.Printing-Matching">
+<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Matching</span></span></span></span></span><a class="headerlink" href="#rocq:flag.Printing-Matching" title="Link to this definition"></a></dt>
 <dd><p>The Calculus of Inductive Constructions knows pattern matching only
 over simple patterns. It is however convenient to re-factorize nested
 pattern matching into a single pattern matching over a nested
@@ -1454,21 +1454,21 @@ in the same way as the Rocq kernel handles them.</p>
 </section>
 <section id="factorization-of-clauses-with-same-right-hand-side">
 <h4>Factorization of clauses with same right-hand side<a class="headerlink" href="#factorization-of-clauses-with-same-right-hand-side" title="Link to this heading"></a></h4>
-<dl class="coq flag">
-<dt class="sig sig-object coq" id="coq:flag.Printing-Factorizable-Match-Patterns">
-<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Factorizable</span></span></span> <span><span><span class="pre">Match</span></span></span> <span><span><span class="pre">Patterns</span></span></span></span></span><a class="headerlink" href="#coq:flag.Printing-Factorizable-Match-Patterns" title="Link to this definition"></a></dt>
+<dl class="rocq flag">
+<dt class="sig sig-object rocq" id="rocq:flag.Printing-Factorizable-Match-Patterns">
+<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Factorizable</span></span></span> <span><span><span class="pre">Match</span></span></span> <span><span><span class="pre">Patterns</span></span></span></span></span><a class="headerlink" href="#rocq:flag.Printing-Factorizable-Match-Patterns" title="Link to this definition"></a></dt>
 <dd><p>When several patterns share the same right-hand side, it is additionally
 possible to share the clauses using disjunctive patterns. Assuming that the
-<a class="reference internal" href="#coq:flag.Printing-Matching" title="Printing Matching"><code class="xref coq coq-flag docutils literal notranslate"><span class="pre">Printing</span> <span class="pre">Matching</span></code></a> mode is on, this <a class="reference internal" href="../core/basic.html#term-flag"><span class="xref std std-term">flag</span></a> (on by default) tells Rocq's
+<a class="reference internal" href="#rocq:flag.Printing-Matching" title="Printing Matching"><code class="xref rocq rocq-flag docutils literal notranslate"><span class="pre">Printing</span> <span class="pre">Matching</span></code></a> mode is on, this <a class="reference internal" href="../core/basic.html#term-flag"><span class="xref std std-term">flag</span></a> (on by default) tells Rocq's
 printer to try to do this kind of factorization.</p>
 </dd></dl>
 
 </section>
 <section id="use-of-a-default-clause">
 <h4>Use of a default clause<a class="headerlink" href="#use-of-a-default-clause" title="Link to this heading"></a></h4>
-<dl class="coq flag">
-<dt class="sig sig-object coq" id="coq:flag.Printing-Allow-Match-Default-Clause">
-<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Allow</span></span></span> <span><span><span class="pre">Match</span></span></span> <span><span><span class="pre">Default</span></span></span> <span><span><span class="pre">Clause</span></span></span></span></span><a class="headerlink" href="#coq:flag.Printing-Allow-Match-Default-Clause" title="Link to this definition"></a></dt>
+<dl class="rocq flag">
+<dt class="sig sig-object rocq" id="rocq:flag.Printing-Allow-Match-Default-Clause">
+<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Allow</span></span></span> <span><span><span class="pre">Match</span></span></span> <span><span><span class="pre">Default</span></span></span> <span><span><span class="pre">Clause</span></span></span></span></span><a class="headerlink" href="#rocq:flag.Printing-Allow-Match-Default-Clause" title="Link to this definition"></a></dt>
 <dd><p>When several patterns share the same right-hand side which do not depend on the
 arguments of the patterns, yet an extra factorization is possible: the
 disjunction of patterns can be replaced with a <code class="docutils literal notranslate"><span class="pre">_</span></code> default clause. Assuming that
@@ -1479,9 +1479,9 @@ default) tells Rocq's printer to use a default clause when relevant.</p>
 </section>
 <section id="printing-of-wildcard-patterns">
 <h4>Printing of wildcard patterns<a class="headerlink" href="#printing-of-wildcard-patterns" title="Link to this heading"></a></h4>
-<dl class="coq flag">
-<dt class="sig sig-object coq" id="coq:flag.Printing-Wildcard">
-<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Wildcard</span></span></span></span></span><a class="headerlink" href="#coq:flag.Printing-Wildcard" title="Link to this definition"></a></dt>
+<dl class="rocq flag">
+<dt class="sig sig-object rocq" id="rocq:flag.Printing-Wildcard">
+<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Wildcard</span></span></span></span></span><a class="headerlink" href="#rocq:flag.Printing-Wildcard" title="Link to this definition"></a></dt>
 <dd><p>Some variables in a pattern may not occur in the right-hand side of
 the pattern matching clause. When this <a class="reference internal" href="../core/basic.html#term-flag"><span class="xref std std-term">flag</span></a> is on (default), the
 variables having no occurrences in the right-hand side of the
@@ -1492,9 +1492,9 @@ pattern matching clause are just printed using the wildcard symbol
 </section>
 <section id="printing-of-the-elimination-predicate">
 <h4>Printing of the elimination predicate<a class="headerlink" href="#printing-of-the-elimination-predicate" title="Link to this heading"></a></h4>
-<dl class="coq flag">
-<dt class="sig sig-object coq" id="coq:flag.Printing-Synth">
-<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Synth</span></span></span></span></span><a class="headerlink" href="#coq:flag.Printing-Synth" title="Link to this definition"></a></dt>
+<dl class="rocq flag">
+<dt class="sig sig-object rocq" id="rocq:flag.Printing-Synth">
+<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Synth</span></span></span></span></span><a class="headerlink" href="#rocq:flag.Printing-Synth" title="Link to this definition"></a></dt>
 <dd><p>In most of the cases, the type of the result of a matched term is
 mechanically synthesizable. Especially, if the result type does not
 depend of the matched term. When this <a class="reference internal" href="../core/basic.html#term-flag"><span class="xref std std-term">flag</span></a> is on (default),
@@ -1505,32 +1505,32 @@ synthesize it.</p>
 </section>
 <section id="printing-of-hidden-subterms">
 <h4>Printing of hidden subterms<a class="headerlink" href="#printing-of-hidden-subterms" title="Link to this heading"></a></h4>
-<dl class="coq flag">
-<dt class="sig sig-object coq" id="coq:flag.Printing-Match-All-Subterms">
-<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Match</span></span></span> <span><span><span class="pre">All</span></span></span> <span><span><span class="pre">Subterms</span></span></span></span></span><a class="headerlink" href="#coq:flag.Printing-Match-All-Subterms" title="Link to this definition"></a></dt>
+<dl class="rocq flag">
+<dt class="sig sig-object rocq" id="rocq:flag.Printing-Match-All-Subterms">
+<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Match</span></span></span> <span><span><span class="pre">All</span></span></span> <span><span><span class="pre">Subterms</span></span></span></span></span><a class="headerlink" href="#rocq:flag.Printing-Match-All-Subterms" title="Link to this definition"></a></dt>
 <dd><p>In order to be able to cheaply reconstruct the types of the
 variables bound by <code class="docutils literal notranslate"><span class="pre">in</span></code> and <code class="docutils literal notranslate"><span class="pre">as</span></code>, <code class="docutils literal notranslate"><span class="pre">match</span></code> terms contain the
 polymorphic universe instance and the parameters of the inductive
 which is being matched. When this <a class="reference internal" href="../core/basic.html#term-flag"><span class="xref std std-term">flag</span></a> is on (it is off by
 default), this information is displayed as a <a class="reference internal" href="../core/definitions.html#term-volatile-cast"><span class="xref std std-term">volatile cast</span></a> around
 the match discriminee.</p>
-<p>When the match relies on <a class="reference internal" href="../../addendum/sprop.html#coq:flag.Definitional-UIP" title="Definitional UIP"><code class="xref coq coq-flag docutils literal notranslate"><span class="pre">Definitional</span> <span class="pre">UIP</span></code></a>,
+<p>When the match relies on <a class="reference internal" href="../../addendum/sprop.html#rocq:flag.Definitional-UIP" title="Definitional UIP"><code class="xref rocq rocq-flag docutils literal notranslate"><span class="pre">Definitional</span> <span class="pre">UIP</span></code></a>,
 the indices are also subterms of the <code class="docutils literal notranslate"><span class="pre">match</span></code> term and are displayed when this flag is on.
 Otherwise they are not subterms and are displayed as holes (<code class="docutils literal notranslate"><span class="pre">_</span></code>) when this flag is on.</p>
 <div class="admonition note">
 <p class="admonition-title">Example</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Polymorphic Inductive</span><span> </span><span class="coqdoc-var">eqT&#64;</span><span>{</span><span class="coqdoc-var">u</span><span>} {</span><span class="coqdoc-var">A</span><span>:</span><span class="coqdoc-var">Type&#64;</span><span>{</span><span class="coqdoc-var">u</span><span>}} (</span><span class="coqdoc-var">a</span><span>:</span><span class="coqdoc-var">A</span><span>) : </span><span class="coqdoc-var">A</span><span> -&gt; </span><span class="coqdoc-var">Type&#64;</span><span>{</span><span class="coqdoc-var">u</span><span>} := </span><span class="coqdoc-var">reflT</span><span> : </span><span class="coqdoc-var">eqT</span><span> </span><span class="coqdoc-var">a</span><span> </span><span class="coqdoc-var">a</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>eqT is defined
+<dt><span></span><span class="rocqdoc-keyword">Polymorphic Inductive</span><span> </span><span class="rocqdoc-var">eqT&#64;</span><span>{</span><span class="rocqdoc-var">u</span><span>} {</span><span class="rocqdoc-var">A</span><span>:</span><span class="rocqdoc-var">Type&#64;</span><span>{</span><span class="rocqdoc-var">u</span><span>}} (</span><span class="rocqdoc-var">a</span><span>:</span><span class="rocqdoc-var">A</span><span>) : </span><span class="rocqdoc-var">A</span><span> -&gt; </span><span class="rocqdoc-var">Type&#64;</span><span>{</span><span class="rocqdoc-var">u</span><span>} := </span><span class="rocqdoc-var">reflT</span><span> : </span><span class="rocqdoc-var">eqT</span><span> </span><span class="rocqdoc-var">a</span><span> </span><span class="rocqdoc-var">a</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>eqT is defined
 eqT_rect is defined
 eqT_ind is defined
 eqT_rec is defined
 eqT_sind is defined
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Set</span><span> </span><span class="coqdoc-var">Definitional</span><span> </span><span class="coqdoc-var">UIP</span><span>.</span><span>
-</span></dt><dt><span></span><span class="coqdoc-keyword">Inductive</span><span> </span><span class="coqdoc-var">seq</span><span> {</span><span class="coqdoc-var">A</span><span>} (</span><span class="coqdoc-var">a</span><span>:</span><span class="coqdoc-var">A</span><span>) : </span><span class="coqdoc-var">A</span><span> -&gt; </span><span class="coqdoc-var">SProp</span><span> := </span><span class="coqdoc-var">srefl</span><span> : </span><span class="coqdoc-var">seq</span><span> </span><span class="coqdoc-var">a</span><span> </span><span class="coqdoc-var">a</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>seq is defined
+<dt><span></span><span class="rocqdoc-keyword">Set</span><span> </span><span class="rocqdoc-var">Definitional</span><span> </span><span class="rocqdoc-var">UIP</span><span>.</span><span>
+</span></dt><dt><span></span><span class="rocqdoc-keyword">Inductive</span><span> </span><span class="rocqdoc-var">seq</span><span> {</span><span class="rocqdoc-var">A</span><span>} (</span><span class="rocqdoc-var">a</span><span>:</span><span class="rocqdoc-var">A</span><span>) : </span><span class="rocqdoc-var">A</span><span> -&gt; </span><span class="rocqdoc-var">SProp</span><span> := </span><span class="rocqdoc-var">srefl</span><span> : </span><span class="rocqdoc-var">seq</span><span> </span><span class="rocqdoc-var">a</span><span> </span><span class="rocqdoc-var">a</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>seq is defined
 seq_rect is defined
 seq_ind is defined
 seq_rec is defined
@@ -1538,7 +1538,7 @@ seq_sind is defined
 </span></dd>
 </dl>
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Print</span><span> </span><span class="coqdoc-var">eqT_rect</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Print</span><span> </span><span class="rocqdoc-var">eqT_rect</span><span>.</span><span>
 </span></dt><dd><span>eqT_rect&#64;{u u0} =
 </span><span class="ansi-bold">fun</span><span> (A : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>) (a : A) (P : </span><span class="ansi-bold">forall</span><span> a0 : A, eqT a a0</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>)
   (f : P a (reflT a)) (a0 : A) (e : eqT a a0) =&gt;
@@ -1550,7 +1550,7 @@ seq_sind is defined
 
 Arguments </span><span class="ansi-fg-light-green">eqT_rect</span><span> A%_type_scope a P%_function_scope f a0 e
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Print</span><span> </span><span class="coqdoc-var">seq_rect</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Print</span><span> </span><span class="rocqdoc-var">seq_rect</span><span>.</span><span>
 </span></dt><dd><span>seq_rect =
 </span><span class="ansi-bold">fun</span><span> (A : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>) (a : A) (P : </span><span class="ansi-bold">forall</span><span> a0 : A, seq a a0</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>)
   (f : P a (srefl a)) (a0 : A) (s : seq a a0) =&gt;
@@ -1563,10 +1563,10 @@ Arguments </span><span class="ansi-fg-light-green">eqT_rect</span><span> A%_type
 Arguments </span><span class="ansi-fg-light-green">seq_rect</span><span> A%_type_scope a P%_function_scope f a0 s
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">Set</span><span> </span><span class="coqdoc-keyword">Printing</span><span> </span><span class="coqdoc-var">Match</span><span> </span><span class="coqdoc-keyword">All</span><span> </span><span class="coqdoc-var">Subterms</span><span>.</span><span>
-</span></dt><dt><span></span><span class="coqdoc-keyword">Set Printing Universes</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Set</span><span> </span><span class="rocqdoc-keyword">Printing</span><span> </span><span class="rocqdoc-var">Match</span><span> </span><span class="rocqdoc-keyword">All</span><span> </span><span class="rocqdoc-var">Subterms</span><span>.</span><span>
+</span></dt><dt><span></span><span class="rocqdoc-keyword">Set Printing Universes</span><span>.</span><span>
 </span></dt><dt><span></span><span>
-</span><span class="coqdoc-keyword">Print</span><span> </span><span class="coqdoc-var">eqT_rect</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Print</span><span> </span><span class="rocqdoc-var">eqT_rect</span><span>.</span><span>
 </span></dt><dd><span>eqT_rect&#64;{u u0} =
 </span><span class="ansi-bold">fun</span><span> (A : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">u</span><span>}) (a : A) (P : </span><span class="ansi-bold">forall</span><span> a0 : A, eqT&#64;{</span><span class="ansi-fg-yellow ansi-bold">u</span><span>} a a0</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">u0</span><span>})
   (f : P a (reflT&#64;{</span><span class="ansi-fg-yellow ansi-bold">u</span><span>} a)) (a0 : A) (e : eqT&#64;{</span><span class="ansi-fg-yellow ansi-bold">u</span><span>} a a0) =&gt;
@@ -1580,7 +1580,7 @@ Arguments </span><span class="ansi-fg-light-green">seq_rect</span><span> A%_type
 
 Arguments </span><span class="ansi-fg-light-green">eqT_rect</span><span> A%_type_scope a P%_function_scope f a0 e
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Print</span><span> </span><span class="coqdoc-var">seq_rect</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Print</span><span> </span><span class="rocqdoc-var">seq_rect</span><span>.</span><span>
 </span></dt><dd><span>seq_rect =
 </span><span class="ansi-bold">fun</span><span> (A : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">seq_rect.u1</span><span>}) (a : A)
   (P : </span><span class="ansi-bold">forall</span><span> a0 : A, seq a a0</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">seq_rect.u0</span><span>}) 
@@ -1604,14 +1604,14 @@ Arguments </span><span class="ansi-fg-light-green">seq_rect</span><span> A%_type
 <h4>Printing matching on irrefutable patterns<a class="headerlink" href="#printing-matching-on-irrefutable-patterns" title="Link to this heading"></a></h4>
 <p>If an inductive type has just one constructor, pattern matching can be
 written using the first destructuring let syntax.</p>
-<dl class="coq table">
-<dt class="sig sig-object coq" id="coq:table.Printing-Let">
-<em class="property"><span class="sigannot"><span class="pre">Table</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Let</span></span></span> <a class="reference internal" href="../core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></span><a class="headerlink" href="#coq:table.Printing-Let" title="Link to this definition"></a></dt>
+<dl class="rocq table">
+<dt class="sig sig-object rocq" id="rocq:table.Printing-Let">
+<em class="property"><span class="sigannot"><span class="pre">Table</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Let</span></span></span> <a class="reference internal" href="../core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></span><a class="headerlink" href="#rocq:table.Printing-Let" title="Link to this definition"></a></dt>
 <dd><p>This <a class="reference internal" href="../core/basic.html#term-table"><span class="xref std std-term">table</span></a> specifies a set of qualids for which pattern matching is displayed using a let expression.
 Note that this only applies to pattern matching instances entered with <code class="code Coq docutils literal notranslate"><span class="keyword"><span class="pre">match</span></span></code>.
 It doesn't affect pattern matching explicitly entered with a destructuring
 <code class="code Coq docutils literal notranslate"><span class="keyword"><span class="pre">let</span></span></code>.
-Use the <a class="reference internal" href="../core/basic.html#coq:cmd.Add" title="Add"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Add</span></code></a> and <a class="reference internal" href="../core/basic.html#coq:cmd.Remove" title="Remove"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Remove</span></code></a> commands to update this set.</p>
+Use the <a class="reference internal" href="../core/basic.html#rocq:cmd.Add" title="Add"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Add</span></code></a> and <a class="reference internal" href="../core/basic.html#rocq:cmd.Remove" title="Remove"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Remove</span></code></a> commands to update this set.</p>
 </dd></dl>
 
 </section>
@@ -1620,30 +1620,30 @@ Use the <a class="reference internal" href="../core/basic.html#coq:cmd.Add" titl
 <p>If an inductive type is isomorphic to the boolean type, pattern matching
 can be written using <code class="docutils literal notranslate"><span class="pre">if</span></code> … <code class="docutils literal notranslate"><span class="pre">then</span></code> … <code class="docutils literal notranslate"><span class="pre">else</span></code> ….  This table controls
 which types are written this way:</p>
-<dl class="coq table">
-<dt class="sig sig-object coq" id="coq:table.Printing-If">
-<em class="property"><span class="sigannot"><span class="pre">Table</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">If</span></span></span> <a class="reference internal" href="../core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></span><a class="headerlink" href="#coq:table.Printing-If" title="Link to this definition"></a></dt>
+<dl class="rocq table">
+<dt class="sig sig-object rocq" id="rocq:table.Printing-If">
+<em class="property"><span class="sigannot"><span class="pre">Table</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">If</span></span></span> <a class="reference internal" href="../core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></span><a class="headerlink" href="#rocq:table.Printing-If" title="Link to this definition"></a></dt>
 <dd><p>This <a class="reference internal" href="../core/basic.html#term-table"><span class="xref std std-term">table</span></a> specifies a set of qualids for which pattern matching is displayed using
-<code class="docutils literal notranslate"><span class="pre">if</span></code> … <code class="docutils literal notranslate"><span class="pre">then</span></code> … <code class="docutils literal notranslate"><span class="pre">else</span></code> ….  Use the <a class="reference internal" href="../core/basic.html#coq:cmd.Add" title="Add"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Add</span></code></a> and <a class="reference internal" href="../core/basic.html#coq:cmd.Remove" title="Remove"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Remove</span></code></a>
+<code class="docutils literal notranslate"><span class="pre">if</span></code> … <code class="docutils literal notranslate"><span class="pre">then</span></code> … <code class="docutils literal notranslate"><span class="pre">else</span></code> ….  Use the <a class="reference internal" href="../core/basic.html#rocq:cmd.Add" title="Add"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Add</span></code></a> and <a class="reference internal" href="../core/basic.html#rocq:cmd.Remove" title="Remove"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Remove</span></code></a>
 commands to update this set.</p>
 </dd></dl>
 
 <p>This example emphasizes what the printing settings offer.</p>
 <div class="admonition note">
 <p class="admonition-title">Example</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">snd</span><span> (</span><span class="coqdoc-var">A</span><span> </span><span class="coqdoc-var">B</span><span>:</span><span class="coqdoc-keyword">Set</span><span>) (</span><span class="coqdoc-var">H</span><span>:</span><span class="coqdoc-var">A</span><span> * </span><span class="coqdoc-var">B</span><span>) := </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">H</span><span> </span><span class="coqdoc-keyword">with</span><span>
-| </span><span class="coqdoc-var">pair</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span> =&gt; </span><span class="coqdoc-var">y</span><span>
-</span><span class="coqdoc-keyword">end</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">snd</span><span> (</span><span class="rocqdoc-var">A</span><span> </span><span class="rocqdoc-var">B</span><span>:</span><span class="rocqdoc-keyword">Set</span><span>) (</span><span class="rocqdoc-var">H</span><span>:</span><span class="rocqdoc-var">A</span><span> * </span><span class="rocqdoc-var">B</span><span>) := </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">H</span><span> </span><span class="rocqdoc-keyword">with</span><span>
+| </span><span class="rocqdoc-var">pair</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> =&gt; </span><span class="rocqdoc-var">y</span><span>
+</span><span class="rocqdoc-keyword">end</span><span>.</span><span>
 </span></dt><dd><span>snd is defined
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-var">Test</span><span> </span><span class="coqdoc-keyword">Printing</span><span> </span><span class="coqdoc-keyword">Let</span><span> </span><span class="coqdoc-keyword">for</span><span> </span><span class="coqdoc-var">prod</span><span>.</span><span>
+</span><span class="rocqdoc-var">Test</span><span> </span><span class="rocqdoc-keyword">Printing</span><span> </span><span class="rocqdoc-keyword">Let</span><span> </span><span class="rocqdoc-keyword">for</span><span> </span><span class="rocqdoc-var">prod</span><span>.</span><span>
 </span></dt><dd><span>Cases on elements of prod are printed using a `let' form
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">Print</span><span> </span><span class="coqdoc-var">snd</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Print</span><span> </span><span class="rocqdoc-var">snd</span><span>.</span><span>
 </span></dt><dd><span>snd =
 </span><span class="ansi-bold">fun</span><span> (A B : </span><span class="ansi-fg-yellow ansi-bold">Set</span><span>) (H : A</span><span> *</span><span> B) =&gt; </span><span class="ansi-bold">let</span><span> (_, y) := H :&gt; A</span><span> *</span><span> B</span><span class="ansi-bold"> in</span><span> y
      : </span><span class="ansi-bold">forall</span><span> A B : </span><span class="ansi-fg-yellow ansi-bold">Set</span><span>, A</span><span> *</span><span> B</span><span> -&gt;</span><span> B
@@ -1651,13 +1651,13 @@ commands to update this set.</p>
 Arguments </span><span class="ansi-fg-light-green">snd</span><span> (A B)%_type_scope H
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-var">Remove</span><span> </span><span class="coqdoc-keyword">Printing</span><span> </span><span class="coqdoc-keyword">Let</span><span> </span><span class="coqdoc-var">prod</span><span>.</span><span>
+</span><span class="rocqdoc-var">Remove</span><span> </span><span class="rocqdoc-keyword">Printing</span><span> </span><span class="rocqdoc-keyword">Let</span><span> </span><span class="rocqdoc-var">prod</span><span>.</span><span>
 </span></dt><dt><span></span><span>
-</span><span class="coqdoc-keyword">Unset</span><span> </span><span class="coqdoc-keyword">Printing</span><span> </span><span class="coqdoc-var">Synth</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Unset</span><span> </span><span class="rocqdoc-keyword">Printing</span><span> </span><span class="rocqdoc-var">Synth</span><span>.</span><span>
 </span></dt><dt><span></span><span>
-</span><span class="coqdoc-keyword">Unset</span><span> </span><span class="coqdoc-keyword">Printing</span><span> </span><span class="coqdoc-var">Wildcard</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Unset</span><span> </span><span class="rocqdoc-keyword">Printing</span><span> </span><span class="rocqdoc-var">Wildcard</span><span>.</span><span>
 </span></dt><dt><span></span><span>
-</span><span class="coqdoc-keyword">Print</span><span> </span><span class="coqdoc-var">snd</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Print</span><span> </span><span class="rocqdoc-var">snd</span><span>.</span><span>
 </span></dt><dd><span>snd =
 </span><span class="ansi-bold">fun</span><span> (A B : </span><span class="ansi-fg-yellow ansi-bold">Set</span><span>) (H : A</span><span> *</span><span> B) =&gt;
 </span><span class="ansi-bold">match</span><span> H :&gt; A</span><span> *</span><span> B </span><span class="ansi-bold">return</span><span> B </span><span class="ansi-bold">with</span><span>
@@ -1678,9 +1678,9 @@ Arguments </span><span class="ansi-fg-light-green">snd</span><span> (A B)%_type_
 considered the sign of a potential error. For instance, it could
 result from an undetected misspelled constant constructor. By default,
 a warning is issued in such situations.</p>
-<dl class="coq warn">
-<dt class="sig sig-object coq" id="coq:warn.Unused-variable-‘ident’-might-be-a-misspelled-constructor.-Use-_-or-_‘ident’-to-silence-this-warning.">
-<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Unused</span></span></span> <span><span><span class="pre">variable</span></span></span> <a class="reference internal" href="../core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">might</span></span></span> <span><span><span class="pre">be</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">misspelled</span></span></span> <span><span><span class="pre">constructor.</span></span></span> <span><span><span class="pre">Use</span></span></span> <span><span><span class="pre">_</span></span></span> <span><span><span class="pre">or</span></span></span> <span><span><span class="pre">_</span></span></span><a class="reference internal" href="../core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">to</span></span></span> <span><span><span class="pre">silence</span></span></span> <span><span><span class="pre">this</span></span></span> <span><span><span class="pre">warning.</span></span></span></span></span><a class="headerlink" href="#coq:warn.Unused-variable-‘ident’-might-be-a-misspelled-constructor.-Use-_-or-_‘ident’-to-silence-this-warning." title="Link to this definition"></a></dt>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.Unused-variable-‘ident’-might-be-a-misspelled-constructor.-Use-_-or-_‘ident’-to-silence-this-warning.">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Unused</span></span></span> <span><span><span class="pre">variable</span></span></span> <a class="reference internal" href="../core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">might</span></span></span> <span><span><span class="pre">be</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">misspelled</span></span></span> <span><span><span class="pre">constructor.</span></span></span> <span><span><span class="pre">Use</span></span></span> <span><span><span class="pre">_</span></span></span> <span><span><span class="pre">or</span></span></span> <span><span><span class="pre">_</span></span></span><a class="reference internal" href="../core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">to</span></span></span> <span><span><span class="pre">silence</span></span></span> <span><span><span class="pre">this</span></span></span> <span><span><span class="pre">warning.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.Unused-variable-‘ident’-might-be-a-misspelled-constructor.-Use-_-or-_‘ident’-to-silence-this-warning." title="Link to this definition"></a></dt>
 <dd><p>This indicates that an unused pattern variable <a class="reference internal" href="../core/basic.html#grammar-token-ident"><code class="xref std std-token docutils literal notranslate"><span class="pre">ident</span></code></a>
 occurs in a pattern-matching clause.</p>
 <p>The warning can be deactivated by using a variable name starting
@@ -1689,12 +1689,12 @@ with <code class="docutils literal notranslate"><span class="pre">_</span></code
 <p>Here is an example where the warning is activated.</p>
 <div class="admonition note">
 <p class="admonition-title">Example</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">is_zero</span><span> (</span><span class="coqdoc-var">o</span><span> : </span><span class="coqdoc-var">option</span><span> </span><span class="coqdoc-var">nat</span><span>) := </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">o</span><span> </span><span class="coqdoc-keyword">with</span><span>
-| </span><span class="coqdoc-var">Some</span><span> </span><span class="coqdoc-var">_</span><span> =&gt; </span><span class="coqdoc-var">true</span><span>
-| </span><span class="coqdoc-var">x</span><span> =&gt; </span><span class="coqdoc-var">false</span><span>
-</span><span class="coqdoc-keyword">end</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">is_zero</span><span> (</span><span class="rocqdoc-var">o</span><span> : </span><span class="rocqdoc-var">option</span><span> </span><span class="rocqdoc-var">nat</span><span>) := </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">o</span><span> </span><span class="rocqdoc-keyword">with</span><span>
+| </span><span class="rocqdoc-var">Some</span><span> </span><span class="rocqdoc-var">_</span><span> =&gt; </span><span class="rocqdoc-var">true</span><span>
+| </span><span class="rocqdoc-var">x</span><span> =&gt; </span><span class="rocqdoc-var">false</span><span>
+</span><span class="rocqdoc-keyword">end</span><span>.</span><span>
 </span></dt><dd><span>Toplevel input, characters 71-72:
 &gt; Definition is_zero (o : option nat) := match o with | Some _ =&gt; true | x =&gt; false end.
 &gt;                                                                        ^
@@ -1738,8 +1738,8 @@ the expressiveness of the theory remains the same. Once parsing has finished
 only simple patterns remain. The original nesting of the <code class="docutils literal notranslate"><span class="pre">match</span></code> expressions
 is recovered at printing time. An easy way to see the result
 of the expansion is to toggle off the nesting performed at printing
-(use here <a class="reference internal" href="#coq:flag.Printing-Matching" title="Printing Matching"><code class="xref coq coq-flag docutils literal notranslate"><span class="pre">Printing</span> <span class="pre">Matching</span></code></a>), then by printing the term with <a class="reference internal" href="../../proof-engine/vernacular-commands.html#coq:cmd.Print" title="Print"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Print</span></code></a>
-if the term is a <a class="reference internal" href="../core/definitions.html#term-constant"><span class="xref std std-term">constant</span></a>, or using the command <a class="reference internal" href="../../proof-engine/vernacular-commands.html#coq:cmd.Check" title="Check"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Check</span></code></a>.</p>
+(use here <a class="reference internal" href="#rocq:flag.Printing-Matching" title="Printing Matching"><code class="xref rocq rocq-flag docutils literal notranslate"><span class="pre">Printing</span> <span class="pre">Matching</span></code></a>), then by printing the term with <a class="reference internal" href="../../proof-engine/vernacular-commands.html#rocq:cmd.Print" title="Print"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Print</span></code></a>
+if the term is a <a class="reference internal" href="../core/definitions.html#term-constant"><span class="xref std std-term">constant</span></a>, or using the command <a class="reference internal" href="../../proof-engine/vernacular-commands.html#rocq:cmd.Check" title="Check"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Check</span></code></a>.</p>
 <p>The extended <code class="docutils literal notranslate"><span class="pre">match</span></code> still accepts an optional <em>elimination predicate</em>
 given after the keyword <code class="docutils literal notranslate"><span class="pre">return</span></code>. Given a pattern matching expression,
 if all the right-hand-sides of <code class="docutils literal notranslate"><span class="pre">=&gt;</span></code> have the same
@@ -1750,17 +1750,17 @@ provided, like for the basicmatch.</p>
 pattern matching. Consider for example the function that computes the
 maximum of two natural numbers. We can write it in primitive syntax
 by:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Fixpoint</span><span> </span><span class="coqdoc-var">max</span><span> (</span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-var">m</span><span>:</span><span class="coqdoc-var">nat</span><span>) {</span><span class="coqdoc-keyword">struct</span><span> </span><span class="coqdoc-var">m</span><span>} : </span><span class="coqdoc-var">nat</span><span> :=</span><span>
-  </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-keyword">with</span><span>
-  | </span><span class="coqdoc-var">O</span><span> =&gt; </span><span class="coqdoc-var">m</span><span>
-  | </span><span class="coqdoc-var">S</span><span> </span><span class="coqdoc-var">n'</span><span> =&gt; </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">m</span><span> </span><span class="coqdoc-keyword">with</span><span>
-            | </span><span class="coqdoc-var">O</span><span> =&gt; </span><span class="coqdoc-var">S</span><span> </span><span class="coqdoc-var">n'</span><span>
-            | </span><span class="coqdoc-var">S</span><span> </span><span class="coqdoc-var">m'</span><span> =&gt; </span><span class="coqdoc-var">S</span><span> (</span><span class="coqdoc-var">max</span><span> </span><span class="coqdoc-var">n'</span><span> </span><span class="coqdoc-var">m'</span><span>)</span><span>
-            </span><span class="coqdoc-keyword">end</span><span>
-  </span><span class="coqdoc-keyword">end</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>max is defined
+<dt><span></span><span class="rocqdoc-keyword">Fixpoint</span><span> </span><span class="rocqdoc-var">max</span><span> (</span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-var">m</span><span>:</span><span class="rocqdoc-var">nat</span><span>) {</span><span class="rocqdoc-keyword">struct</span><span> </span><span class="rocqdoc-var">m</span><span>} : </span><span class="rocqdoc-var">nat</span><span> :=</span><span>
+  </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-keyword">with</span><span>
+  | </span><span class="rocqdoc-var">O</span><span> =&gt; </span><span class="rocqdoc-var">m</span><span>
+  | </span><span class="rocqdoc-var">S</span><span> </span><span class="rocqdoc-var">n'</span><span> =&gt; </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">m</span><span> </span><span class="rocqdoc-keyword">with</span><span>
+            | </span><span class="rocqdoc-var">O</span><span> =&gt; </span><span class="rocqdoc-var">S</span><span> </span><span class="rocqdoc-var">n'</span><span>
+            | </span><span class="rocqdoc-var">S</span><span> </span><span class="rocqdoc-var">m'</span><span> =&gt; </span><span class="rocqdoc-var">S</span><span> (</span><span class="rocqdoc-var">max</span><span> </span><span class="rocqdoc-var">n'</span><span> </span><span class="rocqdoc-var">m'</span><span>)</span><span>
+            </span><span class="rocqdoc-keyword">end</span><span>
+  </span><span class="rocqdoc-keyword">end</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>max is defined
 max is recursively defined (guarded on 2nd argument)
 </span></dd>
 </dl>
@@ -1769,15 +1769,15 @@ max is recursively defined (guarded on 2nd argument)
 <section id="multiple-patterns">
 <span id="id1"></span><h2>Multiple patterns<a class="headerlink" href="#multiple-patterns" title="Link to this heading"></a></h2>
 <p>Using multiple patterns in the definition of <code class="docutils literal notranslate"><span class="pre">max</span></code> lets us write:</p>
-<div class="coqtop literal-block docutils container">
-<span class="coqtop-reset"></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Fixpoint</span><span> </span><span class="coqdoc-var">max</span><span> (</span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-var">m</span><span>:</span><span class="coqdoc-var">nat</span><span>) {</span><span class="coqdoc-keyword">struct</span><span> </span><span class="coqdoc-var">m</span><span>} : </span><span class="coqdoc-var">nat</span><span> :=</span><span>
-    </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">n</span><span>, </span><span class="coqdoc-var">m</span><span> </span><span class="coqdoc-keyword">with</span><span>
-    | </span><span class="coqdoc-var">O</span><span>, </span><span class="coqdoc-var">_</span><span> =&gt; </span><span class="coqdoc-var">m</span><span>
-    | </span><span class="coqdoc-var">S</span><span> </span><span class="coqdoc-var">n'</span><span>, </span><span class="coqdoc-var">O</span><span> =&gt; </span><span class="coqdoc-var">S</span><span> </span><span class="coqdoc-var">n'</span><span>
-    | </span><span class="coqdoc-var">S</span><span> </span><span class="coqdoc-var">n'</span><span>, </span><span class="coqdoc-var">S</span><span> </span><span class="coqdoc-var">m'</span><span> =&gt; </span><span class="coqdoc-var">S</span><span> (</span><span class="coqdoc-var">max</span><span> </span><span class="coqdoc-var">n'</span><span> </span><span class="coqdoc-var">m'</span><span>)</span><span>
-    </span><span class="coqdoc-keyword">end</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>max is defined
+<div class="rocqtop literal-block docutils container">
+<span class="rocqtop-reset"></span><dl>
+<dt><span></span><span class="rocqdoc-keyword">Fixpoint</span><span> </span><span class="rocqdoc-var">max</span><span> (</span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-var">m</span><span>:</span><span class="rocqdoc-var">nat</span><span>) {</span><span class="rocqdoc-keyword">struct</span><span> </span><span class="rocqdoc-var">m</span><span>} : </span><span class="rocqdoc-var">nat</span><span> :=</span><span>
+    </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">n</span><span>, </span><span class="rocqdoc-var">m</span><span> </span><span class="rocqdoc-keyword">with</span><span>
+    | </span><span class="rocqdoc-var">O</span><span>, </span><span class="rocqdoc-var">_</span><span> =&gt; </span><span class="rocqdoc-var">m</span><span>
+    | </span><span class="rocqdoc-var">S</span><span> </span><span class="rocqdoc-var">n'</span><span>, </span><span class="rocqdoc-var">O</span><span> =&gt; </span><span class="rocqdoc-var">S</span><span> </span><span class="rocqdoc-var">n'</span><span>
+    | </span><span class="rocqdoc-var">S</span><span> </span><span class="rocqdoc-var">n'</span><span>, </span><span class="rocqdoc-var">S</span><span> </span><span class="rocqdoc-var">m'</span><span> =&gt; </span><span class="rocqdoc-var">S</span><span> (</span><span class="rocqdoc-var">max</span><span> </span><span class="rocqdoc-var">n'</span><span> </span><span class="rocqdoc-var">m'</span><span>)</span><span>
+    </span><span class="rocqdoc-keyword">end</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>max is defined
 max is recursively defined (guarded on 2nd argument)
 </span></dd>
 </dl>
@@ -1787,11 +1787,11 @@ max is recursively defined (guarded on 2nd argument)
 to right. A match expression is generated <strong>only</strong> when there is at least
 one constructor in the column of patterns. E.g. the following example
 does not build a match expression.</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Check</span><span> (</span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">x</span><span>:</span><span class="coqdoc-var">nat</span><span> =&gt; </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-keyword">return</span><span> </span><span class="coqdoc-var">nat</span><span> </span><span class="coqdoc-keyword">with</span><span>
-                    | </span><span class="coqdoc-var">y</span><span> =&gt; </span><span class="coqdoc-var">y</span><span>
-                    </span><span class="coqdoc-keyword">end</span><span>).</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Check</span><span> (</span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">x</span><span>:</span><span class="rocqdoc-var">nat</span><span> =&gt; </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-keyword">return</span><span> </span><span class="rocqdoc-var">nat</span><span> </span><span class="rocqdoc-keyword">with</span><span>
+                    | </span><span class="rocqdoc-var">y</span><span> =&gt; </span><span class="rocqdoc-var">y</span><span>
+                    </span><span class="rocqdoc-keyword">end</span><span>).</span><span>
 </span></dt><dd><span class="ansi-bold">fun</span><span> x : nat =&gt; x
      : nat</span><span> -&gt;</span><span> nat
 </span></dd>
@@ -1801,15 +1801,15 @@ does not build a match expression.</p>
 <section id="aliasing-subpatterns">
 <h2>Aliasing subpatterns<a class="headerlink" href="#aliasing-subpatterns" title="Link to this heading"></a></h2>
 <p>We can also use <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">as</span></span></span> <a class="reference internal" href="../core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></code> to associate a name to a sub-pattern:</p>
-<div class="coqtop literal-block docutils container">
-<span class="coqtop-reset"></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Fixpoint</span><span> </span><span class="coqdoc-var">max</span><span> (</span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-var">m</span><span>:</span><span class="coqdoc-var">nat</span><span>) {</span><span class="coqdoc-keyword">struct</span><span> </span><span class="coqdoc-var">n</span><span>} : </span><span class="coqdoc-var">nat</span><span> :=</span><span>
-  </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">n</span><span>, </span><span class="coqdoc-var">m</span><span> </span><span class="coqdoc-keyword">with</span><span>
-  | </span><span class="coqdoc-var">O</span><span>, </span><span class="coqdoc-var">_</span><span> =&gt; </span><span class="coqdoc-var">m</span><span>
-  | </span><span class="coqdoc-var">S</span><span> </span><span class="coqdoc-var">n'</span><span> </span><span class="coqdoc-keyword">as</span><span> </span><span class="coqdoc-var">p</span><span>, </span><span class="coqdoc-var">O</span><span> =&gt; </span><span class="coqdoc-var">p</span><span>
-  | </span><span class="coqdoc-var">S</span><span> </span><span class="coqdoc-var">n'</span><span>, </span><span class="coqdoc-var">S</span><span> </span><span class="coqdoc-var">m'</span><span> =&gt; </span><span class="coqdoc-var">S</span><span> (</span><span class="coqdoc-var">max</span><span> </span><span class="coqdoc-var">n'</span><span> </span><span class="coqdoc-var">m'</span><span>)</span><span>
-  </span><span class="coqdoc-keyword">end</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>max is defined
+<div class="rocqtop literal-block docutils container">
+<span class="rocqtop-reset"></span><dl>
+<dt><span></span><span class="rocqdoc-keyword">Fixpoint</span><span> </span><span class="rocqdoc-var">max</span><span> (</span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-var">m</span><span>:</span><span class="rocqdoc-var">nat</span><span>) {</span><span class="rocqdoc-keyword">struct</span><span> </span><span class="rocqdoc-var">n</span><span>} : </span><span class="rocqdoc-var">nat</span><span> :=</span><span>
+  </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">n</span><span>, </span><span class="rocqdoc-var">m</span><span> </span><span class="rocqdoc-keyword">with</span><span>
+  | </span><span class="rocqdoc-var">O</span><span>, </span><span class="rocqdoc-var">_</span><span> =&gt; </span><span class="rocqdoc-var">m</span><span>
+  | </span><span class="rocqdoc-var">S</span><span> </span><span class="rocqdoc-var">n'</span><span> </span><span class="rocqdoc-keyword">as</span><span> </span><span class="rocqdoc-var">p</span><span>, </span><span class="rocqdoc-var">O</span><span> =&gt; </span><span class="rocqdoc-var">p</span><span>
+  | </span><span class="rocqdoc-var">S</span><span> </span><span class="rocqdoc-var">n'</span><span>, </span><span class="rocqdoc-var">S</span><span> </span><span class="rocqdoc-var">m'</span><span> =&gt; </span><span class="rocqdoc-var">S</span><span> (</span><span class="rocqdoc-var">max</span><span> </span><span class="rocqdoc-var">n'</span><span> </span><span class="rocqdoc-var">m'</span><span>)</span><span>
+  </span><span class="rocqdoc-keyword">end</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>max is defined
 max is recursively defined (guarded on 1st argument)
 </span></dd>
 </dl>
@@ -1818,24 +1818,24 @@ max is recursively defined (guarded on 1st argument)
 <section id="nested-patterns">
 <span id="id2"></span><h2>Nested patterns<a class="headerlink" href="#nested-patterns" title="Link to this heading"></a></h2>
 <p>Here is now an example of nested patterns:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Fixpoint</span><span> </span><span class="coqdoc-var">even</span><span> (</span><span class="coqdoc-var">n</span><span>:</span><span class="coqdoc-var">nat</span><span>) : </span><span class="coqdoc-var">bool</span><span> :=</span><span>
-  </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-keyword">with</span><span>
-  | </span><span class="coqdoc-var">O</span><span> =&gt; </span><span class="coqdoc-var">true</span><span>
-  | </span><span class="coqdoc-var">S</span><span> </span><span class="coqdoc-var">O</span><span> =&gt; </span><span class="coqdoc-var">false</span><span>
-  | </span><span class="coqdoc-var">S</span><span> (</span><span class="coqdoc-var">S</span><span> </span><span class="coqdoc-var">n'</span><span>) =&gt; </span><span class="coqdoc-var">even</span><span> </span><span class="coqdoc-var">n'</span><span>
-  </span><span class="coqdoc-keyword">end</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>even is defined
+<dt><span></span><span class="rocqdoc-keyword">Fixpoint</span><span> </span><span class="rocqdoc-var">even</span><span> (</span><span class="rocqdoc-var">n</span><span>:</span><span class="rocqdoc-var">nat</span><span>) : </span><span class="rocqdoc-var">bool</span><span> :=</span><span>
+  </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-keyword">with</span><span>
+  | </span><span class="rocqdoc-var">O</span><span> =&gt; </span><span class="rocqdoc-var">true</span><span>
+  | </span><span class="rocqdoc-var">S</span><span> </span><span class="rocqdoc-var">O</span><span> =&gt; </span><span class="rocqdoc-var">false</span><span>
+  | </span><span class="rocqdoc-var">S</span><span> (</span><span class="rocqdoc-var">S</span><span> </span><span class="rocqdoc-var">n'</span><span>) =&gt; </span><span class="rocqdoc-var">even</span><span> </span><span class="rocqdoc-var">n'</span><span>
+  </span><span class="rocqdoc-keyword">end</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>even is defined
 even is recursively defined (guarded on 1st argument)
 </span></dd>
 </dl>
 </div>
 <p>This is compiled into:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Unset</span><span> </span><span class="coqdoc-keyword">Printing</span><span> </span><span class="coqdoc-var">Matching</span><span>.</span><span>
-</span></dt><dt><span></span><span class="coqdoc-keyword">Print</span><span> </span><span class="coqdoc-var">even</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Unset</span><span> </span><span class="rocqdoc-keyword">Printing</span><span> </span><span class="rocqdoc-var">Matching</span><span>.</span><span>
+</span></dt><dt><span></span><span class="rocqdoc-keyword">Print</span><span> </span><span class="rocqdoc-var">even</span><span>.</span><span>
 </span></dt><dd><span>even =
 fix even (n : nat) : bool :=
   </span><span class="ansi-bold">match</span><span> n </span><span class="ansi-bold">with</span><span>
@@ -1851,7 +1851,7 @@ Arguments </span><span class="ansi-fg-light-green">even</span><span> n%_nat_scop
 </span></dd>
 </dl>
 <span></span><dl class="simple">
-<dt class="coqtop-hidden"><span></span><span class="coqdoc-keyword">Set</span><span> </span><span class="coqdoc-keyword">Printing</span><span> </span><span class="coqdoc-var">Matching</span><span>.</span><span>
+<dt class="rocqtop-hidden"><span></span><span class="rocqdoc-keyword">Set</span><span> </span><span class="rocqdoc-keyword">Printing</span><span> </span><span class="rocqdoc-var">Matching</span><span>.</span><span>
 </span></dt></dl>
 </div>
 <p>In the previous examples patterns do not conflict with, but sometimes
@@ -1859,15 +1859,15 @@ it is comfortable to write patterns that admit a nontrivial
 superposition. Consider the boolean function <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">lef</span></span></code> that given two
 natural numbers yields <code class="code Coq docutils literal notranslate"><span class="name builtin pseudo"><span class="pre">true</span></span></code> if the first one is less or equal than the
 second one and <code class="code Coq docutils literal notranslate"><span class="name builtin pseudo"><span class="pre">false</span></span></code> otherwise. We can write it as follows:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Fixpoint</span><span> </span><span class="coqdoc-var">lef</span><span> (</span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-var">m</span><span>:</span><span class="coqdoc-var">nat</span><span>) {</span><span class="coqdoc-keyword">struct</span><span> </span><span class="coqdoc-var">m</span><span>} : </span><span class="coqdoc-var">bool</span><span> :=</span><span>
-  </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">n</span><span>, </span><span class="coqdoc-var">m</span><span> </span><span class="coqdoc-keyword">with</span><span>
-  | </span><span class="coqdoc-var">O</span><span>, </span><span class="coqdoc-var">_</span><span> =&gt; </span><span class="coqdoc-var">true</span><span>
-  | </span><span class="coqdoc-var">_</span><span>, </span><span class="coqdoc-var">O</span><span> =&gt; </span><span class="coqdoc-var">false</span><span>
-  | </span><span class="coqdoc-var">S</span><span> </span><span class="coqdoc-var">n</span><span>, </span><span class="coqdoc-var">S</span><span> </span><span class="coqdoc-var">m</span><span> =&gt; </span><span class="coqdoc-var">lef</span><span> </span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-var">m</span><span>
-  </span><span class="coqdoc-keyword">end</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>lef is defined
+<dt><span></span><span class="rocqdoc-keyword">Fixpoint</span><span> </span><span class="rocqdoc-var">lef</span><span> (</span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-var">m</span><span>:</span><span class="rocqdoc-var">nat</span><span>) {</span><span class="rocqdoc-keyword">struct</span><span> </span><span class="rocqdoc-var">m</span><span>} : </span><span class="rocqdoc-var">bool</span><span> :=</span><span>
+  </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">n</span><span>, </span><span class="rocqdoc-var">m</span><span> </span><span class="rocqdoc-keyword">with</span><span>
+  | </span><span class="rocqdoc-var">O</span><span>, </span><span class="rocqdoc-var">_</span><span> =&gt; </span><span class="rocqdoc-var">true</span><span>
+  | </span><span class="rocqdoc-var">_</span><span>, </span><span class="rocqdoc-var">O</span><span> =&gt; </span><span class="rocqdoc-var">false</span><span>
+  | </span><span class="rocqdoc-var">S</span><span> </span><span class="rocqdoc-var">n</span><span>, </span><span class="rocqdoc-var">S</span><span> </span><span class="rocqdoc-var">m</span><span> =&gt; </span><span class="rocqdoc-var">lef</span><span> </span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-var">m</span><span>
+  </span><span class="rocqdoc-keyword">end</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>lef is defined
 lef is recursively defined (guarded on 2nd argument)
 </span></dd>
 </dl>
@@ -1880,15 +1880,15 @@ value is matched by the pattern at the ith row if and only if it is
 not matched by some pattern from a previous row. Thus in the example, <code class="docutils literal notranslate"><span class="pre">O</span> <span class="pre">O</span></code>
 is matched by the first pattern, and so <code class="code Coq docutils literal notranslate"><span class="operator"><span class="pre">(</span></span><span class="name"><span class="pre">lef</span></span> <span class="name"><span class="pre">O</span></span> <span class="name"><span class="pre">O</span></span><span class="operator"><span class="pre">)</span></span></code> yields true.</p>
 <p>Another way to write this function is:</p>
-<div class="coqtop literal-block docutils container">
-<span class="coqtop-reset"></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Fixpoint</span><span> </span><span class="coqdoc-var">lef</span><span> (</span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-var">m</span><span>:</span><span class="coqdoc-var">nat</span><span>) {</span><span class="coqdoc-keyword">struct</span><span> </span><span class="coqdoc-var">m</span><span>} : </span><span class="coqdoc-var">bool</span><span> :=</span><span>
-  </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">n</span><span>, </span><span class="coqdoc-var">m</span><span> </span><span class="coqdoc-keyword">with</span><span>
-  | </span><span class="coqdoc-var">O</span><span>, </span><span class="coqdoc-var">_</span><span> =&gt; </span><span class="coqdoc-var">true</span><span>
-  | </span><span class="coqdoc-var">S</span><span> </span><span class="coqdoc-var">n</span><span>, </span><span class="coqdoc-var">S</span><span> </span><span class="coqdoc-var">m</span><span> =&gt; </span><span class="coqdoc-var">lef</span><span> </span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-var">m</span><span>
-  | </span><span class="coqdoc-var">_</span><span>, </span><span class="coqdoc-var">_</span><span> =&gt; </span><span class="coqdoc-var">false</span><span>
-  </span><span class="coqdoc-keyword">end</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>lef is defined
+<div class="rocqtop literal-block docutils container">
+<span class="rocqtop-reset"></span><dl>
+<dt><span></span><span class="rocqdoc-keyword">Fixpoint</span><span> </span><span class="rocqdoc-var">lef</span><span> (</span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-var">m</span><span>:</span><span class="rocqdoc-var">nat</span><span>) {</span><span class="rocqdoc-keyword">struct</span><span> </span><span class="rocqdoc-var">m</span><span>} : </span><span class="rocqdoc-var">bool</span><span> :=</span><span>
+  </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">n</span><span>, </span><span class="rocqdoc-var">m</span><span> </span><span class="rocqdoc-keyword">with</span><span>
+  | </span><span class="rocqdoc-var">O</span><span>, </span><span class="rocqdoc-var">_</span><span> =&gt; </span><span class="rocqdoc-var">true</span><span>
+  | </span><span class="rocqdoc-var">S</span><span> </span><span class="rocqdoc-var">n</span><span>, </span><span class="rocqdoc-var">S</span><span> </span><span class="rocqdoc-var">m</span><span> =&gt; </span><span class="rocqdoc-var">lef</span><span> </span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-var">m</span><span>
+  | </span><span class="rocqdoc-var">_</span><span>, </span><span class="rocqdoc-var">_</span><span> =&gt; </span><span class="rocqdoc-var">false</span><span>
+  </span><span class="rocqdoc-keyword">end</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>lef is defined
 lef is recursively defined (guarded on 2nd argument)
 </span></dd>
 </dl>
@@ -1898,14 +1898,14 @@ priority rule, the last pattern will be used only for values that do
 not match neither the first nor the second one.</p>
 <p>Terms with useless patterns are not accepted by the system. Here is an
 example:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-var">Fail</span><span> </span><span class="coqdoc-keyword">Check</span><span> (</span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">x</span><span>:</span><span class="coqdoc-var">nat</span><span> =&gt;</span><span>
-              </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-keyword">with</span><span>
-              | </span><span class="coqdoc-var">O</span><span> =&gt; </span><span class="coqdoc-var">true</span><span>
-              | </span><span class="coqdoc-var">S</span><span> </span><span class="coqdoc-var">_</span><span> =&gt; </span><span class="coqdoc-var">false</span><span>
-              | </span><span class="coqdoc-var">x</span><span> =&gt; </span><span class="coqdoc-var">true</span><span>
-              </span><span class="coqdoc-keyword">end</span><span>).</span><span>
+<dt><span></span><span class="rocqdoc-var">Fail</span><span> </span><span class="rocqdoc-keyword">Check</span><span> (</span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">x</span><span>:</span><span class="rocqdoc-var">nat</span><span> =&gt;</span><span>
+              </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-keyword">with</span><span>
+              | </span><span class="rocqdoc-var">O</span><span> =&gt; </span><span class="rocqdoc-var">true</span><span>
+              | </span><span class="rocqdoc-var">S</span><span> </span><span class="rocqdoc-var">_</span><span> =&gt; </span><span class="rocqdoc-var">false</span><span>
+              | </span><span class="rocqdoc-var">x</span><span> =&gt; </span><span class="rocqdoc-var">true</span><span>
+              </span><span class="rocqdoc-keyword">end</span><span>).</span><span>
 </span></dt><dd><span>The command has indeed failed with message:
 Pattern &quot;x&quot; is redundant in this clause.
 </span></dd>
@@ -1917,14 +1917,14 @@ Pattern &quot;x&quot; is redundant in this clause.
 <p>Multiple patterns that share the same right-hand-side can be
 factorized using the notation <code class="docutils literal notranslate"><span class="notation"><span class="repeat-wrapper-with-sub"><span class="repeat"><span class="repeat-wrapper-with-sub"><span class="repeat"><a class="reference internal" href="../core/variants.html#grammar-token-pattern"><span class="hole"><span class="pre">pattern</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span><span class="notation-sub"><span class="pre">,</span></span></span></span><span class="notation-sup"><span class="pre">+</span></span><span class="notation-sub"><span class="pre">|</span></span></span></span></code>. For
 instance, <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">max</span></span></code> can be rewritten as follows:</p>
-<div class="coqtop literal-block docutils container">
-<span class="coqtop-reset"></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Fixpoint</span><span> </span><span class="coqdoc-var">max</span><span> (</span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-var">m</span><span>:</span><span class="coqdoc-var">nat</span><span>) {</span><span class="coqdoc-keyword">struct</span><span> </span><span class="coqdoc-var">m</span><span>} : </span><span class="coqdoc-var">nat</span><span> :=</span><span>
-  </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">n</span><span>, </span><span class="coqdoc-var">m</span><span> </span><span class="coqdoc-keyword">with</span><span>
-  | </span><span class="coqdoc-var">S</span><span> </span><span class="coqdoc-var">n'</span><span>, </span><span class="coqdoc-var">S</span><span> </span><span class="coqdoc-var">m'</span><span> =&gt; </span><span class="coqdoc-var">S</span><span> (</span><span class="coqdoc-var">max</span><span> </span><span class="coqdoc-var">n'</span><span> </span><span class="coqdoc-var">m'</span><span>)</span><span>
-  | 0, </span><span class="coqdoc-var">p</span><span> | </span><span class="coqdoc-var">p</span><span>, 0 =&gt; </span><span class="coqdoc-var">p</span><span>
-  </span><span class="coqdoc-keyword">end</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>max is defined
+<div class="rocqtop literal-block docutils container">
+<span class="rocqtop-reset"></span><dl>
+<dt><span></span><span class="rocqdoc-keyword">Fixpoint</span><span> </span><span class="rocqdoc-var">max</span><span> (</span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-var">m</span><span>:</span><span class="rocqdoc-var">nat</span><span>) {</span><span class="rocqdoc-keyword">struct</span><span> </span><span class="rocqdoc-var">m</span><span>} : </span><span class="rocqdoc-var">nat</span><span> :=</span><span>
+  </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">n</span><span>, </span><span class="rocqdoc-var">m</span><span> </span><span class="rocqdoc-keyword">with</span><span>
+  | </span><span class="rocqdoc-var">S</span><span> </span><span class="rocqdoc-var">n'</span><span>, </span><span class="rocqdoc-var">S</span><span> </span><span class="rocqdoc-var">m'</span><span> =&gt; </span><span class="rocqdoc-var">S</span><span> (</span><span class="rocqdoc-var">max</span><span> </span><span class="rocqdoc-var">n'</span><span> </span><span class="rocqdoc-var">m'</span><span>)</span><span>
+  | 0, </span><span class="rocqdoc-var">p</span><span> | </span><span class="rocqdoc-var">p</span><span>, 0 =&gt; </span><span class="rocqdoc-var">p</span><span>
+  </span><span class="rocqdoc-keyword">end</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>max is defined
 max is recursively defined (guarded on 2nd argument)
 </span></dd>
 </dl>
@@ -1932,27 +1932,27 @@ max is recursively defined (guarded on 2nd argument)
 <p>Similarly, factorization of (not necessarily multiple) patterns that
 share the same variables is possible by using the notation <code class="docutils literal notranslate"><span class="notation"><span class="repeat-wrapper-with-sub"><span class="repeat"><a class="reference internal" href="../core/variants.html#grammar-token-pattern"><span class="hole"><span class="pre">pattern</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span><span class="notation-sub"><span class="pre">|</span></span></span></span></code>.
 Here is an example:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">filter_2_4</span><span> (</span><span class="coqdoc-var">n</span><span>:</span><span class="coqdoc-var">nat</span><span>) : </span><span class="coqdoc-var">nat</span><span> :=</span><span>
-  </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-keyword">with</span><span>
-  | 2 </span><span class="coqdoc-keyword">as</span><span> </span><span class="coqdoc-var">m</span><span> | 4 </span><span class="coqdoc-keyword">as</span><span> </span><span class="coqdoc-var">m</span><span> =&gt; </span><span class="coqdoc-var">m</span><span>
-  | </span><span class="coqdoc-var">_</span><span> =&gt; 0</span><span>
-  </span><span class="coqdoc-keyword">end</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>filter_2_4 is defined
+<dt><span></span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">filter_2_4</span><span> (</span><span class="rocqdoc-var">n</span><span>:</span><span class="rocqdoc-var">nat</span><span>) : </span><span class="rocqdoc-var">nat</span><span> :=</span><span>
+  </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-keyword">with</span><span>
+  | 2 </span><span class="rocqdoc-keyword">as</span><span> </span><span class="rocqdoc-var">m</span><span> | 4 </span><span class="rocqdoc-keyword">as</span><span> </span><span class="rocqdoc-var">m</span><span> =&gt; </span><span class="rocqdoc-var">m</span><span>
+  | </span><span class="rocqdoc-var">_</span><span> =&gt; 0</span><span>
+  </span><span class="rocqdoc-keyword">end</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>filter_2_4 is defined
 </span></dd>
 </dl>
 </div>
 <p>Nested disjunctive patterns are allowed, inside parentheses, with the
 notation <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">(</span></span></span><span class="repeat-wrapper-with-sub"><span class="repeat"><a class="reference internal" href="../core/variants.html#grammar-token-pattern"><span class="hole"><span class="pre">pattern</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span><span class="notation-sub"><span class="pre">|</span></span></span><span><span><span class="pre">)</span></span></span></span></code>, as in:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">filter_some_square_corners</span><span> (</span><span class="coqdoc-var">p</span><span>:</span><span class="coqdoc-var">nat</span><span>*</span><span class="coqdoc-var">nat</span><span>) : </span><span class="coqdoc-var">nat</span><span>*</span><span class="coqdoc-var">nat</span><span> :=</span><span>
-  </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">p</span><span> </span><span class="coqdoc-keyword">with</span><span>
-  | ((2 </span><span class="coqdoc-keyword">as</span><span> </span><span class="coqdoc-var">m</span><span> | 4 </span><span class="coqdoc-keyword">as</span><span> </span><span class="coqdoc-var">m</span><span>), (3 </span><span class="coqdoc-keyword">as</span><span> </span><span class="coqdoc-var">n</span><span> | 5 </span><span class="coqdoc-keyword">as</span><span> </span><span class="coqdoc-var">n</span><span>)) =&gt; (</span><span class="coqdoc-var">m</span><span>,</span><span class="coqdoc-var">n</span><span>)</span><span>
-  | </span><span class="coqdoc-var">_</span><span> =&gt; (0,0)</span><span>
-  </span><span class="coqdoc-keyword">end</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>filter_some_square_corners is defined
+<dt><span></span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">filter_some_square_corners</span><span> (</span><span class="rocqdoc-var">p</span><span>:</span><span class="rocqdoc-var">nat</span><span>*</span><span class="rocqdoc-var">nat</span><span>) : </span><span class="rocqdoc-var">nat</span><span>*</span><span class="rocqdoc-var">nat</span><span> :=</span><span>
+  </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">p</span><span> </span><span class="rocqdoc-keyword">with</span><span>
+  | ((2 </span><span class="rocqdoc-keyword">as</span><span> </span><span class="rocqdoc-var">m</span><span> | 4 </span><span class="rocqdoc-keyword">as</span><span> </span><span class="rocqdoc-var">m</span><span>), (3 </span><span class="rocqdoc-keyword">as</span><span> </span><span class="rocqdoc-var">n</span><span> | 5 </span><span class="rocqdoc-keyword">as</span><span> </span><span class="rocqdoc-var">n</span><span>)) =&gt; (</span><span class="rocqdoc-var">m</span><span>,</span><span class="rocqdoc-var">n</span><span>)</span><span>
+  | </span><span class="rocqdoc-var">_</span><span> =&gt; (0,0)</span><span>
+  </span><span class="rocqdoc-keyword">end</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>filter_some_square_corners is defined
 </span></dd>
 </dl>
 </div>
@@ -1964,12 +1964,12 @@ notation <code class="docutils literal notranslate"><span class="notation"><span
 <p>When matching objects of a parametric type, parameters do not bind in
 patterns. They must be substituted by “<code class="docutils literal notranslate"><span class="pre">_</span></code>”. Consider for example the
 type of polymorphic lists:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Inductive</span><span> </span><span class="coqdoc-var">List</span><span> (</span><span class="coqdoc-var">A</span><span>:</span><span class="coqdoc-keyword">Set</span><span>) : </span><span class="coqdoc-keyword">Set</span><span> :=</span><span>
-| </span><span class="coqdoc-var">nil</span><span> : </span><span class="coqdoc-var">List</span><span> </span><span class="coqdoc-var">A</span><span>
-| </span><span class="coqdoc-var">cons</span><span> : </span><span class="coqdoc-var">A</span><span> -&gt; </span><span class="coqdoc-var">List</span><span> </span><span class="coqdoc-var">A</span><span> -&gt; </span><span class="coqdoc-var">List</span><span> </span><span class="coqdoc-var">A</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>List is defined
+<dt><span></span><span class="rocqdoc-keyword">Inductive</span><span> </span><span class="rocqdoc-var">List</span><span> (</span><span class="rocqdoc-var">A</span><span>:</span><span class="rocqdoc-keyword">Set</span><span>) : </span><span class="rocqdoc-keyword">Set</span><span> :=</span><span>
+| </span><span class="rocqdoc-var">nil</span><span> : </span><span class="rocqdoc-var">List</span><span> </span><span class="rocqdoc-var">A</span><span>
+| </span><span class="rocqdoc-var">cons</span><span> : </span><span class="rocqdoc-var">A</span><span> -&gt; </span><span class="rocqdoc-var">List</span><span> </span><span class="rocqdoc-var">A</span><span> -&gt; </span><span class="rocqdoc-var">List</span><span> </span><span class="rocqdoc-var">A</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>List is defined
 List_rect is defined
 List_ind is defined
 List_rec is defined
@@ -1978,14 +1978,14 @@ List_sind is defined
 </dl>
 </div>
 <p>We can check the function <em>tail</em>:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Check</span><span>
-  (</span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">l</span><span>:</span><span class="coqdoc-var">List</span><span> </span><span class="coqdoc-var">nat</span><span> =&gt;</span><span>
-     </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">l</span><span> </span><span class="coqdoc-keyword">with</span><span>
-     | </span><span class="coqdoc-var">nil</span><span> </span><span class="coqdoc-var">_</span><span> =&gt; </span><span class="coqdoc-var">nil</span><span> </span><span class="coqdoc-var">nat</span><span>
-     | </span><span class="coqdoc-var">cons</span><span> </span><span class="coqdoc-var">_</span><span> </span><span class="coqdoc-var">_</span><span> </span><span class="coqdoc-var">l'</span><span> =&gt; </span><span class="coqdoc-var">l'</span><span>
-     </span><span class="coqdoc-keyword">end</span><span>).</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Check</span><span>
+  (</span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">l</span><span>:</span><span class="rocqdoc-var">List</span><span> </span><span class="rocqdoc-var">nat</span><span> =&gt;</span><span>
+     </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">l</span><span> </span><span class="rocqdoc-keyword">with</span><span>
+     | </span><span class="rocqdoc-var">nil</span><span> </span><span class="rocqdoc-var">_</span><span> =&gt; </span><span class="rocqdoc-var">nil</span><span> </span><span class="rocqdoc-var">nat</span><span>
+     | </span><span class="rocqdoc-var">cons</span><span> </span><span class="rocqdoc-var">_</span><span> </span><span class="rocqdoc-var">_</span><span> </span><span class="rocqdoc-var">l'</span><span> =&gt; </span><span class="rocqdoc-var">l'</span><span>
+     </span><span class="rocqdoc-keyword">end</span><span>).</span><span>
 </span></dt><dd><span class="ansi-bold">fun</span><span> l : List nat =&gt; </span><span class="ansi-bold">match</span><span> l </span><span class="ansi-bold">with</span><span>
                     | nil _ =&gt; nil nat
                     | cons _ _ l' =&gt; l'
@@ -1995,40 +1995,40 @@ List_sind is defined
 </dl>
 </div>
 <p>When we use parameters in patterns there is an error message:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-var">Fail</span><span> </span><span class="coqdoc-keyword">Check</span><span>
-  (</span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">l</span><span>:</span><span class="coqdoc-var">List</span><span> </span><span class="coqdoc-var">nat</span><span> =&gt;</span><span>
-     </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">l</span><span> </span><span class="coqdoc-keyword">with</span><span>
-     | </span><span class="coqdoc-var">nil</span><span> </span><span class="coqdoc-var">A</span><span> =&gt; </span><span class="coqdoc-var">nil</span><span> </span><span class="coqdoc-var">nat</span><span>
-     | </span><span class="coqdoc-var">cons</span><span> </span><span class="coqdoc-var">A</span><span> </span><span class="coqdoc-var">_</span><span> </span><span class="coqdoc-var">l'</span><span> =&gt; </span><span class="coqdoc-var">l'</span><span>
-     </span><span class="coqdoc-keyword">end</span><span>).</span><span>
+<dt><span></span><span class="rocqdoc-var">Fail</span><span> </span><span class="rocqdoc-keyword">Check</span><span>
+  (</span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">l</span><span>:</span><span class="rocqdoc-var">List</span><span> </span><span class="rocqdoc-var">nat</span><span> =&gt;</span><span>
+     </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">l</span><span> </span><span class="rocqdoc-keyword">with</span><span>
+     | </span><span class="rocqdoc-var">nil</span><span> </span><span class="rocqdoc-var">A</span><span> =&gt; </span><span class="rocqdoc-var">nil</span><span> </span><span class="rocqdoc-var">nat</span><span>
+     | </span><span class="rocqdoc-var">cons</span><span> </span><span class="rocqdoc-var">A</span><span> </span><span class="rocqdoc-var">_</span><span> </span><span class="rocqdoc-var">l'</span><span> =&gt; </span><span class="rocqdoc-var">l'</span><span>
+     </span><span class="rocqdoc-keyword">end</span><span>).</span><span>
 </span></dt><dd><span>The command has indeed failed with message:
 The parameters do not bind in patterns; they must be replaced by '_'.
 </span></dd>
 </dl>
 </div>
-<dl class="coq flag">
-<dt class="sig sig-object coq" id="coq:flag.Asymmetric-Patterns">
-<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Asymmetric</span></span></span> <span><span><span class="pre">Patterns</span></span></span></span></span><a class="headerlink" href="#coq:flag.Asymmetric-Patterns" title="Link to this definition"></a></dt>
+<dl class="rocq flag">
+<dt class="sig sig-object rocq" id="rocq:flag.Asymmetric-Patterns">
+<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Asymmetric</span></span></span> <span><span><span class="pre">Patterns</span></span></span></span></span><a class="headerlink" href="#rocq:flag.Asymmetric-Patterns" title="Link to this definition"></a></dt>
 <dd><p>This <a class="reference internal" href="../core/basic.html#term-flag"><span class="xref std std-term">flag</span></a> (off by default) removes parameters from constructors in patterns:</p>
 </dd></dl>
 
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Set</span><span> </span><span class="coqdoc-var">Asymmetric</span><span> </span><span class="coqdoc-var">Patterns</span><span>.</span><span>
-</span></dt><dt><span></span><span class="coqdoc-keyword">Check</span><span> (</span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">l</span><span>:</span><span class="coqdoc-var">List</span><span> </span><span class="coqdoc-var">nat</span><span> =&gt;</span><span>
-  </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">l</span><span> </span><span class="coqdoc-keyword">with</span><span>
-  | </span><span class="coqdoc-var">nil</span><span> =&gt; </span><span class="coqdoc-var">nil</span><span> </span><span class="coqdoc-var">_</span><span>
-  | </span><span class="coqdoc-var">cons</span><span> </span><span class="coqdoc-var">_</span><span> </span><span class="coqdoc-var">l'</span><span> =&gt; </span><span class="coqdoc-var">l'</span><span>
-  </span><span class="coqdoc-keyword">end</span><span>).</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Set</span><span> </span><span class="rocqdoc-var">Asymmetric</span><span> </span><span class="rocqdoc-var">Patterns</span><span>.</span><span>
+</span></dt><dt><span></span><span class="rocqdoc-keyword">Check</span><span> (</span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">l</span><span>:</span><span class="rocqdoc-var">List</span><span> </span><span class="rocqdoc-var">nat</span><span> =&gt;</span><span>
+  </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">l</span><span> </span><span class="rocqdoc-keyword">with</span><span>
+  | </span><span class="rocqdoc-var">nil</span><span> =&gt; </span><span class="rocqdoc-var">nil</span><span> </span><span class="rocqdoc-var">_</span><span>
+  | </span><span class="rocqdoc-var">cons</span><span> </span><span class="rocqdoc-var">_</span><span> </span><span class="rocqdoc-var">l'</span><span> =&gt; </span><span class="rocqdoc-var">l'</span><span>
+  </span><span class="rocqdoc-keyword">end</span><span>).</span><span>
 </span></dt><dd><span class="ansi-bold">fun</span><span> l : List nat =&gt; </span><span class="ansi-bold">match</span><span> l </span><span class="ansi-bold">with</span><span>
                     | &#64;nil _ =&gt; nil nat
                     | &#64;cons _ _ l' =&gt; l'
                     </span><span class="ansi-bold">end</span><span>
      : List nat</span><span> -&gt;</span><span> List nat
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Unset</span><span> </span><span class="coqdoc-var">Asymmetric</span><span> </span><span class="coqdoc-var">Patterns</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Unset</span><span> </span><span class="rocqdoc-var">Asymmetric</span><span> </span><span class="rocqdoc-var">Patterns</span><span>.</span><span>
 </span></dt></dl>
 </div>
 </section>
@@ -2036,16 +2036,16 @@ The parameters do not bind in patterns; they must be replaced by '_'.
 <section id="implicit-arguments-in-patterns">
 <h2>Implicit arguments in patterns<a class="headerlink" href="#implicit-arguments-in-patterns" title="Link to this heading"></a></h2>
 <p>By default, implicit arguments are omitted in patterns. So we write:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Arguments</span><span> </span><span class="coqdoc-var">nil</span><span> {</span><span class="coqdoc-var">A</span><span>}.</span><span>
-</span></dt><dt><span></span><span class="coqdoc-keyword">Arguments</span><span> </span><span class="coqdoc-var">cons</span><span> [</span><span class="coqdoc-var">A</span><span>] </span><span class="coqdoc-var">_</span><span> </span><span class="coqdoc-var">_</span><span>.</span><span>
-</span></dt><dt><span></span><span class="coqdoc-keyword">Check</span><span>
-  (</span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">l</span><span>:</span><span class="coqdoc-var">List</span><span> </span><span class="coqdoc-var">nat</span><span> =&gt;</span><span>
-     </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">l</span><span> </span><span class="coqdoc-keyword">with</span><span>
-     | </span><span class="coqdoc-var">nil</span><span> =&gt; </span><span class="coqdoc-var">nil</span><span>
-     | </span><span class="coqdoc-var">cons</span><span> </span><span class="coqdoc-var">_</span><span> </span><span class="coqdoc-var">l'</span><span> =&gt; </span><span class="coqdoc-var">l'</span><span>
-     </span><span class="coqdoc-keyword">end</span><span>).</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Arguments</span><span> </span><span class="rocqdoc-var">nil</span><span> {</span><span class="rocqdoc-var">A</span><span>}.</span><span>
+</span></dt><dt><span></span><span class="rocqdoc-keyword">Arguments</span><span> </span><span class="rocqdoc-var">cons</span><span> [</span><span class="rocqdoc-var">A</span><span>] </span><span class="rocqdoc-var">_</span><span> </span><span class="rocqdoc-var">_</span><span>.</span><span>
+</span></dt><dt><span></span><span class="rocqdoc-keyword">Check</span><span>
+  (</span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">l</span><span>:</span><span class="rocqdoc-var">List</span><span> </span><span class="rocqdoc-var">nat</span><span> =&gt;</span><span>
+     </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">l</span><span> </span><span class="rocqdoc-keyword">with</span><span>
+     | </span><span class="rocqdoc-var">nil</span><span> =&gt; </span><span class="rocqdoc-var">nil</span><span>
+     | </span><span class="rocqdoc-var">cons</span><span> </span><span class="rocqdoc-var">_</span><span> </span><span class="rocqdoc-var">l'</span><span> =&gt; </span><span class="rocqdoc-var">l'</span><span>
+     </span><span class="rocqdoc-keyword">end</span><span>).</span><span>
 </span></dt><dd><span class="ansi-bold">fun</span><span> l : List nat =&gt; </span><span class="ansi-bold">match</span><span> l </span><span class="ansi-bold">with</span><span>
                     | nil =&gt; nil
                     | cons _ l' =&gt; l'
@@ -2056,14 +2056,14 @@ The parameters do not bind in patterns; they must be replaced by '_'.
 </div>
 <p>But the possibility to use all the arguments is given by “<code class="docutils literal notranslate"><span class="pre">&#64;</span></code>” implicit
 explicitations (as for terms, see <a class="reference internal" href="implicit-arguments.html#explicit-applications"><span class="std std-ref">Explicit applications</span></a>).</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Check</span><span>
-  (</span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">l</span><span>:</span><span class="coqdoc-var">List</span><span> </span><span class="coqdoc-var">nat</span><span> =&gt;</span><span>
-     </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">l</span><span> </span><span class="coqdoc-keyword">with</span><span>
-     | &#64;</span><span class="coqdoc-var">nil</span><span> </span><span class="coqdoc-var">_</span><span> =&gt; &#64;</span><span class="coqdoc-var">nil</span><span> </span><span class="coqdoc-var">nat</span><span>
-     | &#64;</span><span class="coqdoc-var">cons</span><span> </span><span class="coqdoc-var">_</span><span> </span><span class="coqdoc-var">_</span><span> </span><span class="coqdoc-var">l'</span><span> =&gt; </span><span class="coqdoc-var">l'</span><span>
-     </span><span class="coqdoc-keyword">end</span><span>).</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Check</span><span>
+  (</span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">l</span><span>:</span><span class="rocqdoc-var">List</span><span> </span><span class="rocqdoc-var">nat</span><span> =&gt;</span><span>
+     </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">l</span><span> </span><span class="rocqdoc-keyword">with</span><span>
+     | &#64;</span><span class="rocqdoc-var">nil</span><span> </span><span class="rocqdoc-var">_</span><span> =&gt; &#64;</span><span class="rocqdoc-var">nil</span><span> </span><span class="rocqdoc-var">nat</span><span>
+     | &#64;</span><span class="rocqdoc-var">cons</span><span> </span><span class="rocqdoc-var">_</span><span> </span><span class="rocqdoc-var">_</span><span> </span><span class="rocqdoc-var">l'</span><span> =&gt; </span><span class="rocqdoc-var">l'</span><span>
+     </span><span class="rocqdoc-keyword">end</span><span>).</span><span>
 </span></dt><dd><span class="ansi-bold">fun</span><span> l : List nat =&gt; </span><span class="ansi-bold">match</span><span> l </span><span class="ansi-bold">with</span><span>
                     | nil =&gt; nil
                     | cons _ l' =&gt; l'
@@ -2079,12 +2079,12 @@ explicitations (as for terms, see <a class="reference internal" href="implicit-a
 dependent types, but we can also use the expansion strategy to
 destructure objects of dependent types. Consider the type <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">listn</span></span></code> of
 lists of a certain length:</p>
-<div class="coqtop literal-block docutils container">
-<span class="coqtop-reset"></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Inductive</span><span> </span><span class="coqdoc-var">listn</span><span> : </span><span class="coqdoc-var">nat</span><span> -&gt; </span><span class="coqdoc-keyword">Set</span><span> :=</span><span>
-| </span><span class="coqdoc-var">niln</span><span> : </span><span class="coqdoc-var">listn</span><span> 0</span><span>
-| </span><span class="coqdoc-var">consn</span><span> : </span><span class="coqdoc-keyword">forall</span><span> </span><span class="coqdoc-var">n</span><span>:</span><span class="coqdoc-var">nat</span><span>, </span><span class="coqdoc-var">nat</span><span> -&gt; </span><span class="coqdoc-var">listn</span><span> </span><span class="coqdoc-var">n</span><span> -&gt; </span><span class="coqdoc-var">listn</span><span> (</span><span class="coqdoc-var">S</span><span> </span><span class="coqdoc-var">n</span><span>).</span><span>
-</span></dt><dd class="coqtop-hidden"><span>listn is defined
+<div class="rocqtop literal-block docutils container">
+<span class="rocqtop-reset"></span><dl>
+<dt><span></span><span class="rocqdoc-keyword">Inductive</span><span> </span><span class="rocqdoc-var">listn</span><span> : </span><span class="rocqdoc-var">nat</span><span> -&gt; </span><span class="rocqdoc-keyword">Set</span><span> :=</span><span>
+| </span><span class="rocqdoc-var">niln</span><span> : </span><span class="rocqdoc-var">listn</span><span> 0</span><span>
+| </span><span class="rocqdoc-var">consn</span><span> : </span><span class="rocqdoc-keyword">forall</span><span> </span><span class="rocqdoc-var">n</span><span>:</span><span class="rocqdoc-var">nat</span><span>, </span><span class="rocqdoc-var">nat</span><span> -&gt; </span><span class="rocqdoc-var">listn</span><span> </span><span class="rocqdoc-var">n</span><span> -&gt; </span><span class="rocqdoc-var">listn</span><span> (</span><span class="rocqdoc-var">S</span><span> </span><span class="rocqdoc-var">n</span><span>).</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>listn is defined
 listn_rect is defined
 listn_ind is defined
 listn_rec is defined
@@ -2096,19 +2096,19 @@ listn_sind is defined
 <section id="understanding-dependencies-in-patterns">
 <h2>Understanding dependencies in patterns<a class="headerlink" href="#understanding-dependencies-in-patterns" title="Link to this heading"></a></h2>
 <p>We can define the function length over <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">listn</span></span></code> by:</p>
-<div class="coqdoc literal-block docutils container">
-<span><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">length</span><span> (</span><span class="coqdoc-var">n</span><span>:</span><span class="coqdoc-var">nat</span><span>) (</span><span class="coqdoc-var">l</span><span>:</span><span class="coqdoc-var">listn</span><span> </span><span class="coqdoc-var">n</span><span>) := </span><span class="coqdoc-var">n</span><span>.</span><span>
+<div class="rocqdoc literal-block docutils container">
+<span><span></span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">length</span><span> (</span><span class="rocqdoc-var">n</span><span>:</span><span class="rocqdoc-var">nat</span><span>) (</span><span class="rocqdoc-var">l</span><span>:</span><span class="rocqdoc-var">listn</span><span> </span><span class="rocqdoc-var">n</span><span>) := </span><span class="rocqdoc-var">n</span><span>.</span><span>
 </span></span></div>
 <p>Just for illustrating pattern matching, we can define it by case
 analysis:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">length</span><span> (</span><span class="coqdoc-var">n</span><span>:</span><span class="coqdoc-var">nat</span><span>) (</span><span class="coqdoc-var">l</span><span>:</span><span class="coqdoc-var">listn</span><span> </span><span class="coqdoc-var">n</span><span>) :=</span><span>
-  </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">l</span><span> </span><span class="coqdoc-keyword">with</span><span>
-  | </span><span class="coqdoc-var">niln</span><span> =&gt; 0</span><span>
-  | </span><span class="coqdoc-var">consn</span><span> </span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-var">_</span><span> </span><span class="coqdoc-var">_</span><span> =&gt; </span><span class="coqdoc-var">S</span><span> </span><span class="coqdoc-var">n</span><span>
-  </span><span class="coqdoc-keyword">end</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>length is defined
+<dt><span></span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">length</span><span> (</span><span class="rocqdoc-var">n</span><span>:</span><span class="rocqdoc-var">nat</span><span>) (</span><span class="rocqdoc-var">l</span><span>:</span><span class="rocqdoc-var">listn</span><span> </span><span class="rocqdoc-var">n</span><span>) :=</span><span>
+  </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">l</span><span> </span><span class="rocqdoc-keyword">with</span><span>
+  | </span><span class="rocqdoc-var">niln</span><span> =&gt; 0</span><span>
+  | </span><span class="rocqdoc-var">consn</span><span> </span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-var">_</span><span> </span><span class="rocqdoc-var">_</span><span> =&gt; </span><span class="rocqdoc-var">S</span><span> </span><span class="rocqdoc-var">n</span><span>
+  </span><span class="rocqdoc-keyword">end</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>length is defined
 </span></dd>
 </dl>
 </div>
@@ -2126,20 +2126,20 @@ patterns it often happens that we need to write cases where the types
 of the right hand sides are different instances of the elimination predicate. The
 function <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">concat</span></span></code> for <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">listn</span></span></code> is an example where the branches have
 different types and we need to provide the elimination predicate:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Fixpoint</span><span> </span><span class="coqdoc-var">concat</span><span> (</span><span class="coqdoc-var">n</span><span>:</span><span class="coqdoc-var">nat</span><span>) (</span><span class="coqdoc-var">l</span><span>:</span><span class="coqdoc-var">listn</span><span> </span><span class="coqdoc-var">n</span><span>) (</span><span class="coqdoc-var">m</span><span>:</span><span class="coqdoc-var">nat</span><span>) (</span><span class="coqdoc-var">l'</span><span>:</span><span class="coqdoc-var">listn</span><span> </span><span class="coqdoc-var">m</span><span>) {</span><span class="coqdoc-keyword">struct</span><span> </span><span class="coqdoc-var">l</span><span>} :</span><span>
- </span><span class="coqdoc-var">listn</span><span> (</span><span class="coqdoc-var">n</span><span> + </span><span class="coqdoc-var">m</span><span>) :=</span><span>
-  </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">l</span><span> </span><span class="coqdoc-tactic">in</span><span> </span><span class="coqdoc-var">listn</span><span> </span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-keyword">return</span><span> </span><span class="coqdoc-var">listn</span><span> (</span><span class="coqdoc-var">n</span><span> + </span><span class="coqdoc-var">m</span><span>) </span><span class="coqdoc-keyword">with</span><span>
-  | </span><span class="coqdoc-var">niln</span><span> =&gt; </span><span class="coqdoc-var">l'</span><span>
-  | </span><span class="coqdoc-var">consn</span><span> </span><span class="coqdoc-var">n'</span><span> </span><span class="coqdoc-var">a</span><span> </span><span class="coqdoc-var">y</span><span> =&gt; </span><span class="coqdoc-var">consn</span><span> (</span><span class="coqdoc-var">n'</span><span> + </span><span class="coqdoc-var">m</span><span>) </span><span class="coqdoc-var">a</span><span> (</span><span class="coqdoc-var">concat</span><span> </span><span class="coqdoc-var">n'</span><span> </span><span class="coqdoc-var">y</span><span> </span><span class="coqdoc-var">m</span><span> </span><span class="coqdoc-var">l'</span><span>)</span><span>
-  </span><span class="coqdoc-keyword">end</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>concat is defined
+<dt><span></span><span class="rocqdoc-keyword">Fixpoint</span><span> </span><span class="rocqdoc-var">concat</span><span> (</span><span class="rocqdoc-var">n</span><span>:</span><span class="rocqdoc-var">nat</span><span>) (</span><span class="rocqdoc-var">l</span><span>:</span><span class="rocqdoc-var">listn</span><span> </span><span class="rocqdoc-var">n</span><span>) (</span><span class="rocqdoc-var">m</span><span>:</span><span class="rocqdoc-var">nat</span><span>) (</span><span class="rocqdoc-var">l'</span><span>:</span><span class="rocqdoc-var">listn</span><span> </span><span class="rocqdoc-var">m</span><span>) {</span><span class="rocqdoc-keyword">struct</span><span> </span><span class="rocqdoc-var">l</span><span>} :</span><span>
+ </span><span class="rocqdoc-var">listn</span><span> (</span><span class="rocqdoc-var">n</span><span> + </span><span class="rocqdoc-var">m</span><span>) :=</span><span>
+  </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">l</span><span> </span><span class="rocqdoc-tactic">in</span><span> </span><span class="rocqdoc-var">listn</span><span> </span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-keyword">return</span><span> </span><span class="rocqdoc-var">listn</span><span> (</span><span class="rocqdoc-var">n</span><span> + </span><span class="rocqdoc-var">m</span><span>) </span><span class="rocqdoc-keyword">with</span><span>
+  | </span><span class="rocqdoc-var">niln</span><span> =&gt; </span><span class="rocqdoc-var">l'</span><span>
+  | </span><span class="rocqdoc-var">consn</span><span> </span><span class="rocqdoc-var">n'</span><span> </span><span class="rocqdoc-var">a</span><span> </span><span class="rocqdoc-var">y</span><span> =&gt; </span><span class="rocqdoc-var">consn</span><span> (</span><span class="rocqdoc-var">n'</span><span> + </span><span class="rocqdoc-var">m</span><span>) </span><span class="rocqdoc-var">a</span><span> (</span><span class="rocqdoc-var">concat</span><span> </span><span class="rocqdoc-var">n'</span><span> </span><span class="rocqdoc-var">y</span><span> </span><span class="rocqdoc-var">m</span><span> </span><span class="rocqdoc-var">l'</span><span>)</span><span>
+  </span><span class="rocqdoc-keyword">end</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>concat is defined
 concat is recursively defined (guarded on 2nd argument)
 </span></dd>
 </dl>
 <span></span><dl class="simple">
-<dt class="coqtop-hidden"><span></span><span class="coqdoc-keyword">Reset</span><span> </span><span class="coqdoc-var">concat</span><span>.</span><span>
+<dt class="rocqtop-hidden"><span></span><span class="rocqdoc-keyword">Reset</span><span> </span><span class="rocqdoc-var">concat</span><span>.</span><span>
 </span></dt></dl>
 </div>
 <p>The elimination predicate is <code class="code Coq docutils literal notranslate"><span class="keyword"><span class="pre">fun</span></span> <span class="operator"><span class="pre">(</span></span><span class="name"><span class="pre">n</span></span><span class="operator"><span class="pre">:</span></span><span class="name"><span class="pre">nat</span></span><span class="operator"><span class="pre">)</span></span> <span class="operator"><span class="pre">(</span></span><span class="name"><span class="pre">l</span></span><span class="operator"><span class="pre">:</span></span><span class="name"><span class="pre">listn</span></span> <span class="name"><span class="pre">n</span></span><span class="operator"><span class="pre">)</span></span> <span class="operator"><span class="pre">=&gt;</span></span> <span class="name"><span class="pre">listn</span></span> <span class="operator"><span class="pre">(</span></span><span class="name"><span class="pre">n</span></span><span class="operator"><span class="pre">+</span></span><span class="name"><span class="pre">m</span></span><span class="operator"><span class="pre">)</span></span></code>.
@@ -2161,15 +2161,15 @@ associated with an <code class="docutils literal notranslate"><span class="pre">
 a dependent product.</p>
 <p>For example, an equivalent definition for <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">concat</span></span></code> (even though the
 matching on the second term is trivial) would have been:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Fixpoint</span><span> </span><span class="coqdoc-var">concat</span><span> (</span><span class="coqdoc-var">n</span><span>:</span><span class="coqdoc-var">nat</span><span>) (</span><span class="coqdoc-var">l</span><span>:</span><span class="coqdoc-var">listn</span><span> </span><span class="coqdoc-var">n</span><span>) (</span><span class="coqdoc-var">m</span><span>:</span><span class="coqdoc-var">nat</span><span>) (</span><span class="coqdoc-var">l'</span><span>:</span><span class="coqdoc-var">listn</span><span> </span><span class="coqdoc-var">m</span><span>) {</span><span class="coqdoc-keyword">struct</span><span> </span><span class="coqdoc-var">l</span><span>} :</span><span>
- </span><span class="coqdoc-var">listn</span><span> (</span><span class="coqdoc-var">n</span><span> + </span><span class="coqdoc-var">m</span><span>) :=</span><span>
-  </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">l</span><span> </span><span class="coqdoc-tactic">in</span><span> </span><span class="coqdoc-var">listn</span><span> </span><span class="coqdoc-var">n</span><span>, </span><span class="coqdoc-var">l'</span><span> </span><span class="coqdoc-keyword">return</span><span> </span><span class="coqdoc-var">listn</span><span> (</span><span class="coqdoc-var">n</span><span> + </span><span class="coqdoc-var">m</span><span>) </span><span class="coqdoc-keyword">with</span><span>
-  | </span><span class="coqdoc-var">niln</span><span>, </span><span class="coqdoc-var">x</span><span> =&gt; </span><span class="coqdoc-var">x</span><span>
-  | </span><span class="coqdoc-var">consn</span><span> </span><span class="coqdoc-var">n'</span><span> </span><span class="coqdoc-var">a</span><span> </span><span class="coqdoc-var">y</span><span>, </span><span class="coqdoc-var">x</span><span> =&gt; </span><span class="coqdoc-var">consn</span><span> (</span><span class="coqdoc-var">n'</span><span> + </span><span class="coqdoc-var">m</span><span>) </span><span class="coqdoc-var">a</span><span> (</span><span class="coqdoc-var">concat</span><span> </span><span class="coqdoc-var">n'</span><span> </span><span class="coqdoc-var">y</span><span> </span><span class="coqdoc-var">m</span><span> </span><span class="coqdoc-var">x</span><span>)</span><span>
-  </span><span class="coqdoc-keyword">end</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>concat is defined
+<dt><span></span><span class="rocqdoc-keyword">Fixpoint</span><span> </span><span class="rocqdoc-var">concat</span><span> (</span><span class="rocqdoc-var">n</span><span>:</span><span class="rocqdoc-var">nat</span><span>) (</span><span class="rocqdoc-var">l</span><span>:</span><span class="rocqdoc-var">listn</span><span> </span><span class="rocqdoc-var">n</span><span>) (</span><span class="rocqdoc-var">m</span><span>:</span><span class="rocqdoc-var">nat</span><span>) (</span><span class="rocqdoc-var">l'</span><span>:</span><span class="rocqdoc-var">listn</span><span> </span><span class="rocqdoc-var">m</span><span>) {</span><span class="rocqdoc-keyword">struct</span><span> </span><span class="rocqdoc-var">l</span><span>} :</span><span>
+ </span><span class="rocqdoc-var">listn</span><span> (</span><span class="rocqdoc-var">n</span><span> + </span><span class="rocqdoc-var">m</span><span>) :=</span><span>
+  </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">l</span><span> </span><span class="rocqdoc-tactic">in</span><span> </span><span class="rocqdoc-var">listn</span><span> </span><span class="rocqdoc-var">n</span><span>, </span><span class="rocqdoc-var">l'</span><span> </span><span class="rocqdoc-keyword">return</span><span> </span><span class="rocqdoc-var">listn</span><span> (</span><span class="rocqdoc-var">n</span><span> + </span><span class="rocqdoc-var">m</span><span>) </span><span class="rocqdoc-keyword">with</span><span>
+  | </span><span class="rocqdoc-var">niln</span><span>, </span><span class="rocqdoc-var">x</span><span> =&gt; </span><span class="rocqdoc-var">x</span><span>
+  | </span><span class="rocqdoc-var">consn</span><span> </span><span class="rocqdoc-var">n'</span><span> </span><span class="rocqdoc-var">a</span><span> </span><span class="rocqdoc-var">y</span><span>, </span><span class="rocqdoc-var">x</span><span> =&gt; </span><span class="rocqdoc-var">consn</span><span> (</span><span class="rocqdoc-var">n'</span><span> + </span><span class="rocqdoc-var">m</span><span>) </span><span class="rocqdoc-var">a</span><span> (</span><span class="rocqdoc-var">concat</span><span> </span><span class="rocqdoc-var">n'</span><span> </span><span class="rocqdoc-var">y</span><span> </span><span class="rocqdoc-var">m</span><span> </span><span class="rocqdoc-var">x</span><span>)</span><span>
+  </span><span class="rocqdoc-keyword">end</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>concat is defined
 concat is recursively defined (guarded on 2nd argument)
 </span></dd>
 </dl>
@@ -2177,14 +2177,14 @@ concat is recursively defined (guarded on 2nd argument)
 <p>Even without real matching over the second term, this construction can
 be used to keep types linked. If <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">a</span></span></code> and <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">b</span></span></code> are two <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">listn</span></span></code> of the same
 length, by writing</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Check</span><span> (</span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">n</span><span> (</span><span class="coqdoc-var">a</span><span> </span><span class="coqdoc-var">b</span><span>: </span><span class="coqdoc-var">listn</span><span> </span><span class="coqdoc-var">n</span><span>) =&gt;</span><span>
- </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">a</span><span>, </span><span class="coqdoc-var">b</span><span> </span><span class="coqdoc-keyword">with</span><span>
- | </span><span class="coqdoc-var">niln</span><span>, </span><span class="coqdoc-var">b0</span><span> =&gt; </span><span class="coqdoc-var">tt</span><span>
- | </span><span class="coqdoc-var">consn</span><span> </span><span class="coqdoc-var">n'</span><span> </span><span class="coqdoc-var">a</span><span> </span><span class="coqdoc-var">y</span><span>, </span><span class="coqdoc-var">bS</span><span> =&gt; </span><span class="coqdoc-var">tt</span><span>
- </span><span class="coqdoc-keyword">end</span><span>).</span><span>
-</span></dt><dd class="coqtop-hidden"><span class="ansi-bold">fun</span><span> (n : nat) (a _ : listn n) =&gt; </span><span class="ansi-bold">match</span><span> a </span><span class="ansi-bold">with</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Check</span><span> (</span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">n</span><span> (</span><span class="rocqdoc-var">a</span><span> </span><span class="rocqdoc-var">b</span><span>: </span><span class="rocqdoc-var">listn</span><span> </span><span class="rocqdoc-var">n</span><span>) =&gt;</span><span>
+ </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">a</span><span>, </span><span class="rocqdoc-var">b</span><span> </span><span class="rocqdoc-keyword">with</span><span>
+ | </span><span class="rocqdoc-var">niln</span><span>, </span><span class="rocqdoc-var">b0</span><span> =&gt; </span><span class="rocqdoc-var">tt</span><span>
+ | </span><span class="rocqdoc-var">consn</span><span> </span><span class="rocqdoc-var">n'</span><span> </span><span class="rocqdoc-var">a</span><span> </span><span class="rocqdoc-var">y</span><span>, </span><span class="rocqdoc-var">bS</span><span> =&gt; </span><span class="rocqdoc-var">tt</span><span>
+ </span><span class="rocqdoc-keyword">end</span><span>).</span><span>
+</span></dt><dd class="rocqtop-hidden"><span class="ansi-bold">fun</span><span> (n : nat) (a _ : listn n) =&gt; </span><span class="ansi-bold">match</span><span> a </span><span class="ansi-bold">with</span><span>
                                  | niln | _ =&gt; tt
                                  </span><span class="ansi-bold">end</span><span>
      : </span><span class="ansi-bold">forall</span><span> n : nat, listn n</span><span> -&gt;</span><span> listn n</span><span> -&gt;</span><span> unit
@@ -2203,14 +2203,14 @@ become impossible branches. In an impossible branch, you can answer
 anything but False_rect unit has the advantage to be subterm of
 anything.</p>
 <p>To be concrete: the <code class="docutils literal notranslate"><span class="pre">tail</span></code> function can be written:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">tail</span><span> </span><span class="coqdoc-var">n</span><span> (</span><span class="coqdoc-var">v</span><span>: </span><span class="coqdoc-var">listn</span><span> (</span><span class="coqdoc-var">S</span><span> </span><span class="coqdoc-var">n</span><span>)) :=</span><span>
-  </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">v</span><span> </span><span class="coqdoc-tactic">in</span><span> </span><span class="coqdoc-var">listn</span><span> (</span><span class="coqdoc-var">S</span><span> </span><span class="coqdoc-var">m</span><span>) </span><span class="coqdoc-keyword">return</span><span> </span><span class="coqdoc-var">listn</span><span> </span><span class="coqdoc-var">m</span><span> </span><span class="coqdoc-keyword">with</span><span>
-  | </span><span class="coqdoc-var">niln</span><span> =&gt; </span><span class="coqdoc-var">False_rect</span><span> </span><span class="coqdoc-var">unit</span><span>
-  | </span><span class="coqdoc-var">consn</span><span> </span><span class="coqdoc-var">n'</span><span> </span><span class="coqdoc-var">a</span><span> </span><span class="coqdoc-var">y</span><span> =&gt; </span><span class="coqdoc-var">y</span><span>
-  </span><span class="coqdoc-keyword">end</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>tail is defined
+<dt><span></span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">tail</span><span> </span><span class="rocqdoc-var">n</span><span> (</span><span class="rocqdoc-var">v</span><span>: </span><span class="rocqdoc-var">listn</span><span> (</span><span class="rocqdoc-var">S</span><span> </span><span class="rocqdoc-var">n</span><span>)) :=</span><span>
+  </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">v</span><span> </span><span class="rocqdoc-tactic">in</span><span> </span><span class="rocqdoc-var">listn</span><span> (</span><span class="rocqdoc-var">S</span><span> </span><span class="rocqdoc-var">m</span><span>) </span><span class="rocqdoc-keyword">return</span><span> </span><span class="rocqdoc-var">listn</span><span> </span><span class="rocqdoc-var">m</span><span> </span><span class="rocqdoc-keyword">with</span><span>
+  | </span><span class="rocqdoc-var">niln</span><span> =&gt; </span><span class="rocqdoc-var">False_rect</span><span> </span><span class="rocqdoc-var">unit</span><span>
+  | </span><span class="rocqdoc-var">consn</span><span> </span><span class="rocqdoc-var">n'</span><span> </span><span class="rocqdoc-var">a</span><span> </span><span class="rocqdoc-var">y</span><span> =&gt; </span><span class="rocqdoc-var">y</span><span>
+  </span><span class="rocqdoc-keyword">end</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>tail is defined
 </span></dd>
 </dl>
 </div>
@@ -2223,29 +2223,29 @@ anything.</p>
 on the object(s) matched. But it may depend and the typical case is
 when we write a proof by induction or a function that yields an object
 of a dependent type. An example of a proof written using <code class="docutils literal notranslate"><span class="pre">match</span></code> is given
-in the description of the tactic <a class="reference internal" href="../../proof-engine/tactics.html#coq:tacn.refine" title="refine"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">refine</span></code></a>.</p>
+in the description of the tactic <a class="reference internal" href="../../proof-engine/tactics.html#rocq:tacn.refine" title="refine"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">refine</span></code></a>.</p>
 <p>For example, we can write the function <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">buildlist</span></span></code> that given a natural
 number <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">n</span></span></code> builds a list of length <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">n</span></span></code> containing zeros as follows:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Fixpoint</span><span> </span><span class="coqdoc-var">buildlist</span><span> (</span><span class="coqdoc-var">n</span><span>:</span><span class="coqdoc-var">nat</span><span>) : </span><span class="coqdoc-var">listn</span><span> </span><span class="coqdoc-var">n</span><span> :=</span><span>
-  </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-keyword">return</span><span> </span><span class="coqdoc-var">listn</span><span> </span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-keyword">with</span><span>
-  | </span><span class="coqdoc-var">O</span><span> =&gt; </span><span class="coqdoc-var">niln</span><span>
-  | </span><span class="coqdoc-var">S</span><span> </span><span class="coqdoc-var">n</span><span> =&gt; </span><span class="coqdoc-var">consn</span><span> </span><span class="coqdoc-var">n</span><span> 0 (</span><span class="coqdoc-var">buildlist</span><span> </span><span class="coqdoc-var">n</span><span>)</span><span>
-  </span><span class="coqdoc-keyword">end</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>buildlist is defined
+<dt><span></span><span class="rocqdoc-keyword">Fixpoint</span><span> </span><span class="rocqdoc-var">buildlist</span><span> (</span><span class="rocqdoc-var">n</span><span>:</span><span class="rocqdoc-var">nat</span><span>) : </span><span class="rocqdoc-var">listn</span><span> </span><span class="rocqdoc-var">n</span><span> :=</span><span>
+  </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-keyword">return</span><span> </span><span class="rocqdoc-var">listn</span><span> </span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-keyword">with</span><span>
+  | </span><span class="rocqdoc-var">O</span><span> =&gt; </span><span class="rocqdoc-var">niln</span><span>
+  | </span><span class="rocqdoc-var">S</span><span> </span><span class="rocqdoc-var">n</span><span> =&gt; </span><span class="rocqdoc-var">consn</span><span> </span><span class="rocqdoc-var">n</span><span> 0 (</span><span class="rocqdoc-var">buildlist</span><span> </span><span class="rocqdoc-var">n</span><span>)</span><span>
+  </span><span class="rocqdoc-keyword">end</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>buildlist is defined
 buildlist is recursively defined (guarded on 1st argument)
 </span></dd>
 </dl>
 </div>
 <p>We can also use multiple patterns. Consider the following definition
 of the predicate less-equal <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">Le</span></span></code>:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Inductive</span><span> </span><span class="coqdoc-var">LE</span><span> : </span><span class="coqdoc-var">nat</span><span> -&gt; </span><span class="coqdoc-var">nat</span><span> -&gt; </span><span class="coqdoc-keyword">Prop</span><span> :=</span><span>
-  | </span><span class="coqdoc-var">LEO</span><span> : </span><span class="coqdoc-keyword">forall</span><span> </span><span class="coqdoc-var">n</span><span>:</span><span class="coqdoc-var">nat</span><span>, </span><span class="coqdoc-var">LE</span><span> 0 </span><span class="coqdoc-var">n</span><span>
-  | </span><span class="coqdoc-var">LES</span><span> : </span><span class="coqdoc-keyword">forall</span><span> </span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-var">m</span><span>:</span><span class="coqdoc-var">nat</span><span>, </span><span class="coqdoc-var">LE</span><span> </span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-var">m</span><span> -&gt; </span><span class="coqdoc-var">LE</span><span> (</span><span class="coqdoc-var">S</span><span> </span><span class="coqdoc-var">n</span><span>) (</span><span class="coqdoc-var">S</span><span> </span><span class="coqdoc-var">m</span><span>).</span><span>
-</span></dt><dd class="coqtop-hidden"><span>LE is defined
+<dt><span></span><span class="rocqdoc-keyword">Inductive</span><span> </span><span class="rocqdoc-var">LE</span><span> : </span><span class="rocqdoc-var">nat</span><span> -&gt; </span><span class="rocqdoc-var">nat</span><span> -&gt; </span><span class="rocqdoc-keyword">Prop</span><span> :=</span><span>
+  | </span><span class="rocqdoc-var">LEO</span><span> : </span><span class="rocqdoc-keyword">forall</span><span> </span><span class="rocqdoc-var">n</span><span>:</span><span class="rocqdoc-var">nat</span><span>, </span><span class="rocqdoc-var">LE</span><span> 0 </span><span class="rocqdoc-var">n</span><span>
+  | </span><span class="rocqdoc-var">LES</span><span> : </span><span class="rocqdoc-keyword">forall</span><span> </span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-var">m</span><span>:</span><span class="rocqdoc-var">nat</span><span>, </span><span class="rocqdoc-var">LE</span><span> </span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-var">m</span><span> -&gt; </span><span class="rocqdoc-var">LE</span><span> (</span><span class="rocqdoc-var">S</span><span> </span><span class="rocqdoc-var">n</span><span>) (</span><span class="rocqdoc-var">S</span><span> </span><span class="rocqdoc-var">m</span><span>).</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>LE is defined
 LE_ind is defined
 LE_sind is defined
 </span></dd>
@@ -2253,26 +2253,26 @@ LE_sind is defined
 </div>
 <p>We can use multiple patterns to write the proof of the lemma
 <code class="code Coq docutils literal notranslate"><span class="keyword"><span class="pre">forall</span></span> <span class="operator"><span class="pre">(</span></span><span class="name"><span class="pre">n</span></span> <span class="name"><span class="pre">m</span></span><span class="operator"><span class="pre">:</span></span><span class="name"><span class="pre">nat</span></span><span class="operator"><span class="pre">),</span></span> <span class="operator"><span class="pre">(</span></span><span class="name"><span class="pre">LE</span></span> <span class="name"><span class="pre">n</span></span> <span class="name"><span class="pre">m</span></span><span class="operator"><span class="pre">)</span></span> <span class="operator"><span class="pre">\/</span></span> <span class="operator"><span class="pre">(</span></span><span class="name"><span class="pre">LE</span></span> <span class="name"><span class="pre">m</span></span> <span class="name"><span class="pre">n</span></span><span class="operator"><span class="pre">)</span></span></code>:</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Fixpoint</span><span> </span><span class="coqdoc-var">dec</span><span> (</span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-var">m</span><span>:</span><span class="coqdoc-var">nat</span><span>) {</span><span class="coqdoc-keyword">struct</span><span> </span><span class="coqdoc-var">n</span><span>} : </span><span class="coqdoc-var">LE</span><span> </span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-var">m</span><span> \/ </span><span class="coqdoc-var">LE</span><span> </span><span class="coqdoc-var">m</span><span> </span><span class="coqdoc-var">n</span><span> :=</span><span>
-  </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">n</span><span>, </span><span class="coqdoc-var">m</span><span> </span><span class="coqdoc-keyword">return</span><span> </span><span class="coqdoc-var">LE</span><span> </span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-var">m</span><span> \/ </span><span class="coqdoc-var">LE</span><span> </span><span class="coqdoc-var">m</span><span> </span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-keyword">with</span><span>
-  | </span><span class="coqdoc-var">O</span><span>, </span><span class="coqdoc-var">x</span><span> =&gt; </span><span class="coqdoc-var">or_introl</span><span> (</span><span class="coqdoc-var">LE</span><span> </span><span class="coqdoc-var">x</span><span> 0) (</span><span class="coqdoc-var">LEO</span><span> </span><span class="coqdoc-var">x</span><span>)</span><span>
-  | </span><span class="coqdoc-var">x</span><span>, </span><span class="coqdoc-var">O</span><span> =&gt; </span><span class="coqdoc-var">or_intror</span><span> (</span><span class="coqdoc-var">LE</span><span> </span><span class="coqdoc-var">x</span><span> 0) (</span><span class="coqdoc-var">LEO</span><span> </span><span class="coqdoc-var">x</span><span>)</span><span>
-  | </span><span class="coqdoc-var">S</span><span> </span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-keyword">as</span><span> </span><span class="coqdoc-var">n'</span><span>, </span><span class="coqdoc-var">S</span><span> </span><span class="coqdoc-var">m</span><span> </span><span class="coqdoc-keyword">as</span><span> </span><span class="coqdoc-var">m'</span><span> =&gt;</span><span>
-      </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">dec</span><span> </span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-var">m</span><span> </span><span class="coqdoc-keyword">with</span><span>
-      | </span><span class="coqdoc-var">or_introl</span><span> </span><span class="coqdoc-var">h</span><span> =&gt; </span><span class="coqdoc-var">or_introl</span><span> (</span><span class="coqdoc-var">LE</span><span> </span><span class="coqdoc-var">m'</span><span> </span><span class="coqdoc-var">n'</span><span>) (</span><span class="coqdoc-var">LES</span><span> </span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-var">m</span><span> </span><span class="coqdoc-var">h</span><span>)</span><span>
-      | </span><span class="coqdoc-var">or_intror</span><span> </span><span class="coqdoc-var">h</span><span> =&gt; </span><span class="coqdoc-var">or_intror</span><span> (</span><span class="coqdoc-var">LE</span><span> </span><span class="coqdoc-var">n'</span><span> </span><span class="coqdoc-var">m'</span><span>) (</span><span class="coqdoc-var">LES</span><span> </span><span class="coqdoc-var">m</span><span> </span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-var">h</span><span>)</span><span>
-      </span><span class="coqdoc-keyword">end</span><span>
-  </span><span class="coqdoc-keyword">end</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>dec is defined
+<dt><span></span><span class="rocqdoc-keyword">Fixpoint</span><span> </span><span class="rocqdoc-var">dec</span><span> (</span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-var">m</span><span>:</span><span class="rocqdoc-var">nat</span><span>) {</span><span class="rocqdoc-keyword">struct</span><span> </span><span class="rocqdoc-var">n</span><span>} : </span><span class="rocqdoc-var">LE</span><span> </span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-var">m</span><span> \/ </span><span class="rocqdoc-var">LE</span><span> </span><span class="rocqdoc-var">m</span><span> </span><span class="rocqdoc-var">n</span><span> :=</span><span>
+  </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">n</span><span>, </span><span class="rocqdoc-var">m</span><span> </span><span class="rocqdoc-keyword">return</span><span> </span><span class="rocqdoc-var">LE</span><span> </span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-var">m</span><span> \/ </span><span class="rocqdoc-var">LE</span><span> </span><span class="rocqdoc-var">m</span><span> </span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-keyword">with</span><span>
+  | </span><span class="rocqdoc-var">O</span><span>, </span><span class="rocqdoc-var">x</span><span> =&gt; </span><span class="rocqdoc-var">or_introl</span><span> (</span><span class="rocqdoc-var">LE</span><span> </span><span class="rocqdoc-var">x</span><span> 0) (</span><span class="rocqdoc-var">LEO</span><span> </span><span class="rocqdoc-var">x</span><span>)</span><span>
+  | </span><span class="rocqdoc-var">x</span><span>, </span><span class="rocqdoc-var">O</span><span> =&gt; </span><span class="rocqdoc-var">or_intror</span><span> (</span><span class="rocqdoc-var">LE</span><span> </span><span class="rocqdoc-var">x</span><span> 0) (</span><span class="rocqdoc-var">LEO</span><span> </span><span class="rocqdoc-var">x</span><span>)</span><span>
+  | </span><span class="rocqdoc-var">S</span><span> </span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-keyword">as</span><span> </span><span class="rocqdoc-var">n'</span><span>, </span><span class="rocqdoc-var">S</span><span> </span><span class="rocqdoc-var">m</span><span> </span><span class="rocqdoc-keyword">as</span><span> </span><span class="rocqdoc-var">m'</span><span> =&gt;</span><span>
+      </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">dec</span><span> </span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-var">m</span><span> </span><span class="rocqdoc-keyword">with</span><span>
+      | </span><span class="rocqdoc-var">or_introl</span><span> </span><span class="rocqdoc-var">h</span><span> =&gt; </span><span class="rocqdoc-var">or_introl</span><span> (</span><span class="rocqdoc-var">LE</span><span> </span><span class="rocqdoc-var">m'</span><span> </span><span class="rocqdoc-var">n'</span><span>) (</span><span class="rocqdoc-var">LES</span><span> </span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-var">m</span><span> </span><span class="rocqdoc-var">h</span><span>)</span><span>
+      | </span><span class="rocqdoc-var">or_intror</span><span> </span><span class="rocqdoc-var">h</span><span> =&gt; </span><span class="rocqdoc-var">or_intror</span><span> (</span><span class="rocqdoc-var">LE</span><span> </span><span class="rocqdoc-var">n'</span><span> </span><span class="rocqdoc-var">m'</span><span>) (</span><span class="rocqdoc-var">LES</span><span> </span><span class="rocqdoc-var">m</span><span> </span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-var">h</span><span>)</span><span>
+      </span><span class="rocqdoc-keyword">end</span><span>
+  </span><span class="rocqdoc-keyword">end</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>dec is defined
 dec is recursively defined (guarded on 1st argument)
 </span></dd>
 </dl>
 </div>
 <p>In the example of <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">dec</span></span></code>, the first match is dependent while the second
 is not.</p>
-<p>The user can also use match in combination with the tactic <a class="reference internal" href="../../proof-engine/tactics.html#coq:tacn.refine" title="refine"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">refine</span></code></a>
+<p>The user can also use match in combination with the tactic <a class="reference internal" href="../../proof-engine/tactics.html#rocq:tacn.refine" title="refine"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">refine</span></code></a>
 to build incomplete proofs beginning with a <code class="code Coq docutils literal notranslate"><span class="keyword"><span class="pre">match</span></span></code> construction.</p>
 </section>
 <section id="pattern-matching-on-inductive-objects-involving-local-definitions">
@@ -2284,12 +2284,12 @@ arguments of the constructors, or the bindings for local definitions
 can also be caught in the matching.</p>
 <div class="admonition note">
 <p class="admonition-title">Example</p>
-<div class="coqtop literal-block docutils container">
-<span class="coqtop-reset"></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Inductive</span><span> </span><span class="coqdoc-var">list</span><span> : </span><span class="coqdoc-var">nat</span><span> -&gt; </span><span class="coqdoc-keyword">Set</span><span> :=</span><span>
-| </span><span class="coqdoc-var">nil</span><span> : </span><span class="coqdoc-var">list</span><span> 0</span><span>
-| </span><span class="coqdoc-var">cons</span><span> : </span><span class="coqdoc-keyword">forall</span><span> </span><span class="coqdoc-var">n</span><span>:</span><span class="coqdoc-var">nat</span><span>, </span><span class="coqdoc-keyword">let</span><span> </span><span class="coqdoc-var">m</span><span> := (2 * </span><span class="coqdoc-var">n</span><span>) </span><span class="coqdoc-tactic">in</span><span> </span><span class="coqdoc-var">list</span><span> </span><span class="coqdoc-var">m</span><span> -&gt; </span><span class="coqdoc-var">list</span><span> (</span><span class="coqdoc-var">S</span><span> (</span><span class="coqdoc-var">S</span><span> </span><span class="coqdoc-var">m</span><span>)).</span><span>
-</span></dt><dd class="coqtop-hidden"><span>list is defined
+<div class="rocqtop literal-block docutils container">
+<span class="rocqtop-reset"></span><dl>
+<dt><span></span><span class="rocqdoc-keyword">Inductive</span><span> </span><span class="rocqdoc-var">list</span><span> : </span><span class="rocqdoc-var">nat</span><span> -&gt; </span><span class="rocqdoc-keyword">Set</span><span> :=</span><span>
+| </span><span class="rocqdoc-var">nil</span><span> : </span><span class="rocqdoc-var">list</span><span> 0</span><span>
+| </span><span class="rocqdoc-var">cons</span><span> : </span><span class="rocqdoc-keyword">forall</span><span> </span><span class="rocqdoc-var">n</span><span>:</span><span class="rocqdoc-var">nat</span><span>, </span><span class="rocqdoc-keyword">let</span><span> </span><span class="rocqdoc-var">m</span><span> := (2 * </span><span class="rocqdoc-var">n</span><span>) </span><span class="rocqdoc-tactic">in</span><span> </span><span class="rocqdoc-var">list</span><span> </span><span class="rocqdoc-var">m</span><span> -&gt; </span><span class="rocqdoc-var">list</span><span> (</span><span class="rocqdoc-var">S</span><span> (</span><span class="rocqdoc-var">S</span><span> </span><span class="rocqdoc-var">m</span><span>)).</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>list is defined
 list_rect is defined
 list_ind is defined
 list_rec is defined
@@ -2298,27 +2298,27 @@ list_sind is defined
 </dl>
 </div>
 <p>In the next example, the local definition is not caught.</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Fixpoint</span><span> </span><span class="coqdoc-var">length</span><span> </span><span class="coqdoc-var">n</span><span> (</span><span class="coqdoc-var">l</span><span>:</span><span class="coqdoc-var">list</span><span> </span><span class="coqdoc-var">n</span><span>) {</span><span class="coqdoc-keyword">struct</span><span> </span><span class="coqdoc-var">l</span><span>} : </span><span class="coqdoc-var">nat</span><span> :=</span><span>
-  </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">l</span><span> </span><span class="coqdoc-keyword">with</span><span>
-  | </span><span class="coqdoc-var">nil</span><span> =&gt; 0</span><span>
-  | </span><span class="coqdoc-var">cons</span><span> </span><span class="coqdoc-var">n</span><span> </span><span class="coqdoc-var">l0</span><span> =&gt; </span><span class="coqdoc-var">S</span><span> (</span><span class="coqdoc-var">length</span><span> (2 * </span><span class="coqdoc-var">n</span><span>) </span><span class="coqdoc-var">l0</span><span>)</span><span>
-  </span><span class="coqdoc-keyword">end</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>length is defined
+<dt><span></span><span class="rocqdoc-keyword">Fixpoint</span><span> </span><span class="rocqdoc-var">length</span><span> </span><span class="rocqdoc-var">n</span><span> (</span><span class="rocqdoc-var">l</span><span>:</span><span class="rocqdoc-var">list</span><span> </span><span class="rocqdoc-var">n</span><span>) {</span><span class="rocqdoc-keyword">struct</span><span> </span><span class="rocqdoc-var">l</span><span>} : </span><span class="rocqdoc-var">nat</span><span> :=</span><span>
+  </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">l</span><span> </span><span class="rocqdoc-keyword">with</span><span>
+  | </span><span class="rocqdoc-var">nil</span><span> =&gt; 0</span><span>
+  | </span><span class="rocqdoc-var">cons</span><span> </span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-var">l0</span><span> =&gt; </span><span class="rocqdoc-var">S</span><span> (</span><span class="rocqdoc-var">length</span><span> (2 * </span><span class="rocqdoc-var">n</span><span>) </span><span class="rocqdoc-var">l0</span><span>)</span><span>
+  </span><span class="rocqdoc-keyword">end</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>length is defined
 length is recursively defined (guarded on 2nd argument)
 </span></dd>
 </dl>
 </div>
 <p>But in this example, it is.</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Fixpoint</span><span> </span><span class="coqdoc-var">length'</span><span> </span><span class="coqdoc-var">n</span><span> (</span><span class="coqdoc-var">l</span><span>:</span><span class="coqdoc-var">list</span><span> </span><span class="coqdoc-var">n</span><span>) {</span><span class="coqdoc-keyword">struct</span><span> </span><span class="coqdoc-var">l</span><span>} : </span><span class="coqdoc-var">nat</span><span> :=</span><span>
-  </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">l</span><span> </span><span class="coqdoc-keyword">with</span><span>
-  | </span><span class="coqdoc-var">nil</span><span> =&gt; 0</span><span>
-  | &#64;</span><span class="coqdoc-var">cons</span><span> </span><span class="coqdoc-var">_</span><span> </span><span class="coqdoc-var">m</span><span> </span><span class="coqdoc-var">l0</span><span> =&gt; </span><span class="coqdoc-var">S</span><span> (</span><span class="coqdoc-var">length'</span><span> </span><span class="coqdoc-var">m</span><span> </span><span class="coqdoc-var">l0</span><span>)</span><span>
-  </span><span class="coqdoc-keyword">end</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>length' is defined
+<dt><span></span><span class="rocqdoc-keyword">Fixpoint</span><span> </span><span class="rocqdoc-var">length'</span><span> </span><span class="rocqdoc-var">n</span><span> (</span><span class="rocqdoc-var">l</span><span>:</span><span class="rocqdoc-var">list</span><span> </span><span class="rocqdoc-var">n</span><span>) {</span><span class="rocqdoc-keyword">struct</span><span> </span><span class="rocqdoc-var">l</span><span>} : </span><span class="rocqdoc-var">nat</span><span> :=</span><span>
+  </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">l</span><span> </span><span class="rocqdoc-keyword">with</span><span>
+  | </span><span class="rocqdoc-var">nil</span><span> =&gt; 0</span><span>
+  | &#64;</span><span class="rocqdoc-var">cons</span><span> </span><span class="rocqdoc-var">_</span><span> </span><span class="rocqdoc-var">m</span><span> </span><span class="rocqdoc-var">l0</span><span> =&gt; </span><span class="rocqdoc-var">S</span><span> (</span><span class="rocqdoc-var">length'</span><span> </span><span class="rocqdoc-var">m</span><span> </span><span class="rocqdoc-var">l0</span><span>)</span><span>
+  </span><span class="rocqdoc-keyword">end</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>length' is defined
 length' is recursively defined (guarded on 2nd argument)
 </span></dd>
 </dl>
@@ -2349,27 +2349,27 @@ coercion can be found, it is automatically inserted around the
 pattern.</p>
 <div class="admonition note">
 <p class="admonition-title">Example</p>
-<div class="coqtop literal-block docutils container">
+<div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Inductive</span><span> </span><span class="coqdoc-var">I</span><span> : </span><span class="coqdoc-keyword">Set</span><span> :=</span><span>
-  | </span><span class="coqdoc-var">C1</span><span> : </span><span class="coqdoc-var">nat</span><span> -&gt; </span><span class="coqdoc-var">I</span><span>
-  | </span><span class="coqdoc-var">C2</span><span> : </span><span class="coqdoc-var">I</span><span> -&gt; </span><span class="coqdoc-var">I</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>I is defined
+<dt><span></span><span class="rocqdoc-keyword">Inductive</span><span> </span><span class="rocqdoc-var">I</span><span> : </span><span class="rocqdoc-keyword">Set</span><span> :=</span><span>
+  | </span><span class="rocqdoc-var">C1</span><span> : </span><span class="rocqdoc-var">nat</span><span> -&gt; </span><span class="rocqdoc-var">I</span><span>
+  | </span><span class="rocqdoc-var">C2</span><span> : </span><span class="rocqdoc-var">I</span><span> -&gt; </span><span class="rocqdoc-var">I</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>I is defined
 I_rect is defined
 I_ind is defined
 I_rec is defined
 I_sind is defined
 </span></dd>
 <dt><span></span><span>
-</span><span class="coqdoc-keyword">Coercion</span><span> </span><span class="coqdoc-var">C1</span><span> : </span><span class="coqdoc-var">nat</span><span> &gt;-&gt; </span><span class="coqdoc-var">I</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>C1 is now a coercion
+</span><span class="rocqdoc-keyword">Coercion</span><span> </span><span class="rocqdoc-var">C1</span><span> : </span><span class="rocqdoc-var">nat</span><span> &gt;-&gt; </span><span class="rocqdoc-var">I</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>C1 is now a coercion
 </span></dd>
 </dl>
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Check</span><span> (</span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">x</span><span> =&gt; </span><span class="coqdoc-keyword">match</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-keyword">with</span><span>
-                | </span><span class="coqdoc-var">C2</span><span> </span><span class="coqdoc-var">O</span><span> =&gt; 0</span><span>
-                | </span><span class="coqdoc-var">_</span><span> =&gt; 0</span><span>
-                </span><span class="coqdoc-keyword">end</span><span>).</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Check</span><span> (</span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">x</span><span> =&gt; </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-keyword">with</span><span>
+                | </span><span class="rocqdoc-var">C2</span><span> </span><span class="rocqdoc-var">O</span><span> =&gt; 0</span><span>
+                | </span><span class="rocqdoc-var">_</span><span> =&gt; 0</span><span>
+                </span><span class="rocqdoc-keyword">end</span><span>).</span><span>
 </span></dt><dd><span class="ansi-bold">fun</span><span> x : I =&gt; </span><span class="ansi-bold">match</span><span> x </span><span class="ansi-bold">with</span><span>
              | C1 _ | _ =&gt; 0
              </span><span class="ansi-bold">end</span><span>
@@ -2398,34 +2398,34 @@ positions with the same name. E.g. to write <code class="docutils literal notran
 generated expression and the original.</p>
 <p>Here is a summary of the error messages corresponding to each
 situation:</p>
-<dl class="coq exn">
-<dt class="sig sig-object coq" id="coq:exn.The-constructor-‘ident’-expects-‘natural’-arguments">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">The</span></span></span> <span><span><span class="pre">constructor</span></span></span> <a class="reference internal" href="../core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">expects</span></span></span> <a class="reference internal" href="../core/basic.html#grammar-token-natural"><span class="hole"><span class="pre">natural</span></span></a> <span><span><span class="pre">arguments.</span></span></span></span></span><a class="headerlink" href="#coq:exn.The-constructor-‘ident’-expects-‘natural’-arguments" title="Link to this definition"></a></dt>
-<dt class="sig sig-object coq" id="coq:exn.The-variable-ident-is-bound-several-times-in-pattern-term">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">The</span></span></span> <span><span><span class="pre">variable</span></span></span> <span><span><span class="pre">ident</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">bound</span></span></span> <span><span><span class="pre">several</span></span></span> <span><span><span class="pre">times</span></span></span> <span><span><span class="pre">in</span></span></span> <span><span><span class="pre">pattern</span></span></span> <span><span><span class="pre">term</span></span></span></span></span><a class="headerlink" href="#coq:exn.The-variable-ident-is-bound-several-times-in-pattern-term" title="Link to this definition"></a></dt>
-<dt class="sig sig-object coq" id="coq:exn.Found-a-constructor-of-inductive-type-term-while-a-constructor-of-term-is-expected">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Found</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">constructor</span></span></span> <span><span><span class="pre">of</span></span></span> <span><span><span class="pre">inductive</span></span></span> <span><span><span class="pre">type</span></span></span> <span><span><span class="pre">term</span></span></span> <span><span><span class="pre">while</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">constructor</span></span></span> <span><span><span class="pre">of</span></span></span> <span><span><span class="pre">term</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">expected</span></span></span></span></span><a class="headerlink" href="#coq:exn.Found-a-constructor-of-inductive-type-term-while-a-constructor-of-term-is-expected" title="Link to this definition"></a></dt>
+<dl class="rocq exn">
+<dt class="sig sig-object rocq" id="rocq:exn.The-constructor-‘ident’-expects-‘natural’-arguments">
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">The</span></span></span> <span><span><span class="pre">constructor</span></span></span> <a class="reference internal" href="../core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">expects</span></span></span> <a class="reference internal" href="../core/basic.html#grammar-token-natural"><span class="hole"><span class="pre">natural</span></span></a> <span><span><span class="pre">arguments.</span></span></span></span></span><a class="headerlink" href="#rocq:exn.The-constructor-‘ident’-expects-‘natural’-arguments" title="Link to this definition"></a></dt>
+<dt class="sig sig-object rocq" id="rocq:exn.The-variable-ident-is-bound-several-times-in-pattern-term">
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">The</span></span></span> <span><span><span class="pre">variable</span></span></span> <span><span><span class="pre">ident</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">bound</span></span></span> <span><span><span class="pre">several</span></span></span> <span><span><span class="pre">times</span></span></span> <span><span><span class="pre">in</span></span></span> <span><span><span class="pre">pattern</span></span></span> <span><span><span class="pre">term</span></span></span></span></span><a class="headerlink" href="#rocq:exn.The-variable-ident-is-bound-several-times-in-pattern-term" title="Link to this definition"></a></dt>
+<dt class="sig sig-object rocq" id="rocq:exn.Found-a-constructor-of-inductive-type-term-while-a-constructor-of-term-is-expected">
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Found</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">constructor</span></span></span> <span><span><span class="pre">of</span></span></span> <span><span><span class="pre">inductive</span></span></span> <span><span><span class="pre">type</span></span></span> <span><span><span class="pre">term</span></span></span> <span><span><span class="pre">while</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">constructor</span></span></span> <span><span><span class="pre">of</span></span></span> <span><span><span class="pre">term</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">expected</span></span></span></span></span><a class="headerlink" href="#rocq:exn.Found-a-constructor-of-inductive-type-term-while-a-constructor-of-term-is-expected" title="Link to this definition"></a></dt>
 <dd><p>Patterns are incorrect (because constructors are not applied to the correct number of
 arguments, because they are not linear or they are wrongly typed).</p>
 </dd></dl>
 
-<dl class="coq exn">
-<dt class="sig sig-object coq" id="coq:exn.Non-exhaustive-pattern-matching">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Non</span></span></span> <span><span><span class="pre">exhaustive</span></span></span> <span><span><span class="pre">pattern</span></span></span> <span><span><span class="pre">matching.</span></span></span></span></span><a class="headerlink" href="#coq:exn.Non-exhaustive-pattern-matching" title="Link to this definition"></a></dt>
+<dl class="rocq exn">
+<dt class="sig sig-object rocq" id="rocq:exn.Non-exhaustive-pattern-matching">
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Non</span></span></span> <span><span><span class="pre">exhaustive</span></span></span> <span><span><span class="pre">pattern</span></span></span> <span><span><span class="pre">matching.</span></span></span></span></span><a class="headerlink" href="#rocq:exn.Non-exhaustive-pattern-matching" title="Link to this definition"></a></dt>
 <dd><p>The pattern matching is not exhaustive.</p>
 </dd></dl>
 
-<dl class="coq exn">
-<dt class="sig sig-object coq" id="coq:exn.The-elimination-predicate-term-should-be-of-arity-‘natural’-(for-non-dependent-case)-or-‘natural’-(for-dependent-case)">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">The</span></span></span> <span><span><span class="pre">elimination</span></span></span> <span><span><span class="pre">predicate</span></span></span> <span><span><span class="pre">term</span></span></span> <span><span><span class="pre">should</span></span></span> <span><span><span class="pre">be</span></span></span> <span><span><span class="pre">of</span></span></span> <span><span><span class="pre">arity</span></span></span> <a class="reference internal" href="../core/basic.html#grammar-token-natural"><span class="hole"><span class="pre">natural</span></span></a> <span><span><span class="pre">(for</span></span></span> <span><span><span class="pre">non</span></span></span> <span><span><span class="pre">dependent</span></span></span> <span><span><span class="pre">case)</span></span></span> <span><span><span class="pre">or</span></span></span> <a class="reference internal" href="../core/basic.html#grammar-token-natural"><span class="hole"><span class="pre">natural</span></span></a> <span><span><span class="pre">(for</span></span></span> <span><span><span class="pre">dependent</span></span></span> <span><span><span class="pre">case).</span></span></span></span></span><a class="headerlink" href="#coq:exn.The-elimination-predicate-term-should-be-of-arity-‘natural’-(for-non-dependent-case)-or-‘natural’-(for-dependent-case)" title="Link to this definition"></a></dt>
+<dl class="rocq exn">
+<dt class="sig sig-object rocq" id="rocq:exn.The-elimination-predicate-term-should-be-of-arity-‘natural’-(for-non-dependent-case)-or-‘natural’-(for-dependent-case)">
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">The</span></span></span> <span><span><span class="pre">elimination</span></span></span> <span><span><span class="pre">predicate</span></span></span> <span><span><span class="pre">term</span></span></span> <span><span><span class="pre">should</span></span></span> <span><span><span class="pre">be</span></span></span> <span><span><span class="pre">of</span></span></span> <span><span><span class="pre">arity</span></span></span> <a class="reference internal" href="../core/basic.html#grammar-token-natural"><span class="hole"><span class="pre">natural</span></span></a> <span><span><span class="pre">(for</span></span></span> <span><span><span class="pre">non</span></span></span> <span><span><span class="pre">dependent</span></span></span> <span><span><span class="pre">case)</span></span></span> <span><span><span class="pre">or</span></span></span> <a class="reference internal" href="../core/basic.html#grammar-token-natural"><span class="hole"><span class="pre">natural</span></span></a> <span><span><span class="pre">(for</span></span></span> <span><span><span class="pre">dependent</span></span></span> <span><span><span class="pre">case).</span></span></span></span></span><a class="headerlink" href="#rocq:exn.The-elimination-predicate-term-should-be-of-arity-‘natural’-(for-non-dependent-case)-or-‘natural’-(for-dependent-case)" title="Link to this definition"></a></dt>
 <dd><p>The elimination predicate provided to match has not the expected arity.</p>
 </dd></dl>
 
-<dl class="coq exn">
-<dt class="sig sig-object coq" id="coq:exn.Unable-to-infer-a-match-predicate">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Unable</span></span></span> <span><span><span class="pre">to</span></span></span> <span><span><span class="pre">infer</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">match</span></span></span> <span><span><span class="pre">predicate</span></span></span></span></span><a class="headerlink" href="#coq:exn.Unable-to-infer-a-match-predicate" title="Link to this definition"></a></dt>
-<dt class="sig sig-object coq" id="coq:exn.Either-there-is-a-type-incompatibility-or-the-problem-involves-dependencies">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Either</span></span></span> <span><span><span class="pre">there</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">type</span></span></span> <span><span><span class="pre">incompatibility</span></span></span> <span><span><span class="pre">or</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">problem</span></span></span> <span><span><span class="pre">involves</span></span></span> <span><span><span class="pre">dependencies.</span></span></span></span></span><a class="headerlink" href="#coq:exn.Either-there-is-a-type-incompatibility-or-the-problem-involves-dependencies" title="Link to this definition"></a></dt>
+<dl class="rocq exn">
+<dt class="sig sig-object rocq" id="rocq:exn.Unable-to-infer-a-match-predicate">
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Unable</span></span></span> <span><span><span class="pre">to</span></span></span> <span><span><span class="pre">infer</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">match</span></span></span> <span><span><span class="pre">predicate</span></span></span></span></span><a class="headerlink" href="#rocq:exn.Unable-to-infer-a-match-predicate" title="Link to this definition"></a></dt>
+<dt class="sig sig-object rocq" id="rocq:exn.Either-there-is-a-type-incompatibility-or-the-problem-involves-dependencies">
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Either</span></span></span> <span><span><span class="pre">there</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">type</span></span></span> <span><span><span class="pre">incompatibility</span></span></span> <span><span><span class="pre">or</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">problem</span></span></span> <span><span><span class="pre">involves</span></span></span> <span><span><span class="pre">dependencies.</span></span></span></span></span><a class="headerlink" href="#rocq:exn.Either-there-is-a-type-incompatibility-or-the-problem-involves-dependencies" title="Link to this definition"></a></dt>
 <dd><p>There is a type mismatch between the different branches. The user should
 provide an elimination predicate.</p>
 </dd></dl>

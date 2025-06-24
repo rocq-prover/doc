@@ -345,7 +345,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../extensions/arguments-command.html#automatic-declaration-of-implicit-arguments">Automatic declaration of implicit arguments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../extensions/arguments-command.html#renaming-implicit-arguments">Renaming implicit arguments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../extensions/arguments-command.html#binding-arguments-to-scopes">Binding arguments to scopes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../extensions/arguments-command.html#effects-of-arguments-on-unfolding">Effects of <code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Arguments</span></code> on unfolding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../extensions/arguments-command.html#effects-of-arguments-on-unfolding">Effects of <code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Arguments</span></code> on unfolding</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../extensions/arguments-command.html#bidirectionality-hints">Bidirectionality hints</a></li>
 </ul>
 </li>
@@ -506,7 +506,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#generation-of-inversion-principles-with-derive-inversion">Generation of inversion principles with <code class="docutils literal notranslate"><span class="pre">Derive</span></code> <code class="docutils literal notranslate"><span class="pre">Inversion</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#examples-of-dependent-destruction-dependent-induction">Examples of <code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">destruction</span></code> / <code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">induction</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#examples-of-dependent-destruction-dependent-induction">Examples of <code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">destruction</span></code> / <code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">dependent</span> <span class="pre">induction</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#a-larger-example">A larger example</a></li>
 </ul>
 </li>
@@ -1285,8 +1285,8 @@
 <p>The language of terms features 63-bit machine integers as values. The type of
 such a value is <em>axiomatized</em>; it is declared through the following sentence
 (excerpt from the <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">PrimInt63</span></span></code> module):</p>
-<div class="coqdoc literal-block docutils container">
-<span><span></span><span class="coqdoc-keyword">Primitive</span><span> </span><span class="coqdoc-var">int</span><span> := #</span><span class="coqdoc-var">int63_type</span><span>.</span><span>
+<div class="rocqdoc literal-block docutils container">
+<span><span></span><span class="rocqdoc-keyword">Primitive</span><span> </span><span class="rocqdoc-var">int</span><span> := #</span><span class="rocqdoc-var">int63_type</span><span>.</span><span>
 </span></span></div>
 <p>This type can be understood as representing either unsigned or signed integers,
 depending on which module is imported or, more generally, which scope is open.
@@ -1295,34 +1295,34 @@ and <code class="code Coq docutils literal notranslate"><span class="name"><span
 <p>The <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">PrimInt63</span></span></code> module declares the available operators for this type.
 For instance, equality of two unsigned primitive integers can be determined using
 the <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">Uint63.eqb</span></span></code> function, declared and specified as follows:</p>
-<div class="coqdoc literal-block docutils container">
-<span><span></span><span class="coqdoc-keyword">Primitive</span><span> </span><span class="coqdoc-var">eqb</span><span> := #</span><span class="coqdoc-var">int63_eq</span><span>.</span><span>
-</span><span class="coqdoc-keyword">Notation</span><span> &quot;m '==' n&quot; := (</span><span class="coqdoc-var">eqb</span><span> </span><span class="coqdoc-var">m</span><span> </span><span class="coqdoc-var">n</span><span>) (</span><span class="coqdoc-tactic">at</span><span> </span><span class="coqdoc-keyword">level</span><span> 70, </span><span class="coqdoc-keyword">no</span><span> </span><span class="coqdoc-keyword">associativity</span><span>) : </span><span class="coqdoc-var">uint63_scope</span><span>.</span><span>
+<div class="rocqdoc literal-block docutils container">
+<span><span></span><span class="rocqdoc-keyword">Primitive</span><span> </span><span class="rocqdoc-var">eqb</span><span> := #</span><span class="rocqdoc-var">int63_eq</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Notation</span><span> &quot;m '==' n&quot; := (</span><span class="rocqdoc-var">eqb</span><span> </span><span class="rocqdoc-var">m</span><span> </span><span class="rocqdoc-var">n</span><span>) (</span><span class="rocqdoc-tactic">at</span><span> </span><span class="rocqdoc-keyword">level</span><span> 70, </span><span class="rocqdoc-keyword">no</span><span> </span><span class="rocqdoc-keyword">associativity</span><span>) : </span><span class="rocqdoc-var">uint63_scope</span><span>.</span><span>
 </span><span>
-</span><span class="coqdoc-keyword">Axiom</span><span> </span><span class="coqdoc-var">eqb_correct</span><span> : </span><span class="coqdoc-keyword">forall</span><span> </span><span class="coqdoc-var">i</span><span> </span><span class="coqdoc-var">j</span><span>, (</span><span class="coqdoc-var">i</span><span> == </span><span class="coqdoc-var">j</span><span>)%</span><span class="coqdoc-var">uint63</span><span> = </span><span class="coqdoc-var">true</span><span> -&gt; </span><span class="coqdoc-var">i</span><span> = </span><span class="coqdoc-var">j</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Axiom</span><span> </span><span class="rocqdoc-var">eqb_correct</span><span> : </span><span class="rocqdoc-keyword">forall</span><span> </span><span class="rocqdoc-var">i</span><span> </span><span class="rocqdoc-var">j</span><span>, (</span><span class="rocqdoc-var">i</span><span> == </span><span class="rocqdoc-var">j</span><span>)%</span><span class="rocqdoc-var">uint63</span><span> = </span><span class="rocqdoc-var">true</span><span> -&gt; </span><span class="rocqdoc-var">i</span><span> = </span><span class="rocqdoc-var">j</span><span>.</span><span>
 </span></span></div>
 <p>The complete set of such operators can be found in the <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">PrimInt63</span></span></code> module.
 The specifications and notations are in the <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">Uint63</span></span></code> and <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">Sint63</span></span></code>
 modules.</p>
 <p>These primitive declarations are regular axioms. As such, they must be trusted and are listed by the
 <code class="code Coq docutils literal notranslate"><span class="keyword namespace"><span class="pre">Print</span></span> <span class="name"><span class="pre">Assumptions</span></span></code> command, as in the following example.</p>
-<div class="coqtop literal-block docutils container">
-<span class="coqtop-reset"></span><dl>
-<dt><span></span><span class="coqdoc-keyword">From</span><span> </span><span class="coqdoc-var">Corelib</span><span> </span><span class="coqdoc-keyword">Require</span><span> </span><span class="coqdoc-keyword">Import</span><span> </span><span class="coqdoc-var">PrimInt63</span><span> </span><span class="coqdoc-var">Uint63Axioms</span><span>.</span><span>
-</span></dt><dt><span></span><span class="coqdoc-keyword">Lemma</span><span> </span><span class="coqdoc-var">one_minus_one_is_zero</span><span> : (</span><span class="coqdoc-var">sub</span><span> 1 1 = 0)%</span><span class="coqdoc-var">uint63</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>1 goal
+<div class="rocqtop literal-block docutils container">
+<span class="rocqtop-reset"></span><dl>
+<dt><span></span><span class="rocqdoc-keyword">From</span><span> </span><span class="rocqdoc-var">Corelib</span><span> </span><span class="rocqdoc-keyword">Require</span><span> </span><span class="rocqdoc-keyword">Import</span><span> </span><span class="rocqdoc-var">PrimInt63</span><span> </span><span class="rocqdoc-var">Uint63Axioms</span><span>.</span><span>
+</span></dt><dt><span></span><span class="rocqdoc-keyword">Lemma</span><span> </span><span class="rocqdoc-var">one_minus_one_is_zero</span><span> : (</span><span class="rocqdoc-var">sub</span><span> 1 1 = 0)%</span><span class="rocqdoc-var">uint63</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>1 goal
   
   ============================
   sub 1 1</span><span> =</span><span> 0%uint63
 </span></dd>
-<dt><span></span><span class="coqdoc-keyword">Proof</span><span>. </span><span class="coqdoc-tactic">apply</span><span> </span><span class="coqdoc-var">eqb_correct</span><span>; </span><span class="coqdoc-keyword">vm_compute</span><span>; </span><span class="coqdoc-tactic">reflexivity</span><span>. </span><span class="coqdoc-keyword">Qed</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>
+<dt><span></span><span class="rocqdoc-keyword">Proof</span><span>. </span><span class="rocqdoc-tactic">apply</span><span> </span><span class="rocqdoc-var">eqb_correct</span><span>; </span><span class="rocqdoc-keyword">vm_compute</span><span>; </span><span class="rocqdoc-tactic">reflexivity</span><span>. </span><span class="rocqdoc-keyword">Qed</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>
 No more goals.
 
 </span></dd>
 </dl>
 <span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Print</span><span> </span><span class="coqdoc-keyword">Assumptions</span><span> </span><span class="coqdoc-var">one_minus_one_is_zero</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Print</span><span> </span><span class="rocqdoc-keyword">Assumptions</span><span> </span><span class="rocqdoc-var">one_minus_one_is_zero</span><span>.</span><span>
 </span></dt><dd><span>Axioms:
 sub : int</span><span> -&gt;</span><span> int</span><span> -&gt;</span><span> int
 eqb_correct : </span><span class="ansi-bold">forall</span><span> i j : int, eqb i j</span><span> =</span><span> true</span><span> -&gt;</span><span> i</span><span> =</span><span> j
@@ -1350,22 +1350,22 @@ function <code class="code Coq docutils literal notranslate"><span class="name">
 <p>The language of terms features Binary64 floating-point numbers as values.
 The type of such a value is <em>axiomatized</em>; it is declared through the
 following sentence (excerpt from the <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">PrimFloat</span></span></code> module):</p>
-<div class="coqdoc literal-block docutils container">
-<span><span></span><span class="coqdoc-keyword">Primitive</span><span> </span><span class="coqdoc-var">float</span><span> := #</span><span class="coqdoc-var">float64_type</span><span>.</span><span>
+<div class="rocqdoc literal-block docutils container">
+<span><span></span><span class="rocqdoc-keyword">Primitive</span><span> </span><span class="rocqdoc-var">float</span><span> := #</span><span class="rocqdoc-var">float64_type</span><span>.</span><span>
 </span></span></div>
 <p>This type is equipped with a few operators, that must be similarly declared.
 For instance, the product of two primitive floats can be computed using the
 <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">PrimFloat.mul</span></span></code> function, declared and specified as follows:</p>
-<div class="coqdoc literal-block docutils container">
-<span><span></span><span class="coqdoc-keyword">Primitive</span><span> </span><span class="coqdoc-var">mul</span><span> := #</span><span class="coqdoc-var">float64_mul</span><span>.</span><span>
-</span><span class="coqdoc-keyword">Notation</span><span> &quot;x * y&quot; := (</span><span class="coqdoc-var">mul</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span>) : </span><span class="coqdoc-var">float_scope</span><span>.</span><span>
+<div class="rocqdoc literal-block docutils container">
+<span><span></span><span class="rocqdoc-keyword">Primitive</span><span> </span><span class="rocqdoc-var">mul</span><span> := #</span><span class="rocqdoc-var">float64_mul</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Notation</span><span> &quot;x * y&quot; := (</span><span class="rocqdoc-var">mul</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span>) : </span><span class="rocqdoc-var">float_scope</span><span>.</span><span>
 </span><span>
-</span><span class="coqdoc-keyword">Axiom</span><span> </span><span class="coqdoc-var">mul_spec</span><span> : </span><span class="coqdoc-keyword">forall</span><span> </span><span class="coqdoc-var">x</span><span> </span><span class="coqdoc-var">y</span><span>, </span><span class="coqdoc-var">Prim2SF</span><span> (</span><span class="coqdoc-var">x</span><span> * </span><span class="coqdoc-var">y</span><span>)%</span><span class="coqdoc-var">float</span><span> = </span><span class="coqdoc-var">SF64mul</span><span> (</span><span class="coqdoc-var">Prim2SF</span><span> </span><span class="coqdoc-var">x</span><span>) (</span><span class="coqdoc-var">Prim2SF</span><span> </span><span class="coqdoc-var">y</span><span>).</span><span>
+</span><span class="rocqdoc-keyword">Axiom</span><span> </span><span class="rocqdoc-var">mul_spec</span><span> : </span><span class="rocqdoc-keyword">forall</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span>, </span><span class="rocqdoc-var">Prim2SF</span><span> (</span><span class="rocqdoc-var">x</span><span> * </span><span class="rocqdoc-var">y</span><span>)%</span><span class="rocqdoc-var">float</span><span> = </span><span class="rocqdoc-var">SF64mul</span><span> (</span><span class="rocqdoc-var">Prim2SF</span><span> </span><span class="rocqdoc-var">x</span><span>) (</span><span class="rocqdoc-var">Prim2SF</span><span> </span><span class="rocqdoc-var">y</span><span>).</span><span>
 </span></span></div>
 <p>where <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">Prim2SF</span></span></code> is defined in the <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">FloatOps</span></span></code> module.</p>
 <p>These primitive declarations are regular axioms. As such, they must be trusted, and are listed by the
 <code class="code Coq docutils literal notranslate"><span class="keyword namespace"><span class="pre">Print</span></span> <span class="name"><span class="pre">Assumptions</span></span></code> command.</p>
-<p>The reduction machines (<a class="reference internal" href="../../proofs/writing-proofs/equality.html#coq:tacn.vm_compute" title="vm_compute"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">vm_compute</span></code></a>, <a class="reference internal" href="../../proofs/writing-proofs/equality.html#coq:tacn.native_compute" title="native_compute"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">native_compute</span></code></a>) implement
+<p>The reduction machines (<a class="reference internal" href="../../proofs/writing-proofs/equality.html#rocq:tacn.vm_compute" title="vm_compute"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">vm_compute</span></code></a>, <a class="reference internal" href="../../proofs/writing-proofs/equality.html#rocq:tacn.native_compute" title="native_compute"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">native_compute</span></code></a>) implement
 dedicated, efficient rules to reduce the applications of these primitive
 operations, using the floating-point processor operators that are assumed
 to comply with the IEEE 754 standard for floating-point arithmetic.</p>
@@ -1380,9 +1380,9 @@ can be taken from the kernel of Rocq.</p>
 values (of type <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">float</span></span></code>) written in hexadecimal notation and
 wrapped into the <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">Float64.of_float</span></span></code> constructor, e.g.:
 <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">Float64.of_float</span></span> <span class="operator"><span class="pre">(</span></span><span class="literal number integer"><span class="pre">0</span></span><span class="name"><span class="pre">x1p</span></span><span class="operator"><span class="pre">+</span></span><span class="literal number integer"><span class="pre">0</span></span><span class="operator"><span class="pre">)</span></span></code>.</p>
-<dl class="coq flag">
-<dt class="sig sig-object coq" id="coq:flag.Printing-Float">
-<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Float</span></span></span></span></span><a class="headerlink" href="#coq:flag.Printing-Float" title="Link to this definition"></a></dt>
+<dl class="rocq flag">
+<dt class="sig sig-object rocq" id="rocq:flag.Printing-Float">
+<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Printing</span></span></span> <span><span><span class="pre">Float</span></span></span></span></span><a class="headerlink" href="#rocq:flag.Printing-Float" title="Link to this definition"></a></dt>
 <dd><p>When off, primitive floats use a low level hexadecimal representation.</p>
 <p>On by default.</p>
 </dd></dl>
@@ -1393,26 +1393,26 @@ wrapped into the <code class="code Coq docutils literal notranslate"><span class
 <p>The language of terms features persistent arrays as values. The type of
 such a value is <em>axiomatized</em>; it is declared through the following sentence
 (excerpt from the <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">PArray</span></span></code> module):</p>
-<div class="coqdoc literal-block docutils container">
-<span><span></span><span class="coqdoc-keyword">Primitive</span><span> </span><span class="coqdoc-var">array</span><span> := #</span><span class="coqdoc-var">array_type</span><span>.</span><span>
+<div class="rocqdoc literal-block docutils container">
+<span><span></span><span class="rocqdoc-keyword">Primitive</span><span> </span><span class="rocqdoc-var">array</span><span> := #</span><span class="rocqdoc-var">array_type</span><span>.</span><span>
 </span></span></div>
 <p>This type is equipped with a few operators, that must be similarly declared.
 For instance, elements in an array can be accessed and updated using the
 <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">PArray.get</span></span></code> and <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">PArray.set</span></span></code> functions, declared and specified as
 follows:</p>
-<div class="coqdoc literal-block docutils container">
-<span><span></span><span class="coqdoc-keyword">Primitive</span><span> </span><span class="coqdoc-var">get</span><span> := #</span><span class="coqdoc-var">array_get</span><span>.</span><span>
-</span><span class="coqdoc-keyword">Primitive</span><span> </span><span class="coqdoc-tactic">set</span><span> := #</span><span class="coqdoc-var">array_set</span><span>.</span><span>
-</span><span class="coqdoc-keyword">Notation</span><span> &quot;t .[ i ]&quot; := (</span><span class="coqdoc-var">get</span><span> </span><span class="coqdoc-var">t</span><span> </span><span class="coqdoc-var">i</span><span>).</span><span>
-</span><span class="coqdoc-keyword">Notation</span><span> &quot;t .[ i &lt;- a ]&quot; := (</span><span class="coqdoc-tactic">set</span><span> </span><span class="coqdoc-var">t</span><span> </span><span class="coqdoc-var">i</span><span> </span><span class="coqdoc-var">a</span><span>).</span><span>
+<div class="rocqdoc literal-block docutils container">
+<span><span></span><span class="rocqdoc-keyword">Primitive</span><span> </span><span class="rocqdoc-var">get</span><span> := #</span><span class="rocqdoc-var">array_get</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Primitive</span><span> </span><span class="rocqdoc-tactic">set</span><span> := #</span><span class="rocqdoc-var">array_set</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Notation</span><span> &quot;t .[ i ]&quot; := (</span><span class="rocqdoc-var">get</span><span> </span><span class="rocqdoc-var">t</span><span> </span><span class="rocqdoc-var">i</span><span>).</span><span>
+</span><span class="rocqdoc-keyword">Notation</span><span> &quot;t .[ i &lt;- a ]&quot; := (</span><span class="rocqdoc-tactic">set</span><span> </span><span class="rocqdoc-var">t</span><span> </span><span class="rocqdoc-var">i</span><span> </span><span class="rocqdoc-var">a</span><span>).</span><span>
 </span><span>
-</span><span class="coqdoc-keyword">Axiom</span><span> </span><span class="coqdoc-var">get_set_same</span><span> : </span><span class="coqdoc-keyword">forall</span><span> </span><span class="coqdoc-var">A</span><span> </span><span class="coqdoc-var">t</span><span> </span><span class="coqdoc-var">i</span><span> (</span><span class="coqdoc-var">a</span><span>:</span><span class="coqdoc-var">A</span><span>), (</span><span class="coqdoc-var">i</span><span> &lt; </span><span class="coqdoc-var">length</span><span> </span><span class="coqdoc-var">t</span><span>) = </span><span class="coqdoc-var">true</span><span> -&gt; </span><span class="coqdoc-var">t</span><span>.[</span><span class="coqdoc-var">i</span><span>&lt;-</span><span class="coqdoc-var">a</span><span>].[</span><span class="coqdoc-var">i</span><span>] = </span><span class="coqdoc-var">a</span><span>.</span><span>
-</span><span class="coqdoc-keyword">Axiom</span><span> </span><span class="coqdoc-var">get_set_other</span><span> : </span><span class="coqdoc-keyword">forall</span><span> </span><span class="coqdoc-var">A</span><span> </span><span class="coqdoc-var">t</span><span> </span><span class="coqdoc-var">i</span><span> </span><span class="coqdoc-var">j</span><span> (</span><span class="coqdoc-var">a</span><span>:</span><span class="coqdoc-var">A</span><span>), </span><span class="coqdoc-var">i</span><span> &lt;&gt; </span><span class="coqdoc-var">j</span><span> -&gt; </span><span class="coqdoc-var">t</span><span>.[</span><span class="coqdoc-var">i</span><span>&lt;-</span><span class="coqdoc-var">a</span><span>].[</span><span class="coqdoc-var">j</span><span>] = </span><span class="coqdoc-var">t</span><span>.[</span><span class="coqdoc-var">j</span><span>].</span><span>
+</span><span class="rocqdoc-keyword">Axiom</span><span> </span><span class="rocqdoc-var">get_set_same</span><span> : </span><span class="rocqdoc-keyword">forall</span><span> </span><span class="rocqdoc-var">A</span><span> </span><span class="rocqdoc-var">t</span><span> </span><span class="rocqdoc-var">i</span><span> (</span><span class="rocqdoc-var">a</span><span>:</span><span class="rocqdoc-var">A</span><span>), (</span><span class="rocqdoc-var">i</span><span> &lt; </span><span class="rocqdoc-var">length</span><span> </span><span class="rocqdoc-var">t</span><span>) = </span><span class="rocqdoc-var">true</span><span> -&gt; </span><span class="rocqdoc-var">t</span><span>.[</span><span class="rocqdoc-var">i</span><span>&lt;-</span><span class="rocqdoc-var">a</span><span>].[</span><span class="rocqdoc-var">i</span><span>] = </span><span class="rocqdoc-var">a</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Axiom</span><span> </span><span class="rocqdoc-var">get_set_other</span><span> : </span><span class="rocqdoc-keyword">forall</span><span> </span><span class="rocqdoc-var">A</span><span> </span><span class="rocqdoc-var">t</span><span> </span><span class="rocqdoc-var">i</span><span> </span><span class="rocqdoc-var">j</span><span> (</span><span class="rocqdoc-var">a</span><span>:</span><span class="rocqdoc-var">A</span><span>), </span><span class="rocqdoc-var">i</span><span> &lt;&gt; </span><span class="rocqdoc-var">j</span><span> -&gt; </span><span class="rocqdoc-var">t</span><span>.[</span><span class="rocqdoc-var">i</span><span>&lt;-</span><span class="rocqdoc-var">a</span><span>].[</span><span class="rocqdoc-var">j</span><span>] = </span><span class="rocqdoc-var">t</span><span>.[</span><span class="rocqdoc-var">j</span><span>].</span><span>
 </span></span></div>
 <p>The rest of these operators can be found in the <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">PArray</span></span></code> module.</p>
 <p>These primitive declarations are regular axioms. As such, they must be trusted and are listed by the
 <code class="code Coq docutils literal notranslate"><span class="keyword namespace"><span class="pre">Print</span></span> <span class="name"><span class="pre">Assumptions</span></span></code> command.</p>
-<p>The reduction machines (<a class="reference internal" href="../../proofs/writing-proofs/equality.html#coq:tacn.vm_compute" title="vm_compute"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">vm_compute</span></code></a>, <a class="reference internal" href="../../proofs/writing-proofs/equality.html#coq:tacn.native_compute" title="native_compute"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">native_compute</span></code></a>) implement
+<p>The reduction machines (<a class="reference internal" href="../../proofs/writing-proofs/equality.html#rocq:tacn.vm_compute" title="vm_compute"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">vm_compute</span></code></a>, <a class="reference internal" href="../../proofs/writing-proofs/equality.html#rocq:tacn.native_compute" title="native_compute"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">native_compute</span></code></a>) implement
 dedicated, efficient rules to reduce the applications of these primitive
 operations.</p>
 <p>The extraction of these primitives can be customized similarly to the extraction
@@ -1441,23 +1441,23 @@ are updated so that they still represent the same values.</p>
 <p>The language of terms supports immutable strings as values. Primitive strings
 are <em>axiomatized</em>.  The type is declared through the following sentence (excerpt
 from the <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">PrimString</span></span></code> module):</p>
-<div class="coqdoc literal-block docutils container">
-<span><span></span><span class="coqdoc-keyword">Primitive</span><span> </span><span class="coqdoc-var">string</span><span> := #</span><span class="coqdoc-var">string_type</span><span>.</span><span>
+<div class="rocqdoc literal-block docutils container">
+<span><span></span><span class="rocqdoc-keyword">Primitive</span><span> </span><span class="rocqdoc-var">string</span><span> := #</span><span class="rocqdoc-var">string_type</span><span>.</span><span>
 </span></span></div>
 <p>This type is equipped with functions that must be similarly declared. For example,
 the length of a string can be computed with <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">PrimString.length</span></span></code>, and the character
 (i.e., byte) at a given position can be obtained with <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">PrimString.get</span></span></code>. These
 functions are defined as follows:</p>
-<div class="coqdoc literal-block docutils container">
-<span><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">char63</span><span> := </span><span class="coqdoc-var">int</span><span>.</span><span>
+<div class="rocqdoc literal-block docutils container">
+<span><span></span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">char63</span><span> := </span><span class="rocqdoc-var">int</span><span>.</span><span>
 </span><span>
-</span><span class="coqdoc-keyword">Primitive</span><span> </span><span class="coqdoc-var">length</span><span> : </span><span class="coqdoc-var">string</span><span> -&gt; </span><span class="coqdoc-var">int</span><span> := #</span><span class="coqdoc-var">string_length</span><span>.</span><span>
-</span><span class="coqdoc-keyword">Primitive</span><span> </span><span class="coqdoc-var">get</span><span> : </span><span class="coqdoc-var">string</span><span> -&gt; </span><span class="coqdoc-var">int</span><span> -&gt; </span><span class="coqdoc-var">char63</span><span> := #</span><span class="coqdoc-var">string_get</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Primitive</span><span> </span><span class="rocqdoc-var">length</span><span> : </span><span class="rocqdoc-var">string</span><span> -&gt; </span><span class="rocqdoc-var">int</span><span> := #</span><span class="rocqdoc-var">string_length</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Primitive</span><span> </span><span class="rocqdoc-var">get</span><span> : </span><span class="rocqdoc-var">string</span><span> -&gt; </span><span class="rocqdoc-var">int</span><span> -&gt; </span><span class="rocqdoc-var">char63</span><span> := #</span><span class="rocqdoc-var">string_get</span><span>.</span><span>
 </span></span></div>
 <p>The remaining primitives can be found in the <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">PrimString</span></span></code> module.</p>
 <p>These primitive declarations are regular axioms. As such, they must be trusted and
 are listed by the <code class="code Coq docutils literal notranslate"><span class="keyword namespace"><span class="pre">Print</span></span> <span class="name"><span class="pre">Assumptions</span></span></code> command.</p>
-<p>The reduction machines (<a class="reference internal" href="../../proofs/writing-proofs/equality.html#coq:tacn.vm_compute" title="vm_compute"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">vm_compute</span></code></a>, <a class="reference internal" href="../../proofs/writing-proofs/equality.html#coq:tacn.native_compute" title="native_compute"><code class="xref coq coq-tacn docutils literal notranslate"><span class="pre">native_compute</span></code></a>) implement
+<p>The reduction machines (<a class="reference internal" href="../../proofs/writing-proofs/equality.html#rocq:tacn.vm_compute" title="vm_compute"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">vm_compute</span></code></a>, <a class="reference internal" href="../../proofs/writing-proofs/equality.html#rocq:tacn.native_compute" title="native_compute"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">native_compute</span></code></a>) implement
 dedicated, efficient rules to reduce the applications of these primitive
 operations.</p>
 <p>The extraction of these primitives can be customized similarly to the extraction
