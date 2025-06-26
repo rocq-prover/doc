@@ -1833,41 +1833,42 @@ goal 2 is:
 </div>
 <div class="admonition note">
 <p class="admonition-title">Example: <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">induction</span></span></span></span></code> with <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../proof-engine/tactics.html#grammar-token-occurrences"><span class="hole"><span class="pre">occurrences</span></span></a></span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">induction</span> <span class="pre">in</span></code> is useful to generalize over other variables:</p>
 <div class="rocqtop literal-block docutils container">
 <span class="rocqtop-reset"></span><dl>
-<dt><span></span><span class="rocqdoc-keyword">Lemma</span><span> </span><span class="rocqdoc-var">induction_test2</span><span> : </span><span class="rocqdoc-keyword">forall</span><span> </span><span class="rocqdoc-var">n</span><span>:</span><span class="rocqdoc-var">nat</span><span>, </span><span class="rocqdoc-var">n</span><span> = </span><span class="rocqdoc-var">n</span><span> -&gt; </span><span class="rocqdoc-var">n</span><span> &lt;= </span><span class="rocqdoc-var">n</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Lemma</span><span> </span><span class="rocqdoc-var">induction_test2</span><span> : </span><span class="rocqdoc-keyword">forall</span><span> </span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-var">m</span><span>:</span><span class="rocqdoc-var">nat</span><span>, </span><span class="rocqdoc-var">n</span><span> = </span><span class="rocqdoc-var">m</span><span> -&gt; </span><span class="rocqdoc-var">n</span><span> &lt;= </span><span class="rocqdoc-var">m</span><span>.</span><span>
 </span></dt><dd><span>1 goal
   
   ============================
-  </span><span class="ansi-bold">forall</span><span> n : nat, n</span><span> =</span><span> n</span><span> -&gt;</span><span> n</span><span> &lt;=</span><span> n
+  </span><span class="ansi-bold">forall</span><span> n m : nat, n</span><span> =</span><span> m</span><span> -&gt;</span><span> n</span><span> &lt;=</span><span> m
 </span></dd>
-<dt><span></span><span class="rocqdoc-tactic">intros</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-tactic">intros</span><span> </span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-var">m</span><span> </span><span class="rocqdoc-var">H</span><span>.</span><span>
 </span></dt><dd><span>1 goal
   
-  n : nat
-  H : n</span><span> =</span><span> n
+  n, m : nat
+  H : n</span><span> =</span><span> m
   ============================
-  n</span><span> &lt;=</span><span> n
+  n</span><span> &lt;=</span><span> m
 </span></dd>
-<dt><span></span><span class="rocqdoc-tactic">induction</span><span> </span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-tactic">in</span><span> </span><span class="rocqdoc-var">H</span><span> |-.</span><span>
+<dt><span></span><span class="rocqdoc-tactic">induction</span><span> </span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-tactic">in</span><span> </span><span class="rocqdoc-var">m</span><span>, </span><span class="rocqdoc-var">H</span><span> |- *.</span><span>
 </span></dt><dd><span>2 goals
   
-  n : nat
-  H : 0</span><span> =</span><span> 0
+  m : nat
+  H : 0</span><span> =</span><span> m
   ============================
-  n</span><span> &lt;=</span><span> n
+  0</span><span> &lt;=</span><span> m
 
 goal 2 is:
- n</span><span> &lt;=</span><span> n
+ S n</span><span> &lt;=</span><span> m
 </span></dd>
 <dt><span></span><span class="rocqdoc-keyword">Show</span><span> 2.</span><span>
 </span></dt><dd><span>goal 2 is:
   
-  n, n0 : nat
-  H : S n0</span><span> =</span><span> S n0
-  IHn0 : n0</span><span> =</span><span> n0</span><span> -&gt;</span><span> n</span><span> &lt;=</span><span> n
+  n, m : nat
+  H : S n</span><span> =</span><span> m
+  IHn : </span><span class="ansi-bold">forall</span><span> m : nat, n</span><span> =</span><span> m</span><span> -&gt;</span><span> n</span><span> &lt;=</span><span> m
   ============================
-  n</span><span> &lt;=</span><span> n
+  S n</span><span> &lt;=</span><span> m
 </span></dd>
 </dl>
 </div>
@@ -3228,7 +3229,7 @@ Nat_rec is not universe polymorphic
 Arguments </span><span class="ansi-fg-light-green">Nat_rec</span><span> P%_function_scope f f0%_function_scope n
 Nat_rec is transparent
 Expands to: Constant Top.Nat_rec
-Declared in toplevel input, characters 4960-4994
+Declared in toplevel input, characters 4973-5007
 </span></dd>
 <dt><span></span><span>
 </span><span class="rocqdoc-comment">(* non-dependent, recursive *)</span><span>
@@ -3243,7 +3244,7 @@ Nat_rec_nodep is not universe polymorphic
 Arguments </span><span class="ansi-fg-light-green">Nat_rec_nodep</span><span> P%_type_scope f f0%_function_scope n
 Nat_rec_nodep is transparent
 Expands to: Constant Top.Nat_rec_nodep
-Declared in toplevel input, characters 5041-5076
+Declared in toplevel input, characters 5054-5089
 </span></dd>
 <dt><span></span><span>
 </span><span class="rocqdoc-comment">(* dependent, non-recursive *)</span><span>
@@ -3260,7 +3261,7 @@ Nat_case is not universe polymorphic
 Arguments </span><span class="ansi-fg-light-green">Nat_case</span><span> P%_function_scope f f0%_function_scope n
 Nat_case is transparent
 Expands to: Constant Top.Nat_case
-Declared in toplevel input, characters 5129-5165
+Declared in toplevel input, characters 5142-5178
 </span></dd>
 <dt><span></span><span>
 </span><span class="rocqdoc-comment">(* non-dependent, non-recursive *)</span><span>
@@ -3275,7 +3276,7 @@ Nat_case_nodep is not universe polymorphic
 Arguments </span><span class="ansi-fg-light-green">Nat_case_nodep</span><span> P%_type_scope f f0%_function_scope n
 Nat_case_nodep is transparent
 Expands to: Constant Top.Nat_case_nodep
-Declared in toplevel input, characters 5217-5246
+Declared in toplevel input, characters 5230-5259
 </span></dd>
 </dl>
 </div>
