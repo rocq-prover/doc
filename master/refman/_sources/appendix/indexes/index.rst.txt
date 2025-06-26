@@ -12,11 +12,11 @@ find what you are looking for.
 .. toctree::
 
    ../../std-glossindex
-   ../../coq-cmdindex
-   ../../coq-tacindex
-   ../../coq-attrindex
-   ../../coq-optindex
-   ../../coq-exnindex
+   ../../rocq-cmdindex
+   ../../rocq-tacindex
+   ../../rocq-attrindex
+   ../../rocq-optindex
+   ../../rocq-exnindex
    ../../genindex
 
 For reference, here are direct links to the documentation of:
