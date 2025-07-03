@@ -160,7 +160,7 @@ Setting properties of a function's arguments
          See the example :ref:`here<example_more_implicits>`.
 
          .. todo the above feature seems a bit unnatural and doesn't play well with partial
-            application.  See https://github.com/coq/coq/pull/11718#discussion_r408841762
+            application.  See https://github.com/rocq-prover/rocq/pull/11718#discussion_r408841762
 
    Use :cmd:`About` to view the current implicit arguments setting for a :token:`reference`.
 
@@ -426,7 +426,7 @@ first arguments of an application, typing information should be propagated from
 the context to help inferring the types of the remaining arguments.
 
 .. todo the following text is a start on better wording but not quite complete.
-   See https://github.com/coq/coq/pull/11718#discussion_r410219992
+   See https://github.com/rocq-prover/rocq/pull/11718#discussion_r410219992
 
   ..
   Two common methods to determine the type of a construct are:

@@ -274,22 +274,22 @@
 <span class="id" title="keyword">From</span> <span class="id" title="var">Stdlib</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="Stdlib.Reals.Cauchy.QExtra.html#"><span class="id" title="library">QExtra</span></a>.<br/>
 
 <br/>
-<span class="id" title="keyword">Local Open</span> <span class="id" title="keyword">Scope</span> <span class="id" title="var">CReal_scope</span>.<br/>
+#[<span class="id" title="var">local</span>] <span class="id" title="keyword">Open</span> <span class="id" title="keyword">Scope</span> <span class="id" title="var">CReal_scope</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Local Ltac</span> <span class="id" title="var">simplify_Qabs</span> :=<br/>
+#[<span class="id" title="var">local</span>] <span class="id" title="keyword">Ltac</span> <span class="id" title="var">simplify_Qabs</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="keyword">goal</span> <span class="id" title="keyword">with</span> |- <span class="id" title="keyword">context</span> [(<a class="idref" href="Stdlib.QArith.Qabs.html#Qabs"><span class="id" title="definition">Qabs</span></a> ?<span class="id" title="var">a</span>)%<span class="id" title="var">Q</span>] =&gt; <span class="id" title="var">ring_simplify</span> <span class="id" title="var">a</span> <span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Local Ltac</span> <span class="id" title="var">simplify_Qlt</span> :=<br/>
+#[<span class="id" title="var">local</span>] <span class="id" title="keyword">Ltac</span> <span class="id" title="var">simplify_Qlt</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="keyword">goal</span> <span class="id" title="keyword">with</span> |- (?<span class="id" title="var">l</span> <a class="idref" href="Stdlib.QArith.QArith_base.html#::Q_scope:x_'&lt;'_x"><span class="id" title="notation">&lt;</span></a> ?<span class="id" title="var">r</span>)%<span class="id" title="var">Q</span> =&gt; <span class="id" title="var">ring_simplify</span> <span class="id" title="var">l</span>; <span class="id" title="var">ring_simplify</span> <span class="id" title="var">r</span> <span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Local Lemma</span> <a id="Qopp_mult_mone" class="idref" href="#Qopp_mult_mone"><span class="id" title="lemma">Qopp_mult_mone</span></a> : <span class="id" title="keyword">forall</span> <a id="q:1" class="idref" href="#q:1"><span class="id" title="binder">q</span></a> : <a class="idref" href="Stdlib.QArith.QArith_base.html#Q"><span class="id" title="record">Q</span></a>,<br/>
+#[<span class="id" title="var">local</span>] <span class="id" title="keyword">Lemma</span> <a id="Qopp_mult_mone" class="idref" href="#Qopp_mult_mone"><span class="id" title="lemma">Qopp_mult_mone</span></a> : <span class="id" title="keyword">forall</span> <a id="q:1" class="idref" href="#q:1"><span class="id" title="binder">q</span></a> : <a class="idref" href="Stdlib.QArith.QArith_base.html#Q"><span class="id" title="record">Q</span></a>,<br/>
 &nbsp;&nbsp;(-1 <a class="idref" href="Stdlib.QArith.QArith_base.html#a913d2882dcbf2c07ae6ccbc47eaad45"><span class="id" title="notation">*</span></a> <a class="idref" href="Stdlib.Reals.Cauchy.ConstructiveCauchyAbs.html#q:1"><span class="id" title="variable">q</span></a> <a class="idref" href="Stdlib.QArith.QArith_base.html#0eaf04f08ecf51ebfc2703f9e1d22838"><span class="id" title="notation">==</span></a> <a class="idref" href="Stdlib.QArith.QArith_base.html#::Q_scope:'-'_x"><span class="id" title="notation">-</span></a><a class="idref" href="Stdlib.Reals.Cauchy.ConstructiveCauchyAbs.html#q:1"><span class="id" title="variable">q</span></a>)%<span class="id" title="var">Q</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Local Lemma</span> <a id="Qabs_involutive" class="idref" href="#Qabs_involutive"><span class="id" title="lemma">Qabs_involutive</span></a>: <span class="id" title="keyword">forall</span> <a id="q:2" class="idref" href="#q:2"><span class="id" title="binder">q</span></a> : <a class="idref" href="Stdlib.QArith.QArith_base.html#Q"><span class="id" title="record">Q</span></a>,<br/>
+#[<span class="id" title="var">local</span>] <span class="id" title="keyword">Lemma</span> <a id="Qabs_involutive" class="idref" href="#Qabs_involutive"><span class="id" title="lemma">Qabs_involutive</span></a>: <span class="id" title="keyword">forall</span> <a id="q:2" class="idref" href="#q:2"><span class="id" title="binder">q</span></a> : <a class="idref" href="Stdlib.QArith.QArith_base.html#Q"><span class="id" title="record">Q</span></a>,<br/>
 &nbsp;&nbsp;(<a class="idref" href="Stdlib.QArith.Qabs.html#Qabs"><span class="id" title="definition">Qabs</span></a> (<a class="idref" href="Stdlib.QArith.Qabs.html#Qabs"><span class="id" title="definition">Qabs</span></a> <a class="idref" href="Stdlib.Reals.Cauchy.ConstructiveCauchyAbs.html#q:2"><span class="id" title="variable">q</span></a>) <a class="idref" href="Stdlib.QArith.QArith_base.html#0eaf04f08ecf51ebfc2703f9e1d22838"><span class="id" title="notation">==</span></a> <a class="idref" href="Stdlib.QArith.Qabs.html#Qabs"><span class="id" title="definition">Qabs</span></a> <a class="idref" href="Stdlib.Reals.Cauchy.ConstructiveCauchyAbs.html#q:2"><span class="id" title="variable">q</span></a>)%<span class="id" title="var">Q</span>.<br/>
 
 <br/>

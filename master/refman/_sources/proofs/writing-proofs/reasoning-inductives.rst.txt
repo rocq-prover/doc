@@ -118,7 +118,7 @@ The tactics in this section implement case
 analysis on inductive or coinductive objects (see :ref:`variants`).
 
 .. comment Notes contrasting the various case analysis tactics:
-   https://github.com/coq/coq/pull/14676#discussion_r697904963
+   https://github.com/rocq-prover/rocq/pull/14676#discussion_r697904963
 
 .. tacn:: destruct {+, @induction_clause } {? @induction_principle }
 
@@ -284,7 +284,7 @@ analysis on inductive or coinductive objects (see :ref:`variants`).
 .. tacn:: destauto {? in @ident }
 
    .. todo: keep or remove destauto?
-      destauto added in https://github.com/coq/coq/commit/f3a53027589813ff19b3a7c46d84e5bd2fc65741
+      destauto added in https://github.com/rocq-prover/rocq/commit/f3a53027589813ff19b3a7c46d84e5bd2fc65741
 
    Reduces one :n:`match t with ...` by doing :n:`destruct t`.  If :n:`t` is
    not a variable, the tactic does
@@ -787,7 +787,7 @@ This section describes some special purpose tactics to work with
    .. comment: the other inversion* tactics don't support the using clause,
       but they should be able to, if desired.  It wouldn't make sense for
       inversion_sigma.
-      See https://github.com/coq/coq/pull/14179#discussion_r642193096
+      See https://github.com/rocq-prover/rocq/pull/14179#discussion_r642193096
 
    For a hypothesis whose type is a (co)inductively defined
    proposition, the tactic introduces a goal for each constructor

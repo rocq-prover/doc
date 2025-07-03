@@ -4,7 +4,7 @@ Writing Rocq libraries and plugins
 This section presents the part of the Rocq language that is useful only
 to library and plugin authors.  A tutorial for writing Rocq plugins is
 available in the Rocq repository in `doc/plugin_tutorial
-<https://github.com/coq/coq/tree/master/doc/plugin_tutorial>`_.
+<https://github.com/rocq-prover/rocq/tree/master/doc/plugin_tutorial>`_.
 
 Deprecating library objects, tactics or library files
 -----------------------------------------------------

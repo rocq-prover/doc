@@ -424,7 +424,7 @@ only support the :n:`struct` option, while :n:`wf` and :n:`measure` are only sup
 commands such as :cmd:`Fixpoint` (with the :attr:`program` attribute) and :cmd:`Function`.
 
 .. todo explanation of struct: see text above at the Fixpoint command, also
-   see https://github.com/coq/coq/pull/12936#discussion_r510716268 and above.
+   see https://github.com/rocq-prover/rocq/pull/12936#discussion_r510716268 and above.
    Consider whether to move the grammar for fixannot elsewhere
 
 .. _Fixpoint:

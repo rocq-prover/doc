@@ -15,7 +15,7 @@ Ltac
    encourage users to use Ltac2 (or other alternatives) instead of Ltac
    for new projects and new automation code in existing projects.
    Reports about hindrances in using Ltac2 for writing automation are
-   welcome as issues on the `Rocq bug tracker <https://github.com/coq/coq/issues>`_
+   welcome as issues on the `Rocq bug tracker <https://github.com/rocq-prover/rocq/issues>`_
    or as discussions on the `Ltac2 Zulip stream <https://coq.zulipchat.com/#narrow/stream/278935-Ltac2>`_.
 
 This chapter documents the tactic language |Ltac|.
@@ -262,7 +262,7 @@ an untyped term may avoid most of the repetitive type checking for the term,
 improving performance.
 
 .. todo above: maybe elaborate on "well-typed by default"
-   see https://github.com/coq/coq/pull/12103#discussion_r436317558
+   see https://github.com/rocq-prover/rocq/pull/12103#discussion_r436317558
 
 Untyped terms built using :n:`uconstr:(…)` can be used as arguments to the
 :tacn:`refine` tactic, for example. In that case the untyped term is type
@@ -274,7 +274,7 @@ Substitution
 
 .. todo next paragraph: we need a better discussion of substitution.
    Looks like that also applies to binder_tactics in some form.
-   See https://github.com/coq/coq/pull/12103#discussion_r422105218
+   See https://github.com/rocq-prover/rocq/pull/12103#discussion_r422105218
 
 :token:`name`\s within |Ltac| expressions are used to represent both terms and
 |Ltac| variables.  If the :token:`name` corresponds to
@@ -348,7 +348,7 @@ A function application is an expression of the form:
    and with the :cmd:`Ltac` command.
 
    .. todo above: note "gobble" corner case
-      https://github.com/coq/coq/pull/12103#discussion_r436414417
+      https://github.com/rocq-prover/rocq/pull/12103#discussion_r436414417
 
 Tactics in terms
 ~~~~~~~~~~~~~~~~
@@ -392,7 +392,7 @@ behavior.)
    <reordering_goals_ex>`.  If the selector applies
    to a single goal or to all goals, the reordering will not be apparent.  The order of
    the goals in the :token:`goal_selector` is irrelevant.  (This may not be what you expect;
-   see `#8481 <https://github.com/coq/coq/issues/8481>`_.)
+   see `#8481 <https://github.com/rocq-prover/rocq/issues/8481>`_.)
 
    .. todo why shouldn't "all" and "!" be accepted anywhere a @goal_selector is accepted?
       It would be simpler to explain.
@@ -574,7 +574,7 @@ A sequence is an expression of the following form:
    .. todo I don't see the distinction between evaluating an ltac expression
       and applying it--how are they not the same thing?  If different, the
       "Semantics" section above should explain it.
-      See https://github.com/coq/coq/pull/12103#discussion_r422210482
+      See https://github.com/rocq-prover/rocq/pull/12103#discussion_r422210482
 
    .. note::
 
@@ -748,7 +748,7 @@ Local application of tactics: [> ... ]
 
    :n:`@ltac_expr3 ; [ ... ]` is equivalent to :n:`[> @ltac_expr3 ; [> ... ] .. ]`.
 
-.. todo see discussion of [ ... ] in https://github.com/coq/coq/issues/12283
+.. todo see discussion of [ ... ] in https://github.com/rocq-prover/rocq/issues/12283
 
 First tactic to succeed
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -1005,7 +1005,7 @@ Soft cut: once
 .. todo Would like a different subsection title above.
    I have trouble distinguishing once and exactly_once.
    We need to explain backtracking somewhere.
-   See https://github.com/coq/coq/pull/12103#discussion_r422360181
+   See https://github.com/rocq-prover/rocq/pull/12103#discussion_r422360181
 
 Another way of restricting backtracking is to restrict a tactic to a
 single success:
@@ -1123,7 +1123,7 @@ Pattern matching on terms: match
       irrelevant terms.  :ref:`Example<match_with_holes_ex>`.
 
       .. todo Didn't understand the following 2 paragraphs well enough to revise
-         see https://github.com/coq/coq/pull/12103#discussion_r436297754 for a
+         see https://github.com/rocq-prover/rocq/pull/12103#discussion_r436297754 for a
          possible example
 
       When a metavariable in the form :n:`?id` occurs under binders,
@@ -1155,7 +1155,7 @@ Pattern matching on terms: match
       :flag:`Printing All` flag).  :ref:`Example<match_term_context_ex>`.
 
    .. todo There's a more realistic example from @JasonGross here:
-      https://github.com/coq/coq/pull/12103#discussion_r432996954
+      https://github.com/rocq-prover/rocq/pull/12103#discussion_r432996954
 
    :n:`@ltac_expr`
       The tactic to apply if the construct matches.  Metavariable values from the pattern
@@ -2583,5 +2583,5 @@ Run-time optimization tactic
 
 .. cmd:: infoH @ltac_expr
 
-   Used internally by Proof General.  See `#12423 <https://github.com/coq/coq/issues/12423>`_ for
+   Used internally by Proof General.  See `#12423 <https://github.com/rocq-prover/rocq/issues/12423>`_ for
    some background.

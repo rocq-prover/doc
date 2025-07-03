@@ -908,11 +908,11 @@ in a less hard-wired way.
       metavariables in the form :n:`?@ident` and :n:`@?@ident`.  :g:`_` can be used to match
       irrelevant terms.
 
-      .. todo more on @?@ident here: https://github.com/coq/coq/pull/12085#discussion_r467504046
+      .. todo more on @?@ident here: https://github.com/rocq-prover/rocq/pull/12085#discussion_r467504046
       .. todo Example is broken :ref:`Example<ltac2_match_with_holes_ex>`.
 
       .. todo Didn't understand the following 2 paragraphs well enough to revise
-         see https://github.com/coq/coq/pull/12103#discussion_r436297754 for a
+         see https://github.com/rocq-prover/rocq/pull/12103#discussion_r436297754 for a
          possible example
 
       Unlike Ltac1, Ltac2 :n:`?id` metavariables only match closed terms.
@@ -937,7 +937,7 @@ in a less hard-wired way.
       :flag:`Printing All` flag).  :ref:`Example<ltac2_match_term_context_ex>`.
 
    .. todo There's a more realistic example from @JasonGross here:
-      https://github.com/coq/coq/pull/12103#discussion_r432996954
+      https://github.com/rocq-prover/rocq/pull/12103#discussion_r432996954
 
    :n:`@ltac2_expr`
       The tactic to apply if the construct matches.  Metavariable values from the pattern
@@ -1085,7 +1085,7 @@ Match over goals
    multiple hypotheses or across a hypothesis and the current goal, the expressions match if
    they are :term:`convertible`.
 
-   .. more detail here: https://github.com/coq/coq/pull/12085#discussion_r470406466
+   .. more detail here: https://github.com/rocq-prover/rocq/pull/12085#discussion_r470406466
 
    :n:`{*, @gmatch_pattern }`
       Patterns to match with hypotheses.  Each pattern must match a distinct hypothesis in order

@@ -1097,7 +1097,7 @@ Printing constructions in full
       a goal, but turning off all notations with :flag:`Printing All` would make
       the goal unreadable.
 
-      .. see a contrived example here: https://github.com/coq/coq/pull/11718#discussion_r415481854
+      .. see a contrived example here: https://github.com/rocq-prover/rocq/pull/11718#discussion_r415481854
 
 .. _controlling-typing-flags:
 

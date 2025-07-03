@@ -806,17 +806,17 @@ Displaying information about notations
    Similarly, `Print Grammar tactic` includes :cmd:`Tactic Notation`\s, such as :tacn:`dintuition`.
 
    The file
-   `doc/tools/docgram/fullGrammar <http://github.com/coq/coq/blob/master/doc/tools/docgram/fullGrammar>`_
+   `doc/tools/docgram/fullGrammar <http://github.com/rocq-prover/rocq/blob/master/doc/tools/docgram/fullGrammar>`_
    in the source tree extracts the full grammar for
    Rocq (not including notations and tactic notations defined in `*.v` files nor some optionally-loaded plugins)
    in a single file with minor changes to handle nonterminals using multiple levels (described in
-   `doc/tools/docgram/README.md <http://github.com/coq/coq/blob/master/doc/tools/docgram/README.md>`_).
+   `doc/tools/docgram/README.md <http://github.com/rocq-prover/rocq/blob/master/doc/tools/docgram/README.md>`_).
    This is complete and much easier to read than the grammar source files.
-   `doc/tools/docgram/orderedGrammar <http://github.com/coq/coq/blob/master/doc/tools/docgram/orderedGrammar>`_
+   `doc/tools/docgram/orderedGrammar <http://github.com/rocq-prover/rocq/blob/master/doc/tools/docgram/orderedGrammar>`_
    has the edited grammar that's used in the documentation.
 
    Developer documentation for parsing is in
-   `dev/doc/parsing.md <http://github.com/coq/coq/blob/master/dev/doc/parsing.md>`_.
+   `dev/doc/parsing.md <http://github.com/rocq-prover/rocq/blob/master/dev/doc/parsing.md>`_.
 
 .. _locating-notations:
 
@@ -1582,7 +1582,7 @@ top of the scopes stack.
    Specifying :attr:`global` behaves like the default.
 
    .. todo: Strange notion, exporting something that _removes_ a scope.
-      See https://github.com/coq/coq/pull/11718#discussion_r413667817
+      See https://github.com/rocq-prover/rocq/pull/11718#discussion_r413667817
 
 .. _LocalInterpretationRulesForNotations:
 
@@ -2340,7 +2340,7 @@ The following errors apply to both string and number notations:
      Identifiers passed to :cmd:`String Notation` or :cmd:`Number Notation` must be global
      references, or notations which evaluate to single qualified identifiers.
 
-     .. todo note on "single qualified identifiers" https://github.com/coq/coq/pull/11718#discussion_r415076703
+     .. todo note on "single qualified identifiers" https://github.com/rocq-prover/rocq/pull/11718#discussion_r415076703
 
 .. example:: Number Notation for radix 3
 
@@ -2626,7 +2626,7 @@ Tactic notations allow customizing the syntax of tactics.
         (from reading .v files).
         Looks like any string passed to "make0" in the code is valid.  But do
         we want to support all these?
-        @JasonGross's opinion here: https://github.com/coq/coq/pull/11718#discussion_r415387421
+        @JasonGross's opinion here: https://github.com/rocq-prover/rocq/pull/11718#discussion_r415387421
 
    .. list-table::
       :header-rows: 1

@@ -115,7 +115,7 @@ from the toolbar and from the keyboard.  These include:
 - Interrupt to stop processing commands after the current command completes.
   (Note: on Windows but not on WSL, Interrupt doesn't work if you start RocqIDE
   as a background process, e.g. `rocqide &` in bash.  See Rocq issue
-  `#16142 <https://github.com/coq/coq/pull/16142>`_.)
+  `#16142 <https://github.com/rocq-prover/rocq/pull/16142>`_.)
 
 On macOS, use `Cmd-Ctrl` instead of `Alt` for these operations.
 
@@ -469,7 +469,7 @@ right arrow, or ``\>=`` for a greater than or equal sign.
 
 A larger number of LaTeX tokens are supported by default. The full list
 is available here:
-https://github.com/coq/coq/blob/master/ide/rocqide/default_bindings_src.ml
+https://github.com/rocq-prover/rocq/blob/master/ide/rocqide/default_bindings_src.ml
 
 Custom bindings may be added, as explained further on.
 
@@ -568,9 +568,9 @@ We'd like to eventually support other scripting facilities such as Ltac2.
 Since the visual debugger is new in 8.15, you may encounter bugs or usability issues.
 The behavior and user interface will evolve as the debugger is refined.
 There are notes on bugs and potential enhancements at the end of
-`this page <https://github.com/coq/coq/wiki/Ltac-Debugger-Preview>`_.
+`this page <https://github.com/rocq-prover/rocq/wiki/Ltac-Debugger-Preview>`_.
 Feel free to suggest changes and improvements by opening an issue on
-`GitHub <https://github.com/coq/coq/issues/new>`_, or contact `@jfehrle`
+`GitHub <https://github.com/rocq-prover/rocq/issues/new>`_, or contact `@jfehrle`
 directly through email, Zulip or Discourse.
 
 Breakpoints
@@ -652,7 +652,7 @@ Note that the debugger is disabled when RocqIDE is running multiple worker proce
 i.e. running in async mode.  Going "Forward" a single step at a time doesn't use
 async mode and will always enter the debugger as expected.  In addition, the debugger
 doesn't work correctly in some cases involving editing failed proofs in asymc mode (
-see `#16069 <https://github.com/coq/coq/pull/16069>`_.)
+see `#16069 <https://github.com/rocq-prover/rocq/pull/16069>`_.)
 
 If you step through `idtac "A"; idtac "B"; idtac "C".`, you'll notice that the
 steps for `my_tac` are:
@@ -671,7 +671,7 @@ a previous state.  This may cause confusion.  Currently there's no special
 indication that this has happened.
 
 .. unfortunately not working:
-   Note: This `Wiki page <https://github.com/coq/coq/wiki/Configuration-of-CoqIDE#the-alternative-set-of-bindings>`_
+   Note: This `Wiki page <https://github.com/rocq-prover/rocq/wiki/Configuration-of-CoqIDE#the-alternative-set-of-bindings>`_
    describes a way to change RocqIDE key bindings.
 
 Call Stack and Variables

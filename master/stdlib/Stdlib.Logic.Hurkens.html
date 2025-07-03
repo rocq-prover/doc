@@ -517,13 +517,13 @@ Exploiting Hurkens's paradox <span class="inlinecode">[<span class="id" title="v
 
 </div>
 <div class="code">
-<span class="id" title="keyword">Local Ltac</span> <span class="id" title="var">simplify</span> :=<br/>
+#[<span class="id" title="var">local</span>] <span class="id" title="keyword">Ltac</span> <span class="id" title="var">simplify</span> :=<br/>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;(<span class="id" title="tactic">repeat</span> <span class="id" title="tactic">rewrite</span> ?<a class="idref" href="Stdlib.Logic.Hurkens.html#Generic.Paradox.beta1"><span class="id" title="variable">beta1</span></a>, ?<a class="idref" href="Stdlib.Logic.Hurkens.html#Generic.Paradox.betaU1"><span class="id" title="variable">betaU1</span></a>);<br/>
 &nbsp;&nbsp;<span class="id" title="tactic">lazy</span> <span class="id" title="keyword">beta</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Local Ltac</span> <span class="id" title="var">simplify_in</span> <span class="id" title="var">h</span> :=<br/>
+#[<span class="id" title="var">local</span>] <span class="id" title="keyword">Ltac</span> <span class="id" title="var">simplify_in</span> <span class="id" title="var">h</span> :=<br/>
 &nbsp;&nbsp;(<span class="id" title="tactic">repeat</span> <span class="id" title="tactic">rewrite</span> ?<a class="idref" href="Stdlib.Logic.Hurkens.html#Generic.Paradox.beta1"><span class="id" title="variable">beta1</span></a>, ?<a class="idref" href="Stdlib.Logic.Hurkens.html#Generic.Paradox.betaU1"><span class="id" title="variable">betaU1</span></a> <span class="id" title="tactic">in</span> <span class="id" title="var">h</span>);<br/>
 &nbsp;&nbsp;<span class="id" title="tactic">lazy</span> <span class="id" title="keyword">beta</span> <span class="id" title="tactic">in</span> <span class="id" title="var">h</span>.<br/>
 

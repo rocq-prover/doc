@@ -70,7 +70,7 @@ files that declare the axioms used to define the real numbers, you can
      then `lvar` is replaced by all the variables which are not in
      `parameters`.
 
-   See the file `Nsatz.v <https://github.com/coq/coq/blob/master/test-suite/success/Nsatz.v>`_
+   See the file `Nsatz.v <https://github.com/rocq-prover/rocq/blob/master/test-suite/success/Nsatz.v>`_
    for examples, especially in geometry.
 
 More about `nsatz`

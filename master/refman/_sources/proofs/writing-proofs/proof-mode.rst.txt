@@ -584,8 +584,8 @@ Curly braces
    :name: {; }
 
    .. todo
-      See https://github.com/coq/coq/issues/12004 and
-      https://github.com/coq/coq/issues/12825.
+      See https://github.com/rocq-prover/rocq/issues/12004 and
+      https://github.com/rocq-prover/rocq/issues/12825.
 
    ``{`` (without a terminating period) focuses on the first
    goal.  The subproof can only be
@@ -897,7 +897,7 @@ Proving a subgoal as a separate lemma: abstract
    .. warning::
 
       The abstract tactic, while very useful, still has some known
-      limitations.  See `#9146 <https://github.com/coq/coq/issues/9146>`_ for more
+      limitations.  See `#9146 <https://github.com/rocq-prover/rocq/issues/9146>`_ for more
       details. We recommend caution when using it in some
       "non-standard" contexts. In particular, ``abstract`` doesn't
       work properly when used inside quotations ``ltac:(...)``.

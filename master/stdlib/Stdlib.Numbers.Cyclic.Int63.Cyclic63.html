@@ -286,7 +286,7 @@ Author: Arnaud Spiwack (+ Pierre Letouzey)
 <span class="id" title="keyword">Import</span> <a class="idref" href="Stdlib.micromega.Lia.html#"><span class="id" title="module">Lia</span></a>.<br/>
 
 <br/>
-<span class="id" title="keyword">Local Open</span> <span class="id" title="keyword">Scope</span> <span class="id" title="var">uint63_scope</span>.<br/>
+#[<span class="id" title="var">local</span>] <span class="id" title="keyword">Open</span> <span class="id" title="keyword">Scope</span> <span class="id" title="var">uint63_scope</span>.<br/>
 </div>
 
 <div class="doc">
@@ -386,7 +386,7 @@ Author: Arnaud Spiwack (+ Pierre Letouzey)
 |}.<br/>
 
 <br/>
-<span class="id" title="keyword">Local Open</span> <span class="id" title="keyword">Scope</span> <span class="id" title="var">Z_scope</span>.<br/>
+#[<span class="id" title="var">local</span>] <span class="id" title="keyword">Open</span> <span class="id" title="keyword">Scope</span> <span class="id" title="var">Z_scope</span>.<br/>
 
 <br/>
 <span class="id" title="keyword">Lemma</span> <a id="is_zero_spec_aux" class="idref" href="#is_zero_spec_aux"><span class="id" title="lemma">is_zero_spec_aux</span></a> : <span class="id" title="keyword">forall</span> <a id="x:18" class="idref" href="#x:18"><span class="id" title="binder">x</span></a> : <span class="id" title="var">int</span>, <a class="idref" href="../corelib/Corelib.Numbers.Cyclic.Int63.Uint63Axioms.html#is_zero"><span class="id" title="definition">is_zero</span></a> <a class="idref" href="Stdlib.Numbers.Cyclic.Int63.Cyclic63.html#x:18"><span class="id" title="variable">x</span></a> <a class="idref" href="../corelib/Corelib.Init.Logic.html#6cd0f7b28b6092304087c7049437bb1a"><span class="id" title="notation">=</span></a> <a class="idref" href="../corelib/Corelib.Init.Datatypes.html#true"><span class="id" title="constructor">true</span></a> <a class="idref" href="../corelib/Corelib.Init.Logic.html#::type_scope:x_'-&gt;'_x"><span class="id" title="notation">-&gt;</span></a> <a class="idref" href="Stdlib.Numbers.Cyclic.Int63.Uint63.html#2f3505bf5497161c26b5196e9cd3ee22"><span class="id" title="notation">φ</span></a> <a class="idref" href="Stdlib.Numbers.Cyclic.Int63.Cyclic63.html#x:18"><span class="id" title="variable">x</span></a> <a class="idref" href="../corelib/Corelib.Init.Logic.html#6cd0f7b28b6092304087c7049437bb1a"><span class="id" title="notation">=</span></a> 0%<span class="id" title="var">Z</span>.<br/>
@@ -443,7 +443,7 @@ Author: Arnaud Spiwack (+ Pierre Letouzey)
 {2 Specification and proof} 
 </div>
 <div class="code">
-<span class="id" title="keyword">Global Instance</span> <a id="int_specs" class="idref" href="#int_specs"><span class="id" title="instance">int_specs</span></a> : <a class="idref" href="Stdlib.Numbers.Cyclic.Abstract.CyclicAxioms.html#ZnZ.Specs"><span class="id" title="class">ZnZ.Specs</span></a> <a class="idref" href="Stdlib.Numbers.Cyclic.Int63.Cyclic63.html#int_ops"><span class="id" title="instance">int_ops</span></a> := {<br/>
+#[<span class="id" title="var">global</span>] <span class="id" title="keyword">Instance</span> <a id="int_specs" class="idref" href="#int_specs"><span class="id" title="instance">int_specs</span></a> : <a class="idref" href="Stdlib.Numbers.Cyclic.Abstract.CyclicAxioms.html#ZnZ.Specs"><span class="id" title="class">ZnZ.Specs</span></a> <a class="idref" href="Stdlib.Numbers.Cyclic.Int63.Cyclic63.html#int_ops"><span class="id" title="instance">int_ops</span></a> := {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Stdlib.Numbers.Cyclic.Abstract.CyclicAxioms.html#ZnZ.spec_to_Z"><span class="id" title="method">spec_to_Z</span></a>   := <a class="idref" href="Stdlib.Numbers.Cyclic.Int63.Uint63.html#to_Z_bounded"><span class="id" title="lemma">to_Z_bounded</span></a>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Stdlib.Numbers.Cyclic.Abstract.CyclicAxioms.html#ZnZ.spec_of_pos"><span class="id" title="method">spec_of_pos</span></a> := <a class="idref" href="Stdlib.Numbers.Cyclic.Int63.Cyclic63.html#positive_to_int_spec"><span class="id" title="lemma">positive_to_int_spec</span></a>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Stdlib.Numbers.Cyclic.Abstract.CyclicAxioms.html#ZnZ.spec_zdigits"><span class="id" title="method">spec_zdigits</span></a> := <a class="idref" href="../corelib/Corelib.Init.Logic.html#refl_equal"><span class="id" title="abbreviation">refl_equal</span></a> <span class="id" title="var">_</span>;<br/>

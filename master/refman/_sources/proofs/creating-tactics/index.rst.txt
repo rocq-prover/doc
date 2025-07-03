@@ -35,7 +35,7 @@ new tactics:
   a significant ongoing maintenance burden.
   A tutorial for writing Rocq plugins is available in the Rocq
   repository in `doc/plugin_tutorial
-  <https://github.com/coq/coq/tree/master/doc/plugin_tutorial>`_.
+  <https://github.com/rocq-prover/rocq/tree/master/doc/plugin_tutorial>`_.
 
 .. toctree::
    :maxdepth: 1

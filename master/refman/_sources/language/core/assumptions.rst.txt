@@ -129,7 +129,7 @@ Function application
 :n:`@term1__fun @term1` denotes applying the function :n:`@term1__fun` to :token:`term1`.
 
 .. todo: What is the relevant definition of a function here?
-         See https://github.com/coq/coq/pull/16659#discussion_r1039540851
+         See https://github.com/rocq-prover/rocq/pull/16659#discussion_r1039540851
 
 :n:`@term1__fun {+ @term1__i }` denotes applying
 :n:`@term1__fun` to the arguments :n:`@term1__i`.  It is

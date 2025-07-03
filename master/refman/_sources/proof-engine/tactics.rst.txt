@@ -1471,7 +1471,7 @@ Managing the local context
    this section.  But maybe hard to make the section seem like an crisp, intuitive grouping.
    I can do the moving that after we've reviewed all the text.  WDYT?
 
-   See https://github.com/coq/coq/pull/16498#discussion_r989928078
+   See https://github.com/rocq-prover/rocq/pull/16498#discussion_r989928078
 
 .. _controllingtheproofflow:
 

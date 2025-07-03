@@ -216,7 +216,7 @@ Rewriting with Leibniz and setoid equality
       :undocumented:
 
       .. todo You can use Typeclasses Debug to tell whether rewrite used
-         setoid rewriting.  Example here: https://github.com/coq/coq/pull/13470#discussion_r539230973
+         setoid rewriting.  Example here: https://github.com/rocq-prover/rocq/pull/13470#discussion_r539230973
 
    .. exn:: Cannot find a relation to rewrite.
       :undocumented:
@@ -514,7 +514,7 @@ which reduction engine to use.  See :ref:`type-cast`.)  For example:
        construction inside the term itself (use ``zeta`` to inline these).
        Opaque constants are never unfolded except by :tacn:`vm_compute` and
        :tacn:`native_compute`
-       (see `#4476 <https://github.com/coq/coq/issues/4476>`_ and
+       (see `#4476 <https://github.com/rocq-prover/rocq/issues/4476>`_ and
        :ref:`controlling-the-reduction-strategies`).
 
    `iota`
@@ -833,7 +833,7 @@ as numbers, and for reflection-based tactics.
 :tacn:`native_compute` is based on on converting the Rocq code to OCaml.
 
 Note that both these tactics ignore :cmd:`Opaque` markings
-(see issue `#4776 <https://github.com/coq/coq/issues/4776>`_), nor do they
+(see issue `#4776 <https://github.com/rocq-prover/rocq/issues/4776>`_), nor do they
 apply unfolding strategies such as from :cmd:`Strategy`.
 
 :tacn:`native_compute` is typically two to five
@@ -1186,4 +1186,4 @@ which supports additional fine-tuning.
       even when used with :tacn:`abstract`, due to the inability of
       tactics to persist information about conversion hints in the
       proof term. See `#12200
-      <https://github.com/coq/coq/issues/12200>`_ for more details.
+      <https://github.com/rocq-prover/rocq/issues/12200>`_ for more details.
