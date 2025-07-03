@@ -520,7 +520,7 @@ Enabling and disabling notations
       enable_notation_flag ::= all
       | only parsing
       | only printing
-      | in custom @ident
+      | in custom @qualid
       | in constr
 
    Enables or disables notations previously defined with
@@ -649,7 +649,7 @@ Displaying information about notations
 
    :flag:`Printing All` to disable other elements in addition to notations.
 
-.. cmd:: Print Notation @string {? in custom @ident }
+.. cmd:: Print Notation @string {? in custom @qualid }
 
    Displays information about the previously reserved notation string
    :token:`string`. :token:`ident`, if specified, is the name of the associated
@@ -1237,7 +1237,12 @@ Custom entries
 
    Defines new grammar entries, called *custom
    entries*, that can later be referred to using the entry name
-   :n:`custom @ident`.
+   :n:`custom @qualid`.
+
+   Custom entry names are qualified names based on the module they're
+   declared in: `Declare Custom Entry e` in module `M` produces an
+   entry whose full name is `M.e`, and may be accessed by the short
+   name `e` before `End M` and after `Import M`.
 
    This command supports the :attr:`local` attribute, which limits the entry to the
    current module.
@@ -1411,7 +1416,7 @@ Similarly, to indicate that a custom entry should parse global references
 
    Notation "x" := x (in custom expr at level 0, x global).
 
-.. cmd:: Print Custom Grammar @ident
+.. cmd:: Print Custom Grammar @qualid
 
    This displays the state of the grammar for terms associated with
    the custom entry :token:`ident`.
@@ -1427,7 +1432,7 @@ Here are the syntax elements used by the various notation commands.
 
    .. prodn::
       syntax_modifier ::= at level @natural
-      | in custom @ident {? at level @natural }
+      | in custom @qualid {? at level @natural }
       | {+, @ident } {| at @level | in scope @ident }
       | @ident at @level {? @binder_interp }
       | @ident @explicit_subentry
@@ -1446,7 +1451,7 @@ Here are the syntax elements used by the various notation commands.
       | binder
       | closed binder
       | constr {? at @level } {? @binder_interp }
-      | custom @ident {? at @level } {? @binder_interp }
+      | custom @qualid {? at @level } {? @binder_interp }
       | pattern {? at level @natural }
       binder_interp ::= as ident
       | as name
