@@ -88,8 +88,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#conversion">α-conversion</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#reduction">β-reduction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#delta-reduction-sect">δ-reduction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">ι-reduction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id6">ζ-reduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#iota-reduction-sect">ι-reduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#zeta-reduction-sect">ζ-reduction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#expansion">η-expansion</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#proof-irrelevance">Proof Irrelevance</a></li>
@@ -1366,7 +1366,7 @@ describes tactics that only apply conversion rules.
 (Other tactics may use conversion rules in addition
 to other changes to the proof state.)</p>
 <section id="conversion">
-<h2>α-conversion<a class="headerlink" href="#conversion" title="Link to this heading"></a></h2>
+<span id="alpha-conversion-sect"></span><h2>α-conversion<a class="headerlink" href="#conversion" title="Link to this heading"></a></h2>
 <p>Two terms are <span class="term-defn"><span class="target" id="term-alpha-convertible"></span>α-convertible</span> if they are syntactically
 equal ignoring differences in the names of variables bound within the expression.
 For example <code class="docutils literal notranslate"><span class="pre">forall</span> <span class="pre">x,</span> <span class="pre">x</span> <span class="pre">+</span> <span class="pre">0</span> <span class="pre">=</span> <span class="pre">x</span></code> is α-convertible with <code class="docutils literal notranslate"><span class="pre">forall</span> <span class="pre">y,</span> <span class="pre">y</span> <span class="pre">+</span> <span class="pre">0</span> <span class="pre">=</span> <span class="pre">y</span></code>.
@@ -1374,7 +1374,7 @@ For example <code class="docutils literal notranslate"><span class="pre">forall<
 so explicit α-conversion is not necessary.)</p>
 </section>
 <section id="reduction">
-<h2>β-reduction<a class="headerlink" href="#reduction" title="Link to this heading"></a></h2>
+<span id="beta-reduction-sect"></span><h2>β-reduction<a class="headerlink" href="#reduction" title="Link to this heading"></a></h2>
 <p><span class="term-defn"><span class="target" id="term-beta-reduction"></span>β-reduction</span> reduces a <span class="term-defn"><span class="target" id="term-beta-redex"></span>beta-redex</span>, which is
 a term in the form <code class="docutils literal notranslate"><span class="pre">(fun</span> <span class="pre">x</span> <span class="pre">=&gt;</span> <span class="pre">t)</span> <span class="pre">u</span></code>.  (Beta-redex
 is short for &quot;beta-reducible expression&quot;, a term from lambda calculus.
@@ -1432,8 +1432,8 @@ E[Γ] ⊢ c~\triangleright_δ~t%
 marked <span class="term-defn"><span class="target" id="term-transparent"></span>transparent</span>.  <span class="term-defn"><span class="target" id="term-opaque"></span>Opaque</span> is the opposite of
 transparent; <a class="reference internal" href="#term-delta-reduction"><span class="xref std std-term">delta-reduction</span></a> doesn't unfold opaque constants.</p>
 </section>
-<section id="id4">
-<h2>ι-reduction<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<section id="iota-reduction-sect">
+<span id="id4"></span><h2>ι-reduction<a class="headerlink" href="#iota-reduction-sect" title="Link to this heading"></a></h2>
 <p>A specific conversion rule is associated with the inductive objects in
 the global environment. We shall give later on (see Section
 <a class="reference internal" href="inductive.html#well-formed-inductive-definitions"><span class="std std-ref">Well-formed inductive definitions</span></a>) the precise rules but it
@@ -1442,8 +1442,8 @@ constructor behaves as expected. This reduction is called
 <span class="term-defn"><span class="target" id="term-iota-reduction"></span>ι-reduction</span>
 and is more precisely studied in <span id="id5">[<a class="reference internal" href="../../zebibliography.html#id38" title="C. Paulin-Mohring. Inductive Definitions in the System Coq - Rules and Properties. In M. Bezem and J.-F. Groote, editors, Proceedings of the conference Typed Lambda Calculi and Applications, number 664 in LNCS. Springer-Verlag, 1993. Also LIP research report 92-49, ENS Lyon.">PM93a</a>, <a class="reference internal" href="../../zebibliography.html#id52" title="B. Werner. Une théorie des constructions inductives. Thèse de Doctorat, Université Paris 7, 1994.">Wer94</a>]</span>.</p>
 </section>
-<section id="id6">
-<h2>ζ-reduction<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<section id="zeta-reduction-sect">
+<span id="id6"></span><h2>ζ-reduction<a class="headerlink" href="#zeta-reduction-sect" title="Link to this heading"></a></h2>
 <p><span class="term-defn"><span class="target" id="term-zeta-reduction"></span>ζ-reduction</span> removes <a class="reference internal" href="definitions.html#let-in"><span class="std std-ref">let-in definitions</span></a>
 in terms by
 replacing the defined variable by its value. One way this reduction differs from
