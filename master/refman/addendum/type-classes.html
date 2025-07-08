@@ -1289,7 +1289,7 @@
 declared instances. It allows for a form of programmatic proof or term search.</p>
 <p>This chapter presents a quick reference of the commands related to typeclasses.
 Additional helpful information can be found in the paper introducing typeclasses
-to Coq <span id="id2">[<a class="reference internal" href="../zebibliography.html#id50" title="Matthieu Sozeau and Nicolas Oury. First-Class Type Classes. In TPHOLs'08. 2008.">SO08</a>]</span> and the literature on type classes in Haskell.</p>
+to Coq <span id="id2">[<a class="reference internal" href="../zebibliography.html#id50" title="Matthieu Sozeau and Nicolas Oury. First-Class Type Classes. In TPHOLs'08. 2008. URL: https://doi.org/10.1007/978-3-540-71067-7_23.">SO08</a>]</span> and the literature on type classes in Haskell.</p>
 <section id="typeclass-and-instance-declarations">
 <h2>Typeclass and instance declarations<a class="headerlink" href="#typeclass-and-instance-declarations" title="Link to this heading"></a></h2>
 <p>The syntax for typeclasses and instance declarations is the same as the record
@@ -1461,7 +1461,7 @@ the constraints as a binding context before the instance, e.g.:</p>
 <span></span><dl>
 <dt><span></span><span class="rocqdoc-keyword">Program Instance</span><span> </span><span class="rocqdoc-var">prod_eqb</span><span> `(</span><span class="rocqdoc-var">EA</span><span> : </span><span class="rocqdoc-var">EqDec</span><span> </span><span class="rocqdoc-var">A</span><span>, </span><span class="rocqdoc-var">EB</span><span> : </span><span class="rocqdoc-var">EqDec</span><span> </span><span class="rocqdoc-var">B</span><span>) : </span><span class="rocqdoc-var">EqDec</span><span> (</span><span class="rocqdoc-var">A</span><span> * </span><span class="rocqdoc-var">B</span><span>) :=</span><span>
   { </span><span class="rocqdoc-var">eqb</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> := </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">x</span><span>, </span><span class="rocqdoc-var">y</span><span> </span><span class="rocqdoc-keyword">with</span><span>
-               | (</span><span class="rocqdoc-var">la</span><span>, </span><span class="rocqdoc-var">ra</span><span>), (</span><span class="rocqdoc-var">lb</span><span>, </span><span class="rocqdoc-var">rb</span><span>) =&gt; </span><span class="rocqdoc-var">andb</span><span> (</span><span class="rocqdoc-var">eqb</span><span> </span><span class="rocqdoc-var">la</span><span> </span><span class="rocqdoc-var">lb</span><span>) (</span><span class="rocqdoc-var">eqb</span><span> </span><span class="rocqdoc-var">ra</span><span> </span><span class="rocqdoc-var">rb</span><span>)</span><span>
+               | (</span><span class="rocqdoc-var">la</span><span>, </span><span class="rocqdoc-var">lb</span><span>), (</span><span class="rocqdoc-var">ra</span><span>, </span><span class="rocqdoc-var">rb</span><span>) =&gt; </span><span class="rocqdoc-var">andb</span><span> (</span><span class="rocqdoc-var">eqb</span><span> </span><span class="rocqdoc-var">la</span><span> </span><span class="rocqdoc-var">ra</span><span>) (</span><span class="rocqdoc-var">eqb</span><span> </span><span class="rocqdoc-var">lb</span><span> </span><span class="rocqdoc-var">rb</span><span>)</span><span>
                </span><span class="rocqdoc-keyword">end</span><span> }.</span><span>
 </span></dt><dd class="rocqtop-hidden"><span>prod_eqb has type-checked, generating 1 obligation
 Solving obligations automatically...
@@ -1470,12 +1470,12 @@ Obligation 1 of prod_eqb:
 (</span><span class="ansi-bold">forall</span><span> (A : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>) (EA : EqDec A) (B : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>) (EB : EqDec B) (x y : A</span><span> *</span><span> B),
  (</span><span class="ansi-bold">fun</span><span> x0 y0 : A</span><span> *</span><span> B =&gt;
   </span><span class="ansi-bold">let</span><span> program_branch_0 :=
-    </span><span class="ansi-bold">fun</span><span> (la : A) (ra : B) (lb : A) (rb : B) (_ : </span><span>(</span><span>la</span><span>,</span><span> ra</span><span>)</span><span> =</span><span> x0)
-      (_ : </span><span>(</span><span>lb</span><span>,</span><span> rb</span><span>)</span><span> =</span><span> y0) =&gt;
-    (eqb la lb</span><span> &amp;&amp;</span><span> eqb ra rb)%bool </span><span class="ansi-bold">in</span><span>
-  (</span><span class="ansi-bold">let</span><span> (la, ra) </span><span class="ansi-bold">as</span><span> x' </span><span class="ansi-bold">return</span><span> (x'</span><span> =</span><span> x0</span><span> -&gt;</span><span> y0</span><span> =</span><span> y0</span><span> -&gt;</span><span> bool) := x0</span><span class="ansi-bold"> in</span><span>
-   </span><span class="ansi-bold">let</span><span> (lb, rb) </span><span class="ansi-bold">as</span><span> y' </span><span class="ansi-bold">return</span><span> (</span><span>(</span><span>la</span><span>,</span><span> ra</span><span>)</span><span> =</span><span> x0</span><span> -&gt;</span><span> y'</span><span> =</span><span> y0</span><span> -&gt;</span><span> bool) := y0</span><span class="ansi-bold"> in</span><span>
-   program_branch_0 la ra lb rb) eq_refl eq_refl) x y</span><span> =</span><span>
+    </span><span class="ansi-bold">fun</span><span> (la : A) (lb : B) (ra : A) (rb : B) (_ : </span><span>(</span><span>la</span><span>,</span><span> lb</span><span>)</span><span> =</span><span> x0)
+      (_ : </span><span>(</span><span>ra</span><span>,</span><span> rb</span><span>)</span><span> =</span><span> y0) =&gt;
+    (eqb la ra</span><span> &amp;&amp;</span><span> eqb lb rb)%bool </span><span class="ansi-bold">in</span><span>
+  (</span><span class="ansi-bold">let</span><span> (la, lb) </span><span class="ansi-bold">as</span><span> x' </span><span class="ansi-bold">return</span><span> (x'</span><span> =</span><span> x0</span><span> -&gt;</span><span> y0</span><span> =</span><span> y0</span><span> -&gt;</span><span> bool) := x0</span><span class="ansi-bold"> in</span><span>
+   </span><span class="ansi-bold">let</span><span> (ra, rb) </span><span class="ansi-bold">as</span><span> y' </span><span class="ansi-bold">return</span><span> (</span><span>(</span><span>la</span><span>,</span><span> lb</span><span>)</span><span> =</span><span> x0</span><span> -&gt;</span><span> y'</span><span> =</span><span> y0</span><span> -&gt;</span><span> bool) := y0</span><span class="ansi-bold"> in</span><span>
+   program_branch_0 la lb ra rb) eq_refl eq_refl) x y</span><span> =</span><span>
  true</span><span> -&gt;</span><span> x</span><span> =</span><span> y).
  
 </span></dd>
@@ -1733,7 +1733,7 @@ declaration for the class.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Don't confuse typeclasses with &quot;coercion classes&quot;, described in
-<code class="docutils literal notranslate"><span class="pre">implicit</span> <span class="pre">coercions&lt;classes-implicit-coercions&gt;</span></code>.</p>
+<a class="reference internal" href="implicit-coercions.html#classes-implicit-coercions"><span class="std std-ref">implicit coercions</span></a>.</p>
 </div>
 <p>When record syntax is used, this command also supports the
 <a class="reference internal" href="../language/core/records.html#rocq:attr.projections(primitive)" title="projections(primitive)"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">projections(primitive)</span></code></a> <a class="reference internal" href="../language/core/basic.html#term-attribute"><span class="xref std std-term">attribute</span></a>.</p>
