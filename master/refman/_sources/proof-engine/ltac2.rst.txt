@@ -309,11 +309,8 @@ Ltac2 Definitions
    The previous value of the binding can be optionally accessed using the `as`
    binding syntax.
 
-   The effect of this command is limited to the current section or module.
-   When not in a section, importing the module containing this command
-   applies the redefinition again.
-   In other words it acts according to :attr:`local` in sections and
-   :attr:`export` otherwise (but explicit locality is not supported).
+   This command supports :term:`attributes <attribute>` :attr:`local` and :attr:`export`.
+   By default it is `export` outside sections. Inside sections it is `local` and does not support `export`.
 
    .. example:: Dynamic nature of mutable cells
 
