@@ -1757,7 +1757,8 @@ used as an infix constructor or type.</p>
 <code class="docutils literal notranslate"><span class="pre">nat</span></code> into OCaml <code class="docutils literal notranslate"><span class="pre">int</span></code> (see caveat above):</p>
 <div class="rocqtop literal-block docutils container">
 <span></span><dl class="simple">
-<dt><span></span><span class="rocqdoc-keyword">Extract</span><span> </span><span class="rocqdoc-keyword">Inductive</span><span> </span><span class="rocqdoc-var">nat</span><span> =&gt; </span><span class="rocqdoc-var">int</span><span> [ &quot;0&quot; &quot;succ&quot; ] &quot;(fun fO fS n -&gt; if n=0 then fO () else fS (n-1))&quot;.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Extract</span><span> </span><span class="rocqdoc-keyword">Inductive</span><span> </span><span class="rocqdoc-var">nat</span><span> =&gt; </span><span class="rocqdoc-var">int</span><span> [ &quot;0&quot; &quot;succ&quot; ]</span><span>
+   &quot;(fun fO fS n -&gt; if n=0 then fO () else fS (n-1))&quot;.</span><span>
 </span></dt></dl>
 </div>
 </section>
@@ -1887,7 +1888,7 @@ declared by the command <a class="reference internal" href="#rocq:cmd.Extract-Ca
 <h3>Avoiding conflicts with existing filenames<a class="headerlink" href="#avoiding-conflicts-with-existing-filenames" title="Link to this heading"></a></h3>
 <p>When using <a class="reference internal" href="#rocq:cmd.Extraction-Library" title="Extraction Library"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Extraction</span> <span class="pre">Library</span></code></a>, the names of the extracted files
 directly depend on the names of the Rocq files. It may happen that
-these filenames are in conflict with already existing files,
+these filenames conflict with already existing files,
 either in the standard library of the target language or in other
 code that is meant to be linked with the extracted code.
 For instance the module <code class="docutils literal notranslate"><span class="pre">List</span></code> exists both in Rocq and in OCaml.
@@ -2052,7 +2053,7 @@ In OCaml, we must cast any argument of the constructor dummy
 (no GADT are produced yet by the extraction).</p>
 <p>Even with those unsafe castings, you should never get error like
 <code class="docutils literal notranslate"><span class="pre">segmentation</span> <span class="pre">fault</span></code>. In fact even if your program may seem
-ill-typed to the OCaml type checker, it can't go wrong : it comes
+ill-typed to the OCaml type checker, it can't go wrong: it comes
 from a Rocq well-typed terms, so for example inductive types will always
 have the correct number of arguments, etc. Of course, when launching
 manually some extracted function, you should apply it to arguments
@@ -2178,16 +2179,16 @@ val div : int -&gt; int -&gt; int * int = &lt;fun&gt;
 available via a mere <code class="docutils literal notranslate"><span class="pre">From</span> <span class="pre">Stdlib</span> <span class="pre">Require</span> <span class="pre">Import</span> <span class="pre">ExtrOcamlIntConv</span></code> and then
 adding these functions to the list of functions to extract. This file
 <code class="docutils literal notranslate"><span class="pre">ExtrOcamlIntConv.v</span></code> and some others in <code class="docutils literal notranslate"><span class="pre">plugins/extraction/</span></code>
-are meant to help building concrete program via extraction.</p>
+are meant to help build concrete programs via extraction.</p>
 </section>
 <section id="extraction-s-horror-museum">
 <h3>Extraction's horror museum<a class="headerlink" href="#extraction-s-horror-museum" title="Link to this heading"></a></h3>
 <p>Some pathological examples of extraction are grouped in the file
-<code class="docutils literal notranslate"><span class="pre">test-suite/success/extraction.v</span></code> of the sources of Rocq.</p>
+<code class="docutils literal notranslate"><span class="pre">test-suite/success/extraction_*.v</span></code> of the sources of Rocq.</p>
 </section>
 <section id="users-contributions">
 <h3>Users' Contributions<a class="headerlink" href="#users-contributions" title="Link to this heading"></a></h3>
-<p>Several of user contributions use extraction to produce
+<p>Several user contributions use extraction to produce
 certified programs. In particular the following ones have an automatic
 extraction test:</p>
 <blockquote>

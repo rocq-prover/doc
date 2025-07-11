@@ -436,7 +436,8 @@ As an example of translation to a non-inductive datatype, let's turn
 
 .. rocqtop:: in
 
-   Extract Inductive nat => int [ "0" "succ" ] "(fun fO fS n -> if n=0 then fO () else fS (n-1))".
+   Extract Inductive nat => int [ "0" "succ" ]
+      "(fun fO fS n -> if n=0 then fO () else fS (n-1))".
 
 Generating FFI Code
 ~~~~~~~~~~~~~~~~~~~
@@ -549,7 +550,7 @@ Avoiding conflicts with existing filenames
 
 When using :cmd:`Extraction Library`, the names of the extracted files
 directly depend on the names of the Rocq files. It may happen that
-these filenames are in conflict with already existing files, 
+these filenames conflict with already existing files,
 either in the standard library of the target language or in other
 code that is meant to be linked with the extracted code. 
 For instance the module ``List`` exists both in Rocq and in OCaml.
@@ -670,7 +671,7 @@ In OCaml, we must cast any argument of the constructor dummy
 
 Even with those unsafe castings, you should never get error like
 ``segmentation fault``. In fact even if your program may seem
-ill-typed to the OCaml type checker, it can't go wrong : it comes
+ill-typed to the OCaml type checker, it can't go wrong: it comes
 from a Rocq well-typed terms, so for example inductive types will always
 have the correct number of arguments, etc. Of course, when launching
 manually some extracted function, you should apply it to arguments
@@ -755,18 +756,18 @@ Note that these ``nat_of_int`` and ``int_of_nat`` are now
 available via a mere ``From Stdlib Require Import ExtrOcamlIntConv`` and then
 adding these functions to the list of functions to extract. This file
 ``ExtrOcamlIntConv.v`` and some others in ``plugins/extraction/``
-are meant to help building concrete program via extraction.
+are meant to help build concrete programs via extraction.
 
 Extraction's horror museum
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Some pathological examples of extraction are grouped in the file
-``test-suite/success/extraction.v`` of the sources of Rocq.
+``test-suite/success/extraction_*.v`` of the sources of Rocq.
 
 Users' Contributions
 ~~~~~~~~~~~~~~~~~~~~
 
-Several of user contributions use extraction to produce
+Several user contributions use extraction to produce
 certified programs. In particular the following ones have an automatic
 extraction test:
 

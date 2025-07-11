@@ -151,7 +151,7 @@ Coercion Classes
   The first form declares the construction denoted by :token:`reference` as a coercion between
   the two given classes.  The second form defines :token:`ident_decl`
   just like :cmd:`Definition` :n:`@ident_decl @def_body`
-  and then declares :token:`ident_decl` as a coercion between it source and its target.
+  and then declares :token:`ident_decl` as a coercion between its source and its target.
   Both forms support the :attr:`local` attribute, which makes the coercion local to the current section.
 
   :n:`{? : @coercion_class >-> @coercion_class }`
