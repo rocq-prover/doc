@@ -1502,7 +1502,7 @@ interfere with one another, making some of them unusable. For instance, a notati
 and <code class="docutils literal notranslate"><span class="pre">y</span></code> at level 69 would be broken by another rule that puts
 <code class="docutils literal notranslate"><span class="pre">y</span></code> at another level, like <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&lt;&lt;</span> <span class="pre">y</span> <span class="pre">&lt;&lt;</span> <span class="pre">z</span></code> with <code class="docutils literal notranslate"><span class="pre">x</span></code> at level 69 and <code class="docutils literal notranslate"><span class="pre">y</span></code>
 at level 200. To avoid such issues, you should left factorize rules, that is ensure
-that common prefixes use the samel levels.</p>
+that common prefixes use the same levels.</p>
 <div class="coqtop literal-block docutils container">
 <span></span><dl>
 <dt><span></span><span class="coqdoc-keyword">Reserved Notation</span><span> &quot;x &lt;&lt; y&quot; (</span><span class="coqdoc-tactic">at</span><span> </span><span class="coqdoc-keyword">level</span><span> 70).</span><span>
@@ -2418,10 +2418,6 @@ notation</p>
 The reference p was not found in the current environment.
 </span></dd>
 </dl>
-<span></span><dl class="simple">
-<dt><span></span><span class="coqdoc-keyword">Notation</span><span> &quot;[&gt; a , .. , b &lt;]&quot; :=</span><span>
-  (</span><span class="coqdoc-var">cons</span><span> </span><span class="coqdoc-var">a</span><span> .. (</span><span class="coqdoc-var">cons</span><span> </span><span class="coqdoc-var">b</span><span> </span><span class="coqdoc-var">nil</span><span>) .., </span><span class="coqdoc-var">cons</span><span> </span><span class="coqdoc-var">b</span><span> .. (</span><span class="coqdoc-var">cons</span><span> </span><span class="coqdoc-var">a</span><span> </span><span class="coqdoc-var">nil</span><span>) ..).</span><span>
-</span></dt></dl>
 </div>
 </section>
 <section id="notations-with-expressions-used-both-as-binder-and-term">
@@ -2448,7 +2444,7 @@ variant:</p>
 <div class="coqtop literal-block docutils container">
 <span class="coqtop-reset"></span><dl>
 <dt><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">force2</span><span> </span><span class="coqdoc-var">q</span><span> (</span><span class="coqdoc-var">P</span><span>:</span><span class="coqdoc-var">nat</span><span>*</span><span class="coqdoc-var">nat</span><span> -&gt; </span><span class="coqdoc-keyword">Prop</span><span>) :=</span><span>
-  (</span><span class="coqdoc-keyword">forall</span><span> </span><span class="coqdoc-var">n'</span><span>, </span><span class="coqdoc-var">n'</span><span> &gt;= </span><span class="coqdoc-var">fst</span><span> </span><span class="coqdoc-var">q</span><span> -&gt; </span><span class="coqdoc-keyword">forall</span><span> </span><span class="coqdoc-var">p'</span><span>, </span><span class="coqdoc-var">p'</span><span> &gt;= </span><span class="coqdoc-var">snd</span><span> </span><span class="coqdoc-var">q</span><span> -&gt; </span><span class="coqdoc-var">P</span><span> </span><span class="coqdoc-var">q</span><span>).</span><span>
+  (</span><span class="coqdoc-keyword">forall</span><span> </span><span class="coqdoc-var">n'</span><span>, </span><span class="coqdoc-var">n'</span><span> &gt;= </span><span class="coqdoc-var">fst</span><span> </span><span class="coqdoc-var">q</span><span> -&gt; </span><span class="coqdoc-keyword">forall</span><span> </span><span class="coqdoc-var">p'</span><span>, </span><span class="coqdoc-var">p'</span><span> &gt;= </span><span class="coqdoc-var">snd</span><span> </span><span class="coqdoc-var">q</span><span> -&gt; </span><span class="coqdoc-var">P</span><span> (</span><span class="coqdoc-var">n'</span><span>, </span><span class="coqdoc-var">p'</span><span>)).</span><span>
 </span></dt><dd class="coqtop-hidden"><span>force2 is defined
 </span></dd>
 <dt><span></span><span>
@@ -2757,7 +2753,7 @@ associated with the custom entry <code class="docutils literal notranslate"><spa
 <p>in which case Rocq infer it. If the sub-expression is at a border of
 the notation (as e.g. <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> in <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">+</span> <span class="pre">y</span></code>), the level is
 determined by the associativity. If the sub-expression is not at the
-border of the notation (as e.g. <code class="docutils literal notranslate"><span class="pre">e</span></code> in <code class="docutils literal notranslate"><span class="pre">&quot;[</span> <span class="pre">e</span> <span class="pre">]</span></code>), the level is
+border of the notation (as e.g. <code class="docutils literal notranslate"><span class="pre">e</span></code> in <code class="docutils literal notranslate"><span class="pre">&quot;[</span> <span class="pre">e</span> <span class="pre">]&quot;</span></code>), the level is
 inferred to be the highest level used for the entry. In particular,
 this level depends on the highest level existing in the entry at the
 time of use of the notation.</p>
@@ -3105,7 +3101,7 @@ the stack.</p>
 f is not universe polymorphic
 Arguments </span><span class="ansi-fg-light-green">f</span><span> _%_F_scope%_T_scope%_bool_scope
 Expands to: Constant Top.f
-Declared in toplevel input, characters 7959-7960
+Declared in toplevel input, characters 7877-7878
 </span></dd>
 </dl>
 </div>
@@ -3371,7 +3367,7 @@ abbreviations. Here is an example:</p>
 <div class="coqtop literal-block docutils container">
 <span class="coqtop-reset"></span><dl>
 <dt><span></span><span class="coqdoc-keyword">Definition</span><span> </span><span class="coqdoc-var">force2</span><span> </span><span class="coqdoc-var">q</span><span> (</span><span class="coqdoc-var">P</span><span>:</span><span class="coqdoc-var">nat</span><span>*</span><span class="coqdoc-var">nat</span><span> -&gt; </span><span class="coqdoc-keyword">Prop</span><span>) :=</span><span>
-  (</span><span class="coqdoc-keyword">forall</span><span> </span><span class="coqdoc-var">n'</span><span>, </span><span class="coqdoc-var">n'</span><span> &gt;= </span><span class="coqdoc-var">fst</span><span> </span><span class="coqdoc-var">q</span><span> -&gt; </span><span class="coqdoc-keyword">forall</span><span> </span><span class="coqdoc-var">p'</span><span>, </span><span class="coqdoc-var">p'</span><span> &gt;= </span><span class="coqdoc-var">snd</span><span> </span><span class="coqdoc-var">q</span><span> -&gt; </span><span class="coqdoc-var">P</span><span> </span><span class="coqdoc-var">q</span><span>).</span><span>
+  (</span><span class="coqdoc-keyword">forall</span><span> </span><span class="coqdoc-var">n'</span><span>, </span><span class="coqdoc-var">n'</span><span> &gt;= </span><span class="coqdoc-var">fst</span><span> </span><span class="coqdoc-var">q</span><span> -&gt; </span><span class="coqdoc-keyword">forall</span><span> </span><span class="coqdoc-var">p'</span><span>, </span><span class="coqdoc-var">p'</span><span> &gt;= </span><span class="coqdoc-var">snd</span><span> </span><span class="coqdoc-var">q</span><span> -&gt; </span><span class="coqdoc-var">P</span><span> (</span><span class="coqdoc-var">n'</span><span>, </span><span class="coqdoc-var">p'</span><span>)).</span><span>
 </span></dt><dd class="coqtop-hidden"><span>force2 is defined
 </span></dd>
 <dt><span></span><span>
