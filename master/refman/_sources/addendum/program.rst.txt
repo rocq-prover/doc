@@ -225,7 +225,7 @@ using the syntax:
    implicit argument to the functions being defined. When the function
    name is prefixed with :g:`@` (see :ref:`deactivation-of-implicit-arguments`),
    the position of the extra argument needs to be taken into account,
-   e.g. by providing :g:`_` or an an explicit value.
+   e.g. by providing :g:`_` or an explicit value.
 
 .. caution:: When defining structurally recursive functions, the generated
    obligations should have the prototype of the currently defined

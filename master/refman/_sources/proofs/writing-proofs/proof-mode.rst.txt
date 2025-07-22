@@ -103,7 +103,7 @@ The real proof, whether complete or incomplete, is the associated term,
 the :gdef:`proof term`, which users may occasionally want to examine.
 (This is based on the
 *Curry-Howard isomorphism* :cite:`How80,Bar81,Gir89,H89`, which is
-a correspondence between between proofs and terms and between
+a correspondence between proofs and terms and between
 :term:`propositions <proposition>` and types of λ-calculus.  The isomorphism
 is also sometimes called the "propositions-as-types correspondence".)
 
@@ -373,8 +373,8 @@ When the proof is completed, you can exit proof mode with commands such as
       variables declared with :cmd:`Proof using` are added to the theorem as
       additional variables.  You can see the effect on the theorem's statement
       with commands such as :cmd:`Check`, :cmd:`Print` and :cmd:`About` after the
-      section is closed.  Currently there is no command that shows the section variables
-      associated with a theorem before the section is closed.
+      section is closed.  The :cmd:`Print` and :cmd:`About` commands also show the
+      section variables associated with a theorem before the section is closed.
 
       Adding the unnecessary section variable `radixNotZero` changes how `foo'` can be
       applied.

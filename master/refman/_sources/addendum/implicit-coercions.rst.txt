@@ -110,7 +110,7 @@ If there's another class :g:`D` with a coercion from :g:`C` to :g:`D` and
 incoming coercions from :g:`A` and :g:`B`, Rocq tries :g:`C` before :g:`D`.
 This ordering is well defined only if the coercion graph happens to be a semi
 lattice.  The intuition behind this ordering is that since coercions forget
-information, :g:`D` has less information that :g:`C`, and hence
+information, :g:`D` has less information than :g:`C`, and hence
 inferring :g:`?x : B` from :g:`h a : D` would be harder.
 
 See the :ref:`example below <example-reversible-coercion>`.

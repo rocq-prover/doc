@@ -21,10 +21,10 @@ syntax:
 
   Class classname (p1 : t1) ⋯ (pn : tn) [: sort] := { f1 : u1 ; ⋯ ; fm : um }.
 
-  Instance instancename q1 ⋯ qm : classname p1 ⋯ pn := { f1 := t1 ; ⋯ ; fm := tm }.
+  Instance instancename q1 ⋯ qm : classname p1 ⋯ pn := { f1 := e1 ; ⋯ ; fm := em }.
 
 The ``pi : ti`` variables are called the *parameters* of the typeclass and
-the ``fi : ti`` are called the *methods*. Each typeclass definition gives
+the ``fi : ui`` are called the *methods*. Each typeclass definition gives
 rise to a corresponding record declaration and each instance is a
 regular definition whose name is given by `instancename` and type is an
 instantiation of the record type.

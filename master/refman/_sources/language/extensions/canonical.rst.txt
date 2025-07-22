@@ -581,7 +581,7 @@ information we add in the ``LEQ`` class is the mixin, all the rest is
 already canonical for ``T`` and hence can be inferred by Rocq.
 
 ``Pack`` is a notation, hence it is not type checked at the time of its
-declaration. It will be type checked when it is used, an in that case ``T`` is
+declaration. It will be type checked when it is used, and in that case ``T`` is
 going to be a concrete type. The odd arguments ``_`` and ``id`` we pass to the
 packager represent respectively the classes to be inferred (like ``e``, ``o``,
 etc) and a token (``id``) to force their inference. Again, for all the details
