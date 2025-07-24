@@ -616,7 +616,7 @@ Applying theorems
 .. tacn:: exact @one_term
 
    Directly gives the exact proof term for the goal.
-   ``exact p`` succeeds if and only if :n:`@one_term` and the type of ``p`` are
+   ``exact p`` succeeds if and only if the goal and the type of ``p`` are
    unifiable (see :ref:`Conversion-rules`).
 
    .. exn:: Not an exact proof.
