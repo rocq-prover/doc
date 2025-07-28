@@ -1534,18 +1534,17 @@ between the projects (and thus the order in which to build them).</p>
 <h3>Installed and uninstalled packages<a class="headerlink" href="#installed-and-uninstalled-packages" title="Link to this heading"></a></h3>
 <p>The directory structure of installed packages (i.e., in the <code class="docutils literal notranslate"><span class="pre">user-contrib</span></code> directory
 of the Rocq installation) differs from that generally used for the project source tree.
-The installed directory structure omits the pathname given in the <code class="docutils literal notranslate"><span class="pre">-R</span></code> and <code class="docutils literal notranslate"><span class="pre">-Q</span></code>
-parameters that aren't part of the logical name of a script.  For example, the <code class="docutils literal notranslate"><span class="pre">theories</span></code>
-pathname used in this <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> file is omitted from the installed pathname:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>-R theories MyPackage
+The installed directory structure omits the paths given in the <code class="docutils literal notranslate"><span class="pre">-R</span></code> and <code class="docutils literal notranslate"><span class="pre">-Q</span></code>
+parameters that are not part of the logical name of a file.  For example,
+consider the following <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> file.</p>
+<blockquote>
+<div><p>-R theories MyPackage
 theories/File1.v
-theories/SubDir/File2.v
-</pre></div>
-</div>
-<dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">theories/File1.v</span></code> appears in the directory <code class="docutils literal notranslate"><span class="pre">user-contrib/MyPackage`and</span> <span class="pre">`theories/SubDir/File2.v</span></code></dt><dd><p>is in <code class="docutils literal notranslate"><span class="pre">user-contrib/MyPackage/SubDir</span></code></p>
-</dd>
-</dl>
+theories/SubDir/File2.v</p>
+</div></blockquote>
+<p>The compiled file <code class="docutils literal notranslate"><span class="pre">theories/File1.vo</span></code> will be installed in
+the directory <code class="docutils literal notranslate"><span class="pre">user-contrib/MyPackage</span></code> and
+<code class="docutils literal notranslate"><span class="pre">theories/SubDir/File2.vo</span></code> in <code class="docutils literal notranslate"><span class="pre">user-contrib/MyPackage/SubDir</span></code>.</p>
 <p>Use <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">make</span></span></span> <span><span><span class="pre">-f</span></span></span> <span><span><span class="pre">CoqMakefile</span></span></span> <span><span><span class="pre">install</span></span></span></span></code> to install a project from a directory.</p>
 <p>If you try to step through scripts in installed packages (e.g. to understand
 the proofs therein), you may get unexpected failures for two reasons:</p>

@@ -325,16 +325,17 @@ Installed and uninstalled packages
 
 The directory structure of installed packages (i.e., in the `user-contrib` directory
 of the Rocq installation) differs from that generally used for the project source tree.
-The installed directory structure omits the pathname given in the `-R` and `-Q`
-parameters that aren't part of the logical name of a script.  For example, the `theories`
-pathname used in this `_CoqProject` file is omitted from the installed pathname::
+The installed directory structure omits the paths given in the `-R` and `-Q`
+parameters that are not part of the logical name of a file.  For example,
+consider the following `_CoqProject` file.
 
   -R theories MyPackage
   theories/File1.v
   theories/SubDir/File2.v
 
-`theories/File1.v` appears in the directory `user-contrib/MyPackage`and `theories/SubDir/File2.v`
- is in `user-contrib/MyPackage/SubDir`
+The compiled file `theories/File1.vo` will be installed in
+the directory `user-contrib/MyPackage` and
+`theories/SubDir/File2.vo` in `user-contrib/MyPackage/SubDir`.
 
 Use :n:`make -f CoqMakefile install` to install a project from a directory.
 
