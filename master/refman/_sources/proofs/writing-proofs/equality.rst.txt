@@ -145,13 +145,13 @@ Rewriting with Leibniz and setoid equality
      into :n:`@term__2`.  For `<-`, :n:`@term__2` is rewritten into :n:`@term__1`.
 
    :n:`{? @natural } {? {| ? | ! } }`
-     :n:`@natural` is the number of rewrites to perform.  If `?` is given, :n:`@natural`
+     :n:`@natural` is the number of rewrites to perform.  If :n:`?` is given, :n:`@natural`
      is the maximum number of rewrites to perform; otherwise :n:`@natural` is the exact number
      of rewrites to perform.
 
-     `?` (without :n:`@natural`) performs the rewrite as many times as possible
+     :n:`?` (without :n:`@natural`) performs the rewrite as many times as possible
      (possibly zero times).
-     This form never fails.  `!` (without :n:`@natural`) performs the rewrite as many
+     This form never fails.  :n:`!` (without :n:`@natural`) performs the rewrite as many
      times as possible
      and at least once.  The tactic fails if the requested number of rewrites can't
      be performed.  :n:`@natural !` is equivalent to :n:`@natural`.
@@ -984,7 +984,7 @@ which supports additional fine-tuning.
    See Section :ref:`conversion-rules`.
 
    In the particular case where the constants refer to primitive projections,
-   a `!` can be used to make the compatibility constants opaque, while
+   a :n:`!` can be used to make the compatibility constants opaque, while
    by default the projection themselves are made opaque and the compatibility
    constants always remain transparent. This mechanism is only intended for
    debugging purposes.
@@ -1010,7 +1010,7 @@ which supports additional fine-tuning.
    relevant in general.
 
    In the particular case where the constants refer to primitive projections,
-   a `!` can be used to make the compatibility constants transparent
+   a :n:`!` can be used to make the compatibility constants transparent
    (see :cmd:`Opaque` for more details).
 
    .. exn:: The reference @qualid was not found in the current environment.
