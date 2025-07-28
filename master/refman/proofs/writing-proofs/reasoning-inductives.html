@@ -3978,78 +3978,46 @@ must help the automation by giving some arguments, using the
 <div class="rocqtop literal-block docutils container">
 <span></span><dl>
 <dt><span></span><span class="rocqdoc-tactic">destruct</span><span> </span><span class="rocqdoc-var">D</span><span>... </span><span class="rocqdoc-tactic">apply</span><span> </span><span class="rocqdoc-var">weak</span><span>; </span><span class="rocqdoc-tactic">apply</span><span> </span><span class="rocqdoc-var">ax</span><span>. </span><span class="rocqdoc-tactic">apply</span><span> </span><span class="rocqdoc-var">ax</span><span>.</span><span>
-</span></dt><dd class="rocqtop-hidden"><span>5 goals
-  
-  G0 : ctx
-  tau, tau' : type
-  ============================
-  term ((G0</span><span>,</span><span> tau)</span><span>,</span><span> tau') tau
+</span></dt><dd class="rocqtop-hidden"><span>Toplevel input, characters 10-13:
+&gt; destruct D... 
+&gt;           ^^^
+</span><span class="ansi-fg-white ansi-bg-red ansi-bold">Error:</span><span> Using &quot;...&quot; is deprecated, use &quot;;
+</span><span class="ansi-bold">simpl</span><span> </span><span class="ansi-bold">in</span><span> *; </span><span class="ansi-fg-light-green">simpl_depind</span><span>; </span><span class="ansi-fg-light-green">auto</span><span>.&quot; instead
+[deprecated-end-tac,deprecated-since-9.2,deprecated,default]
 
-goal 2 is:
- term (((G</span><span>,</span><span> tau')</span><span>;</span><span> D)</span><span>,</span><span> t) t
-goal 3 is:
- term ((G</span><span>,</span><span> tau'0)</span><span>;</span><span> D) tau
-goal 4 is:
- term ((G</span><span>,</span><span> tau'0)</span><span>;</span><span> D) (tau</span><span> --&gt;</span><span> tau')
-goal 5 is:
- term ((G</span><span>,</span><span> tau'0)</span><span>;</span><span> D) tau'
+Toplevel input, characters 20-24:
+&gt; destruct D... apply weak; apply ax. 
+&gt;                     ^^^^
+</span><span class="ansi-fg-white ansi-bg-red ansi-bold">Error:</span><span>
+In environment
+G0 : ctx
+tau : type
+G, D : ctx
+x : G0</span><span>,</span><span> tau</span><span> =</span><span> G</span><span>;</span><span> D
+tau' : type
+Unable to unify &quot;term (</span><span class="ansi-fg-light-blue">?M218</span><span>,</span><span> </span><span class="ansi-fg-light-blue">?M221</span><span>) </span><span class="ansi-fg-light-blue">?M219</span><span>&quot; with &quot;term ((G</span><span>,</span><span> tau')</span><span>;</span><span> D) tau&quot;.
 
-4 goals
-  
-  G, D : ctx
-  t, tau' : type
-  ============================
-  term (((G</span><span>,</span><span> tau')</span><span>;</span><span> D)</span><span>,</span><span> t) t
-
-goal 2 is:
- term ((G</span><span>,</span><span> tau'0)</span><span>;</span><span> D) tau
-goal 3 is:
- term ((G</span><span>,</span><span> tau'0)</span><span>;</span><span> D) (tau</span><span> --&gt;</span><span> tau')
-goal 4 is:
- term ((G</span><span>,</span><span> tau'0)</span><span>;</span><span> D) tau'
-
-3 goals
-  
-  G0 : ctx
-  tau : type
-  H : term G0 tau
-  tau' : type
-  IHterm :
-    </span><span class="ansi-bold">forall</span><span> G D : ctx,
-    G0</span><span> =</span><span> G</span><span>;</span><span> D</span><span> -&gt;</span><span> </span><span class="ansi-bold">forall</span><span> tau' : type, term ((G</span><span>,</span><span> tau')</span><span>;</span><span> D) tau
-  G, D : ctx
-  x : G0</span><span>,</span><span> tau'</span><span> =</span><span> G</span><span>;</span><span> D
-  tau'0 : type
-  ============================
-  term ((G</span><span>,</span><span> tau'0)</span><span>;</span><span> D) tau
-
-goal 2 is:
- term ((G</span><span>,</span><span> tau'0)</span><span>;</span><span> D) (tau</span><span> --&gt;</span><span> tau')
-goal 3 is:
- term ((G</span><span>,</span><span> tau'0)</span><span>;</span><span> D) tau'
+Toplevel input, characters 42-44:
+&gt; destruct D... apply weak; apply ax. apply ax.
+&gt;                                           ^^
+</span><span class="ansi-fg-white ansi-bg-red ansi-bold">Error:</span><span>
+In environment
+G0 : ctx
+tau : type
+G, D : ctx
+x : G0</span><span>,</span><span> tau</span><span> =</span><span> G</span><span>;</span><span> D
+tau' : type
+Unable to unify &quot;term (</span><span class="ansi-fg-light-blue">?M218</span><span>,</span><span> </span><span class="ansi-fg-light-blue">?M219</span><span>) </span><span class="ansi-fg-light-blue">?M219</span><span>&quot; with &quot;term ((G</span><span>,</span><span> tau')</span><span>;</span><span> D) tau&quot;.
 </span></dd>
 </dl>
 <span></span><dl>
 <dt><span></span><span class="rocqdoc-tactic">destruct</span><span> </span><span class="rocqdoc-var">D</span><span>...</span><span>
-</span></dt><dd class="rocqtop-hidden"><span>4 goals
-  
-  G0 : ctx
-  tau : type
-  H : term G0 tau
-  tau' : type
-  IHterm :
-    </span><span class="ansi-bold">forall</span><span> G D : ctx,
-    G0</span><span> =</span><span> G</span><span>;</span><span> D</span><span> -&gt;</span><span> </span><span class="ansi-bold">forall</span><span> tau' : type, term ((G</span><span>,</span><span> tau')</span><span>;</span><span> D) tau
-  tau'0 : type
-  ============================
-  term ((G0</span><span>,</span><span> tau')</span><span>,</span><span> tau'0) tau
-
-goal 2 is:
- term (((G</span><span>,</span><span> tau'0)</span><span>;</span><span> D)</span><span>,</span><span> t) tau
-goal 3 is:
- term ((G</span><span>,</span><span> tau'0)</span><span>;</span><span> D) (tau</span><span> --&gt;</span><span> tau')
-goal 4 is:
- term ((G</span><span>,</span><span> tau'0)</span><span>;</span><span> D) tau'
+</span></dt><dd class="rocqtop-hidden"><span>Toplevel input, characters 10-13:
+&gt; destruct D...
+&gt;           ^^^
+</span><span class="ansi-fg-white ansi-bg-red ansi-bold">Error:</span><span> Using &quot;...&quot; is deprecated, use &quot;;
+</span><span class="ansi-bold">simpl</span><span> </span><span class="ansi-bold">in</span><span> *; </span><span class="ansi-fg-light-green">simpl_depind</span><span>; </span><span class="ansi-fg-light-green">auto</span><span>.&quot; instead
+[deprecated-end-tac,deprecated-since-9.2,deprecated,default]
 </span></dd>
 </dl>
 <span></span><dl>
@@ -4058,17 +4026,14 @@ goal 4 is:
   
   G0 : ctx
   tau : type
-  H : term G0 tau
+  G, D : ctx
+  x : G0</span><span>,</span><span> tau</span><span> =</span><span> G</span><span>;</span><span> D
   tau' : type
-  IHterm :
-    </span><span class="ansi-bold">forall</span><span> G D : ctx,
-    G0</span><span> =</span><span> G</span><span>;</span><span> D</span><span> -&gt;</span><span> </span><span class="ansi-bold">forall</span><span> tau' : type, term ((G</span><span>,</span><span> tau')</span><span>;</span><span> D) tau
-  tau'0 : type
   ============================
-  term ((G0</span><span>,</span><span> tau')</span><span>,</span><span> tau'0) tau
+  term ((G</span><span>,</span><span> tau')</span><span>;</span><span> D) tau
 
 goal 2 is:
- term (((G</span><span>,</span><span> tau'0)</span><span>;</span><span> D)</span><span>,</span><span> t) tau
+ term ((G</span><span>,</span><span> tau'0)</span><span>;</span><span> D) tau
 goal 3 is:
  term ((G</span><span>,</span><span> tau'0)</span><span>;</span><span> D) (tau</span><span> --&gt;</span><span> tau')
 goal 4 is:
@@ -4077,23 +4042,10 @@ goal 4 is:
 </dl>
 <span></span><dl>
 <dt><span></span><span class="rocqdoc-tactic">specialize</span><span> (</span><span class="rocqdoc-var">IHterm</span><span> </span><span class="rocqdoc-var">G0</span><span> </span><span class="rocqdoc-var">empty</span><span> </span><span class="rocqdoc-var">eq_refl</span><span>).</span><span>
-</span></dt><dd><span>4 goals
-  
-  G0 : ctx
-  tau : type
-  H : term G0 tau
-  tau' : type
-  IHterm : </span><span class="ansi-bold">forall</span><span> tau' : type, term ((G0</span><span>,</span><span> tau')</span><span>;</span><span> empty) tau
-  tau'0 : type
-  ============================
-  term ((G0</span><span>,</span><span> tau')</span><span>,</span><span> tau'0) tau
-
-goal 2 is:
- term (((G</span><span>,</span><span> tau'0)</span><span>;</span><span> D)</span><span>,</span><span> t) tau
-goal 3 is:
- term ((G</span><span>,</span><span> tau'0)</span><span>;</span><span> D) (tau</span><span> --&gt;</span><span> tau')
-goal 4 is:
- term ((G</span><span>,</span><span> tau'0)</span><span>;</span><span> D) tau'
+</span></dt><dd><span>Toplevel input, characters 12-18:
+&gt; specialize (IHterm G0 empty eq_refl).
+&gt;             ^^^^^^
+</span><span class="ansi-fg-white ansi-bg-red ansi-bold">Error:</span><span> The variable IHterm was not found in the current environment.
 </span></dd>
 </dl>
 </div>
@@ -4102,22 +4054,17 @@ it can be used directly.</p>
 <div class="rocqtop literal-block docutils container">
 <span></span><dl>
 <dt><span></span><span class="rocqdoc-tactic">apply</span><span> </span><span class="rocqdoc-var">weak</span><span>, </span><span class="rocqdoc-var">IHterm</span><span>.</span><span>
-</span></dt><dd><span>3 goals
-  
-  tau : type
-  G, D : ctx
-  IHterm :
-    </span><span class="ansi-bold">forall</span><span> G0 D0 : ctx,
-    G</span><span>;</span><span> D</span><span> =</span><span> G0</span><span>;</span><span> D0</span><span> -&gt;</span><span> </span><span class="ansi-bold">forall</span><span> tau' : type, term ((G0</span><span>,</span><span> tau')</span><span>;</span><span> D0) tau
-  H : term (G</span><span>;</span><span> D) tau
-  t, tau'0 : type
-  ============================
-  term (((G</span><span>,</span><span> tau'0)</span><span>;</span><span> D)</span><span>,</span><span> t) tau
-
-goal 2 is:
- term ((G</span><span>,</span><span> tau'0)</span><span>;</span><span> D) (tau</span><span> --&gt;</span><span> tau')
-goal 3 is:
- term ((G</span><span>,</span><span> tau'0)</span><span>;</span><span> D) tau'
+</span></dt><dd><span>Toplevel input, characters 6-10:
+&gt; apply weak, IHterm.
+&gt;       ^^^^
+</span><span class="ansi-fg-white ansi-bg-red ansi-bold">Error:</span><span>
+In environment
+G0 : ctx
+tau : type
+G, D : ctx
+x : G0</span><span>,</span><span> tau</span><span> =</span><span> G</span><span>;</span><span> D
+tau' : type
+Unable to unify &quot;term (</span><span class="ansi-fg-light-blue">?M218</span><span>,</span><span> </span><span class="ansi-fg-light-blue">?M221</span><span>) </span><span class="ansi-fg-light-blue">?M219</span><span>&quot; with &quot;term ((G</span><span>,</span><span> tau')</span><span>;</span><span> D) tau&quot;.
 </span></dd>
 </dl>
 </div>
@@ -4125,20 +4072,10 @@ goal 3 is:
 <div class="rocqtop literal-block docutils container">
 <span></span><dl>
 <dt><span></span><span class="rocqdoc-tactic">constructor</span><span>; </span><span class="rocqdoc-tactic">apply</span><span> </span><span class="rocqdoc-var">IHterm</span><span>; </span><span class="rocqdoc-tactic">reflexivity</span><span>.</span><span>
-</span></dt><dd class="rocqtop-hidden"><span>2 goals
-  
-  G, D : ctx
-  tau, tau' : type
-  H : term ((G</span><span>;</span><span> D)</span><span>,</span><span> tau) tau'
-  IHterm :
-    </span><span class="ansi-bold">forall</span><span> G0 D0 : ctx,
-    (G</span><span>;</span><span> D)</span><span>,</span><span> tau</span><span> =</span><span> G0</span><span>;</span><span> D0</span><span> -&gt;</span><span> </span><span class="ansi-bold">forall</span><span> tau'0 : type, term ((G0</span><span>,</span><span> tau'0)</span><span>;</span><span> D0) tau'
-  tau'0 : type
-  ============================
-  term ((G</span><span>,</span><span> tau'0)</span><span>;</span><span> D) (tau</span><span> --&gt;</span><span> tau')
-
-goal 2 is:
- term ((G</span><span>,</span><span> tau'0)</span><span>;</span><span> D) tau'
+</span></dt><dd class="rocqtop-hidden"><span>Toplevel input, characters 0-11:
+&gt; constructor; apply IHterm; reflexivity.
+&gt; ^^^^^^^^^^^
+</span><span class="ansi-fg-white ansi-bg-red ansi-bold">Error:</span><span> Unable to find an instance for the variable tau.
 </span></dd>
 </dl>
 </div>
