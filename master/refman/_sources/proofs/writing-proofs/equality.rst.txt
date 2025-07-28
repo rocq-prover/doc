@@ -358,13 +358,13 @@ Rewriting with definitional equality
    Replaces terms with other :term:`convertible` terms.
    If :n:`@one_term__from` is not specified, then :n:`@one_term__to` replaces the conclusion and/or
    the specified hypotheses.  If :n:`@one_term__from` is specified, the tactic replaces occurrences
-   of :n:`@one_term__to` within the conclusion and/or the specified hypotheses.
+   of :n:`@one_term__from` within the conclusion and/or the specified hypotheses.
 
    :n:`{? @one_term__from {? at @occs_nums } with }`
      Replaces the occurrences of :n:`@one_term__from` specified by :n:`@occs_nums`
      with :n:`@one_term__to`, provided that the two :n:`@one_term`\s are
      convertible.  :n:`@one_term__from` may contain pattern variables such as `?x`,
-     whose value which will substituted for `x` in :n:`@one_term__to`, such as in
+     whose value will be substituted for `x` in :n:`@one_term__to`, such as in
      `change (f ?x ?y) with (g (x, y))` or `change (fun x => ?f x) with f`.
 
      The `at … with …` form is deprecated in 8.14; use `with … at …` instead.
@@ -393,8 +393,8 @@ Rewriting with definitional equality
 .. tacn:: change_no_check {? @one_term__from {? at @occs_nums } with } @one_term__to {? @occurrences }
 
    For advanced usage. Similar to :tacn:`change`, but as an optimization,
-   it skips checking that :n:`@one_term__to` is convertible with the goal or
-   :n:`@one_term__from`.
+   it skips checking that :n:`@one_term__to` is convertible with the conclusion,
+   the specified hypotheses, or :n:`@one_term__from`.
 
    Recall that the Rocq kernel typechecks proofs again when they are concluded to
    ensure correctness. Hence, using :tacn:`change` checks convertibility twice
@@ -830,7 +830,7 @@ representation used in the ZINC virtual machine :cite:`Leroy90`. It is
 especially useful for intensive computation of algebraic values, such
 as numbers, and for reflection-based tactics.
 
-:tacn:`native_compute` is based on on converting the Rocq code to OCaml.
+:tacn:`native_compute` is based on converting the Rocq code to OCaml.
 
 Note that both these tactics ignore :cmd:`Opaque` markings
 (see issue `#4776 <https://github.com/rocq-prover/rocq/issues/4776>`_), nor do they
@@ -984,7 +984,7 @@ which supports additional fine-tuning.
    See Section :ref:`conversion-rules`.
 
    In the particular case where the constants refer to primitive projections,
-   a :token:`!` can be used to make the compatibility constants opaque, while
+   a `!` can be used to make the compatibility constants opaque, while
    by default the projection themselves are made opaque and the compatibility
    constants always remain transparent. This mechanism is only intended for
    debugging purposes.
@@ -1010,7 +1010,7 @@ which supports additional fine-tuning.
    relevant in general.
 
    In the particular case where the constants refer to primitive projections,
-   a :token:`!` can be used to make the compatibility constants transparent
+   a `!` can be used to make the compatibility constants transparent
    (see :cmd:`Opaque` for more details).
 
    .. exn:: The reference @qualid was not found in the current environment.

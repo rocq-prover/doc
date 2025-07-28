@@ -1690,12 +1690,12 @@ relation. Lemmas are expected to be in the form
 <dd><p>Replaces terms with other <a class="reference internal" href="../../language/core/conversion.html#term-convertible"><span class="xref std std-term">convertible</span></a> terms.
 If <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/basic.html#grammar-token-one_term"><span class="hole"><span class="pre">one_term</span><sub><span class="pre">from</span></sub></span></a></span></code> is not specified, then <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/basic.html#grammar-token-one_term"><span class="hole"><span class="pre">one_term</span><sub><span class="pre">to</span></sub></span></a></span></code> replaces the conclusion and/or
 the specified hypotheses.  If <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/basic.html#grammar-token-one_term"><span class="hole"><span class="pre">one_term</span><sub><span class="pre">from</span></sub></span></a></span></code> is specified, the tactic replaces occurrences
-of <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/basic.html#grammar-token-one_term"><span class="hole"><span class="pre">one_term</span><sub><span class="pre">to</span></sub></span></a></span></code> within the conclusion and/or the specified hypotheses.</p>
+of <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/basic.html#grammar-token-one_term"><span class="hole"><span class="pre">one_term</span><sub><span class="pre">from</span></sub></span></a></span></code> within the conclusion and/or the specified hypotheses.</p>
 <dl>
 <dt><code class="docutils literal notranslate"><span class="notation"><span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../../language/core/basic.html#grammar-token-one_term"><span class="hole"><span class="pre">one_term</span><sub><span class="pre">from</span></sub></span></a> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">at</span></span></span> <a class="reference internal" href="../../proof-engine/tactics.html#grammar-token-occs_nums"><span class="hole"><span class="pre">occs_nums</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span> <span><span><span class="pre">with</span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span></span></code></dt><dd><p>Replaces the occurrences of <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/basic.html#grammar-token-one_term"><span class="hole"><span class="pre">one_term</span><sub><span class="pre">from</span></sub></span></a></span></code> specified by <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../proof-engine/tactics.html#grammar-token-occs_nums"><span class="hole"><span class="pre">occs_nums</span></span></a></span></code>
 with <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/basic.html#grammar-token-one_term"><span class="hole"><span class="pre">one_term</span><sub><span class="pre">to</span></sub></span></a></span></code>, provided that the two <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/basic.html#grammar-token-one_term"><span class="hole"><span class="pre">one_term</span></span></a></span></code>s are
 convertible.  <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/basic.html#grammar-token-one_term"><span class="hole"><span class="pre">one_term</span><sub><span class="pre">from</span></sub></span></a></span></code> may contain pattern variables such as <code class="docutils literal notranslate"><span class="pre">?x</span></code>,
-whose value which will substituted for <code class="docutils literal notranslate"><span class="pre">x</span></code> in <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/basic.html#grammar-token-one_term"><span class="hole"><span class="pre">one_term</span><sub><span class="pre">to</span></sub></span></a></span></code>, such as in
+whose value will be substituted for <code class="docutils literal notranslate"><span class="pre">x</span></code> in <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/basic.html#grammar-token-one_term"><span class="hole"><span class="pre">one_term</span><sub><span class="pre">to</span></sub></span></a></span></code>, such as in
 <code class="docutils literal notranslate"><span class="pre">change</span> <span class="pre">(f</span> <span class="pre">?x</span> <span class="pre">?y)</span> <span class="pre">with</span> <span class="pre">(g</span> <span class="pre">(x,</span> <span class="pre">y))</span></code> or <code class="docutils literal notranslate"><span class="pre">change</span> <span class="pre">(fun</span> <span class="pre">x</span> <span class="pre">=&gt;</span> <span class="pre">?f</span> <span class="pre">x)</span> <span class="pre">with</span> <span class="pre">f</span></code>.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">at</span> <span class="pre">…</span> <span class="pre">with</span> <span class="pre">…</span></code> form is deprecated in 8.14; use <code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">…</span> <span class="pre">at</span> <span class="pre">…</span></code> instead.
 For <code class="docutils literal notranslate"><span class="pre">at</span> <span class="pre">…</span> <span class="pre">with</span> <span class="pre">…</span> <span class="pre">in</span> <span class="pre">H</span> <span class="pre">|-</span></code>, use <code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">…</span> <span class="pre">in</span> <span class="pre">H</span> <span class="pre">at</span> <span class="pre">…</span> <span class="pre">|-</span></code>.</p>
@@ -1733,8 +1733,8 @@ to make it readable.</p>
 <dt class="sig sig-object rocq" id="rocq:tacn.change_no_check">
 <em class="property"><span class="sigannot"><span class="pre">Tactic</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">change</span></span></span><span><span><span class="pre">_</span></span></span><span><span><span class="pre">no</span></span></span><span><span><span class="pre">_</span></span></span><span><span><span class="pre">check</span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../../language/core/basic.html#grammar-token-one_term"><span class="hole"><span class="pre">one_term</span><sub><span class="pre">from</span></sub></span></a> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">at</span></span></span> <a class="reference internal" href="../../proof-engine/tactics.html#grammar-token-occs_nums"><span class="hole"><span class="pre">occs_nums</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span> <span><span><span class="pre">with</span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span> <a class="reference internal" href="../../language/core/basic.html#grammar-token-one_term"><span class="hole"><span class="pre">one_term</span><sub><span class="pre">to</span></sub></span></a> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../../proof-engine/tactics.html#grammar-token-occurrences"><span class="hole"><span class="pre">occurrences</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span></span></span><a class="headerlink" href="#rocq:tacn.change_no_check" title="Link to this definition"></a></dt>
 <dd><p>For advanced usage. Similar to <a class="reference internal" href="#rocq:tacn.change" title="change"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">change</span></code></a>, but as an optimization,
-it skips checking that <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/basic.html#grammar-token-one_term"><span class="hole"><span class="pre">one_term</span><sub><span class="pre">to</span></sub></span></a></span></code> is convertible with the goal or
-<code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/basic.html#grammar-token-one_term"><span class="hole"><span class="pre">one_term</span><sub><span class="pre">from</span></sub></span></a></span></code>.</p>
+it skips checking that <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/basic.html#grammar-token-one_term"><span class="hole"><span class="pre">one_term</span><sub><span class="pre">to</span></sub></span></a></span></code> is convertible with the conclusion,
+the specified hypotheses, or <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/basic.html#grammar-token-one_term"><span class="hole"><span class="pre">one_term</span><sub><span class="pre">from</span></sub></span></a></span></code>.</p>
 <p>Recall that the Rocq kernel typechecks proofs again when they are concluded to
 ensure correctness. Hence, using <a class="reference internal" href="#rocq:tacn.change" title="change"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">change</span></code></a> checks convertibility twice
 overall, while <a class="reference internal" href="#rocq:tacn.change_no_check" title="change_no_check"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">change_no_check</span></code></a> can produce ill-typed terms,
@@ -2331,7 +2331,7 @@ bytecode representation of terms similar to the bytecode
 representation used in the ZINC virtual machine <span id="id4">[<a class="reference internal" href="../../zebibliography.html#id32" title="X. Leroy. The ZINC experiment: an economical implementation of the ML language. Technical Report 117, INRIA, 1990.">Ler90</a>]</span>. It is
 especially useful for intensive computation of algebraic values, such
 as numbers, and for reflection-based tactics.</p>
-<p><a class="reference internal" href="#rocq:tacn.native_compute" title="native_compute"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">native_compute</span></code></a> is based on on converting the Rocq code to OCaml.</p>
+<p><a class="reference internal" href="#rocq:tacn.native_compute" title="native_compute"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">native_compute</span></code></a> is based on converting the Rocq code to OCaml.</p>
 <p>Note that both these tactics ignore <a class="reference internal" href="#rocq:cmd.Opaque" title="Opaque"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Opaque</span></code></a> markings
 (see issue <a class="reference external" href="https://github.com/rocq-prover/rocq/issues/4776">#4776</a>), nor do they
 apply unfolding strategies such as from <a class="reference internal" href="#rocq:cmd.Strategy" title="Strategy"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Strategy</span></code></a>.</p>
@@ -2478,7 +2478,7 @@ it to delay unfolding the specified constants as much as possible when it
 has to check that two distinct applied constants are convertible.
 See Section <a class="reference internal" href="../../language/core/conversion.html#conversion-rules"><span class="std std-ref">Conversion rules</span></a>.</p>
 <p>In the particular case where the constants refer to primitive projections,
-a <code class="xref std std-token docutils literal notranslate"></code> can be used to make the compatibility constants opaque, while
+a <code class="docutils literal notranslate"><span class="pre">!</span></code> can be used to make the compatibility constants opaque, while
 by default the projection themselves are made opaque and the compatibility
 constants always remain transparent. This mechanism is only intended for
 debugging purposes.</p>
@@ -2502,7 +2502,7 @@ statements, not their actual proofs. This distinguishes lemmas from
 the usual defined constants, whose actual values are of course
 relevant in general.</p>
 <p>In the particular case where the constants refer to primitive projections,
-a <code class="xref std std-token docutils literal notranslate"></code> can be used to make the compatibility constants transparent
+a <code class="docutils literal notranslate"><span class="pre">!</span></code> can be used to make the compatibility constants transparent
 (see <a class="reference internal" href="#rocq:cmd.Opaque" title="Opaque"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Opaque</span></code></a> for more details).</p>
 <dl class="rocq exn">
 <dt class="sig sig-object rocq" id="rocq:exn.The-reference-‘qualid’-was-not-found-in-the-current-environment">
@@ -2650,7 +2650,7 @@ the relevant threshold at around <span class="math notranslate nohighlight">\(n 
   True
 </span></dd>
 <dt><span></span><span class="rocqdoc-keyword">Time</span><span> </span><span class="rocqdoc-tactic">assert</span><span> (</span><span class="rocqdoc-var">id</span><span> (</span><span class="rocqdoc-var">fact</span><span> 8) = </span><span class="rocqdoc-var">fact</span><span> 8) </span><span class="rocqdoc-tactic">by</span><span> </span><span class="rocqdoc-tactic">reflexivity</span><span>.</span><span>
-</span></dt><dd><span>Finished transaction in 0.045 secs (0.028u,0.016s) (successful)
+</span></dt><dd><span>Finished transaction in 0.072 secs (0.038u,0.033s) (successful)
 1 goal
   
   H : id (fact 8)</span><span> =</span><span> fact 8
@@ -2658,7 +2658,7 @@ the relevant threshold at around <span class="math notranslate nohighlight">\(n 
   True
 </span></dd>
 <dt><span></span><span class="rocqdoc-keyword">Time</span><span> </span><span class="rocqdoc-tactic">assert</span><span> (</span><span class="rocqdoc-var">id</span><span> (</span><span class="rocqdoc-var">fact</span><span> 9) = </span><span class="rocqdoc-var">fact</span><span> 9) </span><span class="rocqdoc-tactic">by</span><span> </span><span class="rocqdoc-tactic">reflexivity</span><span>.</span><span>
-</span></dt><dd><span>Finished transaction in 0.376 secs (0.376u,0.s) (successful)
+</span></dt><dd><span>Finished transaction in 0.503 secs (0.496u,0.007s) (successful)
 1 goal
   
   H : id (fact 8)</span><span> =</span><span> fact 8
@@ -2686,7 +2686,7 @@ merely a hint to unfold this constant last.</p>
 Timeout!
 </span></dd>
 <dt><span></span><span class="rocqdoc-keyword">Time</span><span> </span><span class="rocqdoc-tactic">assert</span><span> (</span><span class="rocqdoc-var">id</span><span> (</span><span class="rocqdoc-var">fact</span><span> 100) = </span><span class="rocqdoc-var">fact</span><span> 100) </span><span class="rocqdoc-tactic">by</span><span> </span><span class="rocqdoc-var">with_strategy</span><span> -1 [</span><span class="rocqdoc-var">id</span><span>] </span><span class="rocqdoc-tactic">reflexivity</span><span>.</span><span>
-</span></dt><dd><span>Finished transaction in 0.001 secs (0.001u,0.s) (successful)
+</span></dt><dd><span>Finished transaction in 0. secs (0.u,0.s) (successful)
 1 goal
   
   H : id (fact 100)</span><span> =</span><span> fact 100
@@ -2721,7 +2721,7 @@ tactic passed to <a class="reference internal" href="#rocq:tacn.with_strategy" t
   True
 </span></dd>
 <dt><span></span><span class="rocqdoc-keyword">Time</span><span> </span><span class="rocqdoc-tactic">assert</span><span> (</span><span class="rocqdoc-var">id</span><span> (</span><span class="rocqdoc-var">fact</span><span> 100) = </span><span class="rocqdoc-var">fact</span><span> 100) </span><span class="rocqdoc-tactic">by</span><span> </span><span class="rocqdoc-var">with_strategy</span><span> -1 [</span><span class="rocqdoc-var">id</span><span>] </span><span class="rocqdoc-tactic">abstract</span><span> </span><span class="rocqdoc-tactic">reflexivity</span><span>.</span><span>
-</span></dt><dd><span>Finished transaction in 0.002 secs (0.002u,0.s) (successful)
+</span></dt><dd><span>Finished transaction in 0.001 secs (0.001u,0.s) (successful)
 1 goal
   
   H : id (fact 100)</span><span> =</span><span> fact 100
