@@ -12,7 +12,7 @@ users have access to a language with many convenient features such as
 the core language (the Calculus of Inductive Constructions) that the
 kernel understands, which we present here.  Furthermore, while users
 can build proofs interactively using tactics (see Chapter
-:ref:`writing-proofs`), the role of these tactics is to incrementally
+:ref:`tactics`), the role of these tactics is to incrementally
 build a "proof term" which the kernel will verify.  More precisely, a
 proof term is a :term:`term` of the Calculus of Inductive
 Constructions whose :term:`type` corresponds to a theorem statement.
@@ -21,7 +21,7 @@ expected types.
 
 This separation between the kernel on one hand and the
 :ref:`elaboration engine <extensions>` and :ref:`tactics
-<writing-proofs>` on the other follows what is known as the :gdef:`de
+<tactics>` on the other follows what is known as the :gdef:`de
 Bruijn criterion` (keeping a small and well delimited trusted code
 base within a proof assistant which can be much more complex).  This
 separation makes it necessary to trust only a smaller, critical

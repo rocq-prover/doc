@@ -137,7 +137,7 @@ Assertions and proofs
 An assertion states a proposition (or a type) for which the proof (or an
 inhabitant of the type) is interactively built using :term:`tactics <tactic>`.
 Assertions cause Rocq to enter :term:`proof mode` (see :ref:`proofhandling`).
-Common tactics are described in the :ref:`writing-proofs` chapter.
+Common tactics are described in the :ref:`tactics` chapter.
 The basic assertion command is:
 
 .. cmd:: @thm_token @ident_decl {* @binder } : @type {* with @ident_decl {* @binder } : @type }
@@ -200,7 +200,7 @@ The basic assertion command is:
 
 Proofs start with the keyword :cmd:`Proof`. Then Rocq enters the proof mode
 until the proof is completed. In proof mode, the user primarily enters
-tactics (see :ref:`writing-proofs`). The user may also enter
+tactics (see :ref:`tactics`). The user may also enter
 commands to manage the proof mode (see :ref:`proofhandling`).
 
 When the proof is complete, use the :cmd:`Qed` command so the kernel verifies

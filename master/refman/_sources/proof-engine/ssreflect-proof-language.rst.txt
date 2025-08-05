@@ -16,19 +16,19 @@ proof methodology. Despite the original purpose, this set of tactics is
 of general interest and is available in Rocq starting from version 8.7.
 
 |SSR| was developed independently of the tactics described in
-Chapter :ref:`tactics`. Indeed the scope of the tactics part of |SSR| largely
+:ref:`tactics`. Indeed the scope of the tactics part of |SSR| largely
 overlaps with the standard set of tactics. Eventually the overlap will
 be reduced in future releases of Rocq.
 
 Proofs written in |SSR| typically look quite different from the
-ones written using only tactics as per Chapter :ref:`tactics`. We try to
+ones written using only tactics described in :ref:`tactics`. We try to
 summarise here the most “visible” ones in order to help the reader
-already accustomed to the tactics described in Chapter :ref:`tactics` to read
+already accustomed to the tactics in :ref:`tactics` to read
 this chapter.
 
 The first difference between the tactics described in this chapter and the
-tactics described in Chapter :ref:`tactics` is the way hypotheses are managed
-(we call this *bookkeeping*). In Chapter :ref:`tactics` the most common
+tactics described in :ref:`tactics` is the way hypotheses are managed
+(we call this *bookkeeping*). In :ref:`tactics` the most common
 approach is to avoid moving explicitly hypotheses back and forth between the
 context and the conclusion of the goal. On the contrary, in |SSR| all
 bookkeeping is performed on the conclusion of the goal, using for that
@@ -39,16 +39,16 @@ conclusion to the context, and ``in`` moves back and forth a hypothesis from the
 context to the conclusion for the time of applying an action to it.
 
 While naming hypotheses is commonly done by means of an ``as`` clause in the
-basic model of Chapter :ref:`tactics`, it is here to ``=>`` that this task is
+basic model of :ref:`tactics`, it is here to ``=>`` that this task is
 devoted. Tactics frequently leave new assumptions in the conclusion, and are
 often followed by ``=>`` to explicitly name them. While generalizing the
-goal is normally not explicitly needed in Chapter :ref:`tactics`, it is an
+goal is normally not explicitly needed in :ref:`tactics`, it is an
 explicit operation performed by ``:``.
 
 .. seealso:: :ref:`bookkeeping_ssr`
 
 Besides the difference of bookkeeping model, this chapter includes
-specific tactics that have no explicit counterpart in Chapter :ref:`tactics`
+specific tactics that have no explicit counterpart in :ref:`tactics`
 such as tactics to mix forward steps and generalizations as
 :tacn:`generally have` or :tacn:`without loss`.
 

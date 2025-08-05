@@ -10,7 +10,7 @@ plugins can add new tactics and commands written in OCaml.
 
 The Rocq Prover is distributed with a standard library and a set of internal
 plugins (most of which provide tactics that have already been
-presented in :ref:`writing-proofs`).  This chapter presents this
+presented in :ref:`tactics`).  This chapter presents this
 standard library and some of these internal plugins which provide
 features that are not tactics.
 

@@ -20,7 +20,9 @@ Contents
 .. toctree::
    :caption: Proofs
 
+   proofs/writing-proofs/proof-mode
    proofs/writing-proofs/index
+   proof-engine/ssreflect-proof-language
    proofs/automatic-tactics/index
    proofs/creating-tactics/index
 

@@ -4,10 +4,15 @@
 Proof mode
 ----------
 
+The Rocq Prover is a proof assistant (or interactive theorem prover), which allows
+users to interactively construct proofs through a dialog with the assistant.  The assistant
+ensures the validity of each step of the proof.  :term:`Tactics <tactic>`, which represent
+steps in the proof of a theorem, are the building blocks for this dialog.
+
 :gdef:`Proof mode <proof mode>` is used to prove theorems.
 Rocq enters proof mode when you begin a proof,
 such as with the :cmd:`Theorem` command.  It exits proof mode when
-you complete a proof, such as with the :cmd:`Qed` command.  Tactics,
+you complete a proof, such as with the :cmd:`Qed` command.  :term:`Tactics <tactic>`,
 which are available only in proof mode, incrementally transform incomplete
 proofs to eventually generate a complete proof.
 
