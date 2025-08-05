@@ -447,6 +447,8 @@ does not build a match expression.
                        end).
 
 
+.. _aliasing-subpatterns:
+
 Aliasing subpatterns
 --------------------
 

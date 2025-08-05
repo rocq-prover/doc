@@ -196,7 +196,7 @@ The |SSR| extension provides the following construct for
 irrefutable pattern matching, that is, destructuring assignment:
 
 .. prodn::
-   term += let: @pattern := @term in @term
+   term += let: @pattern := @term in @term__body
 
 Note the colon ``:`` after the ``let`` keyword, which avoids any ambiguity
 with a function definition or Coq’s basic destructuring let. The ``let:``
@@ -237,21 +237,19 @@ construct differs from the latter as follows.
 
 
 The ``let:`` construct is just (more legible) notation for the primitive
-Gallina expression :n:`match @term with @pattern => @term end`.
+Gallina expression :n:`match @term with @pattern => @term__body end`.
 
 The |SSR| destructuring assignment supports all the dependent
 match annotations; the full syntax is
 
 .. prodn::
-   term += let: @pattern {? as @ident} {? in @pattern} := @term {? return @term} in @term
+   term += let: @pattern {? as @ident} {? in @pattern__ind} := @term {? return @term__ret} in @term__body
 
-where the second :token:`pattern` and the second :token:`term` are *types*.
-
-When the ``as`` and ``return`` keywords are both present, then :token:`ident` is bound
-in both the second :token:`pattern` and the second :token:`term`; variables
-in the optional type :token:`pattern` are bound only in the second term, and
-other variables in the first  :token:`pattern` are bound only in the third
-:token:`term`, however.
+This dependent ``let:`` construct is just notation for
+:n:`match @term {? as @ident } {? in @pattern__ind } {? return @term__ret } with @pattern {? as @ident } => @term__body end`.
+In particular, :n:`@ident` is used both for
+dependent pattern matching and for aliasing the pattern (see
+:ref:`aliasing-subpatterns`).
 
 
 .. _pattern_conditional_ssr:
@@ -263,7 +261,7 @@ The following construct can be used for a refutable pattern matching,
 that is, pattern testing:
 
 .. prodn::
-   term += if @term is @pattern then @term else @term
+   term += if @term is @pattern then @term__then else @term__else
 
 Although this construct is not strictly ML (it does exist in variants
 such as the pattern calculus or the ρ-calculus), it turns out to be
@@ -298,7 +296,7 @@ setting of Gallina, which lacks a ``Match_Failure`` exception.
 
 Like ``let:`` above, the ``if…is`` construct is just (more legible) notation
 for the primitive Gallina expression
-:n:`match @term with @pattern => @term | _ => @term end`.
+:n:`match @term with @pattern => @term__then | _ => @term__else end`.
 
 Similarly, it will always be displayed as the expansion of this form
 in terms of primitive match expressions (where the default expression
@@ -334,21 +332,21 @@ construct supports
 the dependent match annotations:
 
 .. prodn::
-   term += if @term is @pattern as @ident in @pattern return @term then @term else @term
+   term += if @term is @pattern as @ident in @pattern__ind return @term__ret then @term__then else @term__else
 
-As in ``let:``, the variable :token:`ident` (and those in the type pattern)
-are bound in the second :token:`term`; :token:`ident` is also bound in the
-third :token:`term` (but not in the fourth :token:`term`), while the
-variables in the first :token:`pattern` are bound only in the third
-:token:`term`.
+This dependent ``if-is-then-else`` construct is just notation for
+:n:`match @term as @ident in @pattern__ind return @term__ret with @pattern as @ident => @term__then | _ => @term__else end`.
+In particular, :n:`@ident` is
+used both for dependent pattern matching and for aliasing the pattern (see
+:ref:`aliasing-subpatterns`).
 
 Another variant allows to treat the ``else`` case first:
 
 .. prodn::
-   term += if @term isn't @pattern then @term else @term
+   term += if @term isn't @pattern then @term__then else @term__else
 
-Note that :token:`pattern` eventually binds variables in the third
-:token:`term` and not in the second :token:`term`.
+Note that :token:`pattern` binds variables in
+:n:`@term__else` and not in :n:`@term__then`.
 
 .. _parametric_polymorphism_ssr:
 
