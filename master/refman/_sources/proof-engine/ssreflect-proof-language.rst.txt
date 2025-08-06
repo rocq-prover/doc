@@ -598,7 +598,7 @@ resemble ML-like definitions of polymorphic functions.
 Abbreviations
 ~~~~~~~~~~~~~
 
-.. tacn:: set @ident {? : @term } := {? @occ_switch } @term
+.. tacn:: set @ident {? : @type } := {? @occ_switch } @term
    :name: set (ssreflect)
 
    The |SSR| ``set`` tactic performs abbreviations; it introduces a
@@ -620,20 +620,14 @@ Abbreviations
 where:
 
 + :token:`ident` is a fresh identifier chosen by the user.
-+ :token:`term` 1 is an optional type annotation. The type annotation :token:`term` 1
-  can be given in open syntax (no surrounding parentheses). If no
-  :token:`occ_switch` (described hereafter) is present,
-  it is also the case for the second :token:`term`.
-  On the other hand, in the presence of :token:`occ_switch`, parentheses
-  surrounding the second :token:`term` are mandatory.
++ :token:`type` is an optional type annotation. If :token:`occ_switch`
+  is present, then :token:`term` must be surrounded by parentheses.
 + In the occurrence switch :token:`occ_switch`, if the first element of the
   list is a natural, this element should be a number, and not an Ltac
   variable. The empty list ``{}`` is not interpreted as a valid occurrence
   switch; it is rather used as a flag to signal the intent of the user to
   clear the name following it (see :ref:`ssr_rewrite_occ_switch` and
   :ref:`introduction_ssr`).
-
-The tactic:
 
 .. example::
 
@@ -658,14 +652,11 @@ The tactic:
 The type annotation may contain wildcards, which will be filled
 with appropriate values by the matching process.
 
-The tactic first tries to find a subterm of the goal matching
-the second :token:`term`
-(and its type), and stops at the first subterm it finds. Then
-the occurrences of this subterm selected by the optional :token:`occ_switch`
-are replaced by :token:`ident` and a definition :n:`@ident := @term`
-is added to the
-context. If no :token:`occ_switch` is present, then all the occurrences are
-abstracted.
+The tactic finds the first subterm of the goal that matches :token:`term`
+(and its type), then selects occurrences of this subterm, replaces them
+with :token:`ident` and adds a definition :n:`@ident := @term` to the
+context. :token:`occ_switch` selects which occurrences to replace. If
+:token:`occ_switch` is not specified, all occurrences are replaced.
 
 
 Matching
