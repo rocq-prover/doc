@@ -25,7 +25,7 @@ Solvers for logic and equality
 
    Moreover, if it has nothing else to do, :tacn:`tauto` performs introductions.
    Therefore, the use of :tacn:`intros` in the previous proof is unnecessary.
-   :tacn:`tauto` can for instance for:
+   :tacn:`tauto` can for instance solve:
 
    .. example::
 

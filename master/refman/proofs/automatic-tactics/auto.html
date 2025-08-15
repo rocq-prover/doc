@@ -1963,9 +1963,15 @@ identifier, like <code class="docutils literal notranslate"><span class="pre">?X
   ============================
   </span><span class="ansi-bold">forall</span><span> a b : list (nat</span><span> *</span><span> nat), </span><span>{</span><span>a</span><span> =</span><span> b</span><span>}</span><span> </span><span>+</span><span> </span><span>{</span><span>a</span><span> &lt;&gt;</span><span> b</span><span>}</span><span>
 </span></dd>
-<dt><span></span><span class="rocqdoc-tactic">info_auto</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-tactic">info_auto</span><span> </span><span class="rocqdoc-keyword">with</span><span> </span><span class="rocqdoc-var">eqdec</span><span>.</span><span>
 </span></dt><dd><span>(* info auto: *)
-idtac.
+intro.
+intro.
+(*external*) (</span><span class="ansi-fg-light-green">generalize</span><span> X1, X2; </span><span class="ansi-fg-light-green">decide</span><span> </span><span class="ansi-bold">equality</span><span>) (in eqdec).
+ (*external*) (</span><span class="ansi-fg-light-green">generalize</span><span> X1, X2; </span><span class="ansi-fg-light-green">decide</span><span> </span><span class="ansi-bold">equality</span><span>) (in eqdec).
+  (*external*) (</span><span class="ansi-fg-light-green">generalize</span><span> X1, X2; </span><span class="ansi-fg-light-green">decide</span><span> </span><span class="ansi-bold">equality</span><span>) (in eqdec).
+  (*external*) (</span><span class="ansi-fg-light-green">generalize</span><span> X1, X2; </span><span class="ansi-fg-light-green">decide</span><span> </span><span class="ansi-bold">equality</span><span>) (in eqdec).
+No more goals.
 </span></dd>
 </dl>
 </div>

@@ -555,7 +555,7 @@ Creating Hints
             Hint Extern 5 ({?X1 = ?X2} + {?X1 <> ?X2}) =>
               generalize  X1, X2; decide equality : eqdec.
             Goal forall a b:list (nat * nat), {a = b} + {a <> b}.
-            info_auto.
+            info_auto with eqdec.
 
    .. cmd:: Hint Cut [ @hints_regexp ] {? : {+ @ident } }
 

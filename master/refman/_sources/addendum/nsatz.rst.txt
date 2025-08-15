@@ -44,8 +44,8 @@ files that declare the axioms used to define the real numbers, you can
 
    `radicalmax`
      bound when searching for r such that
-     :math:`c (P−Q) r = \sum_{i=1..s} S_i (P i − Q i)`.
-     This argument must be of type `N` (binary natural numbers).
+     :math:`c (P−Q)^r = \sum_{i=1..s} S_i (P_i − Q_i)`.
+     This argument must be of type `N` (natural numbers).
 
    `strategy`
      gives the order on variables :math:`X_1,\ldots,X_n` and the strategy
@@ -70,7 +70,7 @@ files that declare the axioms used to define the real numbers, you can
      then `lvar` is replaced by all the variables which are not in
      `parameters`.
 
-   See the file `Nsatz.v <https://github.com/rocq-prover/rocq/blob/master/test-suite/success/Nsatz.v>`_
+   See the file `Nsatz.v <https://github.com/rocq-prover/stdlib/blob/master/test-suite/success/Nsatz.v>`_
    for examples, especially in geometry.
 
 More about `nsatz`
