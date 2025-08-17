@@ -1373,18 +1373,10 @@ but they may still reduce using the provided rules, unlike axioms.</p>
 <div class="rocqtop literal-block docutils container">
 <span></span><dl>
 <dt><span></span><span class="rocqdoc-var">Symbol</span><span> </span><span class="rocqdoc-var">pplus</span><span> : </span><span class="rocqdoc-var">nat</span><span> -&gt; </span><span class="rocqdoc-var">nat</span><span> -&gt; </span><span class="rocqdoc-var">nat</span><span>.</span><span>
-</span></dt><dd class="rocqtop-hidden"><span>Toplevel input, characters 0-33:
-&gt; Symbol pplus : nat -&gt; nat -&gt; nat.
-&gt; ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-</span><span class="ansi-fg-white ansi-bg-red ansi-bold">Error:</span><span> Symbol declaration requires passing the flag &quot;-allow-rewrite-rules&quot;.
+</span></dt><dd class="rocqtop-hidden"><span>pplus is declared
 </span></dd>
 <dt><span></span><span class="rocqdoc-keyword">Notation</span><span> &quot;a ++ b&quot; := (</span><span class="rocqdoc-var">pplus</span><span> </span><span class="rocqdoc-var">a</span><span> </span><span class="rocqdoc-var">b</span><span>).</span><span>
-</span></dt><dd class="rocqtop-hidden"><span>Toplevel input, characters 22-27:
-&gt; Notation &quot;a ++ b&quot; := (pplus a b).
-&gt;                       ^^^^^
-</span><span class="ansi-fg-white ansi-bg-red ansi-bold">Error:</span><span> The reference pplus was not found in the current environment.
-</span></dd>
-</dl>
+</span></dt></dl>
 </div>
 </dd></dl>
 
@@ -1406,19 +1398,13 @@ subterms aligned with pattern variables are collected
 and then substituted into the replacement, which is returned.</p>
 <blockquote>
 <div><div class="rocqtop literal-block docutils container">
-<span></span><dl>
+<span></span><dl class="simple">
 <dt><span></span><span class="rocqdoc-keyword">Rewrite</span><span> </span><span class="rocqdoc-var">Rule</span><span> </span><span class="rocqdoc-var">pplus_rewrite</span><span> :=</span><span>
 | ?</span><span class="rocqdoc-var">n</span><span> ++ 0 =&gt; ?</span><span class="rocqdoc-var">n</span><span>
 | ?</span><span class="rocqdoc-var">n</span><span> ++ </span><span class="rocqdoc-var">S</span><span> ?</span><span class="rocqdoc-var">m</span><span> =&gt; </span><span class="rocqdoc-var">S</span><span> (?</span><span class="rocqdoc-var">n</span><span> ++ ?</span><span class="rocqdoc-var">m</span><span>)</span><span>
 | 0 ++ ?</span><span class="rocqdoc-var">n</span><span> =&gt; ?</span><span class="rocqdoc-var">n</span><span>
 | </span><span class="rocqdoc-var">S</span><span> ?</span><span class="rocqdoc-var">n</span><span> ++ ?</span><span class="rocqdoc-var">m</span><span> =&gt; </span><span class="rocqdoc-var">S</span><span> (?</span><span class="rocqdoc-var">n</span><span> ++ ?</span><span class="rocqdoc-var">m</span><span>).</span><span>
-</span></dt><dd><span>Toplevel input, characters 0-120:
-&gt; Rewrite Rule pplus_rewrite := | ?n ++ 0 =&gt; ?n | ?n ++ S ?m =&gt; S (?n ++ ?m) | 0 ++ ?n =&gt; ?n | S ?n ++ ?m =&gt; S (?n ++ ?m).
-&gt; ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-</span><span class="ansi-fg-white ansi-bg-red ansi-bold">Error:</span><span> Rewrite rule declaration requires passing the flag
-&quot;-allow-rewrite-rules&quot;.
-</span></dd>
-</dl>
+</span></dt></dl>
 </div>
 </div></blockquote>
 </section>
@@ -1448,37 +1434,26 @@ this explicit substitution is inferred automatically (like for existential varia
 <div><div class="rocqtop literal-block docutils container">
 <span></span><dl>
 <dt><span></span><span class="rocqdoc-var">Symbol</span><span> </span><span class="rocqdoc-var">raise</span><span> : </span><span class="rocqdoc-keyword">forall</span><span> (</span><span class="rocqdoc-var">A</span><span> : </span><span class="rocqdoc-keyword">Type</span><span>), </span><span class="rocqdoc-var">A</span><span>.</span><span>
-</span></dt><dd><span>Toplevel input, characters 0-36:
-&gt; Symbol raise : forall (A : Type), A.
-&gt; ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-</span><span class="ansi-fg-white ansi-bg-red ansi-bold">Error:</span><span> Symbol declaration requires passing the flag &quot;-allow-rewrite-rules&quot;.
+</span></dt><dd><span>raise is declared
 </span></dd>
 <dt><span></span><span class="rocqdoc-keyword">Rewrite</span><span> </span><span class="rocqdoc-var">Rule</span><span> </span><span class="rocqdoc-var">raise_nat</span><span> :=</span><span>
   </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">raise</span><span> </span><span class="rocqdoc-var">nat</span><span> </span><span class="rocqdoc-keyword">as</span><span> </span><span class="rocqdoc-var">n</span><span> </span><span class="rocqdoc-keyword">return</span><span> ?</span><span class="rocqdoc-var">P</span><span>
   </span><span class="rocqdoc-keyword">with</span><span> 0 =&gt; </span><span class="rocqdoc-var">_</span><span> | </span><span class="rocqdoc-var">S</span><span> </span><span class="rocqdoc-var">_</span><span> =&gt; </span><span class="rocqdoc-var">_</span><span> </span><span class="rocqdoc-keyword">end</span><span>
   =&gt; </span><span class="rocqdoc-var">raise</span><span> ?</span><span class="rocqdoc-var">P&#64;</span><span>{</span><span class="rocqdoc-var">n</span><span> := </span><span class="rocqdoc-var">raise</span><span> </span><span class="rocqdoc-var">nat</span><span>}.</span><span>
-</span></dt><dd><span>Toplevel input, characters 0-119:
+</span></dt><dd><span>Toplevel input, characters 93-118:
 &gt; Rewrite Rule raise_nat :=   match raise nat as n return ?P   with 0 =&gt; _ | S _ =&gt; _ end   =&gt; raise ?P&#64;{n := raise nat}.
-&gt; ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-</span><span class="ansi-fg-white ansi-bg-red ansi-bold">Error:</span><span> Rewrite rule declaration requires passing the flag
-&quot;-allow-rewrite-rules&quot;.
+&gt;                                                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^
+</span><span class="ansi-fg-white ansi-bg-yellow ansi-bold">Warning:</span><span> This rewrite rule breaks subject reduction 
+(universe inconsistency). Missing constraints: Top.22 &lt;= raise.u0
+[rewrite-rules-break-SR,rewrite-rules,default]
 </span></dd>
 <dt><span></span><span>
 </span><span class="rocqdoc-var">Symbol</span><span> </span><span class="rocqdoc-var">id</span><span> : </span><span class="rocqdoc-keyword">forall</span><span> (</span><span class="rocqdoc-var">A</span><span> : </span><span class="rocqdoc-keyword">Type</span><span>), </span><span class="rocqdoc-var">A</span><span> -&gt; </span><span class="rocqdoc-var">A</span><span>.</span><span>
-</span></dt><dd><span>Toplevel input, characters 0-38:
-&gt; Symbol id : forall (A : Type), A -&gt; A.
-&gt; ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-</span><span class="ansi-fg-white ansi-bg-red ansi-bold">Error:</span><span> Symbol declaration requires passing the flag &quot;-allow-rewrite-rules&quot;.
+</span></dt><dd><span>id is declared
 </span></dd>
 <dt><span></span><span class="rocqdoc-keyword">Rewrite</span><span> </span><span class="rocqdoc-var">Rule</span><span> </span><span class="rocqdoc-var">id_rew</span><span> :=</span><span>
   </span><span class="rocqdoc-var">id</span><span> (</span><span class="rocqdoc-keyword">forall</span><span> (</span><span class="rocqdoc-var">x</span><span> : ?</span><span class="rocqdoc-var">A</span><span>), ?</span><span class="rocqdoc-var">P</span><span>) ?</span><span class="rocqdoc-var">f</span><span> =&gt; </span><span class="rocqdoc-keyword">fun</span><span> (</span><span class="rocqdoc-var">x</span><span> : ?</span><span class="rocqdoc-var">A</span><span>) =&gt; </span><span class="rocqdoc-var">id</span><span> ?</span><span class="rocqdoc-var">P</span><span> (?</span><span class="rocqdoc-var">f</span><span> </span><span class="rocqdoc-var">x</span><span>).</span><span>
-</span></dt><dd><span>Toplevel input, characters 0-85:
-&gt; Rewrite Rule id_rew :=   id (forall (x : ?A), ?P) ?f =&gt; fun (x : ?A) =&gt; id ?P (?f x).
-&gt; ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-</span><span class="ansi-fg-white ansi-bg-red ansi-bold">Error:</span><span> Rewrite rule declaration requires passing the flag
-&quot;-allow-rewrite-rules&quot;.
-</span></dd>
-</dl>
+</span></dt></dl>
 </div>
 </div></blockquote>
 </section>
@@ -1499,20 +1474,11 @@ so all inferred constraints from the left-hand side are used for the replacement
 <div><div class="rocqtop literal-block docutils container">
 <span class="rocqtop-reset"></span><dl>
 <dt><span>#[</span><span class="rocqdoc-var">universes</span><span>(</span><span class="rocqdoc-var">polymorphic</span><span>)] </span><span class="rocqdoc-var">Symbol</span><span> </span><span class="rocqdoc-var">raise&#64;</span><span>{</span><span class="rocqdoc-var">q</span><span>;</span><span class="rocqdoc-var">u</span><span>} : </span><span class="rocqdoc-keyword">forall</span><span> (</span><span class="rocqdoc-var">A</span><span> : </span><span class="rocqdoc-var">Type&#64;</span><span>{</span><span class="rocqdoc-var">q</span><span>;</span><span class="rocqdoc-var">u</span><span>}), </span><span class="rocqdoc-var">A</span><span>.</span><span>
-</span></dt><dd><span>Toplevel input, characters 0-74:
-&gt; #[universes(polymorphic)] Symbol raise&#64;{q;u} : forall (A : Type&#64;{q;u}), A.
-&gt; ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-</span><span class="ansi-fg-white ansi-bg-red ansi-bold">Error:</span><span> Symbol declaration requires passing the flag &quot;-allow-rewrite-rules&quot;.
+</span></dt><dd><span>raise is declared
 </span></dd>
 <dt><span></span><span class="rocqdoc-keyword">Rewrite</span><span> </span><span class="rocqdoc-var">Rule</span><span> </span><span class="rocqdoc-var">raise_nat</span><span> :=</span><span>
   &#64;{</span><span class="rocqdoc-var">q</span><span>;</span><span class="rocqdoc-var">u</span><span>+|+} |- </span><span class="rocqdoc-var">raise&#64;</span><span>{</span><span class="rocqdoc-var">q</span><span>;</span><span class="rocqdoc-var">u</span><span>} (</span><span class="rocqdoc-keyword">forall</span><span> (</span><span class="rocqdoc-var">x</span><span> : ?</span><span class="rocqdoc-var">A</span><span>), ?</span><span class="rocqdoc-var">P</span><span>) =&gt; </span><span class="rocqdoc-keyword">fun</span><span> (</span><span class="rocqdoc-var">x</span><span> : ?</span><span class="rocqdoc-var">A</span><span>) =&gt; </span><span class="rocqdoc-var">raise&#64;</span><span>{</span><span class="rocqdoc-var">q</span><span>;</span><span class="rocqdoc-var">u</span><span>} ?</span><span class="rocqdoc-var">P</span><span>.</span><span>
-</span></dt><dd><span>Toplevel input, characters 0-109:
-&gt; Rewrite Rule raise_nat :=   &#64;{q;u+|+} |- raise&#64;{q;u} (forall (x : ?A), ?P) =&gt; fun (x : ?A) =&gt; raise&#64;{q;u} ?P.
-&gt; ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-</span><span class="ansi-fg-white ansi-bg-red ansi-bold">Error:</span><span> Rewrite rule declaration requires passing the flag
-&quot;-allow-rewrite-rules&quot;.
-</span></dd>
-</dl>
+</span></dt></dl>
 </div>
 </div></blockquote>
 </section>

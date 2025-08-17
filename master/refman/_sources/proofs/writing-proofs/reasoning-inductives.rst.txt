@@ -1684,11 +1684,11 @@ must help the automation by giving some arguments, using the
 
 .. rocqtop:: in extra-stdlib
 
-   destruct D... apply weak; apply ax. apply ax.
+   destruct D; simpl in * ; simpl_depind ; auto. apply weak; apply ax. apply ax.
 
 .. rocqtop:: in extra-stdlib
 
-   destruct D...
+   destruct D; simpl in * ; simpl_depind ; auto.
 
 .. rocqtop:: all extra-stdlib
 
