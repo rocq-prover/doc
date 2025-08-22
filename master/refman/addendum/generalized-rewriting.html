@@ -1464,9 +1464,9 @@ for all <code class="docutils literal notranslate"><span class="pre">A</span></c
 </div>
 <div class="admonition note">
 <p class="admonition-title">Example: Contravariant morphisms</p>
-<p>The division function <code class="docutils literal notranslate"><span class="pre">Rdiv</span> <span class="pre">:</span> <span class="pre">R</span> <span class="pre">-&gt;</span> <span class="pre">R</span> <span class="pre">-&gt;</span> <span class="pre">R</span></code> is a morphism of signature
+<p>The subtraction function <code class="docutils literal notranslate"><span class="pre">Nat.sub</span> <span class="pre">:</span> <span class="pre">nat</span> <span class="pre">-&gt;</span> <span class="pre">nat</span> <span class="pre">-&gt;</span> <span class="pre">nat</span></code> is a morphism of signature
 <code class="docutils literal notranslate"><span class="pre">le</span> <span class="pre">++&gt;</span> <span class="pre">le</span> <span class="pre">--&gt;</span> <span class="pre">le</span></code> where <code class="docutils literal notranslate"><span class="pre">le</span></code> is the usual order relation over
-real numbers. Notice that division is covariant in its first argument
+natural numbers. Notice that subtraction is covariant in its first argument
 and contravariant in its second argument.</p>
 </div>
 <p>Leibniz equality is a relation and every function is a morphism that
@@ -1534,18 +1534,29 @@ instead, whose syntax is the same except there is no local context.</p>
 the relation is not an equivalence relation. The proofs must be
 instances of the corresponding relation definitions: e.g. the proof of
 reflexivity must have a type convertible to
-<code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">reflexive</span></span> <span class="operator"><span class="pre">(</span></span><span class="name"><span class="pre">A</span></span> <span class="name"><span class="pre">t1</span></span> <span class="name builtin pseudo"><span class="pre">…</span></span> <span class="name"><span class="pre">tn</span></span><span class="operator"><span class="pre">)</span></span> <span class="operator"><span class="pre">(</span></span><span class="name"><span class="pre">Aeq</span></span> <span class="name"><span class="pre">t</span></span><span class="name builtin pseudo"><span class="pre">′</span></span> <span class="literal number integer"><span class="pre">1</span></span> <span class="name builtin pseudo"><span class="pre">…</span></span> <span class="name"><span class="pre">t</span></span><span class="name builtin pseudo"><span class="pre">′</span></span> <span class="name"><span class="pre">n</span></span><span class="operator"><span class="pre">)</span></span></code>.
+<code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">reflexive</span></span> <span class="operator"><span class="pre">(</span></span><span class="name"><span class="pre">A</span></span> <span class="name"><span class="pre">t1</span></span> <span class="name builtin pseudo"><span class="pre">…</span></span> <span class="name"><span class="pre">tn</span></span><span class="operator"><span class="pre">)</span></span> <span class="operator"><span class="pre">(</span></span><span class="name"><span class="pre">Aeq</span></span> <span class="name"><span class="pre">t</span></span><span class="name builtin pseudo"><span class="pre">′</span></span><span class="literal number integer"><span class="pre">1</span></span> <span class="name builtin pseudo"><span class="pre">…</span></span> <span class="name"><span class="pre">t</span></span><span class="name builtin pseudo"><span class="pre">′</span></span><span class="name"><span class="pre">m</span></span><span class="operator"><span class="pre">)</span></span></code>.
 Each proof may refer to the introduced variables as well.</p>
 </dd></dl>
 
 <div class="admonition note">
 <p class="admonition-title">Example: Parametric relation</p>
 <p>For Leibniz equality, we may declare:</p>
-<div class="rocqdoc literal-block docutils container">
-<span><span></span><span class="rocqdoc-keyword">Add</span><span> </span><span class="rocqdoc-var">Parametric</span><span> </span><span class="rocqdoc-var">Relation</span><span> (</span><span class="rocqdoc-var">A</span><span> : </span><span class="rocqdoc-keyword">Type</span><span>) : </span><span class="rocqdoc-var">A</span><span> (&#64;</span><span class="rocqdoc-var">eq</span><span> </span><span class="rocqdoc-var">A</span><span>)</span><span>
-  [</span><span class="rocqdoc-tactic">reflexivity</span><span> </span><span class="rocqdoc-var">proved</span><span> </span><span class="rocqdoc-tactic">by</span><span> &#64;</span><span class="rocqdoc-var">refl_equal</span><span> </span><span class="rocqdoc-var">A</span><span>]</span><span>
-...</span><span>
-</span></span></div>
+<div class="rocqtop literal-block docutils container">
+<span></span><dl>
+<dt><span></span><span class="rocqdoc-keyword">From</span><span> </span><span class="rocqdoc-var">Corelib</span><span> </span><span class="rocqdoc-keyword">Require</span><span> </span><span class="rocqdoc-keyword">Import</span><span> </span><span class="rocqdoc-var">Setoid</span><span>.</span><span>
+</span></dt><dt><span></span><span class="rocqdoc-keyword">Add</span><span> </span><span class="rocqdoc-var">Parametric</span><span> </span><span class="rocqdoc-var">Relation</span><span> (</span><span class="rocqdoc-var">A</span><span> : </span><span class="rocqdoc-keyword">Type</span><span>) : </span><span class="rocqdoc-var">A</span><span> (&#64;</span><span class="rocqdoc-var">eq</span><span> </span><span class="rocqdoc-var">A</span><span>)</span><span>
+  </span><span class="rocqdoc-tactic">reflexivity</span><span> </span><span class="rocqdoc-var">proved</span><span> </span><span class="rocqdoc-tactic">by</span><span> (&#64;</span><span class="rocqdoc-var">eq_refl</span><span> </span><span class="rocqdoc-var">A</span><span>)</span><span>
+  </span><span class="rocqdoc-tactic">symmetry</span><span> </span><span class="rocqdoc-var">proved</span><span> </span><span class="rocqdoc-tactic">by</span><span> (&#64;</span><span class="rocqdoc-var">eq_sym</span><span> </span><span class="rocqdoc-var">A</span><span>)</span><span>
+  </span><span class="rocqdoc-tactic">transitivity</span><span> </span><span class="rocqdoc-var">proved</span><span> </span><span class="rocqdoc-tactic">by</span><span> (&#64;</span><span class="rocqdoc-var">eq_trans</span><span> </span><span class="rocqdoc-var">A</span><span>)</span><span>
+  </span><span class="rocqdoc-keyword">as</span><span> </span><span class="rocqdoc-var">eq_rel</span><span>.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>eq_rel_relation is defined
+eq_rel_Reflexive is defined
+eq_rel_Symmetric is defined
+eq_rel_Transitive is defined
+eq_rel is defined
+</span></dd>
+</dl>
+</div>
 </div>
 <p>Some tactics (<a class="reference internal" href="../proofs/writing-proofs/equality.html#rocq:tacn.reflexivity" title="reflexivity"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">reflexivity</span></code></a>, <a class="reference internal" href="../proofs/writing-proofs/equality.html#rocq:tacn.symmetry" title="symmetry"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">symmetry</span></code></a>, <a class="reference internal" href="../proofs/writing-proofs/equality.html#rocq:tacn.transitivity" title="transitivity"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">transitivity</span></code></a>) work only on
 relations that respect the expected properties. The remaining tactics
@@ -1711,10 +1722,31 @@ prove that all the other arguments are related to themselves by the
 respective relation instances.</p>
 <div class="admonition note">
 <p class="admonition-title">Example</p>
-<p>To replace <code class="docutils literal notranslate"><span class="pre">(union</span> <span class="pre">S</span> <span class="pre">empty)</span></code> with <code class="docutils literal notranslate"><span class="pre">S</span></code> in <code class="docutils literal notranslate"><span class="pre">(union</span> <span class="pre">(union</span> <span class="pre">S</span> <span class="pre">empty)</span> <span class="pre">S)</span> <span class="pre">(union</span> <span class="pre">S</span> <span class="pre">S)</span></code>
-the rewrite tactic must exploit the monotony of <code class="docutils literal notranslate"><span class="pre">union</span></code> (axiom <code class="docutils literal notranslate"><span class="pre">union_compat</span></code>
-in the previous example). Applying <code class="docutils literal notranslate"><span class="pre">union_compat</span></code> by hand we are left with the
-goal <code class="docutils literal notranslate"><span class="pre">eq_set</span> <span class="pre">(union</span> <span class="pre">S</span> <span class="pre">S)</span> <span class="pre">(union</span> <span class="pre">S</span> <span class="pre">S)</span></code>.</p>
+<p>To replace <code class="docutils literal notranslate"><span class="pre">(union</span> <span class="pre">S</span> <span class="pre">empty)</span></code> with <code class="docutils literal notranslate"><span class="pre">S</span></code> in <code class="docutils literal notranslate"><span class="pre">eq_set</span> <span class="pre">(union</span> <span class="pre">(union</span> <span class="pre">S</span> <span class="pre">empty)</span> <span class="pre">S)</span>
+<span class="pre">(union</span> <span class="pre">S</span> <span class="pre">S)</span></code> the rewrite tactic must exploit the monotony of <code class="docutils literal notranslate"><span class="pre">union</span></code>. Since
+only the first argument is being replaced, it is necessary to prove that the
+second argument relates to itself.</p>
+<div class="rocqtop literal-block docutils container">
+<span></span><dl>
+<dt><span></span><span class="rocqdoc-keyword">Goal</span><span> </span><span class="rocqdoc-keyword">forall</span><span> (</span><span class="rocqdoc-var">S</span><span> : </span><span class="rocqdoc-tactic">set</span><span> </span><span class="rocqdoc-var">nat</span><span>),</span><span>
+  </span><span class="rocqdoc-var">eq_set</span><span> (</span><span class="rocqdoc-var">union</span><span> (</span><span class="rocqdoc-var">union</span><span> </span><span class="rocqdoc-var">S</span><span> (</span><span class="rocqdoc-var">empty</span><span> </span><span class="rocqdoc-var">nat</span><span>)) </span><span class="rocqdoc-var">S</span><span>) (</span><span class="rocqdoc-var">union</span><span> </span><span class="rocqdoc-var">S</span><span> </span><span class="rocqdoc-var">S</span><span>).</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>1 goal
+  
+  ============================
+  </span><span class="ansi-bold">forall</span><span> S : set nat, eq_set (union (union S (empty nat)) S) (union S S)
+</span></dd>
+<dt><span></span><span class="rocqdoc-keyword">Proof</span><span>.</span><span>
+</span></dt></dl>
+<span></span><dl>
+<dt><span></span><span class="rocqdoc-tactic">intros</span><span>; </span><span class="rocqdoc-tactic">apply</span><span> </span><span class="rocqdoc-var">union_compat</span><span>; [</span><span class="rocqdoc-tactic">apply</span><span> </span><span class="rocqdoc-var">empty_neutral</span><span>|].</span><span>
+</span></dt><dd><span>1 goal
+  
+  S : set nat
+  ============================
+  eq_set S S
+</span></dd>
+</dl>
+</div>
 </div>
 <p>When the relations associated with some arguments are not reflexive, the
 tactic cannot automatically prove the reflexivity goals, that are left
@@ -1746,16 +1778,16 @@ hypothesis can be performed only if the replaced term occurs in a
 covariant position.</p>
 <div class="admonition note">
 <p class="admonition-title">Example: Covariance and contravariance</p>
-<p>Suppose that division over real numbers has been defined as a morphism of signature
-<code class="docutils literal notranslate"><span class="pre">Z.div</span> <span class="pre">:</span> <span class="pre">Z.lt</span> <span class="pre">++&gt;</span> <span class="pre">Z.lt</span> <span class="pre">--&gt;</span> <span class="pre">Z.lt</span></code> (i.e. <code class="docutils literal notranslate"><span class="pre">Z.div</span></code> is increasing in
+<p>Suppose that subtraction over integers has been defined as a morphism of signature
+<code class="docutils literal notranslate"><span class="pre">Z.sub</span> <span class="pre">:</span> <span class="pre">Z.lt</span> <span class="pre">++&gt;</span> <span class="pre">Z.lt</span> <span class="pre">--&gt;</span> <span class="pre">Z.lt</span></code> (i.e. <code class="docutils literal notranslate"><span class="pre">Z.sub</span></code> is increasing in
 its first argument, but decreasing on the second one). Let <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>
 denote <code class="docutils literal notranslate"><span class="pre">Z.lt</span></code>. Under the hypothesis <code class="docutils literal notranslate"><span class="pre">H</span> <span class="pre">:</span> <span class="pre">x</span> <span class="pre">&lt;</span> <span class="pre">y</span></code> we have
-<code class="docutils literal notranslate"><span class="pre">k</span> <span class="pre">&lt;</span> <span class="pre">x</span> <span class="pre">/</span> <span class="pre">y</span> <span class="pre">-&gt;</span> <span class="pre">k</span> <span class="pre">&lt;</span> <span class="pre">x</span> <span class="pre">/</span> <span class="pre">x</span></code>, but not <code class="docutils literal notranslate"><span class="pre">k</span> <span class="pre">&lt;</span> <span class="pre">y</span> <span class="pre">/</span> <span class="pre">x</span> <span class="pre">-&gt;</span> <span class="pre">k</span> <span class="pre">&lt;</span> <span class="pre">x</span> <span class="pre">/</span> <span class="pre">x</span></code>. Dually,
-under the same hypothesis <code class="docutils literal notranslate"><span class="pre">k</span> <span class="pre">&lt;</span> <span class="pre">x</span> <span class="pre">/</span> <span class="pre">y</span> <span class="pre">-&gt;</span> <span class="pre">k</span> <span class="pre">&lt;</span> <span class="pre">y</span> <span class="pre">/</span> <span class="pre">y</span></code> holds, but
-<code class="docutils literal notranslate"><span class="pre">k</span> <span class="pre">&lt;</span> <span class="pre">y</span> <span class="pre">/</span> <span class="pre">x</span> <span class="pre">-&gt;</span> <span class="pre">k</span> <span class="pre">&lt;</span> <span class="pre">y</span> <span class="pre">/</span> <span class="pre">y</span></code> does not. Thus, if the current goal is
-<code class="docutils literal notranslate"><span class="pre">k</span> <span class="pre">&lt;</span> <span class="pre">x</span> <span class="pre">/</span> <span class="pre">x</span></code>, it is possible to replace only the second occurrence of
+<code class="docutils literal notranslate"><span class="pre">k</span> <span class="pre">&lt;</span> <span class="pre">x</span> <span class="pre">-</span> <span class="pre">y</span> <span class="pre">-&gt;</span> <span class="pre">k</span> <span class="pre">&lt;</span> <span class="pre">x</span> <span class="pre">-</span> <span class="pre">x</span></code>, but not <code class="docutils literal notranslate"><span class="pre">k</span> <span class="pre">&lt;</span> <span class="pre">y</span> <span class="pre">-</span> <span class="pre">x</span> <span class="pre">-&gt;</span> <span class="pre">k</span> <span class="pre">&lt;</span> <span class="pre">x</span> <span class="pre">-</span> <span class="pre">x</span></code>. Dually,
+under the same hypothesis <code class="docutils literal notranslate"><span class="pre">k</span> <span class="pre">&lt;</span> <span class="pre">x</span> <span class="pre">-</span> <span class="pre">y</span> <span class="pre">-&gt;</span> <span class="pre">k</span> <span class="pre">&lt;</span> <span class="pre">y</span> <span class="pre">-</span> <span class="pre">y</span></code> holds, but
+<code class="docutils literal notranslate"><span class="pre">k</span> <span class="pre">&lt;</span> <span class="pre">y</span> <span class="pre">-</span> <span class="pre">x</span> <span class="pre">-&gt;</span> <span class="pre">k</span> <span class="pre">&lt;</span> <span class="pre">y</span> <span class="pre">-</span> <span class="pre">y</span></code> does not. Thus, if the current goal is
+<code class="docutils literal notranslate"><span class="pre">k</span> <span class="pre">&lt;</span> <span class="pre">x</span> <span class="pre">-</span> <span class="pre">x</span></code>, it is possible to replace only the second occurrence of
 <code class="docutils literal notranslate"><span class="pre">x</span></code> (in contravariant position) with <code class="docutils literal notranslate"><span class="pre">y</span></code> since the obtained goal
-must imply the current one. On the contrary, if <code class="docutils literal notranslate"><span class="pre">k</span> <span class="pre">&lt;</span> <span class="pre">x</span> <span class="pre">/</span> <span class="pre">x</span></code> is an
+must imply the current one. On the contrary, if <code class="docutils literal notranslate"><span class="pre">k</span> <span class="pre">&lt;</span> <span class="pre">x</span> <span class="pre">-</span> <span class="pre">x</span></code> is an
 hypothesis, it is possible to replace only the first occurrence of
 <code class="docutils literal notranslate"><span class="pre">x</span></code> (in covariant position) with <code class="docutils literal notranslate"><span class="pre">y</span></code> since the current
 hypothesis must imply the obtained one.</p>
@@ -1771,13 +1803,13 @@ position is traversed.</p>
 <div class="admonition note">
 <p class="admonition-title">Example</p>
 <p>Let us continue the previous example and let us consider
-the goal <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">/</span> <span class="pre">(x</span> <span class="pre">/</span> <span class="pre">x)</span> <span class="pre">&lt;</span> <span class="pre">k</span></code>. The first and third occurrences of
+the goal <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">-</span> <span class="pre">(x</span> <span class="pre">-</span> <span class="pre">x)</span> <span class="pre">&lt;</span> <span class="pre">k</span></code>. The first and third occurrences of
 <code class="docutils literal notranslate"><span class="pre">x</span></code> are in a contravariant position, while the second one is in
 covariant position. More in detail, the second occurrence of <code class="docutils literal notranslate"><span class="pre">x</span></code>
-occurs covariantly in <code class="docutils literal notranslate"><span class="pre">(x</span> <span class="pre">/</span> <span class="pre">x)</span></code> (since division is covariant in
-its first argument), and thus contravariantly in <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">/</span> <span class="pre">(x</span> <span class="pre">/</span> <span class="pre">x)</span></code>
-(since division is contravariant in its second argument), and finally
-covariantly in <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">/</span> <span class="pre">(x</span> <span class="pre">/</span> <span class="pre">x)</span> <span class="pre">&lt;</span> <span class="pre">k</span></code> (since <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>, as every
+occurs covariantly in <code class="docutils literal notranslate"><span class="pre">(x</span> <span class="pre">-</span> <span class="pre">x)</span></code> (since subtraction is covariant in
+its first argument), and thus contravariantly in <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">-</span> <span class="pre">(x</span> <span class="pre">-</span> <span class="pre">x)</span></code>
+(since subtraction is contravariant in its second argument), and finally
+covariantly in <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">-</span> <span class="pre">(x</span> <span class="pre">-</span> <span class="pre">x)</span> <span class="pre">&lt;</span> <span class="pre">k</span></code> (since <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>, as every
 transitive relation, is contravariant in its first argument with
 respect to the relation itself).</p>
 </div>
@@ -1819,7 +1851,7 @@ form <code class="docutils literal notranslate"><span class="pre">R</span> <span
 <h2>Declaring rewrite relations<a class="headerlink" href="#declaring-rewrite-relations" title="Link to this heading"></a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">RewriteRelation</span> <span class="pre">A</span> <span class="pre">R</span></code> typeclass, indexed by a type and relation, registers
 relations that generalized rewriting handles.
-The default instances of this class are the <code class="docutils literal notranslate"><span class="pre">iff`</span></code>, <code class="docutils literal notranslate"><span class="pre">impl</span></code> and <code class="docutils literal notranslate"><span class="pre">flip</span> <span class="pre">impl</span></code>
+The default instances of this class are the <code class="docutils literal notranslate"><span class="pre">iff</span></code>, <code class="docutils literal notranslate"><span class="pre">impl</span></code> and <code class="docutils literal notranslate"><span class="pre">flip</span> <span class="pre">impl</span></code>
 relations on <code class="docutils literal notranslate"><span class="pre">Prop</span></code>, any declared <code class="docutils literal notranslate"><span class="pre">Equivalence</span></code> on a type <code class="docutils literal notranslate"><span class="pre">A</span></code> (including <a class="reference internal" href="../proofs/writing-proofs/equality.html#term-Leibniz-equality"><span class="xref std std-term">Leibniz equality</span></a>),
 and pointwise extensions of declared relations for function types.
 Users can simply add new instances of this class to register relations with the generalized rewriting
@@ -1851,17 +1883,17 @@ represented as records and instances of these classes are put in a
 hint database. For example, the declaration:</p>
 <div class="rocqdoc literal-block docutils container">
 <span><span></span><span class="rocqdoc-keyword">Add</span><span> </span><span class="rocqdoc-var">Parametric</span><span> </span><span class="rocqdoc-var">Relation</span><span> (</span><span class="rocqdoc-var">x1</span><span> : </span><span class="rocqdoc-var">T1</span><span>) ... (</span><span class="rocqdoc-var">xn</span><span> : </span><span class="rocqdoc-var">Tn</span><span>) : (</span><span class="rocqdoc-var">A</span><span> </span><span class="rocqdoc-var">t1</span><span> ... </span><span class="rocqdoc-var">tn</span><span>) (</span><span class="rocqdoc-var">Aeq</span><span> </span><span class="rocqdoc-var">t</span><span>′1 ... </span><span class="rocqdoc-var">t</span><span>′</span><span class="rocqdoc-var">m</span><span>)</span><span>
-  [</span><span class="rocqdoc-tactic">reflexivity</span><span> </span><span class="rocqdoc-var">proved</span><span> </span><span class="rocqdoc-tactic">by</span><span> </span><span class="rocqdoc-var">refl</span><span>]</span><span>
-  [</span><span class="rocqdoc-tactic">symmetry</span><span> </span><span class="rocqdoc-var">proved</span><span> </span><span class="rocqdoc-tactic">by</span><span> </span><span class="rocqdoc-var">sym</span><span>]</span><span>
-  [</span><span class="rocqdoc-tactic">transitivity</span><span> </span><span class="rocqdoc-var">proved</span><span> </span><span class="rocqdoc-tactic">by</span><span> </span><span class="rocqdoc-var">trans</span><span>]</span><span>
+  </span><span class="rocqdoc-tactic">reflexivity</span><span> </span><span class="rocqdoc-var">proved</span><span> </span><span class="rocqdoc-tactic">by</span><span> </span><span class="rocqdoc-var">refl</span><span>
+  </span><span class="rocqdoc-tactic">symmetry</span><span> </span><span class="rocqdoc-var">proved</span><span> </span><span class="rocqdoc-tactic">by</span><span> </span><span class="rocqdoc-var">sym</span><span>
+  </span><span class="rocqdoc-tactic">transitivity</span><span> </span><span class="rocqdoc-var">proved</span><span> </span><span class="rocqdoc-tactic">by</span><span> </span><span class="rocqdoc-var">trans</span><span>
   </span><span class="rocqdoc-keyword">as</span><span> </span><span class="rocqdoc-var">id</span><span>.</span><span>
 </span></span></div>
 <p>is equivalent to an instance declaration:</p>
 <div class="rocqdoc literal-block docutils container">
-<span><span></span><span class="rocqdoc-keyword">Instance</span><span> </span><span class="rocqdoc-var">id</span><span> (</span><span class="rocqdoc-var">x1</span><span> : </span><span class="rocqdoc-var">T1</span><span>) ... (</span><span class="rocqdoc-var">xn</span><span> : </span><span class="rocqdoc-var">Tn</span><span>) : &#64;</span><span class="rocqdoc-var">Equivalence</span><span> (</span><span class="rocqdoc-var">A</span><span> </span><span class="rocqdoc-var">t1</span><span> ... </span><span class="rocqdoc-var">tn</span><span>) (</span><span class="rocqdoc-var">Aeq</span><span> </span><span class="rocqdoc-var">t</span><span>′1 ... </span><span class="rocqdoc-var">t</span><span>′</span><span class="rocqdoc-var">m</span><span>) :=</span><span>
-  [</span><span class="rocqdoc-var">Equivalence_Reflexive</span><span> := </span><span class="rocqdoc-var">refl</span><span>]</span><span>
-  [</span><span class="rocqdoc-var">Equivalence_Symmetric</span><span> := </span><span class="rocqdoc-var">sym</span><span>]</span><span>
-  [</span><span class="rocqdoc-var">Equivalence_Transitive</span><span> := </span><span class="rocqdoc-var">trans</span><span>].</span><span>
+<span><span></span><span class="rocqdoc-keyword">Instance</span><span> </span><span class="rocqdoc-var">id</span><span> (</span><span class="rocqdoc-var">x1</span><span> : </span><span class="rocqdoc-var">T1</span><span>) ... (</span><span class="rocqdoc-var">xn</span><span> : </span><span class="rocqdoc-var">Tn</span><span>) : &#64;</span><span class="rocqdoc-var">Equivalence</span><span> (</span><span class="rocqdoc-var">A</span><span> </span><span class="rocqdoc-var">t1</span><span> ... </span><span class="rocqdoc-var">tn</span><span>) (</span><span class="rocqdoc-var">Aeq</span><span> </span><span class="rocqdoc-var">t</span><span>′1 ... </span><span class="rocqdoc-var">t</span><span>′</span><span class="rocqdoc-var">m</span><span>) := {</span><span>
+  </span><span class="rocqdoc-var">Equivalence_Reflexive</span><span> := </span><span class="rocqdoc-var">refl</span><span>;</span><span>
+  </span><span class="rocqdoc-var">Equivalence_Symmetric</span><span> := </span><span class="rocqdoc-var">sym</span><span>;</span><span>
+  </span><span class="rocqdoc-var">Equivalence_Transitive</span><span> := </span><span class="rocqdoc-var">trans</span><span> }.</span><span>
 </span></span></div>
 <p>The declaration itself amounts to the definition of an object of the record type
 <code class="docutils literal notranslate"><span class="pre">Stdlib.Classes.RelationClasses.Equivalence</span></code> and a hint added to the
@@ -2418,7 +2450,7 @@ smaller than <code class="docutils literal notranslate"><span class="pre">R</spa
 can then declare only a few morphisms instances that generate the
 complete set of signatures for a particular <a class="reference internal" href="../language/core/definitions.html#term-constant"><span class="xref std std-term">constant</span></a>. By default, the
 only declared subrelation is <code class="docutils literal notranslate"><span class="pre">iff</span></code>, which is a subrelation of <code class="docutils literal notranslate"><span class="pre">impl</span></code> and
-<code class="docutils literal notranslate"><span class="pre">inverse</span> <span class="pre">impl</span></code> (the dual of implication). That’s why we can declare only
+<code class="docutils literal notranslate"><span class="pre">flip</span> <span class="pre">impl</span></code> (the dual of implication). That’s why we can declare only
 two morphisms for conjunction: <code class="docutils literal notranslate"><span class="pre">Proper</span> <span class="pre">(impl</span> <span class="pre">==&gt;</span> <span class="pre">impl</span> <span class="pre">==&gt;</span> <span class="pre">impl)</span> <span class="pre">and</span></code> and
 <code class="docutils literal notranslate"><span class="pre">Proper</span> <span class="pre">(iff</span> <span class="pre">==&gt;</span> <span class="pre">iff</span> <span class="pre">==&gt;</span> <span class="pre">iff)</span> <span class="pre">and</span></code>. This is sufficient to satisfy any
 rewriting constraints arising from a rewrite using <code class="docutils literal notranslate"><span class="pre">iff</span></code>, <code class="docutils literal notranslate"><span class="pre">impl</span></code> or
@@ -2642,16 +2674,16 @@ rewriting <code class="docutils literal notranslate"><span class="notation"><spa
 <p>The basic control strategy semantics are straightforward: strategies
 are applied to subterms of the term to rewrite, starting from the root
 of the term. The lemma strategies unify the left-hand-side of the
-lemma with the current subterm and on success rewrite it to the right-
-hand-side. Composition can be used to continue rewriting on the
+lemma with the current subterm and on success rewrite it to the
+right-hand-side. Composition can be used to continue rewriting on the
 current subterm. The <code class="docutils literal notranslate"><span class="pre">fail</span></code> strategy always fails while the identity
 strategy succeeds without making progress. The reflexivity strategy
 succeeds, making progress using a reflexivity proof of rewriting.
 <code class="docutils literal notranslate"><span class="pre">progress</span></code> tests progress of the argument <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="#grammar-token-rewstrategy1"><span class="hole"><span class="pre">rewstrategy1</span></span></a></span></code> and
 fails if no progress was made, while <code class="docutils literal notranslate"><span class="pre">try</span></code> always succeeds, catching
 failures. <code class="docutils literal notranslate"><span class="pre">choice</span></code> uses the first successful strategy in the list of
-<code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="#grammar-token-rewstrategy0"><span class="hole"><span class="pre">rewstrategy0</span></span></a><span>`<span><span class="pre">s.</span></span></span> <span><span><span class="pre">One</span></span></span> <span><span><span class="pre">can</span></span></span> <span><span><span class="pre">iterate</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">strategy</span></span></span> <span><span><span class="pre">at</span></span></span> <span><span><span class="pre">least</span></span></span> <span><span><span class="pre">1</span></span></span> <span><span><span class="pre">time</span></span></span> <span><span><span class="pre">using</span>
-</span>``<span><span class="pre">repeat</span></span>`</span></span></code> and at least 0 times using <code class="docutils literal notranslate"><span class="pre">any</span></code>.</p>
+<code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="#grammar-token-rewstrategy0"><span class="hole"><span class="pre">rewstrategy0</span></span></a></span></code>s. One can iterate a strategy at least 1 time using
+<code class="docutils literal notranslate"><span class="pre">repeat</span></code> and at least 0 times using <code class="docutils literal notranslate"><span class="pre">any</span></code>.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">subterm</span></code> and <code class="docutils literal notranslate"><span class="pre">subterms</span></code> strategies apply their argument <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="#grammar-token-rewstrategy1"><span class="hole"><span class="pre">rewstrategy1</span></span></a></span></code> to
 respectively one or all subterms of the current term under
 consideration, left-to-right. <code class="docutils literal notranslate"><span class="pre">subterm</span></code> stops at the first subterm for
