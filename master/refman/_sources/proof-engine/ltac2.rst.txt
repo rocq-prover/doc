@@ -621,7 +621,7 @@ Built-in quotations
 The current implementation recognizes the following built-in quotations:
 
 - ``ident``, which parses identifiers (type ``Init.ident``).
-- ``constr``, which parses Rocq terms and produces an-evar free term at runtime
+- ``constr``, which parses Rocq terms and produces an evar-free term at runtime
   (type ``Init.constr``).
 - ``lconstr``, which is equivalent to ``constr`` but at precedence level 200.
 - ``open_constr``, which parses Rocq terms and produces a term potentially with
@@ -964,7 +964,7 @@ one from Ltac1, except that it requires the goal to be focused.
    (Equivalent to this :ref:`Ltac1 example<match_vs_lazymatch_ex>`.)
 
    These lines define a `msg` tactic that's used in several examples as a more-succinct
-   alternative to `print (to_string "...")`:
+   alternative to `print (of_string "...")`:
 
    .. rocqtop:: in
 
@@ -1084,7 +1084,7 @@ Match over goals
 
    .. more detail here: https://github.com/rocq-prover/rocq/pull/12085#discussion_r470406466
 
-   :n:`{*, @gmatch_pattern }`
+   :n:`{*, @gmatch_hyp_pattern }`
       Patterns to match with hypotheses.  Each pattern must match a distinct hypothesis in order
       for the branch to match.
 
@@ -2006,36 +2006,48 @@ at the call site.
 
 A typical example of a delayed function:
 
-:n:`Ltac foo := blah.`
+.. rocqdoc::
+
+   Ltac foo := blah.
 
 becomes
 
-:n:`Ltac2 foo () := blah.`
+.. rocqdoc::
+
+   Ltac2 foo () := blah.
 
 All subsequent calls to `foo` must be applied to perform the same effect as
 before.
 
 Likewise, for arguments:
 
-:n:`Ltac bar tac := tac; tac; tac.`
+.. rocqdoc::
+
+   Ltac bar tac := tac; tac; tac.
 
 becomes
 
-:n:`Ltac2 bar tac := tac (); tac (); tac ().`
+.. rocqdoc::
+
+   Ltac2 bar tac := tac (); tac (); tac ().
 
 We recommend the use of syntactic notations to ease the transition. For
 instance, the first example can alternatively be written as:
 
-:n:`Ltac2 foo0 () := blah.`
-:n:`Ltac2 Notation foo := foo0 ().`
+.. rocqdoc::
+
+   Ltac2 foo0 () := blah.
+   Ltac2 Notation foo := foo0 ().
 
 This allows to keep the subsequent calls to the tactic as-is, as the
 expression `foo` will be implicitly expanded everywhere into `foo0 ()`. Such
 a trick also works for arguments, as arguments of syntactic notations are
 implicitly thunked. The second example could thus be written as follows.
 
-:n:`Ltac2 bar0 tac := tac (); tac (); tac ().`
-:n:`Ltac2 Notation bar := bar0.`
+.. rocqdoc::
+
+   Ltac2 bar0 tac := tac (); tac (); tac ().
+   Ltac2 Notation bar := bar0.
 
 Variable binding
 ~~~~~~~~~~~~~~~~
