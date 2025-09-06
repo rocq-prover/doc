@@ -158,13 +158,13 @@ to apply specific treatments accordingly.
    term_match ::= match {+, @case_item } {? return @term100 } with {? %| } {*| @eqn } end
    case_item ::= @term100 {? as @name } {? in @pattern }
    eqn ::= {+| {+, @pattern } } => @term
-   pattern ::= @pattern10 : @term
+   pattern ::= @pattern : @term
    | @pattern10
-   pattern10 ::= @pattern1 as @name
-   | @pattern1 {* @pattern1 }
+   pattern10 ::= @pattern10 as @name
+   | @pattern10 {* @pattern1 }
    | @ @qualid {* @pattern1 }
-   pattern1 ::= @pattern0 % @scope_key
-   | @pattern0 %_ @scope_key
+   pattern1 ::= @pattern1 % @scope_key
+   | @pattern1 %_ @scope_key
    | @pattern0
    pattern0 ::= @qualid
    | %{%| {* @qualid := @pattern } %|%}

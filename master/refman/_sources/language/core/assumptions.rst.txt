@@ -120,7 +120,7 @@ Function application
 .. insertprodn term_application arg
 
 .. prodn::
-   term_application ::= @term1 {+ @arg }
+   term_application ::= @term10 {+ @arg }
    | @ @qualid_annotated {+ @term1 }
    arg ::= ( @ident := @term )
    | ( @natural := @term )

@@ -77,11 +77,11 @@ close to OCaml. Types follow the simply-typed syntax of OCaml.
 .. insertprodn ltac2_type ltac2_typevar
 
 .. prodn::
-   ltac2_type ::= @ltac2_type2 -> @ltac2_type
+   ltac2_type ::= @ltac2_type -> @ltac2_type
    | @ltac2_type2
-   ltac2_type2 ::= @ltac2_type1 * {+* @ltac2_type1 }
+   ltac2_type2 ::= @ltac2_type2 * {+* @ltac2_type1 }
    | @ltac2_type1
-   ltac2_type1 ::= @ltac2_type0 @qualid
+   ltac2_type1 ::= @ltac2_type1 @qualid
    | @ltac2_type0
    ltac2_type0 ::= ( {+, @ltac2_type } ) {? @qualid }
    | @ltac2_typevar
@@ -223,18 +223,18 @@ There is dedicated syntax for list and array literals.
 .. insertprodn ltac2_expr ltac2_atom
 
 .. prodn::
-   ltac2_expr ::= @ltac2_expr5 ; @ltac2_expr
+   ltac2_expr ::= @ltac2_expr ; @ltac2_expr
    | @ltac2_expr5
    ltac2_expr5 ::= fun {+ @tac2pat0 } {? : @ltac2_type } => @ltac2_expr
    | let {? rec } @ltac2_let_clause {* with @ltac2_let_clause } in @ltac2_expr
    | @ltac2_expr3
    ltac2_let_clause ::= {+ @tac2pat0 } {? : @ltac2_type } := @ltac2_expr
-   ltac2_expr3 ::= {+, @ltac2_expr2 }
-   ltac2_expr2 ::= @ltac2_expr1 :: @ltac2_expr2
+   ltac2_expr3 ::= {+, @ltac2_expr3 }
+   ltac2_expr2 ::= @ltac2_expr2 :: @ltac2_expr2
    | @ltac2_expr1
-   ltac2_expr1 ::= @ltac2_expr0 {+ @ltac2_expr0 }
-   | @ltac2_expr0 .( @qualid )
-   | @ltac2_expr0 .( @qualid ) := @ltac2_expr5
+   ltac2_expr1 ::= @ltac2_expr1 {+ @ltac2_expr0 }
+   | @ltac2_expr1 .( @qualid )
+   | @ltac2_expr1 .( @qualid ) := @ltac2_expr5
    | @ltac2_expr0
    tac2rec_fieldexpr ::= @qualid {? := @ltac2_expr1 }
    ltac2_expr0 ::= ( @ltac2_expr )
@@ -1223,9 +1223,9 @@ Match on values
       ltac2_branches ::= {? %| } {+| {? @atomic_tac2pat } => @ltac2_expr }
       tac2pat1 ::= @qualid {+ @tac2pat0 }
       | @qualid
-      | @tac2pat0 :: @tac2pat0
-      | @tac2pat0 %| {+| @tac2pat1 }
-      | @tac2pat0 as @ident
+      | @tac2pat1 :: @tac2pat0
+      | @tac2pat1 %| {+| @tac2pat1 }
+      | @tac2pat1 as @ident
       | @tac2pat0
       tac2pat0 ::= _
       | ()
