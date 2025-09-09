@@ -3915,8 +3915,8 @@ Notes:
       Notation "\sum_ ( m <= i < n | P ) F" :=
         (\big[plus/O]_(m <= i < n | P%bool) F%nat).
 
-      Notation eq_bigr := (fun n m => eq_bigr_ 0 plus (index_iota n m)).
-      Notation eq_big := (fun n m => eq_big_ 0 plus (index_iota n m)).
+      Abbreviation eq_bigr := (fun n m => eq_bigr_ 0 plus (index_iota n m)).
+      Abbreviation eq_big := (fun n m => eq_big_ 0 plus (index_iota n m)).
 
       Parameter odd : nat -> bool.
       Parameter prime : nat -> bool.
@@ -4487,8 +4487,8 @@ The following example is taken from ``ssreflect.v``, where the
 
 .. rocqdoc::
 
-   Notation RHS := (X in _ = X)%pattern.
-   Notation LHS := (X in X = _)%pattern.
+   Abbreviation RHS := (X in _ = X)%pattern.
+   Abbreviation LHS := (X in X = _)%pattern.
 
 Shortcuts defined this way can be freely used in place of the trailing
 ``ident in term`` part of any contextual pattern. Some examples follow:

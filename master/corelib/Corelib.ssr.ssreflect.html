@@ -404,9 +404,6 @@ Declare Ssr keywords: "is" "isn't" "of" "//" "/=" and "//=".
 Save primitive notation that will be overloaded. 
 </div>
 <div class="code">
-<span class="id" title="keyword">Local Notation</span> <a id="RocqGenericIf" class="idref" href="#RocqGenericIf"><span class="id" title="abbreviation">RocqGenericIf</span></a> <span class="id" title="var">c</span> <span class="id" title="var">vT</span> <span class="id" title="var">vF</span> := (<span class="id" title="keyword">if</span> <span class="id" title="var">c</span> <span class="id" title="keyword">then</span> <span class="id" title="var">vT</span> <span class="id" title="keyword">else</span> <span class="id" title="var">vF</span>) (<span class="id" title="var">only</span> <span class="id" title="var">parsing</span>).<br/>
-<span class="id" title="keyword">Local Notation</span> <a id="RocqGenericDependentIf" class="idref" href="#RocqGenericDependentIf"><span class="id" title="abbreviation">RocqGenericDependentIf</span></a> <span class="id" title="var">c</span> <span class="id" title="var">x</span> <span class="id" title="var">R</span> <span class="id" title="var">vT</span> <span class="id" title="var">vF</span> :=<br/>
-&nbsp;&nbsp;(<span class="id" title="keyword">if</span> <span class="id" title="var">c</span> <span class="id" title="keyword">as</span> <span class="id" title="var">x</span> <span class="id" title="keyword">return</span> <span class="id" title="var">R</span> <span class="id" title="keyword">then</span> <span class="id" title="var">vT</span> <span class="id" title="keyword">else</span> <span class="id" title="var">vF</span>) (<span class="id" title="var">only</span> <span class="id" title="var">parsing</span>).<br/>
 
 <br/>
 </div>
@@ -758,7 +755,6 @@ Notation " [ 'the' sT 'of' v : 'Type' ]" := (@get Type sT v _ )
 <div class="code">
 
 <br/>
-<span class="id" title="keyword">Notation</span> <a id="unkeyed" class="idref" href="#unkeyed"><span class="id" title="abbreviation">unkeyed</span></a> <span class="id" title="var">x</span> := (<span class="id" title="keyword">let</span> <a id="flex:49" class="idref" href="#flex:49"><span class="id" title="binder">flex</span></a> := <span class="id" title="var">x</span> <span class="id" title="tactic">in</span> <a class="idref" href="Corelib.ssr.ssreflect.html#flex:49"><span class="id" title="variable">flex</span></a>).<br/>
 
 <br/>
 </div>
@@ -806,7 +802,6 @@ Notation " [ 'the' sT 'of' v : 'Type' ]" := (@get Type sT v _ )
 <div class="code">
 
 <br/>
-<span class="id" title="keyword">Notation</span> <a id="nosimpl" class="idref" href="#nosimpl"><span class="id" title="abbreviation">nosimpl</span></a> <span class="id" title="var">t</span> := (<span class="id" title="keyword">let</span>: <a class="idref" href="Corelib.Init.Datatypes.html#tt"><span class="id" title="constructor">tt</span></a> := <a class="idref" href="Corelib.Init.Datatypes.html#tt"><span class="id" title="constructor">tt</span></a> <span class="id" title="tactic">in</span> <span class="id" title="var">t</span>).<br/>
 
 <br/>
 <span class="id" title="keyword">Lemma</span> <a id="master_key" class="idref" href="#master_key"><span class="id" title="lemma">master_key</span></a> : <a class="idref" href="Corelib.Init.Datatypes.html#unit"><span class="id" title="inductive">unit</span></a>.  <br/>
@@ -909,7 +904,7 @@ Notation " [ 'the' sT 'of' v : 'Type' ]" := (@get Type sT v _ )
 </div>
 
 <div class="doc">
- Notation to trigger Rocq elaboration to fill the holes 
+ Abbreviation to trigger Rocq elaboration to fill the holes 
 </div>
 <div class="code">
 <span class="id" title="keyword">Notation</span> <a id="acbe05f362ecaad3d4a05486db0b352d" class="idref" href="#acbe05f362ecaad3d4a05486db0b352d"><span class="id" title="notation">&quot;</span></a>[ 'elaborate' x ]" := (<span class="id" title="keyword">ltac</span>:(<span class="id" title="tactic">refine</span> <span class="id" title="var">x</span>)) (<span class="id" title="var">only</span> <span class="id" title="var">parsing</span>).<br/>
@@ -1178,10 +1173,8 @@ Implementation notes:
 <span class="id" title="keyword">Canonical</span> <a class="idref" href="Corelib.ssr.ssreflect.html#NonPropType.test_Prop"><span class="id" title="definition">test_Prop</span></a>.<br/>
 <span class="id" title="keyword">Canonical</span> <a class="idref" href="Corelib.ssr.ssreflect.html#NonPropType.test_negative"><span class="id" title="definition">test_negative</span></a>.<br/>
 <span class="id" title="keyword">Canonical</span> <a class="idref" href="Corelib.ssr.ssreflect.html#NonPropType.check"><span class="id" title="definition">check</span></a>.<br/>
-<span class="id" title="keyword">Notation</span> <a id="NonPropType.Exports.nonPropType" class="idref" href="#NonPropType.Exports.nonPropType"><span class="id" title="abbreviation">nonPropType</span></a> := <a class="idref" href="Corelib.ssr.ssreflect.html#NonPropType.type"><span class="id" title="record">type</span></a>.<br/>
 <span class="id" title="keyword">Coercion</span> <a class="idref" href="Corelib.ssr.ssreflect.html#NonPropType.callee"><span class="id" title="projection">callee</span></a> <a class="idref" href="Corelib.ssr.ssreflect.html#NonPropType.callee"><span class="id" title="projection">:</span></a> <a class="idref" href="Corelib.ssr.ssreflect.html#NonPropType.callee"><span class="id" title="projection">call_of</span></a> <a class="idref" href="Corelib.ssr.ssreflect.html#NonPropType.callee"><span class="id" title="projection">&gt;-&gt;</span></a> <a class="idref" href="Corelib.ssr.ssreflect.html#NonPropType.callee"><span class="id" title="projection">Sortclass</span></a>.<br/>
 <span class="id" title="keyword">Coercion</span> <a class="idref" href="Corelib.ssr.ssreflect.html#NonPropType.frame"><span class="id" title="projection">frame</span></a> <a class="idref" href="Corelib.ssr.ssreflect.html#NonPropType.frame"><span class="id" title="projection">:</span></a> <a class="idref" href="Corelib.ssr.ssreflect.html#NonPropType.frame"><span class="id" title="projection">type</span></a> <a class="idref" href="Corelib.ssr.ssreflect.html#NonPropType.frame"><span class="id" title="projection">&gt;-&gt;</span></a> <a class="idref" href="Corelib.ssr.ssreflect.html#NonPropType.frame"><span class="id" title="projection">call_of</span></a>.<br/>
-<span class="id" title="keyword">Notation</span> <a id="NonPropType.Exports.notProp" class="idref" href="#NonPropType.Exports.notProp"><span class="id" title="abbreviation">notProp</span></a> <span class="id" title="var">T</span> := (@<a class="idref" href="Corelib.ssr.ssreflect.html#NonPropType.check"><span class="id" title="definition">check</span></a> <a class="idref" href="Corelib.Init.Datatypes.html#false"><span class="id" title="constructor">false</span></a> <a class="idref" href="Corelib.ssr.ssreflect.html#NonPropType.test_negative"><span class="id" title="definition">test_negative</span></a> (<a class="idref" href="Corelib.ssr.ssreflect.html#NonPropType.call"><span class="id" title="definition">call</span></a> <span class="id" title="var">T</span>)).<br/>
 <span class="id" title="keyword">End</span> <a class="idref" href="Corelib.ssr.ssreflect.html#NonPropType.Exports"><span class="id" title="module">Exports</span></a>.<br/>
 
 <br/>

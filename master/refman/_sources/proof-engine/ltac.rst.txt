@@ -2504,7 +2504,7 @@ The following example requires the Stdlib library to use the :tacn:`lia` tactic.
    Ltac mytauto := tauto.
    Ltac tac := intros; repeat split; lia || mytauto.
 
-   Notation max x y := (x + (y - x)) (only parsing).
+   Abbreviation max x y := (x + (y - x)) (only parsing).
 
    Goal forall x y z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z,
        max x (max y z) = max (max x y) z /\ max x (max y z) = max (max x y) z

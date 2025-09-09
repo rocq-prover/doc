@@ -524,7 +524,7 @@ Enabling and disabling notations
       | in constr
 
    Enables or disables notations previously defined with
-   :cmd:`Notation` or :cmd:`Notation (abbreviation)`.
+   :cmd:`Notation` or :cmd:`Abbreviation`.
    Disabling a notation doesn't remove parsing rules or tokens defined by the notation.
    The command has no effect on notations reserved with :cmd:`Reserved Notation`.
    At least one of
@@ -1889,8 +1889,10 @@ Displaying information about scopes
 Abbreviations
 --------------
 
-.. cmd:: Notation @ident {* @ident__parm } := @one_term {? ( {+, @syntax_modifier } ) }
-   :name: Notation (abbreviation)
+.. cmd:: Abbreviation @ident {* @ident__parm } := @one_term {? ( {+, @syntax_modifier } ) }
+
+   .. deprecated
+      .. cmd:: Notation @ident {* @ident__parm } := @one_term {? ( {+, @syntax_modifier } ) }
 
    .. todo: for some reason, Sphinx doesn't complain about a duplicate name if
       :name: is omitted
@@ -1915,7 +1917,7 @@ Abbreviations
 
    .. rocqtop:: in
 
-      Notation Nlist := (list nat).
+      Abbreviation Nlist := (list nat).
 
    .. rocqtop:: all
 
@@ -1923,7 +1925,7 @@ Abbreviations
 
    .. rocqtop:: in
 
-      Notation reflexive R := (forall x, R x x).
+      Abbreviation reflexive R := (forall x, R x x).
 
    .. rocqtop:: all
 
@@ -1932,7 +1934,7 @@ Abbreviations
 
    .. rocqtop:: in
 
-      Notation Plus1 B := (Nat.add B 1).
+      Abbreviation Plus1 B := (Nat.add B 1).
 
    .. rocqtop:: all
 
@@ -1962,7 +1964,7 @@ Abbreviations
 
    .. rocqtop:: in
 
-      Notation id := (explicit_id _).
+      Abbreviation id := (explicit_id _).
 
    .. rocqtop:: all
 
@@ -1986,7 +1988,7 @@ Abbreviations
       Definition force2 q (P:nat*nat -> Prop) :=
         (forall n', n' >= fst q -> forall p', p' >= snd q -> P (n', p')).
 
-      Notation F p P := (force2 p (fun p => P)).
+      Abbreviation F p P := (force2 p (fun p => P)).
       Check exists x y, F (x,y) (x >= 1 /\ y >= 2).
 
 .. extracted from Gallina chapter
@@ -2463,7 +2465,7 @@ The following errors apply to both string and number notations:
 
    .. rocqtop:: in
 
-      Notation nSet := Set (only parsing).
+      Abbreviation nSet := Set (only parsing).
       Number Notation nSet of_uint to_uint (via I
         mapping [Empty_set => Iempty, unit => Iunit, sum => Isum]) : type_scope.
 
@@ -2545,7 +2547,7 @@ The following errors apply to both string and number notations:
 
    .. rocqtop:: in reset
 
-      Notation string := (list Byte.byte) (only parsing).
+      Abbreviation string := (list Byte.byte) (only parsing).
       Definition id_string := @id string.
 
       String Notation string id_string id_string : list_scope.

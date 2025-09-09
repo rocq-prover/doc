@@ -11,7 +11,7 @@ Deprecating library objects, tactics or library files
 
 You may use the following :term:`attribute` to deprecate a notation,
 tactic, definition, axiom, theorem or file.  When renaming a definition or theorem, you can introduce a
-deprecated compatibility alias using :cmd:`Notation (abbreviation)`
+deprecated compatibility alias using :cmd:`Abbreviation`
 (see :ref:`the example below <compatibility-alias>`).
 
 .. attr:: deprecated ( {? since = @string , } {? note = @string , } {? use = @qualid } )
@@ -138,7 +138,7 @@ notation, definition, axiom, theorem or file.
 
       Definition bar x := S x.
       #[deprecated(since="mylib 1.2", note="Use bar instead.")]
-      Notation foo := bar (only parsing).
+      Abbreviation foo := bar (only parsing).
 
    Then, the following code still works, but emits a warning:
 

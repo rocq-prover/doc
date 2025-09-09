@@ -572,7 +572,7 @@ instances of the ``LEQ`` class.
     [find m | m ~ m0 | Is_not_the_right_mixin ]
     LEQ._Pack T (LEQ.Class ce co m).
 
-   Notation Pack T m := (packager T _ _ m _ id _ id _ id _ id _ id).
+   Abbreviation Pack T m := (packager T _ _ m _ id _ id _ id _ id _ id).
 
 The object ``Pack`` takes a type ``T`` (the key) and a mixin ``m``. It infers all
 the other pieces of the class ``LEQ`` and declares them as canonical
