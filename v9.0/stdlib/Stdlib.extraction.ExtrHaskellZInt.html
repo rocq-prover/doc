@@ -280,18 +280,18 @@ Extraction of <span class="inlinecode"><span class="id" title="var">Z</span></sp
 </div>
 
 <div class="doc">
-<a id="lab367"></a><h1 class="section">Disclaimer: trying to obtain efficient certified programs</h1>
+<a id="lab509"></a><h1 class="section">Disclaimer: trying to obtain efficient certified programs</h1>
 
-<a id="lab368"></a><h1 class="section">by extracting <span class="inlinecode"><span class="id" title="var">Z</span></span> into <span class="inlinecode"><span class="id" title="var">Int</span></span> is definitively *not* a good idea.</h1>
+<a id="lab510"></a><h1 class="section">by extracting <span class="inlinecode"><span class="id" title="var">Z</span></span> into <span class="inlinecode"><span class="id" title="var">Int</span></span> is definitively *not* a good idea.</h1>
 
-<a id="lab369"></a><h1 class="section">See comments in <span class="inlinecode"><span class="id" title="var">ExtrOcamlNatInt.v</span></span>.</h1>
+<a id="lab511"></a><h1 class="section">See comments in <span class="inlinecode"><span class="id" title="var">ExtrOcamlNatInt.v</span></span>.</h1>
 
  
 </div>
 <div class="code">
 
 <br/>
-<span class="id" title="keyword">Extract</span> <span class="id" title="keyword">Inductive</span> <a class="idref" href="../corelib/Corelib.Numbers.BinNums.html#positive"><span class="id" title="inductive">positive</span></a> =&gt; "Prelude.Int" [<br/>
+<span class="id" title="keyword">Extract</span> <span class="id" title="keyword">Inductive</span> <a class="idref" href="http://coq.inria.fr/doc/V9.0.0/stdlib//Corelib.Numbers.BinNums.html#positive"><span class="id" title="inductive">positive</span></a> =&gt; "Prelude.Int" [<br/>
 &nbsp;&nbsp;"(\x -&gt; 2 Prelude.* x Prelude.+ 1)"<br/>
 &nbsp;&nbsp;"(\x -&gt; 2 Prelude.* x)"<br/>
 &nbsp;&nbsp;"1" ]<br/>
@@ -301,7 +301,7 @@ Extraction of <span class="inlinecode"><span class="id" title="var">Z</span></sp
                    else fO (n `Prelude.div` 2))".<br/>
 
 <br/>
-<span class="id" title="keyword">Extract</span> <span class="id" title="keyword">Inductive</span> <a class="idref" href="../corelib/Corelib.Numbers.BinNums.html#Z"><span class="id" title="inductive">Z</span></a> =&gt; "Prelude.Int" [ "0" "(\x -&gt; x)" "Prelude.negate" ]<br/>
+<span class="id" title="keyword">Extract</span> <span class="id" title="keyword">Inductive</span> <a class="idref" href="http://coq.inria.fr/doc/V9.0.0/stdlib//Corelib.Numbers.BinNums.html#Z"><span class="id" title="inductive">Z</span></a> =&gt; "Prelude.Int" [ "0" "(\x -&gt; x)" "Prelude.negate" ]<br/>
 &nbsp;&nbsp;"(\fO fP fN n -&gt; if n Prelude.== 0 then fO () else
                    if n Prelude.&gt; 0 then fP n else
                    fN (Prelude.negate n))".<br/>
