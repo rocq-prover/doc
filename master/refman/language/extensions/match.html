@@ -1604,7 +1604,7 @@ seq_sind is defined
 </span></dt><dd><span>eqT_rect&#64;{u u0} =
 </span><span class="ansi-bold">fun</span><span> (A : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>) (a : A) (P : </span><span class="ansi-bold">forall</span><span> a0 : A, eqT a a0</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>)
   (reflT : P a (reflT a)) (a0 : A) (e : eqT a a0) =&gt;
-</span><span class="ansi-bold">match</span><span> e </span><span class="ansi-bold">as</span><span> e0 </span><span class="ansi-bold">in</span><span> (eqT _ a1) </span><span class="ansi-bold">return</span><span> (P a1 e0) </span><span class="ansi-bold">with</span><span>
+</span><span class="ansi-bold">match</span><span> e </span><span class="ansi-bold">as</span><span> e0 </span><span class="ansi-bold">in</span><span> eqT _ a1 </span><span class="ansi-bold">return</span><span> P a1 e0 </span><span class="ansi-bold">with</span><span>
 | </span><span class="ansi-fg-light-magenta">Top</span><span>.</span><span class="ansi-fg-light-green">reflT</span><span> _ =&gt; reflT
 </span><span class="ansi-bold">end</span><span>
      : </span><span class="ansi-bold">forall</span><span> (A : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>) (a : A) (P : </span><span class="ansi-bold">forall</span><span> a0 : A, eqT a a0</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>),
@@ -1616,7 +1616,7 @@ Arguments </span><span class="ansi-fg-light-green">eqT_rect</span><span> A%_type
 </span></dt><dd><span>seq_rect =
 </span><span class="ansi-bold">fun</span><span> (A : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>) (a : A) (P : </span><span class="ansi-bold">forall</span><span> a0 : A, seq a a0</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>)
   (srefl : P a (srefl a)) (a0 : A) (s : seq a a0) =&gt;
-</span><span class="ansi-bold">match</span><span> s </span><span class="ansi-bold">as</span><span> s0 </span><span class="ansi-bold">in</span><span> (seq _ a1) </span><span class="ansi-bold">return</span><span> (P a1 s0) </span><span class="ansi-bold">with</span><span>
+</span><span class="ansi-bold">match</span><span> s </span><span class="ansi-bold">as</span><span> s0 </span><span class="ansi-bold">in</span><span> seq _ a1 </span><span class="ansi-bold">return</span><span> P a1 s0 </span><span class="ansi-bold">with</span><span>
 | </span><span class="ansi-fg-light-magenta">Top</span><span>.</span><span class="ansi-fg-light-green">srefl</span><span> _ =&gt; srefl
 </span><span class="ansi-bold">end</span><span>
      : </span><span class="ansi-bold">forall</span><span> (A : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>) (a : A) (P : </span><span class="ansi-bold">forall</span><span> a0 : A, seq a a0</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>),
@@ -1632,7 +1632,7 @@ Arguments </span><span class="ansi-fg-light-green">seq_rect</span><span> A%_type
 </span></dt><dd><span>eqT_rect&#64;{u u0} =
 </span><span class="ansi-bold">fun</span><span> (A : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">u</span><span>}) (a : A) (P : </span><span class="ansi-bold">forall</span><span> a0 : A, eqT&#64;{</span><span class="ansi-fg-yellow ansi-bold">u</span><span>} a a0</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">u0</span><span>})
   (reflT : P a (reflT&#64;{</span><span class="ansi-fg-yellow ansi-bold">u</span><span>} a)) (a0 : A) (e : eqT&#64;{</span><span class="ansi-fg-yellow ansi-bold">u</span><span>} a a0) =&gt;
-</span><span class="ansi-bold">match</span><span> e :&gt; eqT&#64;{</span><span class="ansi-fg-yellow ansi-bold">u</span><span>} a _ </span><span class="ansi-bold">as</span><span> e0 </span><span class="ansi-bold">in</span><span> (eqT _ a1) </span><span class="ansi-bold">return</span><span> (P a1 e0) </span><span class="ansi-bold">with</span><span>
+</span><span class="ansi-bold">match</span><span> e :&gt; eqT&#64;{</span><span class="ansi-fg-yellow ansi-bold">u</span><span>} a _ </span><span class="ansi-bold">as</span><span> e0 </span><span class="ansi-bold">in</span><span> eqT _ a1 </span><span class="ansi-bold">return</span><span> P a1 e0 </span><span class="ansi-bold">with</span><span>
 | </span><span class="ansi-fg-light-magenta">Top</span><span>.</span><span class="ansi-fg-light-green">reflT</span><span> _ =&gt; reflT
 </span><span class="ansi-bold">end</span><span>
      : </span><span class="ansi-bold">forall</span><span> (A : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">u</span><span>}) (a : A)
@@ -1647,7 +1647,7 @@ Arguments </span><span class="ansi-fg-light-green">eqT_rect</span><span> A%_type
 </span><span class="ansi-bold">fun</span><span> (A : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">seq_rect.u1</span><span>}) (a : A)
   (P : </span><span class="ansi-bold">forall</span><span> a0 : A, seq a a0</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">seq_rect.u0</span><span>}) 
   (srefl : P a (srefl a)) (a0 : A) (s : seq a a0) =&gt;
-</span><span class="ansi-bold">match</span><span> s :&gt; seq a a0 </span><span class="ansi-bold">as</span><span> s0 </span><span class="ansi-bold">in</span><span> (seq _ a1) </span><span class="ansi-bold">return</span><span> (P a1 s0) </span><span class="ansi-bold">with</span><span>
+</span><span class="ansi-bold">match</span><span> s :&gt; seq a a0 </span><span class="ansi-bold">as</span><span> s0 </span><span class="ansi-bold">in</span><span> seq _ a1 </span><span class="ansi-bold">return</span><span> P a1 s0 </span><span class="ansi-bold">with</span><span>
 | </span><span class="ansi-fg-light-magenta">Top</span><span>.</span><span class="ansi-fg-light-green">srefl</span><span> _ =&gt; srefl
 </span><span class="ansi-bold">end</span><span>
      : </span><span class="ansi-bold">forall</span><span> (A : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">seq_rect.u1</span><span>}) (a : A)

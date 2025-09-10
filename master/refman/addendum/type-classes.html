@@ -1530,8 +1530,8 @@ Obligation 1 of prod_eqb:
     </span><span class="ansi-bold">fun</span><span> (la : A) (lb : B) (ra : A) (rb : B) (_ : </span><span>(</span><span>la</span><span>,</span><span> lb</span><span>)</span><span> =</span><span> x0)
       (_ : </span><span>(</span><span>ra</span><span>,</span><span> rb</span><span>)</span><span> =</span><span> y0) =&gt;
     (eqb la ra</span><span> &amp;&amp;</span><span> eqb lb rb)%bool </span><span class="ansi-bold">in</span><span>
-  (</span><span class="ansi-bold">let</span><span> (la, lb) </span><span class="ansi-bold">as</span><span> x' </span><span class="ansi-bold">return</span><span> (x'</span><span> =</span><span> x0</span><span> -&gt;</span><span> y0</span><span> =</span><span> y0</span><span> -&gt;</span><span> bool) := x0</span><span class="ansi-bold"> in</span><span>
-   </span><span class="ansi-bold">let</span><span> (ra, rb) </span><span class="ansi-bold">as</span><span> y' </span><span class="ansi-bold">return</span><span> (</span><span>(</span><span>la</span><span>,</span><span> lb</span><span>)</span><span> =</span><span> x0</span><span> -&gt;</span><span> y'</span><span> =</span><span> y0</span><span> -&gt;</span><span> bool) := y0</span><span class="ansi-bold"> in</span><span>
+  (</span><span class="ansi-bold">let</span><span> (la, lb) </span><span class="ansi-bold">as</span><span> x' </span><span class="ansi-bold">return</span><span> x'</span><span> =</span><span> x0</span><span> -&gt;</span><span> y0</span><span> =</span><span> y0</span><span> -&gt;</span><span> bool := x0</span><span class="ansi-bold"> in</span><span>
+   </span><span class="ansi-bold">let</span><span> (ra, rb) </span><span class="ansi-bold">as</span><span> y' </span><span class="ansi-bold">return</span><span> </span><span>(</span><span>la</span><span>,</span><span> lb</span><span>)</span><span> =</span><span> x0</span><span> -&gt;</span><span> y'</span><span> =</span><span> y0</span><span> -&gt;</span><span> bool := y0</span><span class="ansi-bold"> in</span><span>
    program_branch_0 la lb ra rb) eq_refl eq_refl) x y</span><span> =</span><span>
  true</span><span> -&gt;</span><span> x</span><span> =</span><span> y).
  
@@ -1621,15 +1621,15 @@ Obligation 3 of option_eqb:
            (</span><span class="ansi-bold">forall</span><span> x1 y1 : A, </span><span>~</span><span> (Some x1</span><span> =</span><span> wildcard'</span><span> /\</span><span> Some y1</span><span> =</span><span> wildcard'0)))
       (_ : wildcard'</span><span> =</span><span> x0) (_ : wildcard'0</span><span> =</span><span> y0) =&gt;
     false </span><span class="ansi-bold">in</span><span>
-  </span><span class="ansi-bold">match</span><span> x0 </span><span class="ansi-bold">as</span><span> x' </span><span class="ansi-bold">return</span><span> (x'</span><span> =</span><span> x0</span><span> -&gt;</span><span> y0</span><span> =</span><span> y0</span><span> -&gt;</span><span> bool) </span><span class="ansi-bold">with</span><span>
+  </span><span class="ansi-bold">match</span><span> x0 </span><span class="ansi-bold">as</span><span> x' </span><span class="ansi-bold">return</span><span> x'</span><span> =</span><span> x0</span><span> -&gt;</span><span> y0</span><span> =</span><span> y0</span><span> -&gt;</span><span> bool </span><span class="ansi-bold">with</span><span>
   | Some x1 =&gt;
-      </span><span class="ansi-bold">match</span><span> y0 </span><span class="ansi-bold">as</span><span> y' </span><span class="ansi-bold">return</span><span> (Some x1</span><span> =</span><span> x0</span><span> -&gt;</span><span> y'</span><span> =</span><span> y0</span><span> -&gt;</span><span> bool) </span><span class="ansi-bold">with</span><span>
+      </span><span class="ansi-bold">match</span><span> y0 </span><span class="ansi-bold">as</span><span> y' </span><span class="ansi-bold">return</span><span> Some x1</span><span> =</span><span> x0</span><span> -&gt;</span><span> y'</span><span> =</span><span> y0</span><span> -&gt;</span><span> bool </span><span class="ansi-bold">with</span><span>
       | Some y1 =&gt; program_branch_0 x1 y1
       | None =&gt;
           program_branch_2 (Some x1) None (option_eqb_obligation_1 x0 y0 x1)
       </span><span class="ansi-bold">end</span><span>
   | None =&gt;
-      </span><span class="ansi-bold">match</span><span> y0 </span><span class="ansi-bold">as</span><span> y' </span><span class="ansi-bold">return</span><span> (None</span><span> =</span><span> x0</span><span> -&gt;</span><span> y'</span><span> =</span><span> y0</span><span> -&gt;</span><span> bool) </span><span class="ansi-bold">with</span><span>
+      </span><span class="ansi-bold">match</span><span> y0 </span><span class="ansi-bold">as</span><span> y' </span><span class="ansi-bold">return</span><span> None</span><span> =</span><span> x0</span><span> -&gt;</span><span> y'</span><span> =</span><span> y0</span><span> -&gt;</span><span> bool </span><span class="ansi-bold">with</span><span>
       | Some a =&gt;
           program_branch_2 None (Some a) (option_eqb_obligation_2 x0 y0 a)
       | None =&gt; program_branch_1
