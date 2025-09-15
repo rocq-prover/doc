@@ -287,7 +287,7 @@ ML algorithms was given by Gérard Huet in his May 1986 CMU course
 notes *Formal Structures for Computation and Deduction*. Its chapter
 *Induction and Recursion in the Theory of Constructions* was presented
 as an invited paper at the Joint Conference on Theory and Practice of
-Software Development TAPSOFT’87 at Pise in March 1987, and published
+Software Development TAPSOFT’87 in Pisa in March 1987, and published
 as *Induction Principles Formalized in the Calculus of
 Constructions* :cite:`H88`.
 
