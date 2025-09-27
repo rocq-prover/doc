@@ -1,0 +1,2171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head id="htmx-head">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Rocq Standard Library">
+  <meta name="twitter:title" content="Rocq Standard Library">
+  <meta name="twitter:description" content="Rocq Standard Library">
+  <meta name="twitter:image" content="https://rocq-prover.org/img/social/rocq-prover_org_social_media.png">
+
+  <meta property="og:site_name" content="Rocq">
+  <meta property="og:type" content="object">
+  <meta property="og:title" content="Rocq Standard Library">
+  <meta property="og:description" content="Rocq Standard Library">
+  <meta name="og:image" content="https://rocq-prover.org/img/social/rocq-prover_org_social_media.png">
+  <meta name="theme-color" content="#fff">
+  <meta name="color-scheme" content="white">
+
+  <meta name="ahrefs-site-verification" content="6ff715b377cdcd566334b44ae8888791189ce24640c8a403eacdc3bcbaa9449b">
+  <link rel="canonical" href="https://rocq-prover.org/doc">
+  <link rel="icon" type="image/x-icon" href="https://rocq-prover.org/logos/favicon_stdlib.ico">
+  <link rel="manifest" href="https://rocq-prover.org/manifest.json">
+
+
+  <link rel="stylesheet" href="https://rocq-prover.org/vendors/font-files/instrument-rocq.css">
+  <link rel="stylesheet" href="https://rocq-prover.org/vendors/font-files/source-code-pro.css">
+  <script defer="" src="https://rocq-prover.org/vendors/alpine-clipboard.js"></script>
+  <script defer="" src="https://rocq-prover.org/vendors/alpine.min.js"></script>
+  <script defer="" src="https://rocq-prover.org/vendors/htmx.min.js"></script>
+  <script defer="" data-domain="rocq-prover.org" src="https://rocq-prover.org/vendors/script.js"></script>
+
+  <link type="text/css" rel="stylesheet" media="all" href="https://rocq-prover.org/css/stdlib.css">
+
+
+
+  <link rel="search" href="http://rocq-prover.org/opensearch.xml" type="application/opensearchdescription+xml" title="Rocq">
+  <title>Rocq Standard Library</title>
+  <style>
+    .htmx-indicator {
+      opacity: 0;
+      transition: opacity 200ms ease-in;
+    }
+
+    .htmx-request .htmx-indicator {
+      opacity: 1
+    }
+
+    .htmx-request.htmx-indicator {
+      opacity: 1
+    }
+  </style>
+</head>
+
+
+<body style="overscroll-behavior-x: auto;">
+  <script>
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.body.classList.add("dark");
+    } else {
+      document.body.classList.remove("dark");
+    }
+  </script>
+
+
+  <header class="fixed top-0 z-50 w-full h-20 flex items-center flex-wrap" x-data="{ open: false }">
+
+    <nav class="bg-background container-fluid dark:bg-dark-background_navigation flex gap-5 h-20 header items-center justify-between rounded-b-lg shadow-sm wide xl:gap-8">
+      <ul class="order-0 space space-x-5 xl:space-x-8 items-center flex text-content font-medium dark:text-title dark:text-opacity-60 dark:font-semibold">
+        <li style="width:170px">
+          <a href="http://rocq-prover.org/" class="block">
+            <img src="https://rocq-prover.org/logos/logo-rocq-stdlib.svg" width="170" alt="Rocq stdlib logo" class="dark:hidden">
+            <img src="https://rocq-prover.org/logos/logo-rocq-stdlib-dark.svg" width="170" alt="Rocq stdlib logo" class="hidden dark:inline">
+          </a>
+        </li>
+      </ul>
+      <ul class="order-1 mr-auto items-center hidden lg:flex font-medium dark:text-white dark:text-opacity-60 dark:font-semibold">
+
+        <li><a href="http://rocq-prover.org/docs" class="block font-normal py-3 mg:py-4 px-1 lg:px-3 hover:text-primary dark:hover:text-dark-primary text-title dark:text-dark-title">Learn</a>
+
+
+        </li>
+
+        <li><a href="http://rocq-prover.org/platform" class="block font-normal py-3 mg:py-4 px-1 lg:px-3 hover:text-primary dark:hover:text-dark-primary text-primary dark:text-dark-primary">Platform</a>
+
+
+        </li>
+
+        <li><a href="http://rocq-prover.org/packages" class="block font-normal py-3 mg:py-4 px-1 lg:px-3 hover:text-primary dark:hover:text-dark-primary text-title dark:text-dark-title">Packages</a>
+
+
+        </li>
+
+        <li><a href="http://rocq-prover.org/community" class="block font-normal py-3 mg:py-4 px-1 lg:px-3 hover:text-primary dark:hover:text-dark-primary text-title dark:text-dark-title">Community</a>
+
+
+        </li>
+
+        <li><a href="http://rocq-prover.org/consortium" class="block font-normal py-3 mg:py-4 px-1 lg:px-3 hover:text-primary dark:hover:text-dark-primary text-title dark:text-dark-title">Consortium</a>
+
+
+        </li>
+
+        <li><a href="http://rocq-prover.org/changelog" class="block font-normal py-3 mg:py-4 px-1 lg:px-3 hover:text-primary dark:hover:text-dark-primary text-title dark:text-dark-title">News</a>
+        </li>
+      </ul>
+
+      <ul class="order-1 lg:hidden flex items-center">
+        <li class="h-12 w-12 hover:bg-tertiary_25 dark:hover:bg-primary_20 flex items-center justify-center rounded-full text-content dark:text-dark-title">
+          <button aria-label="open menu" @click="open = ! open">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+
+
+          </button>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="bg-black fixed w-full h-full left-0 top-0 opacity-60 z-40" x-show="open" style="display: none;"></div>
+
+    <nav class="z-50 h-full fixed right-0 top-0 max-w-full w-96 bg-background dark:bg-dark-background shadow-lg" x-show="open" @click.away="open = false" x-transition:enter="transition duration-200 ease-out" x-transition:enter-start="translate-x-full" x-transition:leave="transition duration-100 ease-in" x-transition:leave-end="translate-x-full" style="display: none;">
+      <ul class="text-content p-6 font-semibold">
+        <li class="flex justify-between items-center">
+          <a href="http://rocq-prover.org/">
+            <img src="https://rocq-prover.org/logos/logo-rocq-blue_orange.svg" width="132" alt="Rocq logo" class="dark:hidden">
+            <img src="https://rocq-prover.org/logos/logo-rocq-white.svg" width="132" alt="Rocq logo" class="hidden dark:inline">
+          </a>
+          <div class="" x-on:click="open = false">
+            <button aria-label="close" class="text-content dark:text-dark-title">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+
+
+            </button>
+          </div>
+        </li>
+
+        <li><a href="http://rocq-prover.org/docs" class="block font-normal py-3 mg:py-4 px-1 lg:px-3 hover:text-primary dark:hover:text-dark-primaryblock text-title dark:text-dark-title">Learn</a>
+
+
+        </li>
+
+        <li><a href="http://rocq-prover.org/platform" class="block font-normal py-3 mg:py-4 px-1 lg:px-3 hover:text-primary dark:hover:text-dark-primaryblock text-primary dark:text-dark-primary">Platform</a>
+
+
+        </li>
+
+        <li><a href="http://rocq-prover.org/packages" class="block font-normal py-3 mg:py-4 px-1 lg:px-3 hover:text-primary dark:hover:text-dark-primaryblock text-title dark:text-dark-title">Packages</a>
+
+
+        </li>
+
+        <li><a href="http://rocq-prover.org/community" class="block font-normal py-3 mg:py-4 px-1 lg:px-3 hover:text-primary dark:hover:text-dark-primaryblock text-title dark:text-dark-title">Community</a>
+
+
+        </li>
+
+        <li><a href="http://rocq-prover.org/consortium" class="block font-normal py-3 mg:py-4 px-1 lg:px-3 hover:text-primary dark:hover:text-dark-primaryblock text-title dark:text-dark-title">Consortium</a>
+
+
+        </li>
+
+        <li><a href="http://rocq-prover.org/changelog" class="block font-normal py-3 mg:py-4 px-1 lg:px-3 hover:text-primary dark:hover:text-dark-primaryblock text-title dark:text-dark-title">News</a></li>
+
+        <li class="mt-3 mb-6">
+          <a href="http://rocq-prover.org/docs#beginner_section" class="w-full rounded font-normal py-3 px-7 flex items-center justify-center bg-primary dark:bg-dark-primary text-white dark:text-dark-title">Get started</a>
+        </li>
+        <li>
+          <div class="space-x-6 text-2xl flex items-center">
+            <a aria-label="Rocq&#39;s Zulip" href="https://coq.zulipchat.com/" class="opacity-60 hover:opacity-100 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">
+              <svg viewBox="0 0 256 256" version="1.1" class="w-6 h-6" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid">
+                <path d="M128,0 C198.692448,0 256,57.307552 256,128 C256,198.692448 198.692448,256 128,256 C57.307552,256 0,198.692448 0,128 C0,57.307552 57.307552,0 128,0 Z M121.679533,118.222163 L75.7877336,159.200897 C71.0603547,162.920702 67.9584879,169.060511 67.9584879,175.967416 C67.9584879,187.245548 76.232162,196.475047 86.3444303,196.475047 L172.590938,196.475047 C182.703207,196.475047 190.976881,187.245548 190.976881,175.967416 C190.976881,164.68624 182.703207,155.459784 172.590938,155.459784 L107.299534,155.459784 C106.331533,155.459784 105.719683,154.300009 106.191507,153.356359 L123.024994,119.652857 C123.639888,118.669635 122.531861,117.491595 121.679533,118.222163 Z M172.590938,59.3627915 L86.3444303,59.3627915 C76.232162,59.3627915 67.9584879,68.58925 67.9584879,79.870426 C67.9584879,91.1485579 76.232162,100.378058 86.3444303,100.378058 L86.3444303,100.378058 L151.635834,100.378058 C152.603836,100.378058 153.215686,101.537833 152.743861,102.481482 L152.743861,102.481482 L135.910374,136.184985 C135.29548,137.168207 136.403507,138.346246 137.255836,137.615679 L137.255836,137.615679 L183.147635,96.6308563 C187.875014,92.9080074 190.976881,86.7712425 190.976881,79.8643379 C190.976881,68.586206 182.703207,59.3567064 172.590938,59.3627915 L172.590938,59.3627915 Z" fill="inherit"></path>
+              </svg>
+
+
+            </a>
+            <a aria-label="Rocq&#39;s Discourse" href="https://coq.discourse.group/" class="opacity-60 hover:opacity-100 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 448 512" aria-hidden="true">
+                <path d="M225.9 32C103.3 32 0 130.5 0 252.1 0 256 .1 480 .1 480l225.8-.2c122.7 0 222.1-102.3 222.1-223.9C448 134.3 348.6 32 225.9 32zM224 384c-19.4 0-37.9-4.3-54.4-12.1L88.5 392l22.9-75c-9.8-18.1-15.4-38.9-15.4-61 0-70.7 57.3-128 128-128s128 57.3 128 128-57.3 128-128 128z"></path>
+              </svg>
+
+
+
+            </a>
+            <a aria-label="The Rocq Prover on GitHub" href="https://github.com/coq/coq" class="opacity-60 hover:opacity-100 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
+              </svg>
+
+
+            </a>
+            <a aria-label="The Rocq Prover on Mastodon" rel="me" href="https://mastodon.acm.org/@RocqProver" class="opacity-60 hover:opacity-100 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">
+              <svg viewBox="0 0 74 79" class="w-6 h-6" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M73.7014 17.4323C72.5616 9.05152 65.1774 2.4469 56.424 1.1671C54.9472 0.950843 49.3518 0.163818 36.3901 0.163818H36.2933C23.3281 0.163818 20.5465 0.950843 19.0697 1.1671C10.56 2.41145 2.78877 8.34604 0.903306 16.826C-0.00357854 21.0022 -0.100361 25.6322 0.068112 29.8793C0.308275 35.9699 0.354874 42.0498 0.91406 48.1156C1.30064 52.1448 1.97502 56.1419 2.93215 60.0769C4.72441 67.3445 11.9795 73.3925 19.0876 75.86C26.6979 78.4332 34.8821 78.8603 42.724 77.0937C43.5866 76.8952 44.4398 76.6647 45.2833 76.4024C47.1867 75.8033 49.4199 75.1332 51.0616 73.9562C51.0841 73.9397 51.1026 73.9184 51.1156 73.8938C51.1286 73.8693 51.1359 73.8421 51.1368 73.8144V67.9366C51.1364 67.9107 51.1302 67.8852 51.1186 67.862C51.1069 67.8388 51.0902 67.8184 51.0695 67.8025C51.0489 67.7865 51.0249 67.7753 50.9994 67.7696C50.9738 67.764 50.9473 67.7641 50.9218 67.7699C45.8976 68.9569 40.7491 69.5519 35.5836 69.5425C26.694 69.5425 24.3031 65.3699 23.6184 63.6327C23.0681 62.1314 22.7186 60.5654 22.5789 58.9744C22.5775 58.9477 22.5825 58.921 22.5934 58.8965C22.6043 58.8721 22.621 58.8505 22.6419 58.8336C22.6629 58.8167 22.6876 58.8049 22.714 58.7992C22.7404 58.7934 22.7678 58.794 22.794 58.8007C27.7345 59.9796 32.799 60.5746 37.8813 60.5733C39.1036 60.5733 40.3223 60.5733 41.5447 60.5414C46.6562 60.3996 52.0437 60.1408 57.0728 59.1694C57.1983 59.1446 57.3237 59.1233 57.4313 59.0914C65.3638 57.5847 72.9128 52.8555 73.6799 40.8799C73.7086 40.4084 73.7803 35.9415 73.7803 35.4523C73.7839 33.7896 74.3216 23.6576 73.7014 17.4323ZM61.4925 47.3144H53.1514V27.107C53.1514 22.8528 51.3591 20.6832 47.7136 20.6832C43.7061 20.6832 41.6988 23.2499 41.6988 28.3194V39.3803H33.4078V28.3194C33.4078 23.2499 31.3969 20.6832 27.3894 20.6832C23.7654 20.6832 21.9552 22.8528 21.9516 27.107V47.3144H13.6176V26.4937C13.6176 22.2395 14.7157 18.8598 16.9118 16.3545C19.1772 13.8552 22.1488 12.5719 25.8373 12.5719C30.1064 12.5719 33.3325 14.1955 35.4832 17.4394L37.5587 20.8853L39.6377 17.4394C41.7884 14.1955 45.0145 12.5719 49.2765 12.5719C52.9614 12.5719 55.9329 13.8552 58.2055 16.3545C60.4017 18.8574 61.4997 22.2371 61.4997 26.4937L61.4925 47.3144Z" fill="inherit"></path>
+              </svg>
+
+
+            </a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <script>
+    window.addEventListener('keydown', function(event) {
+      if (event.key === "/") {
+        event.preventDefault();
+        document.querySelector("input[type='search']").focus()
+      }
+    })
+  </script>
+
+  <main class="bg-background dark:bg-dark-background pt-[80px]">
+    <nav aria-label="breadcrumbs" class="px-4 flex bg-title dark:bg-[#111827] text-white dark:text-dark-title md:hidden">
+      <ul>
+        <li class="inline-block">
+          <a href="http://rocq-prover.org/stdlib" class="flex items-center px-2 py-2 border-transparent border-2 border-b-4"> Standard Library
+            <span> <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 ml-2" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+              </svg>
+
+            </span> </a>
+        </li>
+        <li class="inline-block">
+          <select onchange="location = this.value;" class="appearance-none border-2 border-b-4 bg-transparent bg-none font-bold border-none w-auto p-0 m-0 cursor-pointer focus:outline-none focus:ring-0">
+            <option value="index.html" selected="">
+              Table of contents
+            </option>
+            <option value="genindex.html">
+              Index
+            </option>
+
+          </select>
+          <span class="text-primary dark:text-dark-primary cursor-pointer">▾</span>
+        </li>
+      </ul>
+    </nav>
+    <div class="hidden md:flex">
+      <nav class="lg:-mt-[10px] lg:pt-[10px] bg-secondary dark:bg-[#111827] rounded-b-lg container-fluid wide flex flex-wrap">
+        <a href="index.html" class="justify-start px-4 py-2 text-white dark:text-dark-title items-center font-normal border-2 border-b-4 border-transparent rounded border-b-primary dark:border-b-dark-primary">
+          Table of contents
+        </a>
+        <a href="genindex.html" class="justify-start px-4 py-2 text-white dark:text-dark-title items-center font-normal border-2 border-b-4 border-transparent rounded opacity-80 hover:text-primary dark:hover:text-dark-primary">
+          Index
+        </a>
+      </nav>
+    </div>
+
+
+    <div class="bg-background dark:bg-dark-background">
+      <div class="flex-1 z-0 z- min-w-0 pb-12">
+        <div class="bg-background dark:bg-dark-background">
+          <div class="container-fluid dark:text-dark-content prose pt-10 stdlib text-content">
+          
+          <!-- ************************
+            END STDLIB HEADER
+          ************************* -->
+
+<h1>The Rocq Standard Library</h1>
+
+<p>This is the index of the Rocq standard library.
+It provides a set of modules directly available
+through the <tt>From Stdlib Require Import</tt> command.</p>
+
+<!-- #include depends.svg -->
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: stdlib_deps Pages: 1 -->
+<svg width="100%"
+ viewBox="0.00 0.00 885.00 1340.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 1336)">
+<title>stdlib_deps</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-1336 881,-1336 881,4 -4,4"/>
+<!-- bool -->
+<g id="node1" class="node">
+<title>bool</title>
+<g id="a_node1"><a xlink:href="#bool" xlink:title="bool">
+<polygon fill="#ff540a" stroke="#ff540a" points="609,-252 555,-252 555,-216 609,-216 609,-252"/>
+<text text-anchor="middle" x="582" y="-230.3" font-family="Times,serif" font-size="14.00">bool</text>
+</a>
+</g>
+</g>
+<!-- classes -->
+<g id="node2" class="node">
+<title>classes</title>
+<g id="a_node2"><a xlink:href="#classes" xlink:title="classes">
+<polygon fill="#ff540a" stroke="#ff540a" points="674,-180 606,-180 606,-144 674,-144 674,-180"/>
+<text text-anchor="middle" x="640" y="-158.3" font-family="Times,serif" font-size="14.00">classes</text>
+</a>
+</g>
+</g>
+<!-- bool&#45;&gt;classes -->
+<g id="edge1" class="edge">
+<title>bool&#45;&gt;classes</title>
+<path fill="none" stroke="black" d="M596.34,-215.7C603.29,-207.3 611.77,-197.07 619.4,-187.86"/>
+<polygon fill="black" stroke="black" points="622.14,-190.04 625.83,-180.1 616.75,-185.57 622.14,-190.04"/>
+</g>
+<!-- program -->
+<g id="node3" class="node">
+<title>program</title>
+<g id="a_node3"><a xlink:href="#program" xlink:title="program">
+<polygon fill="#ff540a" stroke="#ff540a" points="776,-108 698,-108 698,-72 776,-72 776,-108"/>
+<text text-anchor="middle" x="737" y="-86.3" font-family="Times,serif" font-size="14.00">program</text>
+</a>
+</g>
+</g>
+<!-- classes&#45;&gt;program -->
+<g id="edge2" class="edge">
+<title>classes&#45;&gt;program</title>
+<path fill="none" stroke="black" d="M663.98,-143.7C676.31,-134.8 691.52,-123.82 704.85,-114.2"/>
+<polygon fill="black" stroke="black" points="707.24,-116.79 713.3,-108.1 703.14,-111.12 707.24,-116.79"/>
+</g>
+<!-- relations -->
+<g id="node4" class="node">
+<title>relations</title>
+<g id="a_node4"><a xlink:href="#relations" xlink:title="relations">
+<polygon fill="#ff540a" stroke="#ff540a" points="680,-108 600,-108 600,-72 680,-72 680,-108"/>
+<text text-anchor="middle" x="640" y="-86.3" font-family="Times,serif" font-size="14.00">relations</text>
+</a>
+</g>
+</g>
+<!-- classes&#45;&gt;relations -->
+<g id="edge3" class="edge">
+<title>classes&#45;&gt;relations</title>
+<path fill="none" stroke="black" d="M640,-143.7C640,-135.98 640,-126.71 640,-118.11"/>
+<polygon fill="black" stroke="black" points="643.5,-118.1 640,-108.1 636.5,-118.1 643.5,-118.1"/>
+</g>
+<!-- corelib&#45;wrapper -->
+<g id="node5" class="node">
+<title>corelib&#45;wrapper</title>
+<g id="a_node5"><a xlink:href="#corelib-wrapper" xlink:title="corelib&#45;wrapper">
+<polygon fill="#ff540a" stroke="#ff540a" points="732,-36 602,-36 602,0 732,0 732,-36"/>
+<text text-anchor="middle" x="667" y="-14.3" font-family="Times,serif" font-size="14.00">corelib&#45;wrapper</text>
+</a>
+</g>
+</g>
+<!-- program&#45;&gt;corelib&#45;wrapper -->
+<g id="edge4" class="edge">
+<title>program&#45;&gt;corelib&#45;wrapper</title>
+<path fill="none" stroke="black" d="M719.7,-71.7C711.14,-63.14 700.66,-52.66 691.3,-43.3"/>
+<polygon fill="black" stroke="black" points="693.65,-40.7 684.1,-36.1 688.7,-45.65 693.65,-40.7"/>
+</g>
+<!-- logic -->
+<g id="node6" class="node">
+<title>logic</title>
+<g id="a_node6"><a xlink:href="#logic" xlink:title="logic">
+<polygon fill="#ff540a" stroke="#ff540a" points="817,-36 763,-36 763,0 817,0 817,-36"/>
+<text text-anchor="middle" x="790" y="-14.3" font-family="Times,serif" font-size="14.00">logic</text>
+</a>
+</g>
+</g>
+<!-- program&#45;&gt;logic -->
+<g id="edge5" class="edge">
+<title>program&#45;&gt;logic</title>
+<path fill="none" stroke="black" d="M750.1,-71.7C756.39,-63.39 764.05,-53.28 770.96,-44.14"/>
+<polygon fill="black" stroke="black" points="773.8,-46.19 777.05,-36.1 768.22,-41.96 773.8,-46.19"/>
+</g>
+<!-- relations&#45;&gt;corelib&#45;wrapper -->
+<g id="edge38" class="edge">
+<title>relations&#45;&gt;corelib&#45;wrapper</title>
+<path fill="none" stroke="black" d="M646.67,-71.7C649.71,-63.81 653.38,-54.3 656.76,-45.55"/>
+<polygon fill="black" stroke="black" points="660.07,-46.69 660.4,-36.1 653.54,-44.17 660.07,-46.69"/>
+</g>
+<!-- strings -->
+<g id="node7" class="node">
+<title>strings</title>
+<g id="a_node7"><a xlink:href="#strings" xlink:title="strings">
+<polygon fill="#ff540a" stroke="#ff540a" points="457.5,-828 390.5,-828 390.5,-792 457.5,-792 457.5,-828"/>
+<text text-anchor="middle" x="424" y="-806.3" font-family="Times,serif" font-size="14.00">strings</text>
+</a>
+</g>
+</g>
+<!-- arith -->
+<g id="node8" class="node">
+<title>arith</title>
+<g id="a_node8"><a xlink:href="#arith" xlink:title="arith">
+<polygon fill="#ff540a" stroke="#ff540a" points="328,-756 274,-756 274,-720 328,-720 328,-756"/>
+<text text-anchor="middle" x="301" y="-734.3" font-family="Times,serif" font-size="14.00">arith</text>
+</a>
+</g>
+</g>
+<!-- strings&#45;&gt;arith -->
+<g id="edge6" class="edge">
+<title>strings&#45;&gt;arith</title>
+<path fill="none" stroke="black" d="M393.91,-791.88C376.83,-782.16 355.33,-769.92 337.32,-759.67"/>
+<polygon fill="black" stroke="black" points="338.68,-756.42 328.26,-754.51 335.22,-762.5 338.68,-756.42"/>
+</g>
+<!-- ring -->
+<g id="node22" class="node">
+<title>ring</title>
+<g id="a_node22"><a xlink:href="#ring" xlink:title="ring">
+<polygon fill="#ff540a" stroke="#ff540a" points="245,-684 191,-684 191,-648 245,-648 245,-684"/>
+<text text-anchor="middle" x="218" y="-662.3" font-family="Times,serif" font-size="14.00">ring</text>
+</a>
+</g>
+</g>
+<!-- arith&#45;&gt;ring -->
+<g id="edge19" class="edge">
+<title>arith&#45;&gt;ring</title>
+<path fill="none" stroke="black" d="M280.48,-719.7C270.13,-710.97 257.41,-700.24 246.16,-690.75"/>
+<polygon fill="black" stroke="black" points="248.18,-687.88 238.28,-684.1 243.67,-693.23 248.18,-687.88"/>
+</g>
+<!-- reals -->
+<g id="node9" class="node">
+<title>reals</title>
+<g id="a_node9"><a xlink:href="#reals" xlink:title="reals">
+<polygon fill="#ff540a" stroke="#ff540a" points="184,-1116 130,-1116 130,-1080 184,-1080 184,-1116"/>
+<text text-anchor="middle" x="157" y="-1094.3" font-family="Times,serif" font-size="14.00">reals</text>
+</a>
+</g>
+</g>
+<!-- qarith -->
+<g id="node10" class="node">
+<title>qarith</title>
+<g id="a_node10"><a xlink:href="#qarith" xlink:title="qarith">
+<polygon fill="#ff540a" stroke="#ff540a" points="262,-1044 202,-1044 202,-1008 262,-1008 262,-1044"/>
+<text text-anchor="middle" x="232" y="-1022.3" font-family="Times,serif" font-size="14.00">qarith</text>
+</a>
+</g>
+</g>
+<!-- reals&#45;&gt;qarith -->
+<g id="edge7" class="edge">
+<title>reals&#45;&gt;qarith</title>
+<path fill="none" stroke="black" d="M175.54,-1079.7C184.8,-1071.05 196.16,-1060.45 206.26,-1051.03"/>
+<polygon fill="black" stroke="black" points="208.75,-1053.49 213.67,-1044.1 203.98,-1048.37 208.75,-1053.49"/>
+</g>
+<!-- vectors -->
+<g id="node11" class="node">
+<title>vectors</title>
+<g id="a_node11"><a xlink:href="#vectors" xlink:title="vectors">
+<polygon fill="#ff540a" stroke="#ff540a" points="477.5,-900 408.5,-900 408.5,-864 477.5,-864 477.5,-900"/>
+<text text-anchor="middle" x="443" y="-878.3" font-family="Times,serif" font-size="14.00">vectors</text>
+</a>
+</g>
+</g>
+<!-- reals&#45;&gt;vectors -->
+<g id="edge8" class="edge">
+<title>reals&#45;&gt;vectors</title>
+<path fill="none" stroke="black" d="M184.36,-1083.64C187.25,-1082.36 190.17,-1081.12 193,-1080 294.26,-1039.86 346.55,-1058.31 413,-972 426.87,-953.99 434.53,-929.2 438.63,-910.36"/>
+<polygon fill="black" stroke="black" points="442.11,-910.8 440.61,-900.31 435.24,-909.45 442.11,-910.8"/>
+</g>
+<!-- lqa -->
+<g id="node12" class="node">
+<title>lqa</title>
+<g id="a_node12"><a xlink:href="#lqa" xlink:title="lqa">
+<polygon fill="#ff540a" stroke="#ff540a" points="184,-1044 130,-1044 130,-1008 184,-1008 184,-1044"/>
+<text text-anchor="middle" x="157" y="-1022.3" font-family="Times,serif" font-size="14.00">lqa</text>
+</a>
+</g>
+</g>
+<!-- reals&#45;&gt;lqa -->
+<g id="edge9" class="edge">
+<title>reals&#45;&gt;lqa</title>
+<path fill="none" stroke="black" d="M157,-1079.7C157,-1071.98 157,-1062.71 157,-1054.11"/>
+<polygon fill="black" stroke="black" points="160.5,-1054.1 157,-1044.1 153.5,-1054.1 160.5,-1054.1"/>
+</g>
+<!-- classical&#45;logic -->
+<g id="node13" class="node">
+<title>classical&#45;logic</title>
+<g id="a_node13"><a xlink:href="#classical-logic" xlink:title="classical&#45;logic">
+<polygon fill="#ff540a" stroke="#ff540a" points="372.5,-828 257.5,-828 257.5,-792 372.5,-792 372.5,-828"/>
+<text text-anchor="middle" x="315" y="-806.3" font-family="Times,serif" font-size="14.00">classical&#45;logic</text>
+</a>
+</g>
+</g>
+<!-- reals&#45;&gt;classical&#45;logic -->
+<g id="edge10" class="edge">
+<title>reals&#45;&gt;classical&#45;logic</title>
+<path fill="none" stroke="black" d="M184.11,-1084.16C187.11,-1082.76 190.12,-1081.35 193,-1080 227.6,-1063.85 247.51,-1074.1 271,-1044 318.81,-982.72 320.03,-885.1 317.38,-838.07"/>
+<polygon fill="black" stroke="black" points="320.87,-837.79 316.71,-828.04 313.88,-838.26 320.87,-837.79"/>
+</g>
+<!-- nsatz -->
+<g id="node14" class="node">
+<title>nsatz</title>
+<g id="a_node14"><a xlink:href="#nsatz" xlink:title="nsatz">
+<polygon fill="#ff540a" stroke="#ff540a" points="131.5,-972 76.5,-972 76.5,-936 131.5,-936 131.5,-972"/>
+<text text-anchor="middle" x="104" y="-950.3" font-family="Times,serif" font-size="14.00">nsatz</text>
+</a>
+</g>
+</g>
+<!-- reals&#45;&gt;nsatz -->
+<g id="edge11" class="edge">
+<title>reals&#45;&gt;nsatz</title>
+<path fill="none" stroke="black" d="M142.73,-1079.9C135.17,-1069.99 126.36,-1056.95 121,-1044 112.84,-1024.29 108.55,-1000.48 106.33,-982.46"/>
+<polygon fill="black" stroke="black" points="109.78,-981.88 105.22,-972.32 102.83,-982.65 109.78,-981.88"/>
+</g>
+<!-- field -->
+<g id="node19" class="node">
+<title>field</title>
+<g id="a_node19"><a xlink:href="#field" xlink:title="field">
+<polygon fill="#ff540a" stroke="#ff540a" points="204,-972 150,-972 150,-936 204,-936 204,-972"/>
+<text text-anchor="middle" x="177" y="-950.3" font-family="Times,serif" font-size="14.00">field</text>
+</a>
+</g>
+</g>
+<!-- qarith&#45;&gt;field -->
+<g id="edge14" class="edge">
+<title>qarith&#45;&gt;field</title>
+<path fill="none" stroke="black" d="M218.4,-1007.7C211.88,-999.39 203.93,-989.28 196.75,-980.14"/>
+<polygon fill="black" stroke="black" points="199.37,-977.81 190.44,-972.1 193.87,-982.13 199.37,-977.81"/>
+</g>
+<!-- lists -->
+<g id="node23" class="node">
+<title>lists</title>
+<g id="a_node23"><a xlink:href="#lists" xlink:title="lists">
+<polygon fill="#ff540a" stroke="#ff540a" points="338,-612 284,-612 284,-576 338,-576 338,-612"/>
+<text text-anchor="middle" x="311" y="-590.3" font-family="Times,serif" font-size="14.00">lists</text>
+</a>
+</g>
+</g>
+<!-- vectors&#45;&gt;lists -->
+<g id="edge41" class="edge">
+<title>vectors&#45;&gt;lists</title>
+<path fill="none" stroke="black" d="M453.78,-863.72C463.65,-845.62 475.52,-816.49 467,-792 441.63,-719.11 376.82,-652.88 339.2,-618.92"/>
+<polygon fill="black" stroke="black" points="341.41,-616.2 331.61,-612.17 336.76,-621.43 341.41,-616.2"/>
+</g>
+<!-- lqa&#45;&gt;field -->
+<g id="edge44" class="edge">
+<title>lqa&#45;&gt;field</title>
+<path fill="none" stroke="black" d="M161.94,-1007.7C164.17,-999.9 166.85,-990.51 169.33,-981.83"/>
+<polygon fill="black" stroke="black" points="172.73,-982.68 172.11,-972.1 166,-980.76 172.73,-982.68"/>
+</g>
+<!-- classical&#45;logic&#45;&gt;arith -->
+<g id="edge46" class="edge">
+<title>classical&#45;logic&#45;&gt;arith</title>
+<path fill="none" stroke="black" d="M311.54,-791.7C310,-783.98 308.14,-774.71 306.42,-766.11"/>
+<polygon fill="black" stroke="black" points="309.81,-765.22 304.42,-756.1 302.95,-766.6 309.81,-765.22"/>
+</g>
+<!-- zarith -->
+<g id="node17" class="node">
+<title>zarith</title>
+<g id="a_node17"><a xlink:href="#zarith" xlink:title="zarith">
+<polygon fill="#ff540a" stroke="#ff540a" points="241.5,-900 182.5,-900 182.5,-864 241.5,-864 241.5,-900"/>
+<text text-anchor="middle" x="212" y="-878.3" font-family="Times,serif" font-size="14.00">zarith</text>
+</a>
+</g>
+</g>
+<!-- nsatz&#45;&gt;zarith -->
+<g id="edge47" class="edge">
+<title>nsatz&#45;&gt;zarith</title>
+<path fill="none" stroke="black" d="M130.42,-935.88C144.41,-926.81 161.78,-915.55 176.89,-905.76"/>
+<polygon fill="black" stroke="black" points="178.99,-908.57 185.48,-900.19 175.18,-902.69 178.99,-908.57"/>
+</g>
+<!-- qarith&#45;base -->
+<g id="node35" class="node">
+<title>qarith&#45;base</title>
+<g id="a_node35"><a xlink:href="#qarith-base" xlink:title="qarith&#45;base">
+<polygon fill="#ff540a" stroke="#ff540a" points="164,-900 66,-900 66,-864 164,-864 164,-900"/>
+<text text-anchor="middle" x="115" y="-878.3" font-family="Times,serif" font-size="14.00">qarith&#45;base</text>
+</a>
+</g>
+</g>
+<!-- nsatz&#45;&gt;qarith&#45;base -->
+<g id="edge48" class="edge">
+<title>nsatz&#45;&gt;qarith&#45;base</title>
+<path fill="none" stroke="black" d="M106.72,-935.7C107.93,-927.98 109.39,-918.71 110.74,-910.11"/>
+<polygon fill="black" stroke="black" points="114.22,-910.53 112.31,-900.1 107.3,-909.44 114.22,-910.53"/>
+</g>
+<!-- arith&#45;base -->
+<g id="node15" class="node">
+<title>arith&#45;base</title>
+<g id="a_node15"><a xlink:href="#arith-base" xlink:title="arith&#45;base">
+<polygon fill="#ff540a" stroke="#ff540a" points="277.5,-396 188.5,-396 188.5,-360 277.5,-360 277.5,-396"/>
+<text text-anchor="middle" x="233" y="-374.3" font-family="Times,serif" font-size="14.00">arith&#45;base</text>
+</a>
+</g>
+</g>
+<!-- structures -->
+<g id="node16" class="node">
+<title>structures</title>
+<g id="a_node16"><a xlink:href="#structures" xlink:title="structures">
+<polygon fill="#ff540a" stroke="#ff540a" points="511.5,-324 420.5,-324 420.5,-288 511.5,-288 511.5,-324"/>
+<text text-anchor="middle" x="466" y="-302.3" font-family="Times,serif" font-size="14.00">structures</text>
+</a>
+</g>
+</g>
+<!-- arith&#45;base&#45;&gt;structures -->
+<g id="edge12" class="edge">
+<title>arith&#45;base&#45;&gt;structures</title>
+<path fill="none" stroke="black" d="M277.65,-363.59C315.49,-352.22 369.93,-335.86 410.56,-323.66"/>
+<polygon fill="black" stroke="black" points="411.74,-326.96 420.31,-320.73 409.72,-320.25 411.74,-326.96"/>
+</g>
+<!-- structures&#45;&gt;bool -->
+<g id="edge20" class="edge">
+<title>structures&#45;&gt;bool</title>
+<path fill="none" stroke="black" d="M494.38,-287.88C509.88,-278.52 529.25,-266.83 545.83,-256.83"/>
+<polygon fill="black" stroke="black" points="547.96,-259.63 554.71,-251.47 544.34,-253.64 547.96,-259.63"/>
+</g>
+<!-- lia -->
+<g id="node18" class="node">
+<title>lia</title>
+<g id="a_node18"><a xlink:href="#lia" xlink:title="lia">
+<polygon fill="#ff540a" stroke="#ff540a" points="239,-828 185,-828 185,-792 239,-792 239,-828"/>
+<text text-anchor="middle" x="212" y="-806.3" font-family="Times,serif" font-size="14.00">lia</text>
+</a>
+</g>
+</g>
+<!-- zarith&#45;&gt;lia -->
+<g id="edge13" class="edge">
+<title>zarith&#45;&gt;lia</title>
+<path fill="none" stroke="black" d="M212,-863.7C212,-855.98 212,-846.71 212,-838.11"/>
+<polygon fill="black" stroke="black" points="215.5,-838.1 212,-828.1 208.5,-838.1 215.5,-838.1"/>
+</g>
+<!-- lia&#45;&gt;arith -->
+<g id="edge27" class="edge">
+<title>lia&#45;&gt;arith</title>
+<path fill="none" stroke="black" d="M234,-791.7C245.21,-782.88 259,-772.03 271.15,-762.47"/>
+<polygon fill="black" stroke="black" points="273.56,-765.04 279.25,-756.1 269.23,-759.54 273.56,-765.04"/>
+</g>
+<!-- narith -->
+<g id="node21" class="node">
+<title>narith</title>
+<g id="a_node21"><a xlink:href="#narith" xlink:title="narith">
+<polygon fill="#ff540a" stroke="#ff540a" points="244,-756 184,-756 184,-720 244,-720 244,-756"/>
+<text text-anchor="middle" x="214" y="-734.3" font-family="Times,serif" font-size="14.00">narith</text>
+</a>
+</g>
+</g>
+<!-- lia&#45;&gt;narith -->
+<g id="edge26" class="edge">
+<title>lia&#45;&gt;narith</title>
+<path fill="none" stroke="black" d="M212.49,-791.7C212.71,-783.98 212.98,-774.71 213.23,-766.11"/>
+<polygon fill="black" stroke="black" points="216.72,-766.2 213.51,-756.1 209.73,-766 216.72,-766.2"/>
+</g>
+<!-- field&#45;&gt;zarith -->
+<g id="edge42" class="edge">
+<title>field&#45;&gt;zarith</title>
+<path fill="none" stroke="black" d="M185.65,-935.7C189.64,-927.73 194.45,-918.1 198.87,-909.26"/>
+<polygon fill="black" stroke="black" points="202.11,-910.61 203.45,-900.1 195.85,-907.48 202.11,-910.61"/>
+</g>
+<!-- field&#45;&gt;qarith&#45;base -->
+<g id="edge43" class="edge">
+<title>field&#45;&gt;qarith&#45;base</title>
+<path fill="none" stroke="black" d="M161.67,-935.7C154.24,-927.3 145.18,-917.07 137.02,-907.86"/>
+<polygon fill="black" stroke="black" points="139.4,-905.27 130.15,-900.1 134.16,-909.91 139.4,-905.27"/>
+</g>
+<!-- positive -->
+<g id="node20" class="node">
+<title>positive</title>
+<g id="a_node20"><a xlink:href="#positive" xlink:title="positive">
+<polygon fill="#ff540a" stroke="#ff540a" points="254.5,-468 181.5,-468 181.5,-432 254.5,-432 254.5,-468"/>
+<text text-anchor="middle" x="218" y="-446.3" font-family="Times,serif" font-size="14.00">positive</text>
+</a>
+</g>
+</g>
+<!-- positive&#45;&gt;arith&#45;base -->
+<g id="edge15" class="edge">
+<title>positive&#45;&gt;arith&#45;base</title>
+<path fill="none" stroke="black" d="M221.71,-431.7C223.36,-423.98 225.35,-414.71 227.19,-406.11"/>
+<polygon fill="black" stroke="black" points="230.66,-406.62 229.33,-396.1 223.82,-405.15 230.66,-406.62"/>
+</g>
+<!-- narith&#45;&gt;ring -->
+<g id="edge16" class="edge">
+<title>narith&#45;&gt;ring</title>
+<path fill="none" stroke="black" d="M214.99,-719.7C215.43,-711.98 215.96,-702.71 216.45,-694.11"/>
+<polygon fill="black" stroke="black" points="219.95,-694.29 217.02,-684.1 212.96,-693.89 219.95,-694.29"/>
+</g>
+<!-- ring&#45;&gt;lists -->
+<g id="edge17" class="edge">
+<title>ring&#45;&gt;lists</title>
+<path fill="none" stroke="black" d="M240.99,-647.7C252.81,-638.8 267.39,-627.82 280.18,-618.2"/>
+<polygon fill="black" stroke="black" points="282.39,-620.91 288.28,-612.1 278.18,-615.32 282.39,-620.91"/>
+</g>
+<!-- zarith&#45;base -->
+<g id="node24" class="node">
+<title>zarith&#45;base</title>
+<g id="a_node24"><a xlink:href="#zarith-base" xlink:title="zarith&#45;base">
+<polygon fill="#ff540a" stroke="#ff540a" points="266,-612 170,-612 170,-576 266,-576 266,-612"/>
+<text text-anchor="middle" x="218" y="-590.3" font-family="Times,serif" font-size="14.00">zarith&#45;base</text>
+</a>
+</g>
+</g>
+<!-- ring&#45;&gt;zarith&#45;base -->
+<g id="edge18" class="edge">
+<title>ring&#45;&gt;zarith&#45;base</title>
+<path fill="none" stroke="black" d="M218,-647.7C218,-639.98 218,-630.71 218,-622.11"/>
+<polygon fill="black" stroke="black" points="221.5,-622.1 218,-612.1 214.5,-622.1 221.5,-622.1"/>
+</g>
+<!-- lists&#45;&gt;arith&#45;base -->
+<g id="edge22" class="edge">
+<title>lists&#45;&gt;arith&#45;base</title>
+<path fill="none" stroke="black" d="M307.18,-575.64C300.3,-545.63 284.48,-482.45 263,-432 259.11,-422.86 254.03,-413.28 249.16,-404.82"/>
+<polygon fill="black" stroke="black" points="252.13,-402.98 244.02,-396.16 246.11,-406.55 252.13,-402.98"/>
+</g>
+<!-- narith&#45;base -->
+<g id="node25" class="node">
+<title>narith&#45;base</title>
+<g id="a_node25"><a xlink:href="#narith-base" xlink:title="narith&#45;base">
+<polygon fill="#ff540a" stroke="#ff540a" points="267,-540 169,-540 169,-504 267,-504 267,-540"/>
+<text text-anchor="middle" x="218" y="-518.3" font-family="Times,serif" font-size="14.00">narith&#45;base</text>
+</a>
+</g>
+</g>
+<!-- zarith&#45;base&#45;&gt;narith&#45;base -->
+<g id="edge23" class="edge">
+<title>zarith&#45;base&#45;&gt;narith&#45;base</title>
+<path fill="none" stroke="black" d="M218,-575.7C218,-567.98 218,-558.71 218,-550.11"/>
+<polygon fill="black" stroke="black" points="221.5,-550.1 218,-540.1 214.5,-550.1 221.5,-550.1"/>
+</g>
+<!-- narith&#45;base&#45;&gt;positive -->
+<g id="edge21" class="edge">
+<title>narith&#45;base&#45;&gt;positive</title>
+<path fill="none" stroke="black" d="M218,-503.7C218,-495.98 218,-486.71 218,-478.11"/>
+<polygon fill="black" stroke="black" points="221.5,-478.1 218,-468.1 214.5,-478.1 221.5,-478.1"/>
+</g>
+<!-- primitive&#45;int -->
+<g id="node26" class="node">
+<title>primitive&#45;int</title>
+<g id="a_node26"><a xlink:href="#primitive-int" xlink:title="primitive&#45;int">
+<polygon fill="#ff540a" stroke="#ff540a" points="627,-1044 521,-1044 521,-1008 627,-1008 627,-1044"/>
+<text text-anchor="middle" x="574" y="-1022.3" font-family="Times,serif" font-size="14.00">primitive&#45;int</text>
+</a>
+</g>
+</g>
+<!-- primitive&#45;int&#45;&gt;zarith -->
+<g id="edge24" class="edge">
+<title>primitive&#45;int&#45;&gt;zarith</title>
+<path fill="none" stroke="black" d="M520.76,-1014.2C450.83,-999.93 335.81,-976.09 327,-972 292.34,-955.89 258.45,-927.71 236.54,-907.36"/>
+<polygon fill="black" stroke="black" points="238.71,-904.59 229.04,-900.26 233.9,-909.68 238.71,-904.59"/>
+</g>
+<!-- unicode -->
+<g id="node27" class="node">
+<title>unicode</title>
+<g id="a_node27"><a xlink:href="#unicode" xlink:title="unicode">
+<polygon fill="#ff540a" stroke="#ff540a" points="610,-972 538,-972 538,-936 610,-936 610,-972"/>
+<text text-anchor="middle" x="574" y="-950.3" font-family="Times,serif" font-size="14.00">unicode</text>
+</a>
+</g>
+</g>
+<!-- primitive&#45;int&#45;&gt;unicode -->
+<g id="edge25" class="edge">
+<title>primitive&#45;int&#45;&gt;unicode</title>
+<path fill="none" stroke="black" d="M574,-1007.7C574,-999.98 574,-990.71 574,-982.11"/>
+<polygon fill="black" stroke="black" points="577.5,-982.1 574,-972.1 570.5,-982.1 577.5,-982.1"/>
+</g>
+<!-- fmaps&#45;fsets&#45;msets -->
+<g id="node28" class="node">
+<title>fmaps&#45;fsets&#45;msets</title>
+<g id="a_node28"><a xlink:href="#fmaps-fsets-msets" xlink:title="fmaps&#45;fsets&#45;msets">
+<polygon fill="#ff540a" stroke="#ff540a" points="348,-1116 202,-1116 202,-1080 348,-1080 348,-1116"/>
+<text text-anchor="middle" x="275" y="-1094.3" font-family="Times,serif" font-size="14.00">fmaps&#45;fsets&#45;msets</text>
+</a>
+</g>
+</g>
+<!-- fmaps&#45;fsets&#45;msets&#45;&gt;zarith -->
+<g id="edge28" class="edge">
+<title>fmaps&#45;fsets&#45;msets&#45;&gt;zarith</title>
+<path fill="none" stroke="black" d="M276.2,-1079.99C277.03,-1061.86 277.07,-1032.47 271,-1008 262.04,-971.86 242.27,-933.6 228.08,-909.08"/>
+<polygon fill="black" stroke="black" points="231.04,-907.22 222.95,-900.38 225.01,-910.77 231.04,-907.22"/>
+</g>
+<!-- orders&#45;ex -->
+<g id="node29" class="node">
+<title>orders&#45;ex</title>
+<g id="a_node29"><a xlink:href="#orders-ex" xlink:title="orders&#45;ex">
+<polygon fill="#ff540a" stroke="#ff540a" points="478,-1044 394,-1044 394,-1008 478,-1008 478,-1044"/>
+<text text-anchor="middle" x="436" y="-1022.3" font-family="Times,serif" font-size="14.00">orders&#45;ex</text>
+</a>
+</g>
+</g>
+<!-- fmaps&#45;fsets&#45;msets&#45;&gt;orders&#45;ex -->
+<g id="edge29" class="edge">
+<title>fmaps&#45;fsets&#45;msets&#45;&gt;orders&#45;ex</title>
+<path fill="none" stroke="black" d="M314.39,-1079.88C336.39,-1070.31 364.01,-1058.3 387.36,-1048.15"/>
+<polygon fill="black" stroke="black" points="388.97,-1051.27 396.74,-1044.07 386.18,-1044.85 388.97,-1051.27"/>
+</g>
+<!-- orders&#45;ex&#45;&gt;strings -->
+<g id="edge30" class="edge">
+<title>orders&#45;ex&#45;&gt;strings</title>
+<path fill="none" stroke="black" d="M449.81,-1007.53C471.85,-977.38 510.26,-913.97 487,-864 481.57,-852.34 472.18,-842.34 462.28,-834.26"/>
+<polygon fill="black" stroke="black" points="464.38,-831.45 454.3,-828.2 460.15,-837.03 464.38,-831.45"/>
+</g>
+<!-- sorting -->
+<g id="node30" class="node">
+<title>sorting</title>
+<g id="a_node30"><a xlink:href="#sorting" xlink:title="sorting">
+<polygon fill="#ff540a" stroke="#ff540a" points="404,-972 336,-972 336,-936 404,-936 404,-972"/>
+<text text-anchor="middle" x="370" y="-950.3" font-family="Times,serif" font-size="14.00">sorting</text>
+</a>
+</g>
+</g>
+<!-- orders&#45;ex&#45;&gt;sorting -->
+<g id="edge31" class="edge">
+<title>orders&#45;ex&#45;&gt;sorting</title>
+<path fill="none" stroke="black" d="M419.69,-1007.7C411.69,-999.22 401.93,-988.86 393.18,-979.58"/>
+<polygon fill="black" stroke="black" points="395.53,-976.98 386.13,-972.1 390.44,-981.78 395.53,-976.98"/>
+</g>
+<!-- sorting&#45;&gt;vectors -->
+<g id="edge35" class="edge">
+<title>sorting&#45;&gt;vectors</title>
+<path fill="none" stroke="black" d="M388.04,-935.7C397.06,-927.05 408.12,-916.45 417.94,-907.03"/>
+<polygon fill="black" stroke="black" points="420.37,-909.55 425.16,-900.1 415.52,-904.5 420.37,-909.55"/>
+</g>
+<!-- sorting&#45;&gt;lia -->
+<g id="edge33" class="edge">
+<title>sorting&#45;&gt;lia</title>
+<path fill="none" stroke="black" d="M350.94,-935.87C322.95,-910.71 270.59,-863.65 238.75,-835.04"/>
+<polygon fill="black" stroke="black" points="240.9,-832.27 231.13,-828.19 236.22,-837.48 240.9,-832.27"/>
+</g>
+<!-- sets -->
+<g id="node31" class="node">
+<title>sets</title>
+<g id="a_node31"><a xlink:href="#sets" xlink:title="sets">
+<polygon fill="#ff540a" stroke="#ff540a" points="390,-900 336,-900 336,-864 390,-864 390,-900"/>
+<text text-anchor="middle" x="363" y="-878.3" font-family="Times,serif" font-size="14.00">sets</text>
+</a>
+</g>
+</g>
+<!-- sorting&#45;&gt;sets -->
+<g id="edge34" class="edge">
+<title>sorting&#45;&gt;sets</title>
+<path fill="none" stroke="black" d="M368.27,-935.7C367.5,-927.98 366.57,-918.71 365.71,-910.11"/>
+<polygon fill="black" stroke="black" points="369.19,-909.71 364.71,-900.1 362.22,-910.4 369.19,-909.71"/>
+</g>
+<!-- sets&#45;&gt;classical&#45;logic -->
+<g id="edge32" class="edge">
+<title>sets&#45;&gt;classical&#45;logic</title>
+<path fill="none" stroke="black" d="M351.13,-863.7C345.5,-855.47 338.65,-845.48 332.43,-836.42"/>
+<polygon fill="black" stroke="black" points="335.27,-834.37 326.73,-828.1 329.5,-838.33 335.27,-834.37"/>
+</g>
+<!-- primitive&#45;floats -->
+<g id="node32" class="node">
+<title>primitive&#45;floats</title>
+<g id="a_node32"><a xlink:href="#primitive-floats" xlink:title="primitive&#45;floats">
+<polygon fill="#ff540a" stroke="#ff540a" points="638.5,-1116 513.5,-1116 513.5,-1080 638.5,-1080 638.5,-1116"/>
+<text text-anchor="middle" x="576" y="-1094.3" font-family="Times,serif" font-size="14.00">primitive&#45;floats</text>
+</a>
+</g>
+</g>
+<!-- primitive&#45;floats&#45;&gt;primitive&#45;int -->
+<g id="edge36" class="edge">
+<title>primitive&#45;floats&#45;&gt;primitive&#45;int</title>
+<path fill="none" stroke="black" d="M575.51,-1079.7C575.29,-1071.98 575.02,-1062.71 574.77,-1054.11"/>
+<polygon fill="black" stroke="black" points="578.27,-1054 574.49,-1044.1 571.28,-1054.2 578.27,-1054"/>
+</g>
+<!-- wellfounded -->
+<g id="node33" class="node">
+<title>wellfounded</title>
+<g id="a_node33"><a xlink:href="#wellfounded" xlink:title="wellfounded">
+<polygon fill="#ff540a" stroke="#ff540a" points="709,-1188 605,-1188 605,-1152 709,-1152 709,-1188"/>
+<text text-anchor="middle" x="657" y="-1166.3" font-family="Times,serif" font-size="14.00">wellfounded</text>
+</a>
+</g>
+</g>
+<!-- wellfounded&#45;&gt;lists -->
+<g id="edge37" class="edge">
+<title>wellfounded&#45;&gt;lists</title>
+<path fill="none" stroke="black" d="M709.15,-1160.67C737.34,-1153.49 770.48,-1140.25 791,-1116 817.13,-1085.12 810,-1067.45 810,-1027 810,-1027 810,-1027 810,-737 810,-641.03 464.24,-606.44 348.35,-597.54"/>
+<polygon fill="black" stroke="black" points="348.42,-594.04 338.18,-596.78 347.89,-601.02 348.42,-594.04"/>
+</g>
+<!-- primitive&#45;string -->
+<g id="node34" class="node">
+<title>primitive&#45;string</title>
+<g id="a_node34"><a xlink:href="#primitive-string" xlink:title="primitive&#45;string">
+<polygon fill="#ff540a" stroke="#ff540a" points="495.5,-1116 366.5,-1116 366.5,-1080 495.5,-1080 495.5,-1116"/>
+<text text-anchor="middle" x="431" y="-1094.3" font-family="Times,serif" font-size="14.00">primitive&#45;string</text>
+</a>
+</g>
+</g>
+<!-- primitive&#45;string&#45;&gt;primitive&#45;int -->
+<g id="edge39" class="edge">
+<title>primitive&#45;string&#45;&gt;primitive&#45;int</title>
+<path fill="none" stroke="black" d="M465.98,-1079.88C485.2,-1070.47 509.23,-1058.71 529.74,-1048.67"/>
+<polygon fill="black" stroke="black" points="531.44,-1051.73 538.88,-1044.19 528.36,-1045.44 531.44,-1051.73"/>
+</g>
+<!-- primitive&#45;string&#45;&gt;orders&#45;ex -->
+<g id="edge40" class="edge">
+<title>primitive&#45;string&#45;&gt;orders&#45;ex</title>
+<path fill="none" stroke="black" d="M432.24,-1079.7C432.79,-1071.98 433.45,-1062.71 434.06,-1054.11"/>
+<polygon fill="black" stroke="black" points="437.56,-1054.33 434.78,-1044.1 430.57,-1053.83 437.56,-1054.33"/>
+</g>
+<!-- qarith&#45;base&#45;&gt;ring -->
+<g id="edge45" class="edge">
+<title>qarith&#45;base&#45;&gt;ring</title>
+<path fill="none" stroke="black" d="M119.43,-863.75C127.65,-833.38 147.03,-768.95 175,-720 180.61,-710.18 188.02,-700.31 195.1,-691.79"/>
+<polygon fill="black" stroke="black" points="197.86,-693.96 201.73,-684.09 192.55,-689.39 197.86,-693.96"/>
+</g>
+<!-- extraction -->
+<g id="node36" class="node">
+<title>extraction</title>
+<g id="a_node36"><a xlink:href="#extraction" xlink:title="extraction">
+<polygon fill="#ff540a" stroke="#ff540a" points="530.5,-1188 441.5,-1188 441.5,-1152 530.5,-1152 530.5,-1188"/>
+<text text-anchor="middle" x="486" y="-1166.3" font-family="Times,serif" font-size="14.00">extraction</text>
+</a>
+</g>
+</g>
+<!-- extraction&#45;&gt;primitive&#45;floats -->
+<g id="edge50" class="edge">
+<title>extraction&#45;&gt;primitive&#45;floats</title>
+<path fill="none" stroke="black" d="M508.25,-1151.7C519.58,-1142.88 533.53,-1132.03 545.82,-1122.47"/>
+<polygon fill="black" stroke="black" points="548.26,-1125.01 554.01,-1116.1 543.97,-1119.48 548.26,-1125.01"/>
+</g>
+<!-- extraction&#45;&gt;primitive&#45;string -->
+<g id="edge49" class="edge">
+<title>extraction&#45;&gt;primitive&#45;string</title>
+<path fill="none" stroke="black" d="M472.4,-1151.7C465.88,-1143.39 457.93,-1133.28 450.75,-1124.14"/>
+<polygon fill="black" stroke="black" points="453.37,-1121.81 444.44,-1116.1 447.87,-1126.13 453.37,-1121.81"/>
+</g>
+<!-- primitive&#45;array -->
+<g id="node37" class="node">
+<title>primitive&#45;array</title>
+<g id="a_node37"><a xlink:href="#primitive-array" xlink:title="primitive&#45;array">
+<polygon fill="#ff540a" stroke="#ff540a" points="781.5,-1116 656.5,-1116 656.5,-1080 781.5,-1080 781.5,-1116"/>
+<text text-anchor="middle" x="719" y="-1094.3" font-family="Times,serif" font-size="14.00">primitive&#45;array</text>
+</a>
+</g>
+</g>
+<!-- extraction&#45;&gt;primitive&#45;array -->
+<g id="edge51" class="edge">
+<title>extraction&#45;&gt;primitive&#45;array</title>
+<path fill="none" stroke="black" d="M530.65,-1155.59C565.12,-1145.23 613.37,-1130.73 652.4,-1119.01"/>
+<polygon fill="black" stroke="black" points="653.54,-1122.32 662.11,-1116.09 651.53,-1115.62 653.54,-1122.32"/>
+</g>
+<!-- primitive&#45;array&#45;&gt;primitive&#45;int -->
+<g id="edge52" class="edge">
+<title>primitive&#45;array&#45;&gt;primitive&#45;int</title>
+<path fill="none" stroke="black" d="M683.53,-1079.88C663.88,-1070.39 639.28,-1058.51 618.37,-1048.42"/>
+<polygon fill="black" stroke="black" points="619.88,-1045.26 609.36,-1044.07 616.84,-1051.57 619.88,-1045.26"/>
+</g>
+<!-- streams -->
+<g id="node38" class="node">
+<title>streams</title>
+<g id="a_node38"><a xlink:href="#streams" xlink:title="streams">
+<polygon fill="#ff540a" stroke="#ff540a" points="877,-540 803,-540 803,-504 877,-504 877,-540"/>
+<text text-anchor="middle" x="840" y="-518.3" font-family="Times,serif" font-size="14.00">streams</text>
+</a>
+</g>
+</g>
+<!-- streams&#45;&gt;logic -->
+<g id="edge53" class="edge">
+<title>streams&#45;&gt;logic</title>
+<path fill="none" stroke="black" d="M838.62,-503.96C836.58,-477.32 833,-424.17 833,-379 833,-379 833,-379 833,-161 833,-119.29 815.8,-73.54 803.16,-45.54"/>
+<polygon fill="black" stroke="black" points="806.3,-44.01 798.91,-36.42 799.95,-46.96 806.3,-44.01"/>
+</g>
+<!-- funind -->
+<g id="node39" class="node">
+<title>funind</title>
+<g id="a_node39"><a xlink:href="#funind" xlink:title="funind">
+<polygon fill="#ff540a" stroke="#ff540a" points="100,-468 38,-468 38,-432 100,-432 100,-468"/>
+<text text-anchor="middle" x="69" y="-446.3" font-family="Times,serif" font-size="14.00">funind</text>
+</a>
+</g>
+</g>
+<!-- funind&#45;&gt;arith&#45;base -->
+<g id="edge54" class="edge">
+<title>funind&#45;&gt;arith&#45;base</title>
+<path fill="none" stroke="black" d="M100.23,-435.67C123.84,-425.59 156.71,-411.56 183.84,-399.98"/>
+<polygon fill="black" stroke="black" points="185.34,-403.15 193.17,-396 182.59,-396.71 185.34,-403.15"/>
+</g>
+<!-- rtauto -->
+<g id="node40" class="node">
+<title>rtauto</title>
+<g id="a_node40"><a xlink:href="#rtauto" xlink:title="rtauto">
+<polygon fill="#ff540a" stroke="#ff540a" points="171.5,-684 110.5,-684 110.5,-648 171.5,-648 171.5,-684"/>
+<text text-anchor="middle" x="141" y="-662.3" font-family="Times,serif" font-size="14.00">rtauto</text>
+</a>
+</g>
+</g>
+<!-- rtauto&#45;&gt;positive -->
+<g id="edge55" class="edge">
+<title>rtauto&#45;&gt;positive</title>
+<path fill="none" stroke="black" d="M139.27,-647.9C136.95,-617.22 135.59,-551.58 160,-504 165.74,-492.81 174.87,-482.81 184.2,-474.59"/>
+<polygon fill="black" stroke="black" points="186.54,-477.19 192.01,-468.11 182.08,-471.8 186.54,-477.19"/>
+</g>
+<!-- rtauto&#45;&gt;lists -->
+<g id="edge56" class="edge">
+<title>rtauto&#45;&gt;lists</title>
+<path fill="none" stroke="black" d="M171.86,-652.11C175.28,-650.71 178.71,-649.32 182,-648 220.41,-632.61 232.66,-629.81 274.56,-612.05"/>
+<polygon fill="black" stroke="black" points="276.15,-615.17 283.97,-608.02 273.4,-608.74 276.15,-615.17"/>
+</g>
+<!-- compat -->
+<g id="node41" class="node">
+<title>compat</title>
+<g id="a_node41"><a xlink:href="#compat" xlink:title="compat">
+<polygon fill="#ff540a" stroke="#ff540a" points="339.5,-1260 270.5,-1260 270.5,-1224 339.5,-1224 339.5,-1260"/>
+<text text-anchor="middle" x="305" y="-1238.3" font-family="Times,serif" font-size="14.00">compat</text>
+</a>
+</g>
+</g>
+<!-- compat&#45;&gt;reals -->
+<g id="edge57" class="edge">
+<title>compat&#45;&gt;reals</title>
+<path fill="none" stroke="black" d="M287.15,-1223.87C261.03,-1198.82 212.29,-1152.05 182.44,-1123.41"/>
+<polygon fill="black" stroke="black" points="184.55,-1120.59 174.92,-1116.19 179.71,-1125.64 184.55,-1120.59"/>
+</g>
+<!-- compat&#45;&gt;fmaps&#45;fsets&#45;msets -->
+<g id="edge58" class="edge">
+<title>compat&#45;&gt;fmaps&#45;fsets&#45;msets</title>
+<path fill="none" stroke="black" d="M301.38,-1223.87C296.25,-1199.56 286.79,-1154.82 280.71,-1126.01"/>
+<polygon fill="black" stroke="black" points="284.12,-1125.25 278.63,-1116.19 277.27,-1126.7 284.12,-1125.25"/>
+</g>
+<!-- compat&#45;&gt;wellfounded -->
+<g id="edge59" class="edge">
+<title>compat&#45;&gt;wellfounded</title>
+<path fill="none" stroke="black" d="M339.71,-1234.1C398.94,-1222.32 520.27,-1198.19 594.54,-1183.42"/>
+<polygon fill="black" stroke="black" points="595.58,-1186.78 604.7,-1181.4 594.21,-1179.92 595.58,-1186.78"/>
+</g>
+<!-- compat&#45;&gt;primitive&#45;string -->
+<g id="edge60" class="edge">
+<title>compat&#45;&gt;primitive&#45;string</title>
+<path fill="none" stroke="black" d="M320.2,-1223.87C342.34,-1198.92 383.57,-1152.45 409.02,-1123.77"/>
+<polygon fill="black" stroke="black" points="411.73,-1125.99 415.75,-1116.19 406.49,-1121.35 411.73,-1125.99"/>
+</g>
+<!-- compat&#45;&gt;extraction -->
+<g id="edge61" class="edge">
+<title>compat&#45;&gt;extraction</title>
+<path fill="none" stroke="black" d="M339.9,-1227.5C366.13,-1217.36 402.54,-1203.28 432.45,-1191.71"/>
+<polygon fill="black" stroke="black" points="433.85,-1194.92 441.91,-1188.05 431.32,-1188.39 433.85,-1194.92"/>
+</g>
+<!-- compat&#45;&gt;streams -->
+<g id="edge62" class="edge">
+<title>compat&#45;&gt;streams</title>
+<path fill="none" stroke="black" d="M339.79,-1239.43C459.64,-1233.11 848,-1204.48 848,-1099 848,-1099 848,-1099 848,-665 848,-624.93 844.79,-578.61 842.43,-550.05"/>
+<polygon fill="black" stroke="black" points="845.91,-549.7 841.58,-540.03 838.94,-550.29 845.91,-549.7"/>
+</g>
+<!-- compat&#45;&gt;funind -->
+<g id="edge63" class="edge">
+<title>compat&#45;&gt;funind</title>
+<path fill="none" stroke="black" d="M270.28,-1237.17C209.63,-1229.93 87.55,-1212.69 53,-1188 15.54,-1161.23 0,-1145.04 0,-1099 0,-1099 0,-1099 0,-593 0,-548.48 27.78,-503.29 48.08,-476.2"/>
+<polygon fill="black" stroke="black" points="51.02,-478.12 54.37,-468.07 45.48,-473.84 51.02,-478.12"/>
+</g>
+<!-- compat&#45;&gt;rtauto -->
+<g id="edge64" class="edge">
+<title>compat&#45;&gt;rtauto</title>
+<path fill="none" stroke="black" d="M270.37,-1238.47C198.12,-1231.12 38,-1203.09 38,-1099 38,-1099 38,-1099 38,-809 38,-759.66 79.26,-715.89 109.55,-690.41"/>
+<polygon fill="black" stroke="black" points="111.84,-693.06 117.37,-684.03 107.41,-687.64 111.84,-693.06"/>
+</g>
+<!-- all -->
+<g id="node42" class="node">
+<title>all</title>
+<g id="a_node42"><a xlink:href="#all" xlink:title="all">
+<polygon fill="#ff540a" stroke="#ff540a" points="332,-1332 278,-1332 278,-1296 332,-1296 332,-1332"/>
+<text text-anchor="middle" x="305" y="-1310.3" font-family="Times,serif" font-size="14.00">all</text>
+</a>
+</g>
+</g>
+<!-- all&#45;&gt;compat -->
+<g id="edge65" class="edge">
+<title>all&#45;&gt;compat</title>
+<path fill="none" stroke="black" d="M305,-1295.7C305,-1287.98 305,-1278.71 305,-1270.11"/>
+<polygon fill="black" stroke="black" points="308.5,-1270.1 305,-1260.1 301.5,-1270.1 308.5,-1270.1"/>
+</g>
+</g>
+</svg>
+
+<p>The standard library is composed of the following subdirectories:</p>
+
+<dl>
+  <dt> <a name="logic"></a><b>Logic</b>:
+    Logic, dependent equality, extensionality, choice axioms.
+    Look at <a href="#classical-logic">classical-logic</a> for more elaborate results.
+  </dt>
+  <dd>
+    <a href="Stdlib.Logic.SetIsType.html">SetIsType</a>
+    <a href="Stdlib.Logic.StrictProp.html">StrictProp</a>
+    <a href="Stdlib.Logic.Decidable.html">Decidable</a>
+    <a href="Stdlib.Logic.Eqdep_dec.html">Eqdep_dec</a>
+    <a href="Stdlib.Logic.EqdepFacts.html">EqdepFacts</a>
+    <a href="Stdlib.Logic.Eqdep.html">Eqdep</a>
+    <a href="Stdlib.Logic.JMeq.html">JMeq</a>
+    <a href="Stdlib.Logic.RelationalChoice.html">RelationalChoice</a>
+    <a href="Stdlib.Logic.Berardi.html">Berardi</a>
+    <a href="Stdlib.Logic.Hurkens.html">Hurkens</a>
+    <a href="Stdlib.Logic.ProofIrrelevance.html">ProofIrrelevance</a>
+    <a href="Stdlib.Logic.ProofIrrelevanceFacts.html">ProofIrrelevanceFacts</a>
+    <a href="Stdlib.Logic.ConstructiveEpsilon.html">ConstructiveEpsilon</a>
+    <a href="Stdlib.Logic.PropExtensionalityFacts.html">PropExtensionalityFacts</a>
+    <a href="Stdlib.Logic.FunctionalExtensionality.html">FunctionalExtensionality</a>
+    <a href="Stdlib.Logic.ExtensionalFunctionRepresentative.html">ExtensionalFunctionRepresentative</a>
+    <a href="Stdlib.Logic.ExtensionalityFacts.html">ExtensionalityFacts</a>
+    <a href="Stdlib.Logic.WeakFan.html">WeakFan</a>
+    <a href="Stdlib.Logic.PropFacts.html">PropFacts</a>
+    <a href="Stdlib.Logic.HLevels.html">HLevels</a>
+    <a href="Stdlib.Logic.Adjointification.html">Adjointification</a>
+  </dd>
+
+  <dt> <a name="program"></a><b>Program</b>:
+    Support for dependently-typed programming
+    Beware that there are also Tactics.v and Wf.v files in Init.
+  </dt>
+  <dd>
+    <a href="Stdlib.Program.Subset.html">Subset</a>
+    <a href="Stdlib.Program.Equality.html">Equality</a>
+    <a href="Stdlib.Program.Syntax.html">Syntax</a>
+    <a href="Stdlib.Program.WfExtensionality.html">WfExtensionality</a>
+    <a href="Stdlib.Program.Program.html">Program</a>
+    <a href="Stdlib.Program.Combinators.html">Combinators</a>
+  </dd>
+
+  <dt> <a name="relations"></a><b>Relations</b>:
+    Relations (definitions and basic results)
+  </dt>
+  <dd>
+    <a href="Stdlib.Relations.Relation_Operators.html">Relation_Operators</a>
+    <a href="Stdlib.Relations.Relations.html">Relations</a>
+    <a href="Stdlib.Relations.Operators_Properties.html">Operators_Properties</a>
+  </dd>
+
+  <dt> <a name="classes"></a><b>Classes</b>:
+  </dt>
+  <dd>
+    <a href="Stdlib.Classes.Morphisms_Relations.html">Morphisms_Relations</a>
+    <a href="Stdlib.Classes.CEquivalence.html">CEquivalence</a>
+    <a href="Stdlib.Classes.SetoidClass.html">SetoidClass</a>
+    <a href="Stdlib.Classes.RelationPairs.html">RelationPairs</a>
+    <a href="Stdlib.Classes.DecidableClass.html">DecidableClass</a>
+  </dd>
+
+  <dt><a name="bool"></a><b>Bool</b>:
+    Booleans (basic functions and results)
+  </dt>
+  <dd>
+    <a href="Stdlib.Bool.Bool.html">Bool</a>
+    <a href="Stdlib.Bool.BoolEq.html">BoolEq</a>
+    <a href="Stdlib.Bool.DecBool.html">DecBool</a>
+    <a href="Stdlib.Bool.IfProp.html">IfProp</a>
+  </dd>
+
+  <dt> <a name="structures"></a><b>Structures</b>:
+    Basic "algebraic" structures: types with decidable equality and with order.
+    Common instances can be found in <a href="#orders-ex">orders-ex</a>.
+    More developped algebra can be found in the
+    <a href="https://github.com/math-comp/math-comp">mathematical components
+    library</a>.
+  </dt>
+  <dd>
+    <a href="Stdlib.Structures.Equalities.html">Equalities</a>
+    <a href="Stdlib.Structures.Orders.html">Orders</a>
+    <a href="Stdlib.Structures.OrdersTac.html">OrdersTac</a>
+    <a href="Stdlib.Structures.OrdersFacts.html">OrdersFacts</a>
+    <a href="Stdlib.Structures.GenericMinMax.html">GenericMinMax</a>
+  </dd>
+
+  <dt> <a name="arith-base"></a><b>Arith-base</b>:
+    Basic Peano Arithmetic.
+    Everything can be loaded with From Stdlib Require Import Arith_base.
+    To enjoy the ring and lia automatic tactic, you additionally need to load
+    arith below, using From Stdlib Require Import Arith Lia.
+  </dt>
+  <dd>
+    <a href="Stdlib.Arith.PeanoNat.html">PeanoNat</a>
+    <a href="Stdlib.Arith.Between.html">Between</a>
+    <a href="Stdlib.Arith.Peano_dec.html">Peano_dec</a>
+    <a href="Stdlib.Arith.Compare_dec.html">Compare_dec</a>
+    (<a href="Stdlib.Arith.Arith_base.html">Arith_base</a>)
+    <a href="Stdlib.Arith.Compare.html">Compare</a>
+    <a href="Stdlib.Arith.EqNat.html">EqNat</a>
+    <a href="Stdlib.Arith.Euclid.html">Euclid</a>
+    <a href="Stdlib.Arith.Factorial.html">Factorial</a>
+    <a href="Stdlib.Arith.Wf_nat.html">Wf_nat</a>
+    <a href="Stdlib.Arith.Cantor.html">Cantor</a>
+    <a href="Stdlib.Arith.Zerob.html">Zerob</a>
+    <a href="Stdlib.Numbers.NumPrelude.html">NumPrelude</a>
+    <a href="Stdlib.Numbers.NatInt.NZAdd.html">NZAdd</a>
+    <a href="Stdlib.Numbers.NatInt.NZAddOrder.html">NZAddOrder</a>
+    <a href="Stdlib.Numbers.NatInt.NZAxioms.html">NZAxioms</a>
+    <a href="Stdlib.Numbers.NatInt.NZBase.html">NZBase</a>
+    <a href="Stdlib.Numbers.NatInt.NZMul.html">NZMul</a>
+    <a href="Stdlib.Numbers.NatInt.NZDiv.html">NZDiv</a>
+    <a href="Stdlib.Numbers.NatInt.NZMulOrder.html">NZMulOrder</a>
+    <a href="Stdlib.Numbers.NatInt.NZOrder.html">NZOrder</a>
+    <a href="Stdlib.Numbers.NatInt.NZParity.html">NZParity</a>
+    <a href="Stdlib.Numbers.NatInt.NZPow.html">NZPow</a>
+    <a href="Stdlib.Numbers.NatInt.NZSqrt.html">NZSqrt</a>
+    <a href="Stdlib.Numbers.NatInt.NZLog.html">NZLog</a>
+    <a href="Stdlib.Numbers.NatInt.NZGcd.html">NZGcd</a>
+    <a href="Stdlib.Numbers.NatInt.NZBits.html">NZBits</a>
+    <a href="Stdlib.Numbers.Natural.Abstract.NAdd.html">NAdd</a>
+    <a href="Stdlib.Numbers.Natural.Abstract.NAddOrder.html">NAddOrder</a>
+    <a href="Stdlib.Numbers.Natural.Abstract.NAxioms.html">NAxioms</a>
+    <a href="Stdlib.Numbers.Natural.Abstract.NBase.html">NBase</a>
+    <a href="Stdlib.Numbers.Natural.Abstract.NMulOrder.html">NMulOrder</a>
+    <a href="Stdlib.Numbers.Natural.Abstract.NOrder.html">NOrder</a>
+    <a href="Stdlib.Numbers.Natural.Abstract.NStrongRec.html">NStrongRec</a>
+    <a href="Stdlib.Numbers.Natural.Abstract.NSub.html">NSub</a>
+    <a href="Stdlib.Numbers.Natural.Abstract.NDiv.html">NDiv</a>
+    <a href="Stdlib.Numbers.Natural.Abstract.NDiv0.html">NDiv0</a>
+    <a href="Stdlib.Numbers.Natural.Abstract.NMaxMin.html">NMaxMin</a>
+    <a href="Stdlib.Numbers.Natural.Abstract.NParity.html">NParity</a>
+    <a href="Stdlib.Numbers.Natural.Abstract.NPow.html">NPow</a>
+    <a href="Stdlib.Numbers.Natural.Abstract.NSqrt.html">NSqrt</a>
+    <a href="Stdlib.Numbers.Natural.Abstract.NLog.html">NLog</a>
+    <a href="Stdlib.Numbers.Natural.Abstract.NGcd.html">NGcd</a>
+    <a href="Stdlib.Numbers.Natural.Abstract.NLcm.html">NLcm</a>
+    <a href="Stdlib.Numbers.Natural.Abstract.NLcm0.html">NLcm0</a>
+    <a href="Stdlib.Numbers.Natural.Abstract.NBits.html">NBits</a>
+    <a href="Stdlib.Numbers.Natural.Abstract.NProperties.html">NProperties</a>
+    <a href="Stdlib.Classes.SetoidDec.html">SetoidDec</a>
+  </dd>
+
+  <dt> <a name="lists"></a><b>Lists</b>:
+    Polymorphic lists
+  </dt>
+  <dd>
+    <a href="Stdlib.Lists.List.html">List</a>
+    <a href="Stdlib.Lists.ListDec.html">ListDec</a>
+    <a href="Stdlib.Lists.ListSet.html">ListSet</a>
+    <a href="Stdlib.Lists.ListTactics.html">ListTactics</a>
+    <a href="Stdlib.Numbers.NaryFunctions.html">NaryFunctions</a>
+    <a href="Stdlib.Logic.WKL.html">WKL</a>
+    <a href="Stdlib.Classes.EquivDec.html">EquivDec</a>
+  </dd>
+
+  <dt> <a name="streams"></a><b>Streams</b>:
+    Streams (infinite sequences)
+  </dt>
+  <dd>
+    <a href="Stdlib.Streams.Streams.html">Streams</a>
+    <a href="Stdlib.Streams.StreamMemo.html">StreamMemo</a>
+  </dd>
+
+  <dt> <a name="positive"></a><b>PArith</b>:
+    Binary representation of positive integers for effective computation.
+    You may also want narith and zarith below for N and Z
+    built on top of <a href="#positive">positive</a>.
+  </dt>
+  <dd>
+    <a href="Stdlib.Numbers.AltBinNotations.html">AltBinNotations</a>
+    <a href="Stdlib.PArith.BinPosDef.html">BinPosDef</a>
+    <a href="Stdlib.PArith.BinPos.html">BinPos</a>
+    <a href="Stdlib.PArith.Pnat.html">Pnat</a>
+    <a href="Stdlib.PArith.POrderedType.html">POrderedType</a>
+    (<a href="Stdlib.PArith.PArith.html">PArith</a>)
+  </dd>
+
+  <dt> <a name="narith-base"></a><b>NArith-base</b>:
+    Binary natural numbers.
+    Everything can be loaded with From Stdlib Require Import NArith_base.
+    To enjoy the ring automatic tactic, you need to load
+    <a href="#narith">narith</a> below, using From Stdlib Require Import NArith.
+  </dt>
+  <dd>
+    <a href="Stdlib.NArith.BinNatDef.html">BinNatDef</a>
+    <a href="Stdlib.NArith.BinNat.html">BinNat</a>
+    <a href="Stdlib.NArith.Nnat.html">Nnat</a>
+    <a href="Stdlib.NArith.Ndec.html">Ndec</a>
+    <a href="Stdlib.NArith.Ndiv_def.html">Ndiv_def</a>
+    <a href="Stdlib.NArith.Ngcd_def.html">Ngcd_def</a>
+    <a href="Stdlib.NArith.Nsqrt_def.html">Nsqrt_def</a>
+    (<a href="Stdlib.NArith.NArith_base.html">NArith_base</a>)
+  </dd>
+
+  <dt> <a name="narith"></a><b>NArith</b>:
+    Binary natural numbers
+  </dt>
+  <dd>
+    (<a href="Stdlib.NArith.NArith.html">NArith</a>)
+  </dd>
+
+  <dt> <a name="zarith-base"></a><b>ZArith-base</b>:
+    Basic binary integers
+  </dt>
+  <dd>
+    <a href="Stdlib.Numbers.Integer.Abstract.ZAdd.html">ZAdd</a>
+    <a href="Stdlib.Numbers.Integer.Abstract.ZAddOrder.html">ZAddOrder</a>
+    <a href="Stdlib.Numbers.Integer.Abstract.ZAxioms.html">ZAxioms</a>
+    <a href="Stdlib.Numbers.Integer.Abstract.ZBase.html">ZBase</a>
+    <a href="Stdlib.Numbers.Integer.Abstract.ZLt.html">ZLt</a>
+    <a href="Stdlib.Numbers.Integer.Abstract.ZMul.html">ZMul</a>
+    <a href="Stdlib.Numbers.Integer.Abstract.ZMulOrder.html">ZMulOrder</a>
+    <a href="Stdlib.Numbers.Integer.Abstract.ZSgnAbs.html">ZSgnAbs</a>
+    <a href="Stdlib.Numbers.Integer.Abstract.ZMaxMin.html">ZMaxMin</a>
+    <a href="Stdlib.Numbers.Integer.Abstract.ZParity.html">ZParity</a>
+    <a href="Stdlib.Numbers.Integer.Abstract.ZPow.html">ZPow</a>
+    <a href="Stdlib.Numbers.Integer.Abstract.ZGcd.html">ZGcd</a>
+    <a href="Stdlib.Numbers.Integer.Abstract.ZLcm.html">ZLcm</a>
+    <a href="Stdlib.Numbers.Integer.Abstract.ZBits.html">ZBits</a>
+    <a href="Stdlib.Numbers.Integer.Abstract.ZProperties.html">ZProperties</a>
+    <a href="Stdlib.Numbers.Integer.Abstract.ZDivFloor.html">ZDivFloor</a>
+    <a href="Stdlib.Numbers.Integer.Abstract.ZDivTrunc.html">ZDivTrunc</a>
+    <a href="Stdlib.ZArith.BinIntDef.html">BinIntDef</a>
+    <a href="Stdlib.ZArith.BinInt.html">BinInt</a>
+    <a href="Stdlib.ZArith.Zorder.html">Zorder</a>
+    <a href="Stdlib.ZArith.Zcompare.html">Zcompare</a>
+    <a href="Stdlib.ZArith.Znat.html">Znat</a>
+    <a href="Stdlib.ZArith.Zmin.html">Zmin</a>
+    <a href="Stdlib.ZArith.Zmax.html">Zmax</a>
+    <a href="Stdlib.ZArith.Zminmax.html">Zminmax</a>
+    <a href="Stdlib.ZArith.Zabs.html">Zabs</a>
+    <a href="Stdlib.ZArith.Zeven.html">Zeven</a>
+    <a href="Stdlib.ZArith.auxiliary.html">auxiliary</a>
+    <a href="Stdlib.ZArith.ZArith_dec.html">ZArith_dec</a>
+    <a href="Stdlib.ZArith.Zbool.html">Zbool</a>
+    <a href="Stdlib.ZArith.Zmisc.html">Zmisc</a>
+    <a href="Stdlib.ZArith.Wf_Z.html">Wf_Z</a>
+    <a href="Stdlib.ZArith.Zhints.html">Zhints</a>
+    (<a href="Stdlib.ZArith.ZArith_base.html">ZArith_base</a>)
+    <a href="Stdlib.ZArith.Zpow_alt.html">Zpow_alt</a>
+    <a href="Stdlib.ZArith.Int.html">Int</a>
+  </dd>
+
+  <dt> <a name="ring"></a><b>Ring</b>:
+    Ring tactic.
+  </dt>
+  <dd>
+    <a href="Stdlib.ZArith.Zcomplements.html">Zcomplements</a>
+    <a href="Stdlib.ZArith.Zpow_def.html">Zpow_def</a>
+    <a href="Stdlib.ZArith.Zdiv.html">Zdiv</a>
+    <a href="Stdlib.ZArith.Znumtheory.html">Znumtheory</a>
+  </dd>
+
+  <dt> <a name="arith"></a><b>Arith</b>:
+    Basic Peano arithmetic
+  </dt>
+  <dd>
+    (<a href="Stdlib.Arith.Arith.html">Arith</a>)
+  </dd>
+
+  <dt> <a name="zarith"></a><b>ZArith</b>:
+    Binary encoding of integers.
+    This binary encoding was initially developped to enable effective
+    computations, compared to the unary encoding of nat. Proofs were then added
+    making the types usable for mathematical proofs, although this was not
+    the initial intent. If even-more efficient computations are needed, look
+    at the <a href="#primitive-int">primitive-int</a> package below for 63 bits machine arithmetic
+    or the coq-bignums package for arbitrary precision machine arithmetic.
+    Everything can be imported with From Stdlib Require Import ZArith.
+    Also contains the migromega tactic that can be loaded with
+    From Stdlib Require Import Lia.
+  </dt>
+  <dd>
+    <a href="Stdlib.ZArith.Zpower.html">Zpower</a>
+    <a href="Stdlib.ZArith.Zquot.html">Zquot</a>
+    (<a href="Stdlib.ZArith.ZArith.html">ZArith</a>)
+    <a href="Stdlib.ZArith.Zgcd_alt.html">Zgcd_alt</a>
+    <a href="Stdlib.ZArith.Zwf.html">Zwf</a>
+    <a href="Stdlib.ZArith.Zpow_facts.html">Zpow_facts</a>
+    <a href="Stdlib.ZArith.Zdiv_facts.html">Zdiv_facts</a>
+    <a href="Stdlib.ZArith.Zbitwise.html">Zbitwise</a>
+    <a href="Stdlib.Numbers.DecimalFacts.html">DecimalFacts</a>
+    <a href="Stdlib.Numbers.DecimalNat.html">DecimalNat</a>
+    <a href="Stdlib.Numbers.DecimalPos.html">DecimalPos</a>
+    <a href="Stdlib.Numbers.DecimalN.html">DecimalN</a>
+    <a href="Stdlib.Numbers.DecimalZ.html">DecimalZ</a>
+    <a href="Stdlib.Numbers.HexadecimalFacts.html">HexadecimalFacts</a>
+    <a href="Stdlib.Numbers.HexadecimalNat.html">HexadecimalNat</a>
+    <a href="Stdlib.Numbers.HexadecimalPos.html">HexadecimalPos</a>
+    <a href="Stdlib.Numbers.HexadecimalN.html">HexadecimalN</a>
+    <a href="Stdlib.Numbers.HexadecimalZ.html">HexadecimalZ</a>
+  </dd>
+
+  <dt> <a name="unicode"></a><b>Unicode</b>:
+    Unicode-based alternative notations
+  </dt>
+  <dd>
+    <a href="Stdlib.Unicode.Utf8_core.html">Utf8_core</a>
+    <a href="Stdlib.Unicode.Utf8.html">Utf8</a>
+  </dd>
+
+  <dt> <a name="primitive-int"></a><b>Primitive Integers</b>:
+    Interface for hardware integers (63 rather than 64 bits due to OCaml
+    garbage collector). This enables very efficient arithmetic, for developing
+    tactics for proofs by reflection for instance.
+  </dt>
+  <dd>
+    <a href="Stdlib.Numbers.Cyclic.Abstract.CyclicAxioms.html">CyclicAxioms</a>
+    <a href="Stdlib.Numbers.Cyclic.Abstract.NZCyclic.html">NZCyclic</a>
+    <a href="Stdlib.Numbers.Cyclic.Abstract.DoubleType.html">DoubleType</a>
+    <a href="Stdlib.Numbers.Cyclic.Int63.Cyclic63.html">Cyclic63</a>
+    <a href="Stdlib.Numbers.Cyclic.Int63.Uint63.html">Uint63</a>
+    <a href="Stdlib.Numbers.Cyclic.Int63.Sint63.html">Sint63</a>
+    <a href="Stdlib.Numbers.Cyclic.Int63.Ring63.html">Ring63</a>
+  </dd>
+
+  <dt> <a name="primitive-floats"></a><b>Floats</b>:
+    Efficient machine floating-point arithmetic
+    Interface to hardware floating-point arithmetic for efficient computations.
+    This offers a basic model of floating-point arithmetic but is not very
+    usable alone. Look at the coq-flocq package for an actual model of
+    floating-point arithmetic, including links to Stdlib <a href="#reals">reals</a> and the current
+    Floats.
+  </dt>
+  <dd>
+    <a href="Stdlib.Floats.FloatLemmas.html">FloatLemmas</a>
+    (<a href="Stdlib.Floats.Floats.html">Floats</a>)
+  </dd>
+
+  <dt> <a name="primitive-array"></a><b>Primitive Arrays</b>:
+    Persistent native arrays, enabling efficient computations with arrays.
+  </dt>
+  <dd>
+    <a href="Stdlib.Array.PArray.html">PArray</a>
+  </dd>
+
+  <dt> <a name="vectors"></a><b>Vectors</b>:
+    Dependent datastructures storing their length.
+    This is known to be technically difficult to use. It is often much better
+    to use a dependent pair with a list and a proof about its length,
+    as provided by the tuple type in package coq-mathcomp-ssreflect,
+    allowing almost transparent mixing with lists.
+  </dt>
+  <dd>
+    <a href="Stdlib.Vectors.Fin.html">Fin</a>
+    <a href="Stdlib.Vectors.VectorDef.html">VectorDef</a>
+    <a href="Stdlib.Vectors.VectorSpec.html">VectorSpec</a>
+    <a href="Stdlib.Vectors.VectorEq.html">VectorEq</a>
+    (<a href="Stdlib.Vectors.Vector.html">Vector</a>)
+    <a href="Stdlib.Vectors.FinFun.html">FinFun</a>
+    <a href="Stdlib.Vectors.Bvector.html">Bvector</a>
+  </dd>
+
+  <dt> <a name="strings"></a><b>Strings</b>
+    Implementation of string as list of ASCII characters
+    Beware that there is also a Byte.v file in Init.
+  </dt>
+  <dd>
+    <a href="Stdlib.Strings.Byte.html">Byte</a>
+    <a href="Stdlib.Strings.Ascii.html">Ascii</a>
+    <a href="Stdlib.Strings.String.html">String</a>
+    <a href="Stdlib.Strings.BinaryString.html">BinaryString</a>
+    <a href="Stdlib.Strings.HexString.html">HexString</a>
+    <a href="Stdlib.Strings.OctalString.html">OctalString</a>
+    <a href="Stdlib.Numbers.DecimalString.html">DecimalString</a>
+    <a href="Stdlib.Numbers.HexadecimalString.html">HexadecimalString</a>
+  </dd>
+
+  <dt> <a name="classical-logic"></a><b>Classical Logic</b>:
+    Classical logic, dependent equality, extensionality, choice axioms
+  </dt>
+  <dd>
+    <a href="Stdlib.Logic.Classical_Pred_Type.html">Classical_Pred_Type</a>
+    <a href="Stdlib.Logic.Classical_Prop.html">Classical_Prop</a>
+    (<a href="Stdlib.Logic.Classical.html">Classical</a>)
+    <a href="Stdlib.Logic.ClassicalFacts.html">ClassicalFacts</a>
+    <a href="Stdlib.Logic.ChoiceFacts.html">ChoiceFacts</a>
+    <a href="Stdlib.Logic.ClassicalChoice.html">ClassicalChoice</a>
+    <a href="Stdlib.Logic.ClassicalDescription.html">ClassicalDescription</a>
+    <a href="Stdlib.Logic.ClassicalEpsilon.html">ClassicalEpsilon</a>
+    <a href="Stdlib.Logic.ClassicalUniqueChoice.html">ClassicalUniqueChoice</a>
+    <a href="Stdlib.Logic.SetoidChoice.html">SetoidChoice</a>
+    <a href="Stdlib.Logic.Diaconescu.html">Diaconescu</a>
+    <a href="Stdlib.Logic.Description.html">Description</a>
+    <a href="Stdlib.Logic.Epsilon.html">Epsilon</a>
+    <a href="Stdlib.Logic.IndefiniteDescription.html">IndefiniteDescription</a>
+    <a href="Stdlib.Logic.PropExtensionality.html">PropExtensionality</a>
+  </dd>
+
+  <dt> <a name="sets"></a><b>Sets</b>:
+    Classical sets. This is known to be outdated. More modern alternatives
+    can be found in coq-mathcomp-ssreflect (for finite sets)
+    and coq-mathcomp-classical (for classical sets) or coq-stdpp.
+  </dt>
+  <dd>
+    <a href="Stdlib.Sets.Classical_sets.html">Classical_sets</a>
+    <a href="Stdlib.Sets.Constructive_sets.html">Constructive_sets</a>
+    <a href="Stdlib.Sets.Cpo.html">Cpo</a>
+    <a href="Stdlib.Sets.Ensembles.html">Ensembles</a>
+    <a href="Stdlib.Sets.Finite_sets_facts.html">Finite_sets_facts</a>
+    <a href="Stdlib.Sets.Finite_sets.html">Finite_sets</a>
+    <a href="Stdlib.Sets.Image.html">Image</a>
+    <a href="Stdlib.Sets.Infinite_sets.html">Infinite_sets</a>
+    <a href="Stdlib.Sets.Integers.html">Integers</a>
+    <a href="Stdlib.Sets.Multiset.html">Multiset</a>
+    <a href="Stdlib.Sets.Partial_Order.html">Partial_Order</a>
+    <a href="Stdlib.Sets.Permut.html">Permut</a>
+    <a href="Stdlib.Sets.Powerset_Classical_facts.html">Powerset_Classical_facts</a>
+    <a href="Stdlib.Sets.Powerset_facts.html">Powerset_facts</a>
+    <a href="Stdlib.Sets.Powerset.html">Powerset</a>
+    <a href="Stdlib.Sets.Relations_1_facts.html">Relations_1_facts</a>
+    <a href="Stdlib.Sets.Relations_1.html">Relations_1</a>
+    <a href="Stdlib.Sets.Relations_2_facts.html">Relations_2_facts</a>
+    <a href="Stdlib.Sets.Relations_2.html">Relations_2</a>
+    <a href="Stdlib.Sets.Relations_3_facts.html">Relations_3_facts</a>
+    <a href="Stdlib.Sets.Relations_3.html">Relations_3</a>
+    <a href="Stdlib.Sets.Uniset.html">Uniset</a>
+  </dd>
+
+  <dt> <a name="sorting"></a><b>Sorting</b>:
+    Axiomatizations of sorts
+  </dt>
+  <dd>
+    <a href="Stdlib.Sorting.SetoidList.html">SetoidList</a>
+    <a href="Stdlib.Sorting.SetoidPermutation.html">SetoidPermutation</a>
+    <a href="Stdlib.Sorting.Heap.html">Heap</a>
+    <a href="Stdlib.Sorting.Permutation.html">Permutation</a>
+    <a href="Stdlib.Sorting.Sorting.html">Sorting</a>
+    <a href="Stdlib.Sorting.PermutEq.html">PermutEq</a>
+    <a href="Stdlib.Sorting.PermutSetoid.html">PermutSetoid</a>
+    <a href="Stdlib.Sorting.Mergesort.html">Mergesort</a>
+    <a href="Stdlib.Sorting.Sorted.html">Sorted</a>
+    <a href="Stdlib.Sorting.CPermutation.html">CPermutation</a>
+  </dd>
+
+  <dt> <a name="orders-ex"></a><b>Structure Instances</b>:
+    Instances of order structures from <a href="#structures">Structures</a> above.
+    DecidableType* and OrderedType* are there only for compatibility.
+  </dt>
+  <dd>
+    <a href="Stdlib.Structures.EqualitiesFacts.html">EqualitiesFacts</a>
+    <a href="Stdlib.Structures.OrdersAlt.html">OrdersAlt</a>
+    <a href="Stdlib.Structures.OrdersEx.html">OrdersEx</a>
+    <a href="Stdlib.Structures.OrdersLists.html">OrdersLists</a>
+    <a href="Stdlib.Structures.DecidableType.html">DecidableType</a>
+    <a href="Stdlib.Structures.DecidableTypeEx.html">DecidableTypeEx</a>
+    <a href="Stdlib.Structures.OrderedType.html">OrderedType</a>
+    <a href="Stdlib.Structures.OrderedTypeAlt.html">OrderedTypeAlt</a>
+    <a href="Stdlib.Structures.OrderedTypeEx.html">OrderedTypeEx</a>
+    <a href="Stdlib.Structures.BoolOrder.html">BoolOrder</a>
+  </dd>
+
+  <dt> <a name="primitive-string"></a><b>Primitive Strings</b>
+    Native string type
+  </dt>
+  <dd>
+    <a href="Stdlib.Strings.PString.html">PString</a>
+  </dd>
+
+  <dt> <a name="qarith-base"></a><b>QArith-base</b>:
+    Basic binary rational numbers.
+    Look at <a href="#qarith">qarith</a> below for more functionalities with the field
+    and Lqa tactics.
+  </dt>
+  <dd>
+    <a href="Stdlib.QArith.QArith_base.html">QArith_base</a>
+    <a href="Stdlib.QArith.Qreduction.html">Qreduction</a>
+    <a href="Stdlib.QArith.QOrderedType.html">QOrderedType</a>
+    <a href="Stdlib.QArith.Qminmax.html">Qminmax</a>
+  </dd>
+
+  <dt> <a name="field"></a><b>Field</b>:
+    Field tactic.
+  </dt>
+  <dd>
+    <a href="Stdlib.QArith.Qpower.html">Qpower</a>
+    <a href="Stdlib.QArith.Qring.html">Qring</a>
+    <a href="Stdlib.QArith.Qfield.html">Qfield</a>
+    <a href="Stdlib.QArith.Qcanon.html">Qcanon</a>
+    <a href="Stdlib.QArith.Qround.html">Qround</a>
+  </dd>
+
+  <dt> <a name="qarith"></a><b>QArith</b>:
+    Binary rational numbers, made on top of <a href="#zarith">zarith</a>.
+    Those enable effective computations in arbitrary precision exact rational
+    arithmetic. Those rationals are known to be difficult to use for
+    mathematical proofs because there is no canonical representation
+    (2/3 and 4/6 are not equal for instance). For even more efficient
+    computation, look at the coq-bignums package which uses machine integers.
+    For mathematical proofs, the rat type of the coq-mathcomp-algebra package
+    are much more comfortable, although they don't enjoy efficient computation
+    (coq-coqeal offers a refinement with coq-bignums that enables to enjoy
+    both aspects).
+  </dt>
+  <dd>
+    <a href="Stdlib.QArith.Qabs.html">Qabs</a>
+    (<a href="Stdlib.QArith.QArith.html">QArith</a>)
+    <a href="Stdlib.QArith.Qcabs.html">Qcabs</a>
+    <a href="Stdlib.Numbers.DecimalQ.html">DecimalQ</a>
+    <a href="Stdlib.Numbers.HexadecimalQ.html">HexadecimalQ</a>
+  </dd>
+
+  <dt> <a name="reals"></a><b>Reals</b>:
+    Formalization of real numbers.
+    Most of it can be loaded with From Stdlib Require Import Reals.
+    Also contains the micromega tactics, loadable with
+    From Stdlib Require Import Lra. and From Stdlib Require Import Psatz.
+  </dt>
+  <dd>
+    <dl>
+  <dt> <b>Classical Reals</b>:
+    Real numbers with excluded middle, total order and least upper bounds
+  </dt>
+  <dd>
+    <a href="Stdlib.Reals.Rdefinitions.html">Rdefinitions</a>
+    <a href="Stdlib.Reals.ClassicalDedekindReals.html">ClassicalDedekindReals</a>
+    <a href="Stdlib.Reals.ClassicalConstructiveReals.html">ClassicalConstructiveReals</a>
+    <a href="Stdlib.Reals.Raxioms.html">Raxioms</a>
+    <a href="Stdlib.Reals.RIneq.html">RIneq</a>
+    <a href="Stdlib.Reals.DiscrR.html">DiscrR</a>
+    <a href="Stdlib.Reals.ROrderedType.html">ROrderedType</a>
+    <a href="Stdlib.Reals.Rminmax.html">Rminmax</a>
+    (<a href="Stdlib.Reals.Rbase.html">Rbase</a>)
+    <a href="Stdlib.Reals.RList.html">RList</a>
+    <a href="Stdlib.Reals.Ranalysis.html">Ranalysis</a>
+    <a href="Stdlib.Reals.Rbasic_fun.html">Rbasic_fun</a>
+    <a href="Stdlib.Reals.Rderiv.html">Rderiv</a>
+    <a href="Stdlib.Reals.Rfunctions.html">Rfunctions</a>
+    <a href="Stdlib.Reals.Zfloor.html">Zfloor</a>
+    <a href="Stdlib.Reals.Rgeom.html">Rgeom</a>
+    <a href="Stdlib.Reals.R_Ifp.html">R_Ifp</a>
+    <a href="Stdlib.Reals.Rlimit.html">Rlimit</a>
+    <a href="Stdlib.Reals.Rseries.html">Rseries</a>
+    <a href="Stdlib.Reals.Rsigma.html">Rsigma</a>
+    <a href="Stdlib.Reals.R_sqr.html">R_sqr</a>
+    <a href="Stdlib.Reals.Rtrigo_fun.html">Rtrigo_fun</a>
+    <a href="Stdlib.Reals.Rtrigo1.html">Rtrigo1</a>
+    <a href="Stdlib.Reals.Rtrigo.html">Rtrigo</a>
+    <a href="Stdlib.Reals.Rtrigo_facts.html">Rtrigo_facts</a>
+    <a href="Stdlib.Reals.Ratan.html">Ratan</a>
+    <a href="Stdlib.Reals.Machin.html">Machin</a>
+    <a href="Stdlib.Reals.SplitAbsolu.html">SplitAbsolu</a>
+    <a href="Stdlib.Reals.SplitRmult.html">SplitRmult</a>
+    <a href="Stdlib.Reals.Alembert.html">Alembert</a>
+    <a href="Stdlib.Reals.AltSeries.html">AltSeries</a>
+    <a href="Stdlib.Reals.ArithProp.html">ArithProp</a>
+    <a href="Stdlib.Reals.Binomial.html">Binomial</a>
+    <a href="Stdlib.Reals.Cauchy_prod.html">Cauchy_prod</a>
+    <a href="Stdlib.Reals.Cos_plus.html">Cos_plus</a>
+    <a href="Stdlib.Reals.Cos_rel.html">Cos_rel</a>
+    <a href="Stdlib.Reals.Exp_prop.html">Exp_prop</a>
+    <a href="Stdlib.Reals.Integration.html">Integration</a>
+    <a href="Stdlib.Reals.MVT.html">MVT</a>
+    <a href="Stdlib.Reals.NewtonInt.html">NewtonInt</a>
+    <a href="Stdlib.Reals.PSeries_reg.html">PSeries_reg</a>
+    <a href="Stdlib.Reals.PartSum.html">PartSum</a>
+    <a href="Stdlib.Reals.R_sqrt.html">R_sqrt</a>
+    <a href="Stdlib.Reals.Ranalysis1.html">Ranalysis1</a>
+    <a href="Stdlib.Reals.Ranalysis2.html">Ranalysis2</a>
+    <a href="Stdlib.Reals.Ranalysis3.html">Ranalysis3</a>
+    <a href="Stdlib.Reals.Ranalysis4.html">Ranalysis4</a>
+    <a href="Stdlib.Reals.Ranalysis5.html">Ranalysis5</a>
+    <a href="Stdlib.Reals.Ranalysis_reg.html">Ranalysis_reg</a>
+    <a href="Stdlib.Reals.Rcomplete.html">Rcomplete</a>
+    <a href="Stdlib.Reals.RiemannInt.html">RiemannInt</a>
+    <a href="Stdlib.Reals.RiemannInt_SF.html">RiemannInt_SF</a>
+    <a href="Stdlib.Reals.Rpow_def.html">Rpow_def</a>
+    <a href="Stdlib.Reals.Rpower.html">Rpower</a>
+    <a href="Stdlib.Reals.Rprod.html">Rprod</a>
+    <a href="Stdlib.Reals.Rsqrt_def.html">Rsqrt_def</a>
+    <a href="Stdlib.Reals.Rtopology.html">Rtopology</a>
+    <a href="Stdlib.Reals.Rtrigo_alt.html">Rtrigo_alt</a>
+    <a href="Stdlib.Reals.Rtrigo_calc.html">Rtrigo_calc</a>
+    <a href="Stdlib.Reals.Rtrigo_def.html">Rtrigo_def</a>
+    <a href="Stdlib.Reals.Rtrigo_reg.html">Rtrigo_reg</a>
+    <a href="Stdlib.Reals.SeqProp.html">SeqProp</a>
+    <a href="Stdlib.Reals.SeqSeries.html">SeqSeries</a>
+    <a href="Stdlib.Reals.Sqrt_reg.html">Sqrt_reg</a>
+    <a href="Stdlib.Reals.Rlogic.html">Rlogic</a>
+    <a href="Stdlib.Reals.Rregisternames.html">Rregisternames</a>
+    (<a href="Stdlib.Reals.Reals.html">Reals</a>)
+    <a href="Stdlib.Reals.Runcountable.html">Runcountable</a>
+  </dd>
+  <dt> <b>Abstract Constructive Reals</b>:
+    Interface of constructive reals, proof of equivalence of all implementations. EXPERIMENTAL 
+  </dt>
+  <dd>
+    <a href="Stdlib.Reals.Abstract.ConstructiveReals.html">ConstructiveReals</a>
+    <a href="Stdlib.Reals.Abstract.ConstructiveRealsMorphisms.html">ConstructiveRealsMorphisms</a>
+    <a href="Stdlib.Reals.Abstract.ConstructiveLUB.html">ConstructiveLUB</a>
+    <a href="Stdlib.Reals.Abstract.ConstructiveAbs.html">ConstructiveAbs</a>
+    <a href="Stdlib.Reals.Abstract.ConstructiveLimits.html">ConstructiveLimits</a>
+    <a href="Stdlib.Reals.Abstract.ConstructiveMinMax.html">ConstructiveMinMax</a>
+    <a href="Stdlib.Reals.Abstract.ConstructivePower.html">ConstructivePower</a>
+    <a href="Stdlib.Reals.Abstract.ConstructiveSum.html">ConstructiveSum</a>
+  </dd>
+  <dt> <b>Constructive Cauchy Reals</b>:
+    Cauchy sequences of rational numbers, implementation of the interface. EXPERIMENTAL
+  </dt>
+  <dd>
+    <a href="Stdlib.Reals.Cauchy.ConstructiveRcomplete.html">ConstructiveRcomplete</a>
+    <a href="Stdlib.Reals.Cauchy.ConstructiveCauchyReals.html">ConstructiveCauchyReals</a>
+    <a href="Stdlib.Reals.Cauchy.ConstructiveCauchyRealsMult.html">ConstructiveCauchyRealsMult</a>
+    <a href="Stdlib.Reals.Cauchy.ConstructiveCauchyAbs.html">ConstructiveCauchyAbs</a>
+    <a href="Stdlib.Reals.Qreals.html">Qreals</a>
+    <a href="Stdlib.Numbers.DecimalR.html">DecimalR</a>
+    <a href="Stdlib.Numbers.HexadecimalR.html">HexadecimalR</a>
+  </dd>
+
+  </dl>
+  </dd>
+
+  <dt> <a name="fmaps-fsets-msets"></a><b>MSets</b>:
+    Modular implementation of finite sets using lists or
+    efficient trees. This is a modernization of FSets.
+  </dt>
+  <dd>
+    <a href="Stdlib.MSets.MSetInterface.html">MSetInterface</a>
+    <a href="Stdlib.MSets.MSetFacts.html">MSetFacts</a>
+    <a href="Stdlib.MSets.MSetDecide.html">MSetDecide</a>
+    <a href="Stdlib.MSets.MSetProperties.html">MSetProperties</a>
+    <a href="Stdlib.MSets.MSetEqProperties.html">MSetEqProperties</a>
+    <a href="Stdlib.MSets.MSetWeakList.html">MSetWeakList</a>
+    <a href="Stdlib.MSets.MSetList.html">MSetList</a>
+    <a href="Stdlib.MSets.MSetGenTree.html">MSetGenTree</a>
+    <a href="Stdlib.MSets.MSetAVL.html">MSetAVL</a>
+    <a href="Stdlib.MSets.MSetRBT.html">MSetRBT</a>
+    <a href="Stdlib.MSets.MSetPositive.html">MSetPositive</a>
+    <a href="Stdlib.MSets.MSetToFiniteSet.html">MSetToFiniteSet</a>
+    (<a href="Stdlib.MSets.MSets.html">MSets</a>)
+  </dd>
+
+  <dt> <b>FSets</b>:
+    Modular implementation of finite sets/maps using lists or
+    efficient trees. For sets, please consider the more
+    modern MSets.
+  </dt>
+  <dd>
+    <a href="Stdlib.FSets.FSetInterface.html">FSetInterface</a>
+    <a href="Stdlib.FSets.FSetBridge.html">FSetBridge</a>
+    <a href="Stdlib.FSets.FSetFacts.html">FSetFacts</a>
+    <a href="Stdlib.FSets.FSetDecide.html">FSetDecide</a>
+    <a href="Stdlib.FSets.FSetProperties.html">FSetProperties</a>
+    <a href="Stdlib.FSets.FSetEqProperties.html">FSetEqProperties</a>
+    <a href="Stdlib.FSets.FSetList.html">FSetList</a>
+    <a href="Stdlib.FSets.FSetWeakList.html">FSetWeakList</a>
+    <a href="Stdlib.FSets.FSetCompat.html">FSetCompat</a>
+    <a href="Stdlib.FSets.FSetAVL.html">FSetAVL</a>
+    <a href="Stdlib.FSets.FSetPositive.html">FSetPositive</a>
+    (<a href="Stdlib.FSets.FSets.html">FSets</a>)
+    <a href="Stdlib.FSets.FSetToFiniteSet.html">FSetToFiniteSet</a>
+    <a href="Stdlib.FSets.FMapInterface.html">FMapInterface</a>
+    <a href="Stdlib.FSets.FMapWeakList.html">FMapWeakList</a>
+    <a href="Stdlib.FSets.FMapList.html">FMapList</a>
+    <a href="Stdlib.FSets.FMapPositive.html">FMapPositive</a>
+    <a href="Stdlib.FSets.FMapFacts.html">FMapFacts</a>
+    (<a href="Stdlib.FSets.FMaps.html">FMaps</a>)
+    <a href="Stdlib.FSets.FMapAVL.html">FMapAVL</a>
+    <a href="Stdlib.FSets.FMapFullAVL.html">FMapFullAVL</a>
+  </dd>
+
+  <dt> <a name="wellfounded"></a><b>Wellfounded</b>:
+    Well-founded Relations
+  </dt>
+  <dd>
+    <a href="Stdlib.Wellfounded.Disjoint_Union.html">Disjoint_Union</a>
+    <a href="Stdlib.Wellfounded.Inclusion.html">Inclusion</a>
+    <a href="Stdlib.Wellfounded.Inverse_Image.html">Inverse_Image</a>
+    <a href="Stdlib.Wellfounded.Lexicographic_Exponentiation.html">Lexicographic_Exponentiation</a>
+    <a href="Stdlib.Wellfounded.Lexicographic_Product.html">Lexicographic_Product</a>
+    <a href="Stdlib.Wellfounded.List_Extension.html">List_Extension</a>
+    <a href="Stdlib.Wellfounded.Transitive_Closure.html">Transitive_Closure</a>
+    <a href="Stdlib.Wellfounded.Union.html">Union</a>
+    <a href="Stdlib.Wellfounded.Wellfounded.html">Wellfounded</a>
+    <a href="Stdlib.Wellfounded.Well_Ordering.html">Well_Ordering</a>
+  </dd>
+
+  <dt> <a name="compat"></a><b>Compat</b>:
+    Compatibility wrappers for previous versions of Stdlib
+  </dt>
+  <dd>
+    <a href="Stdlib.Compat.AdmitAxiom.html">AdmitAxiom</a>
+    <a href="Stdlib.Compat.Stdlib818.html">Stdlib818</a>
+  </dd>
+
+  <dt> <a name="all"></a><b>All</b>:
+    Require the whole Stdlib
+  </dt>
+  <dd>
+    (<a href="Stdlib.All.All.html">All</a>)
+  </dd>
+</dl>
+
+          <!-- ************************
+            START STDLIB FOOTER 
+          ************************* -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+
+
+  <button class="fixed bottom-8 right-10 md:bottom-[5rem] lg:bottom-[8.37rem] lg:right-[6.5rem] border-0 hidden focus:outline-none z-50 rounded-full shadow-custom p-4 bg-primary dark:bg-dark-primary" onclick="scrollToTop()" id="scrollToTop" title="Scroll to top" style="display: block;"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4.5 10.5L12 3M12 3L19.5 10.5M12 3V21" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg>
+
+  </button>
+
+  <footer x-data="" class="border-t border-separator_30 dark:border-dark-separator_30 bg-dark-sand dark:bg-dark-card" aria-labelledby="footer-heading">
+    <h2 id="footer-heading" class="sr-only">Footer</h2>
+    <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+      <div class="flex w-full items-center justify-between mb-8">
+        <a href="http://rocq-prover.org/"><img class="h-8 dark:hidden" src="https://rocq-prover.org/logos/logo-rocq-blue_orange.svg" alt="Rocq">
+          <img class="h-8 hidden dark:inline" src="https://rocq-prover.org/logos/logo-rocq-white.svg" alt="Rocq">
+        </a>
+        <div class="hidden md:flex">
+          <button class="flex grow basis-0 justify-center items-center py-2 px-4 text-sm border rounded-l rounded-l-full border-r-0 bg-gradient-to-r from-[#FF540A] to-[#FF7033] border-gray-200 dark:border-gray-300 text-white dark:text-dark-title " :class="$store.themeSettings.preference === &quot;light&quot; ? &quot;bg-gradient-to-r from-[#FF540A] to-[#FF7033] border-gray-200 dark:border-gray-300 text-white dark:text-dark-title &quot; : &quot;bg-white text-content outline-2 outline-card_border dark:outline-dark-separator_30&quot;" @click="$store.themeSettings.setPreference(&quot;light&quot;)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none" class="mr-2">
+              <path d="M7 0.5V2.125M11.5962 2.40378L10.4472 3.55283M13.5 7H11.875M11.5962 11.5962L10.4472 10.4472M7 11.875V13.5M3.55283 10.4472L2.40378 11.5962M2.125 7H0.5M3.55283 3.55283L2.40378 2.40378M9.70833 7C9.70833 7.71829 9.42299 8.40717 8.91508 8.91508C8.40717 9.42299 7.71829 9.70833 7 9.70833C6.28171 9.70833 5.59283 9.42299 5.08492 8.91508C4.57701 8.40717 4.29167 7.71829 4.29167 7C4.29167 6.28171 4.57701 5.59283 5.08492 5.08492C5.59283 4.57701 6.28171 4.29167 7 4.29167C7.71829 4.29167 8.40717 4.57701 8.91508 5.08492C9.42299 5.59283 9.70833 6.28171 9.70833 7Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+
+
+            Light
+          </button>
+
+
+          <button class="flex grow basis-0 justify-center items-center py-2 px-4 text-sm border border-r-0 bg-white text-content outline-2 outline-card_border dark:outline-dark-separator_30" :class="$store.themeSettings.preference === &quot;dark&quot; ? &quot;bg-gradient-to-r from-[#260085] to-[#170052] border-gray-200 dark:border-gray-300 text-white dark:text-dark-title &quot; : &quot;bg-white text-content outline-2 outline-card_border dark:outline-dark-separator_30&quot;" @click="$store.themeSettings.setPreference(&quot;dark&quot;)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none" class="mr-2">
+              <path d="M11.1573 7.90842C10.5134 8.17678 9.8226 8.3145 9.125 8.31358C6.20812 8.31358 3.84375 5.94921 3.84375 3.03233C3.84375 2.31192 3.98783 1.62562 4.24892 1C3.28663 1.40144 2.46465 2.07865 1.88651 2.94635C1.30836 3.81404 0.999911 4.83342 1 5.87608C1 8.79296 3.36437 11.1573 6.28125 11.1573C7.32391 11.1574 8.34329 10.849 9.21099 10.2708C10.0787 9.69268 10.7559 8.8707 11.1573 7.90842Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+
+
+            Dark
+          </button>
+
+
+          <button class="flex grow basis-0 justify-center items-center py-2 px-4 text-sm border rounded-r rounded-r-full bg-white text-content outline-2 outline-card_border dark:outline-dark-separator_30" :class="$store.themeSettings.preference === &quot;system&quot; ? &quot;bg-gradient-to-r from-[#2B7866] to-[#004039] border-gray-200 dark:border-gray-300 text-white dark:text-dark-title &quot; : &quot;bg-white text-content outline-2 outline-card_border dark:outline-dark-separator_30&quot;" @click="$store.themeSettings.setPreference(&quot;system&quot;)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none" class="mr-2">
+              <path d="M7.19553 2.955C7.26303 2.5485 7.61553 2.25 8.02803 2.25H9.97278C10.3853 2.25 10.7378 2.5485 10.8053 2.955L10.965 3.91575C11.0123 4.19625 11.1998 4.43025 11.4488 4.56825C11.5043 4.59825 11.559 4.6305 11.6138 4.6635C11.8575 4.8105 12.1538 4.85625 12.42 4.7565L13.3328 4.4145C13.5198 4.34416 13.7258 4.34248 13.9139 4.40978C14.1021 4.47708 14.2603 4.60899 14.3603 4.782L15.3323 6.46725C15.4321 6.64028 15.4672 6.8431 15.4315 7.03962C15.3958 7.23615 15.2916 7.41363 15.1373 7.5405L14.385 8.16075C14.1653 8.3415 14.0565 8.6205 14.0625 8.90475C14.0636 8.9685 14.0636 9.03225 14.0625 9.096C14.0565 9.3795 14.1653 9.6585 14.385 9.83925L15.138 10.4595C15.456 10.722 15.5385 11.1758 15.333 11.532L14.3595 13.2172C14.2597 13.3902 14.1017 13.5222 13.9137 13.5896C13.7257 13.657 13.5198 13.6556 13.3328 13.5855L12.42 13.2435C12.1538 13.1438 11.8575 13.1895 11.613 13.3365C11.5587 13.3696 11.5037 13.4016 11.448 13.4325C11.1998 13.5697 11.0123 13.8037 10.965 14.0842L10.8053 15.045C10.7378 15.4523 10.3853 15.75 9.97278 15.75H8.02728C7.61478 15.75 7.26303 15.4515 7.19478 15.045L7.03503 14.0842C6.98853 13.8037 6.80103 13.5698 6.55203 13.4318C6.49642 13.4011 6.44141 13.3693 6.38703 13.3365C6.14328 13.1895 5.84703 13.1438 5.58003 13.2435L4.66728 13.5855C4.48033 13.6556 4.27456 13.6572 4.08656 13.5899C3.89856 13.5226 3.74051 13.3908 3.64053 13.218L2.66778 11.5328C2.56799 11.3597 2.53282 11.1569 2.56852 10.9604C2.60423 10.7639 2.7085 10.5864 2.86278 10.4595L3.61578 9.83925C3.83478 9.65925 3.94353 9.3795 3.93828 9.096C3.93711 9.03226 3.93711 8.96849 3.93828 8.90475C3.94353 8.61975 3.83478 8.3415 3.61578 8.16075L2.86278 7.5405C2.70869 7.41367 2.60454 7.23633 2.56884 7.03997C2.53314 6.84361 2.56819 6.64095 2.66778 6.468L3.64053 4.78275C3.74042 4.6096 3.89854 4.47754 4.08672 4.4101C4.27489 4.34266 4.4809 4.34422 4.66803 4.4145L5.58003 4.7565C5.84703 4.85625 6.14328 4.8105 6.38703 4.6635C6.44103 4.6305 6.49653 4.599 6.55203 4.5675C6.80103 4.43025 6.98853 4.19625 7.03503 3.91575L7.19553 2.955Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M11.25 9C11.25 9.59674 11.0129 10.169 10.591 10.591C10.169 11.0129 9.59674 11.25 9 11.25C8.40326 11.25 7.83097 11.0129 7.40901 10.591C6.98705 10.169 6.75 9.59674 6.75 9C6.75 8.40326 6.98705 7.83097 7.40901 7.40901C7.83097 6.98705 8.40326 6.75 9 6.75C9.59674 6.75 10.169 6.98705 10.591 7.40901C11.0129 7.83097 11.25 8.40326 11.25 9Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+
+
+            System
+          </button>
+
+
+
+        </div>
+      </div>
+      <div class="xl:grid xl:grid-cols-3 xl:gap-8">
+        <div class="space-y-8">
+          <p class="text-base leading-6 text-title dark:text-dark-content">Interactive Theorem Prover</p>
+          <div class="flex space-x-6">
+
+            <a href="https://coq.zulipchat.com/" class="text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">
+              <span class="sr-only">Zulip</span>
+              <svg viewBox="0 0 256 256" version="1.1" class="h-6 w-6" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid">
+                <path d="M128,0 C198.692448,0 256,57.307552 256,128 C256,198.692448 198.692448,256 128,256 C57.307552,256 0,198.692448 0,128 C0,57.307552 57.307552,0 128,0 Z M121.679533,118.222163 L75.7877336,159.200897 C71.0603547,162.920702 67.9584879,169.060511 67.9584879,175.967416 C67.9584879,187.245548 76.232162,196.475047 86.3444303,196.475047 L172.590938,196.475047 C182.703207,196.475047 190.976881,187.245548 190.976881,175.967416 C190.976881,164.68624 182.703207,155.459784 172.590938,155.459784 L107.299534,155.459784 C106.331533,155.459784 105.719683,154.300009 106.191507,153.356359 L123.024994,119.652857 C123.639888,118.669635 122.531861,117.491595 121.679533,118.222163 Z M172.590938,59.3627915 L86.3444303,59.3627915 C76.232162,59.3627915 67.9584879,68.58925 67.9584879,79.870426 C67.9584879,91.1485579 76.232162,100.378058 86.3444303,100.378058 L86.3444303,100.378058 L151.635834,100.378058 C152.603836,100.378058 153.215686,101.537833 152.743861,102.481482 L152.743861,102.481482 L135.910374,136.184985 C135.29548,137.168207 136.403507,138.346246 137.255836,137.615679 L137.255836,137.615679 L183.147635,96.6308563 C187.875014,92.9080074 190.976881,86.7712425 190.976881,79.8643379 C190.976881,68.586206 182.703207,59.3567064 172.590938,59.3627915 L172.590938,59.3627915 Z" fill="inherit"></path>
+              </svg>
+
+
+            </a>
+
+
+            <a href="https://github.com/rocq-prover" class="text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">
+              <span class="sr-only">GitHub</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
+              </svg>
+
+
+            </a>
+
+
+            <a href="https://coq.discourse.group/" class="text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">
+              <span class="sr-only">Discourse</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 448 512" aria-hidden="true">
+                <path d="M225.9 32C103.3 32 0 130.5 0 252.1 0 256 .1 480 .1 480l225.8-.2c122.7 0 222.1-102.3 222.1-223.9C448 134.3 348.6 32 225.9 32zM224 384c-19.4 0-37.9-4.3-54.4-12.1L88.5 392l22.9-75c-9.8-18.1-15.4-38.9-15.4-61 0-70.7 57.3-128 128-128s128 57.3 128 128-57.3 128-128 128z"></path>
+              </svg>
+
+
+
+            </a>
+
+
+            <a href="https://mastodon.acm.org/@RocqProver" class="text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">
+              <span class="sr-only">Mastodon</span>
+              <svg viewBox="0 0 74 79" class="h-6 w-6" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M73.7014 17.4323C72.5616 9.05152 65.1774 2.4469 56.424 1.1671C54.9472 0.950843 49.3518 0.163818 36.3901 0.163818H36.2933C23.3281 0.163818 20.5465 0.950843 19.0697 1.1671C10.56 2.41145 2.78877 8.34604 0.903306 16.826C-0.00357854 21.0022 -0.100361 25.6322 0.068112 29.8793C0.308275 35.9699 0.354874 42.0498 0.91406 48.1156C1.30064 52.1448 1.97502 56.1419 2.93215 60.0769C4.72441 67.3445 11.9795 73.3925 19.0876 75.86C26.6979 78.4332 34.8821 78.8603 42.724 77.0937C43.5866 76.8952 44.4398 76.6647 45.2833 76.4024C47.1867 75.8033 49.4199 75.1332 51.0616 73.9562C51.0841 73.9397 51.1026 73.9184 51.1156 73.8938C51.1286 73.8693 51.1359 73.8421 51.1368 73.8144V67.9366C51.1364 67.9107 51.1302 67.8852 51.1186 67.862C51.1069 67.8388 51.0902 67.8184 51.0695 67.8025C51.0489 67.7865 51.0249 67.7753 50.9994 67.7696C50.9738 67.764 50.9473 67.7641 50.9218 67.7699C45.8976 68.9569 40.7491 69.5519 35.5836 69.5425C26.694 69.5425 24.3031 65.3699 23.6184 63.6327C23.0681 62.1314 22.7186 60.5654 22.5789 58.9744C22.5775 58.9477 22.5825 58.921 22.5934 58.8965C22.6043 58.8721 22.621 58.8505 22.6419 58.8336C22.6629 58.8167 22.6876 58.8049 22.714 58.7992C22.7404 58.7934 22.7678 58.794 22.794 58.8007C27.7345 59.9796 32.799 60.5746 37.8813 60.5733C39.1036 60.5733 40.3223 60.5733 41.5447 60.5414C46.6562 60.3996 52.0437 60.1408 57.0728 59.1694C57.1983 59.1446 57.3237 59.1233 57.4313 59.0914C65.3638 57.5847 72.9128 52.8555 73.6799 40.8799C73.7086 40.4084 73.7803 35.9415 73.7803 35.4523C73.7839 33.7896 74.3216 23.6576 73.7014 17.4323ZM61.4925 47.3144H53.1514V27.107C53.1514 22.8528 51.3591 20.6832 47.7136 20.6832C43.7061 20.6832 41.6988 23.2499 41.6988 28.3194V39.3803H33.4078V28.3194C33.4078 23.2499 31.3969 20.6832 27.3894 20.6832C23.7654 20.6832 21.9552 22.8528 21.9516 27.107V47.3144H13.6176V26.4937C13.6176 22.2395 14.7157 18.8598 16.9118 16.3545C19.1772 13.8552 22.1488 12.5719 25.8373 12.5719C30.1064 12.5719 33.3325 14.1955 35.4832 17.4394L37.5587 20.8853L39.6377 17.4394C41.7884 14.1955 45.0145 12.5719 49.2765 12.5719C52.9614 12.5719 55.9329 13.8552 58.2055 16.3545C60.4017 18.8574 61.4997 22.2371 61.4997 26.4937L61.4925 47.3144Z" fill="inherit"></path>
+              </svg>
+
+
+            </a>
+
+
+            <a href="http://rocq-prover.org/planet.xml" class="text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">
+              <span class="sr-only">RSS</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill-rule="evenodd" d="M15.2692 22H11.3846C11.3846 16.8462 7.11538 12.6154 2 12.6154V8.73077C9.26923 8.73077 15.2692 14.7308 15.2692 22ZM18 22C18 13.2308 10.7692 6 2 6V2C12.9615 2 22 11.0385 22 22H18Z" clip-rule="evenodd"></path>
+                <path fill-rule="evenodd" d="M4.73077 22C6.23893 22 7.46154 20.7774 7.46154 19.2692C7.46154 17.7611 6.23893 16.5385 4.73077 16.5385C3.22261 16.5385 2 17.7611 2 19.2692C2 20.7774 3.22261 22 4.73077 22Z" clip-rule="evenodd"></path>
+              </svg>
+
+
+            </a>
+
+
+          </div>
+          <div class="flex w-full md:hidden">
+            <button class="flex grow basis-0 justify-center items-center py-2 px-4 text-sm border rounded-l rounded-l-full border-r-0 bg-gradient-to-r from-[#FF540A] to-[#FF7033] border-gray-200 dark:border-gray-300 text-white dark:text-dark-title " :class="$store.themeSettings.preference === &quot;light&quot; ? &quot;bg-gradient-to-r from-[#FF540A] to-[#FF7033] border-gray-200 dark:border-gray-300 text-white dark:text-dark-title &quot; : &quot;bg-white text-content outline-2 outline-card_border dark:outline-dark-separator_30&quot;" @click="$store.themeSettings.setPreference(&quot;light&quot;)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none" class="mr-2">
+                <path d="M7 0.5V2.125M11.5962 2.40378L10.4472 3.55283M13.5 7H11.875M11.5962 11.5962L10.4472 10.4472M7 11.875V13.5M3.55283 10.4472L2.40378 11.5962M2.125 7H0.5M3.55283 3.55283L2.40378 2.40378M9.70833 7C9.70833 7.71829 9.42299 8.40717 8.91508 8.91508C8.40717 9.42299 7.71829 9.70833 7 9.70833C6.28171 9.70833 5.59283 9.42299 5.08492 8.91508C4.57701 8.40717 4.29167 7.71829 4.29167 7C4.29167 6.28171 4.57701 5.59283 5.08492 5.08492C5.59283 4.57701 6.28171 4.29167 7 4.29167C7.71829 4.29167 8.40717 4.57701 8.91508 5.08492C9.42299 5.59283 9.70833 6.28171 9.70833 7Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+
+
+              Light
+            </button>
+
+
+            <button class="flex grow basis-0 justify-center items-center py-2 px-4 text-sm border border-r-0 bg-white text-content outline-2 outline-card_border dark:outline-dark-separator_30" :class="$store.themeSettings.preference === &quot;dark&quot; ? &quot;bg-gradient-to-r from-[#260085] to-[#170052] border-gray-200 dark:border-gray-300 text-white dark:text-dark-title &quot; : &quot;bg-white text-content outline-2 outline-card_border dark:outline-dark-separator_30&quot;" @click="$store.themeSettings.setPreference(&quot;dark&quot;)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none" class="mr-2">
+                <path d="M11.1573 7.90842C10.5134 8.17678 9.8226 8.3145 9.125 8.31358C6.20812 8.31358 3.84375 5.94921 3.84375 3.03233C3.84375 2.31192 3.98783 1.62562 4.24892 1C3.28663 1.40144 2.46465 2.07865 1.88651 2.94635C1.30836 3.81404 0.999911 4.83342 1 5.87608C1 8.79296 3.36437 11.1573 6.28125 11.1573C7.32391 11.1574 8.34329 10.849 9.21099 10.2708C10.0787 9.69268 10.7559 8.8707 11.1573 7.90842Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+
+
+              Dark
+            </button>
+
+
+            <button class="flex grow basis-0 justify-center items-center py-2 px-4 text-sm border rounded-r rounded-r-full bg-white text-content outline-2 outline-card_border dark:outline-dark-separator_30" :class="$store.themeSettings.preference === &quot;system&quot; ? &quot;bg-gradient-to-r from-[#2B7866] to-[#004039] border-gray-200 dark:border-gray-300 text-white dark:text-dark-title &quot; : &quot;bg-white text-content outline-2 outline-card_border dark:outline-dark-separator_30&quot;" @click="$store.themeSettings.setPreference(&quot;system&quot;)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none" class="mr-2">
+                <path d="M7.19553 2.955C7.26303 2.5485 7.61553 2.25 8.02803 2.25H9.97278C10.3853 2.25 10.7378 2.5485 10.8053 2.955L10.965 3.91575C11.0123 4.19625 11.1998 4.43025 11.4488 4.56825C11.5043 4.59825 11.559 4.6305 11.6138 4.6635C11.8575 4.8105 12.1538 4.85625 12.42 4.7565L13.3328 4.4145C13.5198 4.34416 13.7258 4.34248 13.9139 4.40978C14.1021 4.47708 14.2603 4.60899 14.3603 4.782L15.3323 6.46725C15.4321 6.64028 15.4672 6.8431 15.4315 7.03962C15.3958 7.23615 15.2916 7.41363 15.1373 7.5405L14.385 8.16075C14.1653 8.3415 14.0565 8.6205 14.0625 8.90475C14.0636 8.9685 14.0636 9.03225 14.0625 9.096C14.0565 9.3795 14.1653 9.6585 14.385 9.83925L15.138 10.4595C15.456 10.722 15.5385 11.1758 15.333 11.532L14.3595 13.2172C14.2597 13.3902 14.1017 13.5222 13.9137 13.5896C13.7257 13.657 13.5198 13.6556 13.3328 13.5855L12.42 13.2435C12.1538 13.1438 11.8575 13.1895 11.613 13.3365C11.5587 13.3696 11.5037 13.4016 11.448 13.4325C11.1998 13.5697 11.0123 13.8037 10.965 14.0842L10.8053 15.045C10.7378 15.4523 10.3853 15.75 9.97278 15.75H8.02728C7.61478 15.75 7.26303 15.4515 7.19478 15.045L7.03503 14.0842C6.98853 13.8037 6.80103 13.5698 6.55203 13.4318C6.49642 13.4011 6.44141 13.3693 6.38703 13.3365C6.14328 13.1895 5.84703 13.1438 5.58003 13.2435L4.66728 13.5855C4.48033 13.6556 4.27456 13.6572 4.08656 13.5899C3.89856 13.5226 3.74051 13.3908 3.64053 13.218L2.66778 11.5328C2.56799 11.3597 2.53282 11.1569 2.56852 10.9604C2.60423 10.7639 2.7085 10.5864 2.86278 10.4595L3.61578 9.83925C3.83478 9.65925 3.94353 9.3795 3.93828 9.096C3.93711 9.03226 3.93711 8.96849 3.93828 8.90475C3.94353 8.61975 3.83478 8.3415 3.61578 8.16075L2.86278 7.5405C2.70869 7.41367 2.60454 7.23633 2.56884 7.03997C2.53314 6.84361 2.56819 6.64095 2.66778 6.468L3.64053 4.78275C3.74042 4.6096 3.89854 4.47754 4.08672 4.4101C4.27489 4.34266 4.4809 4.34422 4.66803 4.4145L5.58003 4.7565C5.84703 4.85625 6.14328 4.8105 6.38703 4.6635C6.44103 4.6305 6.49653 4.599 6.55203 4.5675C6.80103 4.43025 6.98853 4.19625 7.03503 3.91575L7.19553 2.955Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M11.25 9C11.25 9.59674 11.0129 10.169 10.591 10.591C10.169 11.0129 9.59674 11.25 9 11.25C8.40326 11.25 7.83097 11.0129 7.40901 10.591C6.98705 10.169 6.75 9.59674 6.75 9C6.75 8.40326 6.98705 7.83097 7.40901 7.40901C7.83097 6.98705 8.40326 6.75 9 6.75C9.59674 6.75 10.169 6.98705 10.591 7.40901C11.0129 7.83097 11.25 8.40326 11.25 9Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+
+
+              System
+            </button>
+
+
+
+          </div>
+          <div class="flex mt-6 space-y-4 hidden">
+
+            <div class="text-base leading-6 text-content dark:text-dark-title">
+              GitHub <a href="https://github.com/coq/rocq-prover.org/tree/main" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">branch</a>
+              and <a href="https://github.com/coq/rocq-prover.org/commit/ab51b997fd3397cb55a9495b3796f804bb15be53">commit</a>.
+            </div>
+
+          </div>
+        </div>
+        <div class="mt-8 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
+          <div class="md:grid md:grid-cols-2 md:gap-8">
+            <div>
+              <h3 class="text-base font-semibold leading-6 text-title dark:text-dark-content">About Rocq</h3>
+              <ul class="mt-6 space-y-4">
+
+                <li>
+                  <a href="http://rocq-prover.org/changelog" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Changelog</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/releases" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Releases</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/industrial-users" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Industrial Users</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/academic-users" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Academic Users</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/about#history" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">History</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/why" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Why Rocq?</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/roadmap" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Roadmap</a>
+
+                </li>
+
+
+              </ul>
+            </div>
+            <div class="mt-10 md:mt-0">
+              <h3 class="text-base font-semibold leading-6 text-title dark:text-dark-content">Resources</h3>
+              <ul class="mt-6 space-y-4">
+
+                <li>
+                  <a href="http://rocq-prover.org/install" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Install Rocq</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/docs#beginner_section" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Get Started</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/docs/platform-docs" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Documentation</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/refman" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Reference Manual</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/stdlib" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Standard Library</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/books" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Books</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/exercises" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Exercises</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/papers" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Papers</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/logo" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Logo</a>
+
+                </li>
+
+
+              </ul>
+            </div>
+          </div>
+          <div class="md:grid md:grid-cols-2 md:gap-8">
+            <div>
+              <h3 class="text-base font-semibold leading-6 text-title dark:text-dark-content">Ecosystem</h3>
+              <ul class="mt-6 space-y-4">
+
+                <li>
+                  <a href="http://rocq-prover.org/platform" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Platform</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/packages" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Packages</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/community" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Community</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/consortium" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Consortium</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/events" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Events</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/rocq-planet" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Rocq Planet</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/jobs" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Jobs</a>
+
+                </li>
+
+
+              </ul>
+            </div>
+            <div class="mt-20 md:mt-0">
+              <h3 class="text-base font-semibold leading-6 text-title dark:text-dark-content">Policies</h3>
+              <ul class="mt-6 space-y-4">
+
+                <li>
+                  <a href="http://rocq-prover.org/governance" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Rocq Team</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/policies/governance" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Governance</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/policies/privacy-policy" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Privacy</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/policies/code-of-conduct" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Code of Conduct</a>
+
+                </li>
+
+
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.addEventListener('alpine:init', () => {
+        Alpine.store('themeSettings', {
+          init() {
+            this.storageAccess = localStorage.getItem('storageAccess')
+            this.preference = localStorage.getItem('theme') || "system"
+            this.isSystemDefaultDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+          },
+          selected: '',
+          alertOpen: false,
+          storageAccess: false,
+          preference: undefined,
+          isSystemDefaultDark: false,
+          setPreference(preference) {
+            if (!this.storageAccess) {
+              if (!window.confirm("We will remember your choice in your browser's LocalStorage. Allow this?")) {
+                return;
+              }
+              localStorage.setItem('storageAccess', true)
+              storageAccess = true;
+            }
+
+            this.selected = preference;
+            this.preference = preference
+            localStorage.setItem('theme', preference)
+
+            if (preference === 'dark') {
+              document.body.classList.add("dark");
+            }
+            if (preference === 'light') {
+              document.body.classList.remove("dark");
+            }
+            if (preference === 'system') {
+              if (this.isSystemDefaultDark) {
+                document.body.classList.add("dark");
+              } else {
+                document.body.classList.remove("dark");
+              }
+              localStorage.removeItem('theme')
+              return
+            }
+          },
+        })
+      })
+    </script>
+
+  </footer>
+
+  <script>
+    function scrollToTop() {
+      window.scrollTo(0, 0);
+    }
+
+    window.onscroll = function() {
+      showScrollButton();
+    };
+
+    function showScrollButton() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("scrollToTop").style.display = "block";
+      } else {
+        document.getElementById("scrollToTop").style.display = "none";
+      }
+    }
+  </script>
+
+</body>
+
+</html>

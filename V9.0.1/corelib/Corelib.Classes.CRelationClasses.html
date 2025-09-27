@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head id="htmx-head">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Rocq Core Library">
+  <meta name="twitter:title" content="Rocq Core Library">
+  <meta name="twitter:description" content="Rocq Core Library">
+  <meta name="twitter:image" content="https://rocq-prover.org/img/social/rocq-prover_org_social_media.png">
+
+  <meta property="og:site_name" content="Rocq">
+  <meta property="og:type" content="object">
+  <meta property="og:title" content="Rocq Core Library">
+  <meta property="og:description" content="Rocq Core Library">
+  <meta name="og:image" content="https://rocq-prover.org/img/social/rocq-prover_org_social_media.png">
+  <meta name="theme-color" content="#fff">
+  <meta name="color-scheme" content="white">
+
+  <meta name="ahrefs-site-verification" content="6ff715b377cdcd566334b44ae8888791189ce24640c8a403eacdc3bcbaa9449b">
+  <link rel="canonical" href="https://rocq-prover.org/doc">
+  <link rel="icon" type="image/x-icon" href="https://rocq-prover.org/logos/favicon_stdlib.ico">
+  <link rel="manifest" href="https://rocq-prover.org/manifest.json">
+
+
+  <link rel="stylesheet" href="https://rocq-prover.org/vendors/font-files/instrument-rocq.css">
+  <link rel="stylesheet" href="https://rocq-prover.org/vendors/font-files/source-code-pro.css">
+  <script defer="" src="https://rocq-prover.org/vendors/alpine-clipboard.js"></script>
+  <script defer="" src="https://rocq-prover.org/vendors/alpine.min.js"></script>
+  <script defer="" src="https://rocq-prover.org/vendors/htmx.min.js"></script>
+  <script defer="" data-domain="rocq-prover.org" src="https://rocq-prover.org/vendors/script.js"></script>
+
+  <link type="text/css" rel="stylesheet" media="all" href="https://rocq-prover.org/css/stdlib.css">
+
+
+
+  <link rel="search" href="http://rocq-prover.org/opensearch.xml" type="application/opensearchdescription+xml" title="Rocq">
+  <title>Rocq Core Library</title>
+  <style>
+    .htmx-indicator {
+      opacity: 0;
+      transition: opacity 200ms ease-in;
+    }
+
+    .htmx-request .htmx-indicator {
+      opacity: 1
+    }
+
+    .htmx-request.htmx-indicator {
+      opacity: 1
+    }
+  </style>
+</head>
+
+
+<body style="overscroll-behavior-x: auto;">
+  <script>
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.body.classList.add("dark");
+    } else {
+      document.body.classList.remove("dark");
+    }
+  </script>
+
+
+  <header class="fixed top-0 z-50 w-full h-20 flex items-center flex-wrap" x-data="{ open: false }">
+
+    <nav class="bg-background container-fluid dark:bg-dark-background_navigation flex gap-5 h-20 header items-center justify-between rounded-b-lg shadow-sm wide xl:gap-8">
+      <ul class="order-0 space space-x-5 xl:space-x-8 items-center flex text-content font-medium dark:text-title dark:text-opacity-60 dark:font-semibold">
+        <li style="width:170px">
+          <a href="http://rocq-prover.org/" class="block">
+            <img src="https://rocq-prover.org/logos/logo-rocq-stdlib.svg" width="170" alt="Rocq stdlib logo" class="dark:hidden">
+            <img src="https://rocq-prover.org/logos/logo-rocq-stdlib-dark.svg" width="170" alt="Rocq stdlib logo" class="hidden dark:inline">
+          </a>
+        </li>
+      </ul>
+      <ul class="order-1 mr-auto items-center hidden lg:flex font-medium dark:text-white dark:text-opacity-60 dark:font-semibold">
+
+        <li><a href="http://rocq-prover.org/docs" class="block font-normal py-3 mg:py-4 px-1 lg:px-3 hover:text-primary dark:hover:text-dark-primary text-title dark:text-dark-title">Learn</a>
+
+
+        </li>
+
+        <li><a href="http://rocq-prover.org/platform" class="block font-normal py-3 mg:py-4 px-1 lg:px-3 hover:text-primary dark:hover:text-dark-primary text-primary dark:text-dark-primary">Platform</a>
+
+
+        </li>
+
+        <li><a href="http://rocq-prover.org/packages" class="block font-normal py-3 mg:py-4 px-1 lg:px-3 hover:text-primary dark:hover:text-dark-primary text-title dark:text-dark-title">Packages</a>
+
+
+        </li>
+
+        <li><a href="http://rocq-prover.org/community" class="block font-normal py-3 mg:py-4 px-1 lg:px-3 hover:text-primary dark:hover:text-dark-primary text-title dark:text-dark-title">Community</a>
+
+
+        </li>
+
+        <li><a href="http://rocq-prover.org/consortium" class="block font-normal py-3 mg:py-4 px-1 lg:px-3 hover:text-primary dark:hover:text-dark-primary text-title dark:text-dark-title">Consortium</a>
+
+
+        </li>
+
+        <li><a href="http://rocq-prover.org/changelog" class="block font-normal py-3 mg:py-4 px-1 lg:px-3 hover:text-primary dark:hover:text-dark-primary text-title dark:text-dark-title">News</a>
+        </li>
+      </ul>
+
+      <ul class="order-1 lg:hidden flex items-center">
+        <li class="h-12 w-12 hover:bg-tertiary_25 dark:hover:bg-primary_20 flex items-center justify-center rounded-full text-content dark:text-dark-title">
+          <button aria-label="open menu" @click="open = ! open">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+
+
+          </button>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="bg-black fixed w-full h-full left-0 top-0 opacity-60 z-40" x-show="open" style="display: none;"></div>
+
+    <nav class="z-50 h-full fixed right-0 top-0 max-w-full w-96 bg-background dark:bg-dark-background shadow-lg" x-show="open" @click.away="open = false" x-transition:enter="transition duration-200 ease-out" x-transition:enter-start="translate-x-full" x-transition:leave="transition duration-100 ease-in" x-transition:leave-end="translate-x-full" style="display: none;">
+      <ul class="text-content p-6 font-semibold">
+        <li class="flex justify-between items-center">
+          <a href="http://rocq-prover.org/">
+            <img src="https://rocq-prover.org/logos/logo-rocq-blue_orange.svg" width="132" alt="Rocq logo" class="dark:hidden">
+            <img src="https://rocq-prover.org/logos/logo-rocq-white.svg" width="132" alt="Rocq logo" class="hidden dark:inline">
+          </a>
+          <div class="" x-on:click="open = false">
+            <button aria-label="close" class="text-content dark:text-dark-title">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+
+
+            </button>
+          </div>
+        </li>
+
+        <li><a href="http://rocq-prover.org/docs" class="block font-normal py-3 mg:py-4 px-1 lg:px-3 hover:text-primary dark:hover:text-dark-primaryblock text-title dark:text-dark-title">Learn</a>
+
+
+        </li>
+
+        <li><a href="http://rocq-prover.org/platform" class="block font-normal py-3 mg:py-4 px-1 lg:px-3 hover:text-primary dark:hover:text-dark-primaryblock text-primary dark:text-dark-primary">Platform</a>
+
+
+        </li>
+
+        <li><a href="http://rocq-prover.org/packages" class="block font-normal py-3 mg:py-4 px-1 lg:px-3 hover:text-primary dark:hover:text-dark-primaryblock text-title dark:text-dark-title">Packages</a>
+
+
+        </li>
+
+        <li><a href="http://rocq-prover.org/community" class="block font-normal py-3 mg:py-4 px-1 lg:px-3 hover:text-primary dark:hover:text-dark-primaryblock text-title dark:text-dark-title">Community</a>
+
+
+        </li>
+
+        <li><a href="http://rocq-prover.org/consortium" class="block font-normal py-3 mg:py-4 px-1 lg:px-3 hover:text-primary dark:hover:text-dark-primaryblock text-title dark:text-dark-title">Consortium</a>
+
+
+        </li>
+
+        <li><a href="http://rocq-prover.org/changelog" class="block font-normal py-3 mg:py-4 px-1 lg:px-3 hover:text-primary dark:hover:text-dark-primaryblock text-title dark:text-dark-title">News</a></li>
+
+        <li class="mt-3 mb-6">
+          <a href="http://rocq-prover.org/docs#beginner_section" class="w-full rounded font-normal py-3 px-7 flex items-center justify-center bg-primary dark:bg-dark-primary text-white dark:text-dark-title">Get started</a>
+        </li>
+        <li>
+          <div class="space-x-6 text-2xl flex items-center">
+            <a aria-label="Rocq&#39;s Zulip" href="https://coq.zulipchat.com/" class="opacity-60 hover:opacity-100 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">
+              <svg viewBox="0 0 256 256" version="1.1" class="w-6 h-6" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid">
+                <path d="M128,0 C198.692448,0 256,57.307552 256,128 C256,198.692448 198.692448,256 128,256 C57.307552,256 0,198.692448 0,128 C0,57.307552 57.307552,0 128,0 Z M121.679533,118.222163 L75.7877336,159.200897 C71.0603547,162.920702 67.9584879,169.060511 67.9584879,175.967416 C67.9584879,187.245548 76.232162,196.475047 86.3444303,196.475047 L172.590938,196.475047 C182.703207,196.475047 190.976881,187.245548 190.976881,175.967416 C190.976881,164.68624 182.703207,155.459784 172.590938,155.459784 L107.299534,155.459784 C106.331533,155.459784 105.719683,154.300009 106.191507,153.356359 L123.024994,119.652857 C123.639888,118.669635 122.531861,117.491595 121.679533,118.222163 Z M172.590938,59.3627915 L86.3444303,59.3627915 C76.232162,59.3627915 67.9584879,68.58925 67.9584879,79.870426 C67.9584879,91.1485579 76.232162,100.378058 86.3444303,100.378058 L86.3444303,100.378058 L151.635834,100.378058 C152.603836,100.378058 153.215686,101.537833 152.743861,102.481482 L152.743861,102.481482 L135.910374,136.184985 C135.29548,137.168207 136.403507,138.346246 137.255836,137.615679 L137.255836,137.615679 L183.147635,96.6308563 C187.875014,92.9080074 190.976881,86.7712425 190.976881,79.8643379 C190.976881,68.586206 182.703207,59.3567064 172.590938,59.3627915 L172.590938,59.3627915 Z" fill="inherit"></path>
+              </svg>
+
+
+            </a>
+            <a aria-label="Rocq&#39;s Discourse" href="https://coq.discourse.group/" class="opacity-60 hover:opacity-100 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 448 512" aria-hidden="true">
+                <path d="M225.9 32C103.3 32 0 130.5 0 252.1 0 256 .1 480 .1 480l225.8-.2c122.7 0 222.1-102.3 222.1-223.9C448 134.3 348.6 32 225.9 32zM224 384c-19.4 0-37.9-4.3-54.4-12.1L88.5 392l22.9-75c-9.8-18.1-15.4-38.9-15.4-61 0-70.7 57.3-128 128-128s128 57.3 128 128-57.3 128-128 128z"></path>
+              </svg>
+
+
+
+            </a>
+            <a aria-label="The Rocq Prover on GitHub" href="https://github.com/coq/coq" class="opacity-60 hover:opacity-100 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
+              </svg>
+
+
+            </a>
+            <a aria-label="The Rocq Prover on Mastodon" rel="me" href="https://mastodon.acm.org/@RocqProver" class="opacity-60 hover:opacity-100 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">
+              <svg viewBox="0 0 74 79" class="w-6 h-6" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M73.7014 17.4323C72.5616 9.05152 65.1774 2.4469 56.424 1.1671C54.9472 0.950843 49.3518 0.163818 36.3901 0.163818H36.2933C23.3281 0.163818 20.5465 0.950843 19.0697 1.1671C10.56 2.41145 2.78877 8.34604 0.903306 16.826C-0.00357854 21.0022 -0.100361 25.6322 0.068112 29.8793C0.308275 35.9699 0.354874 42.0498 0.91406 48.1156C1.30064 52.1448 1.97502 56.1419 2.93215 60.0769C4.72441 67.3445 11.9795 73.3925 19.0876 75.86C26.6979 78.4332 34.8821 78.8603 42.724 77.0937C43.5866 76.8952 44.4398 76.6647 45.2833 76.4024C47.1867 75.8033 49.4199 75.1332 51.0616 73.9562C51.0841 73.9397 51.1026 73.9184 51.1156 73.8938C51.1286 73.8693 51.1359 73.8421 51.1368 73.8144V67.9366C51.1364 67.9107 51.1302 67.8852 51.1186 67.862C51.1069 67.8388 51.0902 67.8184 51.0695 67.8025C51.0489 67.7865 51.0249 67.7753 50.9994 67.7696C50.9738 67.764 50.9473 67.7641 50.9218 67.7699C45.8976 68.9569 40.7491 69.5519 35.5836 69.5425C26.694 69.5425 24.3031 65.3699 23.6184 63.6327C23.0681 62.1314 22.7186 60.5654 22.5789 58.9744C22.5775 58.9477 22.5825 58.921 22.5934 58.8965C22.6043 58.8721 22.621 58.8505 22.6419 58.8336C22.6629 58.8167 22.6876 58.8049 22.714 58.7992C22.7404 58.7934 22.7678 58.794 22.794 58.8007C27.7345 59.9796 32.799 60.5746 37.8813 60.5733C39.1036 60.5733 40.3223 60.5733 41.5447 60.5414C46.6562 60.3996 52.0437 60.1408 57.0728 59.1694C57.1983 59.1446 57.3237 59.1233 57.4313 59.0914C65.3638 57.5847 72.9128 52.8555 73.6799 40.8799C73.7086 40.4084 73.7803 35.9415 73.7803 35.4523C73.7839 33.7896 74.3216 23.6576 73.7014 17.4323ZM61.4925 47.3144H53.1514V27.107C53.1514 22.8528 51.3591 20.6832 47.7136 20.6832C43.7061 20.6832 41.6988 23.2499 41.6988 28.3194V39.3803H33.4078V28.3194C33.4078 23.2499 31.3969 20.6832 27.3894 20.6832C23.7654 20.6832 21.9552 22.8528 21.9516 27.107V47.3144H13.6176V26.4937C13.6176 22.2395 14.7157 18.8598 16.9118 16.3545C19.1772 13.8552 22.1488 12.5719 25.8373 12.5719C30.1064 12.5719 33.3325 14.1955 35.4832 17.4394L37.5587 20.8853L39.6377 17.4394C41.7884 14.1955 45.0145 12.5719 49.2765 12.5719C52.9614 12.5719 55.9329 13.8552 58.2055 16.3545C60.4017 18.8574 61.4997 22.2371 61.4997 26.4937L61.4925 47.3144Z" fill="inherit"></path>
+              </svg>
+
+
+            </a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <script>
+    window.addEventListener('keydown', function(event) {
+      if (event.key === "/") {
+        event.preventDefault();
+        document.querySelector("input[type='search']").focus()
+      }
+    })
+  </script>
+
+  <main class="bg-background dark:bg-dark-background pt-[80px]">
+    <nav aria-label="breadcrumbs" class="px-4 flex bg-title dark:bg-[#111827] text-white dark:text-dark-title md:hidden">
+      <ul>
+        <li class="inline-block">
+          <a href="http://rocq-prover.org/stdlib" class="flex items-center px-2 py-2 border-transparent border-2 border-b-4"> Core Library
+            <span> <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 ml-2" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+              </svg>
+
+            </span> </a>
+        </li>
+        <li class="inline-block">
+          <select onchange="location = this.value;" class="appearance-none border-2 border-b-4 bg-transparent bg-none font-bold border-none w-auto p-0 m-0 cursor-pointer focus:outline-none focus:ring-0">
+            <option value="index.html" selected="">
+              Table of contents
+            </option>
+            <option value="genindex.html">
+              Index
+            </option>
+
+          </select>
+          <span class="text-primary dark:text-dark-primary cursor-pointer">▾</span>
+        </li>
+      </ul>
+    </nav>
+    <div class="hidden md:flex">
+      <nav class="lg:-mt-[10px] lg:pt-[10px] bg-secondary dark:bg-[#111827] rounded-b-lg container-fluid wide flex flex-wrap">
+        <a href="index.html" class="justify-start px-4 py-2 text-white dark:text-dark-title items-center font-normal border-2 border-b-4 border-transparent rounded border-b-primary dark:border-b-dark-primary">
+          Table of contents
+        </a>
+        <a href="genindex.html" class="justify-start px-4 py-2 text-white dark:text-dark-title items-center font-normal border-2 border-b-4 border-transparent rounded opacity-80 hover:text-primary dark:hover:text-dark-primary">
+          Index
+        </a>
+      </nav>
+    </div>
+
+
+    <div class="bg-background dark:bg-dark-background">
+      <div class="flex-1 z-0 z- min-w-0 pb-12">
+        <div class="bg-background dark:bg-dark-background">
+          <div class="container-fluid dark:text-dark-content prose pt-10 stdlib text-content">
+
+          <!-- ************************
+            END CORELIB HEADER
+          ************************* -->
+<h1 class="libtitle">Library Corelib.Classes.CRelationClasses</h1>
+
+<div class="code">
+
+<br/>
+</div>
+
+<div class="doc">
+<a id="lab90"></a><h1 class="section">Typeclass-based relations, tactics and standard instances</h1>
+
+
+<div class="paragraph"> </div>
+
+   This is the basic theory needed to formalize morphisms and setoids.
+
+<div class="paragraph"> </div>
+
+   Author: Matthieu Sozeau
+   Institution: LRI, CNRS UMR 8623 - University Paris Sud
+
+</div>
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">Require</span> <span class="id" title="keyword">Export</span> <a class="idref" href="Corelib.Classes.Init.html#"><span class="id" title="library">Corelib.Classes.Init</span></a>.<br/>
+<span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="Corelib.Program.Basics.html#"><span class="id" title="library">Corelib.Program.Basics</span></a>.<br/>
+<span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="Corelib.Program.Tactics.html#"><span class="id" title="library">Corelib.Program.Tactics</span></a>.<br/>
+
+<br/>
+<span class="id" title="keyword">Generalizable Variables</span> <span class="id" title="var">A</span> <span class="id" title="var">B</span> <span class="id" title="var">C</span> <span class="id" title="var">D</span> <span class="id" title="var">R</span> <span class="id" title="var">S</span> <span class="id" title="var">T</span> <span class="id" title="var">U</span> <span class="id" title="var">l</span> <span class="id" title="var">eqA</span> <span class="id" title="var">eqB</span> <span class="id" title="var">eqC</span> <span class="id" title="var">eqD</span>.<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Definition</span> <a id="crelation" class="idref" href="#crelation"><span class="id" title="definition">crelation</span></a> (<a id="A:1" class="idref" href="#A:1"><span class="id" title="binder">A</span></a> : <span class="id" title="keyword">Type</span>) := <a class="idref" href="Corelib.Classes.CRelationClasses.html#A:1"><span class="id" title="variable">A</span></a> <a class="idref" href="Corelib.Init.Logic.html#::type_scope:x_'-&gt;'_x"><span class="id" title="notation">-&gt;</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#A:1"><span class="id" title="variable">A</span></a> <a class="idref" href="Corelib.Init.Logic.html#::type_scope:x_'-&gt;'_x"><span class="id" title="notation">-&gt;</span></a> <span class="id" title="keyword">Type</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Definition</span> <a id="arrow" class="idref" href="#arrow"><span class="id" title="definition">arrow</span></a> (<a id="A:2" class="idref" href="#A:2"><span class="id" title="binder">A</span></a> <a id="B:3" class="idref" href="#B:3"><span class="id" title="binder">B</span></a> : <span class="id" title="keyword">Type</span>) := <a class="idref" href="Corelib.Classes.CRelationClasses.html#A:2"><span class="id" title="variable">A</span></a> <a class="idref" href="Corelib.Init.Logic.html#::type_scope:x_'-&gt;'_x"><span class="id" title="notation">-&gt;</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#B:3"><span class="id" title="variable">B</span></a>.<br/>
+
+<br/>
+<span class="id" title="keyword">Definition</span> <a id="flip" class="idref" href="#flip"><span class="id" title="definition">flip</span></a> {<a id="A:4" class="idref" href="#A:4"><span class="id" title="binder">A</span></a> <a id="B:5" class="idref" href="#B:5"><span class="id" title="binder">B</span></a> <a id="C:6" class="idref" href="#C:6"><span class="id" title="binder">C</span></a> : <span class="id" title="keyword">Type</span>} (<a id="f:7" class="idref" href="#f:7"><span class="id" title="binder">f</span></a> : <a class="idref" href="Corelib.Classes.CRelationClasses.html#A:4"><span class="id" title="variable">A</span></a> <a class="idref" href="Corelib.Init.Logic.html#::type_scope:x_'-&gt;'_x"><span class="id" title="notation">-&gt;</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#B:5"><span class="id" title="variable">B</span></a> <a class="idref" href="Corelib.Init.Logic.html#::type_scope:x_'-&gt;'_x"><span class="id" title="notation">-&gt;</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#C:6"><span class="id" title="variable">C</span></a>) := <span class="id" title="keyword">fun</span> <a id="x:8" class="idref" href="#x:8"><span class="id" title="binder">x</span></a> <a id="y:9" class="idref" href="#y:9"><span class="id" title="binder">y</span></a> =&gt; <a class="idref" href="Corelib.Classes.CRelationClasses.html#f:7"><span class="id" title="variable">f</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#y:9"><span class="id" title="variable">y</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#x:8"><span class="id" title="variable">x</span></a>.<br/>
+
+<br/>
+<span class="id" title="keyword">Definition</span> <a id="iffT" class="idref" href="#iffT"><span class="id" title="definition">iffT</span></a> (<a id="A:10" class="idref" href="#A:10"><span class="id" title="binder">A</span></a> <a id="B:11" class="idref" href="#B:11"><span class="id" title="binder">B</span></a> : <span class="id" title="keyword">Type</span>) := (<a class="idref" href="Corelib.Init.Datatypes.html#11c698c8685bb8ab1cf725545c085ac4"><span class="id" title="notation">(</span></a><a class="idref" href="Corelib.Classes.CRelationClasses.html#A:10"><span class="id" title="variable">A</span></a> <a class="idref" href="Corelib.Init.Logic.html#::type_scope:x_'-&gt;'_x"><span class="id" title="notation">-&gt;</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#B:11"><span class="id" title="variable">B</span></a><a class="idref" href="Corelib.Init.Datatypes.html#11c698c8685bb8ab1cf725545c085ac4"><span class="id" title="notation">)</span></a> <a class="idref" href="Corelib.Init.Datatypes.html#11c698c8685bb8ab1cf725545c085ac4"><span class="id" title="notation">*</span></a> <a class="idref" href="Corelib.Init.Datatypes.html#11c698c8685bb8ab1cf725545c085ac4"><span class="id" title="notation">(</span></a><a class="idref" href="Corelib.Classes.CRelationClasses.html#B:11"><span class="id" title="variable">B</span></a> <a class="idref" href="Corelib.Init.Logic.html#::type_scope:x_'-&gt;'_x"><span class="id" title="notation">-&gt;</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#A:10"><span class="id" title="variable">A</span></a><a class="idref" href="Corelib.Init.Datatypes.html#11c698c8685bb8ab1cf725545c085ac4"><span class="id" title="notation">)</span></a>)%<span class="id" title="keyword">type</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Global Typeclasses Opaque</span> <span class="id" title="var">flip</span> <span class="id" title="var">arrow</span> <span class="id" title="var">iffT</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+We allow to unfold the <span class="inlinecode"><span class="id" title="var">crelation</span></span> definition while doing morphism search. 
+</div>
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">Section</span> <a id="Defs" class="idref" href="#Defs"><span class="id" title="section">Defs</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Context</span> {<a id="Defs.A" class="idref" href="#Defs.A"><span class="id" title="variable">A</span></a> : <span class="id" title="keyword">Type</span>}.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+We rebind crelational properties in separate classes to be able to overload each proof. 
+</div>
+<div class="code">
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Class</span> <a id="Reflexive" class="idref" href="#Reflexive"><span class="id" title="inductive, record"><span id="Reflexive" class="id">Reflexive</span></span></a> (<a id="R:13" class="idref" href="#R:13"><span class="id" title="binder">R</span></a> : <a class="idref" href="Corelib.Classes.CRelationClasses.html#crelation"><span class="id" title="definition">crelation</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#Defs.A"><span class="id" title="variable">A</span></a>) :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a id="reflexivity" class="idref" href="#reflexivity"><span class="id" title="constructor, projection"><span id="reflexivity" class="id">reflexivity</span></span></a> : <span class="id" title="keyword">forall</span> <a id="x:15" class="idref" href="#x:15"><span class="id" title="binder">x</span></a> : <a class="idref" href="Corelib.Classes.CRelationClasses.html#Defs.A"><span class="id" title="variable">A</span></a>, <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:13"><span class="id" title="variable">R</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#x:15"><span class="id" title="variable">x</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#x:15"><span class="id" title="variable">x</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a id="complement" class="idref" href="#complement"><span class="id" title="definition">complement</span></a> (<a id="R:17" class="idref" href="#R:17"><span class="id" title="binder">R</span></a> : <a class="idref" href="Corelib.Classes.CRelationClasses.html#crelation"><span class="id" title="definition">crelation</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#Defs.A"><span class="id" title="variable">A</span></a>) : <a class="idref" href="Corelib.Classes.CRelationClasses.html#crelation"><span class="id" title="definition">crelation</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#Defs.A"><span class="id" title="variable">A</span></a> := <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">fun</span> <a id="x:18" class="idref" href="#x:18"><span class="id" title="binder">x</span></a> <a id="y:19" class="idref" href="#y:19"><span class="id" title="binder">y</span></a> =&gt; <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:17"><span class="id" title="variable">R</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#x:18"><span class="id" title="variable">x</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#y:19"><span class="id" title="variable">y</span></a> <a class="idref" href="Corelib.Init.Logic.html#::type_scope:x_'-&gt;'_x"><span class="id" title="notation">-&gt;</span></a> <a class="idref" href="Corelib.Init.Logic.html#False"><span class="id" title="inductive">False</span></a>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Opaque for proof-search. 
+</div>
+<div class="code">
+&nbsp;&nbsp;<span class="id" title="keyword">Typeclasses Opaque</span> <span class="id" title="var">complement</span> <span class="id" title="var">iffT</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+These are convertible. 
+</div>
+<div class="code">
+&nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a id="complement_inverse" class="idref" href="#complement_inverse"><span class="id" title="lemma">complement_inverse</span></a> <a id="R:20" class="idref" href="#R:20"><span class="id" title="binder">R</span></a> : <a class="idref" href="Corelib.Classes.CRelationClasses.html#complement"><span class="id" title="definition">complement</span></a> (<a class="idref" href="Corelib.Classes.CRelationClasses.html#flip"><span class="id" title="definition">flip</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:20"><span class="id" title="variable">R</span></a>) <a class="idref" href="Corelib.Init.Logic.html#6cd0f7b28b6092304087c7049437bb1a"><span class="id" title="notation">=</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#flip"><span class="id" title="definition">flip</span></a> (<a class="idref" href="Corelib.Classes.CRelationClasses.html#complement"><span class="id" title="definition">complement</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:20"><span class="id" title="variable">R</span></a>).<br/>
+ 
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Class</span> <a id="Irreflexive" class="idref" href="#Irreflexive"><span class="id" title="inductive, record"><span id="Irreflexive" class="id">Irreflexive</span></span></a> (<a id="R:21" class="idref" href="#R:21"><span class="id" title="binder">R</span></a> : <a class="idref" href="Corelib.Classes.CRelationClasses.html#crelation"><span class="id" title="definition">crelation</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#Defs.A"><span class="id" title="variable">A</span></a>) :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a id="irreflexivity" class="idref" href="#irreflexivity"><span class="id" title="constructor, projection"><span id="irreflexivity" class="id">irreflexivity</span></span></a> : <a class="idref" href="Corelib.Classes.CRelationClasses.html#Reflexive"><span class="id" title="class">Reflexive</span></a> (<a class="idref" href="Corelib.Classes.CRelationClasses.html#complement"><span class="id" title="definition">complement</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:21"><span class="id" title="variable">R</span></a>).<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Class</span> <a id="Symmetric" class="idref" href="#Symmetric"><span class="id" title="inductive, record"><span id="Symmetric" class="id">Symmetric</span></span></a> (<a id="R:24" class="idref" href="#R:24"><span class="id" title="binder">R</span></a> : <a class="idref" href="Corelib.Classes.CRelationClasses.html#crelation"><span class="id" title="definition">crelation</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#Defs.A"><span class="id" title="variable">A</span></a>) :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a id="symmetry" class="idref" href="#symmetry"><span class="id" title="constructor, projection"><span id="symmetry" class="id">symmetry</span></span></a> : <span class="id" title="keyword">forall</span> {<a id="x:26" class="idref" href="#x:26"><span class="id" title="binder">x</span></a> <a id="y:27" class="idref" href="#y:27"><span class="id" title="binder">y</span></a>}, <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:24"><span class="id" title="variable">R</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#x:26"><span class="id" title="variable">x</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#y:27"><span class="id" title="variable">y</span></a> <a class="idref" href="Corelib.Init.Logic.html#::type_scope:x_'-&gt;'_x"><span class="id" title="notation">-&gt;</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:24"><span class="id" title="variable">R</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#y:27"><span class="id" title="variable">y</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#x:26"><span class="id" title="variable">x</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Class</span> <a id="Asymmetric" class="idref" href="#Asymmetric"><span class="id" title="inductive, record"><span id="Asymmetric" class="id">Asymmetric</span></span></a> (<a id="R:29" class="idref" href="#R:29"><span class="id" title="binder">R</span></a> : <a class="idref" href="Corelib.Classes.CRelationClasses.html#crelation"><span class="id" title="definition">crelation</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#Defs.A"><span class="id" title="variable">A</span></a>) :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a id="asymmetry" class="idref" href="#asymmetry"><span class="id" title="constructor, projection"><span id="asymmetry" class="id">asymmetry</span></span></a> : <span class="id" title="keyword">forall</span> {<a id="x:31" class="idref" href="#x:31"><span class="id" title="binder">x</span></a> <a id="y:32" class="idref" href="#y:32"><span class="id" title="binder">y</span></a>}, <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:29"><span class="id" title="variable">R</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#x:31"><span class="id" title="variable">x</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#y:32"><span class="id" title="variable">y</span></a> <a class="idref" href="Corelib.Init.Logic.html#::type_scope:x_'-&gt;'_x"><span class="id" title="notation">-&gt;</span></a> <a class="idref" href="Corelib.Init.Logic.html#::type_scope:x_'-&gt;'_x"><span class="id" title="notation">(</span></a><a class="idref" href="Corelib.Classes.CRelationClasses.html#complement"><span class="id" title="definition">complement</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:29"><span class="id" title="variable">R</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#y:32"><span class="id" title="variable">y</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#x:31"><span class="id" title="variable">x</span></a> : <span class="id" title="keyword">Type</span><a class="idref" href="Corelib.Init.Logic.html#::type_scope:x_'-&gt;'_x"><span class="id" title="notation">)</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Class</span> <a id="Transitive" class="idref" href="#Transitive"><span class="id" title="inductive, record"><span id="Transitive" class="id">Transitive</span></span></a> (<a id="R:34" class="idref" href="#R:34"><span class="id" title="binder">R</span></a> : <a class="idref" href="Corelib.Classes.CRelationClasses.html#crelation"><span class="id" title="definition">crelation</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#Defs.A"><span class="id" title="variable">A</span></a>) :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a id="transitivity" class="idref" href="#transitivity"><span class="id" title="constructor, projection"><span id="transitivity" class="id">transitivity</span></span></a> : <span class="id" title="keyword">forall</span> {<a id="x:36" class="idref" href="#x:36"><span class="id" title="binder">x</span></a> <a id="y:37" class="idref" href="#y:37"><span class="id" title="binder">y</span></a> <a id="z:38" class="idref" href="#z:38"><span class="id" title="binder">z</span></a>}, <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:34"><span class="id" title="variable">R</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#x:36"><span class="id" title="variable">x</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#y:37"><span class="id" title="variable">y</span></a> <a class="idref" href="Corelib.Init.Logic.html#::type_scope:x_'-&gt;'_x"><span class="id" title="notation">-&gt;</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:34"><span class="id" title="variable">R</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#y:37"><span class="id" title="variable">y</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#z:38"><span class="id" title="variable">z</span></a> <a class="idref" href="Corelib.Init.Logic.html#::type_scope:x_'-&gt;'_x"><span class="id" title="notation">-&gt;</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:34"><span class="id" title="variable">R</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#x:36"><span class="id" title="variable">x</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#z:38"><span class="id" title="variable">z</span></a>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Various combinations of reflexivity, symmetry and transitivity. 
+<div class="paragraph"> </div>
+
+ A <span class="inlinecode"><span class="id" title="var">PreOrder</span></span> is both Reflexive and Transitive. 
+</div>
+<div class="code">
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Class</span> <a id="PreOrder" class="idref" href="#PreOrder"><span class="id" title="record">PreOrder</span></a> (<a id="R:40" class="idref" href="#R:40"><span class="id" title="binder">R</span></a> : <a class="idref" href="Corelib.Classes.CRelationClasses.html#crelation"><span class="id" title="definition">crelation</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#Defs.A"><span class="id" title="variable">A</span></a>)  := {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;#[<span class="id" title="var">global</span>] <a id="PreOrder_Reflexive" class="idref" href="#PreOrder_Reflexive"><span class="id" title="projection">PreOrder_Reflexive</span></a> :: <a class="idref" href="Corelib.Classes.CRelationClasses.html#Reflexive"><span class="id" title="class">Reflexive</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:40"><span class="id" title="variable">R</span></a> | 2 ;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;#[<span class="id" title="var">global</span>] <a id="PreOrder_Transitive" class="idref" href="#PreOrder_Transitive"><span class="id" title="projection">PreOrder_Transitive</span></a> :: <a class="idref" href="Corelib.Classes.CRelationClasses.html#Transitive"><span class="id" title="class">Transitive</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:40"><span class="id" title="variable">R</span></a> | 2 }.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+A <span class="inlinecode"><span class="id" title="var">StrictOrder</span></span> is both Irreflexive and Transitive. 
+</div>
+<div class="code">
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Class</span> <a id="StrictOrder" class="idref" href="#StrictOrder"><span class="id" title="record">StrictOrder</span></a> (<a id="R:44" class="idref" href="#R:44"><span class="id" title="binder">R</span></a> : <a class="idref" href="Corelib.Classes.CRelationClasses.html#crelation"><span class="id" title="definition">crelation</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#Defs.A"><span class="id" title="variable">A</span></a>)  := {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;#[<span class="id" title="var">global</span>] <a id="StrictOrder_Irreflexive" class="idref" href="#StrictOrder_Irreflexive"><span class="id" title="projection">StrictOrder_Irreflexive</span></a> :: <a class="idref" href="Corelib.Classes.CRelationClasses.html#Irreflexive"><span class="id" title="class">Irreflexive</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:44"><span class="id" title="variable">R</span></a> ;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;#[<span class="id" title="var">global</span>] <a id="StrictOrder_Transitive" class="idref" href="#StrictOrder_Transitive"><span class="id" title="projection">StrictOrder_Transitive</span></a> :: <a class="idref" href="Corelib.Classes.CRelationClasses.html#Transitive"><span class="id" title="class">Transitive</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:44"><span class="id" title="variable">R</span></a> }.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+By definition, a strict order is also asymmetric 
+</div>
+<div class="code">
+&nbsp;&nbsp;<span class="id" title="keyword">Global Instance</span> <a id="StrictOrder_Asymmetric" class="idref" href="#StrictOrder_Asymmetric"><span class="id" title="instance">StrictOrder_Asymmetric</span></a> `(<a id="H:49" class="idref" href="#H:49"><span class="id" title="binder">StrictOrder</span></a> <a id="R:48" class="idref" href="#R:48"><span class="id" title="binder"><span id="H:49" class="id">R</span></span></a>) : <a class="idref" href="Corelib.Classes.CRelationClasses.html#Asymmetric"><span class="id" title="class">Asymmetric</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:48"><span class="id" title="variable">R</span></a>.<br/>
+ 
+<br/>
+</div>
+
+<div class="doc">
+A partial equivalence crelation is Symmetric and Transitive. 
+</div>
+<div class="code">
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Class</span> <a id="PER" class="idref" href="#PER"><span class="id" title="record">PER</span></a> (<a id="R:50" class="idref" href="#R:50"><span class="id" title="binder">R</span></a> : <a class="idref" href="Corelib.Classes.CRelationClasses.html#crelation"><span class="id" title="definition">crelation</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#Defs.A"><span class="id" title="variable">A</span></a>)  := {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;#[<span class="id" title="var">global</span>] <a id="PER_Symmetric" class="idref" href="#PER_Symmetric"><span class="id" title="projection">PER_Symmetric</span></a> :: <a class="idref" href="Corelib.Classes.CRelationClasses.html#Symmetric"><span class="id" title="class">Symmetric</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:50"><span class="id" title="variable">R</span></a> | 3 ;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;#[<span class="id" title="var">global</span>] <a id="PER_Transitive" class="idref" href="#PER_Transitive"><span class="id" title="projection">PER_Transitive</span></a> :: <a class="idref" href="Corelib.Classes.CRelationClasses.html#Transitive"><span class="id" title="class">Transitive</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:50"><span class="id" title="variable">R</span></a> | 3 }.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Equivalence crelations. 
+</div>
+<div class="code">
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Class</span> <a id="Equivalence" class="idref" href="#Equivalence"><span class="id" title="record">Equivalence</span></a> (<a id="R:54" class="idref" href="#R:54"><span class="id" title="binder">R</span></a> : <a class="idref" href="Corelib.Classes.CRelationClasses.html#crelation"><span class="id" title="definition">crelation</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#Defs.A"><span class="id" title="variable">A</span></a>)  := {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;#[<span class="id" title="var">global</span>] <a id="Equivalence_Reflexive" class="idref" href="#Equivalence_Reflexive"><span class="id" title="projection">Equivalence_Reflexive</span></a> :: <a class="idref" href="Corelib.Classes.CRelationClasses.html#Reflexive"><span class="id" title="class">Reflexive</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:54"><span class="id" title="variable">R</span></a> ;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;#[<span class="id" title="var">global</span>] <a id="Equivalence_Symmetric" class="idref" href="#Equivalence_Symmetric"><span class="id" title="projection">Equivalence_Symmetric</span></a> :: <a class="idref" href="Corelib.Classes.CRelationClasses.html#Symmetric"><span class="id" title="class">Symmetric</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:54"><span class="id" title="variable">R</span></a> ;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;#[<span class="id" title="var">global</span>] <a id="Equivalence_Transitive" class="idref" href="#Equivalence_Transitive"><span class="id" title="projection">Equivalence_Transitive</span></a> :: <a class="idref" href="Corelib.Classes.CRelationClasses.html#Transitive"><span class="id" title="class">Transitive</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:54"><span class="id" title="variable">R</span></a> }.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+An Equivalence is a PER plus reflexivity. 
+</div>
+<div class="code">
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Global Instance</span> <a id="Equivalence_PER" class="idref" href="#Equivalence_PER"><span class="id" title="instance">Equivalence_PER</span></a> {<a id="R:59" class="idref" href="#R:59"><span class="id" title="binder">R</span></a>} `(<a id="H:60" class="idref" href="#H:60"><span class="id" title="binder">Equivalence</span></a> <a id="H:60" class="idref" href="#H:60"><span class="id" title="binder">R</span></a>) : <a class="idref" href="Corelib.Classes.CRelationClasses.html#PER"><span class="id" title="class">PER</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:59"><span class="id" title="variable">R</span></a> | 10 :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ <a class="idref" href="Corelib.Classes.CRelationClasses.html#PER_Symmetric"><span class="id" title="method">PER_Symmetric</span></a> := <a class="idref" href="Corelib.Classes.CRelationClasses.html#Equivalence_Symmetric"><span class="id" title="method">Equivalence_Symmetric</span></a> ;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Corelib.Classes.CRelationClasses.html#PER_Transitive"><span class="id" title="method">PER_Transitive</span></a> := <a class="idref" href="Corelib.Classes.CRelationClasses.html#Equivalence_Transitive"><span class="id" title="method">Equivalence_Transitive</span></a> }.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+We can now define antisymmetry w.r.t. an equivalence crelation on the carrier. 
+</div>
+<div class="code">
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Class</span> <a id="Antisymmetric" class="idref" href="#Antisymmetric"><span class="id" title="inductive, record"><span id="Antisymmetric" class="id">Antisymmetric</span></span></a> <a id="eqA:61" class="idref" href="#eqA:61"><span class="id" title="binder">eqA</span></a> `{<a id="equ:62" class="idref" href="#equ:62"><span class="id" title="binder">equ</span></a> : <a class="idref" href="Corelib.Classes.CRelationClasses.html#Equivalence"><span class="id" title="class">Equivalence</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#eqA:61"><span class="id" title="variable">eqA</span></a>} (<a id="R:63" class="idref" href="#R:63"><span class="id" title="binder">R</span></a> : <a class="idref" href="Corelib.Classes.CRelationClasses.html#crelation"><span class="id" title="definition">crelation</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#Defs.A"><span class="id" title="variable">A</span></a>) :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a id="antisymmetry" class="idref" href="#antisymmetry"><span class="id" title="constructor, projection"><span id="antisymmetry" class="id">antisymmetry</span></span></a> : <span class="id" title="keyword">forall</span> {<a id="x:65" class="idref" href="#x:65"><span class="id" title="binder">x</span></a> <a id="y:66" class="idref" href="#y:66"><span class="id" title="binder">y</span></a>}, <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:63"><span class="id" title="variable">R</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#x:65"><span class="id" title="variable">x</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#y:66"><span class="id" title="variable">y</span></a> <a class="idref" href="Corelib.Init.Logic.html#::type_scope:x_'-&gt;'_x"><span class="id" title="notation">-&gt;</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:63"><span class="id" title="variable">R</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#y:66"><span class="id" title="variable">y</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#x:65"><span class="id" title="variable">x</span></a> <a class="idref" href="Corelib.Init.Logic.html#::type_scope:x_'-&gt;'_x"><span class="id" title="notation">-&gt;</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#eqA:61"><span class="id" title="variable">eqA</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#x:65"><span class="id" title="variable">x</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#y:66"><span class="id" title="variable">y</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Class</span> <a id="subrelation" class="idref" href="#subrelation"><span class="id" title="inductive, record"><span id="subrelation" class="id">subrelation</span></span></a> (<a id="R:68" class="idref" href="#R:68"><span class="id" title="binder">R</span></a> <a id="R':69" class="idref" href="#R':69"><span class="id" title="binder">R'</span></a> : <a class="idref" href="Corelib.Classes.CRelationClasses.html#crelation"><span class="id" title="definition">crelation</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#Defs.A"><span class="id" title="variable">A</span></a>) :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a id="is_subrelation" class="idref" href="#is_subrelation"><span class="id" title="constructor, projection"><span id="is_subrelation" class="id">is_subrelation</span></span></a> : <span class="id" title="keyword">forall</span> {<a id="x:71" class="idref" href="#x:71"><span class="id" title="binder">x</span></a> <a id="y:72" class="idref" href="#y:72"><span class="id" title="binder">y</span></a>}, <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:68"><span class="id" title="variable">R</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#x:71"><span class="id" title="variable">x</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#y:72"><span class="id" title="variable">y</span></a> <a class="idref" href="Corelib.Init.Logic.html#::type_scope:x_'-&gt;'_x"><span class="id" title="notation">-&gt;</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#R':69"><span class="id" title="variable">R'</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#x:71"><span class="id" title="variable">x</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#y:72"><span class="id" title="variable">y</span></a>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Any symmetric crelation is equal to its inverse. 
+</div>
+<div class="code">
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a id="subrelation_symmetric" class="idref" href="#subrelation_symmetric"><span class="id" title="lemma">subrelation_symmetric</span></a> <a id="R:74" class="idref" href="#R:74"><span class="id" title="binder">R</span></a> `(<a id="H:75" class="idref" href="#H:75"><span class="id" title="binder">Symmetric</span></a> <a id="H:75" class="idref" href="#H:75"><span class="id" title="binder">R</span></a>) : <a class="idref" href="Corelib.Classes.CRelationClasses.html#subrelation"><span class="id" title="class">subrelation</span></a> (<a class="idref" href="Corelib.Classes.CRelationClasses.html#flip"><span class="id" title="definition">flip</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:74"><span class="id" title="variable">R</span></a>) <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:74"><span class="id" title="variable">R</span></a>.<br/>
+ 
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Section</span> <a id="Defs.flip" class="idref" href="#Defs.flip"><span class="id" title="section">flip</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a id="flip_Reflexive" class="idref" href="#flip_Reflexive"><span class="id" title="lemma">flip_Reflexive</span></a> `{<a id="H:77" class="idref" href="#H:77"><span class="id" title="binder">Reflexive</span></a> <a id="R:76" class="idref" href="#R:76"><span class="id" title="binder"><span id="H:77" class="id">R</span></span></a>} : <a class="idref" href="Corelib.Classes.CRelationClasses.html#Reflexive"><span class="id" title="class">Reflexive</span></a> (<a class="idref" href="Corelib.Classes.CRelationClasses.html#flip"><span class="id" title="definition">flip</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:76"><span class="id" title="variable">R</span></a>).<br/>
+ 
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Program Definition</span> <a id="flip_Irreflexive" class="idref" href="#flip_Irreflexive"><span class="id" title="definition">flip_Irreflexive</span></a> `(<a id="H:79" class="idref" href="#H:79"><span class="id" title="binder">Irreflexive</span></a> <a id="R:78" class="idref" href="#R:78"><span class="id" title="binder"><span id="H:79" class="id">R</span></span></a>) : <a class="idref" href="Corelib.Classes.CRelationClasses.html#Irreflexive"><span class="id" title="class">Irreflexive</span></a> (<a class="idref" href="Corelib.Classes.CRelationClasses.html#flip"><span class="id" title="definition">flip</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:78"><span class="id" title="variable">R</span></a>) :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Corelib.Classes.CRelationClasses.html#irreflexivity"><span class="id" title="definition">irreflexivity</span></a> (<span class="id" title="var">R</span>:=<a class="idref" href="Corelib.Classes.CRelationClasses.html#R:78"><span class="id" title="variable">R</span></a>).<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Program Definition</span> <a id="flip_Symmetric" class="idref" href="#flip_Symmetric"><span class="id" title="definition">flip_Symmetric</span></a> `(<a id="H:81" class="idref" href="#H:81"><span class="id" title="binder">Symmetric</span></a> <a id="R:80" class="idref" href="#R:80"><span class="id" title="binder"><span id="H:81" class="id">R</span></span></a>) : <a class="idref" href="Corelib.Classes.CRelationClasses.html#Symmetric"><span class="id" title="class">Symmetric</span></a> (<a class="idref" href="Corelib.Classes.CRelationClasses.html#flip"><span class="id" title="definition">flip</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:80"><span class="id" title="variable">R</span></a>) :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">fun</span> <a id="x:82" class="idref" href="#x:82"><span class="id" title="binder">x</span></a> <a id="y:83" class="idref" href="#y:83"><span class="id" title="binder">y</span></a> <a id="H:84" class="idref" href="#H:84"><span class="id" title="binder">H</span></a> =&gt; <a class="idref" href="Corelib.Classes.CRelationClasses.html#symmetry"><span class="id" title="definition">symmetry</span></a> (<span class="id" title="var">R</span>:=<a class="idref" href="Corelib.Classes.CRelationClasses.html#R:80"><span class="id" title="variable">R</span></a>) <a class="idref" href="Corelib.Classes.CRelationClasses.html#H:84"><span class="id" title="variable">H</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Program Definition</span> <a id="flip_Asymmetric" class="idref" href="#flip_Asymmetric"><span class="id" title="definition">flip_Asymmetric</span></a> `(<a id="H:86" class="idref" href="#H:86"><span class="id" title="binder">Asymmetric</span></a> <a id="R:85" class="idref" href="#R:85"><span class="id" title="binder"><span id="H:86" class="id">R</span></span></a>) : <a class="idref" href="Corelib.Classes.CRelationClasses.html#Asymmetric"><span class="id" title="class">Asymmetric</span></a> (<a class="idref" href="Corelib.Classes.CRelationClasses.html#flip"><span class="id" title="definition">flip</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:85"><span class="id" title="variable">R</span></a>) :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">fun</span> <a id="x:87" class="idref" href="#x:87"><span class="id" title="binder">x</span></a> <a id="y:88" class="idref" href="#y:88"><span class="id" title="binder">y</span></a> <a id="H:89" class="idref" href="#H:89"><span class="id" title="binder">H</span></a> <a id="H':90" class="idref" href="#H':90"><span class="id" title="binder">H'</span></a> =&gt; <a class="idref" href="Corelib.Classes.CRelationClasses.html#asymmetry"><span class="id" title="definition">asymmetry</span></a> (<span class="id" title="var">R</span>:=<a class="idref" href="Corelib.Classes.CRelationClasses.html#R:85"><span class="id" title="variable">R</span></a>) <a class="idref" href="Corelib.Classes.CRelationClasses.html#H:89"><span class="id" title="variable">H</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#H':90"><span class="id" title="variable">H'</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Program Definition</span> <a id="flip_Transitive" class="idref" href="#flip_Transitive"><span class="id" title="definition">flip_Transitive</span></a> `(<a id="H:92" class="idref" href="#H:92"><span class="id" title="binder">Transitive</span></a> <a id="R:91" class="idref" href="#R:91"><span class="id" title="binder"><span id="H:92" class="id">R</span></span></a>) : <a class="idref" href="Corelib.Classes.CRelationClasses.html#Transitive"><span class="id" title="class">Transitive</span></a> (<a class="idref" href="Corelib.Classes.CRelationClasses.html#flip"><span class="id" title="definition">flip</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:91"><span class="id" title="variable">R</span></a>) :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">fun</span> <a id="x:93" class="idref" href="#x:93"><span class="id" title="binder">x</span></a> <a id="y:94" class="idref" href="#y:94"><span class="id" title="binder">y</span></a> <a id="z:95" class="idref" href="#z:95"><span class="id" title="binder">z</span></a> <a id="H:96" class="idref" href="#H:96"><span class="id" title="binder">H</span></a> <a id="H':97" class="idref" href="#H':97"><span class="id" title="binder">H'</span></a> =&gt; <a class="idref" href="Corelib.Classes.CRelationClasses.html#transitivity"><span class="id" title="definition">transitivity</span></a> (<span class="id" title="var">R</span>:=<a class="idref" href="Corelib.Classes.CRelationClasses.html#R:91"><span class="id" title="variable">R</span></a>) <a class="idref" href="Corelib.Classes.CRelationClasses.html#H':97"><span class="id" title="variable">H'</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#H:96"><span class="id" title="variable">H</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Program Lemma</span> <a id="flip_Antisymmetric" class="idref" href="#flip_Antisymmetric"><span class="id" title="lemma">flip_Antisymmetric</span></a> `(<a id="H:101" class="idref" href="#H:101"><span class="id" title="binder">Antisymmetric</span></a> <a id="eqA:98" class="idref" href="#eqA:98"><span class="id" title="binder"><span id="H:101" class="id">eqA</span></span></a> <a id="R:100" class="idref" href="#R:100"><span class="id" title="binder"><span id="H:101" class="id">R</span></span></a>) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Corelib.Classes.CRelationClasses.html#Antisymmetric"><span class="id" title="class">Antisymmetric</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#eqA:98"><span class="id" title="variable">eqA</span></a> (<a class="idref" href="Corelib.Classes.CRelationClasses.html#flip"><span class="id" title="definition">flip</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:100"><span class="id" title="variable">R</span></a>).<br/>
+ 
+<br/>
+</div>
+
+<div class="doc">
+Inversing the larger structures 
+</div>
+<div class="code">
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a id="flip_PreOrder" class="idref" href="#flip_PreOrder"><span class="id" title="lemma">flip_PreOrder</span></a> `(<a id="H:103" class="idref" href="#H:103"><span class="id" title="binder">PreOrder</span></a> <a id="R:102" class="idref" href="#R:102"><span class="id" title="binder"><span id="H:103" class="id">R</span></span></a>) : <a class="idref" href="Corelib.Classes.CRelationClasses.html#PreOrder"><span class="id" title="class">PreOrder</span></a> (<a class="idref" href="Corelib.Classes.CRelationClasses.html#flip"><span class="id" title="definition">flip</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:102"><span class="id" title="variable">R</span></a>).<br/>
+ 
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a id="flip_StrictOrder" class="idref" href="#flip_StrictOrder"><span class="id" title="lemma">flip_StrictOrder</span></a> `(<a id="H:105" class="idref" href="#H:105"><span class="id" title="binder">StrictOrder</span></a> <a id="R:104" class="idref" href="#R:104"><span class="id" title="binder"><span id="H:105" class="id">R</span></span></a>) : <a class="idref" href="Corelib.Classes.CRelationClasses.html#StrictOrder"><span class="id" title="class">StrictOrder</span></a> (<a class="idref" href="Corelib.Classes.CRelationClasses.html#flip"><span class="id" title="definition">flip</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:104"><span class="id" title="variable">R</span></a>).<br/>
+ 
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a id="flip_PER" class="idref" href="#flip_PER"><span class="id" title="lemma">flip_PER</span></a> `(<a id="H:107" class="idref" href="#H:107"><span class="id" title="binder">PER</span></a> <a id="R:106" class="idref" href="#R:106"><span class="id" title="binder"><span id="H:107" class="id">R</span></span></a>) : <a class="idref" href="Corelib.Classes.CRelationClasses.html#PER"><span class="id" title="class">PER</span></a> (<a class="idref" href="Corelib.Classes.CRelationClasses.html#flip"><span class="id" title="definition">flip</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:106"><span class="id" title="variable">R</span></a>).<br/>
+ 
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a id="flip_Equivalence" class="idref" href="#flip_Equivalence"><span class="id" title="lemma">flip_Equivalence</span></a> `(<a id="H:109" class="idref" href="#H:109"><span class="id" title="binder">Equivalence</span></a> <a id="R:108" class="idref" href="#R:108"><span class="id" title="binder"><span id="H:109" class="id">R</span></span></a>) : <a class="idref" href="Corelib.Classes.CRelationClasses.html#Equivalence"><span class="id" title="class">Equivalence</span></a> (<a class="idref" href="Corelib.Classes.CRelationClasses.html#flip"><span class="id" title="definition">flip</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:108"><span class="id" title="variable">R</span></a>).<br/>
+ 
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">End</span> <a class="idref" href="Corelib.Classes.CRelationClasses.html#Defs.flip"><span class="id" title="section">flip</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Section</span> <a id="Defs.complement" class="idref" href="#Defs.complement"><span class="id" title="section">complement</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a id="complement_Irreflexive" class="idref" href="#complement_Irreflexive"><span class="id" title="lemma">complement_Irreflexive</span></a> `(<a id="H:111" class="idref" href="#H:111"><span class="id" title="binder">Reflexive</span></a> <a id="R:110" class="idref" href="#R:110"><span class="id" title="binder"><span id="H:111" class="id">R</span></span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <a class="idref" href="Corelib.Classes.CRelationClasses.html#Irreflexive"><span class="id" title="class">Irreflexive</span></a> (<a class="idref" href="Corelib.Classes.CRelationClasses.html#complement"><span class="id" title="definition">complement</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:110"><span class="id" title="variable">R</span></a>).<br/>
+ 
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a id="complement_Symmetric" class="idref" href="#complement_Symmetric"><span class="id" title="lemma">complement_Symmetric</span></a> `(<a id="H:113" class="idref" href="#H:113"><span class="id" title="binder">Symmetric</span></a> <a id="R:112" class="idref" href="#R:112"><span class="id" title="binder"><span id="H:113" class="id">R</span></span></a>) : <a class="idref" href="Corelib.Classes.CRelationClasses.html#Symmetric"><span class="id" title="class">Symmetric</span></a> (<a class="idref" href="Corelib.Classes.CRelationClasses.html#complement"><span class="id" title="definition">complement</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:112"><span class="id" title="variable">R</span></a>).<br/>
+ &nbsp;&nbsp;<span class="id" title="keyword">End</span> <a class="idref" href="Corelib.Classes.CRelationClasses.html#Defs.complement"><span class="id" title="section">complement</span></a>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Rewrite crelation on a given support: declares a crelation as a rewrite
+   crelation for use by the generalized rewriting tactic.
+   It helps choosing if a rewrite should be handled
+   by the generalized or the regular rewriting tactic using leibniz equality.
+   Users can declare an <span class="inlinecode"><span class="id" title="var">RewriteRelation</span></span> <span class="inlinecode"><span class="id" title="var">A</span></span> <span class="inlinecode"><span class="id" title="var">RA</span></span> anywhere to declare default
+   crelations. This is also done automatically by the <span class="inlinecode"><span class="id" title="var">Declare</span></span> <span class="inlinecode"><span class="id" title="var">Relation</span></span> <span class="inlinecode"><span class="id" title="var">A</span></span> <span class="inlinecode"><span class="id" title="var">RA</span></span>
+   commands. 
+</div>
+<div class="code">
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Class</span> <a id="RewriteRelation" class="idref" href="#RewriteRelation"><span class="id" title="record">RewriteRelation</span></a> (<a id="RA:114" class="idref" href="#RA:114"><span class="id" title="binder">RA</span></a> : <a class="idref" href="Corelib.Classes.CRelationClasses.html#crelation"><span class="id" title="definition">crelation</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#Defs.A"><span class="id" title="variable">A</span></a>).<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Any <span class="inlinecode"><span class="id" title="var">Equivalence</span></span> declared in the context is automatically considered
+   a rewrite crelation. 
+</div>
+<div class="code">
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Global Instance</span> <a id="equivalence_rewrite_crelation" class="idref" href="#equivalence_rewrite_crelation"><span class="id" title="instance">equivalence_rewrite_crelation</span></a> `(<a id="H:117" class="idref" href="#H:117"><span class="id" title="binder">Equivalence</span></a> <a id="eqA:116" class="idref" href="#eqA:116"><span class="id" title="binder"><span id="H:117" class="id">eqA</span></span></a>) : <a class="idref" href="Corelib.Classes.CRelationClasses.html#RewriteRelation"><span class="id" title="class">RewriteRelation</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#eqA:116"><span class="id" title="variable">eqA</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Defined</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Leibniz equality. 
+</div>
+<div class="code">
+&nbsp;&nbsp;<span class="id" title="keyword">Section</span> <a id="Defs.Leibniz" class="idref" href="#Defs.Leibniz"><span class="id" title="section">Leibniz</span></a>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Global Instance</span> <a id="eq_Reflexive" class="idref" href="#eq_Reflexive"><span class="id" title="instance">eq_Reflexive</span></a> : <a class="idref" href="Corelib.Classes.CRelationClasses.html#Reflexive"><span class="id" title="class">Reflexive</span></a> (@<a class="idref" href="Corelib.Init.Logic.html#eq"><span class="id" title="inductive">eq</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#Defs.A"><span class="id" title="variable">A</span></a>) := @<a class="idref" href="Corelib.Init.Logic.html#eq_refl"><span class="id" title="constructor">eq_refl</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#Defs.A"><span class="id" title="variable">A</span></a>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Global Instance</span> <a id="eq_Symmetric" class="idref" href="#eq_Symmetric"><span class="id" title="instance">eq_Symmetric</span></a> : <a class="idref" href="Corelib.Classes.CRelationClasses.html#Symmetric"><span class="id" title="class">Symmetric</span></a> (@<a class="idref" href="Corelib.Init.Logic.html#eq"><span class="id" title="inductive">eq</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#Defs.A"><span class="id" title="variable">A</span></a>) := @<a class="idref" href="Corelib.Init.Logic.html#eq_sym"><span class="id" title="lemma">eq_sym</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#Defs.A"><span class="id" title="variable">A</span></a>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Global Instance</span> <a id="eq_Transitive" class="idref" href="#eq_Transitive"><span class="id" title="instance">eq_Transitive</span></a> : <a class="idref" href="Corelib.Classes.CRelationClasses.html#Transitive"><span class="id" title="class">Transitive</span></a> (@<a class="idref" href="Corelib.Init.Logic.html#eq"><span class="id" title="inductive">eq</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#Defs.A"><span class="id" title="variable">A</span></a>) := @<a class="idref" href="Corelib.Init.Logic.html#eq_trans"><span class="id" title="lemma">eq_trans</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#Defs.A"><span class="id" title="variable">A</span></a>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Leibinz equality <span class="inlinecode"><span class="id" title="var">eq</span></span> is an equivalence crelation.
+        The instance has low priority as it is always applicable
+        if only the type is constrained. 
+</div>
+<div class="code">
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Global Program Instance</span> <a id="eq_equivalence" class="idref" href="#eq_equivalence"><span class="id" title="instance">eq_equivalence</span></a> : <a class="idref" href="Corelib.Classes.CRelationClasses.html#Equivalence"><span class="id" title="class">Equivalence</span></a> (@<a class="idref" href="Corelib.Init.Logic.html#eq"><span class="id" title="inductive">eq</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#Defs.A"><span class="id" title="variable">A</span></a>) | 10.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">End</span> <a class="idref" href="Corelib.Classes.CRelationClasses.html#Defs.Leibniz"><span class="id" title="section">Leibniz</span></a>.<br/>
+
+<br/>
+<span class="id" title="keyword">End</span> <a class="idref" href="Corelib.Classes.CRelationClasses.html#Defs"><span class="id" title="section">Defs</span></a>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Default rewrite crelations handled by <span class="inlinecode"><span class="id" title="tactic">setoid_rewrite</span></span>. 
+</div>
+<div class="code">
+#[<span class="id" title="var">global</span>]<br/>
+<span class="id" title="keyword">Instance</span>: <a class="idref" href="Corelib.Classes.CRelationClasses.html#RewriteRelation"><span class="id" title="class">RewriteRelation</span></a> <a class="idref" href="Corelib.Program.Basics.html#impl"><span class="id" title="definition">impl</span></a>.<br/>
+<span class="id" title="keyword">Defined</span>.<br/>
+
+<br/>
+#[<span class="id" title="var">global</span>]<br/>
+<span class="id" title="keyword">Instance</span>: <a class="idref" href="Corelib.Classes.CRelationClasses.html#RewriteRelation"><span class="id" title="class">RewriteRelation</span></a> <a class="idref" href="Corelib.Init.Logic.html#iff"><span class="id" title="definition">iff</span></a>.<br/>
+<span class="id" title="keyword">Defined</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Hints to drive the typeclass resolution avoiding loops
+ due to the use of full unification. 
+</div>
+<div class="code">
+#[<span class="id" title="var">global</span>]<br/>
+<span class="id" title="keyword">Hint</span> <span class="id" title="keyword">Extern</span> 1 (<a class="idref" href="Corelib.Classes.CRelationClasses.html#Reflexive"><span class="id" title="class">Reflexive</span></a> (<a class="idref" href="Corelib.Classes.CRelationClasses.html#complement"><span class="id" title="definition">complement</span></a> <span class="id" title="var">_</span>)) =&gt; <span class="id" title="var">class_apply</span> @<a class="idref" href="Corelib.Classes.CRelationClasses.html#irreflexivity"><span class="id" title="definition">irreflexivity</span></a> : <span class="id" title="var">typeclass_instances</span>.<br/>
+#[<span class="id" title="var">global</span>]<br/>
+<span class="id" title="keyword">Hint</span> <span class="id" title="keyword">Extern</span> 3 (<a class="idref" href="Corelib.Classes.CRelationClasses.html#Symmetric"><span class="id" title="class">Symmetric</span></a> (<a class="idref" href="Corelib.Classes.CRelationClasses.html#complement"><span class="id" title="definition">complement</span></a> <span class="id" title="var">_</span>)) =&gt; <span class="id" title="var">class_apply</span> <span class="id" title="var">complement_Symmetric</span> : <span class="id" title="var">typeclass_instances</span>.<br/>
+#[<span class="id" title="var">global</span>]<br/>
+<span class="id" title="keyword">Hint</span> <span class="id" title="keyword">Extern</span> 3 (<a class="idref" href="Corelib.Classes.CRelationClasses.html#Irreflexive"><span class="id" title="class">Irreflexive</span></a> (<a class="idref" href="Corelib.Classes.CRelationClasses.html#complement"><span class="id" title="definition">complement</span></a> <span class="id" title="var">_</span>)) =&gt; <span class="id" title="var">class_apply</span> <span class="id" title="var">complement_Irreflexive</span> : <span class="id" title="var">typeclass_instances</span>.<br/>
+
+<br/>
+#[<span class="id" title="var">global</span>]<br/>
+<span class="id" title="keyword">Hint</span> <span class="id" title="keyword">Extern</span> 3 (<a class="idref" href="Corelib.Classes.CRelationClasses.html#Reflexive"><span class="id" title="class">Reflexive</span></a> (<a class="idref" href="Corelib.Classes.CRelationClasses.html#flip"><span class="id" title="definition">flip</span></a> <span class="id" title="var">_</span>)) =&gt; <span class="id" title="tactic">apply</span> <a class="idref" href="Corelib.Classes.CRelationClasses.html#flip_Reflexive"><span class="id" title="lemma">flip_Reflexive</span></a> : <span class="id" title="var">typeclass_instances</span>.<br/>
+#[<span class="id" title="var">global</span>]<br/>
+<span class="id" title="keyword">Hint</span> <span class="id" title="keyword">Extern</span> 3 (<a class="idref" href="Corelib.Classes.CRelationClasses.html#Irreflexive"><span class="id" title="class">Irreflexive</span></a> (<a class="idref" href="Corelib.Classes.CRelationClasses.html#flip"><span class="id" title="definition">flip</span></a> <span class="id" title="var">_</span>)) =&gt; <span class="id" title="var">class_apply</span> <span class="id" title="var">flip_Irreflexive</span> : <span class="id" title="var">typeclass_instances</span>.<br/>
+#[<span class="id" title="var">global</span>]<br/>
+<span class="id" title="keyword">Hint</span> <span class="id" title="keyword">Extern</span> 3 (<a class="idref" href="Corelib.Classes.CRelationClasses.html#Symmetric"><span class="id" title="class">Symmetric</span></a> (<a class="idref" href="Corelib.Classes.CRelationClasses.html#flip"><span class="id" title="definition">flip</span></a> <span class="id" title="var">_</span>)) =&gt; <span class="id" title="var">class_apply</span> <span class="id" title="var">flip_Symmetric</span> : <span class="id" title="var">typeclass_instances</span>.<br/>
+#[<span class="id" title="var">global</span>]<br/>
+<span class="id" title="keyword">Hint</span> <span class="id" title="keyword">Extern</span> 3 (<a class="idref" href="Corelib.Classes.CRelationClasses.html#Asymmetric"><span class="id" title="class">Asymmetric</span></a> (<a class="idref" href="Corelib.Classes.CRelationClasses.html#flip"><span class="id" title="definition">flip</span></a> <span class="id" title="var">_</span>)) =&gt; <span class="id" title="var">class_apply</span> <span class="id" title="var">flip_Asymmetric</span> : <span class="id" title="var">typeclass_instances</span>.<br/>
+#[<span class="id" title="var">global</span>]<br/>
+<span class="id" title="keyword">Hint</span> <span class="id" title="keyword">Extern</span> 3 (<a class="idref" href="Corelib.Classes.CRelationClasses.html#Antisymmetric"><span class="id" title="class">Antisymmetric</span></a> (<a class="idref" href="Corelib.Classes.CRelationClasses.html#flip"><span class="id" title="definition">flip</span></a> <span class="id" title="var">_</span>)) =&gt; <span class="id" title="var">class_apply</span> <span class="id" title="var">flip_Antisymmetric</span> : <span class="id" title="var">typeclass_instances</span>.<br/>
+#[<span class="id" title="var">global</span>]<br/>
+<span class="id" title="keyword">Hint</span> <span class="id" title="keyword">Extern</span> 3 (<a class="idref" href="Corelib.Classes.CRelationClasses.html#Transitive"><span class="id" title="class">Transitive</span></a> (<a class="idref" href="Corelib.Classes.CRelationClasses.html#flip"><span class="id" title="definition">flip</span></a> <span class="id" title="var">_</span>)) =&gt; <span class="id" title="var">class_apply</span> <span class="id" title="var">flip_Transitive</span> : <span class="id" title="var">typeclass_instances</span>.<br/>
+#[<span class="id" title="var">global</span>]<br/>
+<span class="id" title="keyword">Hint</span> <span class="id" title="keyword">Extern</span> 3 (<a class="idref" href="Corelib.Classes.CRelationClasses.html#StrictOrder"><span class="id" title="class">StrictOrder</span></a> (<a class="idref" href="Corelib.Classes.CRelationClasses.html#flip"><span class="id" title="definition">flip</span></a> <span class="id" title="var">_</span>)) =&gt; <span class="id" title="var">class_apply</span> <span class="id" title="var">flip_StrictOrder</span> : <span class="id" title="var">typeclass_instances</span>.<br/>
+#[<span class="id" title="var">global</span>]<br/>
+<span class="id" title="keyword">Hint</span> <span class="id" title="keyword">Extern</span> 3 (<a class="idref" href="Corelib.Classes.CRelationClasses.html#PreOrder"><span class="id" title="class">PreOrder</span></a> (<a class="idref" href="Corelib.Classes.CRelationClasses.html#flip"><span class="id" title="definition">flip</span></a> <span class="id" title="var">_</span>)) =&gt; <span class="id" title="var">class_apply</span> <span class="id" title="var">flip_PreOrder</span> : <span class="id" title="var">typeclass_instances</span>.<br/>
+
+<br/>
+#[<span class="id" title="var">global</span>]<br/>
+<span class="id" title="keyword">Hint</span> <span class="id" title="keyword">Extern</span> 4 (<a class="idref" href="Corelib.Classes.CRelationClasses.html#subrelation"><span class="id" title="class">subrelation</span></a> (<a class="idref" href="Corelib.Classes.CRelationClasses.html#flip"><span class="id" title="definition">flip</span></a> <span class="id" title="var">_</span>) <span class="id" title="var">_</span>) =&gt; <br/>
+&nbsp;&nbsp;<span class="id" title="var">class_apply</span> @<a class="idref" href="Corelib.Classes.CRelationClasses.html#subrelation_symmetric"><span class="id" title="lemma">subrelation_symmetric</span></a> : <span class="id" title="var">typeclass_instances</span>.<br/>
+
+<br/>
+#[<span class="id" title="var">global</span>]<br/>
+<span class="id" title="keyword">Hint</span> <span class="id" title="keyword">Resolve</span> <span class="id" title="var">irreflexivity</span> : <span class="id" title="var">ord</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Unset Implicit Arguments</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Ltac</span> <span class="id" title="var">solve_crelation</span> :=<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="keyword">goal</span> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;| [ |- ?<span class="id" title="var">R</span> ?<span class="id" title="var">x</span> ?<span class="id" title="var">x</span> ] =&gt; <span class="id" title="tactic">reflexivity</span><br/>
+&nbsp;&nbsp;| [ <span class="id" title="var">H</span> : ?<span class="id" title="var">R</span> ?<span class="id" title="var">x</span> ?<span class="id" title="var">y</span> |- ?<span class="id" title="var">R</span> ?<span class="id" title="var">y</span> ?<span class="id" title="var">x</span> ] =&gt; <span class="id" title="tactic">symmetry</span> ; <span class="id" title="tactic">exact</span> <span class="id" title="var">H</span><br/>
+&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
+
+<br/>
+#[<span class="id" title="var">global</span>]<br/>
+<span class="id" title="keyword">Hint</span> <span class="id" title="keyword">Extern</span> 4 =&gt; <span class="id" title="var">solve_crelation</span> : <span class="id" title="var">crelations</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+We can already dualize all these properties. 
+<div class="paragraph"> </div>
+
+<a id="lab91"></a><h1 class="section">Standard instances.</h1>
+
+</div>
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">Ltac</span> <span class="id" title="var">reduce_hyp</span> <span class="id" title="var">H</span> :=<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="keyword">type</span> <span class="id" title="keyword">of</span> <span class="id" title="var">H</span> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id" title="keyword">context</span> [ <span class="id" title="var">_</span> <a class="idref" href="Corelib.Init.Logic.html#::type_scope:x_'&lt;-&gt;'_x"><span class="id" title="notation">&lt;-&gt;</span></a> <span class="id" title="var">_</span> ] =&gt; <span class="id" title="tactic">fail</span> 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id" title="var">_</span> =&gt; <span class="id" title="tactic">red</span> <span class="id" title="tactic">in</span> <span class="id" title="var">H</span> ; <span class="id" title="tactic">try</span> <span class="id" title="var">reduce_hyp</span> <span class="id" title="var">H</span><br/>
+&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Ltac</span> <span class="id" title="var">reduce_goal</span> :=<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="keyword">goal</span> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| [ |- <span class="id" title="var">_</span> <a class="idref" href="Corelib.Init.Logic.html#::type_scope:x_'&lt;-&gt;'_x"><span class="id" title="notation">&lt;-&gt;</span></a> <span class="id" title="var">_</span> ] =&gt; <span class="id" title="tactic">fail</span> 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id" title="var">_</span> =&gt; <span class="id" title="tactic">red</span> ; <span class="id" title="tactic">intros</span> ; <span class="id" title="tactic">try</span> <span class="id" title="var">reduce_goal</span><br/>
+&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Tactic Notation</span> "reduce" "in" <span class="id" title="var">hyp</span>(<span class="id" title="var">Hid</span>) := <span class="id" title="var">reduce_hyp</span> <span class="id" title="var">Hid</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Ltac</span> <span class="id" title="var">reduce</span> := <span class="id" title="var">reduce_goal</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Tactic Notation</span> "apply" "*" <span class="id" title="keyword">constr</span>(<span class="id" title="var">t</span>) :=<br/>
+&nbsp;&nbsp;<span class="id" title="tactic">first</span> [ <span class="id" title="tactic">refine</span> <span class="id" title="var">t</span> | <span class="id" title="tactic">refine</span> (<span class="id" title="var">t</span> <span class="id" title="var">_</span>) | <span class="id" title="tactic">refine</span> (<span class="id" title="var">t</span> <span class="id" title="var">_</span> <span class="id" title="var">_</span>) | <span class="id" title="tactic">refine</span> (<span class="id" title="var">t</span> <span class="id" title="var">_</span> <span class="id" title="var">_</span> <span class="id" title="var">_</span>) | <span class="id" title="tactic">refine</span> (<span class="id" title="var">t</span> <span class="id" title="var">_</span> <span class="id" title="var">_</span> <span class="id" title="var">_</span> <span class="id" title="var">_</span>) |<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">refine</span> (<span class="id" title="var">t</span> <span class="id" title="var">_</span> <span class="id" title="var">_</span> <span class="id" title="var">_</span> <span class="id" title="var">_</span> <span class="id" title="var">_</span>) | <span class="id" title="tactic">refine</span> (<span class="id" title="var">t</span> <span class="id" title="var">_</span> <span class="id" title="var">_</span> <span class="id" title="var">_</span> <span class="id" title="var">_</span> <span class="id" title="var">_</span> <span class="id" title="var">_</span>) | <span class="id" title="tactic">refine</span> (<span class="id" title="var">t</span> <span class="id" title="var">_</span> <span class="id" title="var">_</span> <span class="id" title="var">_</span> <span class="id" title="var">_</span> <span class="id" title="var">_</span> <span class="id" title="var">_</span> <span class="id" title="var">_</span>) ].<br/>
+
+<br/>
+<span class="id" title="keyword">Ltac</span> <span class="id" title="var">simpl_crelation</span> :=<br/>
+&nbsp;&nbsp;<span class="id" title="tactic">unfold</span> <a class="idref" href="Corelib.Classes.CRelationClasses.html#flip"><span class="id" title="definition">flip</span></a>, <a class="idref" href="Corelib.Program.Basics.html#impl"><span class="id" title="definition">impl</span></a>, <a class="idref" href="Corelib.Classes.CRelationClasses.html#arrow"><span class="id" title="definition">arrow</span></a> ; <span class="id" title="tactic">try</span> <span class="id" title="var">reduce</span> ; <span class="id" title="tactic">program_simpl</span> ;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">try</span> ( <span class="id" title="tactic">solve</span> [ <span class="id" title="var">dintuition</span> <span class="id" title="tactic">auto</span> <span class="id" title="keyword">with</span> <span class="id" title="var">crelations</span> ]).<br/>
+
+<br/>
+<span class="id" title="keyword">Local Obligation</span> <span class="id" title="keyword">Tactic</span> := <span class="id" title="var">simpl_crelation</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Logical implication. 
+</div>
+<div class="code">
+
+<br/>
+#[<span class="id" title="var">global</span>]<br/>
+<span class="id" title="var">Program</span> <span class="id" title="keyword">Instance</span> <a id="impl_Reflexive" class="idref" href="#impl_Reflexive"><span class="id" title="instance">impl_Reflexive</span></a> : <a class="idref" href="Corelib.Classes.CRelationClasses.html#Reflexive"><span class="id" title="class">Reflexive</span></a> <a class="idref" href="Corelib.Program.Basics.html#impl"><span class="id" title="definition">impl</span></a>.<br/>
+#[<span class="id" title="var">global</span>]<br/>
+<span class="id" title="var">Program</span> <span class="id" title="keyword">Instance</span> <a id="impl_Transitive" class="idref" href="#impl_Transitive"><span class="id" title="instance">impl_Transitive</span></a> : <a class="idref" href="Corelib.Classes.CRelationClasses.html#Transitive"><span class="id" title="class">Transitive</span></a> <a class="idref" href="Corelib.Program.Basics.html#impl"><span class="id" title="definition">impl</span></a>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Logical equivalence. 
+</div>
+<div class="code">
+
+<br/>
+#[<span class="id" title="var">global</span>]<br/>
+<span class="id" title="keyword">Instance</span> <a id="iff_Reflexive" class="idref" href="#iff_Reflexive"><span class="id" title="instance">iff_Reflexive</span></a> : <a class="idref" href="Corelib.Classes.CRelationClasses.html#Reflexive"><span class="id" title="class">Reflexive</span></a> <a class="idref" href="Corelib.Init.Logic.html#iff"><span class="id" title="definition">iff</span></a> := <a class="idref" href="Corelib.Init.Logic.html#iff_refl"><span class="id" title="lemma">iff_refl</span></a>.<br/>
+#[<span class="id" title="var">global</span>]<br/>
+<span class="id" title="keyword">Instance</span> <a id="iff_Symmetric" class="idref" href="#iff_Symmetric"><span class="id" title="instance">iff_Symmetric</span></a> : <a class="idref" href="Corelib.Classes.CRelationClasses.html#Symmetric"><span class="id" title="class">Symmetric</span></a> <a class="idref" href="Corelib.Init.Logic.html#iff"><span class="id" title="definition">iff</span></a> := <a class="idref" href="Corelib.Init.Logic.html#iff_sym"><span class="id" title="lemma">iff_sym</span></a>.<br/>
+#[<span class="id" title="var">global</span>]<br/>
+<span class="id" title="keyword">Instance</span> <a id="iff_Transitive" class="idref" href="#iff_Transitive"><span class="id" title="instance">iff_Transitive</span></a> : <a class="idref" href="Corelib.Classes.CRelationClasses.html#Transitive"><span class="id" title="class">Transitive</span></a> <a class="idref" href="Corelib.Init.Logic.html#iff"><span class="id" title="definition">iff</span></a> := <a class="idref" href="Corelib.Init.Logic.html#iff_trans"><span class="id" title="lemma">iff_trans</span></a>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Logical equivalence <span class="inlinecode"><span class="id" title="var">iff</span></span> is an equivalence crelation. 
+</div>
+<div class="code">
+
+<br/>
+#[<span class="id" title="var">global</span>]<br/>
+<span class="id" title="var">Program</span> <span class="id" title="keyword">Instance</span> <a id="iff_equivalence" class="idref" href="#iff_equivalence"><span class="id" title="instance">iff_equivalence</span></a> : <a class="idref" href="Corelib.Classes.CRelationClasses.html#Equivalence"><span class="id" title="class">Equivalence</span></a> <a class="idref" href="Corelib.Init.Logic.html#iff"><span class="id" title="definition">iff</span></a>.<br/>
+#[<span class="id" title="var">global</span>]<br/>
+<span class="id" title="var">Program</span> <span class="id" title="keyword">Instance</span> <a id="arrow_Reflexive" class="idref" href="#arrow_Reflexive"><span class="id" title="instance">arrow_Reflexive</span></a> : <a class="idref" href="Corelib.Classes.CRelationClasses.html#Reflexive"><span class="id" title="class">Reflexive</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#arrow"><span class="id" title="definition">arrow</span></a>.<br/>
+#[<span class="id" title="var">global</span>]<br/>
+<span class="id" title="var">Program</span> <span class="id" title="keyword">Instance</span> <a id="arrow_Transitive" class="idref" href="#arrow_Transitive"><span class="id" title="instance">arrow_Transitive</span></a> : <a class="idref" href="Corelib.Classes.CRelationClasses.html#Transitive"><span class="id" title="class">Transitive</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#arrow"><span class="id" title="definition">arrow</span></a>.<br/>
+
+<br/>
+#[<span class="id" title="var">global</span>]<br/>
+<span class="id" title="keyword">Instance</span> <a id="iffT_Reflexive" class="idref" href="#iffT_Reflexive"><span class="id" title="instance">iffT_Reflexive</span></a> : <a class="idref" href="Corelib.Classes.CRelationClasses.html#Reflexive"><span class="id" title="class">Reflexive</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#iffT"><span class="id" title="definition">iffT</span></a>.<br/>
+ #[<span class="id" title="var">global</span>]<br/>
+<span class="id" title="keyword">Instance</span> <a id="iffT_Symmetric" class="idref" href="#iffT_Symmetric"><span class="id" title="instance">iffT_Symmetric</span></a> : <a class="idref" href="Corelib.Classes.CRelationClasses.html#Symmetric"><span class="id" title="class">Symmetric</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#iffT"><span class="id" title="definition">iffT</span></a>.<br/>
+ #[<span class="id" title="var">global</span>]<br/>
+<span class="id" title="keyword">Instance</span> <a id="iffT_Transitive" class="idref" href="#iffT_Transitive"><span class="id" title="instance">iffT_Transitive</span></a> : <a class="idref" href="Corelib.Classes.CRelationClasses.html#Transitive"><span class="id" title="class">Transitive</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#iffT"><span class="id" title="definition">iffT</span></a>.<br/>
+ 
+<br/>
+</div>
+
+<div class="doc">
+We now develop a generalization of results on crelations for arbitrary predicates.
+   The resulting theory can be applied to homogeneous binary crelations but also to
+   arbitrary n-ary predicates. 
+</div>
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">Local Open</span> <span class="id" title="keyword">Scope</span> <span class="id" title="var">list_scope</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+A compact representation of non-dependent arities, with the codomain singled-out. 
+<div class="paragraph"> </div>
+
+ We define the various operations which define the algebra on binary crelations 
+</div>
+<div class="code">
+<span class="id" title="keyword">Section</span> <a id="Binary" class="idref" href="#Binary"><span class="id" title="section">Binary</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Context</span> {<a id="Binary.A" class="idref" href="#Binary.A"><span class="id" title="variable">A</span></a> : <span class="id" title="keyword">Type</span>}.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a id="relation_equivalence" class="idref" href="#relation_equivalence"><span class="id" title="definition">relation_equivalence</span></a> : <a class="idref" href="Corelib.Classes.CRelationClasses.html#crelation"><span class="id" title="definition">crelation</span></a> (<a class="idref" href="Corelib.Classes.CRelationClasses.html#crelation"><span class="id" title="definition">crelation</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#Binary.A"><span class="id" title="variable">A</span></a>) :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">fun</span> <a id="R:119" class="idref" href="#R:119"><span class="id" title="binder">R</span></a> <a id="R':120" class="idref" href="#R':120"><span class="id" title="binder">R'</span></a> =&gt; <span class="id" title="keyword">forall</span> <a id="x:121" class="idref" href="#x:121"><span class="id" title="binder">x</span></a> <a id="y:122" class="idref" href="#y:122"><span class="id" title="binder">y</span></a>, <a class="idref" href="Corelib.Classes.CRelationClasses.html#iffT"><span class="id" title="definition">iffT</span></a> (<a class="idref" href="Corelib.Classes.CRelationClasses.html#R:119"><span class="id" title="variable">R</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#x:121"><span class="id" title="variable">x</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#y:122"><span class="id" title="variable">y</span></a>) (<a class="idref" href="Corelib.Classes.CRelationClasses.html#R':120"><span class="id" title="variable">R'</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#x:121"><span class="id" title="variable">x</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#y:122"><span class="id" title="variable">y</span></a>).<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Global Instance</span>: <a class="idref" href="Corelib.Classes.CRelationClasses.html#RewriteRelation"><span class="id" title="class">RewriteRelation</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#relation_equivalence"><span class="id" title="definition">relation_equivalence</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Defined</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a id="relation_conjunction" class="idref" href="#relation_conjunction"><span class="id" title="definition">relation_conjunction</span></a> (<a id="R:123" class="idref" href="#R:123"><span class="id" title="binder">R</span></a> : <a class="idref" href="Corelib.Classes.CRelationClasses.html#crelation"><span class="id" title="definition">crelation</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#Binary.A"><span class="id" title="variable">A</span></a>) (<a id="R':124" class="idref" href="#R':124"><span class="id" title="binder">R'</span></a> : <a class="idref" href="Corelib.Classes.CRelationClasses.html#crelation"><span class="id" title="definition">crelation</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#Binary.A"><span class="id" title="variable">A</span></a>) : <a class="idref" href="Corelib.Classes.CRelationClasses.html#crelation"><span class="id" title="definition">crelation</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#Binary.A"><span class="id" title="variable">A</span></a> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">fun</span> <a id="x:125" class="idref" href="#x:125"><span class="id" title="binder">x</span></a> <a id="y:126" class="idref" href="#y:126"><span class="id" title="binder">y</span></a> =&gt; <a class="idref" href="Corelib.Init.Datatypes.html#prod"><span class="id" title="inductive">prod</span></a> (<a class="idref" href="Corelib.Classes.CRelationClasses.html#R:123"><span class="id" title="variable">R</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#x:125"><span class="id" title="variable">x</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#y:126"><span class="id" title="variable">y</span></a>) (<a class="idref" href="Corelib.Classes.CRelationClasses.html#R':124"><span class="id" title="variable">R'</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#x:125"><span class="id" title="variable">x</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#y:126"><span class="id" title="variable">y</span></a>).<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a id="relation_disjunction" class="idref" href="#relation_disjunction"><span class="id" title="definition">relation_disjunction</span></a> (<a id="R:127" class="idref" href="#R:127"><span class="id" title="binder">R</span></a> : <a class="idref" href="Corelib.Classes.CRelationClasses.html#crelation"><span class="id" title="definition">crelation</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#Binary.A"><span class="id" title="variable">A</span></a>) (<a id="R':128" class="idref" href="#R':128"><span class="id" title="binder">R'</span></a> : <a class="idref" href="Corelib.Classes.CRelationClasses.html#crelation"><span class="id" title="definition">crelation</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#Binary.A"><span class="id" title="variable">A</span></a>) : <a class="idref" href="Corelib.Classes.CRelationClasses.html#crelation"><span class="id" title="definition">crelation</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#Binary.A"><span class="id" title="variable">A</span></a> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">fun</span> <a id="x:129" class="idref" href="#x:129"><span class="id" title="binder">x</span></a> <a id="y:130" class="idref" href="#y:130"><span class="id" title="binder">y</span></a> =&gt; <a class="idref" href="Corelib.Init.Datatypes.html#sum"><span class="id" title="inductive">sum</span></a> (<a class="idref" href="Corelib.Classes.CRelationClasses.html#R:127"><span class="id" title="variable">R</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#x:129"><span class="id" title="variable">x</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#y:130"><span class="id" title="variable">y</span></a>) (<a class="idref" href="Corelib.Classes.CRelationClasses.html#R':128"><span class="id" title="variable">R'</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#x:129"><span class="id" title="variable">x</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#y:130"><span class="id" title="variable">y</span></a>).<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Relation equivalence is an equivalence, and subrelation defines a partial order. 
+</div>
+<div class="code">
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Global Instance</span> <a id="relation_equivalence_equivalence" class="idref" href="#relation_equivalence_equivalence"><span class="id" title="instance">relation_equivalence_equivalence</span></a> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Corelib.Classes.CRelationClasses.html#Equivalence"><span class="id" title="class">Equivalence</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#relation_equivalence"><span class="id" title="definition">relation_equivalence</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Global Instance</span> <a id="relation_implication_preorder" class="idref" href="#relation_implication_preorder"><span class="id" title="instance">relation_implication_preorder</span></a> : <a class="idref" href="Corelib.Classes.CRelationClasses.html#PreOrder"><span class="id" title="class">PreOrder</span></a> (@<a class="idref" href="Corelib.Classes.CRelationClasses.html#subrelation"><span class="id" title="class">subrelation</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#Binary.A"><span class="id" title="variable">A</span></a>).<br/>
+ 
+<br/>
+</div>
+
+<div class="doc">
+<a id="lab92"></a><h3 class="section">Partial Order.</h3>
+
+   A partial order is a preorder which is additionally antisymmetric.
+   We give an equivalent definition, up-to an equivalence crelation
+   on the carrier. 
+</div>
+<div class="code">
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Class</span> <a id="PartialOrder" class="idref" href="#PartialOrder"><span class="id" title="inductive, record"><span id="PartialOrder" class="id">PartialOrder</span></span></a> <a id="eqA:131" class="idref" href="#eqA:131"><span class="id" title="binder">eqA</span></a> `{<a id="equ:132" class="idref" href="#equ:132"><span class="id" title="binder">equ</span></a> : <a class="idref" href="Corelib.Classes.CRelationClasses.html#Equivalence"><span class="id" title="class">Equivalence</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#Binary.A"><span class="id" title="variable">A</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#eqA:131"><span class="id" title="variable">eqA</span></a>} <a id="R:133" class="idref" href="#R:133"><span class="id" title="binder">R</span></a> `{<a id="preo:134" class="idref" href="#preo:134"><span class="id" title="binder">preo</span></a> : <a class="idref" href="Corelib.Classes.CRelationClasses.html#PreOrder"><span class="id" title="class">PreOrder</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#Binary.A"><span class="id" title="variable">A</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:133"><span class="id" title="variable">R</span></a>} :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a id="partial_order_equivalence" class="idref" href="#partial_order_equivalence"><span class="id" title="constructor, projection"><span id="partial_order_equivalence" class="id">partial_order_equivalence</span></span></a> : <a class="idref" href="Corelib.Classes.CRelationClasses.html#relation_equivalence"><span class="id" title="definition">relation_equivalence</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#eqA:131"><span class="id" title="variable">eqA</span></a> (<a class="idref" href="Corelib.Classes.CRelationClasses.html#relation_conjunction"><span class="id" title="definition">relation_conjunction</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:133"><span class="id" title="variable">R</span></a> (<a class="idref" href="Corelib.Classes.CRelationClasses.html#flip"><span class="id" title="definition">flip</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:133"><span class="id" title="variable">R</span></a>)).<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+The equivalence proof is sufficient for proving that <span class="inlinecode"><span class="id" title="var">R</span></span> must be a
+   morphism for equivalence (see Morphisms).  It is also sufficient to
+   show that <span class="inlinecode"><span class="id" title="var">R</span></span> is antisymmetric w.r.t. <span class="inlinecode"><span class="id" title="var">eqA</span></span> 
+</div>
+<div class="code">
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Global Instance</span> <a id="partial_order_antisym" class="idref" href="#partial_order_antisym"><span class="id" title="instance">partial_order_antisym</span></a> `(<a id="H:141" class="idref" href="#H:141"><span class="id" title="binder">PartialOrder</span></a> <a id="eqA:137" class="idref" href="#eqA:137"><span class="id" title="binder"><span id="H:141" class="id">eqA</span></span></a> <a id="R:139" class="idref" href="#R:139"><span class="id" title="binder"><span id="H:141" class="id">R</span></span></a>) : <a class="idref" href="Corelib.Classes.CRelationClasses.html#Antisymmetric"><span class="id" title="class">Antisymmetric</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#eqA:137"><span class="id" title="variable">eqA</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:139"><span class="id" title="variable">R</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a id="PartialOrder_inverse" class="idref" href="#PartialOrder_inverse"><span class="id" title="lemma">PartialOrder_inverse</span></a> `(<a id="H:146" class="idref" href="#H:146"><span class="id" title="binder">PartialOrder</span></a> <a id="eqA:142" class="idref" href="#eqA:142"><span class="id" title="binder"><span id="H:146" class="id">eqA</span></span></a> <a id="R:144" class="idref" href="#R:144"><span class="id" title="binder"><span id="H:146" class="id">R</span></span></a>) : <a class="idref" href="Corelib.Classes.CRelationClasses.html#PartialOrder"><span class="id" title="class">PartialOrder</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#eqA:142"><span class="id" title="variable">eqA</span></a> (<a class="idref" href="Corelib.Classes.CRelationClasses.html#flip"><span class="id" title="definition">flip</span></a> <a class="idref" href="Corelib.Classes.CRelationClasses.html#R:144"><span class="id" title="variable">R</span></a>).<br/>
+<span class="id" title="keyword">End</span> <a class="idref" href="Corelib.Classes.CRelationClasses.html#Binary"><span class="id" title="section">Binary</span></a>.<br/>
+
+<br/>
+#[<span class="id" title="var">global</span>]<br/>
+<span class="id" title="keyword">Hint</span> <span class="id" title="keyword">Extern</span> 3 (<a class="idref" href="Corelib.Classes.CRelationClasses.html#PartialOrder"><span class="id" title="class">PartialOrder</span></a> (<a class="idref" href="Corelib.Classes.CRelationClasses.html#flip"><span class="id" title="definition">flip</span></a> <span class="id" title="var">_</span>)) =&gt; <span class="id" title="var">class_apply</span> <span class="id" title="var">PartialOrder_inverse</span> : <span class="id" title="var">typeclass_instances</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+The partial order defined by subrelation and crelation equivalence. 
+</div>
+<div class="code">
+
+<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Global Typeclasses Opaque</span> <span class="id" title="var">relation_equivalence</span>.<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Register</span> <span class="id" title="var">arrow</span> <span class="id" title="keyword">as</span> <span class="id" title="var">rewrite.type.arrow</span>.<br/>
+<span class="id" title="keyword">Register</span> <span class="id" title="var">flip</span> <span class="id" title="keyword">as</span> <span class="id" title="var">rewrite.type.flip</span>.<br/>
+<span class="id" title="keyword">Register</span> <span class="id" title="var">crelation</span> <span class="id" title="keyword">as</span> <span class="id" title="var">rewrite.type.relation</span>.<br/>
+<span class="id" title="keyword">Register</span> <span class="id" title="var">subrelation</span> <span class="id" title="keyword">as</span> <span class="id" title="var">rewrite.type.subrelation</span>.<br/>
+<span class="id" title="keyword">Register</span> <span class="id" title="var">Reflexive</span> <span class="id" title="keyword">as</span> <span class="id" title="var">rewrite.type.Reflexive</span>.<br/>
+<span class="id" title="keyword">Register</span> <span class="id" title="tactic">reflexivity</span> <span class="id" title="keyword">as</span> <span class="id" title="var">rewrite.type.reflexivity</span>.<br/>
+<span class="id" title="keyword">Register</span> <span class="id" title="var">Symmetric</span> <span class="id" title="keyword">as</span> <span class="id" title="var">rewrite.type.Symmetric</span>.<br/>
+<span class="id" title="keyword">Register</span> <span class="id" title="tactic">symmetry</span> <span class="id" title="keyword">as</span> <span class="id" title="var">rewrite.type.symmetry</span>.<br/>
+<span class="id" title="keyword">Register</span> <span class="id" title="var">Transitive</span> <span class="id" title="keyword">as</span> <span class="id" title="var">rewrite.type.Transitive</span>.<br/>
+<span class="id" title="keyword">Register</span> <span class="id" title="tactic">transitivity</span> <span class="id" title="keyword">as</span> <span class="id" title="var">rewrite.type.transitivity</span>.<br/>
+<span class="id" title="keyword">Register</span> <span class="id" title="var">RewriteRelation</span> <span class="id" title="keyword">as</span> <span class="id" title="var">rewrite.type.RewriteRelation</span>.<br/>
+</div>
+
+          <!-- ************************
+            START CORELIB FOOTER
+          ************************* -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+
+
+  <button class="fixed bottom-8 right-10 md:bottom-[5rem] lg:bottom-[8.37rem] lg:right-[6.5rem] border-0 hidden focus:outline-none z-50 rounded-full shadow-custom p-4 bg-primary dark:bg-dark-primary" onclick="scrollToTop()" id="scrollToTop" title="Scroll to top" style="display: block;"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4.5 10.5L12 3M12 3L19.5 10.5M12 3V21" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg>
+
+  </button>
+
+  <footer x-data="" class="border-t border-separator_30 dark:border-dark-separator_30 bg-dark-sand dark:bg-dark-card" aria-labelledby="footer-heading">
+    <h2 id="footer-heading" class="sr-only">Footer</h2>
+    <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+      <div class="flex w-full items-center justify-between mb-8">
+        <a href="http://rocq-prover.org/"><img class="h-8 dark:hidden" src="https://rocq-prover.org/logos/logo-rocq-blue_orange.svg" alt="Rocq">
+          <img class="h-8 hidden dark:inline" src="https://rocq-prover.org/logos/logo-rocq-white.svg" alt="Rocq">
+        </a>
+        <div class="hidden md:flex">
+          <button class="flex grow basis-0 justify-center items-center py-2 px-4 text-sm border rounded-l rounded-l-full border-r-0 bg-gradient-to-r from-[#FF540A] to-[#FF7033] border-gray-200 dark:border-gray-300 text-white dark:text-dark-title " :class="$store.themeSettings.preference === &quot;light&quot; ? &quot;bg-gradient-to-r from-[#FF540A] to-[#FF7033] border-gray-200 dark:border-gray-300 text-white dark:text-dark-title &quot; : &quot;bg-white text-content outline-2 outline-card_border dark:outline-dark-separator_30&quot;" @click="$store.themeSettings.setPreference(&quot;light&quot;)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none" class="mr-2">
+              <path d="M7 0.5V2.125M11.5962 2.40378L10.4472 3.55283M13.5 7H11.875M11.5962 11.5962L10.4472 10.4472M7 11.875V13.5M3.55283 10.4472L2.40378 11.5962M2.125 7H0.5M3.55283 3.55283L2.40378 2.40378M9.70833 7C9.70833 7.71829 9.42299 8.40717 8.91508 8.91508C8.40717 9.42299 7.71829 9.70833 7 9.70833C6.28171 9.70833 5.59283 9.42299 5.08492 8.91508C4.57701 8.40717 4.29167 7.71829 4.29167 7C4.29167 6.28171 4.57701 5.59283 5.08492 5.08492C5.59283 4.57701 6.28171 4.29167 7 4.29167C7.71829 4.29167 8.40717 4.57701 8.91508 5.08492C9.42299 5.59283 9.70833 6.28171 9.70833 7Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+
+
+            Light
+          </button>
+
+
+          <button class="flex grow basis-0 justify-center items-center py-2 px-4 text-sm border border-r-0 bg-white text-content outline-2 outline-card_border dark:outline-dark-separator_30" :class="$store.themeSettings.preference === &quot;dark&quot; ? &quot;bg-gradient-to-r from-[#260085] to-[#170052] border-gray-200 dark:border-gray-300 text-white dark:text-dark-title &quot; : &quot;bg-white text-content outline-2 outline-card_border dark:outline-dark-separator_30&quot;" @click="$store.themeSettings.setPreference(&quot;dark&quot;)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none" class="mr-2">
+              <path d="M11.1573 7.90842C10.5134 8.17678 9.8226 8.3145 9.125 8.31358C6.20812 8.31358 3.84375 5.94921 3.84375 3.03233C3.84375 2.31192 3.98783 1.62562 4.24892 1C3.28663 1.40144 2.46465 2.07865 1.88651 2.94635C1.30836 3.81404 0.999911 4.83342 1 5.87608C1 8.79296 3.36437 11.1573 6.28125 11.1573C7.32391 11.1574 8.34329 10.849 9.21099 10.2708C10.0787 9.69268 10.7559 8.8707 11.1573 7.90842Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+
+
+            Dark
+          </button>
+
+
+          <button class="flex grow basis-0 justify-center items-center py-2 px-4 text-sm border rounded-r rounded-r-full bg-white text-content outline-2 outline-card_border dark:outline-dark-separator_30" :class="$store.themeSettings.preference === &quot;system&quot; ? &quot;bg-gradient-to-r from-[#2B7866] to-[#004039] border-gray-200 dark:border-gray-300 text-white dark:text-dark-title &quot; : &quot;bg-white text-content outline-2 outline-card_border dark:outline-dark-separator_30&quot;" @click="$store.themeSettings.setPreference(&quot;system&quot;)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none" class="mr-2">
+              <path d="M7.19553 2.955C7.26303 2.5485 7.61553 2.25 8.02803 2.25H9.97278C10.3853 2.25 10.7378 2.5485 10.8053 2.955L10.965 3.91575C11.0123 4.19625 11.1998 4.43025 11.4488 4.56825C11.5043 4.59825 11.559 4.6305 11.6138 4.6635C11.8575 4.8105 12.1538 4.85625 12.42 4.7565L13.3328 4.4145C13.5198 4.34416 13.7258 4.34248 13.9139 4.40978C14.1021 4.47708 14.2603 4.60899 14.3603 4.782L15.3323 6.46725C15.4321 6.64028 15.4672 6.8431 15.4315 7.03962C15.3958 7.23615 15.2916 7.41363 15.1373 7.5405L14.385 8.16075C14.1653 8.3415 14.0565 8.6205 14.0625 8.90475C14.0636 8.9685 14.0636 9.03225 14.0625 9.096C14.0565 9.3795 14.1653 9.6585 14.385 9.83925L15.138 10.4595C15.456 10.722 15.5385 11.1758 15.333 11.532L14.3595 13.2172C14.2597 13.3902 14.1017 13.5222 13.9137 13.5896C13.7257 13.657 13.5198 13.6556 13.3328 13.5855L12.42 13.2435C12.1538 13.1438 11.8575 13.1895 11.613 13.3365C11.5587 13.3696 11.5037 13.4016 11.448 13.4325C11.1998 13.5697 11.0123 13.8037 10.965 14.0842L10.8053 15.045C10.7378 15.4523 10.3853 15.75 9.97278 15.75H8.02728C7.61478 15.75 7.26303 15.4515 7.19478 15.045L7.03503 14.0842C6.98853 13.8037 6.80103 13.5698 6.55203 13.4318C6.49642 13.4011 6.44141 13.3693 6.38703 13.3365C6.14328 13.1895 5.84703 13.1438 5.58003 13.2435L4.66728 13.5855C4.48033 13.6556 4.27456 13.6572 4.08656 13.5899C3.89856 13.5226 3.74051 13.3908 3.64053 13.218L2.66778 11.5328C2.56799 11.3597 2.53282 11.1569 2.56852 10.9604C2.60423 10.7639 2.7085 10.5864 2.86278 10.4595L3.61578 9.83925C3.83478 9.65925 3.94353 9.3795 3.93828 9.096C3.93711 9.03226 3.93711 8.96849 3.93828 8.90475C3.94353 8.61975 3.83478 8.3415 3.61578 8.16075L2.86278 7.5405C2.70869 7.41367 2.60454 7.23633 2.56884 7.03997C2.53314 6.84361 2.56819 6.64095 2.66778 6.468L3.64053 4.78275C3.74042 4.6096 3.89854 4.47754 4.08672 4.4101C4.27489 4.34266 4.4809 4.34422 4.66803 4.4145L5.58003 4.7565C5.84703 4.85625 6.14328 4.8105 6.38703 4.6635C6.44103 4.6305 6.49653 4.599 6.55203 4.5675C6.80103 4.43025 6.98853 4.19625 7.03503 3.91575L7.19553 2.955Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M11.25 9C11.25 9.59674 11.0129 10.169 10.591 10.591C10.169 11.0129 9.59674 11.25 9 11.25C8.40326 11.25 7.83097 11.0129 7.40901 10.591C6.98705 10.169 6.75 9.59674 6.75 9C6.75 8.40326 6.98705 7.83097 7.40901 7.40901C7.83097 6.98705 8.40326 6.75 9 6.75C9.59674 6.75 10.169 6.98705 10.591 7.40901C11.0129 7.83097 11.25 8.40326 11.25 9Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+
+
+            System
+          </button>
+
+
+
+        </div>
+      </div>
+      <div class="xl:grid xl:grid-cols-3 xl:gap-8">
+        <div class="space-y-8">
+          <p class="text-base leading-6 text-title dark:text-dark-content">Interactive Theorem Prover</p>
+          <div class="flex space-x-6">
+
+            <a href="https://coq.zulipchat.com/" class="text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">
+              <span class="sr-only">Zulip</span>
+              <svg viewBox="0 0 256 256" version="1.1" class="h-6 w-6" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid">
+                <path d="M128,0 C198.692448,0 256,57.307552 256,128 C256,198.692448 198.692448,256 128,256 C57.307552,256 0,198.692448 0,128 C0,57.307552 57.307552,0 128,0 Z M121.679533,118.222163 L75.7877336,159.200897 C71.0603547,162.920702 67.9584879,169.060511 67.9584879,175.967416 C67.9584879,187.245548 76.232162,196.475047 86.3444303,196.475047 L172.590938,196.475047 C182.703207,196.475047 190.976881,187.245548 190.976881,175.967416 C190.976881,164.68624 182.703207,155.459784 172.590938,155.459784 L107.299534,155.459784 C106.331533,155.459784 105.719683,154.300009 106.191507,153.356359 L123.024994,119.652857 C123.639888,118.669635 122.531861,117.491595 121.679533,118.222163 Z M172.590938,59.3627915 L86.3444303,59.3627915 C76.232162,59.3627915 67.9584879,68.58925 67.9584879,79.870426 C67.9584879,91.1485579 76.232162,100.378058 86.3444303,100.378058 L86.3444303,100.378058 L151.635834,100.378058 C152.603836,100.378058 153.215686,101.537833 152.743861,102.481482 L152.743861,102.481482 L135.910374,136.184985 C135.29548,137.168207 136.403507,138.346246 137.255836,137.615679 L137.255836,137.615679 L183.147635,96.6308563 C187.875014,92.9080074 190.976881,86.7712425 190.976881,79.8643379 C190.976881,68.586206 182.703207,59.3567064 172.590938,59.3627915 L172.590938,59.3627915 Z" fill="inherit"></path>
+              </svg>
+
+
+            </a>
+
+
+            <a href="https://github.com/rocq-prover" class="text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">
+              <span class="sr-only">GitHub</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
+              </svg>
+
+
+            </a>
+
+
+            <a href="https://coq.discourse.group/" class="text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">
+              <span class="sr-only">Discourse</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 448 512" aria-hidden="true">
+                <path d="M225.9 32C103.3 32 0 130.5 0 252.1 0 256 .1 480 .1 480l225.8-.2c122.7 0 222.1-102.3 222.1-223.9C448 134.3 348.6 32 225.9 32zM224 384c-19.4 0-37.9-4.3-54.4-12.1L88.5 392l22.9-75c-9.8-18.1-15.4-38.9-15.4-61 0-70.7 57.3-128 128-128s128 57.3 128 128-57.3 128-128 128z"></path>
+              </svg>
+
+
+
+            </a>
+
+
+            <a href="https://mastodon.acm.org/@RocqProver" class="text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">
+              <span class="sr-only">Mastodon</span>
+              <svg viewBox="0 0 74 79" class="h-6 w-6" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M73.7014 17.4323C72.5616 9.05152 65.1774 2.4469 56.424 1.1671C54.9472 0.950843 49.3518 0.163818 36.3901 0.163818H36.2933C23.3281 0.163818 20.5465 0.950843 19.0697 1.1671C10.56 2.41145 2.78877 8.34604 0.903306 16.826C-0.00357854 21.0022 -0.100361 25.6322 0.068112 29.8793C0.308275 35.9699 0.354874 42.0498 0.91406 48.1156C1.30064 52.1448 1.97502 56.1419 2.93215 60.0769C4.72441 67.3445 11.9795 73.3925 19.0876 75.86C26.6979 78.4332 34.8821 78.8603 42.724 77.0937C43.5866 76.8952 44.4398 76.6647 45.2833 76.4024C47.1867 75.8033 49.4199 75.1332 51.0616 73.9562C51.0841 73.9397 51.1026 73.9184 51.1156 73.8938C51.1286 73.8693 51.1359 73.8421 51.1368 73.8144V67.9366C51.1364 67.9107 51.1302 67.8852 51.1186 67.862C51.1069 67.8388 51.0902 67.8184 51.0695 67.8025C51.0489 67.7865 51.0249 67.7753 50.9994 67.7696C50.9738 67.764 50.9473 67.7641 50.9218 67.7699C45.8976 68.9569 40.7491 69.5519 35.5836 69.5425C26.694 69.5425 24.3031 65.3699 23.6184 63.6327C23.0681 62.1314 22.7186 60.5654 22.5789 58.9744C22.5775 58.9477 22.5825 58.921 22.5934 58.8965C22.6043 58.8721 22.621 58.8505 22.6419 58.8336C22.6629 58.8167 22.6876 58.8049 22.714 58.7992C22.7404 58.7934 22.7678 58.794 22.794 58.8007C27.7345 59.9796 32.799 60.5746 37.8813 60.5733C39.1036 60.5733 40.3223 60.5733 41.5447 60.5414C46.6562 60.3996 52.0437 60.1408 57.0728 59.1694C57.1983 59.1446 57.3237 59.1233 57.4313 59.0914C65.3638 57.5847 72.9128 52.8555 73.6799 40.8799C73.7086 40.4084 73.7803 35.9415 73.7803 35.4523C73.7839 33.7896 74.3216 23.6576 73.7014 17.4323ZM61.4925 47.3144H53.1514V27.107C53.1514 22.8528 51.3591 20.6832 47.7136 20.6832C43.7061 20.6832 41.6988 23.2499 41.6988 28.3194V39.3803H33.4078V28.3194C33.4078 23.2499 31.3969 20.6832 27.3894 20.6832C23.7654 20.6832 21.9552 22.8528 21.9516 27.107V47.3144H13.6176V26.4937C13.6176 22.2395 14.7157 18.8598 16.9118 16.3545C19.1772 13.8552 22.1488 12.5719 25.8373 12.5719C30.1064 12.5719 33.3325 14.1955 35.4832 17.4394L37.5587 20.8853L39.6377 17.4394C41.7884 14.1955 45.0145 12.5719 49.2765 12.5719C52.9614 12.5719 55.9329 13.8552 58.2055 16.3545C60.4017 18.8574 61.4997 22.2371 61.4997 26.4937L61.4925 47.3144Z" fill="inherit"></path>
+              </svg>
+
+
+            </a>
+
+
+            <a href="http://rocq-prover.org/planet.xml" class="text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">
+              <span class="sr-only">RSS</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill-rule="evenodd" d="M15.2692 22H11.3846C11.3846 16.8462 7.11538 12.6154 2 12.6154V8.73077C9.26923 8.73077 15.2692 14.7308 15.2692 22ZM18 22C18 13.2308 10.7692 6 2 6V2C12.9615 2 22 11.0385 22 22H18Z" clip-rule="evenodd"></path>
+                <path fill-rule="evenodd" d="M4.73077 22C6.23893 22 7.46154 20.7774 7.46154 19.2692C7.46154 17.7611 6.23893 16.5385 4.73077 16.5385C3.22261 16.5385 2 17.7611 2 19.2692C2 20.7774 3.22261 22 4.73077 22Z" clip-rule="evenodd"></path>
+              </svg>
+
+
+            </a>
+
+
+          </div>
+          <div class="flex w-full md:hidden">
+            <button class="flex grow basis-0 justify-center items-center py-2 px-4 text-sm border rounded-l rounded-l-full border-r-0 bg-gradient-to-r from-[#FF540A] to-[#FF7033] border-gray-200 dark:border-gray-300 text-white dark:text-dark-title " :class="$store.themeSettings.preference === &quot;light&quot; ? &quot;bg-gradient-to-r from-[#FF540A] to-[#FF7033] border-gray-200 dark:border-gray-300 text-white dark:text-dark-title &quot; : &quot;bg-white text-content outline-2 outline-card_border dark:outline-dark-separator_30&quot;" @click="$store.themeSettings.setPreference(&quot;light&quot;)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none" class="mr-2">
+                <path d="M7 0.5V2.125M11.5962 2.40378L10.4472 3.55283M13.5 7H11.875M11.5962 11.5962L10.4472 10.4472M7 11.875V13.5M3.55283 10.4472L2.40378 11.5962M2.125 7H0.5M3.55283 3.55283L2.40378 2.40378M9.70833 7C9.70833 7.71829 9.42299 8.40717 8.91508 8.91508C8.40717 9.42299 7.71829 9.70833 7 9.70833C6.28171 9.70833 5.59283 9.42299 5.08492 8.91508C4.57701 8.40717 4.29167 7.71829 4.29167 7C4.29167 6.28171 4.57701 5.59283 5.08492 5.08492C5.59283 4.57701 6.28171 4.29167 7 4.29167C7.71829 4.29167 8.40717 4.57701 8.91508 5.08492C9.42299 5.59283 9.70833 6.28171 9.70833 7Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+
+
+              Light
+            </button>
+
+
+            <button class="flex grow basis-0 justify-center items-center py-2 px-4 text-sm border border-r-0 bg-white text-content outline-2 outline-card_border dark:outline-dark-separator_30" :class="$store.themeSettings.preference === &quot;dark&quot; ? &quot;bg-gradient-to-r from-[#260085] to-[#170052] border-gray-200 dark:border-gray-300 text-white dark:text-dark-title &quot; : &quot;bg-white text-content outline-2 outline-card_border dark:outline-dark-separator_30&quot;" @click="$store.themeSettings.setPreference(&quot;dark&quot;)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none" class="mr-2">
+                <path d="M11.1573 7.90842C10.5134 8.17678 9.8226 8.3145 9.125 8.31358C6.20812 8.31358 3.84375 5.94921 3.84375 3.03233C3.84375 2.31192 3.98783 1.62562 4.24892 1C3.28663 1.40144 2.46465 2.07865 1.88651 2.94635C1.30836 3.81404 0.999911 4.83342 1 5.87608C1 8.79296 3.36437 11.1573 6.28125 11.1573C7.32391 11.1574 8.34329 10.849 9.21099 10.2708C10.0787 9.69268 10.7559 8.8707 11.1573 7.90842Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+
+
+              Dark
+            </button>
+
+
+            <button class="flex grow basis-0 justify-center items-center py-2 px-4 text-sm border rounded-r rounded-r-full bg-white text-content outline-2 outline-card_border dark:outline-dark-separator_30" :class="$store.themeSettings.preference === &quot;system&quot; ? &quot;bg-gradient-to-r from-[#2B7866] to-[#004039] border-gray-200 dark:border-gray-300 text-white dark:text-dark-title &quot; : &quot;bg-white text-content outline-2 outline-card_border dark:outline-dark-separator_30&quot;" @click="$store.themeSettings.setPreference(&quot;system&quot;)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none" class="mr-2">
+                <path d="M7.19553 2.955C7.26303 2.5485 7.61553 2.25 8.02803 2.25H9.97278C10.3853 2.25 10.7378 2.5485 10.8053 2.955L10.965 3.91575C11.0123 4.19625 11.1998 4.43025 11.4488 4.56825C11.5043 4.59825 11.559 4.6305 11.6138 4.6635C11.8575 4.8105 12.1538 4.85625 12.42 4.7565L13.3328 4.4145C13.5198 4.34416 13.7258 4.34248 13.9139 4.40978C14.1021 4.47708 14.2603 4.60899 14.3603 4.782L15.3323 6.46725C15.4321 6.64028 15.4672 6.8431 15.4315 7.03962C15.3958 7.23615 15.2916 7.41363 15.1373 7.5405L14.385 8.16075C14.1653 8.3415 14.0565 8.6205 14.0625 8.90475C14.0636 8.9685 14.0636 9.03225 14.0625 9.096C14.0565 9.3795 14.1653 9.6585 14.385 9.83925L15.138 10.4595C15.456 10.722 15.5385 11.1758 15.333 11.532L14.3595 13.2172C14.2597 13.3902 14.1017 13.5222 13.9137 13.5896C13.7257 13.657 13.5198 13.6556 13.3328 13.5855L12.42 13.2435C12.1538 13.1438 11.8575 13.1895 11.613 13.3365C11.5587 13.3696 11.5037 13.4016 11.448 13.4325C11.1998 13.5697 11.0123 13.8037 10.965 14.0842L10.8053 15.045C10.7378 15.4523 10.3853 15.75 9.97278 15.75H8.02728C7.61478 15.75 7.26303 15.4515 7.19478 15.045L7.03503 14.0842C6.98853 13.8037 6.80103 13.5698 6.55203 13.4318C6.49642 13.4011 6.44141 13.3693 6.38703 13.3365C6.14328 13.1895 5.84703 13.1438 5.58003 13.2435L4.66728 13.5855C4.48033 13.6556 4.27456 13.6572 4.08656 13.5899C3.89856 13.5226 3.74051 13.3908 3.64053 13.218L2.66778 11.5328C2.56799 11.3597 2.53282 11.1569 2.56852 10.9604C2.60423 10.7639 2.7085 10.5864 2.86278 10.4595L3.61578 9.83925C3.83478 9.65925 3.94353 9.3795 3.93828 9.096C3.93711 9.03226 3.93711 8.96849 3.93828 8.90475C3.94353 8.61975 3.83478 8.3415 3.61578 8.16075L2.86278 7.5405C2.70869 7.41367 2.60454 7.23633 2.56884 7.03997C2.53314 6.84361 2.56819 6.64095 2.66778 6.468L3.64053 4.78275C3.74042 4.6096 3.89854 4.47754 4.08672 4.4101C4.27489 4.34266 4.4809 4.34422 4.66803 4.4145L5.58003 4.7565C5.84703 4.85625 6.14328 4.8105 6.38703 4.6635C6.44103 4.6305 6.49653 4.599 6.55203 4.5675C6.80103 4.43025 6.98853 4.19625 7.03503 3.91575L7.19553 2.955Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M11.25 9C11.25 9.59674 11.0129 10.169 10.591 10.591C10.169 11.0129 9.59674 11.25 9 11.25C8.40326 11.25 7.83097 11.0129 7.40901 10.591C6.98705 10.169 6.75 9.59674 6.75 9C6.75 8.40326 6.98705 7.83097 7.40901 7.40901C7.83097 6.98705 8.40326 6.75 9 6.75C9.59674 6.75 10.169 6.98705 10.591 7.40901C11.0129 7.83097 11.25 8.40326 11.25 9Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+
+
+              System
+            </button>
+
+
+
+          </div>
+          <div class="flex mt-6 space-y-4 hidden">
+
+            <div class="text-base leading-6 text-content dark:text-dark-title">
+              GitHub <a href="https://github.com/coq/rocq-prover.org/tree/main" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">branch</a>
+              and <a href="https://github.com/coq/rocq-prover.org/commit/ab51b997fd3397cb55a9495b3796f804bb15be53">commit</a>.
+            </div>
+
+          </div>
+        </div>
+        <div class="mt-8 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
+          <div class="md:grid md:grid-cols-2 md:gap-8">
+            <div>
+              <h3 class="text-base font-semibold leading-6 text-title dark:text-dark-content">About Rocq</h3>
+              <ul class="mt-6 space-y-4">
+
+                <li>
+                  <a href="http://rocq-prover.org/changelog" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Changelog</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/releases" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Releases</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/industrial-users" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Industrial Users</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/academic-users" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Academic Users</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/about#history" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">History</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/why" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Why Rocq?</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/roadmap" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Roadmap</a>
+
+                </li>
+
+
+              </ul>
+            </div>
+            <div class="mt-10 md:mt-0">
+              <h3 class="text-base font-semibold leading-6 text-title dark:text-dark-content">Resources</h3>
+              <ul class="mt-6 space-y-4">
+
+                <li>
+                  <a href="http://rocq-prover.org/install" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Install Rocq</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/docs#beginner_section" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Get Started</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/docs/platform-docs" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Documentation</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/refman" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Reference Manual</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/stdlib" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Standard Library</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/books" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Books</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/exercises" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Exercises</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/papers" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Papers</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/logo" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Logo</a>
+
+                </li>
+
+
+              </ul>
+            </div>
+          </div>
+          <div class="md:grid md:grid-cols-2 md:gap-8">
+            <div>
+              <h3 class="text-base font-semibold leading-6 text-title dark:text-dark-content">Ecosystem</h3>
+              <ul class="mt-6 space-y-4">
+
+                <li>
+                  <a href="http://rocq-prover.org/platform" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Platform</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/packages" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Packages</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/community" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Community</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/consortium" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Consortium</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/events" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Events</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/rocq-planet" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Rocq Planet</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/jobs" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Jobs</a>
+
+                </li>
+
+
+              </ul>
+            </div>
+            <div class="mt-20 md:mt-0">
+              <h3 class="text-base font-semibold leading-6 text-title dark:text-dark-content">Policies</h3>
+              <ul class="mt-6 space-y-4">
+
+                <li>
+                  <a href="http://rocq-prover.org/governance" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Rocq Team</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/policies/governance" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Governance</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/policies/privacy-policy" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Privacy</a>
+
+                </li>
+
+
+                <li>
+                  <a href="http://rocq-prover.org/policies/code-of-conduct" class="text-base leading-6 text-content dark:text-dark-title hover:text-primary dark:hover:text-dark-primary">Code of Conduct</a>
+
+                </li>
+
+
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.addEventListener('alpine:init', () => {
+        Alpine.store('themeSettings', {
+          init() {
+            this.storageAccess = localStorage.getItem('storageAccess')
+            this.preference = localStorage.getItem('theme') || "system"
+            this.isSystemDefaultDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+          },
+          selected: '',
+          alertOpen: false,
+          storageAccess: false,
+          preference: undefined,
+          isSystemDefaultDark: false,
+          setPreference(preference) {
+            if (!this.storageAccess) {
+              if (!window.confirm("We will remember your choice in your browser's LocalStorage. Allow this?")) {
+                return;
+              }
+              localStorage.setItem('storageAccess', true)
+              storageAccess = true;
+            }
+
+            this.selected = preference;
+            this.preference = preference
+            localStorage.setItem('theme', preference)
+
+            if (preference === 'dark') {
+              document.body.classList.add("dark");
+            }
+            if (preference === 'light') {
+              document.body.classList.remove("dark");
+            }
+            if (preference === 'system') {
+              if (this.isSystemDefaultDark) {
+                document.body.classList.add("dark");
+              } else {
+                document.body.classList.remove("dark");
+              }
+              localStorage.removeItem('theme')
+              return
+            }
+          },
+        })
+      })
+    </script>
+
+  </footer>
+
+  <script>
+    function scrollToTop() {
+      window.scrollTo(0, 0);
+    }
+
+    window.onscroll = function() {
+      showScrollButton();
+    };
+
+    function showScrollButton() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("scrollToTop").style.display = "block";
+      } else {
+        document.getElementById("scrollToTop").style.display = "none";
+      }
+    }
+  </script>
+
+</body>
+
+</html>
