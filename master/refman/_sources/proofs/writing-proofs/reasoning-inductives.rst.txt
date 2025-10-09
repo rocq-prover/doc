@@ -281,16 +281,6 @@ analysis on inductive or coinductive objects (see :ref:`variants`).
       like :g:`and` and :g:`exists` and those defined with the :cmd:`Record`
       command.
 
-.. tacn:: destauto {? in @ident }
-
-   .. todo: keep or remove destauto?
-      destauto added in https://github.com/rocq-prover/rocq/commit/f3a53027589813ff19b3a7c46d84e5bd2fc65741
-
-   Reduces one :n:`match t with ...` by doing :n:`destruct t`.  If :n:`t` is
-   not a variable, the tactic does
-   :n:`case_eq t;intros ... heq;rewrite heq in *|-`.
-   :n:`heq` is preserved.
-
 Induction
 ---------
 

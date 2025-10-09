@@ -372,9 +372,7 @@
 <span class="id" title="keyword">Ltac</span> <span class="id" title="var">dtauto</span> := <span class="id" title="var">with_power_flags</span> <span class="id" title="keyword">ltac</span>:(<span class="id" title="keyword">fun</span> <span class="id" title="var">flags</span> =&gt; <span class="id" title="var">tauto_gen</span> <span class="id" title="var">flags</span>).<br/>
 
 <br/>
-<span class="id" title="keyword">Ltac</span> <span class="id" title="var">intuition_solver</span> :=<br/>
-&nbsp;&nbsp;<span class="id" title="tactic">first</span> [<span class="id" title="tactic">solve</span> [<span class="id" title="tactic">auto</span>]<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id" title="var">tryif</span> <span class="id" title="tactic">solve</span> [<span class="id" title="tactic">auto</span> <span class="id" title="keyword">with</span> *] <span class="id" title="keyword">then</span> <span class="id" title="var">warn_auto_with_star</span> <span class="id" title="keyword">else</span> <span class="id" title="tactic">idtac</span>].<br/>
+<span class="id" title="keyword">Ltac</span> <span class="id" title="var">intuition_solver</span> := <span class="id" title="tactic">auto</span>.<br/>
 
 <br/>
 <span class="id" title="keyword">Local Ltac</span> <span class="id" title="var">intuition_then</span> <span class="id" title="var">tac</span> := <span class="id" title="var">with_uniform_flags</span> <span class="id" title="keyword">ltac</span>:(<span class="id" title="keyword">fun</span> <span class="id" title="var">flags</span> =&gt; <span class="id" title="var">intuition_gen</span> <span class="id" title="var">flags</span> <span class="id" title="var">tac</span>).<br/>

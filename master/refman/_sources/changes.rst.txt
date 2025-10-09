@@ -1620,7 +1620,7 @@ Tactics
   (`#19129 <https://github.com/rocq-prover/rocq/pull/19129>`_,
   by Pierre-Marie Pédrot).
 - **Deprecated:**
-  :tacn:`destauto`,
+  `destauto`,
   see `#11537 <https://github.com/rocq-prover/rocq/issues/11537#issuecomment-2154260216>`_
   (`#19179 <https://github.com/rocq-prover/rocq/pull/99999>`_,
   by Jim Fehrle).
