@@ -291,6 +291,12 @@ Strict syntactic equality: only up to α-conversion and evar expansion
 <br/>
 <span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Type</span> <span class="id" title="var">relevance_var</span>.<br/>
 <span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Type</span> <span class="id" title="var">relevance</span> := [ <span class="id" title="var">Relevant</span> | <span class="id" title="var">Irrelevant</span> | <span class="id" title="var">RelevanceVar</span> (<span class="id" title="var">relevance_var</span>) ].<br/>
+</div>
+
+<div class="doc">
+This type will eventually be removed in favour of Relevance.t as an abstract type. 
+</div>
+<div class="code">
 
 <br/>
 <span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">make</span> : <span class="id" title="var">ident</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="var">binder</span> := "rocq-runtime.plugins.ltac2" "constr_binder_make".<br/>
@@ -340,6 +346,43 @@ Retrieve the relevance of a binder.
 
 <br/>
 <span class="id" title="keyword">End</span> <a class="idref" href="Ltac2.Constr.html#Binder"><span class="id" title="module">Binder</span></a>.<br/>
+
+<br/>
+<span class="id" title="keyword">Module</span> <a id="Relevance" class="idref" href="#Relevance"><span class="id" title="module">Relevance</span></a>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Type of proof relevance: relevant, irrelevant or a variable
+      (either locally rigid variable from sort polymorphism, or
+      unification variable from elaboration). 
+</div>
+<div class="code">
+&nbsp;&nbsp;<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Type</span> <span class="id" title="var">t</span> := <span class="id" title="var">Binder.relevance</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Test equality of relevances in the current proof state
+      (the proof state matters for unification sort variables,
+      which may be instantiated). 
+</div>
+<div class="code">
+&nbsp;&nbsp;<span class="id" title="keyword">Ltac2</span> @<span class="id" title="var">external</span> <span class="id" title="var">equal</span> : <span class="id" title="var">t</span> -&gt; <span class="id" title="var">t</span> -&gt; <span class="id" title="var">bool</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= "rocq-runtime.plugins.ltac2" "constr_relevance_equal".<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Ltac2</span> @<span class="id" title="var">external</span> <span class="id" title="var">relevant</span> : <span class="id" title="var">t</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= "rocq-runtime.plugins.ltac2" "constr_relevance_relevant".<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Ltac2</span> @<span class="id" title="var">external</span> <span class="id" title="var">irrelevant</span> : <span class="id" title="var">t</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= "rocq-runtime.plugins.ltac2" "constr_relevance_irrelevant".<br/>
+
+<br/>
+<span class="id" title="keyword">End</span> <a class="idref" href="Ltac2.Constr.html#Relevance"><span class="id" title="module">Relevance</span></a>.<br/>
 
 <br/>
 <span class="id" title="keyword">Module</span> <a id="Unsafe" class="idref" href="#Unsafe"><span class="id" title="module">Unsafe</span></a>.<br/>
@@ -504,7 +547,7 @@ A name of an inductive or coinductive type. <span class="inlinecode"><span class
 A constructor of an inductive type. <span class="inlinecode"><span class="id" title="var">Constructor</span></span> <span class="inlinecode"><span class="id" title="var">c</span></span> <span class="inlinecode"><span class="id" title="var">ui</span></span> is <span class="inlinecode"><span class="id" title="var">c@</span>[<span class="id" title="var">ui</span>]</span>. 
 </div>
 <div class="code">
-&nbsp;&nbsp;| <span class="id" title="var">Case</span> (<span class="id" title="tactic">case</span>, (<span class="id" title="keyword">constr</span> * <span class="id" title="var">Binder.relevance</span>), <span class="id" title="var">case_invert</span>, <span class="id" title="keyword">constr</span>, <span class="id" title="keyword">constr</span> <span class="id" title="var">array</span>)<br/>
+&nbsp;&nbsp;| <span class="id" title="var">Case</span> (<span class="id" title="tactic">case</span>, (<span class="id" title="keyword">constr</span> * <span class="id" title="var">Relevance.t</span>), <span class="id" title="var">case_invert</span>, <span class="id" title="keyword">constr</span>, <span class="id" title="keyword">constr</span> <span class="id" title="var">array</span>)<br/>
 &nbsp;&nbsp;</div>
 
 <div class="doc">
@@ -541,7 +584,7 @@ A constructor of an inductive type. <span class="inlinecode"><span class="id" ti
 </div>
 <div class="code">
 &nbsp;&nbsp;| <span class="id" title="var">CoFix</span> (<span class="id" title="var">int</span>, <span class="id" title="var">binder</span> <span class="id" title="var">array</span>, <span class="id" title="keyword">constr</span> <span class="id" title="var">array</span>)<br/>
-&nbsp;&nbsp;| <span class="id" title="var">Proj</span> (<span class="id" title="var">projection</span>, <span class="id" title="var">Binder.relevance</span>, <span class="id" title="keyword">constr</span>)<br/>
+&nbsp;&nbsp;| <span class="id" title="var">Proj</span> (<span class="id" title="var">projection</span>, <span class="id" title="var">Relevance.t</span>, <span class="id" title="keyword">constr</span>)<br/>
 &nbsp;&nbsp;</div>
 
 <div class="doc">
