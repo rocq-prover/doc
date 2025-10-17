@@ -340,6 +340,10 @@ and `Constants`, while implicitly created databases have the `Opaque` setting.
       `Create HintDb` will not change whether a pre-existing database
       is discriminated.
 
+.. cmd:: Create Rewrite HintDb @ident
+
+   Like above, but creates a database for :cmd:`Hint Rewrite` declarations
+   instead.
 
 Hint databases defined in the Rocq standard library
 ```````````````````````````````````````````````````
