@@ -5765,17 +5765,6 @@ Commands
 
    prenex implicits declaration (see :ref:`parametric_polymorphism_ssr`)
 
-Settings
-~~~~~~~~
-
-.. flag:: Debug Ssreflect
-
-   *Developer only.* Print debug information on reflect.
-
-.. flag:: Debug SsrMatching
-
-   *Developer only.* Print debug information on SSR matching.
-
 .. rubric:: Footnotes
 
 .. [#1] Unfortunately, even after a call to the ``Set Printing All`` command,
