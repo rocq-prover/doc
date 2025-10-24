@@ -1,0 +1,85 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+Chapter&nbsp;9: Syntax extensions
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.2.1.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H1>
+
+Chapter&nbsp;9: Syntax extensions
+</H1>
+
+
+
+<A NAME="Addoc-syntax"></A>In this chapter, we introduce advanced commands to modify the way
+<FONT COLOR=purple>Coq</FONT> parses and prints objects, i.e. the translations between the
+concrete and internal representations of terms and commands. As in
+most compilers, there is an intermediate structure called <EM>Abstract
+Syntax Tree</EM> (AST). Parsing a term is done in two steps<A NAME="text20" HREF="#note20"><SUP><FONT SIZE=2>1</FONT></SUP></A>:
+<OL type=1>
+<LI>
+ An AST is build from the input (a stream of tokens), following
+ grammar rules. This step consists in deciding whether the input
+ belongs to the language or not. If it is, the parser transforms the
+ expression into an AST. If not, this is a syntax error. An expression
+ belongs to the language if there exists a sequence of grammar rules
+ that recognizes it. This task is delegated to <FONT COLOR=purple>Camlp4</FONT>. See the
+ Reference Manual&nbsp;[<A HREF="#ddr98"><CITE>ddr98</CITE></A>] for details on the parsing
+ technology. The transformation to AST is performed by executing
+ successively the <I><FONT COLOR=maroon>actions</FONT></I> bound to these rules.<BR>
+<BR>
+
+<LI> The AST is translated into the internal representation of
+ commands and terms. At this point, we detect unbound variables and
+ determine the exact section-path of every global value. Then, the term
+ may be typed, computed,&nbsp;...</OL>
+The printing process is the reverse: commands or terms are first
+translated into AST's, and then the pretty-printer translates this AST
+into a printing orders stream, according to printing rules.<BR>
+<BR>
+In <FONT COLOR=purple>Coq</FONT>, only the translations between AST's and the concrete
+representation are extendable. One can modify the set of grammar and
+printing rules, but one cannot change the way AST's are interpreted in
+the internal level.<BR>
+<BR>
+In the following section, we describe the syntax of AST expressions,
+involved in both parsing and printing. The next two sections deal with
+extendable grammars and pretty-printers.<BR>
+<BR>
+<UL>
+<LI><A HREF="node.2.0.0.html">
+
+9.1&nbsp;Abstract syntax trees (AST)
+</A>
+<LI><A HREF="node.2.0.1.html">
+
+9.2&nbsp;Extendable grammars
+</A>
+<LI><A HREF="node.2.0.2.html">
+
+9.3&nbsp;Writing your own pretty printing rules
+</A>
+</UL><HR>
+
+<A HREF="node.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.2.1.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

@@ -1,0 +1,364 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+7.11&nbsp;Automatizing
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.1.2.9.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.11.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+7.11&nbsp;Automatizing
+</H2>
+
+
+
+<A NAME="Automatizing"></A>
+<H3>
+
+7.11.1&nbsp;<TT>Auto
+</TT></H3>
+
+<A NAME="@default506"></A><A NAME="@tactic96"></A>
+This tactic implements a Prolog-like resolution procedure to solve the
+current goal. It first tries to solve the goal using the <TT>Assumption</TT> tactic, then it reduces the goal to an atomic one using
+<TT>Intros</TT> and introducing the newly generated hypotheses as hints.
+Then it looks at the list of tactics associated to the head symbol of
+the goal and tries to apply one of them (starting from the tactics
+with lower cost). This process is recursively applied to the generated
+subgoals. <BR>
+<BR>
+By default, Auto only uses the hypotheses of the current goal and the
+hints of the database named "core". <BR>
+<BR>
+<BR><B>Variants: </B><OL type=1>
+<LI>
+ <TT>Auto </TT><I><FONT COLOR=maroon>num</FONT></I><BR>Forces the search depth to be <I><FONT COLOR=maroon>num</FONT></I>. The maximal search depth is 5 by default.
+
+<LI> <TT>Auto with </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> ... </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><BR>Uses the hint databases <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> ... <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> in addition to
+ the database "core". See section <A HREF="node.1.2.11.html#Hints-databases">7.12</A> for the list
+ of pre-defined databases and the way to create or extend a database.
+ This option can be combined with the previous one.
+
+<LI> <TT>Auto with *</TT><BR>Uses all existing hint databases, minus the special database
+ "v62". See section <A HREF="node.1.2.11.html#Hints-databases">7.12</A>
+
+<LI> <TT>Trivial</TT><A NAME="@default507"></A><A NAME="@tactic97"></A><BR>This tactic is a restriction of <TT>Auto</TT> that is not recursive and 
+ tries only hints which cost is 0. Typically it solves trivial
+ equalities like <I>X</I>=<I>X</I>.
+
+<LI> <TT>Trivial with </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> ... </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><BR>
+<LI> <TT>Trivial with *</TT><BR></OL><BR><B>Remark: </B><TT>Auto</TT> either solves completely the goal or else leave it
+intact. <TT>Auto</TT> and <TT>Trivial</TT> never fail.<BR><B>See also: </B>section <A HREF="node.1.2.11.html#Hints-databases">7.12</A><BR>
+<BR>
+
+<H3>
+
+7.11.2&nbsp;<TT>EAuto
+</TT></H3>
+<A NAME="@default508"></A><A NAME="@tactic98"></A><A NAME="EAuto"></A>This tactic generalizes <TT>Auto</TT>. In contrast with 
+the latter, <TT>EAuto</TT> uses unification of the goal
+against the hints rather than pattern-matching
+(in other words, it uses <TT>EApply</TT> instead of
+<TT>Apply</TT>).
+As a consequence, <TT>EAuto</TT> can solve such a goal:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Hints&nbsp;Resolve&nbsp;ex_intro.</TT><BR><TT><I>Warning:&nbsp;the&nbsp;hint:&nbsp;EApply&nbsp;ex_intro&nbsp;will&nbsp;only&nbsp;be&nbsp;used&nbsp;by&nbsp;EAuto</I></TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Goal&nbsp;(P:nat-</TT><TT>&gt;</TT><TT>Prop)(P&nbsp;O)-</TT><TT>&gt;</TT><TT>(EX&nbsp;n&nbsp;|&nbsp;(P&nbsp;n)).</TT><BR><TT><I>1&nbsp;subgoal</I></TT><BR><TT><I>&nbsp;&nbsp;</I></TT><BR><TT><I>&nbsp;&nbsp;============================</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;(P:(nat-</I></TT><TT><I>&gt;</I></TT><TT><I>Prop))(P&nbsp;O)-</I></TT><TT><I>&gt;</I></TT><TT><I>(EX&nbsp;n:nat&nbsp;|&nbsp;(P&nbsp;n))</I></TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;EAuto.</TT><BR><TT><I>Subtree&nbsp;proved!</I></TT><BR></DIV>
+<BR>
+Note that <TT>ex_intro</TT> should be declared as an
+hint.<BR><B>See also: </B>section <A HREF="node.1.2.11.html#Hints-databases">7.12</A><BR>
+<BR>
+
+<H3>
+
+7.11.3&nbsp;<TT>Prolog [ </TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> ... </TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT> ] </TT><I><FONT COLOR=maroon>num</FONT></I><TT>
+</TT></H3>
+
+<A NAME="@default509"></A><A NAME="@tactic99"></A><A NAME="Prolog"></A>
+This tactic, implemented by Chet Murthy, is based upon the concept of
+existential variables of Gilles Dowek, stating that resolution is a
+kind of unification. It tries to solve the current goal using the <TT>Assumption</TT> tactic, the <TT>Intro</TT> tactic, and applying hypotheses
+of the local context and terms of the given list <TT>[ </TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT>
+ ... </TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT> ]</TT>. It is more powerful than <TT>Auto</TT> since it
+may apply to any theorem, even those of the form <TT>(x:A)(P x) -&gt; Q</TT>
+where <TT>x</TT> does not appear free in <TT>Q</TT>. The maximal search
+depth is <I><FONT COLOR=maroon>num</FONT></I>.<BR>
+<BR>
+<BR><B>Error messages: </B><OL type=1>
+<LI>
+ <TT>Prolog failed</TT><A NAME="@error86"></A><BR>The Prolog tactic was not able to prove the subgoal.
+</OL>
+<H3>
+
+7.11.4&nbsp;<TT>Tauto
+</TT></H3>
+
+<A NAME="@default510"></A><A NAME="@tactic100"></A><A NAME="Tauto"></A>This tactic implements a decision procedure for intuitionistic propositional
+calculus based on the contraction-free sequent calculi LJT* of Roy Dyckhoff
+[<A HREF="#Dyc92"><CITE>Dyc92</CITE></A>]. Note that <TT>Tauto</TT> succeeds on any instance of an
+intuitionistic tautological proposition. <TT>Tauto</TT> unfolds negations
+and logical equivalence but does not unfold any other definition.<BR>
+<BR>
+The following goal can be proved by <TT>Tauto</TT> whereas <TT>Auto</TT>
+would fail:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;Goal&nbsp;(x:nat)(P:nat-</TT><TT>&gt;</TT><TT>Prop)x=O\/(P&nbsp;x)-</TT><TT>&gt;</TT><TT>~x=O-</TT><TT>&gt;</TT><TT>(P&nbsp;x).</TT><BR><TT><I>1&nbsp;subgoal</I></TT><BR><TT><I>&nbsp;&nbsp;</I></TT><BR><TT><I>&nbsp;&nbsp;============================</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;(x:nat;&nbsp;P:(nat-</I></TT><TT><I>&gt;</I></TT><TT><I>Prop))x=O\/(P&nbsp;x)-</I></TT><TT><I>&gt;</I></TT><TT><I>~x=O-</I></TT><TT><I>&gt;</I></TT><TT><I>(P&nbsp;x)</I></TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;Intros.</TT><BR><TT><I>1&nbsp;subgoal</I></TT><BR><TT><I>&nbsp;&nbsp;</I></TT><BR><TT><I>&nbsp;&nbsp;x&nbsp;:&nbsp;nat</I></TT><BR><TT><I>&nbsp;&nbsp;P0&nbsp;:&nbsp;nat-</I></TT><TT><I>&gt;</I></TT><TT><I>Prop</I></TT><BR><TT><I>&nbsp;&nbsp;H&nbsp;:&nbsp;x=O\/(P0&nbsp;x)</I></TT><BR><TT><I>&nbsp;&nbsp;H0&nbsp;:&nbsp;~x=O</I></TT><BR><TT><I>&nbsp;&nbsp;============================</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;(P0&nbsp;x)</I></TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;Tauto.&nbsp;(*&nbsp;Auto&nbsp;would&nbsp;fail&nbsp;*)</TT><BR><TT><I>Subtree&nbsp;proved!</I></TT><BR></DIV>
+<BR>
+Moreover, if it has nothing else to do, <TT>Tauto</TT> performs
+introductions. Therefore, the use of <TT>Intros</TT> in the previous
+proof is unnecessary. <TT>Tauto</TT> can for instance prove the
+following:
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;Goal&nbsp;(A:Prop)(P:nat-</TT><TT>&gt;</TT><TT>Prop)(A&nbsp;\/&nbsp;(x:nat)&nbsp;~A&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;(P&nbsp;x))&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;(x:nat)&nbsp;~A&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;(P&nbsp;x).</TT><BR><TT><I>1&nbsp;subgoal</I></TT><BR><TT><I>&nbsp;&nbsp;</I></TT><BR><TT><I>&nbsp;&nbsp;============================</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;(A:Prop;&nbsp;P:(nat-</I></TT><TT><I>&gt;</I></TT><TT><I>Prop))A\/((x:nat)~A-</I></TT><TT><I>&gt;</I></TT><TT><I>(P&nbsp;x))-</I></TT><TT><I>&gt;</I></TT><TT><I>(x:nat)~A-</I></TT><TT><I>&gt;</I></TT><TT><I>(P&nbsp;x)</I></TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;Tauto.</TT><BR><TT><I>Subtree&nbsp;proved!</I></TT><BR></DIV>
+<BR><B>Remark: </B>In contrast, <TT>Tauto</TT> cannot solve the following goal<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Goal&nbsp;(A:Prop)(P:nat-</TT><TT>&gt;</TT><TT>Prop)(A&nbsp;\/&nbsp;(x:nat)&nbsp;~A&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;(P&nbsp;x))&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;(x:nat)&nbsp;~~&nbsp;(A&nbsp;\/&nbsp;(P&nbsp;x)).</TT><BR></DIV>
+<BR>
+because <CODE>(x:nat) ~A -&gt; (P x)</CODE> cannot be treated as atomic and an
+instantiation of <CODE>x</CODE> is necessary.<BR>
+<BR>
+
+<H3>
+
+7.11.5&nbsp;<TT>Intuition </TT><I><FONT COLOR=maroon>tactic</FONT></I><TT>
+</TT></H3>
+
+<A NAME="@default511"></A><A NAME="@tactic101"></A><A NAME="Intuition"></A>The tactic <CODE>Intuition</CODE> takes advantage of the search-tree builded
+by the decision procedure involved in the tactic <TT>Tauto</TT>. It uses
+this information to generate a set of subgoals equivalent to the
+original one (but simpler than it) and applies the tactic 
+<I><FONT COLOR=maroon>tactic</FONT></I> to them [<A HREF="#Mun94"><CITE>Mun94</CITE></A>]. If this tactic fails on some goals then
+<TT>Intuition</TT> fails. In fact, <TT>Tauto</TT> is simply <TT>Intuition
+ Failtac</TT>.<BR>
+<BR>
+For instance, the tactic <TT>Intuition Auto</TT> applied to the goal
+<PRE>
+((x:nat)(P x))/\B-&gt;((y:nat)(P y))/\(P O)\/B/\(P O)
+</PRE>internally replaces it by the equivalent one:
+<PRE>
+(x:nat)(P x) ; B |- (P O)
+</PRE>and then uses <TT>Auto</TT> which completes the proof.<BR>
+<BR>
+Originally due to César&nbsp;Muñoz, these tactics (<TT>Tauto</TT> and <TT>Intuition</TT>)
+have been completely reenginered by David&nbsp;Delahaye using mainly the tactic
+language (see chapter&nbsp;<A HREF="node.2.1.html#TacticLanguage">10</A>). The code is now quite shorter and
+a significant increase in performances has been noticed. The general behavior
+with respect to dependent types, unfolding and introductions has
+slightly changed to get clearer semantics. This may lead to some
+incompatibilities.<BR>
+<BR>
+<BR><B>Variants: </B><OL type=1>
+<LI>
+ <TT>Intuition</TT><BR>Is equivalent to <TT>Intuition Auto with *</TT>.
+</OL><BR><B>See also: </B>file <TT>contrib/Rocq/DEMOS/Demo_tauto.v</TT><BR>
+<BR>
+
+<H3>
+
+7.11.6&nbsp;<TT>Omega
+</TT></H3>
+
+<A NAME="@default512"></A><A NAME="@tactic102"></A>
+<A NAME="Omega"></A>The tactic <TT>Omega</TT>, due to Pierre Crégut,
+is an automatic decision procedure for Prestburger
+arithmetic. It solves quantifier-free 
+formulae build with <CODE>~</CODE>, <CODE>\/</CODE>, <CODE>/\</CODE>,
+<CODE>-&gt;</CODE> on top of equations and inequations on
+both the type <TT>nat</TT> of natural numbers and <TT>Z</TT> of binary
+integers. This tactic must be loaded by the command <TT>Require
+ Omega</TT>. See the additional documentation about <TT>Omega</TT>
+(chapter&nbsp;<A HREF="node.3.4.html#OmegaChapter">15</A>).<BR>
+<BR>
+
+<H3>
+
+7.11.7&nbsp;<TT>Ring </TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> ... </TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT>
+</TT></H3>
+
+<A NAME="@default513"></A><A NAME="@tactic103"></A>
+<A NAME="@default514"></A><A NAME="@command137"></A>
+<A NAME="@default515"></A><A NAME="@command138"></A>This tactic, written by Samuel Boutin and Patrick Loiseleur, 
+does AC rewriting on every
+ring. The tactic must be loaded by <TT>Require Ring</TT> under
+<TT>coqtop</TT> or <TT>coqtop -full</TT>.
+The ring must be declared in the <TT>Add Ring</TT>
+command (see <A HREF="node.3.7.html#Ring">18</A>). The ring of booleans is predefined; if one
+wants to use the tactic on <TT>nat</TT> one must do <TT>Require
+ ArithRing</TT>; for <TT>Z</TT>, do <TT>Require ZArithRing</TT>.<BR>
+<BR>
+<I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>, ..., <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> must be subterms of the goal
+conclusion. <TT>Ring</TT> normalize these terms
+w.r.t. associativity and commutativity and replace them by their
+normal form.<BR>
+<BR>
+<BR><B>Variants: </B><OL type=1>
+<LI>
+ <TT>Ring</TT> When the goal is an equality <I>t</I><SUB><FONT SIZE=2>1</FONT></SUB>=<I>t</I><SUB><FONT SIZE=2>2</FONT></SUB>, it
+ acts like <TT>Ring</TT> <I>t</I><SUB><FONT SIZE=2>1</FONT></SUB> <I>t</I><SUB><FONT SIZE=2>2</FONT></SUB> and then simplifies or solves
+ the equality.<BR>
+<BR>
+
+<LI> <TT>NatRing</TT> is a tactic macro for <TT>Repeat Rewrite
+ S_to_plus_one; Ring</TT>. The theorem <TT>S_to_plus_one</TT> is a
+ proof that <TT>(n:nat)(S n)=(plus (S O) n)</TT>.</OL><BR><B>Example: </B>
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Require&nbsp;ZArithRing.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Goal&nbsp;(a,b,c:Z)`(a+b+c)*(a+b+c)&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;a*a&nbsp;+&nbsp;b*b&nbsp;+&nbsp;c*c&nbsp;+&nbsp;2*a*b&nbsp;+&nbsp;2*a*c&nbsp;+&nbsp;2*b*c`.</TT><BR></DIV>
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Intros;&nbsp;Ring.</TT><BR><TT><I>Subtree&nbsp;proved!</I></TT><BR></DIV>
+<BR>
+You can have a look at the files <TT>Ring.v</TT>,
+<TT>ArithRing.v</TT>, <TT>ZArithRing.v</TT> to see examples of the
+<TT>Add Ring</TT> command.<BR><B>See also: </B>Chapter&nbsp;<A HREF="node.3.7.html#Ring">18</A> for more detailed explanations about this tactic.<BR>
+<BR>
+
+<H3>
+
+7.11.8&nbsp;<TT>Field
+</TT></H3>
+
+<A NAME="@default516"></A><A NAME="@tactic104"></A>This tactic written by David&nbsp;Delahaye and Micaela&nbsp;Mayero solves equalities
+using commutative field theory. Denominators have to be non equal to zero and,
+as this is not decidable in general, this tactic may generate side conditions
+requiring some expressions to be non equal to zero. This tactic must be loaded
+by <TT>Require Field</TT>. Field theories are declared (as for <TT>Ring</TT>) with
+the <TT>Add Field</TT> command.<BR><B>Example: </B>
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Require&nbsp;Reals.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Goal&nbsp;(x,y:R)``x*y</TT><TT>&gt;</TT><TT>0``&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;``x*((1/x)+x/(x+y))&nbsp;==&nbsp;-(1/y)*y*(-(x*x/(x+y))-1)``.</TT><BR></DIV>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Intros;&nbsp;Field.</TT><BR><TT><I>1&nbsp;subgoal</I></TT><BR><TT><I>&nbsp;&nbsp;</I></TT><BR><TT><I>&nbsp;&nbsp;x&nbsp;:&nbsp;R</I></TT><BR><TT><I>&nbsp;&nbsp;y&nbsp;:&nbsp;R</I></TT><BR><TT><I>&nbsp;&nbsp;H&nbsp;:&nbsp;``x*y&nbsp;</I></TT><TT><I>&gt;</I></TT><TT><I>&nbsp;0``</I></TT><BR><TT><I>&nbsp;&nbsp;============================</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;``x*((x+y)*y)&nbsp;</I></TT><TT><I>&lt;</I></TT><TT><I>&gt;</I></TT><TT><I>&nbsp;0``</I></TT><BR></DIV>
+<BR>
+
+<H3>
+
+7.11.9&nbsp;<TT>Add Field
+</TT></H3>
+
+<A NAME="@default517"></A><A NAME="@command139"></A>This vernacular command adds a commutative field theory to the database for the
+tactic <TT>Field</TT>. You must provide this theory as follows:<BR><TT>Add Field </TT><TT><I>A</I></TT><TT> </TT><TT><I>Aplus</I></TT><TT> </TT><TT><I>Amult</I></TT><TT> </TT><TT><I>Aone</I></TT><TT> </TT><TT><I>Azero</I></TT><TT> </TT><TT><I>Aopp</I></TT><TT> </TT><TT><I>Aeq</I></TT><TT> </TT><TT><I>Ainv</I></TT><TT> </TT><TT><I>Rth</I></TT><TT> </TT><TT><I>Tinvl</I></TT><BR>where <TT><I>A</I></TT> is a term of type <TT>Type</TT>, <TT><I>Aplus</I></TT>
+is a term of type <TT>A-&gt;A-&gt;A</TT>, <TT><I>Amult</I></TT> is a term of type <TT>A-&gt;A-&gt;A</TT>, <TT><I>Aone</I></TT> is a term of type <TT>A</TT>, <TT><I>Azero</I></TT> is a
+term of type <TT>A</TT>, <TT><I>Aopp</I></TT> is a term of type <TT>A-&gt;A</TT>, <TT><I>Aeq</I></TT> is a term of type <TT>A-&gt;bool</TT>, <TT><I>Ainv</I></TT> is a term of type <TT>A-&gt;A</TT>, <TT><I>Rth</I></TT> is a term of type <TT>(Ring_Theory </TT><TT><I>A Aplus Amult
+Aone Azero Ainv Aeq</I></TT><TT>)</TT>, and <TT><I>Tinvl</I></TT> is a term of type <TT>(n:</TT><TT><I>A</I></TT><TT>)</TT><TT>~</TT><TT>(n==</TT><TT><I>Azero</I></TT><TT>)-&gt;(</TT><TT><I>Amult</I></TT><TT> (</TT><TT><I>Ainv</I></TT><TT> n) n)==</TT><TT><I>Aone</I></TT>.
+To build a ring theory, refer to chapter&nbsp;<A HREF="node.3.7.html#Ring">18</A> for more details.<BR>
+<BR>
+This command adds also an entry in the ring theory table if this theory is not
+already declared. So, it is useless to keep, for a given type, the <TT>Add
+Ring</TT> command if you declare a theory with <TT>Add Field</TT>, except if you plan
+to use specific features of <TT>Ring</TT> (see chapter&nbsp;<A HREF="node.3.7.html#Ring">18</A>). However, the
+module <TT>Ring</TT> is not loaded by <TT>Add Field</TT> and you have to make a <TT>Require Ring</TT> if you want to call the <TT>Ring</TT> tactic.<BR>
+<BR>
+<BR><B>Variants: </B><OL type=1>
+<LI>
+ <TT>Add Field </TT><TT><I>A</I></TT><TT> </TT><TT><I>Aplus</I></TT><TT> </TT><TT><I>Amult</I></TT><TT> </TT><TT><I>Aone</I></TT><TT> </TT><TT><I>Azero</I></TT><TT>
+</TT><TT><I>Aopp</I></TT><TT> </TT><TT><I>Aeq</I></TT><TT> </TT><TT><I>Ainv</I></TT><TT> </TT><TT><I>Rth</I></TT><TT> </TT><TT><I>Tinvl</I></TT><BR><TT>Add Field </TT><TT>with minus:=</TT><TT><I>Aminus</I></TT><BR>Adds also the term <I>Aminus</I> which must be a constant expressed by means of
+<I>Aopp</I>.<BR>
+<BR>
+
+<LI> <TT>Add Field </TT><TT><I>A</I></TT><TT> </TT><TT><I>Aplus</I></TT><TT> </TT><TT><I>Amult</I></TT><TT> </TT><TT><I>Aone</I></TT><TT> </TT><TT><I>Azero</I></TT><TT>
+</TT><TT><I>Aopp</I></TT><TT> </TT><TT><I>Aeq</I></TT><TT> </TT><TT><I>Ainv</I></TT><TT> </TT><TT><I>Rth</I></TT><TT> </TT><TT><I>Tinvl</I></TT><BR><TT>Add Field </TT><TT>with div:=</TT><TT><I>Adiv</I></TT><BR>Adds also the term <I>Adiv</I> which must be a constant expressed by means of
+<I>Ainv</I>.
+</OL><BR><B>See also: </B>file <TT>theories/Reals/Rbase.v</TT> for an example of instantiation,<BR><BR><B>See also: </B>theory <TT>theories/Reals</TT> for many examples of use of <TT>Field</TT>.<BR><B>See also: </B>[<A HREF="#DelMay01"><CITE>DelMay01</CITE></A>] for more details regarding the implementation of <TT>Field</TT>.<BR>
+<BR>
+
+<H3>
+
+7.11.10&nbsp;<TT>Fourier
+</TT></H3>
+
+<A NAME="@default518"></A><A NAME="@tactic105"></A>This tactic written by Loïc Pottier solves linear inequations on real numbers 
+using Fourier's method ([<A HREF="#Fourier"><CITE>Fourier</CITE></A>]). This tactic must be loaded by 
+<TT>Require Fourier</TT>.<BR><B>Example: </B>
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Require&nbsp;Reals.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Require&nbsp;Fourier.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Goal&nbsp;(x,y:R)``x&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;y``-</TT><TT>&gt;</TT><TT>``y+1&nbsp;</TT><TT>&gt;</TT><TT>=&nbsp;x-1``.</TT><BR></DIV>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Intros;&nbsp;Fourier.</TT><BR><TT><I>Subtree&nbsp;proved!</I></TT><BR></DIV>
+<BR>
+
+<H3>
+
+7.11.11&nbsp;<TT>AutoRewrite [ </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> ...</TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT> ]
+</TT></H3>
+
+<A NAME="@default519"></A><A NAME="@tactic106"></A>This tactic <A NAME="text19" HREF="#note19"><SUP><FONT SIZE=2>5</FONT></SUP></A> carries out rewritings according
+the rewriting rule bases <I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> ...</TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB>.<BR>
+<BR>
+Each rewriting rule of a base <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>i</I></FONT></SUB> is applied to the main subgoal until
+it fails. Once all the rules have been processed, if the main subgoal has
+progressed (e.g., if it is distinct from the initial main goal) then the rules
+of this base are processed again. If the main subgoal has not progressed then
+the next base is processed. For the bases, the behavior is exactly similar to
+the processing of the rewriting rules.<BR>
+<BR>
+The rewriting rule bases are built with the <TT>Hint&nbsp;Rewrite</TT> vernacular
+command.<BR><B>Warning: </B> This tactic may loop if you build non terminating rewriting systems.<BR>
+<BR>
+<BR><B>Variant: </B><OL type=1>
+<LI>
+ <TT>AutoRewrite [ </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> ...</TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT> ] using </TT><I><FONT COLOR=maroon>tactic</FONT></I><BR>Performs, in the same way, all the rewritings of the bases <TT><I>ident</I></TT><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> </TT><TT>...</TT><TT>
+</TT><TT><I>ident</I></TT><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB> applying <I><FONT COLOR=maroon>tactic</FONT></I> to the main subgoal after each rewriting step.
+</OL>
+<H3>
+
+7.11.12&nbsp;<TT>Hint Rewrite [ </TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> ...</TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT> ] in </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>
+</TT></H3>
+
+<A NAME="@default520"></A><A NAME="@command140"></A>This vernacular command adds the terms <I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> ...</TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB> (their
+types must be equalities) in the rewriting base <I><FONT COLOR=maroon>ident</FONT></I> with the default
+orientation (left to right).<BR>
+<BR>
+This command is synchronous with the section mechanism (see <A HREF="node.0.1.3.html#Section">2.4</A>):
+when closing a section, all aliases created by <TT>Hint Rewrite</TT> in that
+section are lost. Conversely, when loading a module, all <TT>Hint Rewrite</TT>
+declarations at the global level of that module are loaded.<BR>
+<BR>
+<BR><B>Variants: </B><OL type=1>
+<LI>
+ <TT>Hint Rewrite -&gt; [ </TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> ...</TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT> ] in </TT><I><FONT COLOR=maroon>ident</FONT></I><BR>This is strictly equivalent to the command above (we only precise the
+orientation which is the default one).<BR>
+<BR>
+
+<LI> <TT>Hint Rewrite &lt;- [ </TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> ...</TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT> ] in </TT><I><FONT COLOR=maroon>ident</FONT></I><BR>Adds the rewriting rules <I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> ...</TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB> with a right-to-left
+orientation in the base <I><FONT COLOR=maroon>ident</FONT></I>.<BR>
+<BR>
+
+<LI> <TT>Hint Rewrite [ </TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> ...</TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT> ] in </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> using </TT><I><FONT COLOR=maroon>tactic</FONT></I><BR>When the rewriting rules <I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> ...</TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB> in <I><FONT COLOR=maroon>ident</FONT></I> will
+be used, the tactic <I><FONT COLOR=maroon>tactic</FONT></I> will be applied to the generated subgoals, the
+main subgoal excluded.
+</OL><BR><B>See also: </B><A HREF="node.1.3.4.html#AutoRewrite-example">8.5</A> for examples showing the use of this tactic.<BR><B>See also: </B>file <TT>contrib/Rocq/DEMOS/Demo_AutoRewrite.v</TT><BR>
+<BR>
+<HR>
+
+<A HREF="node.1.2.9.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.11.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

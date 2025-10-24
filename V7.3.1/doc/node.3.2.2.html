@@ -1,0 +1,121 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+13.3&nbsp;Matching objects of dependent types
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.2.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.2.3.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+13.3&nbsp;Matching objects of dependent types
+</H2>
+
+
+
+The previous examples illustrate pattern matching on objects of
+non-dependent types, but we can also 
+use the expansion strategy to destructure objects of dependent type.
+Consider the type <TT>listn</TT> of lists of a certain length:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Inductive&nbsp;listn&nbsp;:&nbsp;nat-</TT><TT>&gt;</TT><TT>&nbsp;Set&nbsp;:=&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;niln&nbsp;:&nbsp;(listn&nbsp;O)&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;|&nbsp;consn&nbsp;:&nbsp;(n:nat)nat-</TT><TT>&gt;</TT><TT>(listn&nbsp;n)&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;(listn&nbsp;(S&nbsp;n)).</TT><BR><TT><I>listn&nbsp;is&nbsp;defined</I></TT><BR><TT><I>listn_rect&nbsp;is&nbsp;defined</I></TT><BR><TT><I>listn_ind&nbsp;is&nbsp;defined</I></TT><BR><TT><I>listn_rec&nbsp;is&nbsp;defined</I></TT><BR></DIV>
+<BR>
+
+ 
+<H3>
+
+13.3.1&nbsp;Understanding dependencies in patterns
+</H3>
+
+We can define the function <TT>length</TT> over <TT>listn</TT> by:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Definition&nbsp;length&nbsp;:=&nbsp;[n:nat][l:(listn&nbsp;n)]&nbsp;n.</TT><BR><TT><I>length&nbsp;is&nbsp;defined</I></TT><BR></DIV>
+<BR>
+Just for illustrating pattern matching, 
+we can define it by case analysis:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Reset&nbsp;length.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Definition&nbsp;length&nbsp;:=&nbsp;[n:nat][l:(listn&nbsp;n)]</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cases&nbsp;l&nbsp;of&nbsp;&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;niln&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;O&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(consn&nbsp;n&nbsp;_&nbsp;_)&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;(S&nbsp;n)&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end.</TT><BR><TT><I>length&nbsp;is&nbsp;defined</I></TT><BR></DIV>
+<BR>
+We can understand the meaning of this definition using the
+same notions of usual pattern matching.<BR>
+<BR>
+
+ 
+<H3>
+
+13.3.2&nbsp;When the elimination predicate must be provided
+</H3>
+
+The examples given so far do not need an explicit elimination predicate
+between <TT>&lt;&gt;</TT> because all the rhs have the same type and the
+strategy succeeds to synthesize it.
+Unfortunately when dealing with dependent patterns it often happens
+that we need to write cases where the type of the rhs are 
+different instances of the elimination predicate.
+The function <TT>concat</TT> for <TT>listn</TT>
+is an example where the branches have different type
+and we need to provide the elimination predicate:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Fixpoint&nbsp;concat&nbsp;[n:nat;&nbsp;l:(listn&nbsp;n)]</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;:&nbsp;&nbsp;(m:nat)&nbsp;(listn&nbsp;m)&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;(listn&nbsp;(plus&nbsp;n&nbsp;m))</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;:=&nbsp;[m:nat][l':(listn&nbsp;m)]&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&lt;</TT><TT>[n:nat](listn&nbsp;(plus&nbsp;n&nbsp;m))</TT><TT>&gt;</TT><TT>Cases&nbsp;l&nbsp;&nbsp;of&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;niln&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;l'</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(consn&nbsp;n'&nbsp;a&nbsp;y)&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;(consn&nbsp;(plus&nbsp;n'&nbsp;m)&nbsp;a&nbsp;(concat&nbsp;n'&nbsp;y&nbsp;m&nbsp;l'))</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end.</TT><BR><TT><I>concat&nbsp;is&nbsp;recursively&nbsp;defined</I></TT><BR></DIV>
+<BR>
+Recall that a list of patterns is also a pattern. So, when
+we destructure several terms at the same time and the branches have
+different type we need to provide
+the elimination predicate for this multiple pattern.<BR>
+<BR>
+For example, an equivalent definition for <TT>concat</TT> (even though the matching on the second term is trivial) would have
+been:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Reset&nbsp;concat.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Fixpoint&nbsp;concat&nbsp;[n:nat;&nbsp;l:(listn&nbsp;n)]</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(m:nat)&nbsp;(listn&nbsp;m)&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;(listn&nbsp;(plus&nbsp;n&nbsp;m))&nbsp;:=</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;[m:nat][l':(listn&nbsp;m)]&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&lt;</TT><TT>[n,_:nat](listn&nbsp;(plus&nbsp;n&nbsp;m))</TT><TT>&gt;</TT><TT>Cases&nbsp;l&nbsp;l'&nbsp;of&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;niln&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;x</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(consn&nbsp;n'&nbsp;a&nbsp;y)&nbsp;x&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;(consn&nbsp;(plus&nbsp;n'&nbsp;m)&nbsp;a&nbsp;(concat&nbsp;n'&nbsp;y&nbsp;m&nbsp;x))</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end.</TT><BR><TT><I>concat&nbsp;is&nbsp;recursively&nbsp;defined</I></TT><BR></DIV>
+<BR>
+Notice that this time, the predicate <TT>[n,_:nat](listn (plus n
+ m))</TT> is binary because we
+destructure both <TT>l</TT> and <TT>l'</TT> whose types have arity one.
+In general, if we destructure the terms <I>e</I><SUB><FONT SIZE=2>1</FONT></SUB>... <I>e</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>
+the predicate will be of arity <I>m</I> where <I>m</I> is the sum of the
+number of dependencies of the type of <I>e</I><SUB><FONT SIZE=2>1</FONT></SUB>, <I>e</I><SUB><FONT SIZE=2>2</FONT></SUB>,... <I>e</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> 
+(the <FONT FACE=symbol>l</FONT>-abstractions
+should correspond from left to right to each dependent argument of the
+type of <I>e</I><SUB><FONT SIZE=2>1</FONT></SUB>... <I>e</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>).
+When the arity of the predicate (i.e. number of abstractions) is not
+correct Coq raises an error message. For example:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Fixpoint&nbsp;concat&nbsp;[n:nat;&nbsp;l:(listn&nbsp;n)]&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(m:nat)&nbsp;(listn&nbsp;m)&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;(listn&nbsp;(plus&nbsp;n&nbsp;m))&nbsp;:=&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;[m:nat][l':(listn&nbsp;m)]&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&lt;</TT><TT>[n:nat](listn&nbsp;(plus&nbsp;n&nbsp;m))</TT><TT>&gt;</TT><TT>Cases&nbsp;l&nbsp;l'&nbsp;of&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;niln&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;x</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(consn&nbsp;n'&nbsp;a&nbsp;y)&nbsp;x&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;(consn&nbsp;(plus&nbsp;n'&nbsp;m)&nbsp;a&nbsp;(concat&nbsp;n'&nbsp;y&nbsp;m&nbsp;x))</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end.</TT><BR><TT><I>Toplevel&nbsp;input,&nbsp;characters&nbsp;119-120</I></TT><BR><TT><I>&gt;</I></TT><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;</I></TT><TT><I>&lt;</I></TT><TT><I>[n:nat](listn&nbsp;(plus&nbsp;n&nbsp;m))</I></TT><TT><I>&gt;</I></TT><TT><I>Cases&nbsp;l&nbsp;l'&nbsp;of&nbsp;</I></TT><BR><TT><I>&gt;</I></TT><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^</I></TT><BR><TT><I>Error:&nbsp;The&nbsp;elimination&nbsp;predicate&nbsp;</I></TT><BR><TT><I>[n:nat](listn&nbsp;(plus&nbsp;n&nbsp;m))</I></TT><BR><TT><I>should&nbsp;be&nbsp;of&nbsp;arity&nbsp;nat-</I></TT><TT><I>&gt;</I></TT><TT><I>nat-</I></TT><TT><I>&gt;</I></TT><TT><I>Type&nbsp;(for&nbsp;non&nbsp;dependent&nbsp;case)&nbsp;or</I></TT><BR><TT><I>(n:nat)(listn&nbsp;n)-</I></TT><TT><I>&gt;</I></TT><TT><I>(n0:nat)(listn&nbsp;n0)-</I></TT><TT><I>&gt;</I></TT><TT><I>Type&nbsp;(for&nbsp;dependent&nbsp;case).</I></TT><BR></DIV>
+<BR>
+
+ <HR>
+
+<A HREF="node.3.2.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.2.3.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

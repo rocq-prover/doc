@@ -1,0 +1,216 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+16.6&nbsp;Examples
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.5.4.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.5.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.5.6.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+16.6&nbsp;Examples
+</H2>
+
+
+<A NAME="prog:examples"></A>
+ 
+<H3>
+
+16.6.1&nbsp;Computation of <I>X</I><SUP><FONT SIZE=2><I>n</I></FONT></SUP>
+</H3>
+As a first example, we prove the correctness of a program computing
+<I>X</I><SUP><FONT SIZE=2><I>n</I></FONT></SUP> using the following equations:
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR VALIGN=middle><TD NOWRAP><FONT FACE=symbol>
+ì<BR>í<BR>î</FONT></TD>
+<TD NOWRAP><TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD ALIGN=left NOWRAP><I>X</I><SUP><FONT SIZE=2>2<I>n</I></FONT></SUP></TD>
+<TD ALIGN=center NOWRAP>=</TD>
+<TD ALIGN=left NOWRAP>(<I>X</I><SUP><FONT SIZE=2><I>n</I></FONT></SUP>)<SUP><FONT SIZE=2>2</FONT></SUP></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><I>X</I><SUP><FONT SIZE=2>2<I>n</I>+1</FONT></SUP></TD>
+<TD ALIGN=center NOWRAP>=</TD>
+<TD ALIGN=left NOWRAP><I>X</I> × (<I>X</I><SUP><FONT SIZE=2><I>n</I></FONT></SUP>)<SUP><FONT SIZE=2>2</FONT></SUP></TD>
+</TR></TABLE></TD>
+<TD NOWRAP>
+</TD>
+</TR></TABLE></DIV>
+If <I>x</I> and <I>n</I> are variables containing the input and <I>y</I> a variable that will
+contain the result (<I>x</I><SUP><FONT SIZE=2><I>n</I></FONT></SUP>), such a program may be the following one:
+<DIV ALIGN=center>
+ 8cm
+ <TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD ALIGN=left NOWRAP><I>m</I> := !<I>x</I> ; <I>y</I> := 1 ;</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><FONT COLOR=purple>while</FONT> !<I>n</I> <FONT FACE=symbol>¹</FONT> 0 <FONT COLOR=purple>do</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>if</FONT> (<I>odd</I> &nbsp; !<I>n</I>) <FONT COLOR=purple>then</FONT> <I>y</I> := !<I>y</I> × !<I>m</I> ;</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><I>m</I> := !<I>m</I> × !<I>m</I> ;</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><I>n</I> := !<I>n</I> / 2</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><FONT COLOR=purple>done</FONT></TD>
+</TR></TABLE>
+ 
+</DIV><BR>
+
+<H5>
+Specification part.
+</H5>
+Here we choose to use the binary integers of <TT>ZArith</TT>.
+The exponentiation <I>X</I><SUP><FONT SIZE=2><I>n</I></FONT></SUP> is defined, for <I>n</I> <FONT FACE=symbol>³</FONT> 0, in the module 
+<TT>Zpower</TT>:
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Require&nbsp;ZArith.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Require&nbsp;Zpower.</TT><BR></DIV>
+<BR>
+In particular, the module <TT>ZArith</TT> loads a module <TT>Zmisc</TT>
+which contains the definitions of the predicate <TT>Zeven</TT> and
+<TT>Zodd</TT>, and the function <TT>Zdiv2</TT>.
+This module <TT>ProgBool</TT> also contains a test function
+<TT>Zeven_odd_bool</TT> of type 
+<FONT FACE=symbol>"</FONT> <I>n</I>. <FONT FACE=symbol>$</FONT> <I>b</I>. <FONT COLOR=purple>if</FONT> &nbsp; <I>b</I> &nbsp;<FONT COLOR=purple>then</FONT> &nbsp; (<I>Zeven</I>&nbsp;<I>n</I>) &nbsp; <FONT COLOR=purple>else</FONT> &nbsp; (<I>Zodd</I>&nbsp;<I>n</I>)
+derived from the proof <TT>Zeven_odd_dec</TT>,
+as explained in section&nbsp;<A HREF="node.3.5.1.html#prog:booleans">16.2.3</A>:<BR>
+<BR>
+
+<H5>
+Correctness part.
+</H5>
+Then we come to the correctness proof. We first import the <FONT COLOR=purple>Coq</FONT>
+module <TT>Correctness</TT>:
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Require&nbsp;Correctness.</TT><BR></DIV>
+<BR>
+Then we introduce all the variables needed by the program:
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Parameter&nbsp;x&nbsp;:&nbsp;Z.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Global&nbsp;Variable&nbsp;n,m,y&nbsp;:&nbsp;Z&nbsp;ref.</TT><BR></DIV>
+<BR>
+At last, we can give the annotated program:
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Correctness&nbsp;i_exp</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;{&nbsp;`n&nbsp;</TT><TT>&gt;</TT><TT>=&nbsp;0`&nbsp;}</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;begin</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m&nbsp;:=&nbsp;x;&nbsp;y&nbsp;:=&nbsp;1;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;!n&nbsp;</TT><TT>&gt;</TT><TT>&nbsp;0&nbsp;do</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;invariant&nbsp;(Zpower&nbsp;x&nbsp;n@0)=(Zmult&nbsp;y&nbsp;(Zpower&nbsp;m&nbsp;n))&nbsp;/\&nbsp;`n&nbsp;</TT><TT>&gt;</TT><TT>=&nbsp;0`</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;variant&nbsp;n&nbsp;}</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(if&nbsp;not&nbsp;(Zeven_odd_bool&nbsp;!n)&nbsp;then&nbsp;y&nbsp;:=&nbsp;(Zmult&nbsp;!y&nbsp;!m))</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;(Zpower&nbsp;x&nbsp;n@0)&nbsp;=&nbsp;(Zmult&nbsp;y&nbsp;(Zpower&nbsp;m&nbsp;(Zdouble&nbsp;(Zdiv2&nbsp;n))))&nbsp;};</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m&nbsp;:=&nbsp;(Zsquare&nbsp;!m);</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n&nbsp;:=&nbsp;(Zdiv2&nbsp;!n)</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;done</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;end</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;y=(Zpower&nbsp;x&nbsp;n@0)&nbsp;}</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;.</TT><BR><TT><I>Toplevel&nbsp;input,&nbsp;characters&nbsp;82-83</I></TT><BR><TT><I>&gt;</I></TT><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;!n&nbsp;</I></TT><TT><I>&gt;</I></TT><TT><I>&nbsp;0&nbsp;do</I></TT><BR><TT><I>&gt;</I></TT><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^</I></TT><BR><TT><I>Anomaly:&nbsp;Search&nbsp;error.&nbsp;Please&nbsp;report.</I></TT><BR></DIV>
+<BR>
+The proof obligations require some lemmas involving <TT>Zpower</TT> and
+<TT>Zdiv2</TT>. You can find the whole proof in the <FONT COLOR=purple>Coq</FONT> standard
+library (see below).
+Let us make some quick remarks about this program and the way it was
+written: 
+<UL>
+<LI>
+  The name <CODE>n@0</CODE> is used to refer to the initial value of
+ the variable <CODE>n</CODE>, as well inside the loop invariant as in
+ the post-condition;<BR>
+<BR>
+ 
+<LI> Purely functional expressions are allowed anywhere in the
+ program and they can use any purely informative <FONT COLOR=purple>Coq</FONT> constants;
+ That is why we can use <TT>Zmult</TT>, <TT>Zsquare</TT> and
+ <TT>Zdiv2</TT> in the programs even if they are not other functions
+ previously introduced as programs.
+</UL>
+ 
+<H3>
+
+16.6.2&nbsp;A recursive program
+</H3>
+To give an example of a recursive program, let us rewrite the previous
+program into a recursive one. We obtain the following program:
+<DIV ALIGN=center>
+ 8cm
+ <TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD ALIGN=left NOWRAP><FONT COLOR=purple>let</FONT> <FONT COLOR=purple>rec</FONT> <I>exp</I> <I>x</I> <I>n</I> =</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>if</FONT> <I>n</I> = 0 <FONT COLOR=purple>then</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP>1</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>else</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>let</FONT> <I>y</I> = (<I>exp</I> &nbsp; <I>x</I> &nbsp; (<I>n</I>/2)) <FONT COLOR=purple>in</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>if</FONT> (<I>even</I> &nbsp; <I>n</I>) <FONT COLOR=purple>then</FONT> <I>y</I>× <I>y</I> 
+ <FONT COLOR=purple>else</FONT> <I>x</I>× (<I>y</I>× <I>y</I>)</TD>
+</TR></TABLE>
+ 
+</DIV><BR>
+This recursive program, once it is annotated, is given to the
+tactic <TT>Correctness</TT>:
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Correctness&nbsp;r_exp</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;let&nbsp;rec&nbsp;exp&nbsp;(x:Z)&nbsp;(n:Z)&nbsp;:&nbsp;Z&nbsp;{&nbsp;variant&nbsp;n&nbsp;}&nbsp;=</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;`n&nbsp;</TT><TT>&gt;</TT><TT>=&nbsp;0`&nbsp;}</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(if&nbsp;n&nbsp;=&nbsp;0&nbsp;then</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;y&nbsp;=&nbsp;(exp&nbsp;x&nbsp;(Zdiv2&nbsp;n))&nbsp;in</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(if&nbsp;(Zeven_odd_bool&nbsp;n)&nbsp;then</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Zmult&nbsp;y&nbsp;y)</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Zmult&nbsp;x&nbsp;(Zmult&nbsp;y&nbsp;y)))&nbsp;{&nbsp;result=(Zpower&nbsp;x&nbsp;n)&nbsp;}</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;result=(Zpower&nbsp;x&nbsp;n)&nbsp;}</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;.</TT><BR><TT><I>Toplevel&nbsp;input,&nbsp;characters&nbsp;99-100</I></TT><BR><TT><I>&gt;</I></TT><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(if&nbsp;n&nbsp;=&nbsp;0&nbsp;then</I></TT><BR><TT><I>&gt;</I></TT><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^</I></TT><BR><TT><I>Anomaly:&nbsp;Search&nbsp;error.&nbsp;Please&nbsp;report.</I></TT><BR></DIV>
+<BR>
+You can notice that the specification is simpler in the recursive case:
+we only have to give the pre- and post-conditions --- which are the same
+as for the imperative version --- but there is no annotation
+corresponding to the loop invariant.
+The other two annotations in the recursive program are added for the
+recursive call and for the test inside the <FONT COLOR=purple>let in</FONT> construct
+(it can not be done automatically in general,
+so the user has to add it by himself).<BR>
+<BR>
+
+ 
+<H3>
+
+16.6.3&nbsp;Other examples
+</H3>
+You will find some other examples with the distribution of the system
+<FONT COLOR=purple>Coq</FONT>, in the sub-directory <CODE>contrib/correctness</CODE> of the
+<FONT COLOR=purple>Coq</FONT> standard library. Those examples are mostly programs to compute
+the factorial and the exponentiation in various ways (on types <TT>nat</TT>
+or <TT>Z</TT>, in imperative way or recursively, with global
+variables or as functions, ...).<BR>
+<BR>
+There are also some bigger correctness developments in the 
+<FONT COLOR=purple>Coq</FONT> contributions, which are available on the web page
+<CODE>coq.inria.fr/contribs</CODE>.
+for the moment, you can find:
+<UL>
+<LI>
+  A proof of <EM>insertion sort</EM> by Nicolas Magaud, ENS Lyon;
+ 
+<LI> Proofs of <EM>quicksort</EM>, <EM>heapsort</EM> and <EM>find</EM> by
+ the author.
+</UL>
+These examples are fully detailed in&nbsp;[<A HREF="#FilliatreMagaud99"><CITE>FilliatreMagaud99</CITE></A><CITE>, </CITE><A HREF="#Filliatre99c"><CITE>Filliatre99c</CITE></A>].<BR>
+<BR>
+
+ <HR>
+
+<A HREF="node.3.5.4.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.5.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.5.6.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

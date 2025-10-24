@@ -1,0 +1,173 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+8.4&nbsp;Inversion
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.1.3.2.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.3.4.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+8.4&nbsp;<TT>Inversion</TT>
+</H2>
+
+
+
+<A NAME="@default558"></A><A NAME="@tactic124"></A>
+<A NAME="Inversion-examples"></A>
+<H3>
+Generalities about inversion
+</H3>
+When working with (co)inductive predicates, we are very often faced to
+some of these situations:
+<UL>
+<LI>
+ we have an inconsistent instance of an inductive predicate in the
+ local context of hypotheses. Thus, the current goal can be trivially
+ proved by absurdity. 
+
+<LI> we have a hypothesis that is an instance of an inductive
+ predicate, and the instance has some variables whose constraints we
+ would like to derive.
+</UL>The inversion tactics are very useful to simplify the work in these
+cases. Inversion tools can be classified in three groups:<BR>
+<BR>
+<OL type=1>
+<LI>
+ tactics for inverting an instance without stocking the inversion
+ lemma in the context; this includes the tactics
+ (<TT>Dependent</TT>) <TT>Inversion</TT> and
+ (<TT>Dependent</TT>) <TT>Inversion_clear</TT>.
+
+<LI> commands for generating and stocking in the context the inversion
+ lemma corresponding to an instance; this includes <TT>Derive</TT>
+ (<TT>Dependent</TT>) <TT>Inversion</TT> and <TT>Derive</TT>
+ (<TT>Dependent</TT>) <TT>Inversion_clear</TT>.
+
+<LI> tactics for inverting an instance using an already defined
+ inversion lemma; this includes the tactic <TT>Inversion ...using</TT>.
+</OL>As inversion proofs may be large in size, we recommend the user to
+stock the lemmas whenever the same instance needs to be inverted
+several times.<BR>
+<BR>
+
+<BR><B>Example 1: </B><I>Non-dependent inversion</I>
+<BR>
+<BR>
+Let's consider the relation <TT>Le</TT> over natural numbers and the
+following variables:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Inductive&nbsp;Le&nbsp;:&nbsp;nat-</TT><TT>&gt;</TT><TT>nat-</TT><TT>&gt;</TT><TT>Set&nbsp;:=</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;LeO&nbsp;:&nbsp;(n:nat)(Le&nbsp;O&nbsp;n)&nbsp;&nbsp;|&nbsp;&nbsp;LeS&nbsp;:&nbsp;(n,m:nat)&nbsp;(Le&nbsp;n&nbsp;m)-</TT><TT>&gt;</TT><TT>&nbsp;(Le&nbsp;(S&nbsp;n)&nbsp;(S&nbsp;m)).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Variable&nbsp;P:nat-</TT><TT>&gt;</TT><TT>nat-</TT><TT>&gt;</TT><TT>Prop.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Variable&nbsp;Q:(n,m:nat)(Le&nbsp;n&nbsp;m)-</TT><TT>&gt;</TT><TT>Prop.</TT><BR></DIV>
+<BR>
+For example, consider the goal:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Show.</TT><BR><TT><I>1&nbsp;subgoal</I></TT><BR><TT><I>&nbsp;&nbsp;</I></TT><BR><TT><I>&nbsp;&nbsp;n&nbsp;:&nbsp;nat</I></TT><BR><TT><I>&nbsp;&nbsp;m&nbsp;:&nbsp;nat</I></TT><BR><TT><I>&nbsp;&nbsp;H&nbsp;:&nbsp;(Le&nbsp;(S&nbsp;n)&nbsp;m)</I></TT><BR><TT><I>&nbsp;&nbsp;============================</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;(P&nbsp;n&nbsp;m)</I></TT><BR></DIV>
+<BR>
+To prove the goal we may need to reason by cases on <TT>H</TT> and to 
+ derive that <TT>m</TT> is necessarily of
+the form (<I>S</I>&nbsp;<I>m</I><SUB><FONT SIZE=2>0</FONT></SUB>) for certain <I>m</I><SUB><FONT SIZE=2>0</FONT></SUB> and that (<I>Le</I>&nbsp;<I>n</I>&nbsp;<I>m</I><SUB><FONT SIZE=2>0</FONT></SUB>). 
+Deriving these conditions corresponds to prove that the
+only possible constructor of <TT>(Le (S n) m)</TT> is
+<TT>LeS</TT> and that we can invert the 
+<TT>-&gt;</TT> in the type of <TT>LeS</TT>. 
+This inversion is possible because <TT>Le</TT> is the smallest set closed by
+the constructors <TT>LeO</TT> and <TT>LeS</TT>.<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Inversion_clear&nbsp;&nbsp;H.</TT><BR><TT><I>1&nbsp;subgoal</I></TT><BR><TT><I>&nbsp;&nbsp;</I></TT><BR><TT><I>&nbsp;&nbsp;n&nbsp;:&nbsp;nat</I></TT><BR><TT><I>&nbsp;&nbsp;m&nbsp;:&nbsp;nat</I></TT><BR><TT><I>&nbsp;&nbsp;m0&nbsp;:&nbsp;nat</I></TT><BR><TT><I>&nbsp;&nbsp;H0&nbsp;:&nbsp;(Le&nbsp;n&nbsp;m0)</I></TT><BR><TT><I>&nbsp;&nbsp;============================</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;(P&nbsp;n&nbsp;(S&nbsp;m0))</I></TT><BR></DIV>
+<BR>
+Note that <TT>m</TT> has been substituted in the goal for <TT>(S m0)</TT>
+and that the hypothesis <TT>(Le n m0)</TT> has been added to the
+context.<BR>
+<BR>
+Sometimes it is
+interesting to have the equality <TT>m=(S m0)</TT> in the
+context to use it after. In that case we can use <TT>Inversion</TT> that
+does not clear the equalities:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Undo.</TT><BR></DIV>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Inversion&nbsp;H.</TT><BR><TT><I>1&nbsp;subgoal</I></TT><BR><TT><I>&nbsp;&nbsp;</I></TT><BR><TT><I>&nbsp;&nbsp;n&nbsp;:&nbsp;nat</I></TT><BR><TT><I>&nbsp;&nbsp;m&nbsp;:&nbsp;nat</I></TT><BR><TT><I>&nbsp;&nbsp;H&nbsp;:&nbsp;(Le&nbsp;(S&nbsp;n)&nbsp;m)</I></TT><BR><TT><I>&nbsp;&nbsp;n0&nbsp;:&nbsp;nat</I></TT><BR><TT><I>&nbsp;&nbsp;m0&nbsp;:&nbsp;nat</I></TT><BR><TT><I>&nbsp;&nbsp;H0&nbsp;:&nbsp;n0=n</I></TT><BR><TT><I>&nbsp;&nbsp;H2&nbsp;:&nbsp;(S&nbsp;m0)=m</I></TT><BR><TT><I>&nbsp;&nbsp;H1&nbsp;:&nbsp;(Le&nbsp;n&nbsp;m0)</I></TT><BR><TT><I>&nbsp;&nbsp;============================</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;(P&nbsp;n&nbsp;(S&nbsp;m0))</I></TT><BR></DIV>
+<BR>
+
+<BR><B>Example 2: </B><I>Dependent Inversion</I>
+<BR>
+<BR>
+Let us consider the following goal:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Show.</TT><BR><TT><I>1&nbsp;subgoal</I></TT><BR><TT><I>&nbsp;&nbsp;</I></TT><BR><TT><I>&nbsp;&nbsp;n&nbsp;:&nbsp;nat</I></TT><BR><TT><I>&nbsp;&nbsp;m&nbsp;:&nbsp;nat</I></TT><BR><TT><I>&nbsp;&nbsp;H&nbsp;:&nbsp;(Le&nbsp;(S&nbsp;n)&nbsp;m)</I></TT><BR><TT><I>&nbsp;&nbsp;============================</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;(Q&nbsp;(S&nbsp;n)&nbsp;m&nbsp;H)</I></TT><BR></DIV>
+<BR>
+As <TT>H</TT> occurs in the goal, we may want to reason by cases on its
+structure and so, we would like inversion tactics to
+substitute <TT>H</TT> by the corresponding term in constructor form. 
+Neither <TT>Inversion</TT> nor <TT>Inversion_clear</TT> make such a
+substitution. 
+To have such a behavior we use the dependent inversion tactics:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Dependent&nbsp;Inversion_clear&nbsp;H.</TT><BR><TT><I>1&nbsp;subgoal</I></TT><BR><TT><I>&nbsp;&nbsp;</I></TT><BR><TT><I>&nbsp;&nbsp;n&nbsp;:&nbsp;nat</I></TT><BR><TT><I>&nbsp;&nbsp;m&nbsp;:&nbsp;nat</I></TT><BR><TT><I>&nbsp;&nbsp;m0&nbsp;:&nbsp;nat</I></TT><BR><TT><I>&nbsp;&nbsp;l&nbsp;:&nbsp;(Le&nbsp;n&nbsp;m0)</I></TT><BR><TT><I>&nbsp;&nbsp;============================</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;(Q&nbsp;(S&nbsp;n)&nbsp;(S&nbsp;m0)&nbsp;(LeS&nbsp;n&nbsp;m0&nbsp;l))</I></TT><BR></DIV>
+<BR>
+Note that <TT>H</TT> has been substituted by <TT>(LeS n m0 l)</TT> and
+<TT>m</TT> by <TT>(S m0)</TT>.<BR>
+<BR>
+
+<BR><B>Example 3: </B><I>using already defined inversion lemmas</I>
+<BR>
+<BR>
+For example, to generate the inversion lemma for the instance
+<TT>(Le (S n) m)</TT> and the sort <TT>Prop</TT> we do:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Derive&nbsp;Inversion_clear&nbsp;leminv&nbsp;with&nbsp;(n,m:nat)(Le&nbsp;(S&nbsp;n)&nbsp;m)&nbsp;Sort&nbsp;Prop.</TT><BR></DIV>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Check&nbsp;leminv.</TT><BR><TT><I>leminv</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(n,m:nat;&nbsp;P:(nat-</I></TT><TT><I>&gt;</I></TT><TT><I>nat-</I></TT><TT><I>&gt;</I></TT><TT><I>Prop))</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((m0:nat)(Le&nbsp;n&nbsp;m0)-</I></TT><TT><I>&gt;</I></TT><TT><I>(P&nbsp;n&nbsp;(S&nbsp;m0)))-</I></TT><TT><I>&gt;</I></TT><TT><I>(Le&nbsp;(S&nbsp;n)&nbsp;m)-</I></TT><TT><I>&gt;</I></TT><TT><I>(P&nbsp;n&nbsp;m)</I></TT><BR></DIV>
+<BR>
+Then we can use the proven inversion lemma:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Show.</TT><BR><TT><I>1&nbsp;subgoal</I></TT><BR><TT><I>&nbsp;&nbsp;</I></TT><BR><TT><I>&nbsp;&nbsp;n&nbsp;:&nbsp;nat</I></TT><BR><TT><I>&nbsp;&nbsp;m&nbsp;:&nbsp;nat</I></TT><BR><TT><I>&nbsp;&nbsp;H&nbsp;:&nbsp;(Le&nbsp;(S&nbsp;n)&nbsp;m)</I></TT><BR><TT><I>&nbsp;&nbsp;============================</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;(P&nbsp;n&nbsp;m)</I></TT><BR></DIV>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Inversion&nbsp;H&nbsp;using&nbsp;leminv.</TT><BR><TT><I>1&nbsp;subgoal</I></TT><BR><TT><I>&nbsp;&nbsp;</I></TT><BR><TT><I>&nbsp;&nbsp;n&nbsp;:&nbsp;nat</I></TT><BR><TT><I>&nbsp;&nbsp;m&nbsp;:&nbsp;nat</I></TT><BR><TT><I>&nbsp;&nbsp;H&nbsp;:&nbsp;(Le&nbsp;(S&nbsp;n)&nbsp;m)</I></TT><BR><TT><I>&nbsp;&nbsp;============================</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;(m0:nat)(Le&nbsp;n&nbsp;m0)-</I></TT><TT><I>&gt;</I></TT><TT><I>(P&nbsp;n&nbsp;(S&nbsp;m0))</I></TT><BR></DIV>
+<BR>
+<HR>
+
+<A HREF="node.1.3.2.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.3.4.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

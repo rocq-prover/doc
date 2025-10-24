@@ -1,0 +1,72 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+14.9&nbsp;Classes as Records
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.3.7.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.3.9.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+14.9&nbsp;Classes as Records
+</H2>
+
+
+
+<A NAME="Coercions-and-records"></A>
+<A NAME="@default620"></A>
+We allow the definition of <EM>Structures with Inheritance</EM> (or
+classes as records) by extending the existing <TT>Record</TT> macro
+(see section&nbsp;<A HREF="node.0.1.0.html#Record">2.1</A>). Its new syntax is:<BR>
+<BR>
+<DIV ALIGN=center>
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD ALIGN=left NOWRAP><TT>Record </TT><TT><I><FONT COLOR=maroon>[</FONT></I></TT><TT>&gt;</TT><TT><I><FONT COLOR=maroon>]</FONT></I></TT><TT>&nbsp;</TT><I><FONT COLOR=maroon>ident</FONT></I><TT> [ </TT><I><FONT COLOR=maroon>params</FONT></I><TT> ] : </TT><I><FONT COLOR=maroon>sort</FONT></I><TT> := </TT><TT><I><FONT COLOR=maroon>[</FONT></I></TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>0</FONT></TT></SUB><TT><I><FONT COLOR=maroon>]</FONT></I></TT><TT> </TT><CODE><TT>{</TT></CODE></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;&nbsp;&nbsp;&nbsp;<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> </TT><TT>[</TT><TT>:</TT><TT>|</TT><TT>:&gt;</TT><TT>]</TT><TT> </TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> ;</TT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>...</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT> </TT><TT>[</TT><TT>:</TT><TT>|</TT><TT>:&gt;</TT><TT>]</TT><TT> </TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT> </TT><CODE><TT>}</TT></CODE><TT>. </TT></TD>
+</TR></TABLE></TD>
+</TR></TABLE>
+</DIV>
+The identifier <I><FONT COLOR=maroon>ident</FONT></I> is the name of the defined record and <I><FONT COLOR=maroon>sort</FONT></I>
+is its type. The identifier <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>0</FONT></SUB> is the name of its
+constructor. The identifiers <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>, .., <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> are the
+names of its fields and <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>, .., <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> their respective
+types. The alternative <TT>[</TT><TT>:</TT><TT>|</TT><TT>:&gt;</TT><TT>]</TT> is ``<TT>:</TT>'' or ``<TT>:&gt;</TT>''. If <I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2><I>i</I></FONT></TT></SUB><TT>:&gt;</TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2><I>i</I></FONT></TT></SUB>, then <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>i</I></FONT></SUB> is
+automatically declared as coercion from <I><FONT COLOR=maroon>ident</FONT></I> to the class of
+<I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2><I>i</I></FONT></SUB>. Remark that <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>i</I></FONT></SUB> always verifies the uniform
+inheritance condition. If the optional ``<TT>&gt;</TT>'' before <I><FONT COLOR=maroon>ident</FONT></I> is
+present, then <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>0</FONT></SUB> (or the default name <TT>Build_</TT><I><FONT COLOR=maroon>ident</FONT></I>
+if <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>0</FONT></SUB> is omitted) is automatically declared as a coercion
+from the class of <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> to <I><FONT COLOR=maroon>ident</FONT></I> (this may fail if the
+uniform inheritance condition is not satisfied).<BR><B>Remark: </B>The keyword <TT>Structure</TT><A NAME="@default621"></A><A NAME="@command170"></A> is a synonym of <TT>Record</TT>.<BR>
+<BR>
+
+ <HR>
+
+<A HREF="node.3.3.7.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.3.9.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

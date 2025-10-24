@@ -1,0 +1,711 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+9.2&nbsp;Extendable grammars
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.2.0.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.2.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.2.0.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+9.2&nbsp;Extendable grammars
+</H2>
+
+
+
+<A NAME="Grammar"></A>
+<A NAME="@default566"></A>
+<A NAME="@default567"></A><A NAME="@command155"></A>Grammar rules can be added with the <TT>Grammar</TT> command. This
+command is just an interface towards <FONT COLOR=purple>Camlp4</FONT>, providing the
+semantic actions so that they build the expected AST. A simple grammar
+command has the following syntax: <A NAME="@default568"></A><BR>
+<BR>
+<DIV ALIGN=center>
+<TT>Grammar</TT>&nbsp;<I><FONT COLOR=maroon>entry</FONT></I>&nbsp;<I><FONT COLOR=maroon>nonterminal</FONT></I>&nbsp;<TT>:=</TT>&nbsp;<I><FONT COLOR=maroon>rule-name</FONT></I>&nbsp;<I><FONT COLOR=maroon>LMP</FONT></I>&nbsp;<CODE>-&gt;</CODE>&nbsp;<I><FONT COLOR=maroon>action</FONT></I>&nbsp;<TT>.</TT>
+</DIV><BR>
+The components have the following meaning:
+<UL>
+<LI>
+ a grammar name: defined by a parser entry and a non-terminal.
+ Non-terminals are packed in an <EM>entry</EM> (also called
+ universe). One can have two non-terminals of the same name if they
+ are in different entries. A non-terminal can have the same name as
+ its entry.
+
+<LI> a rule (sometimes called production), formed by a name, a left
+ member of production and an action, which generalizes constructive
+ expressions.
+</UL><BLOCKQUOTE><DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV>
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=1>
+<TR><TD ALIGN=right NOWRAP><I><FONT COLOR=maroon>grammar</FONT></I></TD>
+<TD ALIGN=center NOWRAP>::=</TD>
+<TD ALIGN=left NOWRAP><CODE>Grammar</CODE>&nbsp;<I><FONT COLOR=maroon>entry</FONT></I>&nbsp;<I><FONT COLOR=maroon>gram-entry</FONT></I> <TT>with</TT> ... <TT>with</TT> <I><FONT COLOR=maroon>gram-entry</FONT></I></TD>
+</TR>
+<TR><TD ALIGN=right NOWRAP><I><FONT COLOR=maroon>entry</FONT></I></TD>
+<TD ALIGN=center NOWRAP>::=</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>ident</FONT></I></TD>
+</TR>
+<TR><TD ALIGN=right NOWRAP><I><FONT COLOR=maroon>gram-entry</FONT></I></TD>
+<TD ALIGN=center NOWRAP>::=</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>rule-name</FONT></I>&nbsp;<I><FONT COLOR=maroon>[</FONT></I><TT>:</TT>&nbsp;<I><FONT COLOR=maroon>entry-type</FONT></I><I><FONT COLOR=maroon>]</FONT></I>&nbsp;<CODE>:=</CODE>&nbsp;<I><FONT COLOR=maroon>[</FONT></I><I><FONT COLOR=maroon>production</FONT></I> <TT>|</TT> ... <TT>|</TT> <I><FONT COLOR=maroon>production</FONT></I><I><FONT COLOR=maroon>]</FONT></I></TD>
+</TR>
+<TR><TD ALIGN=right NOWRAP><I><FONT COLOR=maroon>entry-type</FONT></I></TD>
+<TD ALIGN=center NOWRAP>::=</TD>
+<TD ALIGN=left NOWRAP><CODE>ast</CODE>&nbsp;|&nbsp;<CODE>ast list</CODE>&nbsp;|&nbsp;<CODE>constr</CODE>
+ &nbsp;|&nbsp;<CODE>tactic</CODE>&nbsp;|&nbsp;<CODE>vernac</CODE></TD>
+</TR>
+<TR><TD ALIGN=right NOWRAP><I><FONT COLOR=maroon>production</FONT></I></TD>
+<TD ALIGN=center NOWRAP>::=</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>rule-name</FONT></I>&nbsp;<CODE>[</CODE>&nbsp;<I><FONT COLOR=maroon>[</FONT></I><I><FONT COLOR=maroon>prod-item</FONT></I>  ...  <I><FONT COLOR=maroon>prod-item</FONT></I><I><FONT COLOR=maroon>]</FONT></I>&nbsp;<CODE>] -&gt;</CODE>
+ &nbsp;<I><FONT COLOR=maroon>action</FONT></I></TD>
+</TR>
+<TR><TD ALIGN=right NOWRAP><I><FONT COLOR=maroon>rule-name</FONT></I></TD>
+<TD ALIGN=center NOWRAP>::=</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>ident</FONT></I></TD>
+</TR>
+<TR><TD ALIGN=right NOWRAP><I><FONT COLOR=maroon>prod-item</FONT></I></TD>
+<TD ALIGN=center NOWRAP>::=</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>string</FONT></I></TD>
+</TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>[</FONT></I><I><FONT COLOR=maroon>entry</FONT></I>&nbsp;<TT>:</TT><I><FONT COLOR=maroon>]</FONT></I>&nbsp;<I><FONT COLOR=maroon>entry-name</FONT></I>&nbsp;<I><FONT COLOR=maroon>[</FONT></I><TT>(</TT>&nbsp;<I><FONT COLOR=maroon>meta</FONT></I>&nbsp;<TT>)</TT><I><FONT COLOR=maroon>]</FONT></I></TD>
+</TR>
+<TR><TD ALIGN=right NOWRAP><I><FONT COLOR=maroon>action</FONT></I></TD>
+<TD ALIGN=center NOWRAP>::=</TD>
+<TD ALIGN=left NOWRAP><CODE>[</CODE>&nbsp;<I><FONT COLOR=maroon>[</FONT></I><I><FONT COLOR=maroon>ast-quote</FONT></I>  ...  <I><FONT COLOR=maroon>ast-quote</FONT></I><I><FONT COLOR=maroon>]</FONT></I>&nbsp;<CODE>]</CODE></TD>
+</TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><CODE>let</CODE>&nbsp;<I><FONT COLOR=maroon>pattern</FONT></I>&nbsp;<CODE>=</CODE>&nbsp;<I><FONT COLOR=maroon>action</FONT></I>&nbsp;<CODE>in</CODE>&nbsp;<I><FONT COLOR=maroon>action</FONT></I></TD>
+</TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><TT>case</TT>&nbsp;<I><FONT COLOR=maroon>action</FONT></I>&nbsp;<I><FONT COLOR=maroon>[</FONT></I><TT>:</TT>&nbsp;<I><FONT COLOR=maroon>entry-type</FONT></I><I><FONT COLOR=maroon>]</FONT></I>&nbsp;<TT>of</TT>&nbsp;<I><FONT COLOR=maroon>[</FONT></I><I><FONT COLOR=maroon>case</FONT></I> <TT>|</TT> ... <TT>|</TT> <I><FONT COLOR=maroon>case</FONT></I><I><FONT COLOR=maroon>]</FONT></I>&nbsp;<TT>esac</TT></TD>
+</TR>
+<TR><TD ALIGN=right NOWRAP><I><FONT COLOR=maroon>case</FONT></I></TD>
+<TD ALIGN=center NOWRAP>::=</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>[</FONT></I><I><FONT COLOR=maroon>pattern</FONT></I>  ...  <I><FONT COLOR=maroon>pattern</FONT></I><I><FONT COLOR=maroon>]</FONT></I>&nbsp;<CODE>-&gt;</CODE>&nbsp;<I><FONT COLOR=maroon>action</FONT></I></TD>
+</TR>
+<TR><TD ALIGN=right NOWRAP><I><FONT COLOR=maroon>pattern</FONT></I></TD>
+<TD ALIGN=center NOWRAP>::=</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>ast</FONT></I></TD>
+</TR></TABLE>
+</DIV>
+<BR>
+<DIV ALIGN=center>Figure 9.2: Syntax of the grammar extension command</DIV><BR>
+<A NAME="grammarsyntax"></A>
+<DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV></BLOCKQUOTE>
+The exact syntax of the <TT>Grammar</TT> command is defined
+in Fig.&nbsp;<A HREF="node.2.0.1.html#grammarsyntax">9.2</A> where non terminal <I><FONT COLOR=maroon>ast-quote</FONT></I> is one
+of <TT>ast</TT>, <TT>constr</TT>, <TT>tactic</TT> or <TT>vernac</TT>, depending on
+the entry type.<BR>
+<BR>
+It is possible to extend a grammar with several rules at once.
+<DIV ALIGN=center><TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD ALIGN=right NOWRAP><CODE>Grammar</CODE>&nbsp;&nbsp;<I>entry</I>&nbsp;&nbsp;<I>nonterminal</I></TD>
+<TD ALIGN=center NOWRAP><CODE>:=</CODE></TD>
+<TD ALIGN=center NOWRAP><I>production</I><SUB><FONT SIZE=2>1</FONT></SUB></TD>
+</TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP><CODE>|</CODE></TD>
+<TD ALIGN=center NOWRAP>·<BR>·<BR>·</TD>
+</TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP><CODE>|</CODE></TD>
+<TD ALIGN=center NOWRAP><I>production</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> <CODE>.</CODE></TD>
+</TR></TABLE></DIV>
+Productions are entered in reverse order (i.e. <I>production</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> before
+<I>production</I><SUB><FONT SIZE=2>1</FONT></SUB>), so that the first rules have priority over the last
+ones. The set of rules can be read as an usual pattern matching.<BR>
+<BR>
+Also, we can extend several grammars of a given universe at
+the same time. The order of non-terminals does not matter since they
+extend different grammars.
+<DIV ALIGN=center><TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD ALIGN=right NOWRAP><CODE>Grammar</CODE></TD>
+<TD ALIGN=center NOWRAP><I>entry</I></TD>
+<TD ALIGN=center NOWRAP><I>nonterminal</I><SUB><FONT SIZE=2>1</FONT></SUB></TD>
+<TD ALIGN=center NOWRAP><CODE>:=</CODE></TD>
+<TD ALIGN=center NOWRAP><I>production</I><SUB><FONT SIZE=2>1</FONT></SUB><SUP><FONT SIZE=2>1</FONT></SUP></TD>
+</TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP><CODE>|</CODE></TD>
+<TD ALIGN=center NOWRAP>·<BR>·<BR>·</TD>
+</TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP><CODE>|</CODE></TD>
+<TD ALIGN=center NOWRAP><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR VALIGN=middle><TD NOWRAP><I>production</I></TD>
+<TD NOWRAP><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP><FONT SIZE=2>1</FONT></TD>
+</TR>
+<TR><TD>&nbsp;</TD>
+</TR>
+<TR><TD NOWRAP><FONT SIZE=2><I>n</I></FONT><SUB><FONT SIZE=2>1</FONT></SUB></TD>
+</TR></TABLE></TD>
+</TR></TABLE></TD>
+</TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP><CODE>with</CODE></TD>
+<TD ALIGN=center NOWRAP>·<BR>·<BR>·</TD>
+<TD ALIGN=center NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP><CODE>with</CODE></TD>
+<TD ALIGN=center NOWRAP><I>nonterminal</I><SUB><FONT SIZE=2><I>p</I></FONT></SUB></TD>
+<TD ALIGN=center NOWRAP><CODE>:=</CODE></TD>
+<TD ALIGN=center NOWRAP><I>production</I><SUB><FONT SIZE=2>1</FONT></SUB><SUP><FONT SIZE=2><I>p</I></FONT></SUP></TD>
+</TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP><CODE>|</CODE></TD>
+<TD ALIGN=center NOWRAP>·<BR>·<BR>·</TD>
+</TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP><CODE>|</CODE></TD>
+<TD ALIGN=center NOWRAP><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR VALIGN=middle><TD NOWRAP><I>production</I></TD>
+<TD NOWRAP><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP><FONT SIZE=2><I>p</I></FONT></TD>
+</TR>
+<TR><TD>&nbsp;</TD>
+</TR>
+<TR><TD NOWRAP><FONT SIZE=2><I>n</I></FONT><SUB><FONT SIZE=2><I>p</I></FONT></SUB></TD>
+</TR></TABLE></TD>
+<TD NOWRAP> <CODE>.</CODE></TD>
+</TR></TABLE></TD>
+</TR></TABLE></DIV><BR>
+
+<H3>
+
+9.2.1&nbsp;Grammar entries
+</H3>
+
+<A NAME="@default569"></A>
+<A NAME="predefined-grammars"></A>Let us describe the four predefined entries. Each of them (except <TT>prim</TT>) possesses an initial grammar for starting the parsing process.<BR>
+<BR>
+<UL>
+<LI>
+ <CODE>prim</CODE> : it is the entry of the primitive grammars. Most of
+ them cannot be defined by the extendable grammar mechanism. They are
+ encoded inside the system. The entry contains the following
+ non-terminals:<BR>
+<BR>
+<UL>
+<LI>
+ <CODE>var</CODE> : variable grammar. Parses an identifier and builds
+an AST which is a variable.
+
+<LI> <CODE>ident</CODE> : identifier grammar. Parses an identifier and
+builds an AST which is an identifier such as <CODE>{x}</CODE>.
+
+<LI> <CODE>number</CODE> : number grammar. Parses a positive integer.
+
+<LI> <CODE>string</CODE> : string grammar. Parses a quoted string.
+
+<LI> <CODE>path</CODE> : section path grammar.
+
+<LI> <CODE>ast</CODE> : AST grammar.
+
+<LI> <CODE>astpat</CODE> : AST pattern grammar.
+
+<LI> <CODE>astact</CODE> : action grammar.
+</UL><BR>
+The primitive grammars are used as the other grammars; for instance
+the variables of terms are parsed by <CODE>prim:var($id)</CODE>.<BR>
+<BR>
+
+<LI> <CODE>constr</CODE> : it is the term entry. It allows to have a pretty
+syntax for terms. Its initial grammar is <TT>constr:constr</TT>. This
+entry contains several non-terminals, among them <TT>constr0</TT> to
+<TT>constr10</TT> which stratify the terms according to priority levels
+(<CODE>0</CODE> to <CODE>10</CODE>). These priority levels allow us also to
+specify the order of associativity of operators.<BR>
+<BR>
+
+<LI> <CODE>vernac</CODE> : it is the vernacular command entry, with <TT>vernac vernac</TT> as initial grammar. Thanks to it, the developers can
+ define the syntax of new commands they add to the system. As to
+ users, they can change the syntax of the predefined vernacular
+ commands.<BR>
+<BR>
+
+<LI> <CODE>tactic</CODE> : it is the tactic entry with <TT>tactics:tactic</TT>
+ as initial grammar. This entry allows to define the syntax of new
+ tactics or redefine the syntax of existing tactics.
+</UL>The user can define new entries and new non-terminals, using the
+grammar extension command. A grammar does not have to be explicitly
+defined. But the grammars in the left member of rules must all be
+defined, possibly by the current grammar command. It may be convenient
+to define an empty grammar, just so that it may be called by other
+grammars, and extend this empty grammar later. Assume that the <TT>constr:constr13</TT> does not exist. The next command defines it with
+zero productions.<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Grammar&nbsp;constr&nbsp;constr13&nbsp;:=&nbsp;.</TT><BR></DIV>
+<BR>
+The grammars of new entries do not have an initial grammar. To use
+them, they must be called (directly or indirectly) by grammars of
+predefined entries. We give an example of a (direct) call of the
+grammar <TT>newentry:nonterm</TT> by <TT>constr:constr</TT>. This following
+rule allows to use the syntax <CODE>a&amp;b</CODE> for the conjunction
+<CODE>a/\b</CODE>. Note that since we extend a rule of universe
+<CODE>constr</CODE>, the command quotation is used on the right-hand side of
+the second rule.<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Grammar&nbsp;newentry&nbsp;nonterm&nbsp;:=&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;ampersand&nbsp;[&nbsp;"&amp;"&nbsp;constr:constr($c)&nbsp;]&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;[$c].</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Grammar&nbsp;constr&nbsp;constr&nbsp;:=&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;new_and&nbsp;[&nbsp;constr8($a)&nbsp;newentry:nonterm($b)&nbsp;]&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;[$a/\$b].</TT><BR></DIV>
+<BR>
+
+<H3>
+
+9.2.2&nbsp;Left member of productions (LMP)
+</H3>
+A LMP is composed of a combination of terminals (enclosed between
+double quotes) and grammar calls specifying the entry. It is enclosed
+between ``<CODE>[</CODE>'' and ``<CODE>]</CODE>''. The empty LMP, represented by
+<CODE>[ ]</CODE>, corresponds to <FONT FACE=symbol>e</FONT> in formal language theory.<BR>
+<BR>
+A grammar call is done by <CODE>entry:nonterminal($id)</CODE> where:
+<UL>
+<LI>
+ <CODE>entry</CODE> and <CODE>nonterminal</CODE> 
+ specifies the entry of the grammar, and the non-terminal.
+
+<LI> <CODE>$id</CODE> is a metavariable that will receive the AST or AST
+ list resulting from the call to the grammar.
+</UL>The elements <CODE>entry</CODE> and <CODE>$id</CODE> are optional. The grammar
+entry can be omitted if it is the same as the entry of the
+non-terminal we are extending. Also, <CODE>$id</CODE> is omitted if we do
+not want to get back the AST result. Thus a grammar call can be
+reduced to a non-terminal.<BR>
+<BR>
+Each terminal must contain exactly one token. This token does not need
+to be already defined. If not, it will be automatically
+added. Nevertheless, any string cannot be a token (e.g. blanks should
+not appear in tokens since parsing would then depend on
+indentation). We introduce the notion of <EM>valid token</EM>, as a
+sequence, without blanks, of characters taken from the following list:
+<DIV ALIGN=center>
+<CODE>&lt; &gt; / \ - + = ; , | ! @ # % ^ &amp; * ( ) ? : ~ $ _ ` ' a..z A..Z 0..9</CODE>
+</DIV>
+that do not start with a character from
+<DIV ALIGN=center>
+<CODE>$ _ a..z A..Z ' 0..9</CODE>
+</DIV><BR>
+When an LMP is used in the parsing process of an expression, it is
+analyzed from left to right. Every token met in the LMP should
+correspond to the current token of the expression. As for the grammars
+calls, they are performed in order to recognize parts of the initial
+expression.<BR><B>Warning: </B>Unlike destructive expressions, if a variable appears several times in
+the LMP, the last binding hides the previous ones. Comparison can be
+performed only in the actions.<BR>
+<BR>
+
+<BR><B>Example 1: </B><I>Defining a syntax for inequality</I>
+<BR>
+<BR>
+The rule below allows us to use the syntax <CODE>t1#t2</CODE> for the term
+<CODE>~t1=t2</CODE>. <BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Grammar&nbsp;constr&nbsp;constr1&nbsp;:=&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;not_eq&nbsp;[&nbsp;constr0($a)&nbsp;"#"&nbsp;constr0($b)&nbsp;]&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;[&nbsp;~$a=$b&nbsp;].</TT><BR></DIV>
+<BR>
+The level 1 of the grammar of terms is extended with one rule named
+<TT>not_eq</TT>. When this rule is selected, its LMP calls the
+grammar <CODE>constr:constr0</CODE>. This grammar recognizes a term that it
+binds to the metavariable <CODE>$a</CODE>. Then it meets the token
+``<CODE>#</CODE>'' and finally it calls the grammar
+<CODE>constr:constr0</CODE>. This grammar returns the recognized term in
+<CODE>$b</CODE>. The action constructs the term <CODE>~$a=$b</CODE>.<BR>
+<BR>
+For instance, let us give the statement of the symmetry of <CODE>#</CODE>:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Goal&nbsp;(A:Set)(a,b:A)&nbsp;a#b&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;b#a.</TT><BR><TT><I>1&nbsp;subgoal</I></TT><BR><TT><I>&nbsp;&nbsp;</I></TT><BR><TT><I>&nbsp;&nbsp;============================</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;(A:Set;&nbsp;a,b:A)~a=b-</I></TT><TT><I>&gt;</I></TT><TT><I>~b=a</I></TT><BR></DIV>
+<BR>
+This shows that the system understood the grammar
+extension. Nonetheless, since no special printing command was given,
+the goal is displayed using the usual syntax for negation and
+equality. One can force <CODE>~a=b</CODE> to be printed <CODE>a#b</CODE> by giving
+pretty-printing rules. This is explained in section&nbsp;<A HREF="node.2.0.2.html#Syntax">9.3</A>.<BR><B>Warning: </B>Metavariables are identifiers preceded by the ``<CODE>$</CODE>'' symbol.
+They cannot be replaced by identifiers. For instance, if we enter a
+rule with identifiers and not metavariables, the identifiers are
+assumed to be global names (what raises a warning if no global name is
+denoted by these identifiers).<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Grammar&nbsp;constr&nbsp;constr1&nbsp;:=&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;not_eq&nbsp;[&nbsp;constr0($a)&nbsp;"#"&nbsp;constr0($b)&nbsp;]&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;[~(a=b)].</TT><BR><TT><I>&lt;</I></TT><TT><I>W</I></TT><TT><I>&gt;</I></TT><TT><I>&nbsp;Grammar&nbsp;extension:&nbsp;some&nbsp;rule&nbsp;has&nbsp;been&nbsp;masked</I></TT><BR><TT><I>Warning:&nbsp;Could&nbsp;not&nbsp;globalize&nbsp;a</I></TT><BR><TT><I>Warning:&nbsp;Could&nbsp;not&nbsp;globalize&nbsp;b</I></TT><BR></DIV>
+<BR>
+
+<BR><B>Example 2: </B><I>Redefining vernac commands</I>
+<BR>
+<BR>
+Thanks to the following rule, ``<TT>|- term.</TT>'' will have the same
+effect as ``<TT>Goal term.</TT>''.<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Grammar&nbsp;vernac&nbsp;vernac&nbsp;:=&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;thesis&nbsp;[&nbsp;"|"&nbsp;"-"&nbsp;constr:constr($term)&nbsp;"."&nbsp;]</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;[Goal&nbsp;$term.].</TT><BR></DIV>
+<BR>
+This rule allows putting blanks between the bar and the
+dash, as in<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;|&nbsp;-&nbsp;(A:Prop)A-</TT><TT>&gt;</TT><TT>A.</TT><BR><TT><I>1&nbsp;subgoal</I></TT><BR><TT><I>&nbsp;&nbsp;</I></TT><BR><TT><I>&nbsp;&nbsp;============================</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;(A:Prop)A-</I></TT><TT><I>&gt;</I></TT><TT><I>A</I></TT><BR></DIV>
+<BR>
+Assuming the previous rule has not been entered, we can
+forbid blanks with a rule that declares ``<CODE>|-</CODE>'' as a single
+token:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Grammar&nbsp;vernac&nbsp;vernac&nbsp;:=&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;thesis&nbsp;[&nbsp;"|-"&nbsp;constr:constr($term)&nbsp;"."&nbsp;]</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;[Goal&nbsp;$term.].</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;|&nbsp;-&nbsp;(A:Prop)A-</TT><TT>&gt;</TT><TT>A.</TT><BR><TT><I>Toplevel&nbsp;input,&nbsp;characters&nbsp;0-1</I></TT><BR><TT><I>&gt;</I></TT><TT><I>&nbsp;|&nbsp;-&nbsp;(A:Prop)A-</I></TT><TT><I>&gt;</I></TT><TT><I>A.</I></TT><BR><TT><I>&gt;</I></TT><TT><I>&nbsp;^</I></TT><BR><TT><I>Syntax&nbsp;error:&nbsp;illegal&nbsp;begin&nbsp;of&nbsp;vernac</I></TT><BR></DIV>
+<BR>
+If both rules were entered, we would have three tokens
+<CODE>|</CODE>, <CODE>-</CODE> and <CODE>|-</CODE>. The lexical ambiguity on the string
+<CODE>|-</CODE> is solved according to the longest match rule (see lexical
+conventions page&nbsp;<A HREF="node.0.0.0.html#lexical">??</A>), i.e. <CODE>|-</CODE> would be one
+single token. To enforce the use of the first rule, a blank must be
+inserted between the bar and the dash<A NAME="text21" HREF="#note21"><SUP><FONT SIZE=2>2</FONT></SUP></A>.<BR><B>Remark: </B>The vernac commands should always be terminated by a period. When a
+syntax error is detected, the top-level discards its input until it
+reaches a period token, and then resumes parsing.<BR>
+<BR>
+
+<BR><B>Example 3: </B><I>Redefining tactics</I>
+<BR>
+<BR>
+We can give names to repetitive tactic sequences. Thus in this example
+``<TT>IntSp</TT>'' will correspond to the tactic <TT>Intros</TT> followed by
+<TT>Split</TT>.<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Grammar&nbsp;tactic&nbsp;simple_tactic&nbsp;:=</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;intros_split&nbsp;[&nbsp;"IntSp"&nbsp;]&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;[Intros;&nbsp;Split].</TT><BR></DIV>
+<BR>
+Let us check that this works.<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Goal&nbsp;(A,B:Prop)A/\B&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;B/\A.</TT><BR><TT><I>1&nbsp;subgoal</I></TT><BR><TT><I>&nbsp;&nbsp;</I></TT><BR><TT><I>&nbsp;&nbsp;============================</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;(A,B:Prop)A/\B-</I></TT><TT><I>&gt;</I></TT><TT><I>B/\A</I></TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;IntSp.</TT><BR><TT><I>2&nbsp;subgoals</I></TT><BR><TT><I>&nbsp;&nbsp;</I></TT><BR><TT><I>&nbsp;&nbsp;A&nbsp;:&nbsp;Prop</I></TT><BR><TT><I>&nbsp;&nbsp;B&nbsp;:&nbsp;Prop</I></TT><BR><TT><I>&nbsp;&nbsp;H&nbsp;:&nbsp;A/\B</I></TT><BR><TT><I>&nbsp;&nbsp;============================</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;B</I></TT><BR><TT><I>subgoal&nbsp;2&nbsp;is:</I></TT><BR><TT><I>&nbsp;A</I></TT><BR></DIV>
+<BR>
+Note that the same result can be obtained in a simpler way with <TT>Tactic Definition</TT> (see chapter&nbsp;<A HREF="node.2.1.html#TacticLanguage">10</A>).<BR>
+<BR>
+
+<BR><B>Example 4: </B><I>Priority, left and right associativity of operators</I>
+<BR>
+<BR>
+The disjunction has a higher priority than conjunction. Thus
+<CODE>A/\B\/C</CODE> will be parsed as <CODE>(A/\B)\/C</CODE> and not as
+<CODE>A/\(B\/C)</CODE>. The priority is done by putting the rule for the
+disjunction in a higher level than that of conjunction: conjunction is
+defined in the non-terminal <TT>constr6</TT> and disjunction in <TT>constr7</TT> (see file <TT>Logic.v</TT> in the library). Notice that
+the character ``<CODE>\</CODE>'' must be doubled (see lexical conventions
+for quoted strings on page&nbsp;<A HREF="node.0.0.0.html#lexical">??</A>).<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Grammar&nbsp;constr&nbsp;constr6&nbsp;:=&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;and&nbsp;[&nbsp;constr5($c1)&nbsp;"/\\"&nbsp;constr6($c2)&nbsp;]&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;[(and&nbsp;$c1&nbsp;$c2)].</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Grammar&nbsp;constr&nbsp;constr7&nbsp;:=</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;or&nbsp;&nbsp;[&nbsp;constr6($c1)&nbsp;"\\/"&nbsp;constr7($c2)&nbsp;]&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;[(or&nbsp;$c1&nbsp;$c2)].</TT><BR></DIV>
+<BR>
+Thus conjunction and disjunction associate to the right since in both
+cases the priority of the right term (resp. <TT>constr6</TT> and <TT>constr7</TT>) is higher than the priority of the left term (resp. <TT>constr5</TT> and <TT>constr6</TT>). The left member of a conjunction cannot
+be itself a conjunction, unless you enclose it inside parenthesis.<BR>
+<BR>
+The left associativity is done by calling recursively the
+non-terminal. <FONT COLOR=purple>Camlp4</FONT> deals with this recursion by first trying
+the non-left-recursive rules. Here is an example taken from the
+standard library, defining a syntax for the addition on integers:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Grammar&nbsp;znatural&nbsp;expr&nbsp;:=</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;expr_plus&nbsp;[&nbsp;expr($p)&nbsp;"+"&nbsp;expr($c)&nbsp;]&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;[(Zplus&nbsp;$p&nbsp;$c)].</TT><BR></DIV>
+<BR>
+
+<H3>
+
+9.2.3&nbsp;Actions
+</H3>
+
+<A NAME="GramAction"></A>
+<A NAME="@default570"></A>Every rule should generate an AST corresponding to the syntactic
+construction that it recognizes. This generation is done by an
+action. Thus every rule is associated to an action. The syntax has
+been defined in Fig.&nbsp;<A HREF="node.2.0.1.html#grammarsyntax">9.2</A>. We give some examples.<BR>
+<BR>
+
+<H4>
+Simple actions
+</H4>
+A simple action is an AST enclosed between ``<CODE>[</CODE>'' and
+``<CODE>]</CODE>''. It simply builds the AST by interpreting it as a
+constructive expression in the environment defined by the LMP. This
+case has been illustrated in all the previous examples. We will later
+see that grammars can also return AST lists.<BR>
+<BR>
+
+<H4>
+Local definitions
+</H4>
+When an action should generate a big term, we can use
+<TT>let</TT>&nbsp;<I><FONT COLOR=maroon>pattern</FONT></I>&nbsp;<TT>=</TT>&nbsp;<I><FONT COLOR=maroon>action</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>&nbsp;<TT>in</TT>&nbsp;<I><FONT COLOR=maroon>action</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB><A NAME="@default571"></A> expressions to
+construct it progressively. The action <I><FONT COLOR=maroon>action</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> is first
+computed, then it is matched against <I><FONT COLOR=maroon>pattern</FONT></I> which may bind
+metavariables, and the result is the evaluation of <I><FONT COLOR=maroon>action</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB>
+in this new context.<BR>
+<BR>
+
+<BR><B>Example 5: </B>
+<BR>
+<BR>
+From the syntax <CODE>t1*+t2</CODE>, we generate the term
+<TT>(plus (plus t1 t2) (mult t1 t2))</TT>.<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Grammar&nbsp;constr&nbsp;constr1&nbsp;:=&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;mult_plus&nbsp;[&nbsp;constr0($a)&nbsp;"*"&nbsp;"+"&nbsp;constr0($b)&nbsp;]</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;let&nbsp;$p1=[(plus&nbsp;$a&nbsp;$b)]&nbsp;in</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;$p2=[(mult&nbsp;$a&nbsp;$b)]&nbsp;in&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(plus&nbsp;$p1&nbsp;$p2)].</TT><BR></DIV>
+<BR>
+Let us give an example with this syntax:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Goal&nbsp;(O*+O)=O.</TT><BR><TT><I>1&nbsp;subgoal</I></TT><BR><TT><I>&nbsp;&nbsp;</I></TT><BR><TT><I>&nbsp;&nbsp;============================</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;(plus&nbsp;(plus&nbsp;O&nbsp;O)&nbsp;(mult&nbsp;O&nbsp;O))=O</I></TT><BR></DIV>
+<BR>
+
+<H4>
+Conditional actions
+</H4>
+We recall the syntax of conditional actions:<BR>
+<BR>
+<DIV ALIGN=center>
+<TT>case</TT>&nbsp;<I><FONT COLOR=maroon>action</FONT></I>&nbsp;<TT>of</TT>&nbsp;<I><FONT COLOR=maroon>pattern</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>&nbsp;<CODE>-&gt;</CODE>&nbsp;<I><FONT COLOR=maroon>action</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>&nbsp;<TT>|</TT>&nbsp;···&nbsp;<TT>|</TT>&nbsp;<I><FONT COLOR=maroon>pattern</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>&nbsp;<CODE>-&gt;</CODE>&nbsp;<I><FONT COLOR=maroon>action</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>&nbsp;<TT>esac</TT>
+</DIV><A NAME="@default572"></A><BR>
+The action to execute is chosen according to the value of
+<I><FONT COLOR=maroon>action</FONT></I>. The matching is performed from left to right. The
+selected action is the one associated to the first pattern that
+matches the value of <I><FONT COLOR=maroon>action</FONT></I>. This matching operation will
+bind the metavariables appearing in the selected pattern. The pattern
+matching does need being exhaustive, and no warning is emitted. When the
+pattern matching fails a message reports in which grammar rule the
+failure happened.<BR>
+<BR>
+
+<BR><B>Example 6: </B><I>Overloading the ``</I><I>+</I><I>'' operator</I>
+<BR>
+<BR>
+The internal representation of an expression such as <TT>A+B</TT> depends
+on the shape of <TT>A</TT> and <TT>B</TT>:
+<UL>
+<LI>
+ <CODE>{P}+{Q}</CODE> uses <TT>sumbool</TT>
+
+<LI> otherwise, <CODE>A+{Q}</CODE> uses <TT>sumor</TT>
+
+<LI> otherwise, <CODE>A+B</CODE> uses <TT>sum</TT>.
+</UL>
+The trick is to build a temporary AST: <CODE>{A}</CODE> generates the node
+<CODE>(SQUASH A)</CODE>. When we parse <CODE>A+B</CODE>, we remove the <TT>SQUASH</TT> in <TT>A</TT> and <TT>B</TT>:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Grammar&nbsp;constr&nbsp;constr1:&nbsp;ast&nbsp;:=</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;squash&nbsp;[&nbsp;"{"&nbsp;lconstr($lc)&nbsp;"}"&nbsp;]&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;[(SQUASH&nbsp;$lc)].</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Grammar&nbsp;constr&nbsp;lassoc_constr4&nbsp;:=</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;squash_sum</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;[&nbsp;lassoc_constr4($c1)&nbsp;"+"&nbsp;lassoc_constr4($c2)&nbsp;]&nbsp;-</TT><TT>&gt;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;[$c2]&nbsp;of</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(SQUASH&nbsp;$T2)&nbsp;-</TT><TT>&gt;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;[$c1]&nbsp;of</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(SQUASH&nbsp;$T1)&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;[(sumbool&nbsp;$T1&nbsp;$T2)]</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;$_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;[(sumor&nbsp;$c1&nbsp;$T2)]</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;esac</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;$_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;[(sum&nbsp;$c1&nbsp;$c2)]</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;esac.</TT><BR></DIV>
+<BR>
+The first rule is casted with type ast, because the produced term
+cannot be reached by the input syntax. On the other hand, the second
+command has (implicit) type <CODE>constr</CODE>, so the right hand side is
+parsed with the term parser.<BR>
+<BR>
+The problem is that sometimes, the intermediate <TT>SQUASH</TT>
+node cannot re-shaped, then we have a very specific error:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Check&nbsp;{True}.</TT><BR><TT><I>Toplevel&nbsp;input,&nbsp;characters&nbsp;6-12</I></TT><BR><TT><I>&gt;</I></TT><TT><I>&nbsp;Check&nbsp;{True}.</I></TT><BR><TT><I>&gt;</I></TT><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^^^^^^</I></TT><BR><TT><I>Error:&nbsp;Ill-formed&nbsp;specification</I></TT><BR></DIV>
+<BR>
+
+<BR><B>Example 7: </B><I>Comparisons and non-linear patterns</I>
+<BR>
+<BR>
+The patterns may be non-linear: when an already bound metavariable
+appears in a pattern, the value yielded by the pattern matching must
+be equal, up to renaming of bound variables, to the current
+value. Note that this does not apply to the wildcard <CODE>$_</CODE>. For
+example, we can compare two arguments:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Grammar&nbsp;constr&nbsp;constr10&nbsp;:=&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;refl_equals&nbsp;[&nbsp;constr9($c1)&nbsp;"||"&nbsp;constr9($c2)&nbsp;]&nbsp;-</TT><TT>&gt;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;[$c1]&nbsp;of&nbsp;$c2&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;[(refl_equal&nbsp;?&nbsp;$c2)]&nbsp;esac.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Check&nbsp;([x:nat]x&nbsp;||&nbsp;[y:nat]y).</TT><BR><TT><I>(refl_equal&nbsp;nat-</I></TT><TT><I>&gt;</I></TT><TT><I>nat&nbsp;[y:nat]y)</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;([y:nat]y)=([y:nat]y)</I></TT><BR></DIV>
+<BR>
+The metavariable <CODE>$c1</CODE> is bound to <CODE>[x:nat]x</CODE> and
+<CODE>$c2</CODE> to <CODE>[y:nat]y</CODE>. Since these two values are equal, the
+pattern matching succeeds. It fails when the two terms are not equal:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Check&nbsp;([x:nat]x&nbsp;||&nbsp;[z:bool]z).</TT><BR><TT><I>Toplevel&nbsp;input,&nbsp;characters&nbsp;7-28</I></TT><BR><TT><I>&gt;</I></TT><TT><I>&nbsp;Check&nbsp;([x:nat]x&nbsp;||&nbsp;[z:bool]z).</I></TT><BR><TT><I>&gt;</I></TT><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^^^^^^^^^^^^^^^^^^^^^</I></TT><BR><TT><I>Error:&nbsp;during&nbsp;interpretation&nbsp;of&nbsp;grammar&nbsp;rule&nbsp;refl_equals,</I></TT><BR><TT><I>&nbsp;Grammar&nbsp;case&nbsp;failure.&nbsp;The&nbsp;ast&nbsp;(LAMBDALIST&nbsp;(QUALID&nbsp;nat)&nbsp;[x](QUALID&nbsp;x))</I></TT><BR><TT><I>&nbsp;does&nbsp;not&nbsp;match&nbsp;any&nbsp;of&nbsp;the&nbsp;patterns&nbsp;:&nbsp;$c2</I></TT><BR><TT><I>&nbsp;with&nbsp;constraints&nbsp;:</I></TT><BR><TT><I>&nbsp;&nbsp;$c1&nbsp;=&nbsp;(LAMBDALIST&nbsp;(QUALID&nbsp;nat)&nbsp;[x](QUALID&nbsp;x))</I></TT><BR><TT><I>&nbsp;&nbsp;$c2&nbsp;=&nbsp;(LAMBDALIST&nbsp;(QUALID&nbsp;bool)&nbsp;[z](QUALID&nbsp;z))</I></TT><BR></DIV>
+<BR>
+
+<H3>
+
+9.2.4&nbsp;Grammars of type <TT>ast list</TT>
+</H3>
+Assume we want to define an non-terminal <TT>ne_identarg_list</TT> that
+parses an non-empty list of identifiers. If the grammars could only
+return AST's, we would have to define it this way:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Grammar&nbsp;tactic&nbsp;my_ne_ident_list&nbsp;:&nbsp;ast&nbsp;:=</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;ident_list_cons&nbsp;[&nbsp;identarg($id)&nbsp;my_ne_ident_list($l)&nbsp;]&nbsp;-</TT><TT>&gt;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;[$l]&nbsp;of</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(IDENTS&nbsp;($LIST&nbsp;$idl))&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;[(IDENTS&nbsp;$id&nbsp;($LIST&nbsp;$idl))]</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;esac</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;|&nbsp;ident_list_single&nbsp;[&nbsp;identarg($id)&nbsp;]&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;[(IDENTS&nbsp;$id)].</TT><BR></DIV>
+<BR>
+But it would be inefficient: every time an identifier is read, we
+remove the ``boxing'' operator <TT>IDENTS</TT>, and put it back once the
+identifier is inserted in the list.<BR>
+<BR>
+To avoid these awkward trick, we allow grammars to return AST
+lists. Hence grammars have a type (<TT>ast</TT> or <TT>ast list</TT>), just like
+AST's do. Type-checking can be done statically.<BR>
+<BR>
+The simple actions can produce lists by putting a list of constructive
+expressions one beside the other. As usual, the <TT>$LIST</TT> operator
+allows to inject AST list variables.<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Grammar&nbsp;tactic&nbsp;ne_identarg_list&nbsp;:&nbsp;ast&nbsp;list&nbsp;:=</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;ne_idl_cons&nbsp;[&nbsp;identarg($id)&nbsp;ne_identarg_list($idl)&nbsp;]</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;[&nbsp;$id&nbsp;($LIST&nbsp;$idl)&nbsp;]</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;|&nbsp;ne_idl_single&nbsp;[&nbsp;identarg($id)&nbsp;]&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;[&nbsp;$id&nbsp;].</TT><BR></DIV>
+
+<BR>
+Note that the grammar type must be recalled in every extension
+command, or else the system could not discriminate between a single
+AST and an AST list with only one item. If omitted, the default type
+depends on the universe name. The following command fails because the non-terminal <TT>ne_identarg_list</TT> is already defined with type <TT>ast list</TT> but the
+<TT>Grammar</TT> command header assumes its type is <TT>ast</TT>.<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Grammar&nbsp;tactic&nbsp;ne_identarg_list&nbsp;:=</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;list_two&nbsp;[&nbsp;identarg($id1)&nbsp;identarg($id2)&nbsp;]&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;[&nbsp;$id1&nbsp;;&nbsp;$id2&nbsp;].&nbsp;</TT><BR><TT><I>Toplevel&nbsp;input,&nbsp;characters&nbsp;15-31</I></TT><BR><TT><I>&gt;</I></TT><TT><I>&nbsp;Grammar&nbsp;tactic&nbsp;ne_identarg_list&nbsp;:=</I></TT><BR><TT><I>&gt;</I></TT><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^^^^^^^^^^^^^^^^</I></TT><BR><TT><I>Error:&nbsp;Entry&nbsp;tactic:ne_identarg_list&nbsp;already&nbsp;exists&nbsp;with&nbsp;another&nbsp;type</I></TT><BR></DIV>
+<BR>
+All rules of a same grammar must have the same type. For instance, the
+following rule is refused because the <CODE>constr:constr1</CODE> grammar
+has been already defined with type <TT>Ast</TT>, and cannot be extended
+with a rule returning AST lists.<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Grammar&nbsp;constr&nbsp;constr1&nbsp;:=</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;carret_list&nbsp;[&nbsp;constr0($c1)&nbsp;"^"&nbsp;constr0($c2)]&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;[&nbsp;$c1&nbsp;$c2&nbsp;].</TT><BR><TT><I>Toplevel&nbsp;input,&nbsp;characters&nbsp;82-85</I></TT><BR><TT><I>&gt;</I></TT><TT><I>&nbsp;&nbsp;&nbsp;carret_list&nbsp;[&nbsp;constr0($c1)&nbsp;"^"&nbsp;constr0($c2)]&nbsp;-</I></TT><TT><I>&gt;</I></TT><TT><I>&nbsp;[&nbsp;$c1&nbsp;$c2&nbsp;].</I></TT><BR><TT><I>&gt;</I></TT><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^^^</I></TT><BR><TT><I>Syntax&nbsp;error:&nbsp;']'&nbsp;expected&nbsp;after&nbsp;[default_action_parser]&nbsp;(in&nbsp;[action])</I></TT><BR></DIV>
+<BR>
+
+<H3>
+
+9.2.5&nbsp;Limitations
+</H3>
+The extendable grammar mechanism have four serious limitations. The
+first two are inherited from <FONT COLOR=purple>Camlp4</FONT>.
+<UL>
+<LI>
+ Grammar rules are factorized syntactically: <FONT COLOR=purple>Camlp4</FONT> does not
+ try to expand non-terminals to detect further factorizations. The
+ user must perform the factorization himself.
+
+<LI> The grammar is not checked to be <EM>LL(1)</EM><A NAME="@default573"></A> when
+ adding a rule. If it is not LL(1), the parsing may fail on an input
+ recognized by the grammar, because selecting the appropriate rule
+ may require looking several tokens ahead. <FONT COLOR=purple>Camlp4</FONT> always selects
+ the most recent rule (and all those that factorize with it)
+ accepting the current token.
+
+<LI> There is no command to remove a grammar rule. However there is a
+ trick to do it. It is sufficient to execute the ``<TT>Reset</TT>''
+ command on a constant defined before the rule we want to remove.
+ Thus we retrieve the state before the definition of the constant,
+ then without the grammar rule. This trick does not apply to grammar
+ extensions done in <FONT COLOR=purple>Objective Caml</FONT>.
+
+<LI> Grammar rules defined inside a section are automatically removed
+ after the end of this section: they are available only inside it.
+</UL>The command <TT>Print Grammar</TT> prints the rules of a grammar. It is
+displayed by <FONT COLOR=purple>Camlp4</FONT>. So, the actions are not printed, and the
+recursive calls are printed <CODE>SELF</CODE><A NAME="@default574"></A>. It is
+sometimes useful if the user wants to understand why parsing fails, or
+why a factorization was not done as expected.<A NAME="@default575"></A><BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Print&nbsp;Grammar&nbsp;constr&nbsp;constr8.</TT><BR><TT><I>[&nbsp;LEFTA</I></TT><BR><TT><I>&nbsp;&nbsp;[&nbsp;Constr.constr7;&nbsp;"</I></TT><TT><I>&lt;</I></TT><TT><I>-</I></TT><TT><I>&gt;</I></TT><TT><I>";&nbsp;SELF</I></TT><BR><TT><I>&nbsp;&nbsp;|&nbsp;Constr.constr7;&nbsp;"-</I></TT><TT><I>&gt;</I></TT><TT><I>";&nbsp;SELF</I></TT><BR><TT><I>&nbsp;&nbsp;|&nbsp;Constr.constr7&nbsp;]&nbsp;]</I></TT><BR></DIV>
+<BR>
+
+<H4>
+Getting round the lack of factorization
+</H4>
+
+The first limitation may require a non-trivial work, and may lead to
+ugly grammars, hardly extendable. Sometimes, we can use a trick to
+avoid these troubles. The problem arises in the <FONT COLOR=purple>Gallina</FONT> syntax, to
+make <FONT COLOR=purple>Camlp4</FONT> factorize the rules for application and product. The
+natural grammar would be:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Grammar&nbsp;constr&nbsp;constr0&nbsp;:&nbsp;ast&nbsp;:=</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;parenthesis&nbsp;[&nbsp;"("&nbsp;constr10($c)&nbsp;")"&nbsp;]&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;[$c]</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;|&nbsp;product&nbsp;[&nbsp;"("&nbsp;prim:var($id)&nbsp;":"&nbsp;constr($c1)&nbsp;")"&nbsp;constr0($c2)&nbsp;]&nbsp;-</TT><TT>&gt;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(PROD&nbsp;$c1&nbsp;[$id]$c2)]</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;with&nbsp;constr10&nbsp;:&nbsp;ast&nbsp;:=</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;application&nbsp;[&nbsp;constr9($c1)&nbsp;ne_constr_list($lc)&nbsp;]&nbsp;-</TT><TT>&gt;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(APPLIST&nbsp;$c1&nbsp;($LIST&nbsp;$lc))]</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;|&nbsp;inject_com91&nbsp;[&nbsp;constr9($c)&nbsp;]&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;[$c].</TT><BR><TT><I>Coq&nbsp;</I></TT><TT><I>&lt;</I></TT><TT><I>&nbsp;Coq&nbsp;</I></TT><TT><I>&lt;</I></TT><TT><I>&nbsp;</I></TT><TT><I>&lt;</I></TT><TT><I>W</I></TT><TT><I>&gt;</I></TT><TT><I>&nbsp;Grammar&nbsp;extension:&nbsp;some&nbsp;rule&nbsp;has&nbsp;been&nbsp;masked</I></TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Check&nbsp;(x:nat)nat.</TT><BR><TT><I>Toplevel&nbsp;input,&nbsp;characters&nbsp;8-9</I></TT><BR><TT><I>&gt;</I></TT><TT><I>&nbsp;Check&nbsp;(x:nat)nat.</I></TT><BR><TT><I>&gt;</I></TT><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^</I></TT><BR><TT><I>Syntax&nbsp;error:&nbsp;')'&nbsp;expected&nbsp;after&nbsp;[Constr.constr10]&nbsp;(in&nbsp;[Constr.constr0])</I></TT><BR></DIV>
+<BR>
+But the factorization does not work, thus the product rule is never
+selected since identifiers match the <TT>constr10</TT> grammar. The
+trick is to parse the ident as a <TT>constr10</TT> and check <EM>a
+posteriori</EM> that the term is indeed an identifier:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Grammar&nbsp;constr&nbsp;constr0&nbsp;:&nbsp;ast&nbsp;:=</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;product&nbsp;[&nbsp;"("&nbsp;constr10($c)&nbsp;":"&nbsp;constr($c1)&nbsp;")"&nbsp;constr0($c2)&nbsp;]&nbsp;-</TT><TT>&gt;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(PROD&nbsp;$c1&nbsp;[$c]$c2)].</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Check&nbsp;(x:nat)nat.</TT><BR><TT><I>nat-</I></TT><TT><I>&gt;</I></TT><TT><I>nat</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Set</I></TT><BR></DIV>
+
+<BR>
+We could have checked it explicitly with a <TT>case</TT> in
+the right-hand side of the rule, but the error message in the
+following example would not be as relevant:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Check&nbsp;(S&nbsp;O:nat)nat.</TT><BR><TT><I>Toplevel&nbsp;input,&nbsp;characters&nbsp;7-10</I></TT><BR><TT><I>&gt;</I></TT><TT><I>&nbsp;Check&nbsp;(S&nbsp;O:nat)nat.</I></TT><BR><TT><I>&gt;</I></TT><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^^^</I></TT><BR><TT><I>Error:&nbsp;during&nbsp;interpretation&nbsp;of&nbsp;grammar&nbsp;rule&nbsp;product,</I></TT><BR><TT><I>&nbsp;This&nbsp;expression&nbsp;should&nbsp;be&nbsp;a&nbsp;simple&nbsp;identifier</I></TT><BR></DIV>
+<BR>
+This trick is not similar to the <TT>SQUASH</TT> node in which
+we could not detect the error while parsing. Here, the error pops out
+when trying to build an abstraction of <TT>$c2</TT> over the value of
+<TT>$c</TT>. Since it is not bound to a variable, the right-hand side of
+the product grammar rule fails.<BR>
+<BR>
+<HR>
+
+<A HREF="node.2.0.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.2.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.2.0.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

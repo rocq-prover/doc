@@ -1,0 +1,857 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+1.3&nbsp;The Vernacular
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.0.0.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.0.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+1.3&nbsp;<EM>The Vernacular
+</EM></H2>
+
+
+
+<A NAME="Vernacular"></A>Figure <A HREF="node.0.0.2.html#sentences-syntax">1.3</A> describes <EM>The Vernacular</EM> which is the
+language of commands of <FONT COLOR=purple>Gallina</FONT>. A sentence of the vernacular
+language, like in many natural languages, begins with a capital letter
+and ends with a dot.
+<BLOCKQUOTE><DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV>
+<A NAME="sentences-syntax"></A>
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=1>
+<TR><TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>sentence</FONT></I></TD>
+<TD ALIGN=center NOWRAP>::=</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>declaration</FONT></I></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>definition</FONT></I></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>statement</FONT></I></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>inductive</FONT></I></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>fixpoint</FONT></I></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>statement</FONT></I> &nbsp;&nbsp; <I><FONT COLOR=maroon>proof</FONT></I></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>&nbsp;</TD>
+<TD ALIGN=left NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>params</FONT></I></TD>
+<TD ALIGN=center NOWRAP>::=</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>typed_idents</FONT></I> <TT>;</TT> ... <TT>;</TT> <I><FONT COLOR=maroon>typed_idents</FONT></I></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>&nbsp;</TD>
+<TD ALIGN=left NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>declaration</FONT></I></TD>
+<TD ALIGN=center NOWRAP>::=</TD>
+<TD ALIGN=left NOWRAP><TT>Axiom</TT> <I><FONT COLOR=maroon>ident</FONT></I> <CODE>:</CODE> <I><FONT COLOR=maroon>term</FONT></I> <CODE>.</CODE></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>declaration_keyword</FONT></I> <I><FONT COLOR=maroon>params</FONT></I> <CODE>.</CODE></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>&nbsp;</TD>
+<TD ALIGN=left NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>declaration_keyword</FONT></I></TD>
+<TD ALIGN=center NOWRAP>::=</TD>
+<TD ALIGN=left NOWRAP><TT>Parameter</TT> | <TT>Parameters</TT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><TT>Variable</TT> | <TT>Variables</TT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><TT>Hypothesis</TT> | <TT>Hypotheses</TT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>&nbsp;</TD>
+<TD ALIGN=left NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>definition</FONT></I></TD>
+<TD ALIGN=center NOWRAP>::=</TD>
+<TD ALIGN=left NOWRAP><TT>Definition</TT> <I><FONT COLOR=maroon>ident</FONT></I> <I><FONT COLOR=maroon>[</FONT></I><TT>:</TT> <I><FONT COLOR=maroon>term</FONT></I><I><FONT COLOR=maroon>]</FONT></I> <CODE>:=</CODE> <I><FONT COLOR=maroon>term</FONT></I> <CODE>.</CODE></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><TT>Local</TT> <I><FONT COLOR=maroon>ident</FONT></I> <I><FONT COLOR=maroon>[</FONT></I><TT>:</TT> <I><FONT COLOR=maroon>term</FONT></I><I><FONT COLOR=maroon>]</FONT></I> <CODE>:=</CODE> <I><FONT COLOR=maroon>term</FONT></I> <CODE>.</CODE></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>&nbsp;</TD>
+<TD ALIGN=left NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>inductive</FONT></I></TD>
+<TD ALIGN=center NOWRAP>::=</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>[</FONT></I><TT>Mutual</TT><I><FONT COLOR=maroon>]</FONT></I> <TT>Inductive</TT> <I><FONT COLOR=maroon>ind_body</FONT></I> <TT>with</TT> ... <TT>with</TT> <I><FONT COLOR=maroon>ind_body</FONT></I> 
+ <CODE>.</CODE></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>[</FONT></I><TT>Mutual</TT><I><FONT COLOR=maroon>]</FONT></I> <TT>CoInductive</TT> <I><FONT COLOR=maroon>ind_body</FONT></I> <TT>with</TT> ... <TT>with</TT> <I><FONT COLOR=maroon>ind_body</FONT></I>
+ <CODE>.</CODE></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>&nbsp;</TD>
+<TD ALIGN=left NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>ind_body</FONT></I></TD>
+<TD ALIGN=center NOWRAP>::=</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>ident</FONT></I> <I><FONT COLOR=maroon>[</FONT></I><TT>[</TT> <I><FONT COLOR=maroon>params</FONT></I> <TT>]</TT><I><FONT COLOR=maroon>]</FONT></I> <CODE>:</CODE> <I><FONT COLOR=maroon>term</FONT></I>
+ <CODE>:=</CODE> 
+ <I><FONT COLOR=maroon>[</FONT></I><I><FONT COLOR=maroon>constructor</FONT></I> <TT>|</TT> ... <TT>|</TT> <I><FONT COLOR=maroon>constructor</FONT></I><I><FONT COLOR=maroon>]</FONT></I></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>&nbsp;</TD>
+<TD ALIGN=left NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>constructor</FONT></I></TD>
+<TD ALIGN=center NOWRAP>::=</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>ident</FONT></I> <CODE>:</CODE> <I><FONT COLOR=maroon>term</FONT></I></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>&nbsp;</TD>
+<TD ALIGN=left NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>fixpoint</FONT></I></TD>
+<TD ALIGN=center NOWRAP>::=</TD>
+<TD ALIGN=left NOWRAP><TT>Fixpoint</TT> <I><FONT COLOR=maroon>fix_body</FONT></I> <TT>with</TT> ... <TT>with</TT> <I><FONT COLOR=maroon>fix_body</FONT></I> 
+ <CODE>.</CODE></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><TT>CoFixpoint</TT> <I><FONT COLOR=maroon>cofix_body</FONT></I> <TT>with</TT> ... <TT>with</TT> <I><FONT COLOR=maroon>cofix_body</FONT></I> 
+ <CODE>.</CODE></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>&nbsp;</TD>
+<TD ALIGN=left NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>statement</FONT></I></TD>
+<TD ALIGN=center NOWRAP>::=</TD>
+<TD ALIGN=left NOWRAP><TT>Theorem</TT> <I><FONT COLOR=maroon>ident</FONT></I> <TT>:</TT> <I><FONT COLOR=maroon>term</FONT></I> <CODE>.</CODE></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><TT>Lemma</TT> <I><FONT COLOR=maroon>ident</FONT></I> <TT>:</TT> <I><FONT COLOR=maroon>term</FONT></I> <CODE>.</CODE></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><TT>Definition</TT> <I><FONT COLOR=maroon>ident</FONT></I> <TT>:</TT> <I><FONT COLOR=maroon>term</FONT></I> <CODE>.</CODE></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>&nbsp;</TD>
+<TD ALIGN=left NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>proof</FONT></I></TD>
+<TD ALIGN=center NOWRAP>::=</TD>
+<TD ALIGN=left NOWRAP><TT>Proof</TT> <TT>.</TT> ... <TT>Qed</TT> <TT>.</TT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><TT>Proof</TT> <TT>.</TT> ... <TT>Defined</TT> <TT>.</TT></TD>
+</TR></TABLE>
+<BR>
+<DIV ALIGN=center>Figure 1.2: Syntax of sentences</DIV><BR>
+
+<DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV></BLOCKQUOTE>
+The different kinds of command are described hereafter. They all suppose
+that the terms occurring in the sentences are well-typed.<BR>
+<BR>
+
+<H3>
+
+1.3.1&nbsp;Declarations
+</H3>
+<A NAME="@default23"></A><A NAME="Declarations"></A>
+The declaration mechanism allows the user to specify his own basic
+objects. Declared objects play the role of axioms or parameters in
+mathematics. A declared object is an <I><FONT COLOR=maroon>ident</FONT></I> associated to a <I><FONT COLOR=maroon>term</FONT></I>. A
+declaration is accepted by <FONT COLOR=purple>Coq</FONT> if and only if this <I><FONT COLOR=maroon>term</FONT></I> is a correct type 
+in the current context of the declaration and <I><FONT COLOR=maroon>ident</FONT></I> was
+not previously defined in the same module. This <I><FONT COLOR=maroon>term</FONT></I>
+is considered to be the type, or specification, of the <I><FONT COLOR=maroon>ident</FONT></I>.<BR>
+<BR>
+
+<H4>
+<TT>Axiom </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> : </TT><I><FONT COLOR=maroon>term</FONT></I>.
+</H4>
+
+<A NAME="@default24"></A><A NAME="@command0"></A>
+<A NAME="Axiom"></A>
+This command links <I><FONT COLOR=maroon>term</FONT></I> to the name <I><FONT COLOR=maroon>ident</FONT></I> as its specification in the
+global context. The fact asserted by <I><FONT COLOR=maroon>term</FONT></I> is thus assumed
+as a postulate.<BR>
+<BR>
+<BR><B>Error messages: </B><OL type=1>
+<LI>
+ <TT>Clash with previous constant </TT><I><FONT COLOR=maroon>ident</FONT></I><A NAME="@error0"></A>
+</OL><BR><B>Variants: </B><OL type=1>
+<LI> 
+ <TT>Parameter </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> : </TT><I><FONT COLOR=maroon>term</FONT></I><TT>.</TT>
+ <A NAME="@default25"></A><A NAME="@command1"></A><BR>Is equivalent to <TT>Axiom </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> : </TT><I><FONT COLOR=maroon>term</FONT></I>
+
+<LI> <TT>Parameter </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>,</TT><TT>...</TT><TT>,</TT><I><FONT COLOR=maroon>ident</FONT></I><TT> : </TT><I><FONT COLOR=maroon>term</FONT></I><TT> </TT><TT>;</TT><TT> </TT><TT>...</TT><TT> </TT><TT>;</TT><TT> </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>,</TT><TT>...</TT><TT>,</TT><I><FONT COLOR=maroon>ident</FONT></I><TT> : </TT><I><FONT COLOR=maroon>term</FONT></I><TT> </TT><TT>.</TT><BR>Links the <I><FONT COLOR=maroon>term</FONT></I>'s to the names comprising the lists <I><FONT COLOR=maroon>ident</FONT></I> <TT>,</TT> ... <TT>,</TT> <I><FONT COLOR=maroon>ident</FONT></I> : <I><FONT COLOR=maroon>term</FONT></I> <TT>;</TT> ... <TT>;</TT> <I><FONT COLOR=maroon>ident</FONT></I> <TT>,</TT> ... <TT>,</TT> <I><FONT COLOR=maroon>ident</FONT></I> : <I><FONT COLOR=maroon>term</FONT></I>.
+</OL><B>Remark: </B> It is possible to replace <TT>Parameter</TT> by
+<TT>Parameters</TT> when more than one parameter are given.<BR>
+<BR>
+
+<H4>
+<TT>Variable </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> : </TT><I><FONT COLOR=maroon>term</FONT></I>.
+</H4>
+<A NAME="@default26"></A><A NAME="@command2"></A>
+<A NAME="@default27"></A><A NAME="@command3"></A>
+This command links <I><FONT COLOR=maroon>term</FONT></I> to the name <I><FONT COLOR=maroon>ident</FONT></I> in the context of the
+current section (see <A HREF="node.0.1.3.html#Section">2.4</A> for a description of the section
+mechanism). The name <I><FONT COLOR=maroon>ident</FONT></I> will be unknown when the current
+section will be closed. One says that the variable is <EM>discharged</EM>. Using the <TT>Variable</TT> command out of any section is
+equivalent to <TT>Axiom</TT>.<BR>
+<BR>
+<BR><B>Error messages: </B><OL type=1>
+<LI>
+ <TT>Clash with previous constant </TT><I><FONT COLOR=maroon>ident</FONT></I><A NAME="@error1"></A>
+</OL><BR><B>Variants: </B><OL type=1>
+<LI>
+ <TT>Variable </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> </TT><TT>,</TT><TT> </TT><TT>...</TT><TT> </TT><TT>,</TT><TT> </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>:</TT><I><FONT COLOR=maroon>term</FONT></I><TT> </TT><TT>;</TT><TT> </TT><TT>...</TT><TT> </TT><TT>;</TT><TT> </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> </TT><TT>,</TT><TT> </TT><TT>...</TT><TT> </TT><TT>,</TT><TT> </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>:</TT><I><FONT COLOR=maroon>term</FONT></I><TT> </TT><TT>.</TT><BR>Links <I><FONT COLOR=maroon>term</FONT></I> to the
+ names comprising the list <I><FONT COLOR=maroon>ident</FONT></I> <TT>,</TT> ... <TT>,</TT> <I><FONT COLOR=maroon>ident</FONT></I>:<I><FONT COLOR=maroon>term</FONT></I> <TT>;</TT> ... <TT>;</TT> <I><FONT COLOR=maroon>ident</FONT></I> <TT>,</TT> ... <TT>,</TT> <I><FONT COLOR=maroon>ident</FONT></I>:<I><FONT COLOR=maroon>term</FONT></I>
+
+<LI> <TT>Hypothesis </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> </TT><TT>,</TT><TT> </TT><TT>...</TT><TT> </TT><TT>,</TT><TT> </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> </TT><TT>&nbsp;</TT><TT>:</TT><TT>&nbsp;</TT><TT> </TT><I><FONT COLOR=maroon>term</FONT></I><TT> </TT><TT>;</TT><TT> </TT><TT>...</TT><TT> </TT><TT>;</TT><TT> </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> </TT><TT>,</TT><TT> </TT><TT>...</TT><TT> </TT><TT>,</TT><TT> </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> </TT><TT>&nbsp;</TT><TT>:</TT><TT>&nbsp;</TT><TT> </TT><I><FONT COLOR=maroon>term</FONT></I><TT> </TT><TT>.</TT> <A NAME="@default28"></A><A NAME="@command4"></A><BR><TT>Hypothesis</TT> is a synonymous of <TT>Variable</TT>
+</OL><B>Remark: </B> It is possible to replace <TT>Variable</TT> by
+<TT>Variables</TT> and <TT>Hypothesis</TT> by <TT>Hypotheses</TT>
+ when more than one variable or one hypothesis are given.<BR>
+<BR>
+It is advised to use the keywords <CODE>Axiom</CODE> and <CODE>Hypothesis</CODE>
+for logical postulates (i.e. when the assertion <I><FONT COLOR=maroon>term</FONT></I> is of sort
+<CODE>Prop</CODE>), and to use the keywords <CODE>Parameter</CODE> and
+<CODE>Variable</CODE> in other cases (corresponding to the declaration of an
+abstract mathematical entity).<BR>
+<BR>
+
+<H3>
+
+1.3.2&nbsp;Definitions
+</H3>
+<A NAME="@default29"></A><A NAME="Simpl-definitions"></A>
+Definitions differ from declarations since they allow to give a name
+to a term whereas declarations were just giving a type to a name. That
+is to say that the name of a defined object can be replaced at any
+time by its definition. This replacement is called
+<FONT FACE=symbol>d</FONT>-conversion<A NAME="@default30"></A> (see section
+<A HREF="node.0.3.2.html#delta">4.3</A>). A defined object is accepted by the system if and only if the
+defining term is well-typed in the current context of the definition.
+Then the type of the name is the type of term. The defined name is
+called a <EM>constant</EM><A NAME="@default31"></A> and one says that <I>the
+ constant is added to the environment</I><A NAME="@default32"></A>.<BR>
+<BR>
+A formal presentation of constants and environments is given in
+section <A HREF="node.0.3.1.html#Typed-terms">4.2</A>.<BR>
+<BR>
+
+<H4>
+<TT>Definition </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> := </TT><I><FONT COLOR=maroon>term</FONT></I><TT>.
+</TT></H4>
+
+<A NAME="@default33"></A><A NAME="@command5"></A>
+This command binds the value <I><FONT COLOR=maroon>term</FONT></I> to the name <I><FONT COLOR=maroon>ident</FONT></I> in the
+environment, provided that <I><FONT COLOR=maroon>term</FONT></I> is well-typed.<BR>
+<BR>
+<BR><B>Error messages: </B><OL type=1>
+<LI>
+ <TT>Clash with previous constant </TT><I><FONT COLOR=maroon>ident</FONT></I><A NAME="@error2"></A>
+</OL><BR><B>Variants: </B><OL type=1>
+<LI>
+ <TT>Definition </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> : </TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> := </TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>2</FONT></TT></SUB><TT>.</TT> It
+ checks that the type of <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB> is definitionally equal to
+ <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>, and registers <I><FONT COLOR=maroon>ident</FONT></I> as being of type <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>,
+ and bound to value <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB>.
+</OL><BR><B>Error messages: </B><OL type=1>
+<LI>
+ <TT>In environment ...the term: </TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>2</FONT></TT></SUB><TT> does not have type
+ </TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><A NAME="@error3"></A>.<BR><TT>Actually, it has type </TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>3</FONT></TT></SUB>.
+</OL><BR><B>See also: </B>sections <A HREF="node.1.0.1.html#Opaque">5.2.4</A>, <A HREF="node.1.0.1.html#Transparent">5.2.5</A>, <A HREF="node.1.2.4.html#Unfold">7.5.5</A><BR>
+<BR>
+
+<H4>
+<TT>Local </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> := </TT><I><FONT COLOR=maroon>term</FONT></I><TT>.
+</TT></H4>
+<A NAME="@default34"></A><A NAME="@command6"></A>
+This command binds the value <I><FONT COLOR=maroon>term</FONT></I> to the name <I><FONT COLOR=maroon>ident</FONT></I> in the
+environment of the current section. The name <I><FONT COLOR=maroon>ident</FONT></I> will be unknown
+when the current section will be closed and all occurrences of
+<I><FONT COLOR=maroon>ident</FONT></I> in persistent objects (such as theorems) defined within the
+section will be replaced by <I><FONT COLOR=maroon>term</FONT></I>. One can say that the <TT>Local</TT>
+definition is a kind of <EM>macro</EM>.<BR>
+<BR>
+<BR><B>Error messages: </B><OL type=1>
+<LI>
+ <TT>Clash with previous constant </TT><I><FONT COLOR=maroon>ident</FONT></I><A NAME="@error4"></A>
+</OL><BR><B>Variants: </B><OL type=1>
+<LI>
+ <TT>Local </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> : </TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> := </TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>2</FONT></TT></SUB><TT>.</TT>
+</OL><BR><B>See also: </B><A HREF="node.0.1.3.html#Section">2.4</A> (section mechanism), <A HREF="node.1.0.1.html#Opaque">5.2.4</A>,
+<A HREF="node.1.0.1.html#Transparent">5.2.5</A> (opaque/transparent constants), <A HREF="node.1.2.4.html#Unfold">7.5.5</A><BR>
+<BR>
+
+<H3>
+
+1.3.3&nbsp;Inductive definitions
+</H3>
+
+<A NAME="@default35"></A> <A NAME="gal_Inductive_Definitions"></A>
+<A NAME="@default36"></A><A NAME="@command7"></A><A NAME="Inductive"></A>We gradually explain simple inductive types, simple
+annotated inductive types, simple parametric inductive types, 
+mutually inductive types. We explain also co-inductive types.<BR>
+<BR>
+
+<H4>
+Simple inductive types
+</H4>
+The definition of a simple inductive type has the following form:<BR><TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD ALIGN=left NOWRAP><TT>Inductive </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> : </TT><I><FONT COLOR=maroon>sort</FONT></I><TT> :=</TT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD ALIGN=center NOWRAP><TT>&nbsp;</TT></TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB></TD>
+<TD ALIGN=center NOWRAP><TT>:</TT></TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>type</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT></TT></TD>
+</TR>
+<TR><TD ALIGN=center NOWRAP><TT>|</TT></TD>
+<TD ALIGN=left NOWRAP><TT>...</TT></TD>
+<TD ALIGN=center NOWRAP><TT>&nbsp;</TT></TD>
+<TD ALIGN=left NOWRAP><TT>&nbsp;</TT></TD>
+</TR>
+<TR><TD ALIGN=center NOWRAP><TT>|</TT></TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB></TD>
+<TD ALIGN=center NOWRAP><TT>:</TT></TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>type</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT></TT></TD>
+</TR></TABLE><TT></TT></TD>
+</TR></TABLE><TT>
+</TT>
+<BR><BR>
+<BR>
+The name <I><FONT COLOR=maroon>ident</FONT></I> is the name of the inductively defined type and
+<I><FONT COLOR=maroon>sort</FONT></I> is the universes where it lives.
+The names <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>, ..., <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>
+are the names of its constructors and <I><FONT COLOR=maroon>type</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>, ...,
+<I><FONT COLOR=maroon>type</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> their respective types. The types of the constructors have
+to satisfy a <EM>positivity condition</EM> (see section <A HREF="node.0.3.4.html#Positivity">4.5.3</A>)
+for <I><FONT COLOR=maroon>ident</FONT></I>. This condition ensures the soundness of the inductive
+definition. If this is the case, the constants <I><FONT COLOR=maroon>ident</FONT></I>,
+<I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>, ..., <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> are added to the environment with
+their respective types. Accordingly to the universe where
+the inductive type lives(<I>e.g.</I> its type <I><FONT COLOR=maroon>sort</FONT></I>), <FONT COLOR=purple>Coq</FONT> provides a
+number of destructors for <I><FONT COLOR=maroon>ident</FONT></I>. Destructors are named
+<I><FONT COLOR=maroon>ident</FONT></I><TT>_ind</TT>, <I><FONT COLOR=maroon>ident</FONT></I><TT>_rec</TT> or <I><FONT COLOR=maroon>ident</FONT></I><TT>_rect</TT> which
+respectively correspond to elimination principles on <TT>Prop</TT>, <TT>Set</TT> and <TT>Type</TT>. The type of the destructors expresses structural
+induction/recursion principles over objects of <I><FONT COLOR=maroon>ident</FONT></I>. We give below
+two examples of the use of the <TT>Inductive</TT> definitions.<BR>
+<BR>
+The set of natural numbers is defined as:
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Inductive&nbsp;nat&nbsp;:&nbsp;Set&nbsp;:=&nbsp;O&nbsp;:&nbsp;nat&nbsp;|&nbsp;S&nbsp;:&nbsp;nat&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;nat.</TT><BR><TT><I>nat&nbsp;is&nbsp;defined</I></TT><BR><TT><I>nat_rect&nbsp;is&nbsp;defined</I></TT><BR><TT><I>nat_ind&nbsp;is&nbsp;defined</I></TT><BR><TT><I>nat_rec&nbsp;is&nbsp;defined</I></TT><BR></DIV>
+<BR>
+The type <TT>nat</TT> is defined as the least <CODE>Set</CODE> containing <TT>O</TT> and closed by the <TT>S</TT> constructor. The constants <TT>nat</TT>,
+<TT>O</TT> and <TT>S</TT> are added to the environment.<BR>
+<BR>
+Now let us have a look at the elimination principles. They are three :
+<TT>nat_ind</TT>, <TT>nat_rec</TT> and <TT>nat_rect</TT>. The type of <TT>nat_ind</TT> is:
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Check&nbsp;nat_ind.</TT><BR><TT><I>nat_ind</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(P:(nat-</I></TT><TT><I>&gt;</I></TT><TT><I>Prop))(P&nbsp;O)-</I></TT><TT><I>&gt;</I></TT><TT><I>((n:nat)(P&nbsp;n)-</I></TT><TT><I>&gt;</I></TT><TT><I>(P&nbsp;(S&nbsp;n)))-</I></TT><TT><I>&gt;</I></TT><TT><I>(n:nat)(P&nbsp;n)</I></TT><BR></DIV>
+<BR>
+This is the well known structural induction principle over natural
+numbers, i.e. the second-order form of Peano's induction principle.
+It allows to prove some universal property of natural numbers (<TT>(n:nat)(P n)</TT>) by induction on <TT>n</TT>. Recall that <TT>(n:nat)(P n)</TT>
+is <FONT COLOR=purple>Gallina</FONT>'s syntax for the universal quantification <FONT FACE=symbol>"</FONT>
+<I>n</I>:<I>nat</I><FONT SIZE=5>·</FONT> <I>P</I>(<I>n</I>).<BR>The types of <TT>nat_rec</TT> and <TT>nat_rect</TT>
+are similar, except that they pertain to <TT>(P:nat-&gt;Set)</TT> and <TT>(P:nat-&gt;Type)</TT> respectively . They correspond to primitive induction
+principles (allowing dependent types) respectively over sorts
+<CODE>Set</CODE> and <CODE>Type</CODE>. The constant <I><FONT COLOR=maroon>ident</FONT></I><TT>_ind</TT> is always
+provided, whereas <I><FONT COLOR=maroon>ident</FONT></I><TT>_rec</TT> and <I><FONT COLOR=maroon>ident</FONT></I><TT>_rect</TT> can be
+impossible to derive (for example, when <I><FONT COLOR=maroon>ident</FONT></I> is a proposition).<BR>
+<BR>
+
+<H4>
+Simple annotated inductive types
+</H4>
+In an annotated inductive types, the universe where the inductive
+type is defined is no longer a simple sort, but what is called an
+arity, which is a type whose conclusion is a sort.<BR>
+<BR>
+As an example of annotated inductive types, let us define the
+<I>even</I> predicate:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Inductive&nbsp;even&nbsp;:&nbsp;nat-</TT><TT>&gt;</TT><TT>Prop&nbsp;:=</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;|&nbsp;even_0&nbsp;&nbsp;:&nbsp;(even&nbsp;O)</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;|&nbsp;even_SS&nbsp;:&nbsp;(n:nat)(even&nbsp;n)-</TT><TT>&gt;</TT><TT>(even&nbsp;(S&nbsp;(S&nbsp;n))).</TT><BR><TT><I>even&nbsp;is&nbsp;defined</I></TT><BR><TT><I>even_ind&nbsp;is&nbsp;defined</I></TT><BR></DIV>
+<BR>
+The type <TT>nat-&gt;Prop</TT> means that <TT>even</TT> is a unary predicate
+(inductively defined) over natural numbers. The type of its two
+constructors are the defining clauses of the predicate <TT>even</TT>. The
+type of <TT>even_ind</TT> is:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Check&nbsp;even_ind.</TT><BR><TT><I>even_ind</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(P:(nat-</I></TT><TT><I>&gt;</I></TT><TT><I>Prop))</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(P&nbsp;O)</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-</I></TT><TT><I>&gt;</I></TT><TT><I>((n:nat)(even&nbsp;n)-</I></TT><TT><I>&gt;</I></TT><TT><I>(P&nbsp;n)-</I></TT><TT><I>&gt;</I></TT><TT><I>(P&nbsp;(S&nbsp;(S&nbsp;n))))</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-</I></TT><TT><I>&gt;</I></TT><TT><I>(n:nat)(even&nbsp;n)-</I></TT><TT><I>&gt;</I></TT><TT><I>(P&nbsp;n)</I></TT><BR></DIV>
+<BR>
+From a mathematical point of view it asserts that the natural numbers
+satisfying the predicate <TT>even</TT> are exactly the naturals satisfying
+the clauses <TT>even_0</TT> or <TT>even_SS</TT>. This is why, when we want
+to prove any predicate <TT>P</TT> over elements of <TT>even</TT>, it is
+enough to prove it for <TT>O</TT> and to prove that if any natural number
+<TT>n</TT> satisfies <TT>P</TT> its double successor <TT>(S (S n))</TT>
+satisfies also <TT>P</TT>. This is indeed analogous to the structural
+induction principle we got for <TT>nat</TT>.<BR>
+<BR>
+<BR><B>Error messages: </B><OL type=1>
+<LI>
+ <TT>Non strictly positive occurrence of </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> in </TT><I><FONT COLOR=maroon>type</FONT></I><A NAME="@error5"></A>
+
+<LI> <TT>Type of Constructor not well-formed</TT><A NAME="@error6"></A>
+</OL><BR><B>Variants: </B><OL type=1>
+<LI>
+ <TT>Inductive </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> [ </TT><I><FONT COLOR=maroon>params</FONT></I><TT> ] : </TT><I><FONT COLOR=maroon>term</FONT></I><TT> :=
+ </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT>:</TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> | </TT><TT>...</TT><TT> | </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT>:</TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT>.</TT><BR>Allows
+ to define parameterized inductive types.<BR>For instance, one can define
+ parameterized lists as:
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Inductive&nbsp;list&nbsp;[X:Set]&nbsp;:&nbsp;Set&nbsp;:=</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;Nil&nbsp;:&nbsp;(list&nbsp;X)&nbsp;|&nbsp;Cons&nbsp;:&nbsp;X-</TT><TT>&gt;</TT><TT>(list&nbsp;X)-</TT><TT>&gt;</TT><TT>(list&nbsp;X).</TT><BR></DIV>
+
+Notice that, in the type of <TT>Nil</TT> and <TT>Cons</TT>, we write <TT>(list X)</TT> and not just <TT>list</TT>.<BR>The constants <TT>Nil</TT> and
+<TT>Cons</TT> will have respectively types:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Check&nbsp;Nil.</TT><BR><TT><I>Nil</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(X:Set)(list&nbsp;X)</I></TT><BR></DIV>
+
+and<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Check&nbsp;Cons.</TT><BR><TT><I>Cons</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(X:Set)X-</I></TT><TT><I>&gt;</I></TT><TT><I>(list&nbsp;X)-</I></TT><TT><I>&gt;</I></TT><TT><I>(list&nbsp;X)</I></TT><BR></DIV>
+<BR>
+Types of destructors will be also quantified with <TT>(X:Set)</TT>.
+
+<LI> <TT>Inductive </TT><I><FONT COLOR=maroon>sort</FONT></I><TT> </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> :=
+</TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT>:</TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> | </TT><TT>...</TT><TT> | </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT>:</TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT>.</TT><BR>with <I><FONT COLOR=maroon>sort</FONT></I> being one of <TT>Prop, Type, Set</TT> is
+equivalent to<BR><TT>Inductive </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> : </TT><I><FONT COLOR=maroon>sort</FONT></I><TT> :=
+ </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT>:</TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> | </TT><TT>...</TT><TT> | </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT>:</TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT>.</TT>
+
+<LI> <TT>Inductive </TT><I><FONT COLOR=maroon>sort</FONT></I><TT> </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> [ </TT><I><FONT COLOR=maroon>params</FONT></I><TT> ]:=
+</TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT>:</TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> | </TT><TT>...</TT><TT> | </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT>:</TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT>.</TT><BR>Same as before but with parameters.
+</OL><BR><B>See also: </B>sections <A HREF="node.0.3.4.html#Cic-inductive-definitions">4.5</A>, <A HREF="node.1.2.6.html#Elim">7.7.1</A><BR>
+<BR>
+
+<H4>
+Mutually inductive types
+</H4>
+
+<A NAME="@default37"></A><A NAME="@command8"></A><A NAME="Mutual-Inductive"></A>The definition of a block of mutually inductive types has the form:<BR><TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD ALIGN=left NOWRAP><TT>Inductive </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> : </TT><I><FONT COLOR=maroon>type</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> :=</TT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD ALIGN=center NOWRAP><TT>&nbsp;</TT></TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><SUP><TT><FONT SIZE=2>1</FONT></TT></SUP></TD>
+<TD ALIGN=center NOWRAP><TT>:</TT></TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>type</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><SUP><TT><FONT SIZE=2>1</FONT></TT></SUP><TT></TT></TD>
+</TR>
+<TR><TD ALIGN=center NOWRAP><TT>|</TT></TD>
+<TD ALIGN=left NOWRAP><TT>...</TT></TD>
+<TD ALIGN=center NOWRAP><TT>&nbsp;</TT></TD>
+<TD ALIGN=left NOWRAP><TT>&nbsp;</TT></TD>
+</TR>
+<TR><TD ALIGN=center NOWRAP><TT>|</TT></TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><SUB><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB></SUB><SUP><TT><FONT SIZE=2>1</FONT></TT></SUP></TD>
+<TD ALIGN=center NOWRAP><TT>:</TT></TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>type</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><SUB><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB></SUB><SUP><TT><FONT SIZE=2>1</FONT></TT></SUP><TT></TT></TD>
+</TR></TABLE><TT></TT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><TT>with</TT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><TT>&nbsp;</TT><TT>...</TT><TT></TT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><TT>with </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2><I>m</I></FONT></TT></SUB><TT> : </TT><I><FONT COLOR=maroon>type</FONT></I><SUB><TT><FONT SIZE=2><I>m</I></FONT></TT></SUB><TT> :=</TT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD ALIGN=center NOWRAP><TT>&nbsp;</TT></TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><SUP><TT><FONT SIZE=2><I>m</I></FONT></TT></SUP></TD>
+<TD ALIGN=center NOWRAP><TT>:</TT></TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>type</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><SUP><TT><FONT SIZE=2><I>m</I></FONT></TT></SUP><TT></TT></TD>
+</TR>
+<TR><TD ALIGN=center NOWRAP><TT>|</TT></TD>
+<TD ALIGN=left NOWRAP><TT>...</TT><TT></TT></TD>
+</TR>
+<TR><TD ALIGN=center NOWRAP><TT>|</TT></TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><SUB><SUB><TT><FONT SIZE=2><I>m</I></FONT></TT></SUB></SUB><SUP><TT><FONT SIZE=2><I>m</I></FONT></TT></SUP></TD>
+<TD ALIGN=center NOWRAP><TT>:</TT></TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>type</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><SUB><SUB><TT><FONT SIZE=2><I>m</I></FONT></TT></SUB></SUB><SUP><TT><FONT SIZE=2><I>m</I></FONT></TT></SUP><TT>.</TT></TD>
+</TR></TABLE><TT></TT></TD>
+</TR></TABLE><TT>
+</TT>
+<BR><BR>
+<BR>
+<B>Remark: </B> The word <TT>Mutual</TT> can be optionally
+inserted in front of <TT>Inductive</TT>.<BR>
+<BR>
+It has the same semantics as the above <TT>Inductive</TT> definition for
+each <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>, ..., <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>m</I></FONT></SUB>. All names <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>, ...,
+<I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>m</I></FONT></SUB> and <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB><SUP><FONT SIZE=2>1</FONT></SUP>, ..., <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB><SUB><SUB><FONT SIZE=2><I>m</I></FONT></SUB></SUB><SUP><FONT SIZE=2><I>m</I></FONT></SUP> are
+simultaneously added to the environment. Then
+well-typing of constructors can be checked. Each one of the
+<I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>, ..., <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>m</I></FONT></SUB> can be used on its own.<BR>
+<BR>
+It is also possible to parameterize these inductive definitions.
+However, parameters correspond to a local
+context in which the whole set of inductive declarations is done. For
+this reason, the parameters must be strictly the same for each
+inductive types The extended syntax is:<BR><TT>Inductive </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> [</TT><I><FONT COLOR=maroon>params</FONT></I><TT> ] : </TT><I><FONT COLOR=maroon>type</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> :=<BR>&nbsp; </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><SUP><TT><FONT SIZE=2>1</FONT></TT></SUP><TT> : </TT><I><FONT COLOR=maroon>type</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><SUP><TT><FONT SIZE=2>1</FONT></TT></SUP><TT><BR>| ..<BR>| </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><SUB><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB></SUB><SUP><TT><FONT SIZE=2>1</FONT></TT></SUP><TT> : </TT><I><FONT COLOR=maroon>type</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><SUB><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB></SUB><SUP><TT><FONT SIZE=2>1</FONT></TT></SUP><TT><BR>with<BR> ..<BR>with </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2><I>m</I></FONT></TT></SUB><TT> [</TT><I><FONT COLOR=maroon>params</FONT></I><TT> ] : </TT><I><FONT COLOR=maroon>type</FONT></I><SUB><TT><FONT SIZE=2><I>m</I></FONT></TT></SUB><TT> :=<BR>&nbsp;</TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><SUP><TT><FONT SIZE=2><I>m</I></FONT></TT></SUP><TT> : </TT><I><FONT COLOR=maroon>type</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><SUP><TT><FONT SIZE=2><I>m</I></FONT></TT></SUP><TT><BR>| ..<BR>| </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><SUB><SUB><TT><FONT SIZE=2><I>m</I></FONT></TT></SUB></SUB><SUP><TT><FONT SIZE=2><I>m</I></FONT></TT></SUP><TT> : </TT><I><FONT COLOR=maroon>type</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><SUB><SUB><TT><FONT SIZE=2><I>m</I></FONT></TT></SUB></SUB><SUP><TT><FONT SIZE=2><I>m</I></FONT></TT></SUP><TT>.
+</TT>
+<BR><BR><B>Example: </B>The typical example of a mutual inductive data type is the one for
+trees and forests. We assume given two types <I>A</I> and <I>B</I> as variables.
+It can be declared the following way.<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Variables&nbsp;A,B:Set.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Inductive&nbsp;tree&nbsp;:&nbsp;Set&nbsp;:=&nbsp;&nbsp;node&nbsp;:&nbsp;A&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;forest&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;tree</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;with&nbsp;forest&nbsp;:&nbsp;Set&nbsp;:=&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;leaf&nbsp;:&nbsp;B&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;forest&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;cons&nbsp;:&nbsp;tree&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;forest&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;forest.</TT><BR></DIV>
+<BR>
+This declaration generates automatically six induction
+principles. They are respectively 
+called <TT>tree_rec</TT>, <TT>tree_ind</TT>, <TT>tree_rect</TT>, <TT>forest_rec</TT>, <TT>forest_ind</TT>, <TT>forest_rect</TT>. These ones are not the most general ones but are
+just the induction principles corresponding to each inductive part
+seen as a single inductive definition.<BR>
+<BR>
+To illustrate this point on our example, we give the types of <TT>tree_rec</TT> and <TT>forest_rec</TT>.<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Check&nbsp;tree_rec.</TT><BR><TT><I>tree_rec</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(P:(tree-</I></TT><TT><I>&gt;</I></TT><TT><I>Set))((a:A;&nbsp;f:forest)(P&nbsp;(node&nbsp;a&nbsp;f)))-</I></TT><TT><I>&gt;</I></TT><TT><I>(t:tree)(P&nbsp;t)</I></TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Check&nbsp;forest_rec.</TT><BR><TT><I>forest_rec</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(P:(forest-</I></TT><TT><I>&gt;</I></TT><TT><I>Set))</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((b:B)(P&nbsp;(leaf&nbsp;b)))</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-</I></TT><TT><I>&gt;</I></TT><TT><I>((t:tree;&nbsp;f:forest)(P&nbsp;f)-</I></TT><TT><I>&gt;</I></TT><TT><I>(P&nbsp;(cons&nbsp;t&nbsp;f)))</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-</I></TT><TT><I>&gt;</I></TT><TT><I>(f1:forest)(P&nbsp;f1)</I></TT><BR></DIV>
+<BR>
+Assume we want to parameterize our mutual inductive definitions with
+the two type variables <I>A</I> and <I>B</I>, the declaration should be done the
+following way:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Inductive</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tree&nbsp;&nbsp;&nbsp;[A,B:Set]&nbsp;:&nbsp;Set&nbsp;:=&nbsp;node&nbsp;:&nbsp;A&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;(forest&nbsp;A&nbsp;B)&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;(tree&nbsp;A&nbsp;B)</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;with&nbsp;forest&nbsp;[A,B:Set]&nbsp;:&nbsp;Set&nbsp;:=&nbsp;leaf&nbsp;:&nbsp;B&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;(forest&nbsp;A&nbsp;B)</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;cons&nbsp;:&nbsp;(tree&nbsp;A&nbsp;B)&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;(forest&nbsp;A&nbsp;B)&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;(forest&nbsp;A&nbsp;B).</TT><BR></DIV>
+<BR>
+Assume we define an inductive definition inside a section. When the
+section is closed, the variables declared in the section and occurring
+free in the declaration are added as parameters to the inductive
+definition. <BR><B>See also: </B><A HREF="node.0.1.3.html#Section">2.4</A><BR>
+<BR>
+
+<H4>
+Co-inductive types
+</H4>
+
+<A NAME="@default38"></A><A NAME="@command9"></A>The objects of an inductive type are well-founded with respect to the
+constructors of the type. In other words, such objects contain only a
+<I>finite</I> number constructors. Co-inductive types arise from
+relaxing this condition, and admitting types whose objects contain an
+infinity of constructors. Infinite objects are introduced by a
+non-ending (but effective) process of construction, defined in terms
+of the constructors of the type.<BR>
+<BR>
+An example of a co-inductive type is the type of infinite sequences of
+natural numbers, usually called streams. It can be introduced in <FONT COLOR=purple>Coq</FONT>
+using the <TT>CoInductive</TT> command:
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;CoInductive&nbsp;Set&nbsp;Stream&nbsp;&nbsp;:=&nbsp;Seq&nbsp;:&nbsp;nat-</TT><TT>&gt;</TT><TT>Stream-</TT><TT>&gt;</TT><TT>Stream.</TT><BR><TT><I>Stream&nbsp;is&nbsp;defined</I></TT><BR></DIV>
+<BR>
+The syntax of this command is the same as the command <TT>Inductive</TT>
+(cf. section <A HREF="node.0.0.2.html#gal_Inductive_Definitions">1.3.3</A>). Notice that no
+principle of induction is derived from the definition of a
+co-inductive type, since such principles only make sense for inductive
+ones. For co-inductive ones, the only elimination principle is case
+analysis. For example, the usual destructors on streams
+<TT>hd:Stream-&gt;nat</TT> and <TT>tl:Str-&gt;Str</TT> can be defined as
+follows:
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Definition&nbsp;hd&nbsp;&nbsp;:=&nbsp;[x:Stream]Cases&nbsp;x&nbsp;of&nbsp;(Seq&nbsp;a&nbsp;s)&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;a&nbsp;&nbsp;end.</TT><BR><TT><I>hd&nbsp;is&nbsp;defined</I></TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Definition&nbsp;tl&nbsp;&nbsp;:=&nbsp;[x:Stream]Cases&nbsp;x&nbsp;of&nbsp;(Seq&nbsp;a&nbsp;s)&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;s&nbsp;&nbsp;end.</TT><BR><TT><I>tl&nbsp;is&nbsp;defined</I></TT><BR></DIV>
+<BR>
+Definition of co-inductive predicates and blocks of mutually
+co-inductive definitions are also allowed. An example of a
+co-inductive predicate is the extensional equality on streams:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;CoInductive&nbsp;EqSt&nbsp;&nbsp;:&nbsp;Stream-</TT><TT>&gt;</TT><TT>Stream-</TT><TT>&gt;</TT><TT>Prop&nbsp;:=&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eqst&nbsp;:&nbsp;(s1,s2:Stream)</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(hd&nbsp;s1)=(hd&nbsp;s2)-</TT><TT>&gt;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(EqSt&nbsp;(tl&nbsp;s1)&nbsp;(tl&nbsp;s2))-</TT><TT>&gt;</TT><TT>(EqSt&nbsp;s1&nbsp;s2).</TT><BR><TT><I>EqSt&nbsp;is&nbsp;defined</I></TT><BR></DIV>
+<BR>
+In order to prove the extensionally equality of two streams <I>s</I><SUB><FONT SIZE=2>1</FONT></SUB> and
+<I>s</I><SUB><FONT SIZE=2>2</FONT></SUB> we have to construct and infinite proof of equality, that is,
+an infinite object of type (<TT>EqSt</TT>&nbsp;<I>s</I><SUB><FONT SIZE=2>1</FONT></SUB>&nbsp;<I>s</I><SUB><FONT SIZE=2>2</FONT></SUB>). We will see
+how to introduce infinite objects in section <A HREF="node.0.0.2.html#CoFixpoint">1.3.4</A>.<BR>
+<BR>
+
+<H3>
+
+1.3.4&nbsp;Definition of recursive functions
+</H3>
+
+<H4>
+<TT>Fixpoint </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> [ </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> : </TT><I><FONT COLOR=maroon>type</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> ] :
+</TT><I><FONT COLOR=maroon>type</FONT></I><SUB><TT><FONT SIZE=2>0</FONT></TT></SUB><TT> := </TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>0</FONT></TT></SUB><TT>
+</TT></H4>
+
+<A NAME="@default39"></A><A NAME="@command10"></A><A NAME="Fixpoint"></A>This command allows to define inductive objects using a fixed point
+construction. The meaning of this declaration is to define <I>ident</I> a recursive function with one argument <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> of type
+<I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> such that (<I>ident</I>&nbsp;<I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>) has type <I><FONT COLOR=maroon>type</FONT></I><SUB><FONT SIZE=2>0</FONT></SUB> and is
+equivalent to the expression <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>0</FONT></SUB>. The type of the <I><FONT COLOR=maroon>ident</FONT></I> is
+consequently (<I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> : <I><FONT COLOR=maroon>type</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>)<I><FONT COLOR=maroon>type</FONT></I><SUB><FONT SIZE=2>0</FONT></SUB> and the value is
+equivalent to [<I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> : <I><FONT COLOR=maroon>type</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>]<I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>0</FONT></SUB>. The argument
+<I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> (of type <I><FONT COLOR=maroon>type</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>) is called the <EM>recursive
+variable</EM> of <I><FONT COLOR=maroon>ident</FONT></I>. Its type should be an inductive definition.<BR>
+<BR>
+To be accepted, a <TT>Fixpoint</TT> definition has to satisfy some
+syntactical constraints on this recursive variable. They are needed to
+ensure that the <TT>Fixpoint</TT> definition always terminates. For
+instance, one can define the addition function as :<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Fixpoint&nbsp;add&nbsp;[n:nat]&nbsp;:&nbsp;nat-</TT><TT>&gt;</TT><TT>nat&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;[m:nat]Cases&nbsp;n&nbsp;of&nbsp;O&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;m&nbsp;|&nbsp;(S&nbsp;p)&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;(S&nbsp;(add&nbsp;p&nbsp;m))&nbsp;end.</TT><BR><TT><I>add&nbsp;is&nbsp;recursively&nbsp;defined</I></TT><BR></DIV>
+<BR>
+The <TT>Cases</TT> operator matches a value (here <CODE>n</CODE>) with the
+various constructors of its (inductive) type. The remaining arguments
+give the respective values to be returned, as functions of the
+parameters of the corresponding constructor. Thus here when <CODE>n</CODE>
+equals <CODE>O</CODE> we return <CODE>m</CODE>, and when <CODE>n</CODE> equals 
+<CODE>(S p)</CODE> we return <CODE>(S (add p m))</CODE>.<BR>
+<BR>
+The <TT>Cases</TT> operator is formally described
+in detail in section <A HREF="node.0.3.4.html#Caseexpr">4.5.4</A>. The system recognizes that in
+the inductive call <TT>(add p m)</TT> the first argument actually
+decreases because it is a <EM>pattern variable</EM> coming from <TT>Cases
+ n of</TT>.<BR>
+<BR>
+<BR><B>Variants: </B><OL type=1>
+<LI>
+ <TT>Fixpoint </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> [ </TT><I><FONT COLOR=maroon>params</FONT></I><TT> ] : </TT><I><FONT COLOR=maroon>type</FONT></I><SUB><TT><FONT SIZE=2>0</FONT></TT></SUB><TT> :=
+</TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>0</FONT></TT></SUB><TT>.</TT><BR>It declares a list of identifiers with their type
+ usable in the type <I><FONT COLOR=maroon>type</FONT></I><SUB><FONT SIZE=2>0</FONT></SUB> and the definition body <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>0</FONT></SUB>
+ and the last identifier in <I><FONT COLOR=maroon>params</FONT></I> is the recursion variable.
+
+<LI> <TT>Fixpoint </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> [ </TT><I><FONT COLOR=maroon>params</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> ] :
+ </TT><I><FONT COLOR=maroon>type</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> := </TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT><BR>with </TT><TT>...</TT><TT><BR>with </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2><I>m</I></FONT></TT></SUB><TT> [ </TT><I><FONT COLOR=maroon>params</FONT></I><SUB><TT><FONT SIZE=2><I>m</I></FONT></TT></SUB><TT> ] : </TT><I><FONT COLOR=maroon>type</FONT></I><SUB><TT><FONT SIZE=2><I>m</I></FONT></TT></SUB><TT> := 
+ </TT><I><FONT COLOR=maroon>type</FONT></I><SUB><TT><FONT SIZE=2><I>m</I></FONT></TT></SUB><BR>Allows to define simultaneously <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>, ...,
+ <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>m</I></FONT></SUB>.
+</OL><BR><B>Example: </B>The following definition is not correct and generates an
+error message:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Fixpoint&nbsp;wrongplus&nbsp;[n:nat]&nbsp;:&nbsp;nat-</TT><TT>&gt;</TT><TT>nat&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;[m:nat]Cases&nbsp;m&nbsp;of&nbsp;O&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;n&nbsp;|&nbsp;(S&nbsp;p)&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;(S&nbsp;(wrongplus&nbsp;n&nbsp;p))&nbsp;end.</TT><BR><TT><I>Error:</I></TT><BR><TT><I>Recursive&nbsp;call&nbsp;applied&nbsp;to&nbsp;an&nbsp;illegal&nbsp;term</I></TT><BR><TT><I>The&nbsp;recursive&nbsp;definition&nbsp;wrongplus&nbsp;:=</I></TT><BR><TT><I>[n,m:nat]Cases&nbsp;m&nbsp;of</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;O&nbsp;=</I></TT><TT><I>&gt;</I></TT><TT><I>&nbsp;n</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(S&nbsp;p)&nbsp;=</I></TT><TT><I>&gt;</I></TT><TT><I>&nbsp;(S&nbsp;(wrongplus&nbsp;n&nbsp;p))</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end&nbsp;is&nbsp;not&nbsp;well-formed</I></TT><BR></DIV>
+<BR>
+because the declared decreasing argument <TT>n</TT> actually does not
+decrease in the recursive call. The function computing the addition
+over the second argument should rather be written:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Fixpoint&nbsp;plus&nbsp;[n,m:nat]&nbsp;:&nbsp;nat&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;Cases&nbsp;m&nbsp;of&nbsp;O&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;n&nbsp;|&nbsp;(S&nbsp;p)&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;(S&nbsp;(plus&nbsp;n&nbsp;p))&nbsp;end.</TT><BR></DIV>
+<BR>
+The ordinary match operation on natural numbers can be mimicked in the
+following way.
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Fixpoint&nbsp;nat_match&nbsp;[C:Set;f0:C;fS:nat-</TT><TT>&gt;</TT><TT>C-</TT><TT>&gt;</TT><TT>C;n:nat]&nbsp;:&nbsp;C&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;Cases&nbsp;n&nbsp;of&nbsp;O&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;f0&nbsp;|&nbsp;(S&nbsp;p)&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;(fS&nbsp;p&nbsp;(nat_match&nbsp;C&nbsp;f0&nbsp;fS&nbsp;p))&nbsp;end.</TT><BR></DIV>
+
+The recursive call may not only be on direct subterms of the recursive
+variable <TT>n</TT> but also on a deeper subterm and we can directly
+write the function <TT>mod2</TT> which gives the remainder modulo 2 of a
+natural number.
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Fixpoint&nbsp;mod2&nbsp;[n:nat]&nbsp;:&nbsp;nat</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;Cases&nbsp;n&nbsp;of</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;O&nbsp;&nbsp;&nbsp;&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;O</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(S&nbsp;p)&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;Cases&nbsp;p&nbsp;of&nbsp;O&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;(S&nbsp;O)&nbsp;|&nbsp;(S&nbsp;q)&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;(mod2&nbsp;q)&nbsp;end</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end.</TT><BR></DIV>
+
+In order to keep the strong normalisation property, the fixed point
+reduction will only be performed when the argument in position of the
+recursive variable (whose type should be in an inductive definition)
+starts with a constructor.<BR>
+<BR>
+The <TT>Fixpoint</TT> construction enjoys also the <TT>with</TT> extension
+to define functions over mutually defined inductive types or more
+generally any mutually recursive definitions.<BR><B>Example: </B>The size of trees and forests can be defined the following way: 
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Fixpoint&nbsp;tree_size&nbsp;[t:tree]&nbsp;:&nbsp;nat&nbsp;:=</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cases&nbsp;t&nbsp;of&nbsp;(node&nbsp;a&nbsp;f)&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;(S&nbsp;(forest_size&nbsp;f))&nbsp;end</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;with&nbsp;forest_size&nbsp;[f:forest]&nbsp;:&nbsp;nat&nbsp;:=&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cases&nbsp;f&nbsp;of&nbsp;(leaf&nbsp;b)&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;(S&nbsp;O)</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(cons&nbsp;t&nbsp;f')&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;(plus&nbsp;(tree_size&nbsp;t)&nbsp;(forest_size&nbsp;f'))&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end.</TT><BR></DIV>
+
+A generic command <TT>Scheme</TT> is useful to build automatically various
+mutual induction principles. It is described in section <A HREF="node.1.2.13.html#Scheme">7.14</A>.<BR>
+<BR>
+
+<H4>
+<TT>CoFixpoint </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> :
+</TT><I><FONT COLOR=maroon>type</FONT></I><SUB><TT><FONT SIZE=2>0</FONT></TT></SUB><TT> := </TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>0</FONT></TT></SUB><TT>.
+</TT></H4>
+<A NAME="@default40"></A><A NAME="@command11"></A><A NAME="CoFixpoint"></A>The <TT>CoFixpoint</TT> command introduces a method for constructing an
+infinite object of a coinductive type. For example, the stream
+containing all natural numbers can be introduced applying the
+following method to the number <TT>O</TT>:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;CoInductive&nbsp;Set&nbsp;Stream&nbsp;&nbsp;:=&nbsp;Seq&nbsp;:&nbsp;nat-</TT><TT>&gt;</TT><TT>Stream-</TT><TT>&gt;</TT><TT>Stream.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Definition&nbsp;hd&nbsp;&nbsp;:=&nbsp;[x:Stream]Cases&nbsp;x&nbsp;of&nbsp;(Seq&nbsp;a&nbsp;s)&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;a&nbsp;&nbsp;end.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Definition&nbsp;tl&nbsp;&nbsp;:=&nbsp;[x:Stream]Cases&nbsp;x&nbsp;of&nbsp;(Seq&nbsp;a&nbsp;s)&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;s&nbsp;&nbsp;end.</TT><BR></DIV>
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;CoFixpoint&nbsp;from&nbsp;&nbsp;:&nbsp;nat-</TT><TT>&gt;</TT><TT>Stream&nbsp;:=&nbsp;[n:nat](Seq&nbsp;n&nbsp;(from&nbsp;(S&nbsp;n))).</TT><BR><TT><I>from&nbsp;is&nbsp;corecursively&nbsp;defined</I></TT><BR></DIV>
+<BR>
+Oppositely to recursive ones, there is no decreasing argument in a
+co-recursive definition. To be admissible, a method of construction
+must provide at least one extra constructor of the infinite object for
+each iteration. A syntactical guard condition is imposed on
+co-recursive definitions in order to ensure this: each recursive call
+in the definition must be protected by at least one constructor, and
+only by constructors. That is the case in the former definition, where
+the single recursive call of <TT>from</TT> is guarded by an
+application of <TT>Seq</TT>. On the contrary, the following recursive
+function does not satisfy the guard condition:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;CoFixpoint&nbsp;filter&nbsp;&nbsp;:&nbsp;(nat-</TT><TT>&gt;</TT><TT>bool)-</TT><TT>&gt;</TT><TT>Stream-</TT><TT>&gt;</TT><TT>Stream&nbsp;:=&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;[p:nat-</TT><TT>&gt;</TT><TT>bool]</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[s:Stream]</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(p&nbsp;(hd&nbsp;s))&nbsp;then&nbsp;(Seq&nbsp;(hd&nbsp;s)&nbsp;(filter&nbsp;p&nbsp;(tl&nbsp;s)))</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;(filter&nbsp;p&nbsp;(tl&nbsp;s)).</TT><BR></DIV>
+<BR>
+Notice that the definition contains an unguarded recursive
+call of <TT>filter</TT> on the <TT>else</TT> branch of the test.<BR>
+<BR>
+The elimination of co-recursive definition is done lazily, i.e. the
+definition is expanded only when it occurs at the head of an
+application which is the argument of a case expression. Isolate, it
+is considered as a canonical expression which is completely
+evaluated. We can test this using the command <TT>Eval</TT>,
+which computes the normal forms of a term:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Eval&nbsp;Compute&nbsp;in&nbsp;(from&nbsp;O).</TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;(CoFix&nbsp;from{from&nbsp;:&nbsp;&nbsp;nat-</I></TT><TT><I>&gt;</I></TT><TT><I>Stream&nbsp;:=&nbsp;[n:nat](Seq&nbsp;n&nbsp;(from&nbsp;(S&nbsp;n)))}</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;O)</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Stream</I></TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Eval&nbsp;Compute&nbsp;in&nbsp;(hd&nbsp;(from&nbsp;O)).</TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;O</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;nat</I></TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Eval&nbsp;Compute&nbsp;in&nbsp;(tl&nbsp;(from&nbsp;O)).&nbsp;&nbsp;</TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;(CoFix&nbsp;from{from&nbsp;:&nbsp;&nbsp;nat-</I></TT><TT><I>&gt;</I></TT><TT><I>Stream&nbsp;:=&nbsp;[n:nat](Seq&nbsp;n&nbsp;(from&nbsp;(S&nbsp;n)))}</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(S&nbsp;O))</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Stream</I></TT><BR></DIV>
+<BR>
+As in the <TT>Fixpoint</TT> command (cf. section&nbsp;<A HREF="node.0.0.2.html#Fixpoint">1.3.4</A>), it
+is possible to introduce a block of mutually dependent methods. The
+general syntax for this case is:<BR>
+<BR>
+<TT>CoFixpoint </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> :</TT><I><FONT COLOR=maroon>type</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> := </TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT><BR>with<BR> </TT><TT>...</TT><TT><BR>with </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2><I>m</I></FONT></TT></SUB><TT> : </TT><I><FONT COLOR=maroon>type</FONT></I><SUB><TT><FONT SIZE=2><I>m</I></FONT></TT></SUB><TT> := </TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2><I>m</I></FONT></TT></SUB><BR>
+<BR>
+
+<H3>
+
+1.3.5&nbsp;Statement and proofs
+</H3>
+A statement claims a goal of which the proof is then interactively done
+using tactics. More on the proof editing mode, statements and proofs can be
+found in chapter <A HREF="node.1.1.html#Proof-handling">6</A>.<BR>
+<BR>
+
+<H4>
+<TT>Theorem </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> : </TT><I><FONT COLOR=maroon>type</FONT></I><TT>.
+</TT></H4>
+
+<A NAME="@default41"></A><A NAME="@command12"></A>
+This command binds <I><FONT COLOR=maroon>type</FONT></I> to the name <I><FONT COLOR=maroon>ident</FONT></I> in the
+environment, provided that a proof of <I><FONT COLOR=maroon>type</FONT></I> is next given.<BR>
+<BR>
+After a statement, Coq needs a proof.<BR>
+<BR>
+<BR><B>Variants: </B><OL type=1>
+<LI>  <TT>Lemma </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> : </TT><I><FONT COLOR=maroon>type</FONT></I><TT>.</TT><A NAME="@default42"></A><A NAME="@command13"></A><BR>It is a synonymous of <TT>Theorem</TT>
+
+<LI> <TT>Remark </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> : </TT><I><FONT COLOR=maroon>type</FONT></I><TT>.</TT><A NAME="@default43"></A><A NAME="@command14"></A><BR>Same as <TT>Theorem</TT> except
+that if this statement is in one or more levels of sections then the
+name <I><FONT COLOR=maroon>ident</FONT></I> will be accessible only prefixed by the sections names
+when the sections (see <A HREF="node.0.1.3.html#Section">2.4</A> and <A HREF="node.0.1.5.html#LongNames">2.6</A>) will be
+closed.
+
+<LI> <TT>Fact </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> : </TT><I><FONT COLOR=maroon>type</FONT></I><TT>.</TT><A NAME="@default44"></A><A NAME="@command15"></A><BR>Same as <TT>Remark</TT> except
+that the innermost section name is dropped from the full name.
+
+<LI> <TT>Definition </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> : </TT><I><FONT COLOR=maroon>type</FONT></I><TT>.</TT><BR>Allow to define a term of type <I><FONT COLOR=maroon>type</FONT></I> using the proof editing mode. It
+behaves as <TT>Theorem</TT> except the defined term will be transparent (see
+<A HREF="node.1.0.1.html#Transparent">5.2.5</A>, <A HREF="node.1.2.4.html#Unfold">7.5.5</A>). 
+</OL>
+<H4>
+<TT>Proof</TT> <TT>.</TT> ...<TT>Qed</TT> <TT>.</TT>
+</H4>
+A proof starts by the keyword <TT>Proof</TT>. Then <FONT COLOR=purple>Coq</FONT> enters the
+proof editing mode until the proof is completed. The proof editing
+mode essentially contains tactics that are described in chapter
+<A HREF="node.1.2.html#Tactics">7</A>. Besides tactics, there are commands to manage the proof
+editing mode. They are described in chapter <A HREF="node.1.1.html#Proof-handling">6</A>. When
+the proof is completed it should be validated and put in the
+environment using the keyword <TT>Qed</TT>.
+<BR><BR><B>Error message: </B><OL type=1>
+<LI>
+ <TT>Clash with previous constant </TT><I><FONT COLOR=maroon>ident</FONT></I><A NAME="@error7"></A>
+</OL><BR><B>Remarks: </B><OL type=1>
+<LI>
+ Several statements can be simultaneously opened.
+
+<LI> Not only other statements but any vernacular command can be given
+within the proof editing mode. In this case, the command is
+understood as if it would have been given before the statements still to be
+proved. 
+
+<LI> <TT>Proof</TT> is recommended but can currently be omitted. On the
+opposite, <TT>Qed</TT> (or <TT>Defined</TT>, see below) is mandatory to validate a proof.
+
+<LI> Proofs ended by <TT>Qed</TT> are declared opaque (see <A HREF="node.1.0.1.html#Opaque">5.2.4</A>)
+and cannot be unfolded by conversion tactics (see <A HREF="node.1.2.4.html#Conversion-tactics">7.5</A>).
+To be able to unfold a proof, you should end the proof by <TT>Defined</TT>
+ (see below). 
+</OL><BR><B>Variants: </B><OL type=1>
+<LI>
+ <TT>Proof</TT> <TT>.</TT> ...<TT>Defined</TT> <TT>.</TT><BR><A NAME="@default45"></A><A NAME="@command16"></A>
+ Same as <TT>Proof</TT> <TT>.</TT> ...<TT>Qed</TT> <TT>.</TT> but the proof is
+ then declared transparent (see <A HREF="node.1.0.1.html#Transparent">5.2.5</A>), which means it
+ can be unfolded in conversion tactics (see <A HREF="node.1.2.4.html#Conversion-tactics">7.5</A>).
+
+<LI> <TT>Proof</TT> <TT>.</TT> ...<TT>Save.</TT><BR>Same as <TT>Proof</TT> <TT>.</TT> ...<TT>Qed</TT> <TT>.</TT>
+
+<LI> <TT>Goal</TT> <I><FONT COLOR=maroon>type</FONT></I>...<TT>Save</TT> <I><FONT COLOR=maroon>ident</FONT></I><BR>Same as <TT>Lemma</TT> <I><FONT COLOR=maroon>ident</FONT></I><TT>:</TT> <I><FONT COLOR=maroon>type</FONT></I>...<TT>Save.</TT>
+ This is intended to be used in the interactive mode. Conversely to named
+ lemmas, anonymous goals cannot be nested.
+</OL>
+<A NAME="@default46"></A><A NAME="@command17"></A>
+<A NAME="@default47"></A><A NAME="@command18"></A>
+<A NAME="@default48"></A><A NAME="@command19"></A>
+<A NAME="@default49"></A><A NAME="@command20"></A>
+<A NAME="@default50"></A><A NAME="@command21"></A><HR>
+
+<A HREF="node.0.0.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.0.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>
