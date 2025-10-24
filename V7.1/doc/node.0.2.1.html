@@ -1,0 +1,312 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+3.2&nbsp;The standard library
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.0.2.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.0.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.2.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+3.2&nbsp;The standard library
+</H2>
+
+
+
+<H3>
+
+3.2.1&nbsp;Survey
+</H3>
+The rest of the standard library is structured into the following 
+subdirectories:<BR>
+<BR>
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><B>Logic</B></TD>
+<TD VALIGN=top ALIGN=left>Classical logic and dependent equality</TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><B>Arith</B></TD>
+<TD VALIGN=top ALIGN=left>Basic Peano arithmetic</TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><B>ZArith</B></TD>
+<TD VALIGN=top ALIGN=left>Basic integer arithmetic</TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><B>Bool</B></TD>
+<TD VALIGN=top ALIGN=left>Booleans (basic functions and results)</TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><B>Lists</B></TD>
+<TD VALIGN=top ALIGN=left>Monomorphic and polymorphic lists (basic functions and
+ results), Streams (infinite sequences defined with co-inductive
+ types)</TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><B>Sets</B></TD>
+<TD VALIGN=top ALIGN=left>Sets (classical, constructive, finite, infinite, power set,
+ etc.)</TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><B>IntMap</B></TD>
+<TD VALIGN=top ALIGN=left>Representation of finite sets by an efficient
+ structure of map (trees indexed by binary integers).</TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><B>Reals</B></TD>
+<TD VALIGN=top ALIGN=left>Axiomatization of Real Numbers (classical, basic functions, 
+ integer part, fractional part, limit, derivative, Cauchy 
+ series, power series and results,... Requires the 
+ <B>ZArith</B> library).</TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><B>Relations</B></TD>
+<TD VALIGN=top ALIGN=left>Relations (definitions and basic results).</TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><B>Wellfounded</B></TD>
+<TD VALIGN=top ALIGN=left>Well-founded relations (basic results).</TD>
+</TR></TABLE>
+<BR><BR>
+<BR>
+These directories belong to the initial load path of the system, and
+the modules they provide are compiled at installation time. So they
+are directly accessible with the command <CODE>Require</CODE> (see
+chapter&nbsp;<A HREF="node.1.0.html#Other-commands">5</A>). <BR>
+<BR>
+The different modules of the <FONT COLOR=purple>Coq</FONT> standard library are described in the
+additional document <CODE>Library.dvi</CODE>. They are also accessible on the WWW
+through the <FONT COLOR=purple>Coq</FONT> homepage
+<A NAME="text13" HREF="#note13"><SUP><FONT SIZE=2>10</FONT></SUP></A>.<BR>
+<BR>
+
+<H3>
+
+3.2.2&nbsp;Notations for integer arithmetics
+</H3>
+
+<A NAME="@default236"></A>On figure <A HREF="node.0.2.1.html#zarith-syntax">3.2.2</A> is described the syntax of expressions
+for integer arithmetics. It is provided by requiring the module <TT>ZArith</TT>.<BR>
+<BR>
+<A NAME="@default237"></A>
+<A NAME="@default238"></A>
+<A NAME="@default239"></A><BR>
+<BR>
+The <TT>+</TT> and <TT>-</TT> binary operators bind less than the <TT>*</TT> operator
+which binds less than the <TT>|</TT>&nbsp;...&nbsp;<TT>|</TT> and <TT>-</TT> unary
+operators which bind less than the others constructions.
+All the binary operators are left associative. The <TT>[</TT>&nbsp;...&nbsp;<TT>]</TT>
+allows to escape the <I><FONT COLOR=maroon>zarith</FONT></I> grammar.<BR>
+<BR>
+<BLOCKQUOTE><DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV>
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=1>
+<TR><TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>form</FONT></I></TD>
+<TD ALIGN=center NOWRAP>::=</TD>
+<TD ALIGN=left NOWRAP><TT>`</TT> <I><FONT COLOR=maroon>zarith_formula</FONT></I> <TT>`</TT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>&nbsp;</TD>
+<TD ALIGN=left NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>term</FONT></I></TD>
+<TD ALIGN=center NOWRAP>::=</TD>
+<TD ALIGN=left NOWRAP><TT>`</TT> <I><FONT COLOR=maroon>zarith</FONT></I> <TT>`</TT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>&nbsp;</TD>
+<TD ALIGN=left NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>zarith_formula</FONT></I></TD>
+<TD ALIGN=center NOWRAP>::=</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>zarith</FONT></I> <TT>=</TT> <I><FONT COLOR=maroon>zarith</FONT></I></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>zarith</FONT></I> <TT>&lt;=</TT> <I><FONT COLOR=maroon>zarith</FONT></I></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>zarith</FONT></I> <TT>&lt;</TT> <I><FONT COLOR=maroon>zarith</FONT></I></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>zarith</FONT></I> <TT>&gt;=</TT> <I><FONT COLOR=maroon>zarith</FONT></I></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>zarith</FONT></I> <TT>&gt;</TT> <I><FONT COLOR=maroon>zarith</FONT></I></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>zarith</FONT></I> <TT>=</TT> <I><FONT COLOR=maroon>zarith</FONT></I> <TT>=</TT> <I><FONT COLOR=maroon>zarith</FONT></I></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>zarith</FONT></I> <TT>&lt;=</TT> <I><FONT COLOR=maroon>zarith</FONT></I> <TT>&lt;=</TT> <I><FONT COLOR=maroon>zarith</FONT></I></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>zarith</FONT></I> <TT>&lt;=</TT> <I><FONT COLOR=maroon>zarith</FONT></I> <TT>&lt;</TT> <I><FONT COLOR=maroon>zarith</FONT></I></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>zarith</FONT></I> <TT>&lt;</TT> <I><FONT COLOR=maroon>zarith</FONT></I> <TT>&lt;=</TT> <I><FONT COLOR=maroon>zarith</FONT></I></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>zarith</FONT></I> <TT>&lt;</TT> <I><FONT COLOR=maroon>zarith</FONT></I> <TT>&lt;</TT> <I><FONT COLOR=maroon>zarith</FONT></I></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>zarith</FONT></I> <TT>&lt;&gt;</TT> <I><FONT COLOR=maroon>zarith</FONT></I></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>zarith</FONT></I> <TT>?</TT> <TT>=</TT> <I><FONT COLOR=maroon>zarith</FONT></I></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>&nbsp;</TD>
+<TD ALIGN=left NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>zarith</FONT></I></TD>
+<TD ALIGN=center NOWRAP>::=</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>zarith</FONT></I> <TT>+</TT> <I><FONT COLOR=maroon>zarith</FONT></I></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>zarith</FONT></I> <TT>-</TT> <I><FONT COLOR=maroon>zarith</FONT></I></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>zarith</FONT></I> <TT>*</TT> <I><FONT COLOR=maroon>zarith</FONT></I></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><TT>|</TT> <I><FONT COLOR=maroon>zarith</FONT></I> <TT>|</TT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><TT>-</TT> <I><FONT COLOR=maroon>zarith</FONT></I></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>ident</FONT></I></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><TT>[</TT> <I><FONT COLOR=maroon>term</FONT></I> <TT>]</TT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><TT>(</TT> <I><FONT COLOR=maroon>zarith</FONT></I>  ...  <I><FONT COLOR=maroon>zarith</FONT></I> <TT>)</TT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><TT>(</TT> <I><FONT COLOR=maroon>zarith</FONT></I> <TT>,</TT> ... <TT>,</TT> <I><FONT COLOR=maroon>zarith</FONT></I> <TT>)</TT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>integer</FONT></I></TD>
+</TR></TABLE>
+</DIV>
+<A NAME="zarith-syntax"></A>
+<BR>
+<DIV ALIGN=center>Figure 3.4: Syntax of expressions in integer arithmetics</DIV><BR>
+
+<DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV></BLOCKQUOTE>
+<H3>
+
+3.2.3&nbsp;Notations for Peano's arithmetic (<TT>nat</TT>)
+</H3>
+
+<A NAME="@default240"></A>After having required the module <TT>Arith</TT>, the user can type the
+naturals using decimal notation. That is he can write <TT>(3)</TT>
+for <TT>(S (S (S O)))</TT>. The number must be between parentheses.
+This works also in the left hand side of a <TT>Cases</TT> expression
+(see for example section <A HREF="node.1.3.0.html#Refine-example">8.1</A>).<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Require&nbsp;Arith.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Fixpoint&nbsp;even&nbsp;[n:nat]&nbsp;:&nbsp;bool&nbsp;:=</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Cases&nbsp;n&nbsp;of&nbsp;(0)&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;true&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;(1)&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;false</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(S&nbsp;(S&nbsp;n))&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;(even&nbsp;n)</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;end.</TT><BR></DIV>
+<BR>
+
+<H3>
+
+3.2.4&nbsp;Real numbers library
+</H3>
+
+<H4>
+Notations for real numbers
+</H4>
+
+<A NAME="@default241"></A>This is provided by requiring the module <TT>Reals</TT>. This notation is very
+similar to the notation for integer arithmetics (see figure 
+<A HREF="node.0.2.1.html#zarith-syntax">3.2.2</A>) where Inverse (/x) and division (x/y) have been added. 
+This syntax is used parenthesizing by a double back-quote (<CODE>``</CODE>).<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Require&nbsp;Reals.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Check&nbsp;``2+3``.</TT><BR><TT><I>``2+3``</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;R</I></TT><BR></DIV>
+<BR>
+A constant, say <CODE>``4``</CODE>, is equivalent to <CODE>``(1+(1+(1+1)))``</CODE>.<BR>
+<BR>
+
+<H4>
+Some tactics
+</H4>
+In addition to the Ring, Field and Fourier tactics (see chapter <A HREF="node.1.2.html#Tactics">7</A>)
+there are:<BR>
+<BR>
+<TT>DiscrR</TT> prove that a real integer constante c1 is non equal to
+another real integer constante c2.
+<A NAME="@default242"></A><A NAME="@tactic0"></A><BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Require&nbsp;DiscrR.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Goal&nbsp;``5</TT><TT>&lt;</TT><TT>&gt;</TT><TT>0``.</TT><BR></DIV>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;DiscrR.</TT><BR><TT><I>Subtree&nbsp;proved!</I></TT><BR></DIV>
+<BR>
+<TT>SplitAbsolu</TT> allows us to unfold <TT>Rabsolu</TT> contants and split 
+corresponding conjonctions.
+<A NAME="@default243"></A><A NAME="@tactic1"></A><BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Require&nbsp;SplitAbsolu.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Goal&nbsp;(x:R)&nbsp;``x&nbsp;</TT><TT>&lt;</TT><TT>=&nbsp;(Rabsolu&nbsp;x)``.</TT><BR></DIV>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Intro;SplitAbsolu.</TT><BR><TT><I>2&nbsp;subgoals</I></TT><BR><TT><I>&nbsp;&nbsp;</I></TT><BR><TT><I>&nbsp;&nbsp;x&nbsp;:&nbsp;R</I></TT><BR><TT><I>&nbsp;&nbsp;r&nbsp;:&nbsp;``x&nbsp;</I></TT><TT><I>&lt;</I></TT><TT><I>&nbsp;0``</I></TT><BR><TT><I>&nbsp;&nbsp;============================</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;``x&nbsp;</I></TT><TT><I>&lt;</I></TT><TT><I>=&nbsp;&nbsp;-x``</I></TT><BR><TT><I>subgoal&nbsp;2&nbsp;is:</I></TT><BR><TT><I>&nbsp;``x&nbsp;</I></TT><TT><I>&lt;</I></TT><TT><I>=&nbsp;x``</I></TT><BR></DIV>
+<BR>
+<TT>SplitRmult</TT> allows us to split a condition that a product is non equal to 
+zero into subgoals corresponding to the condition on each subterm of the 
+product.
+<A NAME="@default244"></A><A NAME="@tactic2"></A><BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Require&nbsp;SplitRmult.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Goal&nbsp;(x,y,z:R)``x*y*z</TT><TT>&lt;</TT><TT>&gt;</TT><TT>0``.</TT><BR></DIV>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Intros;SplitRmult.</TT><BR><TT><I>3&nbsp;subgoals</I></TT><BR><TT><I>&nbsp;&nbsp;</I></TT><BR><TT><I>&nbsp;&nbsp;x&nbsp;:&nbsp;R</I></TT><BR><TT><I>&nbsp;&nbsp;y&nbsp;:&nbsp;R</I></TT><BR><TT><I>&nbsp;&nbsp;z&nbsp;:&nbsp;R</I></TT><BR><TT><I>&nbsp;&nbsp;============================</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;``x&nbsp;</I></TT><TT><I>&lt;</I></TT><TT><I>&gt;</I></TT><TT><I>&nbsp;0``</I></TT><BR><TT><I>subgoal&nbsp;2&nbsp;is:</I></TT><BR><TT><I>&nbsp;``y&nbsp;</I></TT><TT><I>&lt;</I></TT><TT><I>&gt;</I></TT><TT><I>&nbsp;0``</I></TT><BR><TT><I>subgoal&nbsp;3&nbsp;is:</I></TT><BR><TT><I>&nbsp;``z&nbsp;</I></TT><TT><I>&lt;</I></TT><TT><I>&gt;</I></TT><TT><I>&nbsp;0``</I></TT><BR></DIV>
+<BR>
+All this tactics has been written with the new tactic language.<BR><HR>
+
+<A HREF="node.0.2.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.0.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.2.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

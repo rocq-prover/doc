@@ -1,0 +1,61 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+13.2&nbsp;About patterns of parametric types
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.2.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.2.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+13.2&nbsp;About patterns of parametric types
+</H2>
+
+
+
+When matching objects of a parametric type, constructors in patterns
+<EM>do not expect</EM> the parameter arguments. Their value is deduced
+during expansion.<BR>
+<BR>
+Consider for example the polymorphic lists:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Inductive&nbsp;List&nbsp;[A:Set]&nbsp;:Set&nbsp;:=&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;nil:(List&nbsp;A)&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;|&nbsp;cons:A-</TT><TT>&gt;</TT><TT>(List&nbsp;A)-</TT><TT>&gt;</TT><TT>(List&nbsp;A).</TT><BR><TT><I>List&nbsp;is&nbsp;defined</I></TT><BR><TT><I>List_ind&nbsp;is&nbsp;defined</I></TT><BR><TT><I>List_rec&nbsp;is&nbsp;defined</I></TT><BR><TT><I>List_rect&nbsp;is&nbsp;defined</I></TT><BR></DIV>
+<BR>
+We can check the function <EM>tail</EM>:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Check&nbsp;[l:(List&nbsp;nat)]Cases&nbsp;l&nbsp;of&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nil&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;(nil&nbsp;nat)</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(cons&nbsp;_&nbsp;l')&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;l'</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end.</TT><BR><TT><I>[l:(List&nbsp;nat)]Cases&nbsp;l&nbsp;of</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nil&nbsp;=</I></TT><TT><I>&gt;</I></TT><TT><I>&nbsp;(nil&nbsp;nat)</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(cons&nbsp;_&nbsp;l')&nbsp;=</I></TT><TT><I>&gt;</I></TT><TT><I>&nbsp;l'</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(List&nbsp;nat)-</I></TT><TT><I>&gt;</I></TT><TT><I>(List&nbsp;nat)</I></TT><BR></DIV>
+<BR>
+When we use parameters in patterns there is an error message:
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Check&nbsp;[l:(List&nbsp;nat)]Cases&nbsp;l&nbsp;of&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(nil&nbsp;A)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;(nil&nbsp;nat)</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(cons&nbsp;A&nbsp;_&nbsp;l')&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;l'</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end.</TT><BR><TT><I>Toplevel&nbsp;input,&nbsp;characters&nbsp;116-120</I></TT><BR><TT><I>&gt;</I></TT><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(cons&nbsp;A&nbsp;_&nbsp;l')&nbsp;=</I></TT><TT><I>&gt;</I></TT><TT><I>&nbsp;l'</I></TT><BR><TT><I>&gt;</I></TT><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^^^^</I></TT><BR><TT><I>Error:&nbsp;The&nbsp;constructor&nbsp;cons&nbsp;expects&nbsp;2&nbsp;arguments.</I></TT><BR></DIV>
+<BR>
+
+ <HR>
+
+<A HREF="node.3.2.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.2.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

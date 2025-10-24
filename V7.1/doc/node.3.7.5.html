@@ -1,0 +1,119 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+18.6&nbsp;How does it work?
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.7.4.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.7.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.7.6.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+18.6&nbsp;How does it work?
+</H2>
+
+
+The code of <TT>Ring</TT> a good example of tactic written using
+<I>reflection</I> (or <I>internalization</I>, it is 
+synonymous). What is reflection? Basically, it is writing <FONT COLOR=purple>Coq</FONT> tactics
+in <FONT COLOR=purple>Coq</FONT>, rather than in <FONT COLOR=purple>Objective Caml</FONT>. From the philosophical point of view,
+it is using the ability of the Calculus of Constructions to speak and
+reason about itself.
+For the <TT>Ring</TT> tactic we used 
+<FONT COLOR=purple>Coq</FONT> as a programming language and also as a proof environment to build a
+tactic and to prove it correctness.<BR>
+<BR>
+The interested reader is strongly advised to have a look at the file
+<TT>Ring_normalize.v</TT>. Here a type for polynomials is defined: <BR>
+<BR>
+
+<DIV ALIGN=left>
+<PRE>
+Inductive Type polynomial := 
+  Pvar : idx -&gt; polynomial
+| Pconst : A -&gt; polynomial
+| Pplus : polynomial -&gt; polynomial -&gt; polynomial
+| Pmult : polynomial -&gt; polynomial -&gt; polynomial
+| Popp : polynomial -&gt; polynomial.
+</PRE></DIV>
+<BR>
+There is also a type to represent variables maps, and an
+interpretation function, that maps a variables map and a polynomial to an
+element of the concrete ring:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<PRE>
+Definition polynomial_simplify := [...]
+Definition interp : (varmap A) -&gt; (polynomial A) -&gt; A := [...]
+</PRE></DIV>
+<BR>
+A function to normalize polynomials is defined, and the big theorem is
+its correctness w.r.t interpretation, that is:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<PRE>
+Theorem polynomial_simplify_correct : (v:(varmap A))(p:polynomial)
+  (interp v (polynomial_simplify p))
+  ==(interp v p).
+</PRE></DIV>
+<BR>
+(The actual code is slightly more complex: for efficiency,
+there is a special datatype to represent normalized polynomials,
+i.e. ``canonical sums''. But the idea is still the same).<BR>
+<BR>
+So now, what is the scheme for a normalization proof? Let <TT>p</TT>
+be the polynomial expression that the user wants to normalize. First a
+little piece of ML code guesses the type of <TT>p</TT>, the ring
+theory <TT>T</TT> to use, an abstract polynomial <TT>ap</TT> and a
+variables map <TT>v</TT> such that <TT>p</TT> is
+<FONT FACE=symbol>b</FONT><FONT FACE=symbol>d</FONT><FONT FACE=symbol>i</FONT>-equivalent to <CODE>(interp v ap)</CODE>. Then we
+replace it by <CODE>(interp v (polynomial_simplify ap))</CODE>, using the
+main correctness theorem and we reduce it to a concrete expression
+<TT>p'</TT>, which is the concrete normal form of
+<TT>p</TT>. This is summarized in this diagram:<BR><TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD ALIGN=right NOWRAP><TT>p</TT></TD>
+<TD ALIGN=center NOWRAP><FONT FACE=symbol>®</FONT><SUB><FONT SIZE=2><FONT FACE=symbol>b</FONT><FONT FACE=symbol>d</FONT><FONT FACE=symbol>i</FONT></FONT></SUB></TD>
+<TD ALIGN=left NOWRAP><TT>(interp v ap)</TT></TD>
+</TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>&nbsp;</TD>
+<TD ALIGN=left NOWRAP>=<SUB><FONT SIZE=2>(<I>by</I> <I>the</I> <I>main</I> <I>correctness</I> <I>theorem</I>)</FONT></SUB></TD>
+</TR>
+<TR><TD ALIGN=right NOWRAP><TT>p'</TT></TD>
+<TD ALIGN=center NOWRAP><FONT FACE=symbol>¬</FONT><SUB><FONT SIZE=2><FONT FACE=symbol>b</FONT><FONT FACE=symbol>d</FONT><FONT FACE=symbol>i</FONT></FONT></SUB></TD>
+<TD ALIGN=left NOWRAP><TT>(interp v (polynomial_simplify ap))</TT></TD>
+</TR></TABLE>
+<BR><BR>
+<BR>
+The user do not see the right part of the diagram. 
+From outside, the tactic behaves like a
+<FONT FACE=symbol>b</FONT><FONT FACE=symbol>d</FONT><FONT FACE=symbol>i</FONT> simplification extended with AC rewriting rules.
+Basically, the proof is only the application of the main
+correctness theorem to well-chosen arguments.<BR>
+<BR>
+
+ <HR>
+
+<A HREF="node.3.7.4.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.7.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.7.6.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

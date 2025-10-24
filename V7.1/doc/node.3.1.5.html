@@ -1,0 +1,84 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+12.6&nbsp;Coq and GNU Emacs
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.1.4.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.1.6.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+12.6&nbsp;<FONT COLOR=purple>Coq</FONT> and <FONT COLOR=purple>GNU Emacs</FONT>
+</H2>
+
+
+<A NAME="Emacs"></A><A NAME="@default588"></A>
+<H3>
+
+12.6.1&nbsp;The <FONT COLOR=purple>Coq</FONT> Emacs mode
+</H3>
+<FONT COLOR=purple>Coq</FONT> comes with a Major mode for <FONT COLOR=purple>GNU Emacs</FONT>, <TT>coq.el</TT>. This mode provides
+syntax highlighting (assuming your <FONT COLOR=purple>GNU Emacs</FONT> library provides
+<TT>hilit19.el</TT>) and also a rudimentary indentation facility
+in the style of the Caml <FONT COLOR=purple>GNU Emacs</FONT> mode.<BR>
+<BR>
+Add the following lines to your <CODE>.emacs</CODE> file:<BR>
+<BR>
+<PRE>
+  (setq auto-mode-alist (cons '("\\.v$" . coq-mode) auto-mode-alist))
+  (autoload 'coq-mode "coq" "Major mode for editing Coq vernacular." t)
+</PRE>The <FONT COLOR=purple>Coq</FONT> major mode is triggered by visiting a file with extension <TT>.v</TT>,
+or manually with the command <CODE>M-x coq-mode</CODE>.
+It gives you the correct syntax table for
+the <FONT COLOR=purple>Coq</FONT> language, and also a rudimentary indentation facility:
+<UL>
+<LI>
+  pressing <FONT COLOR=navy>Tab</FONT> at the beginning of a line indents the line like
+ the line above;<BR>
+<BR>
+ 
+<LI> extra <FONT COLOR=navy>Tab</FONT>s increase the indentation level
+ (by 2 spaces by default);<BR>
+<BR>
+ 
+<LI> M-<FONT COLOR=navy>Tab</FONT> decreases the indentation level.
+</UL>
+<H3>
+
+12.6.2&nbsp;Proof General
+</H3>
+<A NAME="@default589"></A>Proof General is a generic interface for proof assistants based on
+Emacs (or XEmacs). The main idea is that the <FONT COLOR=purple>Coq</FONT> commands you are
+editing are sent to a <FONT COLOR=purple>Coq</FONT> toplevel running behind Emacs and the
+answers of the system automatically inserted into other Emacs buffers. 
+Thus you don't need to copy-paste the <FONT COLOR=purple>Coq</FONT> material from your files
+to the <FONT COLOR=purple>Coq</FONT> toplevel or conversely from the <FONT COLOR=purple>Coq</FONT> toplevel to some
+files. <BR>
+<BR>
+Proof General is developped and distributed independently of the
+system <FONT COLOR=purple>Coq</FONT>. It is freely available at <CODE>www.proofgeneral.org</CODE>.<BR>
+<BR>
+<HR>
+
+<A HREF="node.3.1.4.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.1.6.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

@@ -1,0 +1,94 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+8.3&nbsp;Scheme
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.1.3.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.3.3.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+8.3&nbsp;<TT>Scheme</TT>
+</H2>
+
+
+
+<A NAME="@default550"></A><A NAME="@command151"></A>
+<A NAME="Scheme-examples"></A>
+<BR><B>Example 1: </B><I>Induction scheme for </I><I><TT>tree</TT></I><I> and </I><I><TT>forest</TT></I>
+<BR>
+<BR>
+The definition of principle of mutual induction for <TT>tree</TT> and
+<TT>forest</TT> over the sort <TT>Set</TT> is defined by the command:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Scheme&nbsp;tree_forest_rec&nbsp;:=&nbsp;Induction&nbsp;for&nbsp;tree&nbsp;Sort&nbsp;Set&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;with&nbsp;forest_tree_rec&nbsp;:=&nbsp;Induction&nbsp;for&nbsp;forest&nbsp;Sort&nbsp;Set.</TT><BR></DIV>
+<BR>
+You may now look at the type of <TT>tree_forest_rec</TT>:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Check&nbsp;tree_forest_rec.</TT><BR><TT><I>tree_forest_rec</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(P:(tree-</I></TT><TT><I>&gt;</I></TT><TT><I>Set);&nbsp;P0:(forest-</I></TT><TT><I>&gt;</I></TT><TT><I>Set))</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((a:A;&nbsp;f:forest)(P0&nbsp;f)-</I></TT><TT><I>&gt;</I></TT><TT><I>(P&nbsp;(node&nbsp;a&nbsp;f)))</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-</I></TT><TT><I>&gt;</I></TT><TT><I>((b:B)(P0&nbsp;(leaf&nbsp;b)))</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-</I></TT><TT><I>&gt;</I></TT><TT><I>((t:tree)(P&nbsp;t)-</I></TT><TT><I>&gt;</I></TT><TT><I>(f:forest)(P0&nbsp;f)-</I></TT><TT><I>&gt;</I></TT><TT><I>(P0&nbsp;(cons&nbsp;t&nbsp;f)))</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-</I></TT><TT><I>&gt;</I></TT><TT><I>(t:tree)(P&nbsp;t)</I></TT><BR></DIV>
+<BR>
+This principle involves two different predicates for <TT>trees</TT> and
+<TT>forests</TT>; it also has three premises each one corresponding to a
+constructor of one of the inductive definitions.<BR>
+<BR>
+The principle <TT>tree_forest_rec</TT> shares exactly the same
+premises, only the conclusion now refers to the property of forests.<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Check&nbsp;forest_tree_rec.</TT><BR><TT><I>forest_tree_rec</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(P:(tree-</I></TT><TT><I>&gt;</I></TT><TT><I>Set);&nbsp;P0:(forest-</I></TT><TT><I>&gt;</I></TT><TT><I>Set))</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((a:A;&nbsp;f:forest)(P0&nbsp;f)-</I></TT><TT><I>&gt;</I></TT><TT><I>(P&nbsp;(node&nbsp;a&nbsp;f)))</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-</I></TT><TT><I>&gt;</I></TT><TT><I>((b:B)(P0&nbsp;(leaf&nbsp;b)))</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-</I></TT><TT><I>&gt;</I></TT><TT><I>((t:tree)(P&nbsp;t)-</I></TT><TT><I>&gt;</I></TT><TT><I>(f:forest)(P0&nbsp;f)-</I></TT><TT><I>&gt;</I></TT><TT><I>(P0&nbsp;(cons&nbsp;t&nbsp;f)))</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-</I></TT><TT><I>&gt;</I></TT><TT><I>(f2:forest)(P0&nbsp;f2)</I></TT><BR></DIV>
+<BR>
+
+<BR><B>Example 2: </B><I>Predicates </I><I><TT>odd</TT></I><I> and </I><I><TT>even</TT></I><I> on naturals</I>
+<BR>
+<BR>
+Let <TT>odd</TT> and <TT>even</TT> be inductively defined as:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Mutual&nbsp;Inductive&nbsp;odd&nbsp;:&nbsp;nat-</TT><TT>&gt;</TT><TT>Prop&nbsp;:=&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;oddS&nbsp;:&nbsp;(n:nat)(even&nbsp;n)-</TT><TT>&gt;</TT><TT>(odd&nbsp;(S&nbsp;n))</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;with&nbsp;even&nbsp;:&nbsp;nat&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;Prop&nbsp;:=&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;evenO&nbsp;:&nbsp;(even&nbsp;O)&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;|&nbsp;evenS&nbsp;:&nbsp;(n:nat)(odd&nbsp;n)-</TT><TT>&gt;</TT><TT>(even&nbsp;(S&nbsp;n)).&nbsp;&nbsp;</TT><BR></DIV>
+<BR>
+The following command generates a powerful elimination
+principle:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Scheme&nbsp;odd_even&nbsp;:=&nbsp;Minimality&nbsp;for&nbsp;odd&nbsp;Sort&nbsp;Prop</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;with&nbsp;&nbsp;&nbsp;even_odd&nbsp;:=&nbsp;Minimality&nbsp;for&nbsp;even&nbsp;Sort&nbsp;Prop.</TT><BR></DIV>
+<BR>
+The type of <TT>odd_even</TT> for instance will be:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Check&nbsp;odd_even.</TT><BR><TT><I>odd_even</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(P,P0:(nat-</I></TT><TT><I>&gt;</I></TT><TT><I>Prop))</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((n:nat)(even&nbsp;n)-</I></TT><TT><I>&gt;</I></TT><TT><I>(P0&nbsp;n)-</I></TT><TT><I>&gt;</I></TT><TT><I>(P&nbsp;(S&nbsp;n)))</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-</I></TT><TT><I>&gt;</I></TT><TT><I>(P0&nbsp;O)</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-</I></TT><TT><I>&gt;</I></TT><TT><I>((n:nat)(odd&nbsp;n)-</I></TT><TT><I>&gt;</I></TT><TT><I>(P&nbsp;n)-</I></TT><TT><I>&gt;</I></TT><TT><I>(P0&nbsp;(S&nbsp;n)))</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-</I></TT><TT><I>&gt;</I></TT><TT><I>(n:nat)(odd&nbsp;n)-</I></TT><TT><I>&gt;</I></TT><TT><I>(P&nbsp;n)</I></TT><BR></DIV>
+<BR>
+The type of <TT>even_odd</TT> shares the same premises but the
+conclusion is <TT>(n:nat)(even n)-&gt;(Q n)</TT>.<BR>
+<BR>
+<HR>
+
+<A HREF="node.1.3.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.3.3.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

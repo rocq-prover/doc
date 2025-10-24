@@ -1,0 +1,156 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+5.5&nbsp;Loadpath
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.1.0.3.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.0.5.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+5.5&nbsp;Loadpath
+</H2>
+
+
+
+<A NAME="loadpath"></A><A NAME="@default325"></A>There are currently two loadpaths in <FONT COLOR=purple>Coq</FONT>. A loadpath where seeking
+<FONT COLOR=purple>Coq</FONT> files (extensions <TT>.v</TT> or <TT>.vo</TT> or <TT>.vi</TT>) and one where
+seeking Objective Caml files. The default loadpath contains the
+directory ``<TT>.</TT>'' denoting the current directory and mapped to the empty logical path (see section <A HREF="node.0.1.5.html#LongNames">2.6</A>).<BR>
+<BR>
+
+<H3>
+
+5.5.1&nbsp;<TT>Pwd.
+</TT></H3>
+<A NAME="@default326"></A><A NAME="@command72"></A><A NAME="Pwd"></A>
+This command displays the current working directory.<BR>
+<BR>
+
+<H3>
+
+5.5.2&nbsp;<TT>Cd </TT><I><FONT COLOR=maroon>string</FONT></I><TT>.
+</TT></H3>
+<A NAME="@default327"></A><A NAME="@command73"></A>
+This command changes the current directory according to <I><FONT COLOR=maroon>string</FONT></I> 
+which can be any valid path.<BR>
+<BR>
+<BR><B>Variants: </B><OL type=1>
+<LI>
+ <TT>Cd.</TT><BR>Is equivalent to <TT>Pwd.</TT>
+</OL>
+<H3>
+
+5.5.3&nbsp;<TT>Add LoadPath </TT><I><FONT COLOR=maroon>string</FONT></I><TT> as </TT><I><FONT COLOR=maroon>dirpath</FONT></I><TT>.
+</TT></H3>
+
+<A NAME="@default328"></A><A NAME="@command74"></A><A NAME="AddLoadPath"></A>This command adds the path <I><FONT COLOR=maroon>string</FONT></I> to the current <FONT COLOR=purple>Coq</FONT> loadpath and
+maps it to the logical directory <I><FONT COLOR=maroon>dirpath</FONT></I>, which means that every
+file <TT>M.v</TT> physically lying in directory <I><FONT COLOR=maroon>string</FONT></I> becomes accessible
+through logical name ``<I><FONT COLOR=maroon>dirpath</FONT></I><TT>.M</TT>''. <BR><B>Remark: </B><TT>Add LoadPath</TT> also adds <I><FONT COLOR=maroon>string</FONT></I> to the current ML loadpath.<BR>
+<BR>
+<BR><B>Variants: </B><OL type=1>
+<LI>
+ <TT>Add LoadPath </TT><I><FONT COLOR=maroon>string</FONT></I><TT>.</TT><BR>Performs as <TT>Add LoadPath </TT><I><FONT COLOR=maroon>string</FONT></I><TT> as </TT><I><FONT COLOR=maroon>dirpath</FONT></I> but for the empty directory path.
+</OL>
+<H3>
+
+5.5.4&nbsp;<TT>Add Rec LoadPath </TT><I><FONT COLOR=maroon>string</FONT></I><TT> as </TT><I><FONT COLOR=maroon>dirpath</FONT></I><TT>.
+</TT></H3>
+<A NAME="@default329"></A><A NAME="@command75"></A><A NAME="AddRecLoadPath"></A>
+This command adds the directory <I><FONT COLOR=maroon>string</FONT></I> and all its subdirectories 
+to the current <FONT COLOR=purple>Coq</FONT> loadpath. The top directory <I><FONT COLOR=maroon>string</FONT></I> is mapped to the logical directory <I><FONT COLOR=maroon>dirpath</FONT></I> while any subdirectory <I><FONT COLOR=maroon>pdir</FONT></I> is mapped to logical directory <I><FONT COLOR=maroon>dirpath</FONT></I><TT>.pdir</TT> and so on.<BR><B>Remark: </B><TT>Add Rec LoadPath</TT> also recursively adds <I><FONT COLOR=maroon>string</FONT></I> to the current ML loadpath.<BR>
+<BR>
+<BR><B>Variants: </B><OL type=1>
+<LI>
+ <TT>Add Rec LoadPath </TT><I><FONT COLOR=maroon>string</FONT></I><TT>.</TT><BR>Works as <TT>Add Rec LoadPath </TT><I><FONT COLOR=maroon>string</FONT></I><TT> as </TT><I><FONT COLOR=maroon>dirpath</FONT></I> but for the empty logical directory path.
+</OL>
+<H3>
+
+5.5.5&nbsp;<TT>Remove LoadPath </TT><I><FONT COLOR=maroon>string</FONT></I><TT>.
+</TT></H3>
+<A NAME="@default330"></A><A NAME="@command76"></A>
+This command removes the path <I><FONT COLOR=maroon>string</FONT></I> from the current <FONT COLOR=purple>Coq</FONT> loadpath.<BR>
+<BR>
+
+<H3>
+
+5.5.6&nbsp;<TT>Print LoadPath.
+</TT></H3>
+<A NAME="@default331"></A><A NAME="@command77"></A>
+This command displays the current <FONT COLOR=purple>Coq</FONT> loadpath.<BR>
+<BR>
+
+<H3>
+
+5.5.7&nbsp;<TT>Add ML Path </TT><I><FONT COLOR=maroon>string</FONT></I><TT>.
+</TT></H3>
+<A NAME="@default332"></A><A NAME="@command78"></A>
+This command adds the path <I><FONT COLOR=maroon>string</FONT></I> to the current Objective Caml loadpath (see
+the command <TT>Declare ML Module</TT> in the section <A HREF="node.1.0.3.html#compiled">5.4</A>).<BR><B>Remark: </B>This command is implied by <TT>Add LoadPath </TT><I><FONT COLOR=maroon>string</FONT></I><TT> as </TT><I><FONT COLOR=maroon>dirpath</FONT></I>.<BR>
+<BR>
+
+<H3>
+
+5.5.8&nbsp;<TT>Add Rec ML Path </TT><I><FONT COLOR=maroon>string</FONT></I><TT>.
+</TT></H3>
+<A NAME="@default333"></A><A NAME="@command79"></A>
+This command adds the directory <I><FONT COLOR=maroon>string</FONT></I> and all its subdirectories 
+to the current Objective Caml loadpath (see
+the command <TT>Declare ML Module</TT> in the section <A HREF="node.1.0.3.html#compiled">5.4</A>).<BR><B>Remark: </B>This command is implied by <TT>Add Rec LoadPath </TT><I><FONT COLOR=maroon>string</FONT></I><TT> as </TT><I><FONT COLOR=maroon>dirpath</FONT></I>.<BR>
+<BR>
+
+<H3>
+
+5.5.9&nbsp;<TT>Print ML Path </TT><I><FONT COLOR=maroon>string</FONT></I><TT>.
+</TT></H3>
+<A NAME="@default334"></A><A NAME="@command80"></A>
+This command displays the current Objective Caml loadpath.
+This command makes sense only under the bytecode version of <TT>coqtop</TT>, i.e. using option <TT>-byte</TT> (see the
+command <TT>Declare ML Module</TT> in the section
+<A HREF="node.1.0.3.html#compiled">5.4</A>).<BR>
+<BR>
+
+<H3>
+
+5.5.10&nbsp;<TT>Locate File </TT><I><FONT COLOR=maroon>string</FONT></I><TT>.
+</TT></H3>
+<A NAME="@default335"></A><A NAME="@command81"></A><A NAME="Locate File"></A>
+This command displays the location of file <I><FONT COLOR=maroon>string</FONT></I> in the current loadpath.
+Typically, <I><FONT COLOR=maroon>string</FONT></I> is a <TT>.cmo</TT> or <TT>.vo</TT> or <TT>.v</TT> file.<BR>
+<BR>
+
+<H3>
+
+5.5.11&nbsp;<TT>Locate Library </TT><I><FONT COLOR=maroon>dirpath</FONT></I><TT>.
+</TT></H3>
+
+<A NAME="@default336"></A><A NAME="@command82"></A>
+This command gives the status of the <FONT COLOR=purple>Coq</FONT> module <I><FONT COLOR=maroon>dirpath</FONT></I>. It tells if the
+module is loaded and if not searches in the load path for a module
+of logical name <I><FONT COLOR=maroon>dirpath</FONT></I>.<BR>
+<BR>
+<HR>
+
+<A HREF="node.1.0.3.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.0.5.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

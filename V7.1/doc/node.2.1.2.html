@@ -1,0 +1,1221 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+10.3&nbsp;Examples
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.2.1.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.2.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+10.3&nbsp;Examples
+</H2>
+
+
+
+<H3>
+
+10.3.1&nbsp;About the cardinality of the natural number set
+</H3>
+A first example which shows how to use the pattern matching over the proof
+contexts is the proof that natural numbers have more than two elements. The
+proof of such a lemma can be done as shown in table&nbsp;<A HREF="node.2.1.2.html#cnatltac">10.4</A>.<BR>
+<BR>
+<BLOCKQUOTE><DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV>
+6in
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Lemma card_nat: ~(EX x:nat|(EX y:nat|(z:nat)(x=z)</FONT><FONT COLOR=purple>\</FONT><FONT COLOR=purple>/(y=z))).</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Proof.</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Red;Intro H.</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Elim H;Intros a Ha.</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Elim Ha;Intros b Hb.</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Elim (Hb (0));Elim (Hb (1));Elim (Hb (2));Intros;</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Match Context With</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>[_:?1=?2;_:?1=?3|-?] -&gt;</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Cut ?2=?3;[Discriminate|Apply trans_equal with ?1;Auto].</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Save.</FONT>
+</TD>
+</TR></TABLE>
+<BR>
+<DIV ALIGN=center>Table 10.4: A proof on cardinality of natural numbers</DIV><BR>
+
+<A NAME="cnatltac"></A>
+<DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV></BLOCKQUOTE>We can notice that all the (very similar) cases coming from the three
+eliminations (with three distinct natural numbers) are successfully solved by
+a <FONT COLOR=purple>Match Context</FONT> structure and, in particular, with only one pattern (use
+of non-linear unification).<BR>
+<BR>
+
+<H3>
+
+10.3.2&nbsp;Permutation on closed lists
+</H3>
+Another more complex example is the problem of permutation on closed lists. The
+aim is to show that a closed list is a permutation of another one.<BR>
+<BR>
+First, we define the permutation predicate as shown in table&nbsp;<A HREF="node.2.1.2.html#permutpred">10.5</A>.<BR>
+<BR>
+<BLOCKQUOTE><DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV>
+6in
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Section Sort.</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Variable A:Set.</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Inductive permut:(list A)-&gt;(list A)-&gt;Prop:=</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>permut_refl:(l:(list A))(permut l l)</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>|permut_cons:</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>(a:A)(l0,l1:(list A))(permut l0 l1)-&gt;(permut (cons a l0) (cons a
+l1))</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>|permut_append:(a:A)(l:(list A))(permut (cons a l) (l^(cons a (nil
+A))))</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>|permut_trans:</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>(l0,l1,l2:(list A))(permut l0 l1)-&gt;(permut l1 l2)-&gt;(permut l0
+l2).</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>End Sort.</FONT>
+</TD>
+</TR></TABLE>
+<BR>
+<DIV ALIGN=center>Table 10.5: Definition of the permutation predicate</DIV><BR>
+
+<A NAME="permutpred"></A>
+<DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV></BLOCKQUOTE>Next, we can write naturally the tactic and the result can be seen in
+table&nbsp;<A HREF="node.2.1.2.html#permutltac">10.6</A>. We can notice that we use two toplevel definitions <FONT COLOR=purple>PermutProve</FONT> and <FONT COLOR=purple>Permut</FONT>. The function to be called is <FONT COLOR=purple>PermutProve</FONT>
+which computes the lengths of the two lists and calls <FONT COLOR=purple>Permut</FONT> with the
+length if the two lists have the same length. <FONT COLOR=purple>Permut</FONT> works as expected.
+If the two lists are equal, it concludes. Otherwise, if the lists have
+identical first elements, it applies <FONT COLOR=purple>Permut</FONT> on the tail of the lists.
+Finally, if the lists have different first elements, it puts the first element
+of one of the lists (here the second one which appears in the <FONT COLOR=purple>permut</FONT>
+predicate) at the end if that is possible, i.e., if the new first element has
+been at this place previously. To verify that all rotations have been done for
+a list, we use the length of the list as an argument for <FONT COLOR=purple>Permut</FONT> and this
+length is decremented for each rotation down to, but not including, 1 because
+for a list of length <I>n</I>, we can make exactly <I>n</I>-1 rotations to generate at
+most <I>n</I> distinct lists. Here, it must be noticed that we use the natural
+numbers of <FONT COLOR=purple>Coq</FONT> for the rotation counter. In table&nbsp;<A HREF="node.2.1.0.html#ltac">10.1</A>, we can see
+that it is possible to use usual natural numbers but they are only used as
+arguments for primitive tactics and they cannot be handled, in particular, we
+cannot make computations with them. So, a natural choice is to use <FONT COLOR=purple>Coq</FONT> data
+structures so that <FONT COLOR=purple>Coq</FONT> makes the computations (reductions) by <FONT COLOR=purple>Eval
+Compute in</FONT> and we can get the terms back by <FONT COLOR=purple>Match</FONT>.<BR>
+<BR>
+<BLOCKQUOTE><DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV>
+6in
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Tactic Definition Permut n:=</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Match Context With</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>[|-(permut ? ?1 ?1)] -&gt; Apply permut_refl</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>|[|-(permut ? (cons ?1 ?2) (cons ?1 ?3))] -&gt;</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Let newn=Eval Compute in (length ?2)</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>In</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Apply permut_cons;(Permut newn)</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>|[|-(permut ?1 (cons ?2 ?3) ?4)] -&gt;</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>(Match Eval Compute in n With</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>[(1)] -&gt; Fail</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>|_ -&gt;</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Let l0'='(?3^(cons ?2 (nil ?1)))</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>In</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Apply (permut_trans ?1 (cons ?2 ?3) l0' ?4);</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>[Apply permut_append|</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Compute;(Permut (pred n))]).</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Tactic Definition PermutProve:=</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Match Context With</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>[|-(permut ? ?1 ?2)] -&gt;</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>(Match Eval Compute in ((length ?1)=(length ?2)) With</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>[?1=?1] -&gt; (Permut ?1)).</FONT>
+</TD>
+</TR></TABLE>
+<BR>
+<DIV ALIGN=center>Table 10.6: Permutation tactic</DIV><BR>
+
+<A NAME="permutltac"></A>
+<DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV></BLOCKQUOTE>With <FONT COLOR=purple>PermutProve</FONT>, we can now prove lemmas such those shown in
+table&nbsp;<A HREF="node.2.1.2.html#permutlem">10.7</A>.<BR>
+<BR>
+<BLOCKQUOTE><DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV>
+6in
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Lemma permut_ex1:</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>(permut nat (cons (1) (cons (2) (cons (3) (nil nat))))</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>(cons (3) (cons (2) (cons (1) (nil nat))))).</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Proof.</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>PermutProve.</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Save.</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Lemma permut_ex2:</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>(permut nat</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>(cons (0) (cons (1) (cons (2) (cons (3) (cons (4) (cons (5) (cons (6)</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>(cons (7) (cons (8) (cons (9) (nil nat)))))))))))</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>(cons (0) (cons (2) (cons (4) (cons (6) (cons (8) (cons (9) (cons (7)</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>(cons (5) (cons (3) (cons (1) (nil nat)))))))))))).</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Proof.</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>PermutProve.</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Save.</FONT>
+</TD>
+</TR></TABLE>
+<BR>
+<DIV ALIGN=center>Table 10.7: Examples of <FONT COLOR=purple>PermutProve</FONT> use</DIV><BR>
+
+<A NAME="permutlem"></A>
+<DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV></BLOCKQUOTE>
+<H3>
+
+10.3.3&nbsp;Deciding intuitionistic propositional logic
+</H3>
+The pattern matching on proof contexts allows a complete and so a powerful
+backtracking when returning tactic values. An interesting application is the
+problem of deciding intuitionistic propositional logic. Considering the
+contraction-free sequent calculi <FONT COLOR=purple>LJT*</FONT> of Roy&nbsp;Dyckhoff ([<A HREF="#Dyc92"><CITE>Dyc92</CITE></A>]), it
+is quite natural to code such a tactic using the tactic language as shown in
+table&nbsp;<A HREF="node.2.1.2.html#tautoltac">10.8</A>. The tactic <FONT COLOR=purple>Axioms</FONT> tries to conclude using usual
+axioms. The tactic <FONT COLOR=purple>Simplif</FONT> applies all the reversible rules of Dyckhoff's
+system. Finally, the tactic <FONT COLOR=purple>TautoProp</FONT> (the main tactic to be called)
+simplifies with <FONT COLOR=purple>Simplif</FONT>, tries to conclude with <FONT COLOR=purple>Axioms</FONT> and tries
+several paths using the backtracking rules (one of the four Dyckhoff's rules
+for the left implication to get rid of the contraction and the right or).<BR>
+<BR>
+<BLOCKQUOTE><DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV>
+6in
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Tactic Definition Axioms:=</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Match Context With</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>[|-True] -&gt; Trivial</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>|[_:False|- ?] -&gt; ElimType False;Assumption</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>|[_:?1|-?1] -&gt; Auto.</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Tactic Definition Simplif:=</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Repeat</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>(Intros;</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>(Match Context With</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>[id:~?|-?] -&gt; Red in id</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>|[id:?/</FONT><FONT COLOR=purple>\</FONT><FONT COLOR=purple>?|-?] -&gt; Elim id;Do 2 Intro;Clear id</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>|[id:?</FONT><FONT COLOR=purple>\</FONT><FONT COLOR=purple>/?|-?] -&gt; Elim id;Intro;Clear id</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>|[id:?1/</FONT><FONT COLOR=purple>\</FONT><FONT COLOR=purple>?2-&gt;?3|-?] -&gt;</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Cut ?1-&gt;?2-&gt;?3;[Intro|Intros;Apply id;Split;Assumption]</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>|[id:?1</FONT><FONT COLOR=purple>\</FONT><FONT COLOR=purple>/?2-&gt;?3|-?] -&gt;</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Cut ?2-&gt;?3;[Cut ?1-&gt;?3;[Intros|</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Intro;Apply id;Left;Assumption]|</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Intro;Apply id;Right;Assumption]</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>|[id0:?1-&gt;?2;id1:?1|-?] -&gt;</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Cut ?2;[Intro;Clear id0|Apply id0;Assumption]</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>|[|-?/</FONT><FONT COLOR=purple>\</FONT><FONT COLOR=purple>?] -&gt; Split</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>|[|-~?] -&gt; Red)).</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Recursive Tactic Definition TautoProp:=</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Simplif;</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Axioms</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Orelse</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Match Context With</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>[id:(?1-&gt;?2)-&gt;?3|-?] -&gt;</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Cut ?2-&gt;?3;[Intro;Cut ?1-&gt;?2;[Intro;Cut ?3;[Intro;Clear id|</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Apply id;Assumption]|Clear id]|</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Intro;Apply id;Intro;Assumption];TautoProp</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>|[id:~?1-&gt;?2|-?]-&gt;</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Cut False-&gt;?2;[Intro;Cut ?1-&gt;False;[Intro;Cut ?2;[Intro;Clear id|</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Apply id;Assumption]|Clear id]|</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Intro;Apply id;Red;Intro;Assumption];TautoProp</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>|[|-?</FONT><FONT COLOR=purple>\</FONT><FONT COLOR=purple>/?] -&gt;</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>(Left;TautoProp) Orelse (Right;TautoProp).</FONT>
+</TD>
+</TR></TABLE>
+<BR>
+<DIV ALIGN=center>Table 10.8: Deciding intuitionistic propositions</DIV><BR>
+
+<A NAME="tautoltac"></A>
+<DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV></BLOCKQUOTE>For example, with <FONT COLOR=purple>TautoProp</FONT>, we can prove tautologies like those in
+table&nbsp;<A HREF="node.2.1.2.html#tautolem">10.9</A>.<BR>
+<BR>
+<BLOCKQUOTE><DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV>
+6in
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Lemma tauto_ex1:(A,B:Prop)A/</FONT><FONT COLOR=purple>\</FONT><FONT COLOR=purple>B-&gt;A</FONT><FONT COLOR=purple>\</FONT><FONT COLOR=purple>/B.</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Proof.</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>TautoProp.</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Save.</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Lemma tauto_ex2:(A,B:Prop)(~~B-&gt;B)-&gt;(A-&gt;B)-&gt;~~A-&gt;B.</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Proof.</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>TautoProp.</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Save.</FONT>
+</TD>
+</TR></TABLE>
+<BR>
+<DIV ALIGN=center>Table 10.9: Proofs of tautologies with <FONT COLOR=purple>TautoProp</FONT></DIV><BR>
+
+<A NAME="tautolem"></A>
+<DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV></BLOCKQUOTE>
+<H3>
+
+10.3.4&nbsp;Deciding type isomorphisms
+</H3>
+A more tricky problem is to decide equalities between types and modulo
+isomorphisms. Here, we choose to use the isomorphisms of the simply typed
+<FONT FACE=symbol>l</FONT>-calculus with Cartesian product and <I>unit</I> type (see, for example,
+[<A HREF="#RC95"><CITE>RC95</CITE></A>]). The axioms of this <FONT FACE=symbol>l</FONT>-calculus are given by
+table&nbsp;<A HREF="node.2.1.2.html#isosax">10.10</A>.<BR>
+<BR>
+<BLOCKQUOTE><DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV>
+6in
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Section Iso_axioms.</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Variable A,B,C:Set.</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Axiom Com:(A*B)==(B*A).</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Axiom Ass:(A*(B*C))==((A*B)*C).</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Axiom Cur:((A*B)-&gt;C)==(A-&gt;B-&gt;C).</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Axiom Dis:(A-&gt;(B*C))==((A-&gt;B)*(A-&gt;C)).</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Axiom P_unit:(A*unit)==A.</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Axiom AR_unit:(A-&gt;unit)==unit.</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Axiom AL_unit:(unit-&gt;A)==A.</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Lemma Cons:B==C-&gt;(A*B)==(A*C).</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Proof.</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Intro Heq;Rewrite Heq;Apply refl_eqT.</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Save.</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>End Iso_axioms.</FONT>
+</TD>
+</TR></TABLE>
+<BR>
+<DIV ALIGN=center>Table 10.10: Type isomorphism axioms</DIV><BR>
+
+<A NAME="isosax"></A>
+<DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV></BLOCKQUOTE>The tactic to judge equalities modulo this axiomatization can be written as
+shown in tables&nbsp;<A HREF="node.2.1.2.html#isosltac1">10.11</A> and&nbsp;<A HREF="node.2.1.2.html#isosltac2">10.12</A>. The algorithm is quite
+simple. Types are reduced using axioms that can be oriented (this done by <FONT COLOR=purple>MainSimplif</FONT>). The normal forms are sequences of Cartesian
+products without Cartesian product in the left component. These normal forms
+are then compared modulo permutation of the components (this is done by <FONT COLOR=purple>Compare</FONT>). The main tactic to be called and realizing this algorithm is
+<FONT COLOR=purple>IsoProve</FONT>.<BR>
+<BR>
+<BLOCKQUOTE><DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV>
+6in
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Recursive Tactic Definition Simplif trm:=</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Match trm With</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>[(?1*?2)*?3] -&gt; Rewrite &lt;- (Ass ?1 ?2 ?3);Try MainSimplif</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>|[(?1*?2)-&gt;?3] -&gt; Rewrite (Cur ?1 ?2 ?3);Try MainSimplif</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>|[?1-&gt;(?2*?3)] -&gt; Rewrite (Dis ?1 ?2 ?3);Try MainSimplif</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>|[?1*unit] -&gt; Rewrite (P_unit ?1);Try MainSimplif</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>|[unit*?1] -&gt; Rewrite (Com unit ?1);Try MainSimplif</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>|[?1-&gt;unit] -&gt; Rewrite (AR_unit ?1);Try MainSimplif</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>|[unit-&gt; ?1] -&gt; Rewrite (AL_unit ?1);Try MainSimplif</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>|[?1*?2] -&gt;</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>((Simplif ?1);Try MainSimplif) Orelse</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>((Simplif ?2);Try MainSimplif)</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>|[?1-&gt; ?2] -&gt;</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>((Simplif ?1);Try MainSimplif) Orelse</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>((Simplif ?2);Try MainSimplif)</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>And MainSimplif:=</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Match Context With</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>[|- ?1== ?2] -&gt; Try (Simplif ?1);Try (Simplif ?2).</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Tactic Definition Length trm:=</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Match trm With</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>[?*?1] -&gt;</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Let succ=(Length ?1)</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>In</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>'(S succ)</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>|_ -&gt; '(1).</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Tactic Definition Assoc:= Repeat Rewrite &lt;- Ass.</FONT>
+</TD>
+</TR></TABLE>
+<BR>
+<DIV ALIGN=center>Table 10.11: Type isomorphism tactic (1)</DIV><BR>
+
+<A NAME="isosltac1"></A>
+<DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV></BLOCKQUOTE><BLOCKQUOTE><DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV>
+6in
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Recursive Tactic Definition DoCompare n:=</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Match Context With</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>[|-?1==?1] -&gt; Apply refl_eqT</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>|[|-(?1*?2)==(?1*?3)] -&gt;</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Apply Cons;</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Let newn=(Length ?2)</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>In</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>(DoCompare newn)</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>|[|-(?1*?2)==?3] -&gt;</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>(Match Eval Compute in n With</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>[(1)] -&gt; Fail</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>|_ -&gt; </FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Pattern 1 (?1*?2);Rewrite Com;Assoc;</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>(DoCompare '(pred n))).</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Tactic Definition Compare:=</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Match Context With</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>[|-?1==?2] -&gt;</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Let l1=(Length ?1)</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>And l2=(Length ?2)</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>In</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>(Match Eval Compute in l1=l2 With</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>[?1=?1] -&gt; (DoCompare ?1)).</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Tactic Definition IsoProve:=MainSimplif;Compare.</FONT>
+</TD>
+</TR></TABLE>
+<BR>
+<DIV ALIGN=center>Table 10.12: Type isomorphism tactic (2)</DIV><BR>
+
+<A NAME="isosltac2"></A>
+<DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV></BLOCKQUOTE>Table&nbsp;<A HREF="node.2.1.2.html#isoslem">10.13</A> gives examples of what can be solved by <FONT COLOR=purple>IsoProve</FONT>.<BR>
+<BR>
+<BLOCKQUOTE><DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV>
+6in
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Lemma isos_ex1:(A,B:Set)((A*unit)*B)==(B*(unit*A)).</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Proof.</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Intros;IsoProve.</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Save.</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Lemma isos_ex2:(A,B,C:Set)</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>((A*unit)-&gt;(B*C*unit))==(((A*unit)-&gt;((C-&gt;unit)*C))*(unit-&gt;(A-&gt;B))).</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Proof.</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Intros;IsoProve.</FONT></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP><FONT COLOR=purple>Save.</FONT>
+</TD>
+</TR></TABLE>
+<BR>
+<DIV ALIGN=center>Table 10.13: Type equalities solved by <FONT COLOR=purple>IsoProve</FONT></DIV><BR>
+
+<A NAME="isoslem"></A>
+<DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV></BLOCKQUOTE>
+<HR>
+
+<A HREF="node.2.1.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.2.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

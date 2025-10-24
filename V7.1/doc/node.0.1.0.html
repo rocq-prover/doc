@@ -1,0 +1,171 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+2.1&nbsp;Record types
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.0.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.1.1.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+2.1&nbsp;Record types
+</H2>
+
+
+<A NAME="@default52"></A><A NAME="@command22"></A>
+<A NAME="Record"></A>The <CODE>Record</CODE> construction is a macro allowing the definition of
+records as is done in many programming languages. Its syntax is
+described on figure <A HREF="node.0.1.0.html#record-syntax">2.1</A>. In fact, the <CODE>Record</CODE>
+macro is more general than the usual record types, since it allows
+also for ``manifest'' expressions. In this sense, the <CODE>Record</CODE>
+construction allows to define ``signatures''.<BR>
+<BR>
+<BLOCKQUOTE><DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV>
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=1>
+<TR><TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>sentence</FONT></I></TD>
+<TD ALIGN=center NOWRAP>::=</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>record</FONT></I></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>&nbsp;</TD>
+<TD ALIGN=left NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>record</FONT></I></TD>
+<TD ALIGN=center NOWRAP>::=</TD>
+<TD ALIGN=left NOWRAP><TT>Record</TT> <I><FONT COLOR=maroon>ident</FONT></I> <I><FONT COLOR=maroon>[</FONT></I><TT>[</TT> <I><FONT COLOR=maroon>params</FONT></I> <TT>]</TT><I><FONT COLOR=maroon>]</FONT></I> <TT>:</TT> <I><FONT COLOR=maroon>sort</FONT></I>
+ <CODE>:=</CODE> <I><FONT COLOR=maroon>[</FONT></I><I><FONT COLOR=maroon>ident</FONT></I><I><FONT COLOR=maroon>]</FONT></I> <CODE>{</CODE> 
+ <I><FONT COLOR=maroon>[</FONT></I><I><FONT COLOR=maroon>field</FONT></I> <TT>;</TT> ... <TT>;</TT> <I><FONT COLOR=maroon>field</FONT></I><I><FONT COLOR=maroon>]</FONT></I>
+ <CODE>}</CODE> <CODE>.</CODE></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>&nbsp;</TD>
+<TD ALIGN=left NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>field</FONT></I></TD>
+<TD ALIGN=center NOWRAP>::=</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>ident</FONT></I> <CODE>:</CODE> <I><FONT COLOR=maroon>type</FONT></I></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>ident</FONT></I> <CODE>:=</CODE> <I><FONT COLOR=maroon>term</FONT></I></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>ident</FONT></I> <CODE>:</CODE> <I><FONT COLOR=maroon>type</FONT></I> <CODE>:=</CODE> <I><FONT COLOR=maroon>term</FONT></I></TD>
+</TR></TABLE>
+<BR>
+<DIV ALIGN=center>Figure 2.1: Syntax for the definition of <TT>Record</TT></DIV><BR>
+
+<A NAME="record-syntax"></A>
+<DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV></BLOCKQUOTE>In the expression<BR><TT>Record</TT> <I><FONT COLOR=maroon>ident</FONT></I> <TT>[</TT> <I><FONT COLOR=maroon>params</FONT></I> <TT>]</TT> <TT>:</TT> 
+ <I><FONT COLOR=maroon>sort</FONT></I> := <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>0</FONT></SUB> <CODE>{</CODE>
+ <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> <TT>:</TT> <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>; 
+ ...<I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> <TT>:</TT> <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> <CODE>}</CODE>.
+<BR>the identifier <I><FONT COLOR=maroon>ident</FONT></I> is the name of the defined record and <I><FONT COLOR=maroon>sort</FONT></I>
+is its type. The identifier <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>0</FONT></SUB> is the name of its
+constructor. If <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>0</FONT></SUB> is omitted, the default name <TT>Build_</TT><I><FONT COLOR=maroon>ident</FONT></I> is used. The identifiers <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>, ..,
+<I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> are the names of fields and <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>, .., <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>
+their respective types. Remark that the type of <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>i</I></FONT></SUB> may
+depend on the previous <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>j</I></FONT></SUB> (for <I>j</I>&lt;<I>i</I>). Thus the order of the
+fields is important. Finally, <I><FONT COLOR=maroon>params</FONT></I> are the parameters of the
+record.<BR>
+<BR>
+More generally, a record may have explicitly defined (a.k.a.
+manifest) fields. For instance, <TT>Record</TT> <I><FONT COLOR=maroon>ident</FONT></I> <TT>[</TT>
+<I><FONT COLOR=maroon>params</FONT></I> <TT>]</TT> <TT>:</TT> <I><FONT COLOR=maroon>sort</FONT></I> := <CODE>{</CODE> <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>
+<TT>:</TT> <I><FONT COLOR=maroon>type</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> <CODE>;</CODE> <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB> <TT>:=</TT> <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB> <CODE>;</CODE>.
+<I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>3</FONT></SUB> <TT>:</TT> <I><FONT COLOR=maroon>type</FONT></I><SUB><FONT SIZE=2>3</FONT></SUB> <CODE>}</CODE> in which case the correctness of <I><FONT COLOR=maroon>type</FONT></I><SUB><FONT SIZE=2>3</FONT></SUB> may rely on the instance <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB> of <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB> and <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB> in turn may depend on <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>.<BR><B>Example: </B>The set of rational numbers may be defined as:
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Record&nbsp;Rat&nbsp;:&nbsp;Set&nbsp;:=&nbsp;mkRat&nbsp;{</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;sign&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;bool;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;top&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;nat;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;bottom&nbsp;&nbsp;&nbsp;:&nbsp;nat;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;Rat_bottom_cond&nbsp;:&nbsp;~O=bottom;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;Rat_irred_cond:(x,y,z:nat)(mult&nbsp;x&nbsp;y)=top/\(mult&nbsp;x&nbsp;z)=bottom-</TT><TT>&gt;</TT><TT>x=(S&nbsp;O)}.</TT><BR><TT><I>Rat&nbsp;is&nbsp;defined</I></TT><BR><TT><I>Rat_ind&nbsp;is&nbsp;defined</I></TT><BR><TT><I>Rat_rec&nbsp;is&nbsp;defined</I></TT><BR><TT><I>Rat_rect&nbsp;is&nbsp;defined</I></TT><BR></DIV>
+<BR>
+Remark here that the field
+<CODE>Rat_cond</CODE> depends on the field <CODE>bottom</CODE>. <BR>
+<BR>
+Let us now see the work done by the <TT>Record</TT> macro.
+First the macro generates a inductive definition
+with just one constructor:<BR><TT>Inductive </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> [ </TT><I><FONT COLOR=maroon>params</FONT></I><TT> ] : </TT><I><FONT COLOR=maroon>sort</FONT></I><TT> :=<BR>&nbsp; </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>0</FONT></TT></SUB><TT> : (</TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT>:</TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT>) .. 
+(</TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT>:</TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT>)(</TT><I><FONT COLOR=maroon>ident</FONT></I><TT> </TT><I><FONT COLOR=maroon>params</FONT></I><TT>).</TT>
+<BR><BR>
+<BR>
+To build an object of type <I><FONT COLOR=maroon>ident</FONT></I>, one should provide the
+constructor <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>0</FONT></SUB> with <I>n</I> terms filling the fields of
+the record.<BR>
+<BR>
+Let us define the rational 1/2.<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Require&nbsp;Arith.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Theorem&nbsp;one_two_irred:&nbsp;(x,y,z:nat)(mult&nbsp;x&nbsp;y)=(1)/\(mult&nbsp;x&nbsp;z)=(2)-</TT><TT>&gt;</TT><TT>x=(1).</TT><BR></DIV>
+
+...
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Qed.</TT><BR></DIV>
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Definition&nbsp;half&nbsp;:=&nbsp;(mkRat&nbsp;true&nbsp;(1)&nbsp;(2)&nbsp;(O_S&nbsp;(1))&nbsp;one_two_irred).</TT><BR><TT><I>half&nbsp;is&nbsp;defined</I></TT><BR></DIV>
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Check&nbsp;half.</TT><BR><TT><I>half</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Rat</I></TT><BR></DIV>
+<BR>
+The macro generates also, when it is possible, the projection
+functions for destructuring an object of type <I><FONT COLOR=maroon>ident</FONT></I>.
+These projection functions have the same name that the corresponding
+fields. In our example:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Eval&nbsp;Compute&nbsp;in&nbsp;(top&nbsp;half).</TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;(1)</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;nat</I></TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Eval&nbsp;Compute&nbsp;in&nbsp;(bottom&nbsp;half).</TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;(2)</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;nat</I></TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Eval&nbsp;Compute&nbsp;in&nbsp;(Rat_bottom_cond&nbsp;half).</TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;(O_S&nbsp;(1))</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;~(0)=(bottom&nbsp;half)</I></TT><BR></DIV>
+<BR>
+<BR><B>Warnings: </B><OL type=1>
+<LI>
+ <TT>Warning: </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2><I>i</I></FONT></TT></SUB><TT> cannot be defined.</TT><BR>It can happens that the definition of a projection is impossible.
+ This message is followed by an explanation of this impossibility.
+ There may be three reasons:
+ <OL type=a>
+<LI>
+  The name <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>i</I></FONT></SUB> already exists in the environment (see
+ section <A HREF="node.0.0.2.html#Axiom">1.3.1</A>).
+ 
+<LI> The body of <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>i</I></FONT></SUB> uses a incorrect elimination for
+ <I><FONT COLOR=maroon>ident</FONT></I> (see sections <A HREF="node.0.0.2.html#Fixpoint">1.3.4</A> and <A HREF="node.0.3.4.html#Caseexpr">4.5.4</A>).
+ 
+<LI> <TT>The projections [ </TT><I><FONT COLOR=maroon>idents</FONT></I><TT> ] were not defined.</TT><BR>The body of <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2><I>i</I></FONT></SUB> uses the projections <I><FONT COLOR=maroon>idents</FONT></I>
+ which are not defined for one of these three reasons listed here.
+ </OL> 
+</OL> <BR><B>Error messages: </B><OL type=1>
+<LI>
+ <TT>A record cannot be recursive</TT><A NAME="@error8"></A><BR>The record name <I><FONT COLOR=maroon>ident</FONT></I> appears in the type of its fields.<BR>
+<BR>
+
+<LI>
+ During the definition of the one-constructor inductive definition,
+ all the errors of inductive definitions, as described in section
+ <A HREF="node.0.0.2.html#gal_Inductive_Definitions">1.3.3</A>, may also occur.
+</OL><BR><B>See also: </B>Coercions and records in section <A HREF="node.3.3.8.html#Coercions-and-records">14.9</A>
+of the chapter devoted to coercions.<BR>
+<BR>
+<HR>
+
+<A HREF="node.0.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.1.1.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>
