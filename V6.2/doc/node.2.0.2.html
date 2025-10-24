@@ -1,0 +1,1009 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+9.3&nbsp;Writing your own pretty printing rules
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.2.0.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.2.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+9.3&nbsp;Writing your own pretty printing rules
+</H2>
+
+
+
+<A NAME="Syntax"></A>
+<A NAME="@default524"></A><A NAME="@command141"></A>There is a mechanism for extending the
+vernacular's printer by adding, in the interactive
+toplevel, new printing rules.  The printing rules are stored into a
+table and will be recovered at the moment of the printing by the
+vernacular's printer.<BR><BR>
+The user can print new constants, tactics and vernacular phrases
+with his desired syntax.  The printing rules
+for new constants should be written <EM>after</EM> the definition of the
+constants. The rules should be
+outside a section if the user wants them to be exported.<BR><BR>
+The printing rules corresponding to the heart of the system (primitive
+tactics, commands and the vernacular language) are defined,
+respectively, in the files <TT>PPTactic.v</TT> and <TT>PPCommand.v</TT>
+(in the directory <TT>src/syntax</TT>). These files are automatically
+loaded in the initial state. The user is not expected to modify these
+files unless he dislikes the way primitive things are printed, in
+which case he will have to compile the system after doing the
+modifications.<BR><BR>
+When the system fails to find a suitable printing rule, a tag
+<CODE>#GENTERM</CODE><A NAME="@default525"></A>appears in the message.<BR><BR>
+In the following we give some examples showing how to write the
+printing rules for the non-terminal and terminal symbols of a
+grammar. We will test them frequently by inspecting the error
+messages.  Then, we give the grammar of printing rules and a
+description of its semantics.
+<H3>
+9.3.1&nbsp;The Printing Rules
+</H3>
+
+
+<H4>The printing of non terminals
+</H4>
+The printing is the inverse process of parsing. While a grammar rule
+maps an input stream of characters
+into an AST, a printing
+rule maps an AST into an output stream of printing orders. 
+So given a certain grammar rule, the printing rule 
+is generally obtained by inverting the grammar rule.<BR><BR>
+Like grammar rules, it is possible to define several rules at the same
+time. The exact syntax for complex rules is described
+in&nbsp;<A HREF="node.2.0.2.html#syntaxsyntax">9.3.2</A>. A simple printing rule is of the form:<BR><BR>
+<DIV ALIGN=center>
+<CODE>Syntax</CODE> &nbsp;universe
+&nbsp;<CODE>level</CODE> &nbsp;precedence&nbsp;<CODE>:</CODE>&nbsp;name
+&nbsp;<CODE>[</CODE>&nbsp;pattern&nbsp;<CODE>] -&gt; [</CODE>&nbsp;printing-orders&nbsp;<CODE>].</CODE>
+</DIV>
+
+<BR><BR>
+where :
+<UL>
+<LI>
+<I>universe</I> is an identifier denoting the universe of the AST to
+  be printed. There is a correspondence between the universe of the
+  grammar rule used to generate the AST and the one of the printing
+  rule:<BR><BR>
+<DIV ALIGN=center>
+
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=1>
+<TR><TD NOWRAP ALIGN=center><EM>Univ. Grammar</EM></TD>
+<TD NOWRAP ALIGN=center><EM>Univ. Printing</EM></TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=center>tactic</TD>
+<TD NOWRAP ALIGN=center>tactic</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=center>command</TD>
+<TD NOWRAP ALIGN=center>constr</TD>
+</TR>
+</TABLE>
+
+</DIV>
+
+<BR><BR>
+  The vernac universe has no equivalent in pretty-printing since
+  vernac phrases are never printed by the system. Error messages are
+  reported by re-displaying what the user entered.<BR><BR>
+
+<LI><I>precedence</I> is positive integer indicating the precedence
+  of the rule. In general the precedence for tactics is 0. The
+  universe of commands is implicitly stratified by the hierarchy of
+  the parsing rules. We have non terminals <I>command0</I>,
+  <I>command1</I>, ..., <I>command10</I>. 
+  The idea is that objects parsed with the non terminal
+  <I>command<SUB><FONT SIZE=2>i</FONT></SUB></I> have precedence <I>i</I>. In most of the cases we fix the
+  precedence of the printing rules for commands to be the same number
+  of the non terminal with which it is parsed.<BR><BR>
+  A precedence may also be a triple of integers. The triples are
+  ordered in lexicographic order, and the level <I>n</I> is equal to <TT>[</TT><TT><I>n&nbsp;0&nbsp;0</I></TT><TT>]</TT>.<BR><BR>
+
+<LI><I>name</I> is the name of the
+  printing rule. A rule is identified by both its universe and name,
+  if there are two rules with both the same name and universe, then
+  the last one overrides the former.<BR><BR>
+
+<LI><I>pattern</I> is a pattern that matches the AST to be
+  printed. The syntax of patterns is very similar to the grammar for ASTs.
+  A description of their syntax is given in section
+  <A HREF="node.2.0.0.html#patternsyntax">9.1</A>.<BR><BR>
+
+<LI><I>printing-orders</I> is the sequence of orders indicating the
+  concrete layout of the printer.
+</UL>
+<BR><BR>
+
+<BR>
+<B>Example 1: </B><I>Syntax for user-defined tactics.</I>
+<BR><BR>
+The first usage of the <TT>Syntax</TT> command might be the printing
+order for a user-defined tactic: <BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Declare ML Module "eqdecide".</CODE><BR>
+<BR>
+<CODE>Coq &lt; Syntax tactic level 0:</CODE><BR>
+<CODE>Coq &lt;   ComparePP [(Compare $com1 $com2)]    -&gt; </CODE><BR>
+<CODE>Coq &lt;             ["Compare" [1 2] $com1 [1 2] $com2].</CODE><BR>
+</DIV>
+
+
+<BR><BR>
+If such a printing rule is not given, a disgraceful <CODE>#GENTERM</CODE>
+will appear when typing <TT>Show Script</TT> or <TT>Save</TT>. For
+a tactic macro defined by a <TT>Tactic Definition</TT> command, a
+printing rule is automatically generated so the user don't have to
+write one.<BR><BR>
+
+<BR>
+<B>Example 2: </B><I>Defining the syntax for new constants.</I>
+<BR><BR>
+Let's define the constant <CODE>Xor</CODE> in Coq:<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Definition Xor := [A,B:Prop] A/\~B \/ ~A/\B.</CODE><BR>
+</DIV>
+
+
+<BR><BR>
+Given this definition, we want to use the syntax of <CODE>A X B</CODE>
+to denote <CODE>(Xor A B)</CODE>. To do that we give the grammar rule:<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Grammar command  command7 :=</CODE><BR>
+<CODE>Coq &lt;   Xor [ command6($c1) "X" command7($c2) ] -&gt; [&lt;&lt;(Xor $c1 $c2)&gt;&gt;].</CODE><BR>
+</DIV>
+
+
+<BR><BR>
+Note that the operator is associative to the right.  
+Now <CODE>True X False</CODE> is well parsed:<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Goal True X False.</CODE><BR>
+<TT><I>1&nbsp;subgoal</I></TT><BR>
+<TT><I>&nbsp;&nbsp;</I></TT><BR>
+<TT><I>&nbsp;&nbsp;============================</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;(Xor&nbsp;True&nbsp;False)</I></TT><BR>
+</DIV>
+
+
+<BR><BR>
+To have it well printed we extend the printer:<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Syntax constr level 7:</CODE><BR>
+<CODE>Coq &lt;   Pxor  [&lt;&lt;(Xor  $t1  $t2)&gt;&gt;] -&gt; [ $t1:L  " X "  $t2:E ].</CODE><BR>
+</DIV>
+
+
+<BR><BR>
+and now we have the desired syntax:<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Show.</CODE><BR>
+<TT><I>1&nbsp;subgoal</I></TT><BR>
+<TT><I>&nbsp;&nbsp;</I></TT><BR>
+<TT><I>&nbsp;&nbsp;============================</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;True&nbsp;X&nbsp;False</I></TT><BR>
+</DIV>
+
+
+<BR><BR>
+Let's comment the rule:
+<UL>
+<LI>
+<CODE>constr</CODE> is the universe of the printing rule.<BR><BR>
+
+<LI><CODE>7</CODE> is the rule's precedence and it is the same one than the
+  parsing production (command7).<BR><BR>
+
+<LI><CODE>Pxor</CODE> is the name of the printing rule.<BR><BR>
+
+<LI><CODE>&lt;&lt;(Xor $t1 $t2)&gt;&gt;</CODE> is the pattern of the AST to be
+  printed. Between <CODE>&lt;&lt; &gt;&gt;</CODE> we are allowed to use the syntax of
+  command instead of syntax of ASTs. 
+  Metavariables may occur in the pattern but preceded by
+  <CODE>$</CODE>.<BR><BR>
+
+<LI><CODE>$t1:L " X " $t2:E</CODE> are the printing
+  orders, it tells to print the value of <CODE>$t1</CODE> then the symbol
+  <CODE>X</CODE> and then the value of <CODE>$t2</CODE>.<BR><BR>
+  The <CODE>L</CODE> in the little box <CODE>$t1:L</CODE> indicates not
+  to put parentheses around the value of <CODE>$t1</CODE> if its precedence
+  is <B>less</B> than the rule's one. An <CODE>E</CODE> instead of the
+  <CODE>L</CODE> would mean not to put parentheses around the value of
+  <CODE>$t1</CODE> if its the precedence is <B>less or equal</B> than the
+  rule's one.<BR><BR>
+  The associativity of the operator can be expressed in the following
+  way:<BR><BR>
+  <CODE>$t1:L " X " $t2:E</CODE> associates the operator to the right.<BR><BR>
+  <CODE>$t1:E " X " $t2:L</CODE> associates to the left.<BR><BR>
+  <CODE>$t1:L " X " $t2:L</CODE> is non-associative.</UL>
+<BR><BR>
+Note that while grammar rules are related by the name of non-terminals
+(such as <TT>command6</TT> and <TT>command7</TT>) printing rules are
+isolated. The <TT>Pxor</TT> rule tells how to print an <TT>Xor</TT>
+expression but not how to print its subterms.  The printer looks up
+recursively the rules for the values of <CODE>$t1</CODE> and <CODE>$t2</CODE>. The
+selection of the printing rules is strictly determined by the
+structure of the AST to be printed.<BR><BR>
+This could have been defined with the <TT>Infix</TT> command.<BR><BR>
+
+<BR>
+<B>Example 3: </B><I>Forcing to parenthesize a new syntactic construction</I>
+<BR><BR>
+You can force to parenthesize a new syntactic construction by fixing
+the precedence of its printing rule to a number greater than 9. For
+example a possible printing rule for the <TT>Xor</TT> connector in the prefix
+notation would be:<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Syntax constr level 10:</CODE><BR>
+<CODE>Coq &lt;   ex_imp [&lt;&lt;(Xor $t1  $t2)&gt;&gt;] -&gt; [ "X " $t1:L " " $t2:L ].</CODE><BR>
+</DIV>
+
+
+<BR><BR>
+No explicit parentheses are contained in the rule, nevertheless, when
+using the connector, the parentheses are automatically written:<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Show.</CODE><BR>
+<TT><I>1&nbsp;subgoal</I></TT><BR>
+<TT><I>&nbsp;&nbsp;</I></TT><BR>
+<TT><I>&nbsp;&nbsp;============================</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;(X&nbsp;True&nbsp;False)</I></TT><BR>
+</DIV>
+
+
+<BR><BR>
+A precedence higher than 9 ensures that the AST value will be
+parenthesized by default in either the empty context or if it occurs
+in a context where the instructions are of the form
+<CODE>$t:L</CODE> or <CODE>$t:E</CODE>.<BR><BR>
+
+<BR>
+<B>Example 4: </B><I>Dealing with list patterns in the syntax rules</I>
+<BR><BR>
+The following productions extend the parser to recognize a
+tactic called <CODE>MyIntros</CODE> that receives a list of identifiers as
+argument as the primitive <CODE>Intros</CODE> tactic does:<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Grammar tactic simple_tactic := </CODE><BR>
+<CODE>Coq &lt;   my_intros [ "MyIntros" ne_identarg_list($idl) ] -&gt; </CODE><BR>
+<CODE>Coq &lt;             [(MyIntrosWith ($LIST $idl))].</CODE><BR>
+</DIV>
+
+
+<BR><BR>
+To define the printing rule for <CODE>MyIntros</CODE> it is necessary to
+define the printing rule for the non terminal <CODE>ne_identarg_list</CODE>.
+In grammar productions the dependency between the non terminals is
+explicit. This is not the case for printing rules, where the
+dependency between the rules is determined by the structure of the
+pattern. So, the way to make explicit the relation between printing
+rules is by adding structure to the patterns.<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Syntax tactic level 0:</CODE><BR>
+<CODE>Coq &lt;   myintroswith [(MyIntrosWith ($LIST $L))] -&gt;</CODE><BR>
+<CODE>Coq &lt;    [ "MyIntros " (NEIDENTARGLIST ($LIST $L)) ].</CODE><BR>
+</DIV>
+
+
+<BR><BR>
+This rule says to print the string <CODE>MyIntros</CODE> and then to print
+the value of<BR>
+<CODE>(NEIDENTARGLIST ($LIST $L))</CODE>.<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Syntax tactic level 0:</CODE><BR>
+<CODE>Coq &lt;   ne_identarg_list_cons [(NEIDENTARGLIST $id ($LIST $l))]</CODE><BR>
+<CODE>Coq &lt;                             -&gt; [ $id " " (NEIDENTARGLIST ($LIST $l)) ]</CODE><BR>
+<CODE>Coq &lt; | ne_identarg_list_single [(NEIDENTARGLIST $id)] -&gt; [ $id ].</CODE><BR>
+<TT><I>Warning:&nbsp;overriding&nbsp;syntax&nbsp;rule&nbsp;tactic:ne_identarg_list_cons.</I></TT><BR>
+</DIV>
+
+
+<BR><BR>
+The first rule says how to print a non-empty list, while the second
+one says how to print the list with exactly one element. Note that the
+pattern structure of the binding in the first rule ensures its use in
+a recursive way.<BR><BR>
+Like the order of grammar productions, the order of printing rules
+<EM>does matter</EM>. In case of two rules whose patterns superpose
+each other the <B>last</B> rule is always chosen.  In the example, if
+the last two rules were written in the inverse order the printing will
+not work, because only the rule ne_identarg_list_cons would
+be recursively retrieved and there is no rule for the empty list.
+Other possibilities would have been to write a rule for the empty list
+instead of the ne_identarg_list_single rule,<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Syntax tactic level 0:</CODE><BR>
+<CODE>Coq &lt;   ne_identarg_list_nil [(NEIDENTARGLIST)] -&gt; [ ].</CODE><BR>
+</DIV>
+
+
+<BR><BR>
+This rule indicates to do nothing in case of the empty list.  In this
+case there is no superposition between patterns (no critical pairs)
+and the order is not relevant. But a useless space would be printed
+after the last identifier.<BR><BR>
+
+<BR>
+<B>Example 5: </B><I>Defining constants with arbitrary number of arguments</I>
+<BR><BR>
+Sometimes the constants we define may have an arbitrary number of
+arguments, the typical case are polymorphic functions. Let's consider
+for example the functional composition operator. The following rule
+extends the parser:<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Definition explicit_comp := [A,B,C:Set][f:A-&gt;B][g:B-&gt;C][a:A](g (f a)).</CODE><BR>
+<BR>
+<CODE>Coq &lt; Grammar command command6 :=</CODE><BR>
+<CODE>Coq &lt;   expl_comp [command5($c1) "o" command6($c2) ] -&gt;</CODE><BR>
+<CODE>Coq &lt;             [&lt;&lt;(explicit_comp ? ? ? $c1 $c2)&gt;&gt;].</CODE><BR>
+</DIV>
+
+
+<BR><BR>
+Our first idea is to write the printing rule just by ``inverting'' the
+production:<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Syntax constr level 6:</CODE><BR>
+<CODE>Coq &lt;   expl_comp [&lt;&lt;(explicit_comp ? ? ? $f $g)&gt;&gt;] -&gt; [ $f:L "o" $g:L ].</CODE><BR>
+</DIV>
+
+
+<BR><BR>
+This rule is not correct: <CODE>?</CODE> is an ordinary AST (indeed, it is
+the AST <CODE>(XTRA "ISEVAR")</CODE>), and does not behave as the
+``wildcard'' pattern <CODE>$_</CODE>. Here is a correct version of this
+rule:<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Syntax constr level 6:</CODE><BR>
+<CODE>Coq &lt;   expl_comp [&lt;&lt;(explicit_comp $_ $_ $_ $f $g)&gt;&gt;] -&gt; [ $f:L "o" $g:L ].</CODE><BR>
+</DIV>
+
+
+<BR><BR>
+Let's test the printing rule:<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Definition Id := [A:Set][x:A]x.</CODE><BR>
+<TT><I>Id&nbsp;is&nbsp;defined</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Check (Id nat) o (Id nat).</CODE><BR>
+<TT><I>(Id&nbsp;nat)o(Id&nbsp;nat)</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;nat-&gt;nat</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Check ((Id nat)o(Id nat)  O).</CODE><BR>
+<TT><I>(explicit_comp&nbsp;nat&nbsp;nat&nbsp;nat&nbsp;(Id&nbsp;nat)&nbsp;(Id&nbsp;nat)&nbsp;O)</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;nat</I></TT><BR>
+</DIV>
+
+
+<BR><BR>
+In the first case the rule was used, while in the second one the
+system failed to match the pattern of the rule with the AST of
+<CODE>((Id nat)o(Id nat) O)</CODE>.
+Internally the AST of this term is the same as the AST of the
+term <CODE>(explicit_comp nat nat nat (Id nat) (Id nat) O)</CODE>.
+When the system retrieves our rule it tries to match an application of
+six arguments with an application of five arguments (the AST of
+<CODE>(explicit_comp $_ $_ $_ $f $g)</CODE>).  Then, the matching fails and
+the term is printed using the rule for application.<BR><BR>
+Note that the idea of adding a new rule for <CODE>explicit_comp</CODE> for
+the case of six arguments does not solve the problem, because of the
+polymorphism, we can always build a term with one argument more.  The
+rules for application deal with the problem of having an arbitrary
+number of arguments by using list patterns. Let's see these rules:<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Syntax constr level 10:</CODE><BR>
+<CODE>Coq &lt;   app [(APPLIST $H ($LIST $T))] -&gt;</CODE><BR>
+<CODE>Coq &lt;       [ [&lt;hov 0&gt;  $H:E (APPTAIL ($LIST $T)):E ] ]</CODE><BR>
+<CODE>Coq &lt; </CODE><BR>
+<CODE>Coq &lt; | apptailcons [(APPTAIL $H ($LIST $T))] -&gt;</CODE><BR>
+<CODE>Coq &lt;       [ [1 1] $H:L (APPTAIL ($LIST $T)):E ]</CODE><BR>
+<CODE>Coq &lt; | apptailnil [(APPTAIL)] -&gt; [ ].</CODE><BR>
+</DIV>
+
+
+<BR><BR>
+The first rule prints the operator of the application, and the second
+prints the list of its arguments. Then, one solution to our problem is
+to specialize the first rule of the application to the cases where the
+operator is <CODE>explicit_comp</CODE> and the list pattern has <B>at
+least</B> five arguments:<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Syntax constr level 10:</CODE><BR>
+<CODE>Coq &lt;   expl_comp </CODE><BR>
+<CODE>Coq &lt;     [(APPLIST &lt;&lt;explicit_comp&gt;&gt; $_ $_ $_ $f $g ($LIST $l))]</CODE><BR>
+<CODE>Coq &lt;      -&gt; [ [&lt;hov 0&gt; $f:L "o" $g:L (APPTAIL ($LIST $l)) ] ].</CODE><BR>
+</DIV>
+
+
+<BR><BR>
+Now we can see that this rule works for any application of the
+operator:<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Check ((Id nat) o (Id nat) O).</CODE><BR>
+<TT><I>((Id&nbsp;nat)o(Id&nbsp;nat)&nbsp;O)</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;nat</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Check ((Id nat-&gt;nat) o (Id nat-&gt;nat) [x:nat]x O).</CODE><BR>
+<TT><I>((Id&nbsp;nat-&gt;nat)o(Id&nbsp;nat-&gt;nat)&nbsp;[x:nat]x&nbsp;O)</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;nat</I></TT><BR>
+</DIV>
+
+
+<BR><BR>
+In the examples presented by now, the rules have no information about
+how to deal with indentation, break points and spaces, the printer
+will write everything in the same line without spaces. To indicate the
+concrete layout of the patterns, there's a simple language of printing
+instructions that will be described in the following section.
+<H4>The printing of terminals
+</H4>
+
+The user is not expected to write the printing rules for terminals,
+this is done automatically.  Primitive printing is done for
+identifiers, strings, paths, numbers. For example : <BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Grammar vernac vernac :=</CODE><BR>
+<CODE>Coq &lt;   mycd [ "MyCd" prim:string($dir) "." ] -&gt; [(MYCD $dir)].</CODE><BR>
+<BR>
+<CODE>Coq &lt; Syntax vernac level 0:</CODE><BR>
+<CODE>Coq &lt;   mycd [(MYCD $dir)] -&gt; [ "MyCd " $dir ].</CODE><BR>
+</DIV>
+
+
+<BR><BR>
+There is no more need to encapsulate the <CODE>$dir</CODE> meta-variable
+with the <CODE>$PRIM</CODE> or the <CODE>$STR</CODE> operator as in the version
+6.1. However, the pattern <CODE>(MYCD ($STR $dir))</CODE> would be safer,
+because the rule would not be selected to print an ill-formed AST. The
+name of default primitive printer is the <FONT COLOR=purple>Objective Caml</FONT> function <TT>print_token</TT>. If the user wants a particular terminal to be printed
+by another printer, he may specify it in the right part of the
+rule. Example:<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Syntax tactic level 0 :</CODE><BR>
+<CODE>Coq &lt;   do_pp [(DO ($NUM $num) $tactic)] </CODE><BR>
+<CODE>Coq &lt;     -&gt; [ "Do " $num:"my_printer" [1 1] $tactic ].</CODE><BR>
+</DIV>
+
+
+<BR><BR>
+The printer <I>my_printer</I> must have been installed as shown
+below.
+<H4>Primitive printers
+</H4>
+Writing and installing primitive pretty-printers requires to have the
+sources of the system like writing tactics.<BR><BR>
+A primitive pretty-printer is a Caml function of type
+<PRE>
+     Esyntax.std_printer -&gt; CoqAst.t -&gt; Pp.std_ppcmds
+</PRE>
+
+
+The first
+argument is the global printer, it can be called for example by the
+specific printer to print subterms. The second argument is the AST to
+print, and the result is a stream of printing orders like :<BR><BR>
+<UL>
+<LI>
+<CODE>'sTR"</CODE><I>string</I><CODE>"</CODE> to print the string
+  <I>string</I>
+
+<LI><CODE>'bRK </CODE><I>num1 num2</I> that has the same semantics than
+  <CODE>[</CODE> <I>num1 num2</I> <CODE>]</CODE> in the print rules.
+
+<LI><CODE>'sPC</CODE> to leave a blank space
+
+<LI><CODE>'iNT</CODE> <I>n</I> to print the integer <I>n</I> 
+
+<LI>...</UL>
+<BR><BR>
+There is also commands to make boxes (<CODE>h</CODE> or <CODE>hv</CODE>, described
+in file <TT>src/lib/util/pp.mli</TT>). Once the printer is written, it
+must be registered by the command :
+<PRE>
+     Esyntax.Ppprim.add ("name",my_printer);;
+</PRE>
+
+
+Then, in the toplevel, after having loaded the right <FONT COLOR=purple>Objective Caml</FONT> module,
+it can be used in the right hand side of printing orders using the
+syntax <CODE>$truc:"name"</CODE>.<BR><BR>
+The real name and the registered name of a pretty-printer does not
+need to be the same. However, it can be nice and simple to give the
+same name.
+<H3>
+9.3.2&nbsp;Syntax for pretty printing rules
+</H3>
+
+<A NAME="syntaxsyntax"></A>This section describes the syntax for printing rules.  The
+metalanguage conventions are the same as those specified for the
+definition of the pattern's syntax in section <A HREF="node.2.0.0.html#patternsyntax">9.1</A>.
+The grammar of printing rules is the following:<BR><BR>
+<DIV ALIGN=center>
+
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=1>
+<TR><TD NOWRAP ALIGN=right>printing-rule</TD>
+<TD NOWRAP ALIGN=center>::=</TD>
+<TD NOWRAP ALIGN=left><CODE>Syntax</CODE>&nbsp;ident&nbsp;&nbsp;level <TT>;</TT> ... <TT>;</TT> level</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=right>level</TD>
+<TD NOWRAP ALIGN=center>::=</TD>
+<TD NOWRAP ALIGN=left><CODE>level</CODE>&nbsp;precedence&nbsp;<CODE>:</CODE>
+  &nbsp;rule <TT>|</TT> ... <TT>|</TT> rule</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=right>precedence</TD>
+<TD NOWRAP ALIGN=center>::=</TD>
+<TD NOWRAP ALIGN=left>integer &nbsp;|&nbsp; <CODE>[</CODE>&nbsp;integer&nbsp;integer&nbsp;integer&nbsp;<CODE>]</CODE></TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=right>rule</TD>
+<TD NOWRAP ALIGN=center>::=</TD>
+<TD NOWRAP ALIGN=left>ident&nbsp;<CODE>[</CODE>&nbsp;pattern&nbsp;<CODE>] -&gt; [</CODE>  &nbsp;[printing-order  ...  printing-order]&nbsp;<CODE>]</CODE></TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=right>printing-order</TD>
+<TD NOWRAP ALIGN=center>::=</TD>
+<TD NOWRAP ALIGN=left><CODE>FNL</CODE></TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left>string</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left><CODE>[</CODE>&nbsp;integer&nbsp;integer&nbsp;<CODE>]</CODE></TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left><CODE>[</CODE>&nbsp;box&nbsp;[printing-order  ...  printing-order]&nbsp;<CODE>]</CODE></TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left>ast&nbsp;[<TT>:</TT>&nbsp;prim-printer]&nbsp;        [<TT>:</TT>&nbsp;paren-rel]</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=right>box</TD>
+<TD NOWRAP ALIGN=center>::=</TD>
+<TD NOWRAP ALIGN=left><CODE>&lt;</CODE>&nbsp;box-type&nbsp;integer&nbsp;<CODE>&gt;</CODE></TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=right>box-type</TD>
+<TD NOWRAP ALIGN=center>::=</TD>
+<TD NOWRAP ALIGN=left>&nbsp;<CODE>hov</CODE>&nbsp;|&nbsp;<CODE>hv</CODE>&nbsp;|&nbsp;<CODE>v</CODE>&nbsp;|&nbsp;<CODE>h</CODE></TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=right>paren-rel</TD>
+<TD NOWRAP ALIGN=center>::=</TD>
+<TD NOWRAP ALIGN=left><CODE>L</CODE>&nbsp;|&nbsp;<CODE>E</CODE></TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=right>prim-printer</TD>
+<TD NOWRAP ALIGN=center>::=</TD>
+<TD NOWRAP ALIGN=left>string</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=right>pattern</TD>
+<TD NOWRAP ALIGN=center>::=</TD>
+<TD NOWRAP ALIGN=left>ast</TD>
+</TR>
+</TABLE>
+
+</DIV>
+
+<BR><BR>
+As already stated, the order of rules in a given level is relevant
+(the last ones override the previous ones).<BR><BR>
+ 
+
+<H4>Pretty grammar structures
+</H4>
+
+The basic structure is the printing order sequence. Each order has a
+printing effect and they are sequentially executed. The orders can
+be:
+<UL>
+<LI>
+printing orders
+
+<LI>printing boxes
+</UL>
+
+<H5>Printing orders
+</H5>
+
+Printing orders can be of the form:
+<UL>
+<LI>
+<CODE>"</CODE>string<CODE>"</CODE> prints the string.
+
+<LI><CODE>FNL</CODE> force a new line.<BR><BR>
+
+<LI><TT>$t:</TT>paren-rel or
+  <TT>$t:</TT>prim-printer<TT>:</TT>paren-rel<BR><BR>
+  ast is used to build an AST in current context. The printer
+  looks up the adequate printing rule and applies recursively this
+  method.  The optional field <I>prim-printer</I> is a string with the
+  name primitive pretty-printer to call (The name is not the name of
+  the <FONT COLOR=purple>Objective Caml</FONT> function, but the name given to <TT>Esyntax.Ppprim.add</TT>).  Recursion of the printing is determined by
+  the pattern's structure.  <I>paren-rel</I> is the following:
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center><BR><BR>
+<CODE>L</CODE></TD>
+<TD NOWRAP ALIGN=left>if <I>t</I> 's precedence is <B>less</B> than the rule's one, then no
+    parentheses</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=center>&nbsp;</TD>
+<TD NOWRAP ALIGN=left>around <I>t</I> are written.</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=center><CODE>E</CODE></TD>
+<TD NOWRAP ALIGN=left>if <I>t</I> 's precedence is <B>less or equal</B> than  the rule's one
+    then no parentheses</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=center>&nbsp;</TD>
+<TD NOWRAP ALIGN=left>around <I>t</I> are written.</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=center><I>none</I></TD>
+<TD NOWRAP ALIGN=left><B>never</B> write parentheses around <I>t</I>.</TD>
+</TR>
+</TABLE>
+<BR><BR>
+
+</UL>
+
+<H5>Printing boxes
+</H5>
+
+The concept of formatting boxes is used to describe the concrete
+layout of patterns: a box may contain many objects which are orders or
+subboxes sequences separated by breakpoints; the box wraps around
+them an imaginary rectangle.
+<OL>
+<LI>
+<B>Box types</B><BR><BR>
+  The type of boxes specifies the way the components of the box will
+  be displayed and may be:
+<UL>
+<LI>
+<CODE>h</CODE> : to catenate objects horizontally.
+
+<LI><CODE>v</CODE> : to catenate objects vertically.
+
+<LI><CODE>hv</CODE> : to catenate objects as with an ``h box'' but an
+  automatic vertical folding is applied when the horizontal
+  composition does not fit into the width of the associated output
+  device.<BR><BR>
+
+<LI><CODE>hov</CODE> : to catenate objects horizontally but if the
+  horizontal composition does not fit, a vertical composition will be
+  applied, trying to catenate horizontally as many objects as possible.
+</UL>
+<BR><BR>
+The type of the box can be followed by a <I>n</I> offset value, which
+is the offset added to the current indentation when breaking lines
+inside the box.<BR><BR>
+
+<LI><B>Boxes syntax</B><BR><BR>
+  A box is described by a sequence surrounded by <CODE>[ ]</CODE>. The first
+  element of the sequence is the box type: this type surrounded by the
+  symbols <CODE>&lt; &gt;</CODE> is one of the words <CODE>hov</CODE>, <CODE>hv</CODE>,
+  <CODE>v</CODE>, <CODE>v</CODE> followed by an offset. The default offset is 0
+  and the default box type is <CODE>h</CODE>.<BR><BR>
+
+<LI><B>Breakpoints</B><BR><BR>
+  In order to specify where the pretty-printer is allowed to break,
+  one of the following break-points may be used:<BR><BR>
+<UL>
+<LI>
+<CODE>[0 0]</CODE> is a simple break-point, if the line is not broken
+  here, no space is included (``Cut'').
+
+<LI><CODE>[1 0]</CODE> if the line is not broken then a space is printed
+  (``Spc'').
+
+<LI><CODE>[i j]</CODE> if the line is broken, the value <I>j</I> is added to the
+  current indentation for the following line; otherwise <I>i</I> blank spaces
+  are inserted (``Brk'').
+</UL>
+<BR><BR>
+<B>Examples :</B>
+It is interesting to test printing rules on ``small'' and ``large''
+expressions in order to see how the break of lines and indentation are
+managed. Let's define two constants and make a <CODE>Print</CODE> of them to
+test the rules.  Here are some examples of rules for our constant
+<CODE>Xor</CODE>:<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Definition A := True X True.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Definition B := True X True X True X True X True X True X True </CODE><BR>
+<CODE>Coq &lt;                  X True X True X True X True X True X True.</CODE><BR>
+</DIV>
+
+
+
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Syntax constr level 6:</CODE><BR>
+<CODE>Coq &lt;   Pxor [&lt;&lt;(Xor $t1 $t2)&gt;&gt;] -&gt; [ $t1:L " X " $t2:E ].</CODE><BR>
+</DIV>
+
+
+<BR><BR>
+This rule prints everything in the same line exceeding the line's
+width.<BR><BR>
+
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Print B.</CODE><BR>
+<TT><I>B&nbsp;=&nbsp;</I></TT><BR>
+<TT><I>True&nbsp;X&nbsp;True&nbsp;X&nbsp;True&nbsp;X&nbsp;True&nbsp;X&nbsp;True&nbsp;X&nbsp;True&nbsp;X&nbsp;True&nbsp;X&nbsp;True&nbsp;X&nbsp;True&nbsp;X&nbsp;True&nbsp;X&nbsp;Tru</I></TT><BR>
+<TT><I>e&nbsp;X&nbsp;True&nbsp;X&nbsp;True</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Prop</I></TT><BR>
+</DIV>
+
+
+<BR><BR>
+Let's add some break-points in order to force the printer to break the
+line before the operator:<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Syntax constr level 6:</CODE><BR>
+<CODE>Coq &lt;   Pxor [&lt;&lt;(Xor $t1 $t2)&gt;&gt;] -&gt; [ $t1:L [0 1] " X " $t2:E ].</CODE><BR>
+</DIV>
+
+
+<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Print B.</CODE><BR>
+<TT><I>B&nbsp;=&nbsp;True&nbsp;X&nbsp;True&nbsp;X&nbsp;True&nbsp;X&nbsp;True&nbsp;X&nbsp;True&nbsp;X&nbsp;True&nbsp;X&nbsp;True&nbsp;X&nbsp;True&nbsp;X&nbsp;True&nbsp;X&nbsp;True</I></TT><BR>
+<TT><I>&nbsp;&nbsp;X&nbsp;True&nbsp;X&nbsp;True&nbsp;X&nbsp;True</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Prop</I></TT><BR>
+</DIV>
+
+
+<BR><BR>
+The line was correctly broken but there is no indentation at all. To
+deal with indentation we use a printing box:<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Syntax constr level 6:</CODE><BR>
+<CODE>Coq &lt;   Pxor [&lt;&lt;(Xor $t1 $t2)&gt;&gt;] -&gt;</CODE><BR>
+<CODE>Coq &lt;    [ [&lt;hov 0&gt; $t1:L [0 1] " X " $t2:E ] ].</CODE><BR>
+</DIV>
+
+
+<BR><BR>
+With this rule the printing of A is correct, an the printing of B is
+indented.<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Print B.</CODE><BR>
+<TT><I>B&nbsp;=&nbsp;</I></TT><BR>
+<TT><I>True</I></TT><BR>
+<TT><I>&nbsp;&nbsp;X&nbsp;True</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X&nbsp;True</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X&nbsp;True</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X&nbsp;True</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X&nbsp;True</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X&nbsp;True&nbsp;X&nbsp;True&nbsp;X&nbsp;True&nbsp;X&nbsp;True&nbsp;X&nbsp;True&nbsp;X&nbsp;True&nbsp;X&nbsp;True</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Prop</I></TT><BR>
+</DIV>
+
+
+<BR><BR>
+If we had chosen the mode <CODE>v</CODE> instead of <CODE>hov</CODE> :<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Syntax constr level 6:</CODE><BR>
+<CODE>Coq &lt;   Pxor [&lt;&lt;(Xor $t1 $t2)&gt;&gt;] -&gt; [ [&lt;v 0&gt; $t1:L [0 1] " X " $t2:E ] ].</CODE><BR>
+</DIV>
+
+
+<BR><BR>
+We would have obtained a vertical presentation:<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Print A.</CODE><BR>
+<TT><I>A&nbsp;=&nbsp;True</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X&nbsp;True</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Prop</I></TT><BR>
+</DIV>
+
+
+<BR><BR>
+The difference between the presentation obtained with the <CODE>hv</CODE>
+and <CODE>hov</CODE> type box is not evident at first glance. Just for
+clarification purposes let's compare the result of this silly rule
+using an <CODE>hv</CODE> and a <CODE>hov</CODE> box type:<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Syntax constr level 6:</CODE><BR>
+<CODE>Coq &lt;   Pxor [&lt;&lt;(Xor $t1 $t2)&gt;&gt;] -&gt;</CODE><BR>
+<CODE>Coq &lt;    [ [&lt;hv 0&gt; "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"</CODE><BR>
+<CODE>Coq &lt;        [0 0] "----------------------------------------"</CODE><BR>
+<CODE>Coq &lt;        [0 0] "ZZZZZZZZZZZZZZZZ" ] ].</CODE><BR>
+</DIV>
+
+
+
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Print A.</CODE><BR>
+<TT><I>A&nbsp;=&nbsp;</I></TT><BR>
+<TT><I>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</I></TT><BR>
+<TT><I>----------------------------------------</I></TT><BR>
+<TT><I>ZZZZZZZZZZZZZZZZ</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Prop</I></TT><BR>
+</DIV>
+
+
+
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Syntax constr level 6:</CODE><BR>
+<CODE>Coq &lt;   Pxor [&lt;&lt;(Xor $t1 $t2)&gt;&gt;] -&gt;</CODE><BR>
+<CODE>Coq &lt;    [ [&lt;hov 0&gt; "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"</CODE><BR>
+<CODE>Coq &lt;        [0 0]  "----------------------------------------"</CODE><BR>
+<CODE>Coq &lt;        [0 0]  "ZZZZZZZZZZZZZZZZ" ] ].</CODE><BR>
+</DIV>
+
+
+
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Print A.</CODE><BR>
+<TT><I>A&nbsp;=&nbsp;</I></TT><BR>
+<TT><I>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</I></TT><BR>
+<TT><I>----------------------------------------ZZZZZZZZZZZZZZZZ</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Prop</I></TT><BR>
+</DIV>
+
+
+<BR><BR>
+In the first case, as the three strings to be printed do not fit in
+the line's width, a vertical presentation is applied. In the second
+case, a vertical presentation is applied, but as the last two strings
+fit in the line's width, they are printed in the same line.</OL>
+
+<H3>
+9.3.3&nbsp;Debugging the printing rules
+</H3>
+  By now, there is almost no semantic check of printing rules in the
+  system.  To find out where the problem is, there are two
+  possibilities: to analyze the rules looking for the most common
+  errors or to work in the toplevel tracing the ml code of the
+  printer.
+When the system can't find the proper rule to print an Ast, it prints
+<CODE>#GENTERM</CODE> <I>ast</I>. If you added no printing rule,
+  it's probably a bug and you can send it to the <FONT COLOR=purple>Coq</FONT> team.
+<H4>Most common errors
+</H4>
+
+Here are some considerations that may help to get rid of simple
+errors:<BR><BR>
+<UL>
+<LI>
+make sure that the rule you want to use is not defined in
+  previously closed section.
+
+<LI>make sure that <B>all</B> non-terminals of your grammar have
+  their corresponding printing rules.<BR><BR>
+
+<LI>make sure that the set of printing rules for a certain non
+  terminal covers all the space of AST values for that non terminal.<BR><BR>
+
+<LI>the order of the rules is important. If there are two rules
+  whose patterns superpose (they have common instances) then it is
+  always the most recent rule that will be retrieved.
+
+<LI>if there are two rules with the same name and universe the last
+  one overrides the first one. The system always warns you about
+  redefinition of rules.
+</UL>
+
+<H4>Tracing the <FONT COLOR=purple>Objective Caml</FONT> code of the printer
+</H4>
+
+Some of the conditions presented above are not easy to verify when
+dealing with many rules. In that case tracing the code helps to
+understand what is happening. The printers are in the file <TT>src/typing/printer</TT>. There you will find the functions:<BR><BR>
+<UL>
+<LI>
+<TT>gencompr</TT> : the printer of commands
+
+<LI><TT>gentacpr</TT> : the printer of tactics
+</UL>
+<BR><BR>
+These printers are defined in terms of a general printer <TT>genprint</TT> (this function is located in <TT>src/parsing/esyntax.ml</TT>)
+and by instantiating it with the adequate parameters. <TT>genprint</TT>
+waits for: the universe to which this AST belongs (<I>tactic</I>, <I>constr</I>), a default printer, the precedence of the AST inherited from
+the caller rule and the AST to print. <TT>genprint</TT> looks for a rule
+whose pattern matches the AST, and executes in order the printing
+orders associated to this rule. Subterms are printed by recursively
+calling the generic printer. If no rule matches the AST, the default
+printer is used.<BR><BR>
+An AST of a universe may have subterms that belong to another
+universe. For instance, let <I>v</I> be the AST of the tactic
+expression <CODE>MyTactic O</CODE>. The function <TT>gentacpr</TT> is called
+to print <I>v</I>.  This function instantiates the general printer <TT>genprint</TT> with the universe <I>tactic</I>. Note that <I>v</I> has a subterm
+<I>c</I> corresponding to the AST of <CODE>O</CODE> (<I>c</I> belongs to the universe
+<I>constr</I>).  <TT>genprint</TT> will try recursively to print all
+subterms of <I>v</I> as belonging to the same universe of <I>v</I>. If this is
+not possible, because the subterm belongs to another universe, then
+the default printer that was given as argument to <TT>genprint</TT> is
+applied. The default printer is responsible for changing the universe
+in a proper way calling the suitable printer for <I>c</I>.<BR><BR>
+<BR>
+<B>Technical Remark.</B> In the file
+<CODE>PPTactic.v</CODE>, there are some rules that do not arise from the
+inversion of a parsing rule. They are strongly related to the way the
+printing is implemented.<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Syntax tactic level 8:</CODE><BR>
+<CODE>Coq &lt;   constr [(COMMAND $c)] -&gt; [ (PPUNI$COMMAND $c):E ].</CODE><BR>
+</DIV>
+
+
+<BR><BR>
+As an AST of tactic may have subterms that are commands, these rules
+allow the printer of tactic to change the universe. The
+<CODE>PPUNI$COMMAND</CODE> is a special identifier used for this
+purpose. They are used in the code of the default printer that <TT>gentacpr</TT> gives to <TT>genprint</TT>.<BR><BR>
+
+
+<HR>
+
+<A HREF="node.2.0.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.2.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

@@ -1,0 +1,286 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+7.7&nbsp;Eliminations (Induction and Case Analysis)
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.1.2.5.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.7.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+7.7&nbsp;Eliminations (Induction and Case Analysis)
+</H2>
+
+
+
+Elimination tactics are useful to prove statements by induction or
+case analysis.
+Indeed, they make use of the elimination (or induction) principles
+generated with inductive definitions (see section
+<A HREF="node.0.3.4.html#Cic-inductive-definitions">4.5</A>).
+<H3>
+7.7.1&nbsp;<TT>Elim </TT>term</H3>
+
+<A NAME="@default410"></A><A NAME="@tactic34"></A><A NAME="Elim"></A>
+This tactic applies to any goal. The type of the argument
+term must be an inductive constant. Then according to the type of
+the goal, the tactic <TT>Elim</TT> chooses the right destructor and
+applies it (as in the case of the <TT>Apply</TT> tactic). For instance,
+assume that our proof context contains <TT>n:nat</TT>, assume that our
+current goal is <TT>T</TT> of type <TT>Prop</TT>, then
+<TT>Elim n</TT> is equivalent to <TT>Apply nat_ind with n:=n</TT>.<BR><BR>
+<BR>
+<B>Error messages: </B><OL>
+<LI>
+<TT>Not an inductive product</TT>
+
+<LI><TT>Cannot refine to conclusions with meta-variables</TT><BR>
+As <TT>Elim</TT> uses <TT>Apply</TT>, see section <A HREF="node.1.2.2.html#Apply">7.3.4</A> and the variant
+  <TT>Elim ...with ...</TT> below.
+</OL>
+<BR><BR>
+<BR>
+<B>Variants: </B><OL>
+<LI>
+<TT>Elim </TT>term also works when the type of term starts with
+   products and the head symbol is an inductive definition. In that
+  case the tactic tries both to find an object in the inductive
+  definition and to use this inductive definition for elimination.  In
+  case of non-dependent products in the type, subgoals are generated
+  corresponding to the hypotheses. In the case of dependent products,
+  the tactic will try to find an instance for which the elimination
+  lemma applies.<BR><BR>
+
+<LI><TT>Elim </TT>term<TT> with </TT>term<TT><I><SUB><FONT SIZE=2>1</FONT></SUB></I></TT><TT> ...</TT>term<TT><I><SUB><FONT SIZE=2>n</FONT></SUB></I></TT>
+  <A NAME="@default411"></A><A NAME="@tactic35"></A><BR>
+Allows the user to give explicitly the values for dependent
+  premises of the elimination schema. All arguments must be given.<BR>
+<BR>
+<B>Error message: </B><TT>Not the right number of dependent arguments</TT>
+
+<LI><TT>Elim </TT>term<TT> with </TT>ref<TT><I><SUB><FONT SIZE=2>1</FONT></SUB></I></TT><TT> := </TT>term<TT><I><SUB><FONT SIZE=2>1</FONT></SUB></I></TT><TT> ...</TT>ref<TT><I><SUB><FONT SIZE=2>n</FONT></SUB></I></TT><TT>
+    := </TT>term<TT><I><SUB><FONT SIZE=2>n</FONT></SUB></I></TT><BR>
+Provides also <TT>Elim</TT> with values for instantiating premises by
+  associating explicitly variables (or non dependent products) with
+  their intended instance.
+
+<LI><TT>Elim </TT>term<TT><I><SUB><FONT SIZE=2>1</FONT></SUB></I></TT><TT> using </TT>term<TT><I><SUB><FONT SIZE=2>2</FONT></SUB></I></TT>
+<A NAME="@default412"></A><A NAME="@tactic36"></A><BR>
+Allows the user to give explicitly an elimination predicate
+  term<I><SUB><FONT SIZE=2>2</FONT></SUB></I> which is not the standard one for the underlying
+  inductive type of term<I><SUB><FONT SIZE=2>1</FONT></SUB></I>. Each of the term<I><SUB><FONT SIZE=2>1</FONT></SUB></I> and term<I><SUB><FONT SIZE=2>2</FONT></SUB></I> is
+  either a simple term or a term with a bindings list (see
+  <A HREF="node.1.2.2.html#Binding-list">7.3.7</A>). 
+
+<LI><TT>ElimType </TT>form<A NAME="@default413"></A><A NAME="@tactic37"></A><BR>
+The argument form must be inductively defined. <TT>ElimType I</TT>
+  is equivalent to <TT>Cut I. Intro H</TT>n<TT>; Elim H</TT>n<TT>; 
+    Clear H</TT>n
+  Therefore the hypothesis <TT>H</TT>n will not appear in the
+  context(s) of the subgoal(s).<BR>
+Conversely, if <TT>t</TT> is a term of (inductive) type <TT>I</TT> and
+  which does not occur in the goal then
+  <TT>Elim t</TT> is equivalent to <TT>ElimType I; 2: Exact t.</TT><BR><BR>
+  <BR>
+<B>Error message: </B><TT>Impossible to unify ...with ...</TT><BR>
+Arises when
+  form needs to be applied to parameters.<BR><BR>
+
+<LI><TT>Induction </TT>ident<A NAME="@default414"></A><A NAME="@tactic38"></A><BR>
+Is equivalent to <TT>Intros until </TT>ident<TT>; Pattern </TT>ident<TT>; Elim
+    </TT>ident
+
+<LI><TT>Induction </TT>num<BR>
+Is analogous to <TT>Induction </TT>ident but for the num-th
+  non-dependent premise of the goal.
+</OL>
+
+<H3>
+7.7.2&nbsp;<TT>Case </TT>term</H3>
+<A NAME="Case"></A><A NAME="@default415"></A><A NAME="@tactic39"></A>
+The tactic <TT>Case</TT> is used to perform case
+analysis without recursion. The type of term must be inductively defined. <BR><BR>
+<BR>
+<B>Variants: </B><OL>
+<LI>
+<TT>Case </TT>term<TT> with </TT>term<TT><I><SUB><FONT SIZE=2>1</FONT></SUB></I></TT><TT> ...</TT>term<TT><I><SUB><FONT SIZE=2>n</FONT></SUB></I></TT>
+  <A NAME="@default416"></A><A NAME="@tactic40"></A><BR>
+Analogous to <TT>Elim ...with</TT> above.
+
+<LI><TT>Destruct </TT>ident<A NAME="@default417"></A><A NAME="@tactic41"></A><BR>
+Is equivalent to the tactical <TT>Intros Until </TT>ident<TT>; Case </TT>ident.
+
+<LI><TT>Destruct </TT>num<BR>
+Is equivalent to <TT>Destruct </TT>ident but for the num-th non
+  dependent premises of the goal.
+</OL>
+
+<H3>
+7.7.3&nbsp;<TT>Intros </TT>pattern</H3>
+<A NAME="Intros-pattern"></A><A NAME="@default418"></A><A NAME="@tactic42"></A>The tactic <TT>Intros</TT> applied to a pattern performs both
+introduction of variables and case analysis in order to give names to
+components of an hypothesis.<BR><BR>
+A pattern is either:
+<UL>
+<LI>
+a variable
+
+<LI>a list of patterns: <I>p<SUB><FONT SIZE=2>1</FONT></SUB>&nbsp;...&nbsp;p<SUB><FONT SIZE=2>n</FONT></SUB></I>
+
+<LI>a disjunction of patterns: <TT>[</TT><I>p<SUB><FONT SIZE=2>1</FONT></SUB></I> <TT>|</TT> ... <TT>|</TT> <I>p<SUB><FONT SIZE=2>n</FONT></SUB></I> <TT>]</TT>
+
+<LI>a conjunction of patterns: <TT>(</TT> <I>p<SUB><FONT SIZE=2>1</FONT></SUB></I> <TT>,</TT> ... <TT>,</TT> <I>p<SUB><FONT SIZE=2>n</FONT></SUB></I> <TT>)</TT>
+</UL>
+<BR><BR>
+The behavior of <TT>Intros</TT> is defined inductively over the
+structure of the pattern given as argument:
+<UL>
+<LI>
+introduction on a variable behaves like described in&nbsp;<A HREF="node.1.2.2.html#Intro">7.3.3</A>; 
+
+<LI>introduction over a
+list of patterns <I>p<SUB><FONT SIZE=2>1</FONT></SUB>&nbsp;...&nbsp;p<SUB><FONT SIZE=2>n</FONT></SUB></I> is equivalent to the sequence of
+introductions over the patterns namely:
+<TT>Intros </TT><TT><I>p<SUB><FONT SIZE=2>1</FONT></SUB></I></TT><TT>;...; Intros </TT><TT><I>p<SUB><FONT SIZE=2>n</FONT></SUB></I></TT>, the goal should start with
+at least <I>n</I> products;
+
+<LI>introduction over a
+disjunction of patterns [<I>p<SUB><FONT SIZE=2>1</FONT></SUB>&nbsp;</I>|<I>&nbsp;&nbsp;...&nbsp;</I>|<I>&nbsp;p<SUB><FONT SIZE=2>n</FONT></SUB></I>], it 
+introduces a new variable <I>X</I>, its type should be an inductive
+definition with <I>n</I>
+constructors, then it performs a case analysis over <I>X</I> 
+(which generates <I>n</I> subgoals), it 
+clears <I>X</I> and performs on each generated subgoals the corresponding
+<TT>Intros</TT>&nbsp;<I>p<SUB><FONT SIZE=2>i</FONT></SUB></I> tactic;
+
+<LI>introduction over a 
+conjunction  of patterns (<I>p<SUB><FONT SIZE=2>1</FONT></SUB></I>,<I>...</I>,<I>p<SUB><FONT SIZE=2>n</FONT></SUB></I>), it
+introduces a new variable <I>X</I>, its type should be an inductive 
+definition with <I>1</I>
+constructor with (at least) <I>n</I> arguments, then it performs a case 
+analysis over <I>X</I> 
+(which generates <I>1</I> subgoal with at least <I>n</I> products), it 
+clears <I>X</I> and performs an introduction over the list of patterns <I>p<SUB><FONT SIZE=2>1</FONT></SUB>&nbsp;...&nbsp;p<SUB><FONT SIZE=2>n</FONT></SUB></I>.
+</UL>
+
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Lemma intros_test : (A,B,C:Prop)(A\/(B/\C))-&gt;(A-&gt;C)-&gt;C.</CODE><BR>
+<TT><I>1&nbsp;subgoal</I></TT><BR>
+<TT><I>&nbsp;&nbsp;</I></TT><BR>
+<TT><I>&nbsp;&nbsp;============================</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;(A,B,C:Prop)A\/B/\C-&gt;(A-&gt;C)-&gt;C</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Intros A B C [a|(b,c)] f.</CODE><BR>
+<TT><I>2&nbsp;subgoals</I></TT><BR>
+<TT><I>&nbsp;&nbsp;</I></TT><BR>
+<TT><I>&nbsp;&nbsp;A&nbsp;:&nbsp;Prop</I></TT><BR>
+<TT><I>&nbsp;&nbsp;B&nbsp;:&nbsp;Prop</I></TT><BR>
+<TT><I>&nbsp;&nbsp;C&nbsp;:&nbsp;Prop</I></TT><BR>
+<TT><I>&nbsp;&nbsp;a&nbsp;:&nbsp;A</I></TT><BR>
+<TT><I>&nbsp;&nbsp;f&nbsp;:&nbsp;A-&gt;C</I></TT><BR>
+<TT><I>&nbsp;&nbsp;============================</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;C</I></TT><BR>
+<TT><I>subgoal&nbsp;2&nbsp;is:</I></TT><BR>
+<TT><I>&nbsp;C</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Apply (f a).</CODE><BR>
+<TT><I>1&nbsp;subgoal</I></TT><BR>
+<TT><I>&nbsp;&nbsp;</I></TT><BR>
+<TT><I>&nbsp;&nbsp;A&nbsp;:&nbsp;Prop</I></TT><BR>
+<TT><I>&nbsp;&nbsp;B&nbsp;:&nbsp;Prop</I></TT><BR>
+<TT><I>&nbsp;&nbsp;C&nbsp;:&nbsp;Prop</I></TT><BR>
+<TT><I>&nbsp;&nbsp;b&nbsp;:&nbsp;B</I></TT><BR>
+<TT><I>&nbsp;&nbsp;c&nbsp;:&nbsp;C</I></TT><BR>
+<TT><I>&nbsp;&nbsp;f&nbsp;:&nbsp;A-&gt;C</I></TT><BR>
+<TT><I>&nbsp;&nbsp;============================</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;C</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Proof c.</CODE><BR>
+<TT><I>intros_test&nbsp;is&nbsp;defined</I></TT><BR>
+</DIV>
+
+
+<BR><BR>
+
+
+<H3>
+7.7.4&nbsp;<TT>Double Induction </TT>num<TT><I><SUB><FONT SIZE=2>1</FONT></SUB></I></TT><TT> </TT>num<TT><I><SUB><FONT SIZE=2>2</FONT></SUB></I></TT><TT>
+</TT></H3>
+
+<A NAME="@default419"></A><A NAME="@tactic43"></A>
+This tactic applies to any goal. If the num<I><SUB><FONT SIZE=2>1</FONT></SUB></I>th and  num<I><SUB><FONT SIZE=2>2</FONT></SUB></I>th
+premises of the goal have an inductive type, then this tactic
+performs double induction on these premises.
+For instance, if the current goal is <CODE>(n,m:nat)(P n m)</CODE> then,
+<TT>Double Induction 1 2</TT> yields the four cases with their respective
+inductive hypothesis. In particular the case for
+<CODE>(P (S n) (S m))</CODE>
+with the inductive hypothesis about both <CODE>n</CODE> and <CODE>m</CODE>.<BR><BR>
+<BR>
+<B>Remark: </B>This tactic is not automatically loaded; it is
+available by doing <CODE>Require Double</CODE>.
+<H3>
+7.7.5&nbsp;<TT>Decompose [ </TT>ident<TT> ...</TT>idents<TT> ] </TT>term</H3>
+
+<A NAME="Decompose"></A>
+<A NAME="@default420"></A><A NAME="@tactic44"></A>
+This tactic allows to recursively decompose a
+complex proposition in order to obtain atomic ones.
+Example: <BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Lemma ex1: (A,B,C:Prop)(A/\B/\C \/ B/\C \/ C/\A) -&gt; C.</CODE><BR>
+<TT><I>1&nbsp;subgoal</I></TT><BR>
+<TT><I>&nbsp;&nbsp;</I></TT><BR>
+<TT><I>&nbsp;&nbsp;============================</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;(A,B,C:Prop)A/\B/\C\/B/\C\/C/\A-&gt;C</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Intros A B C H; Decompose [and or] H; Assumption.</CODE><BR>
+<TT><I>Subtree&nbsp;proved!</I></TT><BR>
+</DIV>
+
+
+
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Qed.</CODE><BR>
+</DIV>
+
+
+<BR><BR>
+<BR>
+<B>Variants: </B><OL>
+<LI>
+  
+<TT>Decompose Sum </TT>term<A NAME="@default421"></A><A NAME="@tactic45"></A>
+  This decomposes sum types (like <TT>or</TT>).
+
+<LI><TT>Decompose Record </TT>term<A NAME="@default422"></A><A NAME="@tactic46"></A>
+  This decomposes record types (inductive types with one constructor,
+  like <TT>and</TT> and <TT>exists</TT> and those defined with the
+  <TT>Record</TT> macro, see p. <A HREF="node.0.1.0.html#Record">X</A>).
+</OL>
+<BR><BR>
+<HR>
+
+<A HREF="node.1.2.5.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.7.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

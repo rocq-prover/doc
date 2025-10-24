@@ -1,0 +1,70 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+19.1&nbsp;What does this tactic ?
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.8.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.8.1.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+19.1&nbsp;What does this tactic ?
+</H2>
+
+
+<TT>Ring</TT> does associative-commutative rewriting in ring and semi-ring
+structures. Assume you have two binary functions <I><FONT FACE=symbol>Å</FONT></I> and <I><FONT FACE=symbol>Ä</FONT></I>
+that are associative and commutative, with <I><FONT FACE=symbol>Å</FONT></I> distributive on
+<I><FONT FACE=symbol>Ä</FONT></I>, and two constants 0 and 1 that are unities for <I><FONT FACE=symbol>Å</FONT></I> and
+<I><FONT FACE=symbol>Ä</FONT></I>. A <I>polynomial</I> is an expression built on variables <I>V<SUB><FONT SIZE=2>0</FONT></SUB></I>,<I> V<SUB><FONT SIZE=2>1</FONT></SUB></I>,<I>
+...</I> and constants by application of <I><FONT FACE=symbol>Å</FONT></I> and <I><FONT FACE=symbol>Ä</FONT></I>.<BR><BR>
+Let an <I>ordered product</I> be a product of variables <I>V<SUB><FONT SIZE=2>i<SUB><FONT SIZE=2>1</FONT></SUB></FONT></SUB> <FONT FACE=symbol>Ä</FONT>
+... <FONT FACE=symbol>Ä</FONT> V<SUB><FONT SIZE=2>i<SUB><FONT SIZE=2>n</FONT></SUB></FONT></SUB></I> verifying <I>i<SUB><FONT SIZE=2>1</FONT></SUB> <FONT FACE=symbol>£</FONT> i<SUB><FONT SIZE=2>2</FONT></SUB> <FONT FACE=symbol>£</FONT> ... <FONT FACE=symbol>£</FONT> i<SUB><FONT SIZE=2>n</FONT></SUB></I>. Let a
+<I>monom</I> be the product of a constant (possibly equal to 1, in
+which case we omit it) and an ordered product.  We can order the
+monoms by the lexicographic order on products of variables. Let a
+<I>canonical sum</I> be an ordered sum of monoms that are all
+different, i.e. each monom in the sum is strictly less than the
+following monom according to the lexicographic order. It is an easy
+theorem to show that every polynomial is equivalent (modulo the ring
+properties) to exactly one canonical sum. This canonical sum is called
+the <I>normal form</I> of the polynomial. So what does <TT>Ring</TT> ? It
+normalizes polynomials over any ring or semi-ring structure. The basic
+utility of <TT>Ring</TT> is to simplify ring expressions, so that the user
+does not have to deal manually with the theorems of associativity and
+commutativity.<BR><BR>
+<BR>
+<B>Examples:</B>
+<OL>
+<LI>
+In the ring of integers, the normal form of 
+<I>x </I>(<I>3 + yx + 25</I>(<I>1 - z</I>))<I> + zx</I> is <I>28x + </I>(<I>-24</I>)<I>xz + xxy</I>.
+
+<LI>For the classical propositionnal calculus (or the boolean rings)
+  the normal form is what logicians call <I>disjunctive normal
+    form</I> : every formula is equivalent to a disjunction of
+  conjunctions of atoms. (Here <I><FONT FACE=symbol>Å</FONT></I> is <I><FONT FACE=symbol>Ú</FONT></I>, <I><FONT FACE=symbol>Ä</FONT></I> is
+  <I><FONT FACE=symbol>Ù</FONT></I>, variables are atoms and the only constants are T and F)
+</OL>
+<BR><BR>
+
+  <HR>
+
+<A HREF="node.3.8.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.8.1.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

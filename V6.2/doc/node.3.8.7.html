@@ -1,0 +1,75 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+19.8&nbsp;Discussion about the usage of reflexion
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.8.6.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.8.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+19.8&nbsp;Discussion about the usage of reflexion
+</H2>
+
+
+But efficieny is not the only motivation to use reflexion
+here. <TT>Ring</TT> also deals with constants, it rewrites for example the
+expression <I>34 + 2*x -x + 12</I> to the expected result <I>x + 46</I>. For the
+tactic <TT>ACDSimpl</TT>, the only constants were 0 and 1. So the
+expression <I>34 + 2*</I>(<I>x - 1</I>)<I> + 12</I> is interpreted as 
+<I>V<SUB><FONT SIZE=2>0</FONT></SUB> <FONT FACE=symbol>Å</FONT> V<SUB><FONT SIZE=2>1</FONT></SUB> <FONT FACE=symbol>Ä</FONT> </I>(<I>V<SUB><FONT SIZE=2>2</FONT></SUB> <FONT FACE=symbol>Q</FONT> 1</I>)<I> <FONT FACE=symbol>Å</FONT> V<SUB><FONT SIZE=2>3</FONT></SUB></I>, 
+with the variables mapping 
+{<I>V<SUB><FONT SIZE=2>0</FONT></SUB> </I> |<FONT FACE=symbol>¬</FONT><I> 34</I>;<I> V<SUB><FONT SIZE=2>1</FONT></SUB> </I> |<FONT FACE=symbol>¬</FONT><I> 2</I>;<I> V<SUB><FONT SIZE=2>2</FONT></SUB> </I> |<FONT FACE=symbol>¬</FONT><I> x</I>;<I> V<SUB><FONT SIZE=2>3</FONT></SUB> </I> |<FONT FACE=symbol>¬</FONT><I> 12 </I>}. Then it is
+rewrited to <I>34 - x + 2*x + 12</I>, very far from the expected
+result. Here rewriting is not sufficient : you have to do some kind of
+reduction (some kind of calculus, in other words) to achieve the
+normalization.<BR><BR>
+So here in the case of <TT>Ring</TT> we implement using reflexion a tactic
+that would be much more complex and slow if we wrote it like a
+classical tactic.<BR><BR>
+Is it the ultimate way to write tactics ? 
+The answer is : yes and no. Tactics <TT>Ring</TT>
+ uses intensively the conversion
+rule of <B>Cic</B>, that is replaces proof by calculus the most as it is
+possible. It can be useful in all situations where a classical tactic
+generates huge proof terms. Formal calculus and Tautologies solver are
+such situations. But consider a tactic like <TT>Auto</TT> or
+<TT>Linar</TT> : it does many complex and unsafe calculations and
+generates a small proof term. Clearly, it would be useless to try to
+replace it by a reflexion tactic.<BR><BR>
+Another argument against the reflexion is that <FONT COLOR=purple>Coq</FONT>, as a
+programming langage, has many nice features, but is very far from the
+speed and the expressive power of <FONT COLOR=purple>Objective Caml</FONT>. Wait a minute ! With <FONT COLOR=purple>Coq</FONT> it is possible to extact ML code from <B>Cic</B>terms, right ? So, why not
+to link the extracted code with <FONT COLOR=purple>Coq</FONT>to inherit the benefits of the
+reflexion and the speed of ML tactics ? That is called <I>total
+  reflexion</I>, and is still an active research subject. With these
+technologies it will become possible to bootstrap the type-checker of
+<B>Cic</B>, but there is still a bit work to achieve that far goal.
+ 
+
+<BR><BR>
+
+
+
+
+
+<HR>
+
+<A HREF="node.3.8.6.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.8.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

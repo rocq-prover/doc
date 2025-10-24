@@ -1,0 +1,222 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+10.4&nbsp;Some Useful Tools for Writing Tactics
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.2.1.2.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.2.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.2.1.4.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+10.4&nbsp;Some Useful Tools for Writing Tactics
+</H2>
+
+
+
+<A NAME="SomeUsefulToolsforWrittingTactics"></A>
+When the implementation of a tactic is not a straightforward
+combination of tactics and tacticals, the module <TT>Tacmach</TT>
+provides several useful functions for handling goals, calling the
+type-checker, parsing terms, etc. This module is intended to be 
+the interface of the proof engine for the user.<BR><BR>
+<DL>
+<DT>
+<DD><TT>val Tacmach.pf_hyps               : goal sigma -&gt; constr signature</TT>. &nbsp;&nbsp;&nbsp;<BR>
+Projects the local typing context <I><FONT FACE=symbol>G</FONT></I> from a given goal <I><FONT FACE=symbol>G</FONT></I> |-<I> ?</I>:<I>G</I>. 
+
+<DT><DD><TT>val pf_concl              : goal sigma -&gt; constr</TT>. &nbsp;&nbsp;&nbsp;<BR>
+Projects the conclusion <I>G</I> from a given goal <I><FONT FACE=symbol>G</FONT></I> |-<I> ?</I>:<I>G</I>.
+
+<DT><DD><TT>val Tacmach.pf_nth_hyp            : goal sigma -&gt; int -&gt; identifier *
+    constr</TT>. &nbsp;&nbsp;&nbsp;<BR>
+Projects the <I>ith</I> typing constraint <I>x<SUB><FONT SIZE=2>i</FONT></SUB></I>:<I>A<SUB><FONT SIZE=2>i</FONT></SUB></I> from the local
+     context of the given goal.
+
+<DT><DD><TT>val Tacmach.pf_fexecute           : goal sigma -&gt; constr -&gt; judgement</TT>. &nbsp;&nbsp;&nbsp;<BR>
+Given a goal whose local context is <I><FONT FACE=symbol>G</FONT></I> and a term <I>a</I>, this
+     function infers a type <I>A</I> and a kind <I>K</I> such that the judgement
+     <I>a</I>:<I>A</I>:<I>K</I> is valid under <I><FONT FACE=symbol>G</FONT></I>, or raises an exception if there
+     is no such judgement. A judgement is just a record type containing
+     the three terms <I>a</I>, <I>A</I> and <I>K</I>.
+
+<DT><DD><TT>val Tacmach.pf_infexecute :<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;goal sigma -&gt; constr -&gt; judgement * information</TT>. &nbsp;&nbsp;&nbsp;<BR>
+<BR>
+In addition to the typing judgement, this function also extracts 
+     the <I>F</I><SUB><I><FONT SIZE=2><FONT FACE=symbol>w</FONT></FONT></I></SUB> program underlying the term.
+
+<DT><DD><TT>val Tacmach.pf_type_of            : goal sigma -&gt; constr -&gt; constr</TT>. &nbsp;&nbsp;&nbsp;<BR>
+Infers a term <I>A</I> such that <I><FONT FACE=symbol>G</FONT></I> |-<I> a</I>:<I>A</I> for a given term
+    <I>a</I>, where <I><FONT FACE=symbol>G</FONT></I> is the local typing context of the goal.
+
+<DT><DD><TT>val Tacmach.pf_check_type         : goal sigma -&gt; constr -&gt; constr -&gt; bool</TT>. &nbsp;&nbsp;&nbsp;<BR>
+This function yields a type <I>A</I> if the two given terms <I>a</I> and <I>A</I>  verify <I><FONT FACE=symbol>G</FONT></I> |-<I>
+     a</I>:<I>A</I> in the local typing context <I><FONT FACE=symbol>G</FONT></I> of the goal. Otherwise,
+    it raises an exception.
+
+<DT><DD><TT>val Tacmach.pf_constr_of_com      : goal sigma -&gt; CoqAst.t -&gt; constr</TT>. &nbsp;&nbsp;&nbsp;<BR>
+Transforms an abstract syntax tree into a well-typed term of the
+    language of constructions. Raises an exception if the term cannot
+    be typed.
+
+<DT><DD><TT>val Tacmach.pf_constr_of_com_sort : goal sigma -&gt; CoqAst.t -&gt; constr</TT>. &nbsp;&nbsp;&nbsp;<BR>
+Transforms an abstract syntax tree representing a type into
+    a well-typed term of the language of constructions. Raises an
+    exception if the term cannot be typed.
+
+<DT><DD><TT>val Tacmach.pf_parse_const        : goal sigma -&gt; string -&gt; constr</TT>. &nbsp;&nbsp;&nbsp;<BR>
+Constructs the constant whose name is the given string.
+
+<DT><DD><TT>val
+Tacmach.pf_reduction_of_redexp  :<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;goal sigma -&gt; red_expr -&gt; constr -&gt; constr</TT>. &nbsp;&nbsp;&nbsp;<BR>
+<BR>
+Applies a certain kind of reduction function, specified by an
+     element of the type red_expr.
+
+<DT><DD><TT>val Tacmach.pf_conv_x      : goal sigma -&gt; constr -&gt; constr -&gt; bool</TT>. &nbsp;&nbsp;&nbsp;<BR>
+Test whether  two given terms are definitionally equal.
+</DL>
+
+<H3>
+10.4.1&nbsp;Patterns
+</H3>
+The Ocmal file <TT>Pattern</TT> provides a quick way for describing a
+term pattern and performing second-order, binding-preserving, matching
+on it. Patterns are described using an extension of <FONT COLOR=purple>Coq</FONT>'s concrete
+syntax, where the second-order meta-variables of the pattern are
+denoted by indexed question marks. <BR><BR>
+Patterns may depend on constants, and therefore only to make have
+sense when certain theories have been loaded. For this reason, they
+are stored with a module-marker, telling us which modules
+have to be open in order to use the pattern. The following functions
+can be used to store and retrieve patterns form the pattern table:<BR><BR>
+<DL>
+<DT>
+<DD><TT>val Pattern.make_module_marker : string list -&gt; module_mark</TT>. &nbsp;&nbsp;&nbsp;<BR>
+Constructs a module marker from a list of module names.
+
+<DT><DD><TT>val Pattern.put_pat : module_mark -&gt; string -&gt; marked_term</TT>. &nbsp;&nbsp;&nbsp;<BR>
+Constructs a pattern from a parseable string containing holes
+     and a module marker.
+
+<DT><DD><TT>val Pattern.somatches    : constr -&gt;   marked_term-&gt; bool</TT>. &nbsp;&nbsp;&nbsp;<BR>
+Tests if a term matches a pattern. 
+
+<DT><DD><TT>val dest_somatch : constr -&gt; marked_term -&gt; constr list</TT>. &nbsp;&nbsp;&nbsp;<BR>
+If the term matches the pattern, yields the list of sub-terms
+     matching the occurrences of the pattern variables (ordered from
+     left to right). Raises a <TT>UserError</TT> exception if the term
+     does not match the pattern. 
+
+<DT><DD><TT>val Pattern.soinstance : marked_term -&gt; constr list -&gt; constr</TT>. &nbsp;&nbsp;&nbsp;<BR>
+Substitutes each hole in the pattern 
+     by the corresponding term of the given the list.
+</DL>
+
+<H5>Warning:
+</H5>
+ Sometimes, a <FONT COLOR=purple>Coq</FONT> term may have invisible
+sub-terms that the matching functions are nevertheless sensible to.
+For example, the <FONT COLOR=purple>Coq</FONT> term (<I>?<SUB><FONT SIZE=2>1</FONT></SUB></I>,<I>?<SUB><FONT SIZE=2>2</FONT></SUB></I>) is actually a shorthand for
+the expression (<I><TT> pair</TT></I><I>&nbsp;?&nbsp;?&nbsp;?<SUB><FONT SIZE=2>1</FONT></SUB>&nbsp;?<SUB><FONT SIZE=2>2</FONT></SUB></I>).
+Hence, matching this term pattern 
+with the term (<I><TT> true</TT></I>,<I><TT> O</TT></I>) actually yields the list
+[<I>?</I>;<I>?</I>;<I><TT> true</TT></I>;<I><TT> O</TT></I>] as result (and <B>not</B>
+[<I><TT> true</TT></I>;<I><TT> O</TT></I>], as could be expected).
+<H3>
+10.4.2&nbsp;Patterns on Inductive Definitions
+</H3>
+The module <TT>Pattern</TT> also includes some functions for testing
+if the definition of an inductive type satisfies certain
+properties. Such functions may be used to perform pattern matching
+independently from the name given to the inductive type and the
+universe it inhabits.  They yield the value (<I><TT> Some</TT></I><I>&nbsp;r</I>::<I>l</I>) if
+the input term reduces into an application of an inductive type <I>r</I> to
+a list of terms <I>l</I>, and the definition of <I>r</I> satisfies certain
+conditions. Otherwise, they yield the value <TT>None</TT>.<BR><BR>
+<DL>
+<DT>
+<DD><TT>val Pattern.match_with_non_recursive_type : constr list option</TT>. &nbsp;&nbsp;&nbsp;<BR>
+Tests if the inductive type <I>r</I> has no recursive constructors
+
+<DT><DD><TT>val Pattern.match_with_disjunction : constr list option</TT>. &nbsp;&nbsp;&nbsp;<BR>
+Tests if the inductive type <I>r</I> is a non-recursive type
+     such that all its constructors have a single argument.
+
+<DT><DD><TT>val Pattern.match_with_conjunction : constr list option</TT>. &nbsp;&nbsp;&nbsp;<BR>
+Tests if the inductive type <I>r</I> is a non-recursive type
+     with a unique constructor.
+
+<DT><DD><TT>val Pattern.match_with_empty_type  : constr list option</TT>. &nbsp;&nbsp;&nbsp;<BR>
+Tests if the inductive type <I>r</I> has no constructors at all
+
+<DT><DD><TT>val Pattern.match_with_equation    : constr list option</TT>. &nbsp;&nbsp;&nbsp;<BR>
+Tests if the inductive type <I>r</I> has a single constructor
+     expressing the property of reflexivity for some type. For
+     example, the types <I>a=b</I>, <I>A</I>==<I>B</I> and <I>A</I>===<I>B</I> satisfy
+     this predicate.
+</DL>
+
+<H3>
+10.4.3&nbsp;Elimination Tacticals
+</H3>
+It is frequently the case that the subgoals generated by an
+elimination can all be solved in a similar way, possibly parametrized
+on some information about each case, like for example:
+<UL>
+<LI>
+the inductive type of the object being eliminated;
+
+<LI>its arguments (if it is an inductive predicate);
+
+<LI>the branch number;
+
+<LI>the predicate to be proven;
+
+<LI>the number of assumptions to be introduced by the case
+
+<LI>the signature of the branch, i.e., for each argument of
+the branch whether it is recursive or not.
+</UL>
+<BR><BR>
+The following tacticals can be useful to deal with such situations.
+They  <BR><BR>
+<DL>
+<DT>
+<DD><TT>val Elim.simple_elimination_then :<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(branch_args -&gt; tactic) -&gt; constr -&gt; tactic</TT>. &nbsp;&nbsp;&nbsp;<BR>
+<BR>
+Performs the default elimination on the last argument, and then
+     tries to solve the generated subgoals using a given parametrized
+     tactic. The type branch_args is a record type containing all 
+     information mentioned above.
+
+<DT><DD><TT>val Elim.simple_case_then :<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(branch_args -&gt; tactic) -&gt; constr -&gt; tactic</TT>. &nbsp;&nbsp;&nbsp;<BR>
+<BR>
+Similarly, but it performs case analysis instead of induction.
+</DL>
+<BR><BR>
+<HR>
+
+<A HREF="node.2.1.2.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.2.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.2.1.4.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

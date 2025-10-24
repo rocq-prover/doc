@@ -1,0 +1,113 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+16.2&nbsp;Activating Natural</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.5.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.5.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.5.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+16.2&nbsp;Activating <TT>Natural</TT></H2>
+
+
+To enable the printing of proofs in natural language, you should
+type under <TT>coqtop</TT> or <TT>coqtop -full</TT> the command<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Require Natural.</CODE><BR>
+</DIV>
+
+
+<BR><BR>
+By default, proofs are transcripted in english. If you wish to print them 
+in french, set the french option by<BR><BR>
+<A NAME="@default575"></A><A NAME="@command154"></A>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Set Natural French.</CODE><BR>
+</DIV>
+
+
+<BR><BR>
+If you want to go back to english, type in<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Set Natural English.</CODE><BR>
+</DIV>
+
+
+<BR><BR>
+Currently, only <CODE>French</CODE> and <CODE>English</CODE> are available.<BR><BR>
+You may see for example the natural transcription of the proof of
+the induction principle on pairs of natural numbers:<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Print Natural nat_double_ind.</CODE><BR>
+</DIV>
+
+
+<BR><BR>
+You may  also show in natural language the current proof in progress:<BR><BR>
+<A NAME="@default576"></A><A NAME="@command155"></A>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Goal (n:nat)(le O n).</CODE><BR>
+<TT><I>1&nbsp;subgoal</I></TT><BR>
+<TT><I>&nbsp;&nbsp;</I></TT><BR>
+<TT><I>&nbsp;&nbsp;============================</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;(n:nat)(le&nbsp;O&nbsp;n)</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Induction n.</CODE><BR>
+<TT><I>2&nbsp;subgoals</I></TT><BR>
+<TT><I>&nbsp;&nbsp;</I></TT><BR>
+<TT><I>&nbsp;&nbsp;n&nbsp;:&nbsp;nat</I></TT><BR>
+<TT><I>&nbsp;&nbsp;============================</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;(le&nbsp;O&nbsp;O)</I></TT><BR>
+<TT><I>subgoal&nbsp;2&nbsp;is:</I></TT><BR>
+<TT><I>&nbsp;(n:nat)(le&nbsp;O&nbsp;n)-&gt;(le&nbsp;O&nbsp;(S&nbsp;n))</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Show Natural Proof.</CODE><BR>
+<TT><I>Theorem&nbsp;:&nbsp;Unnamed_thm.</I></TT><BR>
+<TT><I>Statement&nbsp;:&nbsp;(n:nat)(le&nbsp;O&nbsp;n).</I></TT><BR>
+<TT><I>Proof&nbsp;:&nbsp;</I></TT><BR>
+<TT><I>Consider&nbsp;an&nbsp;element&nbsp;n&nbsp;of&nbsp;nat.</I></TT><BR>
+<TT><I>We&nbsp;will&nbsp;prove&nbsp;(le&nbsp;O&nbsp;n)&nbsp;by&nbsp;induction&nbsp;on&nbsp;n.</I></TT><BR>
+<TT><I>Case&nbsp;1.&nbsp;(base):</I></TT><BR>
+<TT><I>&nbsp;&nbsp;Imagine&nbsp;a&nbsp;proof&nbsp;of&nbsp;(le&nbsp;O&nbsp;O).</I></TT><BR>
+<TT><I>Case&nbsp;2.&nbsp;(inductive):</I></TT><BR>
+<TT><I>&nbsp;&nbsp;Imagine&nbsp;a&nbsp;proof&nbsp;of&nbsp;(n0:nat)(le&nbsp;O&nbsp;n0)-&gt;(le&nbsp;O&nbsp;(S&nbsp;n0)).</I></TT><BR>
+<TT><I>Q.E.D.</I></TT><BR>
+</DIV>
+
+
+
+<H3>Restrictions
+</H3>
+For <TT>Natural</TT>, a proof is an object of type a proposition (i.e. an
+object of type something of type <TT>Prop</TT>). Only proofs are written
+in natural language when typing <TT>Print Natural </TT>ident.  All other
+objects (the objects of type something which is of type <TT>Set</TT> or
+<TT>Type</TT>) are written as usual <I><FONT FACE=symbol>l</FONT></I>-terms.<BR><BR>
+
+  <HR>
+
+<A HREF="node.3.5.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.5.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.5.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

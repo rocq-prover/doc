@@ -1,0 +1,66 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+7.16&nbsp;A Simple way to define tactic macros
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.1.2.14.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+7.16&nbsp;A Simple way to define tactic macros
+</H2>
+
+
+
+<A NAME="@tactic109"></A><A NAME="@default502"></A><A NAME="@default503"></A><A NAME="@command138"></A>
+<A NAME="TacticDefinition"></A>A simple example has more value than a long explanation: <BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Tactic Definition Solve := [&lt;:tactic:&lt;Simpl; Intros; Auto&gt;&gt;].</CODE><BR>
+<BR>
+<CODE>Coq &lt; Tactic Definition ElimBoolRewrite [$b $H1 $H2] := </CODE><BR>
+<CODE>Coq &lt;   [&lt;:tactic:&lt;Elim $b; </CODE><BR>
+<CODE>Coq &lt;      [Intros; Rewrite $H1; EAuto | Intros; Rewrite $H2; EAuto ]&gt;&gt;].</CODE><BR>
+</DIV>
+
+
+<BR><BR>
+Those tactic definitions are just macros, they behave like the
+syntactic definitions in the tactic world. The right side of the
+definition is an AST (see page&nbsp;<A HREF="node.2.0.0.html#astsyntax">X</A>), 
+but you can type a command if you
+enclose it between <CODE>&lt;&lt; &gt;&gt;</CODE> or <CODE>&lt;:command:&lt; &gt;&gt;</CODE>, and you can
+type a tactic script (the most frequent case) if you enclose it
+between <CODE>&lt;:tactic:&lt; &gt;&gt;</CODE>.<BR><BR>
+The tactics macros are synchronous with the <FONT COLOR=purple>Coq</FONT> section mechanism:
+a <TT>Tactic Definition</TT> is deleted from the current environment
+when you close the section (see also <A HREF="node.0.1.4.html#Section">2.5</A>) 
+where it was defined. If you want that a
+tactic macro defined in a module is usable in the modules that
+require it, you should put it outside of any section.<BR><BR>
+This command is designed to be simple, so the user who wants to do
+complicate things with it should better read the chapter
+<A HREF="node.2.1.html#WritingTactics">10</A> about the user-defined tactics.<BR><BR>
+
+<BR><BR>
+<HR>
+
+<A HREF="node.1.2.14.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

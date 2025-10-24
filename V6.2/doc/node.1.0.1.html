@@ -1,0 +1,221 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+5.2&nbsp;Requests to the environment
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.1.0.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.0.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+5.2&nbsp;Requests to the environment
+</H2>
+
+
+
+<H3>
+5.2.1&nbsp;<TT>Check </TT>term<TT>.
+</TT></H3>
+<A NAME="@default273"></A><A NAME="@command50"></A>
+This command displays the type of term. When called in proof mode, 
+the term is checked in the local context of the current subgoal.<BR><BR>
+<BR>
+<B>Variants: </B><OL>
+<LI>
+<TT>Check </TT>num<TT> </TT>term<BR>
+Displays the type of term in the context of the num-th
+  subgoal.
+</OL>
+
+<H3>
+5.2.2&nbsp;<TT>Eval </TT>convtactic<TT> in </TT>term<TT>.
+</TT></H3>
+
+<A NAME="@default274"></A><A NAME="@command51"></A>This command performs the specified reduction on term, and displays
+the resulting term with its type. The term to be reduced may depend on
+hypothesis introduced in the first subgoal (if a proof is in
+progress).<BR><BR>
+<BR>
+<B>Variants: </B><OL>
+<LI>
+<TT>Eval </TT>num<TT> </TT>convtactic<TT> in </TT>term<TT>.</TT><BR>
+Evaluates term in the context of the num-th subgoal.
+</OL>
+<BR><BR>
+<BR>
+<B>See also: </B>section&nbsp;<A HREF="node.1.2.4.html#Conversion-tactics">7.5</A>.
+<H3>
+5.2.3&nbsp;<TT>Extraction </TT>ident<TT>.
+</TT></H3>
+
+<A NAME="@default275"></A><A NAME="@command52"></A>
+This command displays the <I>F</I><SUB><I><FONT SIZE=2><FONT FACE=symbol>w</FONT></FONT></I></SUB>-term extracted from ident. The name
+ident must refer to a defined constant or a theorem. The <I>F</I><SUB><I><FONT SIZE=2><FONT FACE=symbol>w</FONT></FONT></I></SUB>-term
+is extracted from the term defining ident when ident is a
+defined constant, or from the proof-term when ident is a
+theorem. The extraction is processed according to the distinction
+between <FONT COLOR=purple>Set</FONT> and <FONT COLOR=purple>Prop</FONT>; that is to say, between logical and
+computational content (see section <A HREF="node.0.3.0.html#Sorts">4.1.1</A>).<BR><BR>
+<BR>
+<B>Error messages: </B><OL>
+<LI>
+<TT>Non informative term</TT>
+</OL>
+<BR><BR>
+<BR>
+<B>See also: </B>chapter <A HREF="node.3.4.0.html#Extraction">15.1</A>
+<H3>
+5.2.4&nbsp;<TT>Opaque </TT>ident<TT><I><SUB><FONT SIZE=2>1</FONT></SUB></I></TT><TT> ...</TT>ident<TT><I><SUB><FONT SIZE=2>n</FONT></SUB></I></TT><TT>.
+</TT></H3>
+
+<A NAME="@default276"></A><A NAME="@command53"></A><A NAME="Opaque"></A>
+This command forbids the unfolding of the constants ident<I><SUB><FONT SIZE=2>1</FONT></SUB></I> ...ident<I><SUB><FONT SIZE=2>n</FONT></SUB></I>  by tactics using <I><FONT FACE=symbol>d</FONT></I>-conversion. Unfolding a constant
+is replacing it by its definition.<BR><BR>
+By default, <TT>Theorem</TT> and its alternatives are stamped as <TT>Opaque</TT>. This is to keep with the usual mathematical practice of
+<EM>proof irrelevance</EM>: what matters in a mathematical development is
+the sequence of lemma statements, not their actual proofs. This
+distinguishes lemmas from the usual defined constants, whose actual
+values are of course relevant in general.<BR><BR>
+<BR>
+<B>See also: </B>sections <A HREF="node.1.2.4.html#Conversion-tactics">7.5</A>, <A HREF="node.1.2.10.html#Automatizing">7.11</A>,
+<A HREF="node.1.1.0.html#Theorem">6.1.3</A><BR><BR>
+<BR>
+<B>Error messages: </B><OL>
+<LI>
+ident<TT>does not exist.</TT><BR>
+There is no constant in the environment named
+    ident. Nevertheless, if you asked <TT>Opaque foo bar</TT>
+    and if <TT>bar</TT> does not exist, <TT>foo</TT> is set opaque.
+</OL>
+
+<H3>
+5.2.5&nbsp;<TT>Transparent </TT>ident<TT><I><SUB><FONT SIZE=2>1</FONT></SUB></I></TT><TT> ...</TT>ident<TT><I><SUB><FONT SIZE=2>n</FONT></SUB></I></TT><TT>.
+</TT></H3>
+
+<A NAME="@default277"></A><A NAME="@command54"></A><A NAME="Transparent"></A>
+This command is the converse of <TT>Opaque</TT>. By default, <TT>Definition</TT> and <TT>Local</TT> declare objects as <TT>Transparent</TT>.<BR><BR>
+<BR>
+<B>Warning: </B><TT>Transparent</TT> and <TT>Opaque</TT> are brutal and 
+not synchronous
+with the reset mechanism. If a constant was transparent at point A, if
+you set it opaque at point B and reset to point A, you return to state
+of point A with the difference that the constant is still opaque. This
+can cause changes in tactic scripts behavior.<BR><BR>
+
+<BR>
+<B>Error messages: </B><OL>
+<LI>
+<TT>Can not set transparent.</TT><BR>
+It is a constant from a required module or a parameter.
+
+<LI>ident<TT> does not exist.</TT><BR>
+There is no constant in the environment named
+    ident. Nevertheless, if you give the command <CODE>Transparent foo bar.</CODE>
+    and if <TT>bar</TT> does not exist, <TT>foo</TT> is set opaque.
+</OL>
+<BR><BR>
+<BR>
+<B>See also: </B>sections <A HREF="node.1.2.4.html#Conversion-tactics">7.5</A>, <A HREF="node.1.2.10.html#Automatizing">7.11</A>,
+<A HREF="node.1.1.0.html#Theorem">6.1.3</A>
+<H3>
+5.2.6&nbsp;<TT>Search </TT>ident<TT>.
+</TT></H3>
+<A NAME="@default278"></A><A NAME="@command55"></A>
+This command displays the name and type of all theorems of the current
+context whose statement's conclusion has the form <TT>(</TT>ident<TT> t1 ..
+  tn)</TT>.  This command is useful to remind the user of the name of
+library lemmas.
+<H3>
+5.2.7&nbsp;<TT>SearchIsos </TT>term<TT>.
+</TT></H3>
+<A NAME="@default279"></A><A NAME="@command56"></A>
+<A NAME="searchisos"></A>
+<TT>SearchIsos</TT> searches terms by their type modulo isomorphism.
+This command displays the full name of all constants, variables,
+inductive types, and inductive constructors of the current
+context whose type is isomorphic to term modulo the contextual part of the
+following axiomatization (the mutual inductive types with one constructor,
+without implicit arguments, and for which projections exist, are regarded as a
+sequence of <I><FONT FACE=symbol>S</FONT></I>):
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD>&nbsp;</TD>
+<TD>1.</TD>
+<TD><I>A=B</I><I> if </I><I>A</I><I><FONT FACE=symbol>¾®</FONT></I><SUP><I><FONT SIZE=2><FONT FACE=symbol>b</FONT><FONT FACE=symbol>i</FONT></FONT></I></SUP><I>B</I></TD>
+</TR>
+
+<TR><TD>&nbsp;</TD>
+<TD>2.</TD>
+<TD><I><FONT FACE=symbol>S</FONT>x</I>:<I>A.B=<FONT FACE=symbol>S</FONT>y</I>:<I>A.B</I>[<I>x<FONT FACE=symbol>¬</FONT>y</I>]<I> if </I><I>y<FONT FACE=symbol>Ï</FONT>FV</I>(<I><FONT FACE=symbol>S</FONT>x</I>:<I>A.B</I>)</TD>
+</TR>
+
+<TR><TD>&nbsp;</TD>
+<TD>3.</TD>
+<TD><I><FONT FACE=symbol>P</FONT>x</I>:<I>A.B=<FONT FACE=symbol>P</FONT>y</I>:<I>A.B</I>[<I>x<FONT FACE=symbol>¬</FONT>y</I>]<I> if </I><I>y<FONT FACE=symbol>Ï</FONT>FV</I>(<I><FONT FACE=symbol>P</FONT>x</I>:<I>A.B</I>)</TD>
+</TR>
+
+<TR><TD>&nbsp;</TD>
+<TD>4.</TD>
+<TD><I><FONT FACE=symbol>S</FONT>x</I>:<I>A.B=<FONT FACE=symbol>S</FONT>x</I>:<I>B.A</I><I> if </I><I>x<FONT FACE=symbol>Ï</FONT>FV</I>(<I>A</I>,<I>B</I>)</TD>
+</TR>
+
+<TR><TD>&nbsp;</TD>
+<TD>5.</TD>
+<TD><I><FONT FACE=symbol>S</FONT>x</I>:(<I><FONT FACE=symbol>S</FONT>y</I>:<I>A.B</I>)<I>.C=<FONT FACE=symbol>S</FONT>x</I>:<I>A.<FONT FACE=symbol>S</FONT>y</I>:<I>B</I>[<I>y<FONT FACE=symbol>¬</FONT>x</I>]<I>.C</I>[<I>x<FONT FACE=symbol>¬</FONT></I>(<I>x</I>,<I>y</I>)]</TD>
+</TR>
+
+<TR><TD>&nbsp;</TD>
+<TD>6.</TD>
+<TD><I><FONT FACE=symbol>P</FONT>x</I>:(<I><FONT FACE=symbol>S</FONT>y</I>:<I>A.B</I>)<I>.C=<FONT FACE=symbol>P</FONT>x</I>:<I>A.<FONT FACE=symbol>P</FONT>y</I>:<I>B</I>[<I>y<FONT FACE=symbol>¬</FONT>x</I>]<I>.C</I>[<I>x<FONT FACE=symbol>¬</FONT></I>(<I>x</I>,<I>y</I>)]</TD>
+</TR>
+
+<TR><TD>&nbsp;</TD>
+<TD>7.</TD>
+<TD><I><FONT FACE=symbol>P</FONT>x</I>:<I>A.<FONT FACE=symbol>S</FONT>y</I>:<I>B.C=<FONT FACE=symbol>S</FONT>y</I>:(<I><FONT FACE=symbol>P</FONT>x</I>:<I>A.B</I>)<I>.</I>(<I><FONT FACE=symbol>P</FONT>x</I>:<I>A.C</I>[<I>y<FONT FACE=symbol>¬</FONT></I>(<I>yx</I>)]</TD>
+</TR>
+
+<TR><TD>&nbsp;</TD>
+<TD>8.</TD>
+<TD><I><FONT FACE=symbol>S</FONT>x</I>:<I>A.unit=A</I></TD>
+</TR>
+
+<TR><TD>&nbsp;</TD>
+<TD>9.</TD>
+<TD><I><FONT FACE=symbol>S</FONT>x</I>:<I>unit.A=A</I>[<I>x<FONT FACE=symbol>¬</FONT>tt</I>]</TD>
+</TR>
+
+<TR><TD>&nbsp;</TD>
+<TD>10.</TD>
+<TD><I><FONT FACE=symbol>P</FONT>x</I>:<I>A.unit=unit</I></TD>
+</TR>
+
+<TR><TD>&nbsp;</TD>
+<TD>11.</TD>
+<TD><I><FONT FACE=symbol>P</FONT>x</I>:<I>unit.A=A</I>[<I>x<FONT FACE=symbol>¬</FONT>tt</I>]
+</TD>
+</TR>
+</TABLE>
+<BR><BR>
+For more informations about the exact working of this command, see
+<CITE>[<A HREF="node.4.html#Del97">30</A>]</CITE>.<BR><BR>
+<HR>
+
+<A HREF="node.1.0.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.0.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

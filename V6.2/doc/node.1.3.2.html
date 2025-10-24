@@ -1,0 +1,128 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+8.3&nbsp;Scheme
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.1.3.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.3.3.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+8.3&nbsp;<TT>Scheme</TT>
+</H2>
+
+
+
+<A NAME="@default506"></A><A NAME="@command139"></A>
+<A NAME="Scheme-examples"></A>
+<BR>
+<B>Example 1: </B><I>Induction scheme for </I><I><TT>tree</TT></I><I> and </I><I><TT>forest</TT></I>
+<BR><BR>
+The definition of principle of mutual induction for <TT>tree</TT> and
+<TT>forest</TT> over the sort <TT>Set</TT> is defined by the command:<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Scheme tree_forest_rec := Induction for tree Sort Set </CODE><BR>
+<CODE>Coq &lt; with forest_tree_rec := Induction for forest Sort Set.</CODE><BR>
+</DIV>
+
+
+<BR><BR>
+You may now look at the type of <TT>tree_forest_rec</TT>:<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Check tree_forest_rec.</CODE><BR>
+<TT><I>tree_forest_rec</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(P:tree-&gt;Set)</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(P0:forest-&gt;Set)</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((a:A)(f:forest)(P0&nbsp;f)-&gt;(P&nbsp;(node&nbsp;a&nbsp;f)))</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;((b:B)(P0&nbsp;(leaf&nbsp;b)))</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;((t:tree)(P&nbsp;t)-&gt;(f:forest)(P0&nbsp;f)-&gt;(P0&nbsp;(cons&nbsp;t&nbsp;f)))</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;(t:tree)(P&nbsp;t)</I></TT><BR>
+</DIV>
+
+
+<BR><BR>
+This principle involves two different predicates for <TT>trees</TT> and
+<TT>forests</TT>; it also has three premises each one corresponding to a
+constructor of one of the inductive definitions.<BR><BR>
+The principle <TT>tree_forest_rec</TT> shares exactly the same
+premises, only the conclusion now refers to the property of forests.<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Check forest_tree_rec.</CODE><BR>
+<TT><I>forest_tree_rec</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(P:tree-&gt;Set)</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(P0:forest-&gt;Set)</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((a:A)(f:forest)(P0&nbsp;f)-&gt;(P&nbsp;(node&nbsp;a&nbsp;f)))</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;((b:B)(P0&nbsp;(leaf&nbsp;b)))</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;((t:tree)(P&nbsp;t)-&gt;(f:forest)(P0&nbsp;f)-&gt;(P0&nbsp;(cons&nbsp;t&nbsp;f)))</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;(f:forest)(P0&nbsp;f)</I></TT><BR>
+</DIV>
+
+
+<BR><BR>
+
+<BR>
+<B>Example 2: </B><I>Predicates </I><I><TT>odd</TT></I><I> and </I><I><TT>even</TT></I><I> on naturals</I>
+<BR><BR>
+Let <TT>odd</TT> and <TT>even</TT> be inductively defined as:<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Mutual Inductive odd : nat-&gt;Prop := </CODE><BR>
+<CODE>Coq &lt;     oddS : (n:nat)(even n)-&gt;(odd (S n))</CODE><BR>
+<CODE>Coq &lt; with even : nat -&gt; Prop := </CODE><BR>
+<CODE>Coq &lt;     evenO : (even O) </CODE><BR>
+<CODE>Coq &lt;   | evenS : (n:nat)(odd n)-&gt;(even (S n)).  </CODE><BR>
+</DIV>
+
+
+<BR><BR>
+The following command generates a powerful elimination
+principle:<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Scheme odd_even := Minimality for odd Sort Prop</CODE><BR>
+<CODE>Coq &lt; with   even_odd := Minimality for even Sort Prop.</CODE><BR>
+</DIV>
+
+
+<BR><BR>
+The type of <TT>odd_even</TT> for instance will be:<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Check odd_even.</CODE><BR>
+<TT><I>odd_even</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(P,P0:nat-&gt;Prop)</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((n:nat)(even&nbsp;n)-&gt;(P0&nbsp;n)-&gt;(P&nbsp;(S&nbsp;n)))</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;(P0&nbsp;O)</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;((n:nat)(odd&nbsp;n)-&gt;(P&nbsp;n)-&gt;(P0&nbsp;(S&nbsp;n)))</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;(n:nat)(odd&nbsp;n)-&gt;(P&nbsp;n)</I></TT><BR>
+</DIV>
+
+
+<BR><BR>
+The type of <TT>even_odd</TT> shares the same premises but the
+conclusion is <TT>(n:nat)(even n)-&gt;(Q n)</TT>.<BR><BR>
+<HR>
+
+<A HREF="node.1.3.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.3.3.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

@@ -1,0 +1,278 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+4.4&nbsp;Definitions in environments
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.0.3.2.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.0.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.3.4.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+4.4&nbsp;Definitions in environments
+</H2>
+
+
+<A NAME="Cic-definitions"></A>
+We now give the rules for manipulating objects in the environment.
+Because a constant can depend on previously introduced constants, the
+environment will be an ordered list of declarations. When specifying
+an inductive definition, several objects will be introduced at the
+same time. So any object in the environment will define one or more
+constants.<BR><BR>
+In this presentation we introduce two different sorts of objects in
+the environment. The first one is ordinary definitions which give a
+name to a particular well-formed term, the second one is inductive
+definitions which introduce new inductive objects.
+<H3>
+4.4.1&nbsp;Rules for definitions
+</H3>
+
+<H5>Adding a new definition.
+</H5>
+
+The simplest objects in the environment are definitions which can be
+seen as one possible mechanism for abbreviation.<BR><BR>
+A definition will be represented in the environment as
+<FONT COLOR=purple>Def</FONT>(<I><FONT FACE=symbol>G</FONT></I>)(<I>c</I>:<I>=t</I>:<I>T</I>) which means that <I>c</I> is a constant which is
+valid in the context <I><FONT FACE=symbol>G</FONT></I> whose value is <I>t</I> and type is <I>T</I>.
+<H5><I><FONT FACE=symbol>d</FONT></I>-reduction.
+</H5>
+ <A NAME="deltared"></A>
+If <FONT COLOR=purple>Def</FONT>(<I><FONT FACE=symbol>G</FONT></I>)(<I>c</I>:<I>=t</I>:<I>T</I>) is in the environment <I>E</I> then in this
+environment the <I><FONT FACE=symbol>d</FONT></I>-reduction <I>c <FONT FACE=symbol>|></FONT></I><SUB><I><FONT SIZE=2><FONT FACE=symbol>d</FONT></FONT></I></SUB><I> t</I> is
+introduced.<BR><BR>
+The rule for adding a new definition is simple:<BR><BR>
+<DL>
+<DT>
+Def<DD> <DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD ALIGN=center><I>&nbsp;</I></TD>
+</TR>
+
+<TR><TD ALIGN=center><HR NOSHADE SIZE=2></TD>
+</TR>
+
+<TR><TD ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><I><FONT COLOR=red> WF</FONT></I></TD>
+<TD nowrap>(<I>E</I>;</TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><FONT COLOR=purple>Def</FONT></TD>
+<TD nowrap>(<I><FONT FACE=symbol>G</FONT></I>)(<I>c</I>:<I>=t</I>:<I>T</I>)</TD>
+</TR>
+</TABLE>
+</TD>
+<TD nowrap>)[<I><FONT FACE=symbol>G</FONT></I>]</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+
+</DL>
+
+<H3>
+4.4.2&nbsp;Derived rules
+</H3>
+From the original rules of the type system, one can derive new rules
+which change the context of definition of objects in the environment.
+Because these rules correspond to elementary operations in the <FONT COLOR=purple>Coq</FONT> engine used in the discharge mechanism at the end of a section, we
+state them explicitly.
+<H5>Mechanism of substitution.
+</H5>
+One rule which can be proved valid, is to replace a term <I>c</I> by its
+value in the environment. As we defined the substitution of a term for
+a variable in a term, one can define the substitution of a term for a
+constant. One easily extends this substitution to contexts and
+environments.
+<H5>Substitution Property:
+</H5>
+ 
+<DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD ALIGN=center><I>&nbsp;</I></TD>
+</TR>
+
+<TR><TD ALIGN=center><HR NOSHADE SIZE=2></TD>
+</TR>
+
+<TR><TD ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><I><FONT COLOR=red> WF</FONT></I></TD>
+<TD nowrap>(<I>E</I>;<I> F</I>{<I>c/t</I>})[<I><FONT FACE=symbol>D</FONT></I>{<I>c/t</I>}]</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+
+<H5>Abstraction.
+</H5>
+One can modify the context of definition of a constant <I>c</I> by
+abstracting a constant with respect to the last variable <I>x</I> of its
+defining context. For doing that, we need to check that the constants
+appearing in the body of the declaration do not depend on <I>x</I>, we need
+also to modify the reference to the constant <I>c</I> in the environment
+and context by explicitly applying this constant to the variable <I>x</I>.
+Because of the rules for building environments and terms we know the
+variable <I>x</I> is available at each stage where <I>c</I> is mentioned.
+<H5>Abstracting property:
+</H5>
+ 
+ <DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD ALIGN=center><I>&nbsp;</I></TD>
+</TR>
+
+<TR><TD ALIGN=center><HR NOSHADE SIZE=2></TD>
+</TR>
+
+<TR><TD ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><I><FONT COLOR=red> WF</FONT></I></TD>
+<TD nowrap>(<I>E</I>;</TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><FONT COLOR=purple>Def</FONT></TD>
+<TD nowrap>(<I><FONT FACE=symbol>G</FONT></I>)(<I>c</I>:<I>=</I>[<I>x</I>:<I>U</I>]<I>t</I>:(<I>x</I>:<I>U</I>)<I>T</I>)</TD>
+</TR>
+</TABLE>
+</TD>
+<TD nowrap>;<I>  F</I>{<I>c/</I>(<I>c&nbsp;x</I>)})[<I><FONT FACE=symbol>D</FONT></I>{<I>c/</I>(<I>c&nbsp;x</I>)}]</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+
+<H5>Pruning the context.
+</H5>
+ 
+We said the judgment <I><FONT COLOR=red> WF</FONT></I>(<I>E</I>)[<I><FONT FACE=symbol>G</FONT></I>] means that the defining contexts of
+constants in <I>E</I> are included in <I><FONT FACE=symbol>G</FONT></I>. If one abstracts or
+substitutes the constants with the above rules then it may happen
+that the context <I><FONT FACE=symbol>G</FONT></I> is now bigger than the one needed for
+defining the constants in <I>E</I>. Because defining contexts are growing
+in <I>E</I>, the minimum context needed for defining the constants in <I>E</I>
+is the same as the one for the last constant. One can consequently
+derive the following property.
+<H5>Pruning property:
+</H5>
+
+<DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD ALIGN=center><I>&nbsp;</I></TD>
+</TR>
+
+<TR><TD ALIGN=center><HR NOSHADE SIZE=2></TD>
+</TR>
+
+<TR><TD ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><I><FONT COLOR=red> WF</FONT></I></TD>
+<TD nowrap>(<I>E</I>;</TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><FONT COLOR=purple>Def</FONT></TD>
+<TD nowrap>(<I><FONT FACE=symbol>D</FONT></I>)(<I>c</I>:<I>=t</I>:<I>T</I>)</TD>
+</TR>
+</TABLE>
+</TD>
+<TD nowrap>)[<I><FONT FACE=symbol>D</FONT></I>]</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<BR><BR>
+<HR>
+
+<A HREF="node.0.3.2.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.0.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.3.4.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

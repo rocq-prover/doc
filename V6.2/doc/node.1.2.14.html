@@ -1,0 +1,66 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+7.15&nbsp;Generation of induction principles with Scheme
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.1.2.13.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.15.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+7.15&nbsp;Generation of induction principles with <TT>Scheme</TT>
+</H2>
+
+
+
+<A NAME="Scheme"></A>
+<A NAME="@default501"></A><A NAME="@command137"></A>The <TT>Scheme</TT> command is a high-level tool for generating
+automatically (possibly mutual) induction principles for given types
+and sorts.  Its syntax follows the schema:<BR><BR>
+<TT>Scheme </TT>ident<TT><I><SUB><FONT SIZE=2>1</FONT></SUB></I></TT><TT> := Induction for </TT>term<TT><I><SUB><FONT SIZE=2>1</FONT></SUB></I></TT><TT> Sort </TT>sort<TT><I><SUB><FONT SIZE=2>1</FONT></SUB></I></TT><TT><BR>
+with<BR>
+&nbsp; ...<BR>
+with </TT>ident<TT><I><SUB><FONT SIZE=2>m</FONT></SUB></I></TT><TT> := Induction for </TT>term<TT><I><SUB><FONT SIZE=2>m</FONT></SUB></I></TT><TT> Sort
+        </TT>sort<TT><I><SUB><FONT SIZE=2>m</FONT></SUB></I></TT><BR>
+<BR><BR>
+term<I><SUB><FONT SIZE=2>1</FONT></SUB></I> ...term<I><SUB><FONT SIZE=2>m</FONT></SUB></I> are different inductive types belonging to
+the same package of mutual inductive definitions. This command
+generates ident<I><SUB><FONT SIZE=2>1</FONT></SUB></I>...ident<I><SUB><FONT SIZE=2>m</FONT></SUB></I> to be mutually recursive
+definitions. Each term ident<I><SUB><FONT SIZE=2>i</FONT></SUB></I> proves a general principle 
+of mutual induction for objects in type term<I><SUB><FONT SIZE=2>i</FONT></SUB></I>. <BR><BR>
+<BR>
+<B>Variants: </B><OL>
+<LI>
+<TT>Scheme </TT>ident<TT><I><SUB><FONT SIZE=2>1</FONT></SUB></I></TT><TT> := Minimality for </TT>term<TT><I><SUB><FONT SIZE=2>1</FONT></SUB></I></TT><TT> Sort </TT>sort<TT><I><SUB><FONT SIZE=2>1</FONT></SUB></I></TT><TT><BR>
+with<BR>
+&nbsp; ...<BR>
+with </TT>ident<TT><I><SUB><FONT SIZE=2>m</FONT></SUB></I></TT><TT> := Minimality for </TT>term<TT><I><SUB><FONT SIZE=2>m</FONT></SUB></I></TT><TT> Sort
+    </TT>sort<TT><I><SUB><FONT SIZE=2>m</FONT></SUB></I></TT><BR>
+Same as before but defines a non-dependent elimination principle more
+  natural in case of inductively defined relations. 
+</OL>
+<BR><BR>
+<BR>
+<B>See also: </B><A HREF="node.1.3.2.html#Scheme-examples">8.3</A><BR><BR>
+<HR>
+
+<A HREF="node.1.2.13.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.15.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

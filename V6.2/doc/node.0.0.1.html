@@ -1,0 +1,303 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+1.2&nbsp;Terms
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.0.0.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.0.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.0.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+1.2&nbsp;Terms
+</H2>
+
+
+<A NAME="term"></A><A NAME="@default5"></A>
+<H3>
+1.2.1&nbsp;Syntax of terms
+</H3>
+Figure <A HREF="node.0.0.1.html#term-syntax">1.1</A> describes the basic set of terms which form
+the <EM>Calculus
+of Inductive Constructions</EM> (also called <B>Cic</B>). The formal
+presentation of <B>Cic</B> is given in chapter <A HREF="node.0.3.html#Cic">4</A>. Extensions of
+this syntax are given in chapter
+<A HREF="node.0.1.html#Gallina-extension">2</A>. How to customize the syntax is described in
+chapter <A HREF="node.2.0.html#Addoc-syntax">9</A>.<BR><BR>
+<BLOCKQUOTE><HR>
+
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=1>
+<TR><TD NOWRAP ALIGN=left>term</TD>
+<TD NOWRAP ALIGN=center>::=</TD>
+<TD NOWRAP ALIGN=left>ident</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left>sort</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left>term <TT>-&gt;</TT> term</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left><TT>(</TT> typed_idents <TT>;</TT> ... <TT>;</TT> typed_idents <TT>)</TT> term</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left><TT>[</TT> idents <TT>;</TT> ... <TT>;</TT> idents <TT>]</TT> term</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left><TT>(</TT> term  ...  term <TT>)</TT></TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left><TT>[</TT>annotation<TT>]</TT> <TT>Cases</TT> term <TT>of</TT>
+        [equation <TT>|</TT> ... <TT>|</TT> equation] <TT>end</TT></TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left><TT>Fix</TT> ident <CODE>{</CODE> fix_body <TT>with</TT> ... <TT>with</TT> fix_body <CODE>}</CODE></TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left><TT>CoFix</TT> ident <CODE>{</CODE> cofix_body <TT>with</TT> ... <TT>with</TT> cofix_body <CODE>}</CODE></TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>&nbsp;</TD>
+<TD NOWRAP ALIGN=left>&nbsp;</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>sort</TD>
+<TD NOWRAP ALIGN=center>::=</TD>
+<TD NOWRAP ALIGN=left><TT>Prop</TT></TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left><TT>Set</TT></TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left><TT>Type</TT></TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>&nbsp;</TD>
+<TD NOWRAP ALIGN=left>&nbsp;</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>annotation</TD>
+<TD NOWRAP ALIGN=center>::=</TD>
+<TD NOWRAP ALIGN=left><CODE>&lt;</CODE> term <CODE>&gt;</CODE></TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>&nbsp;</TD>
+<TD NOWRAP ALIGN=left>&nbsp;</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>typed_idents</TD>
+<TD NOWRAP ALIGN=center>::=</TD>
+<TD NOWRAP ALIGN=left>ident <TT>,</TT> ... <TT>,</TT> ident <TT>:</TT> term</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>idents</TD>
+<TD NOWRAP ALIGN=center>::=</TD>
+<TD NOWRAP ALIGN=left>ident <TT>,</TT> ... <TT>,</TT> ident [<TT>:</TT> term]</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>&nbsp;</TD>
+<TD NOWRAP ALIGN=left>&nbsp;</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>fix_body</TD>
+<TD NOWRAP ALIGN=center>::=</TD>
+<TD NOWRAP ALIGN=left>ident <TT>[</TT> typed_idents <TT>;</TT> ... <TT>;</TT> typed_idents  <TT>]</TT><CODE>:</CODE> 
+    term <CODE>:=</CODE> term</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>cofix_body</TD>
+<TD NOWRAP ALIGN=center>::=</TD>
+<TD NOWRAP ALIGN=left>ident <CODE>:</CODE> 
+    term <CODE>:=</CODE> term</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>&nbsp;</TD>
+<TD NOWRAP ALIGN=left>&nbsp;</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>simple_pattern</TD>
+<TD NOWRAP ALIGN=center>::=</TD>
+<TD NOWRAP ALIGN=left>ident</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left><CODE>(</CODE> ident  ...  ident <CODE>)</CODE></TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>equation</TD>
+<TD NOWRAP ALIGN=center>::=</TD>
+<TD NOWRAP ALIGN=left>simple_pattern &nbsp;<CODE>=&gt;</CODE> &nbsp;term</TD>
+</TR>
+</TABLE>
+
+
+<A NAME="term-syntax"></A>
+<A NAME="@default6"></A><A NAME="@default7"></A><BR><BR>
+<DIV ALIGN=center>Figure 1.1:Syntax of terms</DIV>
+
+
+<HR></BLOCKQUOTE>
+
+<H3>
+1.2.2&nbsp;Identifiers
+</H3>
+Identifiers denotes either <EM>variables</EM>, <EM>constants</EM>,
+<EM>inductive types</EM> or <EM>constructors of inductive types</EM>.
+In a simple pattern <CODE>(</CODE> ident  ...  ident <CODE>)</CODE>, the first ident
+is intended to be a constructor.
+<H3>
+1.2.3&nbsp;Sorts
+</H3>
+<A NAME="@default8"></A><A NAME="@default9"></A><A NAME="@default10"></A><A NAME="@default11"></A><A NAME="@default12"></A><A NAME="Gallina-sorts"></A>There are three sorts <FONT COLOR=purple>Set</FONT>, <FONT COLOR=purple>Prop</FONT> and <FONT COLOR=purple>Type</FONT>.
+<H5><FONT COLOR=purple>Prop</FONT></H5>
+
+is the universe of <EM>logical propositions</EM>.
+The logical propositions themselves are typing the proofs.
+We denote propositions by form. This constitutes a semantic
+subclass of the syntactic class term.
+<A NAME="@default13"></A>
+<H5><FONT COLOR=purple>Set</FONT></H5>
+ is the universe of <EM>program
+types</EM> or <EM>specifications</EM>.
+The specifications themselves are typing the programs.
+We denote specifications by specif. This constitutes a semantic
+subclass of the syntactic class term.
+<A NAME="@default14"></A>
+<H5><FONT COLOR=purple>Type</FONT></H5>
+ is the type of
+<FONT COLOR=purple>Set</FONT> and <FONT COLOR=purple>Prop</FONT>.<BR><BR>
+<BR>
+More on sorts can be found in section <A HREF="node.0.3.0.html#Sorts">4.1.1</A>.
+<H3>
+1.2.4&nbsp;Types
+</H3>
+<FONT COLOR=purple>Coq</FONT> terms are typed. <FONT COLOR=purple>Coq</FONT> types are recognized by the same
+syntactic class as term. We denote by type the semantic subclass
+of types inside the syntactic class term.
+<A NAME="@default15"></A>
+<H3>
+1.2.5&nbsp;Abstractions
+</H3>
+
+<A NAME="@default16"></A>The expression 
+``<TT>[</TT> typed_idents<I><SUB><FONT SIZE=2>1</FONT></SUB></I> <TT>;</TT> ... <TT>;</TT>
+typed_idents<I><SUB><FONT SIZE=2>m</FONT></SUB></I> <TT>]</TT> term'' is
+equivalent to the expression  ``<TT>[</TT>&nbsp;typed_idents<I><SUB><FONT SIZE=2>1</FONT></SUB></I>
+<TT>](</TT> ... <TT>([</TT> typed_idents<I><SUB><FONT SIZE=2>m</FONT></SUB></I> <TT>]</TT> term <TT>)</TT>
+...<TT>)</TT>''. An expression of the form ``<TT>[</TT> ident<I><SUB><FONT SIZE=2>1</FONT></SUB></I>
+<TT>,</TT> ... <TT>,</TT> ident<I><SUB><FONT SIZE=2>n</FONT></SUB></I> <TT>:</TT> type<TT>]</TT> term''
+is itself equivalent to the expression ``<TT>[</TT> ident<I><SUB><FONT SIZE=2>1</FONT></SUB></I> <TT>:</TT>
+type<TT>](</TT> ... <TT>([</TT> ident<I><SUB><FONT SIZE=2>n</FONT></SUB></I> <TT>:</TT> type<TT>]</TT>
+term <TT>)</TT> ...<TT>)</TT>''.
+At the end, the expression ``<TT>[</TT> ident <TT>:</TT> type<TT>]</TT>
+term'' denotes
+the <EM>abstraction</EM> of the variable ident
+of type type,
+over the term term.
+Going back to the notation ``<TT>[</TT> idents<I><SUB><FONT SIZE=2>1</FONT></SUB></I>
+<TT>;</TT> ... <TT>;</TT> idents<I><SUB><FONT SIZE=2>m</FONT></SUB></I> <TT>]</TT> term'', this stands
+for the successive abstractions of a sequence of sequence of variables.<BR><BR>
+<B>Remark: </B> The types of variables may be omitted.
+<H3>
+1.2.6&nbsp;Products
+</H3>
+
+<A NAME="@default17"></A>Similarly, the expression 
+``<TT>(</TT> typed_idents<I><SUB><FONT SIZE=2>1</FONT></SUB></I>
+<TT>;</TT> ... <TT>;</TT> typed_idents<I><SUB><FONT SIZE=2>m</FONT></SUB></I> <TT>)</TT> term'' is
+equivalent to the expression  ``<TT>(</TT>&nbsp;typed_idents<I><SUB><FONT SIZE=2>1</FONT></SUB></I>
+<TT>)(</TT> ... <TT>((</TT> typed_idents<I><SUB><FONT SIZE=2>m</FONT></SUB></I> <TT>)</TT> term <TT>)</TT>
+...<TT>)</TT>''. An expression of the form ``<TT>(</TT> ident<I><SUB><FONT SIZE=2>1</FONT></SUB></I>
+<TT>,</TT> ... <TT>,</TT> ident<I><SUB><FONT SIZE=2>n</FONT></SUB></I> <TT>:</TT> type<TT>)</TT> term''
+is itself equivalent to the expression ``<TT>(</TT> ident<I><SUB><FONT SIZE=2>1</FONT></SUB></I> <TT>:</TT>
+type<TT>)(</TT> ... <TT>((</TT> ident<I><SUB><FONT SIZE=2>n</FONT></SUB></I> <TT>:</TT> type<TT>)</TT>
+term <TT>)</TT> ...<TT>)</TT>''.
+At the end, the expression ``<TT>(</TT>&nbsp;ident <TT>:</TT> type<TT>)</TT>
+term'' denotes
+the <EM>product</EM> of the variable ident
+of type type,
+over the term term.
+Going back to the notation ``<TT>(</TT>&nbsp;idents<I><SUB><FONT SIZE=2>1</FONT></SUB></I>
+<TT>;</TT> ... <TT>;</TT> idents<I><SUB><FONT SIZE=2>m</FONT></SUB></I> <TT>)</TT> term'', this stands
+for the successive products of a sequence of sequence of variables.
+<H3>
+1.2.7&nbsp;Applications
+</H3>
+
+<A NAME="@default18"></A>The expression <TT>(</TT>term<I><SUB><FONT SIZE=2>0</FONT></SUB></I> term<I><SUB><FONT SIZE=2>1</FONT></SUB></I>
+...  term<I><SUB><FONT SIZE=2>n</FONT></SUB></I><TT>)</TT> denotes the application of the
+term term<I><SUB><FONT SIZE=2>0</FONT></SUB></I> to the arguments term<I><SUB><FONT SIZE=2>1</FONT></SUB></I>
+ ... then term<I><SUB><FONT SIZE=2>n</FONT></SUB></I>.
+It is equivalent to
+<TT>(</TT> ... <TT>(</TT> term<I><SUB><FONT SIZE=2>0</FONT></SUB></I> term<I><SUB><FONT SIZE=2>1</FONT></SUB></I> <TT>)</TT> ...
+term<I><SUB><FONT SIZE=2>n</FONT></SUB></I> <TT>)</TT>: associativity is to the left.
+<H3>
+1.2.8&nbsp;Definition by cases
+</H3>
+
+<A NAME="@default19"></A>The expression <TT>[</TT>annotation<TT>]</TT> <TT>Cases</TT> term<I><SUB><FONT SIZE=2>0</FONT></SUB></I> <TT>of</TT>
+pattern<I><SUB><FONT SIZE=2>1</FONT></SUB></I> <TT>=&gt;</TT> term<I><SUB><FONT SIZE=2>1</FONT></SUB></I> | ... |
+pattern<I><SUB><FONT SIZE=2>n</FONT></SUB></I> <TT>=&gt;</TT> term<I><SUB><FONT SIZE=2>n</FONT></SUB></I> <TT>end</TT>, denotes a
+<EM>pattern-matching</EM> over the term term<I><SUB><FONT SIZE=2>0</FONT></SUB></I> (expected to be of an
+inductive type). When no equation is given in the <TT>Cases</TT> expression, the
+annotation is mandatory.
+<H3>
+1.2.9&nbsp;Recursive functions
+</H3>
+The expression <TT>Fix</TT> ident<I><SUB><FONT SIZE=2>i</FONT></SUB></I> <CODE>{</CODE> ident<I><SUB><FONT SIZE=2>1</FONT></SUB></I> <TT>[</TT>
+bindings<I><SUB><FONT SIZE=2>1</FONT></SUB></I> <TT>] :</TT> type<I><SUB><FONT SIZE=2>1</FONT></SUB></I> <TT>:=</TT> term<I><SUB><FONT SIZE=2>1</FONT></SUB></I> 
+<TT>with</TT> ... 
+<TT>with</TT> ident<I><SUB><FONT SIZE=2>n</FONT></SUB></I> <TT>[</TT> bindings<I><SUB><FONT SIZE=2>n</FONT></SUB></I>&nbsp;<TT>]</TT><TT> :</TT> type<I><SUB><FONT SIZE=2>n</FONT></SUB></I>
+<TT>:=</TT> term<I><SUB><FONT SIZE=2>n</FONT></SUB></I> <CODE>}</CODE> denotes
+a function defined by well-founded recursion. 
+The expression <TT>CoFix</TT> ident<I><SUB><FONT SIZE=2>i</FONT></SUB></I> <CODE>{</CODE> ident<I><SUB><FONT SIZE=2>1</FONT></SUB></I>
+<TT>:</TT> type<I><SUB><FONT SIZE=2>1</FONT></SUB></I> <TT>with</TT> ... <TT>with</TT>
+ident<I><SUB><FONT SIZE=2>n</FONT></SUB></I> <TT>[</TT> bindings<I><SUB><FONT SIZE=2>n</FONT></SUB></I> <TT>] :</TT> type<I><SUB><FONT SIZE=2>n</FONT></SUB></I> <CODE>}</CODE> denotes
+a term defined by a guarded recursion. <BR><BR>
+<HR>
+
+<A HREF="node.0.0.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.0.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.0.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

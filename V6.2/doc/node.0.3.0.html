@@ -1,0 +1,203 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+4.1&nbsp;The terms
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.0.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.3.1.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+4.1&nbsp;The terms
+</H2>
+
+
+<A NAME="Terms"></A>In most type theories, one usually makes a syntactic distinction
+between types and terms. This is not the case for <B>Cic</B> which defines
+both types and terms in the same syntactical structure. This is
+because the type-theory itself forces terms and types to be defined in
+a mutual recursive way and also because similar constructions can be
+applied to both terms and types and consequently can share the same
+syntactic structure.<BR><BR>
+For instance the type of functions will have several meanings. Assume
+<FONT COLOR=purple>nat</FONT> is the type of natural numbers then <FONT COLOR=purple>nat</FONT><I><FONT FACE=symbol>®</FONT></I><FONT COLOR=purple>nat</FONT> is the type of
+functions from <FONT COLOR=purple>nat</FONT> to <FONT COLOR=purple>nat</FONT>, <FONT COLOR=purple>nat</FONT><I> <FONT FACE=symbol>®</FONT> </I><FONT COLOR=purple>Prop</FONT> is the type of unary
+predicates over the natural numbers. For instance [<I>x</I>:<FONT COLOR=purple>nat</FONT>](<I>x=x</I>) will
+represent a predicate <I>P</I>, informally written in mathematics
+<I>P</I>(<I>x</I>)<I><FONT FACE=symbol>º</FONT> x=x</I>. If <I>P</I> has type <FONT COLOR=purple>nat</FONT><I> <FONT FACE=symbol>®</FONT> </I><FONT COLOR=purple>Prop</FONT>, (<I>P&nbsp;x</I>) is a
+proposition, furthermore (<I>x</I>:<FONT COLOR=purple>nat</FONT>)(<I>P&nbsp;x</I>) will represent the type of
+functions which associate to each natural number <I>n</I> an object of
+type (<I>P&nbsp;n</I>) and consequently represent proofs of the formula
+``<I><FONT FACE=symbol>"</FONT> x.P</I>(<I>x</I>)''.
+<H3>
+4.1.1&nbsp;Sorts
+</H3>
+<A NAME="Sorts"></A>
+<A NAME="@default225"></A>Types are seen as terms of the language and then should belong to
+another type. The type of a type is always a constant of the language
+called a sort.<BR><BR>
+The two basic sorts in the language of <B>Cic</B> are <FONT COLOR=purple>Set</FONT> and <FONT COLOR=purple>Prop</FONT>.<BR><BR>
+The sort <FONT COLOR=purple>Prop</FONT> intends to be the type of logical propositions.  If
+<I>M</I> is a logical proposition then it denotes a class, namely the class
+of terms representing proofs of <I>M</I>. An object <I>m</I> belonging to <I>M</I>
+witnesses the fact that <I>M</I> is true.  An object of type <FONT COLOR=purple>Prop</FONT> is
+called a <EM>proposition</EM>.<BR><BR>
+The sort <FONT COLOR=purple>Set</FONT> intends to be the type of specifications. This includes
+programs and the usual sets such as booleans, naturals, lists
+etc.<BR><BR>
+These sorts themselves can be manipulated as ordinary terms.
+Consequently sorts also should be given a type.  Because assuming
+simply that <FONT COLOR=purple>Set</FONT> has type <FONT COLOR=purple>Set</FONT> leads to an inconsistent theory, we
+have infinitely many sorts in the language of <B>Cic</B> . These are, in
+addition to <FONT COLOR=purple>Set</FONT> and <FONT COLOR=purple>Prop</FONT>&nbsp;a hierarchy of universes <FONT COLOR=purple>Type</FONT>(<I>i</I>)
+for any integer <I>i</I>.  We call <I><FONT COLOR=red> S</FONT></I> the set of sorts
+which is defined by:
+<DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><I><FONT COLOR=red> S</FONT></I></TD>
+<TD nowrap><I> <FONT FACE=symbol>º</FONT> </I>{</TD>
+<TD nowrap><FONT COLOR=purple>Prop</FONT></TD>
+<TD nowrap>,</TD>
+<TD nowrap><FONT COLOR=purple>Set</FONT></TD>
+<TD nowrap>,</TD>
+<TD nowrap><FONT COLOR=purple>Type</FONT></TD>
+<TD nowrap>(<I>i</I>)|<I> i <FONT FACE=symbol>Î</FONT> </I></TD>
+<TD nowrap>I&nbsp;N</TD>
+<TD nowrap>}<I> </I></TD>
+</TR>
+</TABLE>
+</DIV>
+
+<A NAME="@default226"></A><A NAME="@default227"></A><A NAME="@default228"></A>The sorts enjoy the following properties: <FONT COLOR=purple>Prop</FONT>:<FONT COLOR=purple>Type</FONT>(0) and
+  <FONT COLOR=purple>Type</FONT>(<I>i</I>):<FONT COLOR=purple>Type</FONT>(<I>i+1</I>).<BR><BR>
+The user will never mention explicitly the index <I>i</I> when referring to
+the universe <FONT COLOR=purple>Type</FONT>(<I>i</I>). One only writes <FONT COLOR=purple>Type</FONT>. The
+system itself generates for each instance of <FONT COLOR=purple>Type</FONT> a new
+index for the universe and checks that the constraints between these
+indexes can be solved. From the user point of view we consequently
+have <FONT COLOR=purple>Type :Type</FONT>.<BR><BR>
+We shall make precise in the typing rules the constraints between the
+indexes.<BR><BR>
+<BR>
+<BR>
+<B>Remark: </B>The extraction mechanism is not compatible with this universe
+hierarchy. It is supposed to work only on terms which are explicitly
+typed in the Calculus of Constructions without universes and with
+Inductive Definitions at the Set level and only a small elimination.
+In other cases, extraction may generate a dummy answer and sometimes
+failed. To avoid failure when developing proofs, an error while
+extracting the computational contents of a proof will not stop the
+proof but only give a warning.
+<H3>
+4.1.2&nbsp;Constants
+</H3>
+
+Besides the sorts, the language also contains constants denoting
+objects in the environment. These constants may denote previously
+defined objects but also objects related to inductive definitions
+(either the type itself or one of its constructors or destructors).<BR><BR>
+<BR>
+<B>Remark. </B> In other presentations of <B>Cic</B>, 
+the inductive objects are not seen as
+external declarations but as first-class terms. Usually the
+definitions are also completely ignored.  This is a nice theoretical
+point of view but not so practical. An inductive definition is
+specified by a possibly huge set of declarations, clearly we want to
+share this specification among the various inductive objects and not
+to duplicate it. So the specification should exist somewhere and the
+various objects should refer to it.  We choose one more level of
+indirection where the objects are just represented as constants and
+the environment gives the information on the kind of object the
+constant refers to.<BR><BR>
+<BR>
+Our inductive objects will be manipulated as constants declared in the
+environment. This roughly corresponds to the way they are actually
+implemented in the <FONT COLOR=purple>Coq</FONT> system. It is simple to map this presentation
+in a theory where inductive objects are represented by terms.
+<H3>
+4.1.3&nbsp;Language
+</H3>
+
+<H5>Types.
+</H5>
+Roughly speaking types can be separated into atomic and composed
+types.<BR><BR>
+An atomic type of the <EM>Calculus of Inductive Constructions</EM> is
+either a sort or is built from a type variable or an inductive
+definition applied to some terms.<BR><BR>
+A composed type will be a product (<I>x</I>:<I>T</I>)<I>U</I> with <I>T</I> and <I>U</I> two types.
+<H5>Terms.
+</H5>
+
+A term is either a type or a term variable or a term constant of the
+environment.<BR><BR>
+As usual in <I><FONT FACE=symbol>l</FONT></I>-calculus, we combine objects using abstraction
+and application.<BR><BR>
+More precisely the language of the <EM>Calculus of Inductive
+  Constructions</EM> is built with the following rules:<BR><BR>
+<OL>
+<LI>
+the sorts <FONT COLOR=purple>Set, Prop, Type</FONT> are terms.
+
+<LI>constants of the environment are terms.
+
+<LI>variables are terms.
+
+<LI>if <I>x</I> is a variable and <I>T</I>, <I>U</I> are terms then (<I>x</I>:<I>T</I>)<I>U</I> is a
+  term. If <I>x</I> occurs in <I>U</I>, (<I>x</I>:<I>T</I>)<I>U</I> reads as <I>``for all x of
+    type T, U''</I>. As <I>U</I> depends on <I>x</I>, one says that (<I>x</I>:<I>T</I>)<I>U</I> is a
+  <EM>dependent product</EM>. If <I>x</I> doesn't occurs in <I>U</I> then (<I>x</I>:<I>T</I>)<I>U</I>
+  reads as <I>``if T then U''</I>. A non dependent product can be
+  written: <I>T <FONT FACE=symbol>®</FONT> U</I>.
+
+<LI>if <I>x</I> is a variable and <I>T</I>, <I>U</I> are terms then [<I>x</I>:<I>T</I>]<I>U</I> is a
+  term. This is a notation for the <I><FONT FACE=symbol>l</FONT></I>-abstraction of
+  <I><FONT FACE=symbol>l</FONT></I>-calculus<A NAME="@default229"></A><CITE>[<A HREF="node.4.html#Bar81">7</A>]</CITE>. The term [<I>x</I>:<I>T</I>]<I>U</I> is a function which maps elements of
+  <I>T</I> to <I>U</I>.
+
+<LI>if <I>T</I> and <I>U</I> are terms then (<I>T U</I>) is a term.  The term (<I>T 
+  U</I>) reads as <I>``T applied to U''</I>.
+</OL>
+
+<H5>Notations.
+</H5>
+ Application associates to the left such that
+(<I>t&nbsp;t<SUB><FONT SIZE=2>1</FONT></SUB>... t<SUB><FONT SIZE=2>n</FONT></SUB></I>) represents (<I>... </I>(<I>t&nbsp;t<SUB><FONT SIZE=2>1</FONT></SUB></I>)<I>... t<SUB><FONT SIZE=2>n</FONT></SUB></I>). The
+products and arrows associate to the right such that (<I>x</I>:<I>A</I>)<I>B<FONT FACE=symbol>®</FONT> C<FONT FACE=symbol>®</FONT>
+D</I> represents (<I>x</I>:<I>A</I>)(<I>B<FONT FACE=symbol>®</FONT> </I>(<I>C<FONT FACE=symbol>®</FONT> D</I>)).  One uses sometimes (<I>x</I>,<I>y</I>:<I>A</I>)<I>B</I> or
+[<I>x</I>,<I>y</I>:<I>A</I>]<I>B</I> to denote the abstraction or product of several variables
+of the same type. The equivalent formulation is (<I>x</I>:<I>A</I>)(<I>y</I>:<I>A</I>)<I>B</I> or
+[<I>x</I>:<I>A</I>][<I>y</I>:<I>A</I>]<I>B</I>
+
+<H5>Free variables.
+</H5>
+
+The notion of free variables is defined as usual.  In the expressions
+[<I>x</I>:<I>T</I>]<I>U</I> and (<I>x</I>:<I>T</I>)<I>U</I> the occurrences of <I>x</I> in <I>U</I> are bound.  They
+are represented by de Bruijn indexes in the internal structure of
+terms.
+<H5>Substitution.
+</H5>
+ <A NAME="@default230"></A>The notion of substituting a term <I>T</I> to free occurrences of a
+variable <I>x</I> in a term <I>U</I> is defined as usual. The resulting term
+will be written <I>U</I>{<I>x/T</I>}.<BR><BR>
+<HR>
+
+<A HREF="node.0.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.3.1.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

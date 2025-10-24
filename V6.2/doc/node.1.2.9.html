@@ -1,0 +1,152 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+7.10&nbsp;Inversion
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.1.2.8.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.10.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+7.10&nbsp;Inversion
+</H2>
+
+
+
+<H3>
+7.10.1&nbsp;<TT>Inversion </TT>ident<TT>
+</TT></H3>
+
+<A NAME="@default444"></A><A NAME="@tactic68"></A>Let the type of ident&nbsp; in the local context be (<I>I&nbsp;vec</I>(<I>t</I>)),
+where <I>I</I> is a (co)inductive predicate. Then,
+<TT>Inversion</TT> applied to ident&nbsp; derives for each possible
+constructor <I>c<SUB><FONT SIZE=2>i</FONT></SUB></I> of (<I>I&nbsp;vec</I>(<I>t</I>)), <B>all</B> the necessary
+conditions that should hold for the instance (<I>I&nbsp;vec</I>(<I>t</I>)) to be
+proved by <I>c<SUB><FONT SIZE=2>i</FONT></SUB></I>.<BR><BR>
+<BR>
+<B>Variants: </B><OL>
+<LI>
+<TT>Inversion_clear</TT> ident<BR>
+<A NAME="@default445"></A><A NAME="@tactic69"></A>
+  That does <TT>Inversion</TT> and then erases ident&nbsp; from the
+  context.
+
+<LI><TT>Inversion </TT> ident&nbsp; <TT>in</TT> ident<I><SUB><FONT SIZE=2>1</FONT></SUB></I> ...ident<I><SUB><FONT SIZE=2>n</FONT></SUB></I><BR>
+<A NAME="@default446"></A><A NAME="@tactic70"></A>
+  Let ident<I><SUB><FONT SIZE=2>1</FONT></SUB></I> ...ident<I><SUB><FONT SIZE=2>n</FONT></SUB></I>, be identifiers in the local context. This
+  tactic behaves as generalizing ident<I><SUB><FONT SIZE=2>1</FONT></SUB></I> ...ident<I><SUB><FONT SIZE=2>n</FONT></SUB></I>, and
+  then performing <TT>Inversion</TT>.
+
+<LI><TT>Inversion_clear</TT> ident&nbsp; <TT>in</TT> ident<I><SUB><FONT SIZE=2>1</FONT></SUB></I> ...ident<I><SUB><FONT SIZE=2>n</FONT></SUB></I><BR>
+<A NAME="@default447"></A><A NAME="@tactic71"></A>
+  Let ident<I><SUB><FONT SIZE=2>1</FONT></SUB></I> ...ident<I><SUB><FONT SIZE=2>n</FONT></SUB></I>, be identifiers in the local context. This
+  tactic behaves as generalizing ident<I><SUB><FONT SIZE=2>1</FONT></SUB></I> ...ident<I><SUB><FONT SIZE=2>n</FONT></SUB></I>, and
+  then performing <TT>Inversion_clear</TT>.
+
+<LI><TT>Dependent Inversion</TT> ident&nbsp;<BR>
+<A NAME="@default448"></A><A NAME="@tactic72"></A>
+  That must be used when ident appears in the current goal. 
+  It acts like <TT>Inversion</TT> and then substitutes ident for the
+  corresponding term in the goal.
+
+<LI><TT>Dependent Inversion_clear</TT> ident&nbsp;<BR>
+<A NAME="@default449"></A><A NAME="@tactic73"></A>
+  Like <TT>Dependant Inversion</TT>, except that ident&nbsp; is cleared
+  from the local context.
+
+<LI><TT>Dependent Inversion </TT> ident&nbsp; <TT>with </TT> term<BR>
+<A NAME="@default450"></A><A NAME="@tactic74"></A>
+  This variant allow to give the good generalization of the goal. It
+  is useful when the system fails to generalize the goal automatically. If
+  ident&nbsp; has type (<I>I&nbsp;vec</I>(<I>t</I>)) and <I>I</I> has type
+  (<I>vec</I>(<I>x</I>):<I>vec</I>(<I>T</I>))<I>s</I>,   then term&nbsp;  must be of type
+  <I>I</I>:(<I>vec</I>(<I>x</I>):<I>vec</I>(<I>T</I>))(<I>I&nbsp;vec</I>(<I>x</I>))<I><FONT FACE=symbol>®</FONT> s'</I> where <I>s'</I> is the
+  type of the goal.
+
+<LI><TT>Dependent Inversion_clear </TT> ident&nbsp; <TT>with </TT> term<BR>
+<A NAME="@default451"></A><A NAME="@tactic75"></A>
+  Like <TT>Dependant Inversion ...with</TT> but clears identfrom
+  the local context.
+
+<LI><TT>Inversion</TT> ident<TT>using</TT> ident<I>'</I><BR>
+<A NAME="@default452"></A><A NAME="@tactic76"></A>
+  Let ident&nbsp; have type (<I>I&nbsp;vec</I>(<I>t</I>)) (<I>I</I> an inductive
+  predicate) in the local context, and ident<I>'</I> be a (dependent) inversion
+  lemma. Then, this tactic refines the current goal with the specified
+  lemma.
+
+<LI><TT>Inversion</TT> ident&nbsp; <TT>using</TT> ident<I>'</I> 
+  <TT>in</TT> ident<I><SUB><FONT SIZE=2>1</FONT></SUB></I>...ident<I><SUB><FONT SIZE=2>n</FONT></SUB></I><BR>
+<A NAME="@default453"></A><A NAME="@tactic77"></A>
+  This tactic behaves as generalizing ident<I><SUB><FONT SIZE=2>1</FONT></SUB></I>...ident<I><SUB><FONT SIZE=2>n</FONT></SUB></I>,
+  then doing <TT>Inversion</TT>ident&nbsp;<TT>using</TT> ident<I>'</I>.
+
+<LI><TT>Simple Inversion</TT> ident&nbsp;<BR>
+<A NAME="@default454"></A><A NAME="@tactic78"></A>
+  It is a very primitive inversion tactic that derives all the necessary
+  equalities  but it does not simplify the  constraints as
+  <TT>Inversion</TT> do.
+</OL>
+<BR><BR>
+<BR>
+<B>See also: </B><A HREF="node.1.3.3.html#Inversion-examples">8.4</A> for detailed examples
+<H3>
+7.10.2&nbsp;<TT>Derive Inversion </TT>ident<TT>&nbsp; with
+  </TT>(<TT><I>vec</I></TT>(<TT><I>x</I></TT>):<TT><I>vec</I></TT>(<TT><I>T</I></TT>))(<TT><I>I&nbsp;vec</I></TT>(<TT><I>t</I></TT>))<TT> Sort </TT>sort</H3>
+
+<A NAME="Derive-Inversion"></A>
+<A NAME="@default455"></A><A NAME="@command127"></A>
+<A NAME="@tactic79"></A>This command generates an inversion principle for the
+<TT>Inversion ...using</TT> tactic.
+Let <I>I</I> be an inductive predicate and <I>vec</I>(<I>x</I>) the variables
+occurring in <I>vec</I>(<I>t</I>). This command generates and stocks the
+inversion lemma for the sort sort&nbsp; corresponding to the instance
+(<I>vec</I>(<I>x</I>):<I>vec</I>(<I>T</I>))(<I>I&nbsp;vec</I>(<I>t</I>)) with the name ident&nbsp; in the <B>global</B> environment. When applied it is equivalent to have inverted
+the instance with the tactic <TT>Inversion</TT>.<BR><BR>
+<BR>
+<B>Variants: </B><OL>
+<LI>
+<TT>Derive Inversion_clear</TT> ident&nbsp; <TT>with</TT>
+  <A NAME="@default456"></A><A NAME="@command128"></A>
+  (<I>vec</I>(<I>x</I>):<I>vec</I>(<I>T</I>))(<I>I&nbsp;vec</I>(<I>t</I>)) <TT>Sort</TT> sort&nbsp;<BR>
+<A NAME="@default457"></A>When applied it is equivalent to having
+  inverted the instance with the tactic <TT>Inversion</TT>
+  replaced by the tactic <TT>Inversion_clear</TT>.
+
+<LI><TT>Derive Dependent Inversion</TT> ident&nbsp; <TT>with</TT>
+  (<I>vec</I>(<I>x</I>):<I>vec</I>(<I>T</I>))(<I>I&nbsp;vec</I>(<I>t</I>)) <TT>Sort</TT> sort&nbsp;<BR>
+<A NAME="@default458"></A><A NAME="@command129"></A>
+  When applied it is equivalent to having
+  inverted the instance with the tactic <TT>Dependent Inversion</TT>.
+
+<LI><TT>Derive Dependent Inversion_clear</TT> ident&nbsp; <TT>with</TT>
+  (<I>vec</I>(<I>x</I>):<I>vec</I>(<I>T</I>))(<I>I&nbsp;vec</I>(<I>t</I>)) <TT>Sort</TT> sort&nbsp;<BR>
+<A NAME="@default459"></A><A NAME="@command130"></A>
+  When applied it is equivalent to having
+  inverted the instance with the tactic <TT>Dependent Inversion_clear</TT>.
+</OL>
+<BR><BR>
+<BR>
+<B>See also: </B><A HREF="node.1.3.3.html#Inversion-examples">8.4</A> for examples<BR><BR>
+<HR>
+
+<A HREF="node.1.2.8.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.10.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

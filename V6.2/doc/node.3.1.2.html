@@ -1,0 +1,79 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+12.3&nbsp;Creating a Makefile for Coq modules
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.1.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.1.3.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+12.3&nbsp;Creating a <TT>Makefile</TT> for <FONT COLOR=purple>Coq</FONT> modules
+</H2>
+
+
+
+<A NAME="Makefile"></A>
+<A NAME="@default536"></A><A NAME="@default537"></A>When a proof development becomes large and is split into several files,
+it becomes crucial to use a tool like <TT>make</TT> to compile <FONT COLOR=purple>Coq</FONT> modules.<BR><BR>
+The writing of a generic and complete <TT>Makefile</TT> may seem tedious
+and that's why <FONT COLOR=purple>Coq</FONT> provides a tool to automate its creation,
+<TT>do_Makefile</TT>. Given the files to compile, the command <TT>do_Makefile</TT> prints a 
+<TT>Makefile</TT> on the standard output. So one has just to run the
+command:<BR><BR>
+<DIV ALIGN=left>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<TT>%do_Makefile</TT> <EM>file</EM><EM><I><SUB><FONT SIZE=2>1</FONT></SUB></I></EM><EM>.v ... file</EM><EM><I><SUB><FONT SIZE=2>n</FONT></SUB></I></EM><EM>.v</EM> 
+     <TT>&gt; Makefile</TT>
+</DIV>
+
+<BR><BR>
+The resulted <TT>Makefile</TT> has a target <TT>depend</TT> which computes the
+dependencies and puts them in a separate file <TT>.depend</TT>, which is
+included by the <TT>Makefile</TT>. 
+Therefore, you should create such a file before the first invocation
+of make. You can for instance use the command <BR><BR>
+<DIV ALIGN=left>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<TT>%touch .depend</TT>
+</DIV>
+
+<BR><BR>
+Then, to initialize or update the modules dependencies, type in:<BR><BR>
+<DIV ALIGN=left>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<TT>%make depend</TT>
+</DIV>
+
+<BR><BR>
+There is a target <TT>all</TT> to compile all the files <EM>file</EM><EM><I><SUB><FONT SIZE=2>1</FONT></SUB></I></EM><EM>
+... file</EM><EM><I><SUB><FONT SIZE=2>n</FONT></SUB></I></EM>, and a generic target to produce a <TT>.vo</TT> file from
+the corresponding <TT>.v</TT> file (so you can do <TT>make</TT> <EM>file</EM><TT>.vo</TT>
+to compile the file <EM>file</EM><TT>.v</TT>).<BR><BR>
+<TT>do_Makefile</TT> can also handle the case of ML files and
+subdirectories. For more options type<BR><BR>
+<DIV ALIGN=left>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<TT>%do_Makefile --help</TT>
+</DIV>
+
+<BR><BR>
+Or see the man page of <TT>do_Makefile</TT> for more details.<BR><BR>
+<HR>
+
+<A HREF="node.3.1.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.1.3.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

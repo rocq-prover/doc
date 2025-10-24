@@ -1,0 +1,281 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+7.3&nbsp;Basics
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.1.2.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.3.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+7.3&nbsp;Basics
+</H2>
+
+
+
+<A NAME="@default372"></A>Tactics presented in this section implement the basic typing rules of
+<B>Cic</B> given in chapter <A HREF="node.0.3.html#Cic">4</A>.
+<H3>
+7.3.1&nbsp;<TT>Assumption</TT>
+</H3>
+
+<A NAME="@default373"></A><A NAME="@tactic2"></A>
+This tactic applies to any goal. It implements the
+``Var''<A NAME="@default374"></A>rule given in section
+<A HREF="node.0.3.1.html#Typed-terms">4.2</A>. It looks in the local context for an hypothesis
+which type is equal to the goal.  If it is the case, the subgoal is
+proved. Otherwise, it fails.<BR><BR>
+<BR>
+<B>Error messages: </B><OL>
+<LI>
+<TT>No such assumption</TT>
+</OL>
+
+<H3>
+7.3.2&nbsp;<TT>Clear </TT>ident<TT>.
+</TT></H3>
+<A NAME="@default375"></A><A NAME="@tactic3"></A>
+This tactic erases the hypothesis named ident in the local context
+of the current goal. Then ident is no more displayed and no more
+usable in the proof development.<BR><BR>
+<BR>
+<B>Error messages: </B><OL>
+<LI>
+ident<TT> is not among the assumptions.</TT>
+</OL>
+
+<H3>
+7.3.3&nbsp;<TT>Intro
+</TT></H3>
+
+<A NAME="@default376"></A><A NAME="@tactic4"></A>
+<A NAME="Intro"></A>
+This tactic applies to a goal which is a product. It implements the
+``Lam''<A NAME="@default377"></A>rule given in section
+<A HREF="node.0.3.1.html#Typed-terms">4.2</A>.  Actually, only one subgoal will be generated since the
+other one can be automatically checked.<BR><BR>
+If the current goal is a dependent product <TT>(x:T)U</TT> and
+<TT>x</TT> is a name that does not exist in the current context, then
+<TT>Intro</TT> puts <TT>x:T</TT> in the local context. Otherwise, it puts
+<TT>x</TT><I>n</I><TT>:T</TT> where <I>n</I> is such that <TT>x</TT><I>n</I> is a
+fresh name. The new subgoal is <TT>U</TT>. If the <TT>x</TT> has been
+renamed <TT>x</TT><I>n</I> then it is replaced by <TT>x</TT><I>n</I> in <TT>U</TT>.<BR><BR>
+If the goal is a non dependent product T -&gt; U, then it
+puts in the local context either <TT>H</TT><I>n</I><TT>:T</TT> 
+(if <TT>T</TT> is <TT>Set</TT> or <TT>Prop</TT>) or <TT>X</TT><I>n</I><TT>:T</TT> (if
+the type of <TT>T</TT> is <TT>Type</TT>) or <TT>l</TT><I>n</I><TT>:T</TT> with <I>l</I>
+the first letter of the type of x. <I>n</I> is such that <TT>H</TT><I>n</I> or <TT>X</TT><I>n</I> <TT>l</TT><I>n</I> or are fresh identifiers.
+In both cases the new subgoal is <TT>U</TT>. <BR><BR>
+If the goal is not a product, the tactic <TT>Intro</TT> fails.<BR><BR>
+<BR>
+<B>Error messages: </B><OL>
+<LI>
+<TT>Intro needs a product</TT>
+</OL>
+<BR><BR>
+<BR>
+<B>Variants: </B><OL>
+<LI>
+<TT>Intros</TT><A NAME="@default378"></A><A NAME="@tactic5"></A><BR>
+It is equivalent to <TT>Repeat Intro</TT>, except that it fails when
+  the goal is not a product.
+
+<LI><TT>Intro </TT>ident<BR>
+Applies <TT>Intro</TT> but forces ident to be the name of the
+  introduced hypothesis.<BR><BR>
+  <BR>
+<B>Error message: </B><TT>name </TT>ident<TT> is already bound </TT><BR><BR>
+  <BR>
+<B>Remark: </B><TT>Intro</TT> doesn't check the whole current context. Actually,
+  identifiers declared or defined in required modules can be used as
+  ident and, in this case, the old ident of the module is no
+  more reachable.<BR><BR>
+
+<LI><TT>Intros </TT>ident<TT><I><SUB><FONT SIZE=2>1</FONT></SUB></I></TT><TT> ...</TT>ident<TT><I><SUB><FONT SIZE=2>n</FONT></SUB></I></TT><BR>
+Is equivalent to the composed tactic <TT>Intro </TT>ident<TT><I><SUB><FONT SIZE=2>1</FONT></SUB></I></TT><TT>; ...; Intro
+    </TT>ident<TT><I><SUB><FONT SIZE=2>n</FONT></SUB></I></TT>.<BR>
+More generally, the <TT>Intros</TT> tactic takes a pattern as argument
+  in order to introduce names for components of an inductive
+  definition, it will be explained in&nbsp;<A HREF="node.1.2.6.html#Intros-pattern">7.7.3</A>.
+
+<LI><TT>Intros until </TT>ident
+  <A NAME="@default379"></A><A NAME="@tactic6"></A><BR>
+Repeats <TT>Intro</TT> until it meets a premise of the goal having form
+  <TT>(</TT> ident&nbsp;<TT>:</TT>&nbsp;term <TT>)</TT>
+  and discharges the variable named ident of
+  the current goal.<BR><BR>
+  <BR>
+<B>Error message: </B><TT>No such hypothesis in current goal</TT>
+</OL>
+
+<H3>
+7.3.4&nbsp;<TT>Apply </TT>term</H3>
+
+<A NAME="@default380"></A><A NAME="@tactic7"></A><A NAME="Apply"></A>
+This tactic applies to any goal. 
+The argument term is a term well-formed in the local context.
+The tactic <TT>Apply</TT> tries to match the
+current goal against the conclusion of the type of term. If it
+succeeds, then the tactic returns as many subgoals as the
+instantiations of the premises of the type of
+term.<BR><BR>
+<BR>
+<B>Error messages: </B><OL>
+<LI>
+<TT>Impossible to unify ...with ...</TT><BR>
+Since higher order unification is undecidable, the <TT>Apply</TT>
+  tactic may fail when you think it should work.  In this case, if you
+  know that the conclusion of term and the current goal are
+  unifiable, you can help the <TT>Apply</TT> tactic by transforming your
+  goal with the <TT>Change</TT> or <TT>Pattern</TT> tactics (see sections
+  <A HREF="node.1.2.4.html#Pattern">7.5.8</A>, <A HREF="node.1.2.4.html#Change">7.5.1</A>).<BR><BR>
+
+<LI><TT>Cannot refine to conclusions with meta-variables</TT><BR>
+This occurs when some instantiations of premises of term are not
+  deducible from the unification. This is the case, for instance, when
+  you want to apply a transitivity property. In this case, you have to
+  use one of the variants below:
+</OL>
+<BR><BR>
+<BR>
+<B>Variants: </B><OL>
+<LI>
+<TT>Apply </TT>term<TT> with </TT>term<TT><I><SUB><FONT SIZE=2>1</FONT></SUB></I></TT><TT> ...</TT>term<TT><I><SUB><FONT SIZE=2>n</FONT></SUB></I></TT> 
+  <A NAME="@default381"></A><A NAME="@tactic8"></A><BR>
+Provides <TT>Apply</TT> with explicit instantiations for all dependent
+  premises of the type of term which do not occur in the
+  conclusion and consequently cannot be found by unification. Notice
+  that term<I><SUB><FONT SIZE=2>1</FONT></SUB></I> ...term<I><SUB><FONT SIZE=2>n</FONT></SUB></I> must be given according to the order
+  of these dependent premises of the type of term.<BR><BR>
+  <BR>
+<B>Error message: </B><TT>Not the right number of missing arguments</TT><BR><BR>
+
+<LI><TT>Apply </TT>term<TT> with </TT>ref<TT><I><SUB><FONT SIZE=2>1</FONT></SUB></I></TT><TT> := </TT>term<TT><I><SUB><FONT SIZE=2>1</FONT></SUB></I></TT><TT> ...</TT>ref<TT><I><SUB><FONT SIZE=2>n</FONT></SUB></I></TT><TT>
+    := </TT>term<TT><I><SUB><FONT SIZE=2>n</FONT></SUB></I></TT><BR>
+This also provides <TT>Apply</TT> with values for instantiating
+    premises. But variables are referred by names and non dependent
+    products by order (see syntax in the section&nbsp;<A HREF="node.1.2.2.html#Binding-list">7.3.7</A>).<BR><BR>
+
+<LI><TT>EApply </TT>term<A NAME="@default382"></A><A NAME="@tactic9"></A><A NAME="EApply"></A><BR>
+The tactic <TT>EApply</TT> behaves as <TT>Apply</TT> but does not fail when
+  no instantiation are deducible for some variables in the premises.
+  Rather, it turns these variables into so-called existential variables
+  which are variables still to instantiate. An existential variable is
+  identified by a name of the form <TT>?</TT><TT><I>n</I></TT> where <I>n</I> is a number.
+  The instantiation is intended to be found later in the proof.<BR><BR>
+  An example of use of <TT>EApply</TT> is given in section
+  <A HREF="node.1.3.1.html#EApply-example">8.2</A>.<BR><BR>
+
+<LI><TT>LApply </TT>term <A NAME="@default383"></A><A NAME="@tactic10"></A><BR>
+<BR><BR>
+This tactic applies to any goal, say <TT>G</TT>.  The argument term
+  has to be well-formed in the current context, its type being
+  reducible to a non-dependent product <TT>A -&gt; B</TT> with <TT>B</TT>
+  possibly containing products. Then it generates two subgoals <TT>B-&gt;G</TT> and <TT>A</TT>. Applying <TT>LApply H</TT> (where <TT>H</TT> has type
+  <TT>A-&gt;B</TT> and <TT>B</TT> does not start with a product) does the same
+  as giving the sequence <TT>Cut B. 2:Apply H.</TT> where <TT>Cut</TT> is
+  described below.<BR><BR>
+  <BR>
+<B>Warning: </B>Be careful, when term contains more than one non
+  dependent product the tactic <TT>LApply</TT> only takes into account the
+  first product.</OL>
+
+<H3>
+7.3.5&nbsp;<TT>Cut </TT>form<TT>
+</TT></H3>
+<A NAME="@default384"></A><A NAME="@tactic11"></A>
+This tactic applies to any goal. It implements the
+``App''<A NAME="@default385"></A>rule given in section
+<A HREF="node.0.3.1.html#Typed-terms">4.2</A>. <TT>Cut U</TT> transforms the current goal <TT>T</TT> 
+into the two following subgoals: <TT>U -&gt; T</TT> and <TT>U</TT>.<BR><BR>
+<BR>
+<B>Error messages: </B><OL>
+<LI>
+<TT>Not a proposition or a type</TT><BR>
+Arises when the argument form is neither of type <TT>Prop</TT>, <TT>Set</TT> nor <TT>Type</TT>.
+</OL>
+<BR><BR>
+
+
+<H3>
+7.3.6&nbsp;<TT>Generalize </TT>term</H3>
+
+<A NAME="@default386"></A><A NAME="@tactic12"></A><A NAME="Generalize"></A>
+This tactic applies to any goal. It generalizes the conclusion w.r.t. one
+subterm of it. For example:<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Show.</CODE><BR>
+<TT><I>1&nbsp;subgoal</I></TT><BR>
+<TT><I>&nbsp;&nbsp;</I></TT><BR>
+<TT><I>&nbsp;&nbsp;x&nbsp;:&nbsp;nat</I></TT><BR>
+<TT><I>&nbsp;&nbsp;y&nbsp;:&nbsp;nat</I></TT><BR>
+<TT><I>&nbsp;&nbsp;============================</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;(le&nbsp;O&nbsp;(plus&nbsp;(plus&nbsp;x&nbsp;y)&nbsp;y))</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Generalize (plus (plus x y) y).</CODE><BR>
+<TT><I>1&nbsp;subgoal</I></TT><BR>
+<TT><I>&nbsp;&nbsp;</I></TT><BR>
+<TT><I>&nbsp;&nbsp;x&nbsp;:&nbsp;nat</I></TT><BR>
+<TT><I>&nbsp;&nbsp;y&nbsp;:&nbsp;nat</I></TT><BR>
+<TT><I>&nbsp;&nbsp;============================</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;(n:nat)(le&nbsp;O&nbsp;n)</I></TT><BR>
+</DIV>
+
+
+<BR><BR>
+If the goal is <I>G</I> and <I>t</I> is a subterm of type <I>T</I>
+in the goal, then <TT>Generalize</TT> <I>t</I> replaces the goal by <TT>(x:</TT><TT><I>T</I></TT><TT>)</TT><TT><I>G'</I></TT> where <I>G'</I> is obtained from <I>G</I> by replacing all
+occurrences of <I>t</I> by <TT>x</TT>. The name of the variable (here <TT>x</TT>)
+is chosen accordingly to <I>T</I>.<BR><BR>
+<BR>
+<B>Variants: </B><OL>
+<LI>
+<TT>Generalize </TT>ident<TT><I><SUB><FONT SIZE=2>1</FONT></SUB></I></TT><TT> ...</TT>ident<TT><I><SUB><FONT SIZE=2>n</FONT></SUB></I></TT><BR>
+Is equivalent to <TT>Generalize </TT>ident<TT><I><SUB><FONT SIZE=2>n</FONT></SUB></I></TT><TT>; ...; Generalize
+    </TT>ident<TT><I><SUB><FONT SIZE=2>1</FONT></SUB></I></TT>. Note that the sequence of ident<I><SUB><FONT SIZE=2>i</FONT></SUB></I>'s are processed from <I>n</I> to
+  <I>1</I>.
+</OL>
+
+<H3>
+7.3.7&nbsp;Bindings list
+</H3>
+
+<A NAME="@default387"></A><A NAME="Binding-list"></A>
+<A NAME="@tactic13"></A>A bindings list is generally used after the keyword <TT>with</TT> in
+tactics.  The general shape of a bindings list is ref<TT><I><SUB><FONT SIZE=2>1</FONT></SUB></I></TT><TT> :=
+  </TT>term<TT><I><SUB><FONT SIZE=2>1</FONT></SUB></I></TT><TT> ...</TT>ref<TT><I><SUB><FONT SIZE=2>n</FONT></SUB></I></TT><TT> := </TT>term<TT><I><SUB><FONT SIZE=2>n</FONT></SUB></I></TT> where ref is either an
+ident or a num. It is used to provide a tactic with a list of
+values (term<I><SUB><FONT SIZE=2>1</FONT></SUB></I>, ..., term<I><SUB><FONT SIZE=2>n</FONT></SUB></I>) that have to be substituted
+respectively to ref<I><SUB><FONT SIZE=2>1</FONT></SUB></I>, ..., ref<I><SUB><FONT SIZE=2>n</FONT></SUB></I>. For all <I>i <FONT FACE=symbol>Î</FONT> </I>[<I>1... n</I>], if
+ref<I><SUB><FONT SIZE=2>i</FONT></SUB></I> is ident<I><SUB><FONT SIZE=2>i</FONT></SUB></I> then it references the dependent product ident<TT><I><SUB><FONT SIZE=2>i</FONT></SUB></I></TT><TT>:T</TT> (for some type <TT>T</TT>); if ref<I><SUB><FONT SIZE=2>i</FONT></SUB></I> is num<I><SUB><FONT SIZE=2>i</FONT></SUB></I> then it
+references the num<I><SUB><FONT SIZE=2>i</FONT></SUB></I>-th non dependent premise.<BR><BR>
+A bindings list can also be a simple list of terms term<TT><I><SUB><FONT SIZE=2>1</FONT></SUB></I></TT><TT>
+</TT>term<TT><I><SUB><FONT SIZE=2>2</FONT></SUB></I></TT><TT> ...</TT>term<TT><I><SUB><FONT SIZE=2>n</FONT></SUB></I></TT>. In that case the references to which these
+terms correspond are determined by the tactic. In case of <TT>Elim
+</TT>term (see section <A HREF="node.1.2.6.html#Elim">7.7.1</A>) the terms should correspond to all the dependent products in
+the type of term while in the case of <TT>Apply </TT>term only the
+dependent products which are not bound in the conclusion of the type
+are given.<BR><BR>
+<HR>
+
+<A HREF="node.1.2.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.3.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

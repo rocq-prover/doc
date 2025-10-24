@@ -1,0 +1,1012 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+3.1&nbsp;The basic library
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.0.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.2.1.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+3.1&nbsp;The basic library
+</H2>
+
+
+
+<A NAME="Prelude"></A>This section lists the basic notions and results which are directly
+available in the standard <FONT COLOR=purple>Coq</FONT> system
+(These constructions are defined in the
+<TT>Prelude</TT> module in directory <TT>theories/INIT</TT> at the <FONT COLOR=purple>Coq</FONT>
+root directory; this includes the modules
+<TT>Logic</TT>,
+<TT>Datatypes</TT>,
+<TT>Specif</TT>,
+<TT>Peano</TT>,
+and <TT>Wf</TT>
+plus the module <TT>Logic_Type</TT>).
+<H3>
+3.1.1&nbsp;Logic
+</H3>
+ <A NAME="Logic"></A>The basic library of <FONT COLOR=purple>Coq</FONT> comes with the definitions of standard
+(intuitionistic) logical connectives (they are defined as inductive
+constructions). They are equipped with an appealing syntax enriching the
+(subclass form) of the syntactic class term. The syntax
+extension
+(This syntax is defined in module <TT>LogicSyntax</TT>)
+ is shown on figure <A HREF="node.0.2.0.html#formulas-syntax">3.1.1</A>.<BR><BR>
+<BLOCKQUOTE><HR>
+<A NAME="formulas-syntax"></A>
+<DIV ALIGN=center>
+
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=1>
+<TR><TD NOWRAP ALIGN=left>form</TD>
+<TD NOWRAP ALIGN=center>::=</TD>
+<TD NOWRAP ALIGN=left><TT>True</TT></TD>
+<TD NOWRAP ALIGN=right>(<TT>True</TT>)</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left><TT>False</TT></TD>
+<TD NOWRAP ALIGN=right>(<TT>False</TT>)</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left><CODE>~</CODE> form</TD>
+<TD NOWRAP ALIGN=right>(<TT>not</TT>)</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left>form <TT>/</TT><TT><I>\</I></TT> form</TD>
+<TD NOWRAP ALIGN=right>(<TT>and</TT>)</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left>form <TT><I>\</I></TT><TT>/</TT> form</TD>
+<TD NOWRAP ALIGN=right>(<TT>or</TT>)</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left>form <TT>-&gt;</TT> form</TD>
+<TD NOWRAP ALIGN=right>(<EM>primitive implication</EM><EM>)</EM></TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left>form <TT>&lt;-&gt;</TT> form</TD>
+<TD NOWRAP ALIGN=right>(<TT>iff</TT>)</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left><TT>(</TT> ident <TT>:</TT> type <TT>)</TT>
+  form</TD>
+<TD NOWRAP ALIGN=right>(<EM>primitive for all</EM><EM>)</EM></TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left><TT>( ALL</TT> ident [<TT>:</TT> specif] <TT>|</TT>
+  form <TT>)</TT></TD>
+<TD NOWRAP ALIGN=right>(<TT>all</TT>)</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left><TT>( EX</TT> ident [<TT>:</TT> specif] <TT>|</TT> form <TT>)</TT></TD>
+<TD NOWRAP ALIGN=right>(<TT>ex</TT>)</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left><TT>( EX</TT> ident [<TT>:</TT> specif] <TT>|</TT> form  <TT>&amp;</TT> form <TT>)</TT></TD>
+<TD NOWRAP ALIGN=right>(<TT>ex2</TT>)</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left>term <TT>=</TT> term</TD>
+<TD NOWRAP ALIGN=right>(<TT>eq</TT>)</TD>
+</TR>
+</TABLE>
+
+</DIV>
+
+<BR><BR>
+<BR>
+<BR><BR>
+Remark: The implication is not defined but primitive
+(it is a non-dependent product of a proposition over another proposition).
+There is also a primitive universal quantification (it is a
+dependent product over a proposition). The primitive universal
+quantification allows both first-order and higher-order
+quantification. There is no need to
+use the notation <TT>( ALL</TT> ident [<TT>:</TT> specif] <TT>|</TT> form <TT>)</TT> propositions), except to have a notation dual of
+the notation for first-order existential quantification.
+
+<BR><BR>
+<DIV ALIGN=center>Figure 3.1:Syntax of formulas</DIV>
+
+
+<HR></BLOCKQUOTE>
+
+<H4>Propositional Connectives
+</H4>
+ <A NAME="Connectives"></A>
+<A NAME="@default79"></A>First, we find propositional calculus connectives:
+<A NAME="@default80"></A>
+<A NAME="@default81"></A>
+<A NAME="@default82"></A>
+<A NAME="@default83"></A>
+<A NAME="@default84"></A>
+<A NAME="@default85"></A>
+<A NAME="@default86"></A>
+<A NAME="@default87"></A><BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Inductive True : Prop := I : True. </CODE><BR>
+<BR>
+<CODE>Coq &lt; Inductive False : Prop := . </CODE><BR>
+<BR>
+<CODE>Coq &lt; Definition not := [A:Prop] A-&gt;False.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Inductive and [A,B:Prop] : Prop := conj : A -&gt; B -&gt; A/\B.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Section Projections.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Variables A,B : Prop.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Theorem proj1 : A/\B -&gt; A.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Theorem proj2 : A/\B -&gt; B.</CODE><BR>
+</DIV>
+
+
+
+<A NAME="@default88"></A>
+<A NAME="@default89"></A>
+<A NAME="@default90"></A>
+<A NAME="@default91"></A>
+<A NAME="@default92"></A>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; End Projections.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Inductive or [A,B:Prop] : Prop</CODE><BR>
+<CODE>Coq &lt;     := or_introl : A -&gt; A\/B </CODE><BR>
+<CODE>Coq &lt;      | or_intror : B -&gt; A\/B.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Definition iff := [P,Q:Prop] (P-&gt;Q) /\ (Q-&gt;P).</CODE><BR>
+<BR>
+<CODE>Coq &lt; Definition IF := [P,Q,R:Prop] (P/\Q) \/ (~P/\R).</CODE><BR>
+</DIV>
+
+
+
+<H4>Quantifiers
+</H4>
+ <A NAME="Quantifiers"></A>
+<A NAME="@default93"></A>Then we find first-order quantifiers:
+<A NAME="@default94"></A>
+<A NAME="@default95"></A>
+<A NAME="@default96"></A>
+<A NAME="@default97"></A>
+<A NAME="@default98"></A>
+<A NAME="@default99"></A>
+<A NAME="@default100"></A>
+<A NAME="@default101"></A>
+<A NAME="@default102"></A><BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Definition all := [A:Set][P:A-&gt;Prop](x:A)(P x). </CODE><BR>
+<BR>
+<CODE>Coq &lt; Inductive ex [A:Set;P:A-&gt;Prop] : Prop </CODE><BR>
+<CODE>Coq &lt;     := ex_intro : (x:A)(P x)-&gt;(ex A P).</CODE><BR>
+<BR>
+<CODE>Coq &lt; Inductive ex2 [A:Set;P,Q:A-&gt;Prop] : Prop</CODE><BR>
+<CODE>Coq &lt;     := ex_intro2 : (x:A)(P x)-&gt;(Q x)-&gt;(ex2 A P Q).</CODE><BR>
+</DIV>
+
+
+<BR><BR>
+The following abbreviations are allowed:
+<DIV ALIGN=center>
+  
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=1>
+<TR><TD NOWRAP ALIGN=left><CODE>(ALL x:A | P)</CODE></TD>
+<TD NOWRAP ALIGN=right><CODE>(all A [x:A]P)</CODE></TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left><CODE>(ALL x | P)</CODE></TD>
+<TD NOWRAP ALIGN=right><CODE>(all A [x:A]P)</CODE></TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left><CODE>(EX x:A | P)</CODE></TD>
+<TD NOWRAP ALIGN=right><CODE>(ex A [x:A]P)</CODE></TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left><CODE>(EX x | P)</CODE></TD>
+<TD NOWRAP ALIGN=right><CODE>(ex A [x:A]P)</CODE></TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left><CODE>(EX x:A | P & Q)</CODE></TD>
+<TD NOWRAP ALIGN=right><CODE>(ex2 A [x:A]P [x:A]Q)</CODE></TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left><CODE>(EX x | P & Q)</CODE></TD>
+<TD NOWRAP ALIGN=right><CODE>(ex2 A [x:A]P [x:A]Q)</CODE></TD>
+</TR>
+</TABLE>
+
+</DIV>
+
+<BR><BR>
+The type annotation <TT>:A</TT> can be ommited when <TT>A</TT> can be
+synthetised by the system.
+<H4>Equality
+</H4>
+ <A NAME="Equality"></A>
+<A NAME="@default103"></A>Then, we find equality, defined as an inductive relation. That is,
+given a <CODE>Set</CODE> <CODE>A</CODE> and an <CODE>x</CODE> of type <CODE>A</CODE>, the
+predicate <CODE>(eq A x)</CODE> is the smallest which contains <CODE>x</CODE>.
+This definition, due to Christine Paulin-Mohring, is equivalent to
+define <CODE>eq</CODE> as the smallest reflexive relation, and it is also
+equivalent to Leibniz' equality.<BR><BR>
+<A NAME="@default104"></A>
+<A NAME="@default105"></A><BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Inductive eq [A:Set;x:A] : A-&gt;Prop</CODE><BR>
+<CODE>Coq &lt;     := refl_equal : (eq A x x).</CODE><BR>
+</DIV>
+
+
+
+<H4>Lemmas
+</H4>
+ <A NAME="PreludeLemmas"></A>
+Finally, a few easy lemmas are provided.<BR><BR>
+<A NAME="@default106"></A><BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Theorem absurd : (A:Prop)(C:Prop) A -&gt; ~A -&gt; C.</CODE><BR>
+</DIV>
+
+
+
+<A NAME="@default107"></A>
+<A NAME="@default108"></A>
+<A NAME="@default109"></A>
+<A NAME="@default110"></A>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Section equality.</CODE><BR>
+<BR>
+<CODE>Coq &lt;  Variable A,B : Set.</CODE><BR>
+<BR>
+<CODE>Coq &lt;  Variable f   : A-&gt;B.</CODE><BR>
+<BR>
+<CODE>Coq &lt;  Variable x,y,z : A.</CODE><BR>
+<BR>
+<CODE>Coq &lt;  Theorem sym_equal : x=y -&gt; y=x.</CODE><BR>
+<BR>
+<CODE>Coq &lt;  Theorem trans_equal : x=y -&gt; y=z -&gt; x=z.</CODE><BR>
+<BR>
+<CODE>Coq &lt;  Theorem f_equal : x=y -&gt; (f x)=(f y).</CODE><BR>
+<BR>
+<CODE>Coq &lt;  Theorem sym_not_equal : ~(x=y) -&gt; ~(y=x).</CODE><BR>
+</DIV>
+
+
+
+<A NAME="@default111"></A>
+<A NAME="@default112"></A>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; End equality.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Definition eq_ind_r : (A:Set)(x:A)(P:A-&gt;Prop)(P x)-&gt;(y:A)y=x-&gt;(P y).</CODE><BR>
+<BR>
+<CODE>Coq &lt; Definition eq_rec_r : (A:Set)(x:A)(P:A-&gt;Set)(P x)-&gt;(y:A)y=x-&gt;(P y).</CODE><BR>
+</DIV>
+
+
+
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Immediate sym_equal sym_not_equal.</CODE><BR>
+</DIV>
+
+
+
+<H3>
+3.1.2&nbsp;Datatypes
+</H3>
+ <A NAME="Datatypes"></A>In the basic library, we find the definition(They are in <TT>Datatypes.v</TT>) 
+of the basic data-types of programming, 
+again defined as inductive constructions over the sort
+<CODE>Set</CODE>. Some of them come with a special syntax shown on figure
+<A HREF="node.0.2.0.html#specif-syntax">3.1.3</A>.
+<H4>Programming
+</H4>
+ <A NAME="Programming"></A>
+<A NAME="@default113"></A><A NAME="@default114"></A><A NAME="@default115"></A>
+<A NAME="@default116"></A>
+<A NAME="@default117"></A>
+<A NAME="@default118"></A>
+<A NAME="@default119"></A>
+<A NAME="@default120"></A>
+<A NAME="@default121"></A>
+<A NAME="@default122"></A>
+<DIV ALIGN=left>
+<CODE>Coq &lt; Inductive unit : Set := tt : unit.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Inductive bool : Set := true : bool </CODE><BR>
+<CODE>Coq &lt;                       | false : bool.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Inductive nat : Set := O : nat </CODE><BR>
+<CODE>Coq &lt;                      | S : nat-&gt;nat.</CODE><BR>
+</DIV>
+
+
+<BR><BR>
+Note that zero is the letter <CODE>O</CODE>, and not the numeral
+<CODE>0</CODE>.<BR><BR>
+We then define the disjoint sum of <CODE>A+B</CODE> of two sets <CODE>A</CODE> and
+<CODE>B</CODE>, and their product <CODE>A*B</CODE>.
+<A NAME="@default123"></A>
+<A NAME="@default124"></A>
+<A NAME="@default125"></A>
+<A NAME="@default126"></A>
+<A NAME="@default127"></A>
+<A NAME="@default128"></A>
+<A NAME="@default129"></A>
+<A NAME="@default130"></A>
+<A NAME="@default131"></A>
+<A NAME="@default132"></A>
+<A NAME="@default133"></A>
+<A NAME="@default134"></A>
+<A NAME="@default135"></A><BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Inductive sum [A,B:Set] : Set</CODE><BR>
+<CODE>Coq &lt;     := inl : A -&gt; A+B </CODE><BR>
+<CODE>Coq &lt;      | inr : B -&gt; A+B.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Inductive prod [A,B:Set] : Set := pair : A -&gt; B -&gt; A*B.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Section projections.</CODE><BR>
+<BR>
+<CODE>Coq &lt;    Variables A,B:Set.</CODE><BR>
+<BR>
+<CODE>Coq &lt;    Definition fst := [H:A*B] Cases H of (x,y) =&gt; x end.</CODE><BR>
+<BR>
+<CODE>Coq &lt;    Definition snd := [H:A*B] Cases H of (x,y) =&gt; y end.</CODE><BR>
+<BR>
+<CODE>Coq &lt; End projections.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Syntactic Definition Fst := (fst ? ?).</CODE><BR>
+<BR>
+<CODE>Coq &lt; Syntactic Definition Snd := (snd ? ?).</CODE><BR>
+</DIV>
+
+
+
+<H3>
+3.1.3&nbsp;Specification
+</H3>
+The following notions(They are defined in module <TT>Specif.v</TT>) allows to build new datatypes and specifications. 
+They are available with the syntax shown on
+figure <A HREF="node.0.2.0.html#specif-syntax">3.1.3</A>(This syntax can be found in the module
+<TT>SpecifSyntax.v</TT>).<BR><BR>
+For instance, given <CODE>A:Set</CODE> and <CODE>P:A-&gt;Prop</CODE>, the construct
+<CODE>{x:A | (P x)}</CODE> (in abstract syntax <CODE>(sig A P)</CODE>) is a
+<CODE>Set</CODE>. We may build elements of this set as <CODE>(exist x p)</CODE>
+whenever we have a witness <CODE>x:A</CODE> with its justification
+<CODE>p:(P x)</CODE>.<BR><BR>
+From such a <CODE>(exist x p)</CODE> we may in turn extract its witness
+<CODE>x:A</CODE> (using an elimination construct such as <CODE>Cases</CODE>) but
+not its justification, which stays hidden, like in an abstract
+data type. In technical terms, one says that <CODE>sig</CODE> is a ``weak
+(dependent) sum''.  A variant <CODE>sig2</CODE> with two predicates is also
+provided.<BR><BR>
+<A NAME="@default136"></A><A NAME="@default137"></A><A NAME="@default138"></A>
+<A NAME="@default139"></A>
+<A NAME="@default140"></A>
+<A NAME="@default141"></A><BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Inductive  sig [A:Set;P:A-&gt;Prop] : Set</CODE><BR>
+<CODE>Coq &lt;     := exist : (x:A)(P x) -&gt; (sig A P).</CODE><BR>
+<BR>
+<CODE>Coq &lt; Inductive sig2 [A:Set;P,Q:A-&gt;Prop] : Set</CODE><BR>
+<CODE>Coq &lt;     := exist2 : (x:A)(P x) -&gt; (Q x) -&gt; (sig2 A P Q).</CODE><BR>
+</DIV>
+
+
+<BR><BR>
+A ``strong (dependent) sum'' <CODE>{x:A & (P x)}</CODE> may be also defined,
+when the predicate <CODE>P</CODE> is now defined as a <CODE>Set</CODE>
+constructor.<BR><BR>
+<A NAME="@default142"></A>
+<A NAME="@default143"></A>
+<A NAME="@default144"></A>
+<A NAME="@default145"></A>
+<A NAME="@default146"></A>
+<A NAME="@default147"></A>
+<A NAME="@default148"></A>
+<A NAME="@default149"></A><BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Inductive sigS [A:Set;P:A-&gt;Set] : Set</CODE><BR>
+<CODE>Coq &lt;     := existS : (x:A)(P x) -&gt; (sigS A P).</CODE><BR>
+<BR>
+<CODE>Coq &lt; Section projections.</CODE><BR>
+<BR>
+<CODE>Coq &lt;    Variable A:Set.</CODE><BR>
+<BR>
+<CODE>Coq &lt;    Variable P:A-&gt;Set.</CODE><BR>
+<BR>
+<CODE>Coq &lt;    Definition projS1 := [H:(sigS A P)] let (x,h) = H in x.</CODE><BR>
+<BR>
+<CODE>Coq &lt;    Definition projS2 := [H:(sigS A P)]&lt;[H:(sigS A P)](P (projS1 H))&gt;</CODE><BR>
+<CODE>Coq &lt;                             let (x,h) = H in h.</CODE><BR>
+<BR>
+<CODE>Coq &lt; End projections. </CODE><BR>
+<BR>
+<CODE>Coq &lt; Inductive sigS2 [A:Set;P,Q:A-&gt;Set] : Set</CODE><BR>
+<CODE>Coq &lt;     := existS2 : (x:A)(P x) -&gt; (Q x) -&gt; (sigS2 A P Q).</CODE><BR>
+</DIV>
+
+
+<BR><BR>
+A related non-dependent construct is the constructive sum
+<CODE>{A}+{B}</CODE> of two propositions <CODE>A</CODE> and <CODE>B</CODE>.
+<A NAME="@default150"></A>
+<A NAME="@default151"></A>
+<A NAME="@default152"></A>
+<A NAME="@default153"></A><BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Inductive sumbool [A,B:Prop] : Set</CODE><BR>
+<CODE>Coq &lt;     := left  : A -&gt; ({A}+{B}) </CODE><BR>
+<CODE>Coq &lt;      | right : B -&gt; ({A}+{B}).</CODE><BR>
+</DIV>
+
+
+<BR><BR>
+This <CODE>sumbool</CODE> construct may be used as a kind of indexed boolean
+data type. An intermediate between <CODE>sumbool</CODE> and <CODE>sum</CODE> is
+the mixed <CODE>sumor</CODE> which combines <CODE>A:Set</CODE> and <CODE>B:Prop</CODE>
+in the <CODE>Set</CODE> <CODE>A+{B}</CODE>.
+<A NAME="@default154"></A>
+<A NAME="@default155"></A>
+<A NAME="@default156"></A>
+<A NAME="@default157"></A><BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Inductive sumor [A:Set;B:Prop] : Set</CODE><BR>
+<CODE>Coq &lt;     := inleft  : A -&gt; (A+{B}) </CODE><BR>
+<CODE>Coq &lt;      | inright : B -&gt; (A+{B}).</CODE><BR>
+</DIV>
+
+
+<BR><BR>
+<BLOCKQUOTE><HR>
+<A NAME="specif-syntax"></A>
+<DIV ALIGN=center>
+
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=1>
+<TR><TD NOWRAP ALIGN=left>specif</TD>
+<TD NOWRAP ALIGN=center>::=</TD>
+<TD NOWRAP ALIGN=left>specif <TT>*</TT> specif</TD>
+<TD NOWRAP ALIGN=right>(<TT>prod</TT>)</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left>specif <TT>+</TT> specif</TD>
+<TD NOWRAP ALIGN=right>(<TT>sum</TT>)</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left>specif <TT>+ {</TT> specif <TT>}</TT></TD>
+<TD NOWRAP ALIGN=right>(<TT>sumor</TT>)</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left><TT>{</TT> specif <TT>}+ {</TT> specif <TT>}</TT></TD>
+<TD NOWRAP ALIGN=right>(<TT>sumbool</TT>)</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left><TT>{</TT> ident <TT>:</TT> specif <TT>|</TT> form <TT>}</TT></TD>
+<TD NOWRAP ALIGN=right>(<TT>sig</TT>)</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left><TT>{</TT> ident <TT>:</TT> specif <TT>|</TT> form  <TT>&amp;</TT>
+  form <TT>}</TT></TD>
+<TD NOWRAP ALIGN=right>(<TT>sig2</TT>)</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left><TT>{</TT> ident <TT>:</TT> specif <TT>&amp;</TT> specif <TT>}</TT></TD>
+<TD NOWRAP ALIGN=right>(<TT>sigS</TT>)</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left><TT>{</TT> ident <TT>:</TT> specif <TT>&amp;</TT> specif <TT>&amp;</TT> specif <TT>}</TT></TD>
+<TD NOWRAP ALIGN=right>(<TT>sigS2</TT>)</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>&nbsp;</TD>
+<TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=right>&nbsp;</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>term</TD>
+<TD NOWRAP ALIGN=center>::=</TD>
+<TD NOWRAP ALIGN=left><TT>(</TT> term <TT>,</TT> term <TT>)</TT></TD>
+<TD NOWRAP ALIGN=right>(<TT>pair</TT>)</TD>
+</TR>
+</TABLE>
+
+
+</DIV>
+
+
+<BR><BR>
+<DIV ALIGN=center>Figure 3.2:Syntax of datatypes and specifications</DIV>
+
+
+<HR></BLOCKQUOTE>
+<BR><BR>
+We may define variants of the axiom of choice, like in Martin-Lof's
+Intuitionistic Type Theory.
+<A NAME="@default158"></A>
+<A NAME="@default159"></A>
+<A NAME="@default160"></A><BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Lemma Choice : (S,S':Set)(R:S-&gt;S'-&gt;Prop)((x:S){y:S'|(R x y)})</CODE><BR>
+<CODE>Coq &lt;                        -&gt; {f:S-&gt;S'|(z:S)(R z (f z))}.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Lemma Choice2 : (S,S':Set)(R:S-&gt;S'-&gt;Set)((x:S){y:S' & (R x y)})</CODE><BR>
+<CODE>Coq &lt;                        -&gt; {f:S-&gt;S' & (z:S)(R z (f z))}.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Lemma bool_choice : (S:Set)(R1,R2:S-&gt;Prop)((x:S){(R1 x)}+{(R2 x)}) -&gt;</CODE><BR>
+<CODE>Coq &lt;  {f:S-&gt;bool | (x:S)( ((f x)=true  /\ (R1 x)) </CODE><BR>
+<CODE>Coq &lt;                   \/ ((f x)=false /\ (R2 x)))}.</CODE><BR>
+</DIV>
+
+
+<BR><BR>
+The next construct builds a sum between a data type <CODE>A:Set</CODE> and
+an exceptional value encoding errors:<BR><BR>
+<A NAME="@default161"></A>
+<A NAME="@default162"></A>
+<A NAME="@default163"></A><BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Inductive Exc [A:Set] : Set := value : A-&gt;(Exc A) </CODE><BR>
+<CODE>Coq &lt;                              | error : (Exc A).</CODE><BR>
+</DIV>
+
+
+<BR><BR>
+This module ends with one axiom and theorems, 
+relating the sorts <CODE>Set</CODE> and
+<CODE>Prop</CODE> in a way which is consistent with the realizability
+interpretation.
+<A NAME="@default164"></A>
+<A NAME="@default165"></A>
+<A NAME="@default166"></A>
+<A NAME="@default167"></A>
+<A NAME="@default168"></A><BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Axiom False_rec : (P:Set)False-&gt;P.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Definition except := False_rec.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Syntactic Definition Except := (except ?).</CODE><BR>
+<BR>
+<CODE>Coq &lt; Theorem absurd_set : (A:Prop)(C:Set)A-&gt;(~A)-&gt;C.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Theorem and_rec : (A,B:Prop)(C:Set)(A-&gt;B-&gt;C)-&gt;(A/\B)-&gt;C.</CODE><BR>
+</DIV>
+
+
+
+<H3>
+3.1.4&nbsp;Basic Arithmetics
+</H3>
+The basic library includes a few elementary properties of natural numbers,
+together with the definitions of predecessor, addition and
+multiplication(This is in module <TT>Peano.v</TT>).
+<A NAME="@default169"></A>
+<A NAME="@default170"></A>
+<A NAME="@default171"></A>
+<A NAME="@default172"></A>
+<A NAME="@default173"></A>
+<A NAME="@default174"></A>
+<A NAME="@default175"></A>
+<A NAME="@default176"></A>
+<A NAME="@default177"></A>
+<A NAME="@default178"></A>
+<A NAME="@default179"></A>
+<A NAME="@default180"></A>
+<A NAME="@default181"></A>
+<A NAME="@default182"></A><BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Theorem eq_S : (n,m:nat) n=m -&gt; (S n)=(S m).</CODE><BR>
+</DIV>
+
+
+
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Definition pred : nat-&gt;nat </CODE><BR>
+<CODE>Coq &lt;      := [n:nat](&lt;nat&gt;Cases n of O =&gt; O </CODE><BR>
+<CODE>Coq &lt;                           | (S u) =&gt; u end).</CODE><BR>
+<BR>
+<CODE>Coq &lt; Theorem pred_Sn : (m:nat) m=(pred (S m)).</CODE><BR>
+<BR>
+<CODE>Coq &lt; Theorem eq_add_S : (n,m:nat) (S n)=(S m) -&gt; n=m.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Immediate eq_add_S.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Theorem not_eq_S : (n,m:nat) ~(n=m) -&gt; ~((S n)=(S m)).</CODE><BR>
+</DIV>
+
+
+
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Definition IsSucc : nat-&gt;Prop</CODE><BR>
+<CODE>Coq &lt;   := [n:nat](&lt;Prop&gt;Cases n of O =&gt; False</CODE><BR>
+<CODE>Coq &lt;                         | (S p) =&gt; True end).</CODE><BR>
+<BR>
+<CODE>Coq &lt; Theorem O_S : (n:nat) ~(O=(S n)).</CODE><BR>
+<BR>
+<CODE>Coq &lt; Theorem n_Sn : (n:nat) ~(n=(S n)).</CODE><BR>
+</DIV>
+
+
+
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Fixpoint plus [n:nat] : nat -&gt; nat := </CODE><BR>
+<CODE>Coq &lt;    [m:nat](&lt;nat&gt;Cases n of </CODE><BR>
+<CODE>Coq &lt;        O =&gt; m </CODE><BR>
+<CODE>Coq &lt;     | (S p) =&gt; (S (plus p m)) end).</CODE><BR>
+<BR>
+<CODE>Coq &lt; Lemma plus_n_O : (n:nat) n=(plus n O).</CODE><BR>
+<BR>
+<CODE>Coq &lt; Lemma plus_n_Sm : (n,m:nat) (S (plus n m))=(plus n (S m)).</CODE><BR>
+</DIV>
+
+
+
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Fixpoint mult [n:nat] : nat -&gt; nat := </CODE><BR>
+<CODE>Coq &lt;    [m:nat](&lt;nat&gt; Cases n of O =&gt; O </CODE><BR>
+<CODE>Coq &lt;                          | (S p) =&gt; (plus m (mult p m)) end).</CODE><BR>
+<BR>
+<CODE>Coq &lt; Lemma mult_n_O : (n:nat) O=(mult n O).</CODE><BR>
+<BR>
+<CODE>Coq &lt; Lemma mult_n_Sm : (n,m:nat) (plus (mult n m) n)=(mult n (S m)).</CODE><BR>
+</DIV>
+
+
+<BR><BR>
+Finally, it gives the definition of the usual orderings <CODE>le</CODE>,
+<CODE>lt</CODE>, <CODE>ge</CODE>, and <CODE>gt</CODE>.
+<A NAME="@default183"></A>
+<A NAME="@default184"></A>
+<A NAME="@default185"></A>
+<A NAME="@default186"></A>
+<A NAME="@default187"></A>
+<A NAME="@default188"></A><BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Inductive le [n:nat] : nat -&gt; Prop</CODE><BR>
+<CODE>Coq &lt;     := le_n : (le n n)</CODE><BR>
+<CODE>Coq &lt;      | le_S : (m:nat)(le n m)-&gt;(le n (S m)).</CODE><BR>
+<BR>
+<CODE>Coq &lt; Definition lt := [n,m:nat](le (S n) m).</CODE><BR>
+<BR>
+<CODE>Coq &lt; Definition ge := [n,m:nat](le m n).</CODE><BR>
+<BR>
+<CODE>Coq &lt; Definition gt := [n,m:nat](lt m n).</CODE><BR>
+</DIV>
+
+
+<BR><BR>
+Properties of these relations are not initially known, but may be
+required by the user from modules <CODE>Le</CODE> and <CODE>Lt</CODE>.  Finally,
+<CODE>Peano</CODE> gives some lemmas allowing pattern-matching, and a double
+induction principle.<BR><BR>
+<A NAME="@default189"></A>
+<A NAME="@default190"></A><BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Theorem nat_case : (n:nat)(P:nat-&gt;Prop)(P O)-&gt;((m:nat)(P (S m)))-&gt;(P n).</CODE><BR>
+</DIV>
+
+
+
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Theorem nat_double_ind : (R:nat-&gt;nat-&gt;Prop)</CODE><BR>
+<CODE>Coq &lt;      ((n:nat)(R O n)) -&gt; ((n:nat)(R (S n) O))</CODE><BR>
+<CODE>Coq &lt;      -&gt; ((n,m:nat)(R n m)-&gt;(R (S n) (S m)))</CODE><BR>
+<CODE>Coq &lt;      -&gt; (n,m:nat)(R n m).</CODE><BR>
+</DIV>
+
+
+
+<H3>
+3.1.5&nbsp;Well-founded recursion
+</H3>
+The basic library contains the basics of well-founded recursion and 
+well-founded induction(This is defined in module <TT>Wf.v</TT>).
+<A NAME="@default191"></A><A NAME="@default192"></A><A NAME="@default193"></A><A NAME="@default194"></A>
+<A NAME="@default195"></A>
+<A NAME="@default196"></A>
+<A NAME="@default197"></A><BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Chapter Well_founded.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Variable A : Set.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Variable R : A -&gt; A -&gt; Prop.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Inductive Acc : A -&gt; Prop </CODE><BR>
+<CODE>Coq &lt;    := Acc_intro : (x:A)((y:A)(R y x)-&gt;(Acc y))-&gt;(Acc x).</CODE><BR>
+<BR>
+<CODE>Coq &lt; Lemma Acc_inv : (x:A)(Acc x) -&gt; (y:A)(R y x) -&gt; (Acc y).</CODE><BR>
+</DIV>
+
+
+
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Section AccRec.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Variable P : A -&gt; Set.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Variable F : (x:A)((y:A)(R y x)-&gt;(Acc y))-&gt;((y:A)(R y x)-&gt;(P y))-&gt;(P x).</CODE><BR>
+<BR>
+<CODE>Coq &lt; Fixpoint Acc_rec [x:A;a:(Acc x)] : (P x)</CODE><BR>
+<CODE>Coq &lt;    := (F x (Acc_inv x a) [y:A][h:(R y x)](Acc_rec y (Acc_inv x a y h))).</CODE><BR>
+<BR>
+<CODE>Coq &lt; End AccRec.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Definition well_founded := (a:A)(Acc a).</CODE><BR>
+<BR>
+<CODE>Coq &lt; Theorem well_founded_induction : </CODE><BR>
+<CODE>Coq &lt;     well_founded -&gt;</CODE><BR>
+<CODE>Coq &lt;         (P:A-&gt;Set)((x:A)((y:A)(R y x)-&gt;(P y))-&gt;(P x))-&gt;(a:A)(P a).</CODE><BR>
+</DIV>
+
+
+
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; End Well_founded. </CODE><BR>
+</DIV>
+
+
+
+
+<DIV ALIGN=left>
+<CODE>Coq &lt;   Section Wf_inductor.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Variable A:Set.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Variable R:A-&gt;A-&gt;Prop.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Theorem well_founded_ind : </CODE><BR>
+<CODE>Coq &lt;     (well_founded A R) -&gt;</CODE><BR>
+<CODE>Coq &lt;         (P:A-&gt;Prop)((x:A)((y:A)(R y x)-&gt;(P y))-&gt;(P x))-&gt;(a:A)(P a).</CODE><BR>
+</DIV>
+
+
+
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; End Wf_inductor.</CODE><BR>
+</DIV>
+
+
+
+<H3>
+3.1.6&nbsp;Accessing the <FONT COLOR=purple>Type</FONT> level
+</H3>
+The basic library includes the definitions(This is in module
+<TT>Logic_Type.v</TT>) of logical quantifiers axiomatized at the
+<CODE>Type</CODE> level. <BR><BR>
+<A NAME="@default198"></A>
+<A NAME="@default199"></A>
+<A NAME="@default200"></A>
+<A NAME="@default201"></A>
+<A NAME="@default202"></A>
+<A NAME="@default203"></A>
+<A NAME="@default204"></A>
+<A NAME="@default205"></A>
+<A NAME="@default206"></A>
+<A NAME="@default207"></A>
+<A NAME="@default208"></A>
+<A NAME="@default209"></A>
+<A NAME="@default210"></A><BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Definition allT := [A:Type][P:A-&gt;Prop](x:A)(P x). </CODE><BR>
+<BR>
+<CODE>Coq &lt; </CODE><BR>
+<CODE>Coq &lt; Section universal_quantification.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Variable A : Type.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Variable P : A-&gt;Prop.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Theorem inst :  (x:A)(ALLT x | (P x))-&gt;(P x).</CODE><BR>
+<BR>
+<CODE>Coq &lt; Theorem gen : (B:Prop)(f:(y:A)B-&gt;(P y))B-&gt;(allT ? P).</CODE><BR>
+</DIV>
+
+
+
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; End universal_quantification.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Inductive  exT [A:Type;P:A-&gt;Prop] : Prop</CODE><BR>
+<CODE>Coq &lt;     := exT_intro : (x:A)(P x)-&gt;(exT A P).</CODE><BR>
+<BR>
+<CODE>Coq &lt; </CODE><BR>
+<CODE>Coq &lt; Inductive exT2 [A:Type;P,Q:A-&gt;Prop] : Prop</CODE><BR>
+<CODE>Coq &lt;     := exT_intro2 : (x:A)(P x)-&gt;(Q x)-&gt;(exT2 A P Q).</CODE><BR>
+</DIV>
+
+
+<BR><BR>
+It defines also Leibniz equality <CODE>x==y</CODE> when <CODE>x</CODE> and
+<CODE>y</CODE> belong to <CODE>A:Type</CODE>.
+<A NAME="@default211"></A>
+<A NAME="@default212"></A>
+<A NAME="@default213"></A>
+<A NAME="@default214"></A>
+<A NAME="@default215"></A>
+<A NAME="@default216"></A>
+<A NAME="@default217"></A>
+<A NAME="@default218"></A><BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Inductive eqT [A:Type;x:A] : A -&gt; Prop</CODE><BR>
+<CODE>Coq &lt;                        := refl_eqT : (eqT A x x).</CODE><BR>
+<BR>
+<CODE>Coq &lt; Section Equality_is_a_congruence.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Variables A,B : Type.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Variable  f : A-&gt;B.</CODE><BR>
+<BR>
+<CODE>Coq &lt;  Variable x,y,z : A.</CODE><BR>
+<BR>
+<CODE>Coq &lt;  Lemma sym_eqT : (x==y) -&gt; (y==x).</CODE><BR>
+<BR>
+<CODE>Coq &lt;  Lemma trans_eqT : (x==y) -&gt; (y==z) -&gt; (x==z).</CODE><BR>
+<BR>
+<CODE>Coq &lt;  Lemma congr_eqT : (x==y)-&gt;((f x)==(f y)).</CODE><BR>
+</DIV>
+
+
+
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; End Equality_is_a_congruence.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Immediate sym_eqT sym_not_eqT.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Definition eqT_ind_r: (A:Type)(x:A)(P:A-&gt;Prop)(P x)-&gt;(y:A)y==x -&gt; (P y).</CODE><BR>
+</DIV>
+
+
+<BR><BR>
+The figure <A HREF="node.0.2.0.html#formulas-syntax-type">3.1.6</A> presents the syntactic notations 
+corresponding to the main definitions
+(This syntax is defined in module <TT>Logic_TypeSyntax</TT>)<BR><BR>
+<BLOCKQUOTE><HR>
+<A NAME="formulas-syntax-type"></A>
+<DIV ALIGN=center>
+
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=1>
+<TR><TD NOWRAP ALIGN=left>form</TD>
+<TD NOWRAP ALIGN=center>::=</TD>
+<TD NOWRAP ALIGN=left><TT>( ALLT</TT> ident [<TT>:</TT> specif] <TT>|</TT>
+  form <TT>)</TT></TD>
+<TD NOWRAP ALIGN=right>(<TT>allT</TT>)</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left><TT>( EXT</TT> ident [<TT>:</TT> specif] <TT>|</TT> form <TT>)</TT></TD>
+<TD NOWRAP ALIGN=right>(<TT>exT</TT>)</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left><TT>( EXT</TT> ident [<TT>:</TT> specif] <TT>|</TT> form  <TT>&amp;</TT> form <TT>)</TT></TD>
+<TD NOWRAP ALIGN=right>(<TT>exT2</TT>)</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left>term <TT>==</TT> term</TD>
+<TD NOWRAP ALIGN=right>(<TT>eqT</TT>)</TD>
+</TR>
+</TABLE>
+
+</DIV>
+
+
+
+<BR><BR>
+<DIV ALIGN=center>Figure 3.3:Syntax of first-order formulas in the type universe</DIV>
+
+
+<HR></BLOCKQUOTE>
+<BR><BR>
+At the end, it defines datatypes at the <FONT COLOR=purple>Type</FONT> level.<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Inductive EmptyT: Type :=.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Inductive UnitT : Type := IT : UnitT.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Definition notT := [A:Type] A-&gt;EmptyT.</CODE><BR>
+<BR>
+<CODE>Coq &lt; </CODE><BR>
+<CODE>Coq &lt; Inductive identityT [A:Type; a:A] : A-&gt;Type :=</CODE><BR>
+<CODE>Coq &lt;      refl_identityT : (identityT A a a).</CODE><BR>
+</DIV>
+
+
+<BR><BR>
+<HR>
+
+<A HREF="node.0.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.2.1.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

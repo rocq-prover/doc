@@ -1,0 +1,137 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+19.6&nbsp;How does it work ?
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.8.4.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.8.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.8.6.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+19.6&nbsp;How does it work ?
+</H2>
+
+
+The code of <TT>Ring</TT> a good  example of tactic written using
+<I>reflexion</I> (or <I>internalization</I>, it is 
+synonymous). What is reflexion ? Basically,  it is writing <FONT COLOR=purple>Coq</FONT> tactics
+in <FONT COLOR=purple>Coq</FONT>, rather than in O'Caml. From the philosophical point of view,
+it is using the ability of the Calculus of Constructions to speak and
+reason about itself.
+For the <TT>Ring</TT> tactic we used 
+<FONT COLOR=purple>Coq</FONT> as a programming langage and also as a proof environment to build a
+tactic and to prove it correctness.<BR><BR>
+The interested reader is strongly advised to have a look at the file
+<TT>Abstract_polynom.v</TT>. Here a type for polynoms is defined : <BR><BR>
+
+<DIV ALIGN=left>
+<PRE>
+Variable A : Set.
+Variable C : (Ring_Constants A).
+Variable T : (Ring_Theory C).
+
+Inductive Set polynom := 
+  Pvar : idx -&gt; polynom
+| Pconst : A -&gt; polynom
+| Pplus : polynom -&gt; polynom -&gt; polynom
+| Pmult : polynom -&gt; polynom -&gt; polynom
+| Popp : polynom -&gt; polynom.
+</PRE>
+
+
+</DIV>
+
+
+<BR><BR>
+There is also a type to represent variables maps, and an
+interpretation function, that maps a variables map and a polynom to an
+element of the concrete ring :<BR><BR>
+
+<DIV ALIGN=left>
+<PRE>
+Definition polynom_simplify : polynom -&gt; (spolynom A) := 
+  [...]
+Definition interp : varmap -&gt; (polynnom A) -&gt; A :=
+  [...]
+</PRE>
+
+
+</DIV>
+
+
+<BR><BR>
+A function to normalize polynoms is defined, and the big theorem is
+its correctness w.r.t interpretation, that is :<BR><BR>
+
+<DIV ALIGN=left>
+<PRE>
+Theorem polynom_simplify_correct : (v:(varmap A))(p:polynom)
+  (interp C v (polynom_simplify p)) 
+  = (interp C v p).
+</PRE>
+
+
+</DIV>
+
+
+<BR><BR>
+So now, what is the scheme for a normalization proof ? Let <TT>p</TT>
+be the polynomial expression that the user wants to normalize. First a
+little piece of ML code guesses the type of <TT>p</TT>, the ring
+theory <TT>(A,C)</TT> to use, an abstract polynomial <TT>ap</TT> and a
+variables map <TT>v</TT> such that <TT>p</TT> is
+<I><FONT FACE=symbol>b</FONT><FONT FACE=symbol>d</FONT><FONT FACE=symbol>i</FONT></I>-equivalent to <CODE>(interp A C v ap)</CODE>. Then we
+replace it by <CODE>(interp A C v (polynom\_simplify ap))</CODE>, using the
+main correctness theorem and we reduce it to a concrete expression
+<TT>p'</TT>, which is precisely the normalized form of
+<TT>p</TT>. This is explained in this diagram:<BR><BR>
+<BR>
+
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=right>
+<TT>p</TT></TD>
+<TD NOWRAP ALIGN=center><I><FONT FACE=symbol>®</FONT></I><SUB><I><FONT SIZE=2><FONT FACE=symbol>b</FONT><FONT FACE=symbol>d</FONT><FONT FACE=symbol>i</FONT></FONT></I></SUB></TD>
+<TD NOWRAP ALIGN=left><TT>(interp A C v ap)</TT></TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>&nbsp;</TD>
+<TD NOWRAP ALIGN=left><I>=</I><SUB><FONT SIZE=2>(</FONT></SUB><SUB><FONT SIZE=2>by the main correctness theorem</FONT></SUB><SUB><FONT SIZE=2>)</FONT></SUB></TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=right><TT>p'</TT></TD>
+<TD NOWRAP ALIGN=center><I><FONT FACE=symbol>¬</FONT></I><SUB><I><FONT SIZE=2><FONT FACE=symbol>b</FONT><FONT FACE=symbol>d</FONT><FONT FACE=symbol>i</FONT></FONT></I></SUB></TD>
+<TD NOWRAP ALIGN=left><TT>(interp A C v (polynom_simplify ap))</TT></TD>
+</TR>
+</TABLE>
+
+<BR>
+<BR><BR>
+The user do not see the right part of the diagram. 
+From outside, the tactic behaves like a
+<I><FONT FACE=symbol>b</FONT><FONT FACE=symbol>d</FONT><FONT FACE=symbol>i</FONT></I> simplification extended with AC rewriting rules.
+So, basically the proof is only the application of the main
+correctness theorem to well-choosen arguments. We made a huge cut.<BR><BR>
+
+  <HR>
+
+<A HREF="node.3.8.4.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.8.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.8.6.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

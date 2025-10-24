@@ -1,0 +1,108 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+5.5&nbsp;Loadpath
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.1.0.3.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.0.5.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+5.5&nbsp;Loadpath
+</H2>
+
+
+
+<A NAME="loadpath"></A><A NAME="@default299"></A>There are currently two loadpaths in <FONT COLOR=purple>Coq</FONT>. A loadpath where seeking
+<FONT COLOR=purple>Coq</FONT> files (extensions <TT>.v</TT> or <TT>.vo</TT> or <TT>.vi</TT>) and one where
+seeking Objective Caml files. The default loadpath contains the
+directory ``<TT>.</TT>'' denoting the current directory, so there also
+commands to print and change the current working directory.
+<H3>
+5.5.1&nbsp;<TT>Pwd.
+</TT></H3>
+<A NAME="@default300"></A><A NAME="@command71"></A><A NAME="Pwd"></A>
+This command displays the current working directory.
+<H3>
+5.5.2&nbsp;<TT>Cd </TT>string<TT>.
+</TT></H3>
+<A NAME="@default301"></A><A NAME="@command72"></A>
+This command changes the current directory according to string 
+which can be any valid path.<BR><BR>
+<BR>
+<B>Variants: </B><OL>
+<LI>
+<TT>Cd.</TT><BR>
+Is equivalent to <TT>Pwd.</TT>
+</OL>
+
+<H3>
+5.5.3&nbsp;<TT>AddPath </TT>string<TT>.
+</TT></H3>
+<A NAME="@default302"></A><A NAME="@command73"></A>
+This command adds the path string to the current <FONT COLOR=purple>Coq</FONT> loadpath.
+<H3>
+5.5.4&nbsp;<TT>DelPath </TT>string<TT>.
+</TT></H3>
+<A NAME="@default303"></A><A NAME="@command74"></A>
+This command removes the path string from the current <FONT COLOR=purple>Coq</FONT> loadpath.
+<H3>
+5.5.5&nbsp;<TT>Print LoadPath.
+</TT></H3>
+<A NAME="@default304"></A><A NAME="@command75"></A>
+This command displays the current <FONT COLOR=purple>Coq</FONT> loadpath.
+<H3>
+5.5.6&nbsp;<TT>Add ML Path </TT>string<TT>.
+</TT></H3>
+<A NAME="@default305"></A><A NAME="@command76"></A>
+This command adds the path string to the current Objective Caml loadpath (see
+the command <TT>Declare ML Module</TT> in the section <A HREF="node.1.0.3.html#compiled">5.4</A>).
+<H3>
+5.5.7&nbsp;<TT>Print ML Path </TT>string<TT>.
+</TT></H3>
+<A NAME="@default306"></A><A NAME="@command77"></A>
+This command displays the current Objective Caml loadpath.
+This command makes sense only under the bytecode version of <TT>oqtop</TT>, i.e. not using <TT>-opt</TT> or <TT>-full</TT> options (see the
+command <TT>Declare ML Module</TT> in the section
+<A HREF="node.1.0.3.html#compiled">5.4</A>).
+<H3>
+5.5.8&nbsp;<TT>Locate File </TT>string<TT>.
+</TT></H3>
+<A NAME="@default307"></A><A NAME="@command78"></A><A NAME="Locate File"></A>
+This command displays the location of file string in the current loadpath.
+Typically, string is a <TT>.cmo</TT> or <TT>.vo</TT> or <TT>.v</TT> file.
+<H3>
+5.5.9&nbsp;<TT>Locate Library </TT>ident<TT>.
+</TT></H3>
+
+<A NAME="@default308"></A><A NAME="@command79"></A>
+This command displays the location of the <FONT COLOR=purple>Coq</FONT> module ident in the current
+loadpath. Is is equivalent to <TT>Locate File "</TT>ident<TT>.vo".</TT>
+<H3>
+5.5.10&nbsp;<TT>Locate </TT>ident<TT>.
+</TT></H3>
+<A NAME="@default309"></A><A NAME="@command80"></A>
+This command displays the full name of the identifier ident
+and consequently the <FONT COLOR=purple>Coq</FONT> module in which it is defined.<BR><BR>
+<HR>
+
+<A HREF="node.1.0.3.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.0.5.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

@@ -1,0 +1,184 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+8.1&nbsp;Refine
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.1.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.3.1.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+8.1&nbsp;<TT>Refine
+</TT></H2>
+
+
+
+<A NAME="@default504"></A><A NAME="@tactic110"></A>
+<A NAME="Refine-example"></A>
+This feature is new in version 6.2. It's still experimental.<BR><BR>
+This tactic applies to any goal. It behaves like <TT>Exact</TT> with a
+big difference : the user can leave some holes (denoted by <TT>?</TT> or 
+<TT>(?::</TT><I>type</I><TT>)</TT>) in the term. 
+<TT>Refine</TT> will generate as many
+subgoals as they are holes in the term. The type of holes must be
+either synthetised by the system or declared by an
+explicit cast like <CODE>(?::nat-&gt;Prop)</CODE>. This relatively low-level
+tactic can be useful to advanced users.<BR><BR>
+
+<BR>
+<B>Example 1: </B>
+<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Require Refine.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Inductive Option: Set := Fail : Option | Ok : bool-&gt;Option.</CODE><BR>
+</DIV>
+
+
+
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Definition get: (x:Option)~x=Fail-&gt;bool.</CODE><BR>
+<TT><I>1&nbsp;subgoal</I></TT><BR>
+<TT><I>&nbsp;&nbsp;</I></TT><BR>
+<TT><I>&nbsp;&nbsp;============================</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;(x:Option)~x=Fail-&gt;bool</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Refine</CODE><BR>
+<CODE>Coq &lt;   [x:Option]&lt;[x:Option]~x=Fail-&gt;bool&gt;Cases x of</CODE><BR>
+<CODE>Coq &lt;         Fail   =&gt;  ?</CODE><BR>
+<CODE>Coq &lt;       | (Ok b) =&gt;  [_:?]b end.</CODE><BR>
+<TT><I>1&nbsp;subgoal</I></TT><BR>
+<TT><I>&nbsp;&nbsp;</I></TT><BR>
+<TT><I>&nbsp;&nbsp;x&nbsp;:&nbsp;Option</I></TT><BR>
+<TT><I>&nbsp;&nbsp;============================</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;~Fail=Fail-&gt;bool</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Intros;Absurd Fail=Fail;Trivial.</CODE><BR>
+<TT><I>Subtree&nbsp;proved!</I></TT><BR>
+</DIV>
+
+
+
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Defined.</CODE><BR>
+</DIV>
+
+
+<BR><BR>
+
+<BR>
+<B>Example 2: </B><I>Using Refine to build a poor-man's ``Cases'' tactic</I>
+
+<TT>Refine</TT> is actually the only way for the user to do
+a proof with the same structure as a <TT>Cases</TT> definition. Actually,
+the tactics <TT>Case</TT> (see <A HREF="node.1.2.6.html#Case">7.7.2</A>) and <TT>Elim</TT> (see
+<A HREF="node.1.2.6.html#Elim">7.7.1</A>) only allow one step of elementary induction. <BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Require Bool.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Require Arith.</CODE><BR>
+</DIV>
+
+
+
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Definition one_two_or_five := [x:nat]</CODE><BR>
+<CODE>Coq &lt;   Cases x of</CODE><BR>
+<CODE>Coq &lt;     (1) =&gt; true</CODE><BR>
+<CODE>Coq &lt;   | (2) =&gt; true</CODE><BR>
+<CODE>Coq &lt;   | (5) =&gt; true</CODE><BR>
+<CODE>Coq &lt;   | _ =&gt; false</CODE><BR>
+<CODE>Coq &lt;   end.</CODE><BR>
+<TT><I>one_two_or_five&nbsp;is&nbsp;defined</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Goal (x:nat)(Is_true (one_two_or_five x)) -&gt; x=(1)\/x=(2)\/x=(5).</CODE><BR>
+<TT><I>1&nbsp;subgoal</I></TT><BR>
+<TT><I>&nbsp;&nbsp;</I></TT><BR>
+<TT><I>&nbsp;&nbsp;============================</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;(x:nat)(Is_true&nbsp;(one_two_or_five&nbsp;x))-&gt;x=(1)\/x=(2)\/x=(5)</I></TT><BR>
+</DIV>
+
+
+<BR><BR>
+A traditional script would be the following:<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Destruct x.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Tauto.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Destruct n.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Auto.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Destruct n.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Auto.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Destruct n.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Tauto.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Destruct n.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Tauto.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Destruct n.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Auto.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Intros; Inversion H.</CODE><BR>
+</DIV>
+
+
+<BR><BR>
+With the tactic <TT>Refine</TT>, it becomes quite shorter:<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Restart.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Require Refine.</CODE><BR>
+</DIV>
+
+
+
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Refine [x:nat]</CODE><BR>
+<CODE>Coq &lt;   &lt;[y:nat](Is_true (one_two_or_five y))-&gt;(y=(1)\/y=(2)\/y=(5))&gt;</CODE><BR>
+<CODE>Coq &lt;   Cases x of</CODE><BR>
+<CODE>Coq &lt;     (1) =&gt; [H]?</CODE><BR>
+<CODE>Coq &lt;   | (2) =&gt; [H]?</CODE><BR>
+<CODE>Coq &lt;   | (5) =&gt; [H]?</CODE><BR>
+<CODE>Coq &lt;   | _ =&gt; [H](False_ind ? H)</CODE><BR>
+<CODE>Coq &lt;   end; Auto.</CODE><BR>
+<TT><I>Subtree&nbsp;proved!</I></TT><BR>
+</DIV>
+
+
+<BR><BR>
+<HR>
+
+<A HREF="node.1.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.3.1.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

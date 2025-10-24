@@ -1,0 +1,232 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+14.7&nbsp;Inheritance Mechanism -- Examples
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.3.5.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.3.7.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+14.7&nbsp;Inheritance Mechanism -- Examples
+</H2>
+
+
+  There are three situations:<BR><BR>
+<UL>
+<LI>
+(<I>f&nbsp;a</I>) is ill-typed where <I>f</I>:(<I>x</I>:<I>A</I>)<I>B</I> and <I>a</I>:<I>A'</I>. If there is a
+      path coercion between <I>A'</I> and <I>A</I>, (<I>f&nbsp;a</I>) is transformed into
+      (<I>f&nbsp;a'</I>) where <I>a'</I> is the result of the application of this
+      path coercion to <I>a</I>.<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Variables C:nat-&gt;Set; D:nat-&gt;bool-&gt;Set; E:bool-&gt;Set.</CODE><BR>
+<TT><I>C&nbsp;is&nbsp;assumed</I></TT><BR>
+<TT><I>D&nbsp;is&nbsp;assumed</I></TT><BR>
+<TT><I>E&nbsp;is&nbsp;assumed</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Variable f : (n:nat)(C n) -&gt; (D (S n) true).</CODE><BR>
+<TT><I>f&nbsp;is&nbsp;assumed</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Coercion f : C &gt;-&gt; D.</CODE><BR>
+<TT><I>f&nbsp;is&nbsp;now&nbsp;a&nbsp;coercion</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Variable g : (n:nat)(b:bool)(D n b) -&gt; (E b).</CODE><BR>
+<TT><I>g&nbsp;is&nbsp;assumed</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Coercion g : D &gt;-&gt; E.</CODE><BR>
+<TT><I>g&nbsp;is&nbsp;now&nbsp;a&nbsp;coercion</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Variable c : (C O).</CODE><BR>
+<TT><I>c&nbsp;is&nbsp;assumed</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Variable T : (E true) -&gt; nat.</CODE><BR>
+<TT><I>T&nbsp;is&nbsp;assumed</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Check (T c).</CODE><BR>
+<TT><I>(T&nbsp;c)</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;nat</I></TT><BR>
+</DIV>
+
+
+
+
+We give now an example using identity coercions.<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Definition D' := [b:bool](D (S O) b).</CODE><BR>
+<TT><I>D'&nbsp;is&nbsp;defined</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Identity Coercion IdD'D : D' &gt;-&gt; D.</CODE><BR>
+<TT><I>IdD'D&nbsp;is&nbsp;now&nbsp;a&nbsp;coercion</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Print IdD'D.</CODE><BR>
+<TT><I>IdD'D&nbsp;=&nbsp;[b:bool][x:(D'&nbsp;b)]x</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(b:bool)(D'&nbsp;b)-&gt;(D&nbsp;(S&nbsp;O)&nbsp;b)</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Variable d' : (D' true).</CODE><BR>
+<TT><I>d'&nbsp;is&nbsp;assumed</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Check (T d').</CODE><BR>
+<TT><I>(T&nbsp;d')</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;nat</I></TT><BR>
+</DIV>
+
+
+
+<BR><BR>
+  In the case of functional arguments, we use the monotonic rule of
+subtyping.  Approximatively, to coerce <I>t</I>:(<I>x</I>:<I>A</I>)<I>B</I> towards (<I>x</I>:<I>A'</I>)<I>B'</I>,
+one have to coerce <I>A'</I> towards <I>A</I> and <I>B</I> towards <I>B'</I>. An example
+is given below:<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Variables A,B:Set; h:A-&gt;B.</CODE><BR>
+<TT><I>A&nbsp;is&nbsp;assumed</I></TT><BR>
+<TT><I>B&nbsp;is&nbsp;assumed</I></TT><BR>
+<TT><I>h&nbsp;is&nbsp;assumed</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Coercion h : A &gt;-&gt; B.</CODE><BR>
+<TT><I>h&nbsp;is&nbsp;now&nbsp;a&nbsp;coercion</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Variable U : (A -&gt; (E true)) -&gt; nat.</CODE><BR>
+<TT><I>U&nbsp;is&nbsp;assumed</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Variable t : B -&gt; (C O).</CODE><BR>
+<TT><I>t&nbsp;is&nbsp;assumed</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Check (U t).</CODE><BR>
+<TT><I>(U&nbsp;[x:A](t&nbsp;x))</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;nat</I></TT><BR>
+</DIV>
+
+
+
+
+  Remark the changes in the result following the modification of the
+previous example.<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Variable U' : ((C O) -&gt; B) -&gt; nat.</CODE><BR>
+<TT><I>U'&nbsp;is&nbsp;assumed</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Variable t' : (E true) -&gt; A.</CODE><BR>
+<TT><I>t'&nbsp;is&nbsp;assumed</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Check (U' t').</CODE><BR>
+<TT><I>(U'&nbsp;[x:(C&nbsp;O)](t'&nbsp;x))</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;nat</I></TT><BR>
+</DIV>
+
+
+
+
+
+<LI>An assumption <I>x</I>:<I>A</I> when <I>A</I> is not a type, is ill-typed.  It is
+      replaced by <I>x</I>:<I>A'</I> where <I>A'</I> is the result of the application
+      to <I>A</I> of the path coercion between the class of <I>A</I> and <TT>SORTCLASS</TT> if it exists.  This case occurs in the abstraction
+      [<I>x</I>:<I>A</I>]<I>t</I>, universal quantification (<I>x</I>:<I>A</I>)<I>B</I>, global variables
+      and parameters of (co-)inductive definitions and functions. In
+      (<I>x</I>:<I>A</I>)<I>B</I>, such a path coercion may be applied to <I>B</I> also if
+      necessary.<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Variable Graph : Type.</CODE><BR>
+<TT><I>Graph&nbsp;is&nbsp;assumed</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Variable Node : Graph -&gt; Type.</CODE><BR>
+<TT><I>Node&nbsp;is&nbsp;assumed</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Coercion Node : Graph &gt;-&gt; SORTCLASS.</CODE><BR>
+<TT><I>Node&nbsp;is&nbsp;now&nbsp;a&nbsp;coercion</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Variable G : Graph.</CODE><BR>
+<TT><I>G&nbsp;is&nbsp;assumed</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Variable Arrows : G -&gt; G -&gt; Type.</CODE><BR>
+<TT><I>Arrows&nbsp;is&nbsp;assumed</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Check Arrows.</CODE><BR>
+<TT><I>Arrows</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(G)-&gt;(G)-&gt;Type</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Variable fg : G -&gt; G.</CODE><BR>
+<TT><I>fg&nbsp;is&nbsp;assumed</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Check fg.</CODE><BR>
+<TT><I>fg</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(G)-&gt;(G)</I></TT><BR>
+</DIV>
+
+
+
+<BR><BR>
+
+<LI>(<I>f&nbsp;a</I>) is ill-typed because <I>f</I>:<I>A</I> is not a function. The term
+      <I>f</I> is replaced by the term obtained by applying to <I>f</I> the path
+      coercion between <I>A</I> and <TT>FUNCLASS</TT> if it exists.<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Variable bij : Set -&gt; Set -&gt; Set.</CODE><BR>
+<TT><I>bij&nbsp;is&nbsp;assumed</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Variable ap : (A,B:Set)(bij A B) -&gt; A -&gt; B.</CODE><BR>
+<TT><I>ap&nbsp;is&nbsp;assumed</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Coercion ap : bij &gt;-&gt; FUNCLASS.</CODE><BR>
+<TT><I>ap&nbsp;is&nbsp;now&nbsp;a&nbsp;coercion</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Variable b : (bij nat nat).</CODE><BR>
+<TT><I>b&nbsp;is&nbsp;assumed</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Check (b O).</CODE><BR>
+<TT><I>(ap&nbsp;nat&nbsp;nat&nbsp;b&nbsp;O)</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;nat</I></TT><BR>
+</DIV>
+
+
+
+
+Let us see the resulting graph of this session.<BR><BR>
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Print Graph.</CODE><BR>
+<TT><I>[ap]&nbsp;:&nbsp;bij&nbsp;&gt;-&gt;&nbsp;FUNCLASS</I></TT><BR>
+<TT><I>[Node]&nbsp;:&nbsp;Graph&nbsp;&gt;-&gt;&nbsp;SORTCLASS</I></TT><BR>
+<TT><I>[h]&nbsp;:&nbsp;A&nbsp;&gt;-&gt;&nbsp;B</I></TT><BR>
+<TT><I>[IdD'D;&nbsp;g]&nbsp;:&nbsp;D'&nbsp;&gt;-&gt;&nbsp;E</I></TT><BR>
+<TT><I>[IdD'D]&nbsp;:&nbsp;D'&nbsp;&gt;-&gt;&nbsp;D</I></TT><BR>
+<TT><I>[f;&nbsp;g]&nbsp;:&nbsp;C&nbsp;&gt;-&gt;&nbsp;E</I></TT><BR>
+<TT><I>[g]&nbsp;:&nbsp;D&nbsp;&gt;-&gt;&nbsp;E</I></TT><BR>
+<TT><I>[f]&nbsp;:&nbsp;C&nbsp;&gt;-&gt;&nbsp;D</I></TT><BR>
+</DIV>
+
+
+
+
+</UL>
+<BR><BR>
+
+  <HR>
+
+<A HREF="node.3.3.5.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.3.7.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

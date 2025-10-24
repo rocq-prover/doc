@@ -1,0 +1,91 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+19.4&nbsp;Concrete usage in Coq</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.8.2.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.8.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.8.4.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+19.4&nbsp;Concrete usage in <FONT COLOR=purple>Coq</FONT></H2>
+
+
+Under a session launched by <TT>coqtop</TT> or <TT>coqtop -full</TT>,
+load the <TT>Ring</TT> files with the command :<BR><BR>
+<BLOCKQUOTE>
+<PRE>
+Require Ring.
+</PRE>
+
+
+</BLOCKQUOTE>
+<BR><BR>
+It does not work undex <TT>coqtop -opt</TT> because the compiled ML
+files used by the tactic are not linked in this binary image, and
+dynamic loading of native code is not possible in <FONT COLOR=purple>Objective Caml</FONT>.<BR><BR>
+Two structures are pre-loaded: the semi-ring of naturals and 
+the ring of integers. <BR><BR>
+Then, to normalize the terms <I>term<SUB><FONT SIZE=2>1</FONT></SUB></I>, ..., <I>term<SUB><FONT SIZE=2>n</FONT></SUB></I> in
+the current subgoal, use the command :<BR><BR>
+<BLOCKQUOTE>
+<TT>Ring</TT> <I>term<SUB><FONT SIZE=2>1</FONT></SUB></I> ...<I>term<SUB><FONT SIZE=2>n</FONT></SUB></I>.
+</BLOCKQUOTE>
+
+<A NAME="@default602"></A><A NAME="@tactic119"></A><BR><BR>
+Then the tactic guesses the type of given terms, the ring theory to
+use, the variables map, and replace each term with its normal form.
+The variables map is common to all terms<BR><BR>
+<BR>
+<B>Warning: </B><TT>Ring </TT><TT><I>term<SUB><FONT SIZE=2>1</FONT></SUB></I></TT><TT>; Ring </TT><TT><I>term<SUB><FONT SIZE=2>2</FONT></SUB></I></TT> is not equivalent to 
+<TT>Ring </TT><TT><I>term<SUB><FONT SIZE=2>1</FONT></SUB></I></TT><TT> </TT><TT><I>term<SUB><FONT SIZE=2>2</FONT></SUB></I></TT>. The latter case has to be preferred
+because the normal is unique only <EM>for a given variables map</EM>.
+In the first case, it is possible for a common subterm <I>t</I> of <I>term<SUB><FONT SIZE=2>1</FONT></SUB></I>
+and <I>term<SUB><FONT SIZE=2>2</FONT></SUB></I> to have the variable number 1 in  <I>term<SUB><FONT SIZE=2>1</FONT></SUB></I> and 3 in
+<I>term<SUB><FONT SIZE=2>2</FONT></SUB></I>, and then the normalization has no utility.<BR><BR>
+<BR>
+<B>Variants: </B><OL>
+<LI>
+<TT>Ring.</TT><BR>
+That works if the current goal is an equality between two
+  polynomials. It will normalize both sides of the
+  equality, solve it if the normal forms are equal and in other cases
+  try to simplify the equality using <TT>refl_equal</TT>
+  to reduce <I>x + y = x + z</I> to <I>y = z</I> and <I>x * z = x * y</I> to <I>y = z</I>.
+</OL>
+<BR><BR>
+<BR>
+<B>Error messages: </B><OL>
+<LI>
+<TT>All terms must have the same type</TT>
+
+<LI><TT>Don't know what to do with this goal</TT>
+
+<LI><TT>No Declared Ring Theory for </TT>term<TT>.</TT><BR>
+<TT>Use Add [Semi] Ring to declare it</TT>
+  That happens when all terms have the same type term, but there is
+  no declared ring theory for this set. See below
+</OL>
+<BR><BR>
+
+  <HR>
+
+<A HREF="node.3.8.2.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.8.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.8.4.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

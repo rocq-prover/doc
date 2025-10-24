@@ -1,0 +1,152 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+7.8&nbsp;Equality
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.1.2.6.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.8.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+7.8&nbsp;Equality
+</H2>
+
+
+
+These tactics use the equality <TT>eq:(A:Set)A-&gt;A-&gt;Prop</TT> defined in file <TT>Logic.v</TT> and the equality
+<TT>eqT:(A:Type)A-&gt;A-&gt;Prop</TT> defined in file <TT>Logic_Type.v</TT> (see section <A HREF="node.0.2.0.html#Equality">3.1.1</A>). They
+are simply written <TT>t=u</TT> and <TT>t==u</TT>,
+respectively.  In the following, the notation <TT>t=u</TT> will represent either one of these two
+equalities.
+<H3>
+7.8.1&nbsp;<TT>Rewrite </TT>term</H3>
+<A NAME="@default423"></A><A NAME="@tactic47"></A>
+This tactic applies to any goal. The type of term
+must have the form<BR><BR>
+<TT>(x</TT><TT><I><SUB><FONT SIZE=2>1</FONT></SUB></I></TT><TT>:A</TT><TT><I><SUB><FONT SIZE=2>1</FONT></SUB></I></TT><TT>) ...(x</TT><TT><I><SUB><FONT SIZE=2>n</FONT></SUB></I></TT><TT>:A</TT><TT><I><SUB><FONT SIZE=2>n</FONT></SUB></I></TT><TT>)</TT>term<I><SUB><FONT SIZE=2>1</FONT></SUB></I><TT>=</TT>term<I><SUB><FONT SIZE=2>2</FONT></SUB></I>. <BR><BR>
+Then <TT>Rewrite </TT>term replaces every occurrence of 
+term<I><SUB><FONT SIZE=2>1</FONT></SUB></I> by term<I><SUB><FONT SIZE=2>2</FONT></SUB></I> in the goal. Some of the variables x<I><SUB><FONT SIZE=2>1</FONT></SUB></I> are
+solved by unification, and some of the types <TT>A</TT><I><SUB><FONT SIZE=2>1</FONT></SUB></I>, ...,
+<TT>A</TT><I><SUB><FONT SIZE=2>n</FONT></SUB></I> become new subgoals.<BR><BR>
+<BR>
+<B>Remark: </B>In case the type of  
+term<I><SUB><FONT SIZE=2>1</FONT></SUB></I> contains occurrences of variables bound in the
+type of term, the tactic tries first to find a subterm of the goal
+which matches this term in order to find a closed instance term<I>'<SUB><FONT SIZE=2>1</FONT></SUB></I>
+of term<I><SUB><FONT SIZE=2>1</FONT></SUB></I>, and then all instances of term<I>'<SUB><FONT SIZE=2>1</FONT></SUB></I> will be replaced.<BR><BR>
+<BR>
+<B>Error messages: </B><OL>
+<LI>
+<TT>No equality here</TT>
+
+<LI><TT>Failed to progress</TT><BR>
+This happens if term<I><SUB><FONT SIZE=2>1</FONT></SUB></I> does not occur in the goal.
+</OL>
+<BR><BR>
+<BR>
+<B>Variants: </B><OL>
+<LI>
+<TT>Rewrite -&gt; </TT>term<A NAME="@default424"></A><A NAME="@tactic48"></A><BR>
+Is equivalent to <TT>Rewrite </TT>term<BR><BR>
+
+<LI><TT>Rewrite &lt;- </TT>term<A NAME="@default425"></A><A NAME="@tactic49"></A><BR>
+Uses the equality term<I><SUB><FONT SIZE=2>1</FONT></SUB></I><TT>=</TT>term<I><SUB><FONT SIZE=2>2</FONT></SUB></I> from right to left<BR><BR>
+
+<LI><TT>Rewrite </TT>term<TT> in </TT>ident
+  <A NAME="@default426"></A><A NAME="@tactic50"></A><BR>
+Analogous to  <TT>Rewrite </TT>term but rewriting is done in the
+  hypothesis named ident.<BR><BR>
+
+<LI><TT>Rewrite -&gt; </TT>term<TT> in </TT>ident
+  <A NAME="@default427"></A><A NAME="@tactic51"></A><BR>
+Behaves as <TT>Rewrite </TT>term<TT> in </TT>ident.
+ 
+
+<LI><TT>Rewrite &lt;- </TT>term<TT> in </TT>ident<BR>
+<A NAME="@default428"></A><A NAME="@tactic52"></A>
+  Uses the equality term<I><SUB><FONT SIZE=2>1</FONT></SUB></I><TT>=</TT>term<I><SUB><FONT SIZE=2>2</FONT></SUB></I> from right to left to
+  rewrite in the hypothesis named ident.
+</OL>
+
+<H3>
+7.8.2&nbsp;<TT>CutRewrite -&gt; </TT>term<TT><I><SUB><FONT SIZE=2>1</FONT></SUB></I></TT><TT> = </TT>term<TT><I><SUB><FONT SIZE=2>2</FONT></SUB></I></TT><TT>
+</TT></H3>
+
+<A NAME="CutRewrite"></A>
+<A NAME="@default429"></A><A NAME="@tactic53"></A>
+This tactic 
+<H3>
+7.8.3&nbsp;<TT>Replace </TT>term<TT><I><SUB><FONT SIZE=2>1</FONT></SUB></I></TT><TT> with </TT>term<TT><I><SUB><FONT SIZE=2>2</FONT></SUB></I></TT><TT>
+</TT></H3>
+
+<A NAME="@default430"></A><A NAME="@tactic54"></A>
+This tactic applies to any goal. It replaces all free occurrences of
+term<I><SUB><FONT SIZE=2>1</FONT></SUB></I> in the current goal with term<I><SUB><FONT SIZE=2>2</FONT></SUB></I> and generates the
+equality term<I><SUB><FONT SIZE=2>2</FONT></SUB></I><TT>=</TT>term<I><SUB><FONT SIZE=2>1</FONT></SUB></I> as a subgoal. It is equivalent
+to <TT>Cut </TT>term<TT><I><SUB><FONT SIZE=2>1</FONT></SUB></I></TT><TT>=</TT>term<TT><I><SUB><FONT SIZE=2>2</FONT></SUB></I></TT><TT>; Intro H</TT><TT>n</TT><TT>; Rewrite H</TT><TT>n</TT><TT>; 
+  Clear H</TT><TT>n</TT>.<BR><BR>
+<BR>
+<B>Variants: </B><OL>
+<LI>
+  
+<TT>Replace </TT>term<TT><I><SUB><FONT SIZE=2>1</FONT></SUB></I></TT><TT> with </TT>term<TT><I><SUB><FONT SIZE=2>2</FONT></SUB></I></TT><TT> in </TT>ident
+  This replaces term<I><SUB><FONT SIZE=2>1</FONT></SUB></I> with term<I><SUB><FONT SIZE=2>2</FONT></SUB></I> in the hypothesis named
+  ident, and generates the subgoal term<I><SUB><FONT SIZE=2>2</FONT></SUB></I><TT>=</TT>term<I><SUB><FONT SIZE=2>1</FONT></SUB></I>. 
+  <BR>
+<B>Error messages: </B><OL>
+<LI>
+    
+  <TT>No such hypothesis</TT>
+  </OL>
+</OL>
+
+<H3>
+7.8.4&nbsp;<TT>Reflexivity
+</TT></H3>
+<A NAME="@default431"></A><A NAME="@tactic55"></A>
+This tactic applies to a goal which has the form <TT>t=u</TT>. It checks
+that <TT>t</TT> and <TT>u</TT> are convertible and then solves the goal.
+It is equivalent to <TT>Apply refl_equal</TT> (or <TT>Apply
+  refl_equalT</TT> for an equality in the <FONT COLOR=purple>Type</FONT>universe).<BR><BR>
+<BR>
+<B>Error messages: </B><OL>
+<LI>
+<TT>Not a predefined equality</TT>
+
+<LI><TT>Impossible to unify ...With ..</TT>
+</OL>
+
+<H3>
+7.8.5&nbsp;<TT>Symmetry
+</TT></H3>
+<A NAME="@default432"></A><A NAME="@tactic56"></A>
+This tactic applies to a goal which have form <TT>t=u</TT>
+(resp. <TT>t==u</TT>) and changes it into <TT>u=t</TT> (resp. <TT>u==t</TT>).
+<H3>
+7.8.6&nbsp;<TT>Transitivity </TT>term</H3>
+<A NAME="@default433"></A><A NAME="@tactic57"></A>
+This tactic applies to a goal which have form <TT>t=u</TT>
+and transforms it into the two subgoals 
+<TT>t=</TT>term and term<TT>=u</TT>.<BR><BR>
+<HR>
+
+<A HREF="node.1.2.6.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.8.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

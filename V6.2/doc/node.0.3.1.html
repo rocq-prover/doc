@@ -1,0 +1,468 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+4.2&nbsp;Typed terms
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.0.3.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.0.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.3.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+4.2&nbsp;Typed terms
+</H2>
+
+
+<A NAME="Typed-terms"></A>
+As objects of type theory, terms are subjected to <EM>type
+  discipline</EM>. The well typing of a term depends on a set of
+declarations of variables we call a <EM>context</EM>. A context <I><FONT FACE=symbol>G</FONT></I>
+is written [<I>x<SUB><FONT SIZE=2>1</FONT></SUB></I>:<I>T<SUB><FONT SIZE=2>1</FONT></SUB></I>;<I>..</I>;<I> x<SUB><FONT SIZE=2>n</FONT></SUB></I>:<I>T<SUB><FONT SIZE=2>n</FONT></SUB></I>] where the <I>x<SUB><FONT SIZE=2>i</FONT></SUB></I>'s are distinct
+variables and the <I>T<SUB><FONT SIZE=2>i</FONT></SUB></I>'s are terms. If <I><FONT FACE=symbol>G</FONT></I> contains some <I>x</I>:<I>T</I>,
+we write (<I>x</I>:<I>T</I>)<I><FONT FACE=symbol>Î</FONT><FONT FACE=symbol>G</FONT></I> and also <I>x <FONT FACE=symbol>Î</FONT><FONT FACE=symbol>G</FONT></I>. Contexts must be
+themselves <EM>well formed</EM>.  The notation <I><FONT FACE=symbol>G</FONT></I>::(<I>y</I>:<I>T</I>) denotes
+the context [<I>x<SUB><FONT SIZE=2>1</FONT></SUB></I>:<I>T<SUB><FONT SIZE=2>1</FONT></SUB></I>;<I>..</I>;<I>x<SUB><FONT SIZE=2>n</FONT></SUB></I>:<I>T<SUB><FONT SIZE=2>n</FONT></SUB></I>;<I>y</I>:<I>T</I>]. The notation [] denotes the
+empty context.
+<A NAME="@default231"></A><BR><BR>
+We define the inclusion of two contexts <I><FONT FACE=symbol>G</FONT></I> and <I><FONT FACE=symbol>D</FONT></I> (written
+as <I><FONT FACE=symbol>G</FONT> <FONT FACE=symbol>Ì</FONT> <FONT FACE=symbol>D</FONT></I>) as the property, for all variable <I>x</I> and
+type <I>T</I>, if (<I>x</I>:<I>T</I>)<I> <FONT FACE=symbol>Î</FONT> <FONT FACE=symbol>G</FONT></I> then (<I>x</I>:<I>T</I>)<I><FONT FACE=symbol>Î</FONT> <FONT FACE=symbol>D</FONT></I>.  We write
+|<I><FONT FACE=symbol>D</FONT></I>| for the length of the context <I><FONT FACE=symbol>D</FONT></I> which is <I>n</I> if
+<I><FONT FACE=symbol>D</FONT></I> is [<I>x<SUB><FONT SIZE=2>1</FONT></SUB></I>:<I>T<SUB><FONT SIZE=2>1</FONT></SUB></I>;<I>..</I>;<I> x<SUB><FONT SIZE=2>n</FONT></SUB></I>:<I>T<SUB><FONT SIZE=2>n</FONT></SUB></I>].<BR><BR>
+A variable <I>x</I> is said to be free in <I><FONT FACE=symbol>G</FONT></I> if <I><FONT FACE=symbol>G</FONT></I> contains a
+declaration <I>y</I>:<I>T</I> such that <I>x</I> is free in <I>T</I>.
+<H5>Environment.
+</H5>
+<A NAME="@default232"></A>Because we are manipulating constants, we also need to consider an
+environment <I>E</I>. We shall give afterwards the rules for introducing
+new objects in the environment. For the typing relation of terms, it
+is enough to introduce two notions. One which says if a name is
+defined in the environment we shall write <I>c <FONT FACE=symbol>Î</FONT> E</I> and the other one
+which gives the type of this constant in <I>E</I>. We shall write (<I>c </I>:<I> T</I>)<I>
+<FONT FACE=symbol>Î</FONT> E</I>.<BR><BR>
+In the following, we assume <I>E</I> is a valid environment.  We define
+simultaneously two judgments.  The first one <I>E</I>[<I><FONT FACE=symbol>G</FONT></I>]<I> </I> |-<I> t </I>:<I> T</I> means the
+term <I>t</I> is well-typed and has type <I>T</I> in the environment <I>E</I> and
+context <I><FONT FACE=symbol>G</FONT></I>.  The second judgment <I><FONT COLOR=red> WF</FONT></I>(<I>E</I>)[<I><FONT FACE=symbol>G</FONT></I>] means that the
+environment <I>E</I> is well-formed and the context <I><FONT FACE=symbol>G</FONT></I> is a valid
+context in this environment.  It also means a third property which
+makes sure that any constant in <I>E</I> was defined in an environment
+which is included in <I><FONT FACE=symbol>G</FONT></I>
+(This requirement could be relaxed if we instead introduced
+  an explicit mechanism for instantiating constants. At the external
+  level, the Coq engine works accordingly to this view that all the
+  definitions in the environment were built in a sub-context of the
+  current context.).<BR><BR>
+A term <I>t</I> is well typed in an environment <I>E</I> iff there exists a
+context <I><FONT FACE=symbol>G</FONT></I> and a term <I>T</I> such that the judgment <I>E</I>[<I><FONT FACE=symbol>G</FONT></I>]<I> </I> |-<I> t </I>:<I> T</I> can
+be derived from the following rules.
+<UL>
+<LI><A NAME="Typing-rules"></A><A NAME="@default233"></A>W-E <DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><I><FONT COLOR=red> WF</FONT></I></TD>
+<TD nowrap>([])[[]]</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+
+
+<LI>W-<I>s</I>
+<DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD ALIGN=center><I>&nbsp;</I></TD>
+</TR>
+
+<TR><TD ALIGN=center><HR NOSHADE SIZE=2></TD>
+</TR>
+
+<TR><TD ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><I><FONT COLOR=red> WF</FONT></I></TD>
+<TD nowrap>(<I>E</I>)[<I><FONT FACE=symbol>G</FONT></I>::(<I>x</I>:<I>T</I>)]</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+
+
+<LI>Ax <A NAME="@default234"></A><DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD ALIGN=center><I>&nbsp;</I></TD>
+</TR>
+
+<TR><TD ALIGN=center><HR NOSHADE SIZE=2></TD>
+</TR>
+
+<TR><TD ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><I>E</I>[<I><FONT FACE=symbol>G</FONT></I>]<I> </I></TD>
+<TD nowrap> |-</TD>
+<TD nowrap><FONT COLOR=purple>Prop</FONT></TD>
+<TD nowrap><I> </I>:<I> </I></TD>
+<TD nowrap><FONT COLOR=purple>Type</FONT></TD>
+<TD nowrap>(<I>p</I>)</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+<TD nowrap><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</I></TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD ALIGN=center><I>&nbsp;</I></TD>
+</TR>
+
+<TR><TD ALIGN=center><HR NOSHADE SIZE=2></TD>
+</TR>
+
+<TR><TD ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><I>E</I>[<I><FONT FACE=symbol>G</FONT></I>]<I> </I></TD>
+<TD nowrap> |-</TD>
+<TD nowrap><FONT COLOR=purple>Set</FONT></TD>
+<TD nowrap><I> </I>:<I> </I></TD>
+<TD nowrap><FONT COLOR=purple>Type</FONT></TD>
+<TD nowrap>(<I>q</I>)</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<BR>
+<DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD ALIGN=center><I>&nbsp;</I></TD>
+</TR>
+
+<TR><TD ALIGN=center><HR NOSHADE SIZE=2></TD>
+</TR>
+
+<TR><TD ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><I>E</I>[<I><FONT FACE=symbol>G</FONT></I>]<I> </I></TD>
+<TD nowrap> |-</TD>
+<TD nowrap><FONT COLOR=purple>Type</FONT></TD>
+<TD nowrap>(<I>i</I>)<I> </I>:<I> </I></TD>
+<TD nowrap><FONT COLOR=purple>Type</FONT></TD>
+<TD nowrap>(<I>j</I>)</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+
+
+<LI>Var<A NAME="@default235"></A><DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD ALIGN=center><I>&nbsp;</I></TD>
+</TR>
+
+<TR><TD ALIGN=center><HR NOSHADE SIZE=2></TD>
+</TR>
+
+<TR><TD ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><I>E</I>[<I><FONT FACE=symbol>G</FONT></I>]<I> </I></TD>
+<TD nowrap> |-</TD>
+<TD nowrap><I> x </I>:<I> T</I></TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+
+
+<LI>Const  <A NAME="@default236"></A><DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD ALIGN=center><I>&nbsp;</I></TD>
+</TR>
+
+<TR><TD ALIGN=center><HR NOSHADE SIZE=2></TD>
+</TR>
+
+<TR><TD ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><I>E</I>[<I><FONT FACE=symbol>G</FONT></I>]<I> </I></TD>
+<TD nowrap> |-</TD>
+<TD nowrap><I> c </I>:<I> T</I></TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+
+
+<LI>Prod  <A NAME="@default237"></A><DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD ALIGN=center><I>&nbsp;</I></TD>
+</TR>
+
+<TR><TD ALIGN=center><HR NOSHADE SIZE=2></TD>
+</TR>
+
+<TR><TD ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><I>E</I>[<I><FONT FACE=symbol>G</FONT></I>]<I> </I></TD>
+<TD nowrap> |-</TD>
+<TD nowrap><I> </I>(<I>x</I>:<I>T</I>)<I>U </I>:<I> s<SUB><FONT SIZE=2>2</FONT></SUB></I></TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<BR>
+<DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD ALIGN=center><I>&nbsp;</I></TD>
+</TR>
+
+<TR><TD ALIGN=center><HR NOSHADE SIZE=2></TD>
+</TR>
+
+<TR><TD ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><I>E</I>[<I><FONT FACE=symbol>G</FONT></I>]<I> </I></TD>
+<TD nowrap> |-</TD>
+<TD nowrap><I> </I>(<I>x</I>:<I>T</I>)<I>U </I>:<I> </I></TD>
+<TD nowrap><FONT COLOR=purple>Type</FONT></TD>
+<TD nowrap>(<I>k</I>)</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+
+
+<LI>Lam<A NAME="@default238"></A><DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD ALIGN=center><I>&nbsp;</I></TD>
+</TR>
+
+<TR><TD ALIGN=center><HR NOSHADE SIZE=2></TD>
+</TR>
+
+<TR><TD ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><I>E</I>[<I><FONT FACE=symbol>G</FONT></I>]<I> </I></TD>
+<TD nowrap> |-</TD>
+<TD nowrap><I> </I>[<I>x</I>:<I>T</I>]<I>t </I>:<I> </I>(<I>x</I>:<I>T</I>)<I>U</I></TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+
+
+<LI>App<A NAME="@default239"></A><DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD ALIGN=center><I>&nbsp;</I></TD>
+</TR>
+
+<TR><TD ALIGN=center><HR NOSHADE SIZE=2></TD>
+</TR>
+
+<TR><TD ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><I>E</I>[<I><FONT FACE=symbol>G</FONT></I>]<I> </I></TD>
+<TD nowrap> |-</TD>
+<TD nowrap><I> </I>(<I>t u</I>)<I> </I>:<I> T</I>{<I>x/u</I>}</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+
+</UL>
+<BR><BR>
+<HR>
+
+<A HREF="node.0.3.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.0.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.3.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

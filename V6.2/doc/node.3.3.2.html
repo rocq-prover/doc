@@ -1,0 +1,107 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+14.3&nbsp;Coercions
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.3.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.3.3.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+14.3&nbsp;Coercions
+</H2>
+
+
+
+<A NAME="@default556"></A><A NAME="@default557"></A>A name <I>f</I> can be declared as a coercion between a source user-class
+<I>C</I> with <I>n</I> parameters and a target class <I>D</I> if one of these
+conditions holds:<BR><BR>
+<UL>
+<LI>
+<I>D</I> is a user-class, then the type of <I>f</I> must have the form
+      (<I>x<SUB><FONT SIZE=2>1</FONT></SUB></I>:<I>A<SUB><FONT SIZE=2>1</FONT></SUB></I>)<I>..</I>(<I>x<SUB><FONT SIZE=2>n</FONT></SUB></I>:<I>A<SUB><FONT SIZE=2>n</FONT></SUB></I>)(<I>y</I>:(<I>C&nbsp;x<SUB><FONT SIZE=2>1</FONT></SUB>..x<SUB><FONT SIZE=2>n</FONT></SUB></I>))<I> </I>(<I>D&nbsp;u<SUB><FONT SIZE=2>1</FONT></SUB>..u<SUB><FONT SIZE=2>m</FONT></SUB></I>) where <I>m</I>
+      is the number of parameters of <I>D</I>.
+
+<LI><I>D</I> is <TT>FUNCLASS</TT>, then the type of <I>f</I> must have the form
+      (<I>x<SUB><FONT SIZE=2>1</FONT></SUB></I>:<I>A<SUB><FONT SIZE=2>1</FONT></SUB></I>)<I>..</I>(<I>x<SUB><FONT SIZE=2>n</FONT></SUB></I>:<I>A<SUB><FONT SIZE=2>n</FONT></SUB></I>)(<I>y</I>:(<I>C&nbsp;x<SUB><FONT SIZE=2>1</FONT></SUB>..x<SUB><FONT SIZE=2>n</FONT></SUB></I>))(<I>x</I>:<I>A</I>)<I>B</I>. 
+
+<LI><I>D</I> is <TT>SORTCLASS</TT>, then the type of <I>f</I> must have the form
+      (<I>x<SUB><FONT SIZE=2>1</FONT></SUB></I>:<I>A<SUB><FONT SIZE=2>1</FONT></SUB></I>)<I>..</I>(<I>x<SUB><FONT SIZE=2>n</FONT></SUB></I>:<I>A<SUB><FONT SIZE=2>n</FONT></SUB></I>)(<I>y</I>:(<I>C&nbsp;x<SUB><FONT SIZE=2>1</FONT></SUB>..x<SUB><FONT SIZE=2>n</FONT></SUB></I>))<I>s</I>. 
+</UL>
+<BR><BR>
+We then write <I>f</I>:<I>C </I><TT>&gt;-&gt;</TT><I> D</I>. The restriction on the type
+of coercions is called <EM>the uniform inheritance condition</EM>.
+Remark that the abstract classes <TT>FUNCLASS</TT> and <TT>SORTCLASS</TT>
+cannot be source classes.<BR><BR>
+  To coerce an object <I>t</I>:(<I>C&nbsp;t<SUB><FONT SIZE=2>1</FONT></SUB>..t<SUB><FONT SIZE=2>n</FONT></SUB></I>) of <I>C</I> towards <I>D</I>, we have to
+apply the coercion <I>f</I> to it; the obtained term (<I>f&nbsp;t<SUB><FONT SIZE=2>1</FONT></SUB>..t<SUB><FONT SIZE=2>n</FONT></SUB>&nbsp;t</I>) is
+then an object of <I>D</I>.<BR><BR>
+
+  
+<H3>
+14.3.1&nbsp;Identity Coercions
+</H3>
+
+<A NAME="@default558"></A>Identity coercions are special cases of coercions used to go around
+the uniform inheritance condition.  Let <I>C</I> and <I>D</I> be two classes
+with respectively <I>n</I> and <I>m</I> parameters and
+<I>f</I>:(<I>x<SUB><FONT SIZE=2>1</FONT></SUB></I>:<I>T<SUB><FONT SIZE=2>1</FONT></SUB></I>)<I>..</I>(<I>x<SUB><FONT SIZE=2>k</FONT></SUB></I>:<I>T<SUB><FONT SIZE=2>k</FONT></SUB></I>)(<I>y</I>:(<I>C&nbsp;u<SUB><FONT SIZE=2>1</FONT></SUB>..u<SUB><FONT SIZE=2>n</FONT></SUB></I>))(<I>D&nbsp;v<SUB><FONT SIZE=2>1</FONT></SUB>..v<SUB><FONT SIZE=2>m</FONT></SUB></I>) a function which
+does not verify the uniform inheritance condition. To declare <I>f</I> as
+coercion, one has first to declare a subclass <I>C'</I> of <I>C</I>:<DIV ALIGN=center><I>C' </I>:<I>= </I>[<I>x<SUB><FONT SIZE=2>1</FONT></SUB></I>:<I>T<SUB><FONT SIZE=2>1</FONT></SUB></I>]<I>..</I>[<I>x<SUB><FONT SIZE=2>k</FONT></SUB></I>:<I>T<SUB><FONT SIZE=2>k</FONT></SUB></I>](<I>C&nbsp;u<SUB><FONT SIZE=2>1</FONT></SUB>..u<SUB><FONT SIZE=2>n</FONT></SUB></I>)</DIV>
+
+<BR><BR>
+We then define an <EM>identity coercion</EM> between <I>C'</I> and <I>C</I>:
+<DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=right><I>Id_C'_C</I></TD>
+<TD nowrap>:=</TD>
+<TD nowrap><I>&nbsp;</I></TD>
+<TD NOWRAP ALIGN=left>[<I>x<SUB><FONT SIZE=2>1</FONT></SUB></I>:<I>T<SUB><FONT SIZE=2>1</FONT></SUB></I>]<I>..</I>[<I>x<SUB><FONT SIZE=2>k</FONT></SUB></I>:<I>T<SUB><FONT SIZE=2>k</FONT></SUB></I>][<I>y</I>:(<I>C'&nbsp;x<SUB><FONT SIZE=2>1</FONT></SUB>..x<SUB><FONT SIZE=2>k</FONT></SUB></I>)]</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=right><I>&nbsp;</I></TD>
+<TD nowrap><I>&nbsp;</I></TD>
+<TD NOWRAP ALIGN=left>(<I>y</I>::(<I>C&nbsp;u<SUB><FONT SIZE=2>1</FONT></SUB>..u<SUB><FONT SIZE=2>n</FONT></SUB></I>))</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<BR><BR>
+We can now declare <I>f</I> as coercion from <I>C'</I> to <I>D</I>, since we can
+``cast'' its type as
+(<I>x<SUB><FONT SIZE=2>1</FONT></SUB></I>:<I>T<SUB><FONT SIZE=2>1</FONT></SUB></I>)<I>..</I>(<I>x<SUB><FONT SIZE=2>k</FONT></SUB></I>:<I>T<SUB><FONT SIZE=2>k</FONT></SUB></I>)(<I>y</I>:(<I>C'&nbsp;x<SUB><FONT SIZE=2>1</FONT></SUB>..x<SUB><FONT SIZE=2>k</FONT></SUB></I>))(<I>D&nbsp;v<SUB><FONT SIZE=2>1</FONT></SUB>..v<SUB><FONT SIZE=2>m</FONT></SUB></I>).<BR>
+The identity
+coercions have a special status: to coerce an object <I>t</I>:(<I>C'&nbsp;t<SUB><FONT SIZE=2>1</FONT></SUB>..t<SUB><FONT SIZE=2>k</FONT></SUB></I>)
+of <I>C'</I> towards <I>C</I>, we have not to insert explicitly <I>Id_C'_C</I>
+since (<I>Id_C'_C&nbsp;t<SUB><FONT SIZE=2>1</FONT></SUB>..t<SUB><FONT SIZE=2>k</FONT></SUB>&nbsp;t</I>) is convertible with <I>t</I>.  However we
+``rewrite'' the type of <I>t</I> to become an object of <I>C</I>; in this case,
+it becomes (<I>C&nbsp;u<SUB><FONT SIZE=2>1</FONT></SUB><SUP><FONT SIZE=2>*</FONT></SUP>..u<SUB><FONT SIZE=2>k</FONT></SUB><SUP><FONT SIZE=2>*</FONT></SUP></I>) where each <I>u<SUB><FONT SIZE=2>i</FONT></SUB><SUP><FONT SIZE=2>*</FONT></SUP></I> is the result of the
+substitution in <I>u<SUB><FONT SIZE=2>i</FONT></SUB></I> of the variables <I>x<SUB><FONT SIZE=2>j</FONT></SUB></I> by <I>t<SUB><FONT SIZE=2>j</FONT></SUB></I>.<BR><BR>
+
+  <HR>
+
+<A HREF="node.3.3.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.3.3.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

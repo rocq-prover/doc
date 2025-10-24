@@ -1,0 +1,173 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+14.5&nbsp;Commands
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.3.3.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.3.5.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+14.5&nbsp;Commands
+</H2>
+
+
+
+  
+<H3>
+14.5.1&nbsp;<TT>Class </TT>ident<TT>.
+</TT></H3>
+<A NAME="@default560"></A><A NAME="@command142"></A>
+Declares the name ident as a new class.<BR><BR>
+<BR>
+<B>Error messages: </B><OL>
+<LI>
+ident<TT> not declared</TT>
+
+<LI>ident<TT> is already a class</TT>
+
+<LI><TT>Type of </TT>ident<TT> does not end with a sort</TT>
+</OL>
+<BR><BR>
+
+  
+<H3>
+14.5.2&nbsp;<TT>Class Local </TT>ident<TT>.
+</TT></H3>
+ 
+Declares the name ident as a new local class to the current section.<BR><BR>
+
+  
+<H3>
+14.5.3&nbsp;<TT>Coercion </TT>ident<TT> : </TT>ident<TT><I><SUB><FONT SIZE=2>1</FONT></SUB></I></TT><TT> &gt;-&gt; </TT>ident<TT><I><SUB><FONT SIZE=2>2</FONT></SUB></I></TT><TT>.
+</TT></H3>
+
+<A NAME="@default561"></A><A NAME="@command143"></A>Declares the name ident as a coercion between ident<I><SUB><FONT SIZE=2>1</FONT></SUB></I> and
+ident<I><SUB><FONT SIZE=2>2</FONT></SUB></I>. The classes ident<I><SUB><FONT SIZE=2>1</FONT></SUB></I> and ident<I><SUB><FONT SIZE=2>2</FONT></SUB></I> are first
+declared if necessary.
+   
+<BR>
+<B>Error messages: </B><OL>
+<LI>
+ident<TT> not declared</TT>
+
+<LI>ident<TT> is already a coercion</TT>
+
+<LI><TT>FUNCLASS cannot be a source class</TT>
+
+<LI><TT>SORTCLASS cannot be a source class</TT>
+
+<LI><TT>Does not correspond to a coercion</TT><BR>
+ident is not function.
+
+<LI><TT>We do not find the source class </TT>ident<TT><I><SUB><FONT SIZE=2>1</FONT></SUB></I></TT>
+
+<LI>ident<TT> does not respect the inheritance uniform condition</TT>
+
+<LI><TT>The target class does not correspond to </TT>ident<TT><I><SUB><FONT SIZE=2>2</FONT></SUB></I></TT>
+</OL>
+<BR><BR>
+  When the coercion ident is added to the inheritance graph, non
+valid path coercions are ignored; they are signaled by a warning.<BR>
+<B>Warning :</B>
+<OL>
+<LI>
+
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD>
+<TT>Ambiguous paths: </TT></TD>
+<TD>[<I>f<SUB><FONT SIZE=2>1</FONT></SUB><SUP><FONT SIZE=2>1</FONT></SUP></I>;<I>..</I>;<I>f<SUB><FONT SIZE=2>n<SUB><FONT SIZE=2>1</FONT></SUB></FONT></SUB><SUP><FONT SIZE=2>1</FONT></SUP></I>]<I> </I>:<I> C<SUB><FONT SIZE=2>1</FONT></SUB></I><TT>&gt;-&gt;</TT><I>D<SUB><FONT SIZE=2>1</FONT></SUB></I></TD>
+</TR>
+
+<TR><TD>&nbsp;</TD>
+<TD>...</TD>
+</TR>
+
+<TR><TD>&nbsp;</TD>
+<TD>[<I>f<SUB><FONT SIZE=2>1</FONT></SUB><SUP><FONT SIZE=2>m</FONT></SUP></I>;<I>..</I>;<I>f<SUB><FONT SIZE=2>n<SUB><FONT SIZE=2>m</FONT></SUB></FONT></SUB><SUP><FONT SIZE=2>m</FONT></SUP></I>]<I> </I>:<I> C<SUB><FONT SIZE=2>m</FONT></SUB></I><TT>&gt;-&gt;</TT><I>D<SUB><FONT SIZE=2>m</FONT></SUB></I>
+      </TD>
+</TR>
+</TABLE>
+
+</OL>
+<BR><BR>
+
+  
+<H3>
+14.5.4&nbsp;<TT>Coercion Local </TT>ident<TT>:</TT>ident<TT><I><SUB><FONT SIZE=2>1</FONT></SUB></I></TT><TT> &gt;-&gt;
+</TT>ident<TT><I><SUB><FONT SIZE=2>2</FONT></SUB></I></TT><TT>.
+</TT></H3>
+Declares the name ident as a local coercion to the current section.<BR><BR>
+
+  
+<H3>
+14.5.5&nbsp;<TT>Identity Coercion </TT>ident<TT>:</TT>ident<TT><I><SUB><FONT SIZE=2>1</FONT></SUB></I></TT><TT> &gt;-&gt; </TT>ident<TT><I><SUB><FONT SIZE=2>2</FONT></SUB></I></TT><TT>.
+</TT></H3>
+ We check that ident<I><SUB><FONT SIZE=2>1</FONT></SUB></I> is a constant with a value of the form
+[<I>x<SUB><FONT SIZE=2>1</FONT></SUB></I>:<I>T<SUB><FONT SIZE=2>1</FONT></SUB></I>]<I>..</I>[<I>x<SUB><FONT SIZE=2>n</FONT></SUB></I>:<I>T<SUB><FONT SIZE=2>n</FONT></SUB></I>](ident<I><SUB><FONT SIZE=2>2</FONT></SUB>&nbsp;t<SUB><FONT SIZE=2>1</FONT></SUB>..t<SUB><FONT SIZE=2>m</FONT></SUB></I>) where <I>m</I> is the
+number of parameters of ident<I><SUB><FONT SIZE=2>2</FONT></SUB></I>.  Then we define an identity
+function with the type
+(<I>x<SUB><FONT SIZE=2>1</FONT></SUB></I>:<I>T<SUB><FONT SIZE=2>1</FONT></SUB></I>)<I>..</I>(<I>x<SUB><FONT SIZE=2>n</FONT></SUB></I>:<I>T<SUB><FONT SIZE=2>n</FONT></SUB></I>)(<I>y</I>:(ident<I><SUB><FONT SIZE=2>1</FONT></SUB>&nbsp;x<SUB><FONT SIZE=2>1</FONT></SUB>..x<SUB><FONT SIZE=2>n</FONT></SUB></I>))<I>
+</I>(ident<I><SUB><FONT SIZE=2>2</FONT></SUB></I><I>&nbsp;t<SUB><FONT SIZE=2>1</FONT></SUB>..t<SUB><FONT SIZE=2>m</FONT></SUB></I>), and we declare it as an identity
+coercion between ident<I><SUB><FONT SIZE=2>1</FONT></SUB></I> and ident<I><SUB><FONT SIZE=2>2</FONT></SUB></I>.<BR><BR>
+<BR>
+<B>Error messages: </B><OL>
+<LI>
+<TT>Clash with previous constant </TT>ident
+
+<LI>ident<TT><I><SUB><FONT SIZE=2>1</FONT></SUB></I></TT><TT> must be a transparent constant</TT> 
+</OL>
+<BR><BR>
+
+  
+<H3>
+14.5.6&nbsp;<TT>Identity Coercion Local </TT>ident<TT>:</TT>ident<TT><I><SUB><FONT SIZE=2>1</FONT></SUB></I></TT><TT> &gt;-&gt; </TT>ident<TT><I><SUB><FONT SIZE=2>2</FONT></SUB></I></TT><TT>.
+</TT></H3>
+ Declares the name ident as a local identity coercion to the current section.<BR><BR>
+
+  
+<H3>
+14.5.7&nbsp;<TT>Print Classes.
+</TT></H3>
+ 
+<A NAME="@default562"></A><A NAME="@command144"></A>
+Print the list of declared classes in the current context.<BR><BR>
+
+  
+<H3>
+14.5.8&nbsp;<TT>Print Coercions.
+</TT></H3>
+
+<A NAME="@default563"></A><A NAME="@command145"></A>
+Print the list of declared coercions in the current context.<BR><BR>
+
+  
+<H3>
+14.5.9&nbsp;<TT>Print Graph.
+</TT></H3>
+ 
+<A NAME="@default564"></A><A NAME="@command146"></A>
+Print the list of valid path coercions in the current context.<BR><BR>
+
+  <HR>
+
+<A HREF="node.3.3.3.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.3.5.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

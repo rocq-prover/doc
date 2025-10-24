@@ -1,0 +1,105 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+5.7&nbsp;Syntax facilities
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.1.0.5.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.0.7.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+5.7&nbsp;Syntax facilities
+</H2>
+
+
+We present quickly in this section some syntactic facilities.
+We will only sketch them here and refer the
+interested reader to chapter <A HREF="node.2.0.html#Addoc-syntax">9</A> for more details and
+examples.
+<H3>
+5.7.1&nbsp;<TT>Implicit Arguments </TT>[<TT> On </TT>|<TT> Off </TT>]<TT>.
+</TT></H3>
+
+<A NAME="@default317"></A><A NAME="@command88"></A>
+<A NAME="@default318"></A><A NAME="@command89"></A>These commands sets and unsets the implicit argument mode. This mode
+forces not explicitly give some arguments (typically type arguments in
+polymorphic functions) which are deductible from the other arguments.<BR><BR>
+<BR>
+<B>See also: </B>section <A HREF="node.0.1.5.html#Auto-implicit">2.6.2</A>
+<H3>
+5.7.2&nbsp;<TT>Syntactic Definition </TT>ident<TT> := </TT>term<TT>.
+</TT></H3>
+
+<A NAME="@default319"></A><A NAME="@command90"></A>
+<A NAME="@default320"></A>
+This command defines ident as an
+abbreviation with implicit arguments. Implicit arguments are denoted
+in term by <TT>?</TT> and they will have to be synthesized by the
+system.<BR><BR>
+<BR>
+<B>Remark: </B>Since it may contain don't care variables <TT>?</TT>, the argument
+term cannot be typechecked at
+definition time. But each of its subsequent usages will be.<BR><BR>
+<BR>
+<B>See also: </B>section <A HREF="node.0.1.5.html#Syntactic-Definition">2.6.3</A>
+<H3>
+5.7.3&nbsp;<TT>Syntax </TT>ident<TT> </TT>syntax-rules<TT>.
+</TT></H3>
+
+<A NAME="@default321"></A><A NAME="@command91"></A><A NAME="@default322"></A>This command addresses the extensible
+pretty-printing mechanism of <FONT COLOR=purple>Coq</FONT>. It allows ident<I><SUB><FONT SIZE=2>2</FONT></SUB></I> to be 
+pretty-printed as specified in syntax-rules. Many examples
+of the <TT>Syntax</TT> command usage may be found in the <TT>PreludeSyntax</TT> file (see directory <TT>$COQLIB/theories/INIT</TT>).<BR><BR>
+<BR>
+<B>See also: </B>chapter <A HREF="node.2.0.html#Addoc-syntax">9</A>
+<H3>
+5.7.4&nbsp;<TT>Grammar </TT>ident<TT><I><SUB><FONT SIZE=2>1</FONT></SUB></I></TT><TT> </TT>ident<TT><I><SUB><FONT SIZE=2>2</FONT></SUB></I></TT><TT> := </TT>grammar-rule<TT>.
+</TT></H3>
+
+<A NAME="@default323"></A><A NAME="@command92"></A><A NAME="@default324"></A>This command allows to give explicitly new grammar rules for parsing
+the user's own notation.  It may be used instead of the <TT>Syntactic
+Definition</TT> pragma.  It can also be used by an advanced <FONT COLOR=purple>Coq</FONT>'s user
+who programs his own tactics.<BR><BR>
+<BR>
+<B>See also: </B>chapters <A HREF="node.2.0.html#Addoc-syntax">9</A>, 
+<A HREF="node.2.1.html#WritingTactics">10</A>
+<H3>
+5.7.5&nbsp;<TT>Infix </TT>num<TT> </TT>string<TT> </TT>ident.
+</H3>
+<A NAME="@default325"></A><A NAME="@command93"></A>This command declares a prefix operator ident as infix, with the
+syntax term string term. num is the precedence associated to
+the operator; it must lie between 1 and 10.  The infix operator string associates to the left. string must be a legal token. Both grammar
+and pretty-print rules are automatically generated for string.<BR><BR>
+<BR>
+<B>Variants: </B><OL>
+<LI>
+<TT>Infix </TT>assoc<TT> </TT>num<TT> </TT>string<TT> </TT>ident<TT>.</TT><BR>
+Declares ident as an infix operator with an alternate
+  associativity. assoc may be one of <TT>LEFTA</TT>, <TT>RIGHTA</TT> and <TT>NONA</TT>. The default is <TT>LEFTA</TT>. When an
+  associativity is given, the precedence level must lie between 6 and
+  9. 
+</OL>
+<BR><BR>
+
+<HR>
+
+<A HREF="node.1.0.5.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.0.7.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

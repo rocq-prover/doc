@@ -1,0 +1,1819 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+4.5&nbsp;Inductive Definitions
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.0.3.3.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.0.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.3.5.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+4.5&nbsp;Inductive Definitions
+</H2>
+
+
+<A NAME="Cic-inductive-definitions"></A>A (possibly mutual) inductive definition is specified by giving the
+names and the type of the inductive sets or families to be
+defined and the names and types of the constructors of the inductive
+predicates.  An inductive declaration in the environment can
+consequently be represented with two contexts (one for inductive
+definitions, one for constructors).<BR><BR>
+Stating the rules for inductive definitions in their general form
+needs quite tedious definitions. We shall try to give a concrete
+understanding of the rules by precising them on running examples.  We
+take as examples the type of natural numbers, the type of
+parameterized lists over a type <I>A</I>, the relation which state that
+a list has some given length and the mutual inductive definition of trees and
+forests. 
+<H3>
+4.5.1&nbsp;Representing an inductive definition
+</H3>
+
+
+<H4>Inductive definitions without parameters
+</H4>
+
+As for constants, inductive definitions can be defined in a non-empty
+context.<BR>
+We write <FONT COLOR=purple>Ind</FONT>(<I><FONT FACE=symbol>G</FONT></I>)(<I><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>I</FONT></SUB></I>:<I>=<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>C</FONT></SUB>&nbsp;</I>) an inductive
+definition valid in a context <I><FONT FACE=symbol>G</FONT></I>, a
+context of definitions <I><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>I</FONT></SUB></I> and a context of constructors
+<I><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>C</FONT></SUB></I>.
+
+<H5>Examples.
+</H5>
+
+The inductive declaration for the type of natural numbers will be:
+<DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><FONT COLOR=purple>Ind</FONT></TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>()(</TD>
+<TD nowrap><FONT COLOR=purple>nat</FONT></TD>
+<TD nowrap>:</TD>
+<TD nowrap><FONT COLOR=purple>Set</FONT></TD>
+<TD nowrap>:<I>=</I></TD>
+<TD nowrap><FONT COLOR=purple>O</FONT></TD>
+<TD nowrap>:</TD>
+<TD nowrap><FONT COLOR=purple>nat</FONT></TD>
+<TD nowrap>,</TD>
+<TD nowrap><FONT COLOR=purple>S</FONT></TD>
+<TD nowrap>:</TD>
+<TD nowrap><FONT COLOR=purple>nat</FONT></TD>
+<TD nowrap><I><FONT FACE=symbol>®</FONT></I></TD>
+<TD nowrap><FONT COLOR=purple>nat</FONT></TD>
+<TD nowrap><I>&nbsp;</I>)</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+In a context with a variable <I>A</I>:<FONT COLOR=purple>Set</FONT>, the lists of elements in <I>A</I> is
+represented by:
+<DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><FONT COLOR=purple>Ind</FONT></TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>(<I>A</I>:</TD>
+<TD nowrap><FONT COLOR=purple>Set</FONT></TD>
+<TD nowrap>)(</TD>
+<TD nowrap><FONT COLOR=purple>List</FONT></TD>
+<TD nowrap>:</TD>
+<TD nowrap><FONT COLOR=purple>Set</FONT></TD>
+<TD nowrap>:<I>=</I></TD>
+<TD nowrap><FONT COLOR=purple>nil</FONT></TD>
+<TD nowrap>:</TD>
+<TD nowrap><FONT COLOR=purple>List</FONT></TD>
+<TD nowrap>,</TD>
+<TD nowrap><FONT COLOR=purple>cons</FONT></TD>
+<TD nowrap><I> </I>:<I> A <FONT FACE=symbol>®</FONT> </I></TD>
+<TD nowrap><FONT COLOR=purple>List</FONT></TD>
+<TD nowrap><I> <FONT FACE=symbol>®</FONT>  </I></TD>
+<TD nowrap><FONT COLOR=purple>List</FONT></TD>
+<TD nowrap><I>&nbsp;</I>)</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+Assuming 
+  <I><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>I</FONT></SUB></I> is [<I>I<SUB><FONT SIZE=2>1</FONT></SUB></I>:<I>A<SUB><FONT SIZE=2>1</FONT></SUB></I>;<I>...</I>;<I>I<SUB><FONT SIZE=2>k</FONT></SUB></I>:<I>A<SUB><FONT SIZE=2>k</FONT></SUB></I>], and <I><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>C</FONT></SUB></I> is
+  [<I>c<SUB><FONT SIZE=2>1</FONT></SUB></I>:<I>C<SUB><FONT SIZE=2>1</FONT></SUB></I>;<I>...</I>;<I>c<SUB><FONT SIZE=2>n</FONT></SUB></I>:<I>C<SUB><FONT SIZE=2>n</FONT></SUB></I>], the general typing rules are:<BR><BR>
+<BR>
+<DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD ALIGN=center><I>&nbsp;</I></TD>
+</TR>
+
+<TR><TD ALIGN=center><HR NOSHADE SIZE=2></TD>
+</TR>
+
+<TR><TD ALIGN=center><I> </I>(<I>I<SUB><FONT SIZE=2>j</FONT></SUB></I>:<I>A<SUB><FONT SIZE=2>j</FONT></SUB></I>)<I> <FONT FACE=symbol>Î</FONT> E</I></TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD ALIGN=center><I>&nbsp;</I></TD>
+</TR>
+
+<TR><TD ALIGN=center><HR NOSHADE SIZE=2></TD>
+</TR>
+
+<TR><TD ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><I> </I>(<I>c<SUB><FONT SIZE=2>i</FONT></SUB></I>:<I>C<SUB><FONT SIZE=2>i</FONT></SUB></I>{<I>I<SUB><FONT SIZE=2>j</FONT></SUB>/I<SUB><FONT SIZE=2>j</FONT></SUB></I>}</TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD><I>&nbsp;</I></TD>
+</TR>
+
+<TR><TD><I><FONT SIZE=2>j=1... k</FONT></I></TD>
+</TR>
+</TABLE>
+</TD>
+<TD nowrap>)<I><FONT FACE=symbol>Î</FONT> E</I></TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+
+<H4>Inductive definitions with parameters
+</H4>
+We have to slightly complicate the representation above in order to handle
+the delicate problem of parameters. 
+Let us explain that on the example of <FONT COLOR=purple>List</FONT>. As they were defined
+above, the type <FONT COLOR=purple>List</FONT> can only be used in an environment where we
+have a variable <I>A</I>:<FONT COLOR=purple>Set</FONT>. Generally one want to consider lists of
+elements in different types. For constants this is easily done by abstracting
+the value over the parameter. In the case of inductive definitions we
+have to handle the abstraction over several objects.<BR><BR>
+One possible way to do that would be to define the type <FONT COLOR=purple>List</FONT> inductively as being an inductive family of type <FONT COLOR=purple>Set</FONT><I><FONT FACE=symbol>®</FONT></I><FONT COLOR=purple>Set</FONT>:
+<DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><FONT COLOR=purple>Ind</FONT></TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>()(</TD>
+<TD nowrap><FONT COLOR=purple>List</FONT></TD>
+<TD nowrap>:</TD>
+<TD nowrap><FONT COLOR=purple>Set</FONT></TD>
+<TD nowrap><I><FONT FACE=symbol>®</FONT></I></TD>
+<TD nowrap><FONT COLOR=purple>Set</FONT></TD>
+<TD nowrap>:<I>=</I></TD>
+<TD nowrap><FONT COLOR=purple>nil</FONT></TD>
+<TD nowrap>:(<I>A</I>:</TD>
+<TD nowrap><FONT COLOR=purple>Set</FONT></TD>
+<TD nowrap>)(</TD>
+<TD nowrap><FONT COLOR=purple>List</FONT></TD>
+<TD nowrap><I>&nbsp;A</I>),</TD>
+<TD nowrap><FONT COLOR=purple>cons</FONT></TD>
+<TD nowrap><I> </I>:<I> </I>(<I>A</I>:</TD>
+<TD nowrap><FONT COLOR=purple>Set</FONT></TD>
+<TD nowrap>)<I>A  <FONT FACE=symbol>®</FONT> </I>(</TD>
+<TD nowrap><FONT COLOR=purple>List</FONT></TD>
+<TD nowrap><I>&nbsp;A</I>)<I> <FONT FACE=symbol>®</FONT> </I>(</TD>
+<TD nowrap><FONT COLOR=purple>List</FONT></TD>
+<TD nowrap><I>&nbsp;A</I>)<I>&nbsp;</I>)</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+There are drawbacks to this point of view. The
+information which says that (<FONT COLOR=purple>List</FONT><I>&nbsp;</I><FONT COLOR=purple>nat</FONT>) is an inductively defined
+<FONT COLOR=purple>Set</FONT> has been lost.
+
+In the system, we keep track in the syntax of the context of
+parameters. The idea of these parameters is that they can be
+instantiated and still we have an inductive definition for which we
+know the specification.<BR><BR>
+Formally the representation of an inductive declaration
+will be 
+<FONT COLOR=purple>Ind</FONT>(<I><FONT FACE=symbol>G</FONT></I>)[<I><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>P</FONT></SUB></I>](<I><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>I</FONT></SUB></I>:<I>=<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>C</FONT></SUB>&nbsp;</I>) for an inductive
+definition valid in a context <I><FONT FACE=symbol>G</FONT></I> with parameters <I><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>P</FONT></SUB></I>, a
+context of definitions <I><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>I</FONT></SUB></I> and a context of constructors
+<I><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>C</FONT></SUB></I>.
+The occurrences of the variables of <I><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>P</FONT></SUB></I> in the contexts
+<I><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>I</FONT></SUB></I> and <I><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>C</FONT></SUB></I> are bound.<BR><BR>
+The definition <FONT COLOR=purple>Ind</FONT>(<I><FONT FACE=symbol>G</FONT></I>)[<I><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>P</FONT></SUB></I>](<I>&nbsp;<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>I</FONT></SUB></I>:<I>=<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>C</FONT></SUB>&nbsp;&nbsp;</I>) will be
+well-formed exactly when <FONT COLOR=purple>Ind</FONT>(<I><FONT FACE=symbol>G</FONT></I>,<I><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>P</FONT></SUB></I>)(<I>&nbsp;<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>I</FONT></SUB></I>:<I>=<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>C</FONT></SUB>&nbsp;&nbsp;</I>) is.
+If <I><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>P</FONT></SUB></I> is [<I>p<SUB><FONT SIZE=2>1</FONT></SUB></I>:<I>P<SUB><FONT SIZE=2>1</FONT></SUB></I>;<I>...</I>;<I>p<SUB><FONT SIZE=2>r</FONT></SUB></I>:<I>P<SUB><FONT SIZE=2>r</FONT></SUB></I>], an object in 
+<FONT COLOR=purple>Ind</FONT>(<I><FONT FACE=symbol>G</FONT></I>)[<I><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>P</FONT></SUB></I>](<I><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>I</FONT></SUB></I>:<I>=<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>C</FONT></SUB>&nbsp;</I>) applied to <I>q<SUB><FONT SIZE=2>1</FONT></SUB></I>,<I>...</I>,<I>q<SUB><FONT SIZE=2>r</FONT></SUB></I>
+will behave as the corresponding object of 
+<FONT COLOR=purple>Ind</FONT>(<I><FONT FACE=symbol>G</FONT></I>)(<I><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>I</FONT></SUB></I>{(<I>p<SUB><FONT SIZE=2>i</FONT></SUB>/q<SUB><FONT SIZE=2>i</FONT></SUB></I>)<I><SUB><FONT SIZE=2>i=1..r</FONT></SUB></I>}:<I>=<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>C</FONT></SUB></I>{(<I>p<SUB><FONT SIZE=2>i</FONT></SUB>/q<SUB><FONT SIZE=2>i</FONT></SUB></I>)<I><SUB><FONT SIZE=2>i=1..r</FONT></SUB></I>}<I>&nbsp;</I>).
+<H5>Examples
+</H5>
+
+The declaration for parameterized lists is:
+<DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><FONT COLOR=purple>Ind</FONT></TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>()[<I>A</I>:</TD>
+<TD nowrap><FONT COLOR=purple>Set</FONT></TD>
+<TD nowrap>](</TD>
+<TD nowrap><FONT COLOR=purple>List</FONT></TD>
+<TD nowrap>:</TD>
+<TD nowrap><FONT COLOR=purple>Set</FONT></TD>
+<TD nowrap>:<I>=</I></TD>
+<TD nowrap><FONT COLOR=purple>nil</FONT></TD>
+<TD nowrap>:</TD>
+<TD nowrap><FONT COLOR=purple>List</FONT></TD>
+<TD nowrap>,</TD>
+<TD nowrap><FONT COLOR=purple>cons</FONT></TD>
+<TD nowrap><I> </I>:<I> A <FONT FACE=symbol>®</FONT> </I></TD>
+<TD nowrap><FONT COLOR=purple>List</FONT></TD>
+<TD nowrap><I> <FONT FACE=symbol>®</FONT>  </I></TD>
+<TD nowrap><FONT COLOR=purple>List</FONT></TD>
+<TD nowrap><I>&nbsp;</I>)</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<BR><BR>
+The declaration for the length of lists is:
+<DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><FONT COLOR=purple>Ind</FONT></TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>()[<I>A</I>:</TD>
+<TD nowrap><FONT COLOR=purple>Set</FONT></TD>
+<TD nowrap>](</TD>
+<TD nowrap><FONT COLOR=purple>Length</FONT></TD>
+<TD nowrap>:(</TD>
+<TD nowrap><FONT COLOR=purple>List</FONT></TD>
+<TD nowrap><I>&nbsp;A</I>)<I><FONT FACE=symbol>®</FONT> </I></TD>
+<TD nowrap><FONT COLOR=purple>nat</FONT></TD>
+<TD nowrap><I><FONT FACE=symbol>®</FONT></I></TD>
+<TD nowrap><FONT COLOR=purple>Prop</FONT></TD>
+<TD nowrap>:<I>=</I></TD>
+<TD nowrap><FONT COLOR=purple>Lnil</FONT></TD>
+<TD nowrap>:(</TD>
+<TD nowrap><FONT COLOR=purple>Length</FONT></TD>
+<TD nowrap><I>&nbsp;</I>(</TD>
+<TD nowrap><FONT COLOR=purple>nil</FONT></TD>
+<TD nowrap><I>&nbsp;A</I>)<I>&nbsp;</I></TD>
+<TD nowrap><FONT COLOR=purple>O</FONT></TD>
+<TD nowrap>),<I><BR>
+</I></TD>
+<TD nowrap><FONT COLOR=purple>Lcons</FONT></TD>
+<TD nowrap><I> </I>:(<I>a</I>:<I>A</I>)(<I>l</I>:(</TD>
+<TD nowrap><FONT COLOR=purple>List</FONT></TD>
+<TD nowrap><I>&nbsp;A</I>))(<I>n</I>:</TD>
+<TD nowrap><FONT COLOR=purple>nat</FONT></TD>
+<TD nowrap>)(</TD>
+<TD nowrap><FONT COLOR=purple>Length</FONT></TD>
+<TD nowrap><I>&nbsp;l&nbsp;n</I>)<I><FONT FACE=symbol>®</FONT> </I>(</TD>
+<TD nowrap><FONT COLOR=purple>Length</FONT></TD>
+<TD nowrap><I>&nbsp;</I>(</TD>
+<TD nowrap><FONT COLOR=purple>cons</FONT></TD>
+<TD nowrap><I>&nbsp;A&nbsp;a&nbsp;l</I>)<I>&nbsp;</I>(</TD>
+<TD nowrap><FONT COLOR=purple>S</FONT></TD>
+<TD nowrap><I>&nbsp;n</I>))<I>&nbsp;</I>)</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<BR><BR>
+The declaration for a mutual inductive definition of forests and trees is:
+<DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><FONT COLOR=purple>Ind</FONT></TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>([])(</TD>
+<TD nowrap><FONT COLOR=purple>tree</FONT></TD>
+<TD nowrap>:</TD>
+<TD nowrap><FONT COLOR=purple>Set</FONT></TD>
+<TD nowrap>,</TD>
+<TD nowrap><FONT COLOR=purple>forest</FONT></TD>
+<TD nowrap>:</TD>
+<TD nowrap><FONT COLOR=purple>Set</FONT></TD>
+<TD nowrap>:<I>=</I></TD>
+<TD nowrap><FONT COLOR=purple>node</FONT></TD>
+<TD nowrap>:</TD>
+<TD nowrap><FONT COLOR=purple>forest</FONT></TD>
+<TD nowrap><I> <FONT FACE=symbol>®</FONT> </I></TD>
+<TD nowrap><FONT COLOR=purple>tree</FONT></TD>
+<TD nowrap>,<I>       </I></TD>
+<TD nowrap><FONT COLOR=purple>emptyf</FONT></TD>
+<TD nowrap>:</TD>
+<TD nowrap><FONT COLOR=purple>forest</FONT></TD>
+<TD nowrap>,</TD>
+<TD nowrap><FONT COLOR=purple>consf</FONT></TD>
+<TD nowrap>:</TD>
+<TD nowrap><FONT COLOR=purple>tree</FONT></TD>
+<TD nowrap><I> <FONT FACE=symbol>®</FONT> </I></TD>
+<TD nowrap><FONT COLOR=purple>forest</FONT></TD>
+<TD nowrap><I> <FONT FACE=symbol>®</FONT> </I></TD>
+<TD nowrap><FONT COLOR=purple>forest</FONT></TD>
+<TD nowrap><I>&nbsp;</I>)</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+
+These representations are the ones obtained as the result of the <FONT COLOR=purple>Coq</FONT> declaration:
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Inductive Set nat := O : nat | S : nat -&gt; nat.</CODE><BR>
+<BR>
+<CODE>Coq &lt; Inductive list [A : Set] : Set := </CODE><BR>
+<CODE>Coq &lt;      nil : (list A) | cons : A -&gt; (list A) -&gt; (list A).</CODE><BR>
+</DIV>
+
+
+
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Inductive Length [A:Set] : (list A) -&gt; nat -&gt; Prop :=</CODE><BR>
+<CODE>Coq &lt;     Lnil : (Length A (nil A) O)</CODE><BR>
+<CODE>Coq &lt;  | Lcons : (a:A)(l:(list A))(n:nat)</CODE><BR>
+<CODE>Coq &lt;            (Length A l n)-&gt;(Length A (cons A a l) (S n)).</CODE><BR>
+<BR>
+<CODE>Coq &lt; Mutual Inductive tree : Set := node : forest -&gt; tree</CODE><BR>
+<CODE>Coq &lt; with forest : Set := emptyf : forest | consf : tree -&gt; forest -&gt; forest.</CODE><BR>
+</DIV>
+
+
+
+The inductive declaration in <FONT COLOR=purple>Coq</FONT> is slightly different from the one
+we described theoretically. The difference is that in the type of
+constructors the inductive definition is explicitly applied to the
+parameters variables. The <FONT COLOR=purple>Coq</FONT> type-checker verifies that all
+parameters are applied in the correct manner in each recursive call.
+In particular, the following definition will not be accepted because 
+there is an occurrence of <FONT COLOR=purple>List</FONT> which is not applied to the parameter
+variable:
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Inductive list [A : Set] : Set := </CODE><BR>
+<CODE>Coq &lt;      nil : (list A) | cons : A -&gt; (list A-&gt;A) -&gt; (list A).</CODE><BR>
+<TT><I>Error&nbsp;during&nbsp;interpretation&nbsp;of&nbsp;command:</I></TT><BR>
+<TT><I>Inductive&nbsp;list&nbsp;[A&nbsp;:&nbsp;Set]&nbsp;:&nbsp;Set&nbsp;:=&nbsp;</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nil&nbsp;:&nbsp;(list&nbsp;A)&nbsp;|&nbsp;cons&nbsp;:&nbsp;A&nbsp;-&gt;&nbsp;(list&nbsp;A-&gt;A)&nbsp;-&gt;&nbsp;(list&nbsp;A).</I></TT><BR>
+<TT><I>Error:&nbsp;Bad&nbsp;application&nbsp;to&nbsp;parameters&nbsp;in&nbsp;(A:Set)A-&gt;(list&nbsp;A-&gt;A)-&gt;(list&nbsp;A)</I></TT><BR>
+</DIV>
+
+
+
+<H3>
+4.5.2&nbsp;Types of inductive objects
+</H3>
+
+We have to give the type of constants in an environment <I>E</I> which
+contains an inductive declaration.<BR><BR>
+<DL>
+<DT>
+Ind-Const<DD> Assuming <I><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>P</FONT></SUB></I> is [<I>p<SUB><FONT SIZE=2>1</FONT></SUB></I>:<I>P<SUB><FONT SIZE=2>1</FONT></SUB></I>;<I>...</I>;<I>p<SUB><FONT SIZE=2>r</FONT></SUB></I>:<I>P<SUB><FONT SIZE=2>r</FONT></SUB></I>],
+  <I><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>I</FONT></SUB></I> is [<I>I<SUB><FONT SIZE=2>1</FONT></SUB></I>:<I>A<SUB><FONT SIZE=2>1</FONT></SUB></I>;<I>...</I>;<I>I<SUB><FONT SIZE=2>k</FONT></SUB></I>:<I>A<SUB><FONT SIZE=2>k</FONT></SUB></I>], and <I><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>C</FONT></SUB></I> is
+  [<I>c<SUB><FONT SIZE=2>1</FONT></SUB></I>:<I>C<SUB><FONT SIZE=2>1</FONT></SUB></I>;<I>...</I>;<I>c<SUB><FONT SIZE=2>n</FONT></SUB></I>:<I>C<SUB><FONT SIZE=2>n</FONT></SUB></I>],
+   
+<DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD ALIGN=center><I>&nbsp;</I></TD>
+</TR>
+
+<TR><TD ALIGN=center><HR NOSHADE SIZE=2></TD>
+</TR>
+
+<TR><TD ALIGN=center><I> </I>(<I>I<SUB><FONT SIZE=2>j</FONT></SUB></I>:(<I>p<SUB><FONT SIZE=2>1</FONT></SUB></I>:<I>P<SUB><FONT SIZE=2>1</FONT></SUB></I>)<I>...</I>(<I>p<SUB><FONT SIZE=2>r</FONT></SUB></I>:<I>P<SUB><FONT SIZE=2>r</FONT></SUB></I>)<I>A<SUB><FONT SIZE=2>j</FONT></SUB></I>)<I> <FONT FACE=symbol>Î</FONT> E</I></TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD ALIGN=center><I>&nbsp;</I></TD>
+</TR>
+
+<TR><TD ALIGN=center><HR NOSHADE SIZE=2></TD>
+</TR>
+
+<TR><TD ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><I> </I>(<I>c<SUB><FONT SIZE=2>i</FONT></SUB></I>:(<I>p<SUB><FONT SIZE=2>1</FONT></SUB></I>:<I>P<SUB><FONT SIZE=2>1</FONT></SUB></I>)<I>...</I>(<I>p<SUB><FONT SIZE=2>r</FONT></SUB></I>:<I>P<SUB><FONT SIZE=2>r</FONT></SUB></I>)<I>C<SUB><FONT SIZE=2>i</FONT></SUB></I>{<I>I<SUB><FONT SIZE=2>j</FONT></SUB>/</I>(<I>I<SUB><FONT SIZE=2>j</FONT></SUB>&nbsp;p<SUB><FONT SIZE=2>1</FONT></SUB>...       p<SUB><FONT SIZE=2>r</FONT></SUB></I>)}</TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD><I>&nbsp;</I></TD>
+</TR>
+
+<TR><TD><I><FONT SIZE=2>j=1... k</FONT></I></TD>
+</TR>
+</TABLE>
+</TD>
+<TD nowrap>)<I><FONT FACE=symbol>Î</FONT> E</I></TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+
+</DL>
+
+<H5>Example.
+</H5>
+
+We have (<FONT COLOR=purple>List</FONT>:<FONT COLOR=purple>Set</FONT><I> <FONT FACE=symbol>®</FONT> </I><FONT COLOR=purple>Set</FONT>),<I> </I>(<FONT COLOR=purple>cons</FONT>:(<I>A</I>:<FONT COLOR=purple>Set</FONT>)<I>A<FONT FACE=symbol>®</FONT></I>(<FONT COLOR=purple>List</FONT><I>&nbsp;A</I>)<I><FONT FACE=symbol>®</FONT>
+</I>(<FONT COLOR=purple>List</FONT><I>&nbsp;A</I>)),<BR>
+(<FONT COLOR=purple>Length</FONT>:(<I>A</I>:<FONT COLOR=purple>Set</FONT>)(<FONT COLOR=purple>List</FONT><I>&nbsp;A</I>)<I><FONT FACE=symbol>®</FONT></I><FONT COLOR=purple>nat</FONT><I><FONT FACE=symbol>®</FONT></I><FONT COLOR=purple>Prop</FONT>), <FONT COLOR=purple>tree</FONT>:<FONT COLOR=purple>Set</FONT> and <FONT COLOR=purple>forest</FONT>:<FONT COLOR=purple>Set</FONT>.<BR><BR>
+From now on, we write <FONT COLOR=purple>List_A</FONT> instead of (<FONT COLOR=purple>List</FONT><I>&nbsp;A</I>) and <FONT COLOR=purple>Length_A</FONT>
+for (<FONT COLOR=purple>Length</FONT><I>&nbsp;A</I>).<BR><BR>
+
+
+
+<H3>
+4.5.3&nbsp;Well-formed inductive definitions
+</H3>
+
+We cannot accept any inductive declaration because some of them lead
+to inconsistent systems. We restrict ourselves to definitions which
+satisfy a syntactic criterion of positivity. Before giving the formal
+rules, we need a few definitions:
+<H5>Definitions
+</H5>
+<A NAME="@default252"></A><A NAME="Positivity"></A>A type <I>T</I> is an <EM>arity of sort </EM><EM><I>s</I></EM><A NAME="@default253"></A>if it is the sort <I>s</I> or a
+product (<I>x</I>:<I>T</I>)<I>U</I> with <I>U</I> an arity of sort <I>s</I>. (For instance <I>A<FONT FACE=symbol>®</FONT>
+</I><FONT COLOR=purple>Set</FONT> or (<I>A</I>:<FONT COLOR=purple>Prop</FONT>)<I>A<FONT FACE=symbol>®</FONT> </I><FONT COLOR=purple>Prop</FONT> are arities of sort respectively <FONT COLOR=purple>Set</FONT> and <FONT COLOR=purple>Prop</FONT>).<BR><BR>
+A <EM>type of constructor of </EM><EM><I>I</I></EM><A NAME="@default254"></A>is either a term (<I>I&nbsp;t<SUB><FONT SIZE=2>1</FONT></SUB>... &nbsp;t<SUB><FONT SIZE=2>n</FONT></SUB></I>) or
+(<I>x</I>:<I>T</I>)<I>C</I> with <I>C</I> a <EM>type of constructor of </EM><EM><I>I</I></EM>.  It will be said
+to <EM>satisfy the positivity condition</EM> with respect to a constant
+<I>X</I> if <I>X</I> does not occur in <I>t<SUB><FONT SIZE=2>i</FONT></SUB></I> and occurs only strictly positively in each
+domain of product <I>T</I>.<BR><BR>
+The constant <I>X</I> <EM>occurs strictly positively</EM> in (<I>X&nbsp;t<SUB><FONT SIZE=2>1</FONT></SUB> ... &nbsp;t<SUB><FONT SIZE=2>n</FONT></SUB></I>)
+if it does not occur in <I>t<SUB><FONT SIZE=2>i</FONT></SUB></I> and occurs strictly positively in
+(<I>x</I>:<I>T</I>)<I>U</I> if it does not occur in <I>T</I> and occurs strictly positively in
+<I>U</I>. 
+<H5>Example
+</H5>
+
+For instance <I>X</I> occurs strictly positively in <I>A<FONT FACE=symbol>®</FONT> X</I> but not in <I>X
+<FONT FACE=symbol>®</FONT> A</I> or (<I>X <FONT FACE=symbol>®</FONT> A</I>)<I><FONT FACE=symbol>®</FONT> A</I> or <I>X*A</I> or (<I><TT> list</TT></I><I>  X</I>) assuming the
+notion of product and lists were already defined. In the last two
+cases it is easy to define an equivalent (possibly mutual inductive)
+definition which enjoys the positivity condition.<BR>
+
+<H5>Correctness rules.
+</H5>
+
+We shall now describe the rules allowing the introduction of a new
+inductive definition.<BR><BR>
+<DL>
+<DT>
+W-Ind<DD> Let <I>E</I> be an environment and
+  <I><FONT FACE=symbol>G</FONT></I>,<I><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>P</FONT></SUB></I>,<I><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>I</FONT></SUB></I>,<I><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>C</FONT></SUB></I> are contexts such that
+  <I><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>I</FONT></SUB></I> is [<I>I<SUB><FONT SIZE=2>1</FONT></SUB></I>:<I>A<SUB><FONT SIZE=2>1</FONT></SUB></I>;<I>...</I>;<I>I<SUB><FONT SIZE=2>k</FONT></SUB></I>:<I>A<SUB><FONT SIZE=2>k</FONT></SUB></I>] and <I><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>C</FONT></SUB></I> is
+  [<I>c<SUB><FONT SIZE=2>1</FONT></SUB></I>:<I>C<SUB><FONT SIZE=2>1</FONT></SUB></I>;<I>...</I>;<I>c<SUB><FONT SIZE=2>n</FONT></SUB></I>:<I>C<SUB><FONT SIZE=2>n</FONT></SUB></I>].<BR>
+<DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD ALIGN=center><I>&nbsp;</I></TD>
+</TR>
+
+<TR><TD ALIGN=center><HR NOSHADE SIZE=2></TD>
+</TR>
+
+<TR><TD ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><I><FONT COLOR=red> WF</FONT></I></TD>
+<TD nowrap>(<I>E</I>;</TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><FONT COLOR=purple>Ind</FONT></TD>
+<TD nowrap>(<I><FONT FACE=symbol>G</FONT></I>)[<I><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>P</FONT></SUB></I>](<I><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>I</FONT></SUB></I>:<I>=<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>C</FONT></SUB>&nbsp;</I>)</TD>
+</TR>
+</TABLE>
+</TD>
+<TD nowrap>)[<I><FONT FACE=symbol>G</FONT></I>]</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<BR>
+providing the following side conditions hold:
+<UL>
+<LI>
+<I>k&gt;0</I>, <I>I<SUB><FONT SIZE=2>j</FONT></SUB></I>, <I>c<SUB><FONT SIZE=2>i</FONT></SUB></I> are different names for <I>j=1...  k</I> and <I>i=1...  n</I>,
+
+<LI>for <I>j=1...  k</I> we have <I>A<SUB><FONT SIZE=2>j</FONT></SUB></I> is an arity of sort <I>s<SUB><FONT SIZE=2>j</FONT></SUB></I> and <I>I<SUB><FONT SIZE=2>j</FONT></SUB>
+  <FONT FACE=symbol>Ï</FONT> <FONT FACE=symbol>G</FONT> <FONT FACE=symbol>È</FONT> E</I>,
+
+<LI>for <I>i=1...  n</I> we have <I>C<SUB><FONT SIZE=2>i</FONT></SUB></I> is a type of constructor of
+  <I>I<SUB><FONT SIZE=2>p<SUB><FONT SIZE=2>i</FONT></SUB></FONT></SUB></I> which satisfies the positivity condition for <I>I<SUB><FONT SIZE=2>1</FONT></SUB> ...  I<SUB><FONT SIZE=2>k</FONT></SUB></I>
+  and <I>c<SUB><FONT SIZE=2>i</FONT></SUB> <FONT FACE=symbol>Ï</FONT> <FONT FACE=symbol>G</FONT> <FONT FACE=symbol>È</FONT> E</I>.
+</UL>
+
+</DL>
+
+One can remark that there is a constraint between the sort of the
+arity of the inductive type and the sort of the type of its
+constructors which will always be satisfied for impredicative sorts
+(<FONT COLOR=purple>Prop</FONT> or <FONT COLOR=purple>Set</FONT>) but may generate constraints between universes.<BR><BR>
+
+
+<H3>
+4.5.4&nbsp;Destructors
+</H3>
+
+The specification of inductive definitions with arities and
+constructors is quite natural.  But we still have to say how to use an
+object in an inductive type.<BR><BR>
+This problem is rather delicate. There are actually several different
+ways to do that. Some of them are logically equivalent but not always
+equivalent from the computational point of view or from the user point
+of view.<BR><BR>
+From the computational point of view, we want to be able to define a
+function whose domain is an inductively defined type by using a
+combination of case analysis over the possible constructors of the
+object and recursion.<BR><BR>
+Because we need to keep a consistent theory and also we prefer to keep
+a strongly normalising reduction, we cannot accept any sort of
+recursion (even terminating). So the basic idea is to restrict
+ourselves to primitive recursive functions and functionals.<BR><BR>
+For instance, assuming a parameter <I>A</I>:<FONT COLOR=purple>Set</FONT> exists in the context, we
+want to build a function <FONT COLOR=purple>length</FONT> of type <FONT COLOR=purple>List_A</FONT><I><FONT FACE=symbol>®</FONT> </I><FONT COLOR=purple>nat</FONT> which
+computes the length of the list, so such that (<FONT COLOR=purple>length</FONT><I>&nbsp;</I><FONT COLOR=purple>nil</FONT>)<I> = </I><FONT COLOR=purple>O</FONT>
+and (<FONT COLOR=purple>length</FONT><I>&nbsp;</I>(<FONT COLOR=purple>cons</FONT><I>&nbsp;A&nbsp;a&nbsp;l</I>))<I> = </I>(<FONT COLOR=purple>S</FONT><I>&nbsp;</I>(<FONT COLOR=purple>length</FONT><I>&nbsp;l</I>)).  We want these
+equalities to be recognized implicitly and taken into account in the
+conversion rule.<BR><BR>
+From the logical point of view, we have built a type family by giving
+a set of constructors.  We want to capture the fact that we do not
+have any other way to build an object in this type. So when trying to
+prove a property (<I>P&nbsp;m</I>) for <I>m</I> in an inductive definition it is
+enough to enumerate all the cases where <I>m</I> starts with a different
+constructor.<BR><BR>
+In case the inductive definition is effectively a recursive one, we
+want to capture the extra property that we have built the smallest
+fixed point of this recursive equation.  This says that we are only
+manipulating finite objects. This analysis provides induction
+principles.<BR><BR>
+For instance, in order to prove (<I>l</I>:<FONT COLOR=purple>List_A</FONT>)(<FONT COLOR=purple>Length_A</FONT><I>&nbsp;l&nbsp;</I>(<FONT COLOR=purple>length</FONT><I>&nbsp;l</I>))
+it is enough to prove:<BR><BR>
+(<FONT COLOR=purple>Length_A</FONT><I>&nbsp;</I><FONT COLOR=purple>nil</FONT><I>&nbsp;</I>(<FONT COLOR=purple>length</FONT><I>&nbsp;</I><FONT COLOR=purple>nil</FONT>)) and<BR><BR>
+(<I>a</I>:<I>A</I>)(<I>l</I>:<FONT COLOR=purple>List_A</FONT>)(<FONT COLOR=purple>Length_A</FONT><I>&nbsp;l&nbsp;</I>(<FONT COLOR=purple>length</FONT><I>&nbsp;l</I>))<I> <FONT FACE=symbol>®</FONT>
+</I>(<FONT COLOR=purple>Length_A</FONT><I>&nbsp;</I>(<FONT COLOR=purple>cons</FONT><I>&nbsp;A&nbsp;a&nbsp;l</I>)<I>&nbsp;</I>(<FONT COLOR=purple>length</FONT><I>&nbsp;</I>(<FONT COLOR=purple>cons</FONT><I>&nbsp;A&nbsp;a&nbsp;l</I>))).
+<BR><BR>
+which given the conversion equalities satisfied by <FONT COLOR=purple>length</FONT> is the
+same as proving:
+(<FONT COLOR=purple>Length_A</FONT><I>&nbsp;</I><FONT COLOR=purple>nil</FONT><I>&nbsp;</I><FONT COLOR=purple>O</FONT>) and (<I>a</I>:<I>A</I>)(<I>l</I>:<FONT COLOR=purple>List_A</FONT>)(<FONT COLOR=purple>Length_A</FONT><I>&nbsp;l&nbsp;</I>(<FONT COLOR=purple>length</FONT><I>&nbsp;l</I>))<I> <FONT FACE=symbol>®</FONT>
+</I>(<FONT COLOR=purple>Length_A</FONT><I>&nbsp;</I>(<FONT COLOR=purple>cons</FONT><I>&nbsp;A&nbsp;a&nbsp;l</I>)<I>&nbsp;</I>(<FONT COLOR=purple>S</FONT><I>&nbsp;</I>(<FONT COLOR=purple>length</FONT><I>&nbsp;l</I>))).<BR><BR>
+One conceptually simple way to do that, following the basic scheme
+proposed by Martin-Lof in his Intuitionistic Type Theory, is to
+introduce for each inductive definition an elimination operator. At
+the logical level it is a proof of the usual induction principle and
+at the computational level it implements a generic operator for doing
+primitive recursion over the structure.<BR><BR>
+But this operator is rather tedious to implement and use. We choose in
+this version of Coq to factorize the operator for primitive recursion
+into two more primitive operations as was first suggested by Th. Coquand
+in&nbsp;<CITE>[<A HREF="node.4.html#Coq92">20</A>]</CITE>.  One is the definition by case
+analysis. The second one is a definition by guarded fixpoints. 
+<H4>The <TT>Cases...of ...end</TT> construction.
+</H4>
+
+<A NAME="Caseexpr"></A>
+<A NAME="@default255"></A>The basic idea of this destructor operation is that we have an object
+<I>m</I> in an inductive type <I>I</I> and we want to prove a property (<I>P&nbsp;m</I>)
+which in general depends on <I>m</I>. For this, it is enough to prove the
+property for <I>m = </I>(<I>c<SUB><FONT SIZE=2>i</FONT></SUB>&nbsp;u<SUB><FONT SIZE=2>1</FONT></SUB>...  u<SUB><FONT SIZE=2>p<SUB><FONT SIZE=2>i</FONT></SUB></FONT></SUB></I>) for each constructor of <I>I</I>.<BR><BR>
+This proof will be denoted by a generic term:
+<DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><I>&lt;P&gt;</I></TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><TT>Cases</TT></TD>
+</TR>
+</TABLE>
+</TD>
+<TD nowrap><I>&nbsp;m&nbsp;</I></TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><TT>of</TT></TD>
+</TR>
+</TABLE>
+</TD>
+<TD nowrap><I>&nbsp;</I>(<I>c<SUB><FONT SIZE=2>1</FONT></SUB>&nbsp;x<SUB><FONT SIZE=2>11</FONT></SUB>&nbsp;...&nbsp;x<SUB><FONT SIZE=2>1p<SUB><FONT SIZE=2>1</FONT></SUB></FONT></SUB></I>)<I> </I></TD>
+<TD nowrap><TT>=&gt;</TT></TD>
+<TD nowrap><I> f<SUB><FONT SIZE=2>1</FONT></SUB> ...</I>(<I>c<SUB><FONT SIZE=2>n</FONT></SUB>&nbsp;x<SUB><FONT SIZE=2>n1</FONT></SUB>&nbsp;</I>|<I>&nbsp;...&nbsp;</I>|<I>&nbsp;x<SUB><FONT SIZE=2>np<SUB><FONT SIZE=2>n</FONT></SUB></FONT></SUB></I>)<I> </I></TD>
+<TD nowrap><TT>=&gt;</TT></TD>
+<TD nowrap><I> f<SUB><FONT SIZE=2>n</FONT></SUB> &nbsp;</I></TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><TT>end</TT></TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+In this expression, if <I>m</I> is a term built from a constructor
+(<I>c<SUB><FONT SIZE=2>i</FONT></SUB>&nbsp;u<SUB><FONT SIZE=2>1</FONT></SUB>...  u<SUB><FONT SIZE=2>p<SUB><FONT SIZE=2>i</FONT></SUB></FONT></SUB></I>) then the expression will behave as it is specified
+with <I>i</I>-th branch and will reduce to <I>f<SUB><FONT SIZE=2>i</FONT></SUB></I> where the <I>x<SUB><FONT SIZE=2>i1</FONT></SUB></I>...<I>x<SUB><FONT SIZE=2>ip<SUB><FONT SIZE=2>i</FONT></SUB></FONT></SUB></I> are
+replaced by the <I>u<SUB><FONT SIZE=2>1</FONT></SUB>...  u<SUB><FONT SIZE=2>p</FONT></SUB></I> according to 
+the <I><FONT FACE=symbol>i</FONT></I>-reduction.<BR>
+<BR><BR>
+This is the basic idea which is generalized to the case where <I>I</I> is
+an inductively defined <I>n</I>-ary relation (in which case the property
+<I>P</I> to be proved will be a <I>n+1</I>-ary relation).
+<H5>Non-dependent elimination.
+</H5>
+
+When defining a function by case analysis, we build an object of type <I>I
+<FONT FACE=symbol>®</FONT> C</I> and the minimality principle on an inductively defined logical
+predicate of type <I>A <FONT FACE=symbol>®</FONT> </I><FONT COLOR=purple>Prop</FONT> is often used to prove a property
+(<I>x</I>:<I>A</I>)(<I>I&nbsp;x</I>)<I><FONT FACE=symbol>®</FONT> </I>(<I>C&nbsp;x</I>).  This is a particular case of the dependent
+principle that we stated before with a predicate which does not depend
+explicitly on the object in the inductive definition.<BR><BR>
+For instance, a function testing whether a list is empty 
+can be
+defined as:<DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>[<I>l</I>:</TD>
+<TD nowrap><FONT COLOR=purple>List_A</FONT></TD>
+<TD nowrap>]</TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><I>&lt;</I>[<I>H</I>:</TD>
+<TD nowrap><FONT COLOR=purple>List_A</FONT></TD>
+<TD nowrap>]</TD>
+<TD nowrap><FONT COLOR=purple>bool</FONT></TD>
+<TD nowrap><I>&gt;</I></TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><TT>Cases</TT></TD>
+</TR>
+</TABLE>
+</TD>
+<TD nowrap><I>&nbsp;l&nbsp;</I></TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><TT>of</TT></TD>
+</TR>
+</TABLE>
+</TD>
+<TD nowrap><I>&nbsp;</I></TD>
+<TD nowrap><FONT COLOR=purple>nil</FONT></TD>
+<TD nowrap><I>&nbsp; </I></TD>
+<TD nowrap><TT>=&gt;</TT></TD>
+<TD nowrap><I>&nbsp;</I></TD>
+<TD nowrap><FONT COLOR=purple>true</FONT></TD>
+<TD nowrap><I>&nbsp; </I>|<I>&nbsp; </I>(</TD>
+<TD nowrap><FONT COLOR=purple>cons</FONT></TD>
+<TD nowrap><I>&nbsp;a&nbsp;m</I>)<I>&nbsp; </I></TD>
+<TD nowrap><TT>=&gt;</TT></TD>
+<TD nowrap><I>&nbsp;</I></TD>
+<TD nowrap><FONT COLOR=purple>false</FONT></TD>
+<TD nowrap><I>&nbsp;</I></TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><TT>end</TT></TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<B>Remark. </B> In the system <FONT COLOR=purple>Coq</FONT> the expression above, can be
+written without mentioning
+the dummy abstraction:
+<I>&lt;</I><FONT COLOR=purple>bool</FONT><I>&gt;</I><TT>Cases</TT><I>&nbsp;l&nbsp;</I><TT>of</TT><I>&nbsp;</I><FONT COLOR=purple>nil</FONT><I>&nbsp; </I><TT>=&gt;</TT><I>&nbsp;</I><FONT COLOR=purple>true</FONT><I>&nbsp; </I>|<I>&nbsp; </I>(<FONT COLOR=purple>cons</FONT><I>&nbsp;a&nbsp;m</I>)<I>&nbsp;
+ </I><TT>=&gt;</TT><I>&nbsp; </I><FONT COLOR=purple>false</FONT><I>&nbsp;</I><TT>end</TT>
+<H5>Allowed elimination sorts.
+</H5>
+
+<A NAME="@default256"></A>An important question for building the typing rule for <TT>Case</TT> is
+what can be the type of <I>P</I> with respect to the type of the inductive
+definitions.<BR><BR>
+Remembering that the elimination builds an object in (<I>P&nbsp;m</I>) from an
+object in <I>m</I> in type <I>I</I> it is clear that we cannot allow any combination.<BR><BR>
+For instance we cannot in general have <I>I</I> has type <FONT COLOR=purple>Prop</FONT> and  <I>P</I> has type <I>I<FONT FACE=symbol>®</FONT> </I><FONT COLOR=purple>Set</FONT>, because it will mean to build an informative
+proof of type (<I>P&nbsp;m</I>) doing a case analysis over a non-computational
+object that will disappear in the extracted program.
+But the other way is safe
+with respect to our interpretation we can have <I>I</I> a computational
+object and <I>P</I> a non-computational one, it just corresponds to proving a
+logical property of a computational object.<BR><BR>
+Also if <I>I</I> is in one of the sorts {<FONT COLOR=purple>Prop</FONT>, <FONT COLOR=purple>Set</FONT>}, one cannot in
+general allow an elimination over a bigger sort such as <FONT COLOR=purple>Type</FONT>.
+But this operation is safe whenever <I>I</I> is a <EM>small
+  inductive</EM> type, which means that all the types of constructors of
+<I>I</I> are small with the following definition:<BR>
+(<I>I&nbsp;t<SUB><FONT SIZE=2>1</FONT></SUB>...  t<SUB><FONT SIZE=2>s</FONT></SUB></I>) is a <EM>small type of constructor</EM> and (<I>x</I>:<I>T</I>)<I>C</I> is a
+small type of constructor if <I>C</I> is and if <I>T</I> has type <FONT COLOR=purple>Prop</FONT> or
+<FONT COLOR=purple>Set</FONT>.
+<A NAME="@default257"></A><BR><BR>
+We call this particular elimination which gives the possibility to
+compute a type by induction on the structure of a term, a <EM>strong
+  elimination</EM><A NAME="@default258"></A>.<BR><BR>
+We define now a relation [<I>I</I>:<I>A</I>|<I>B</I>] between an inductive
+definition <I>I</I> of type <I>A</I>, an arity <I>B</I> which says that an object in
+the inductive definition <I>I</I> can be eliminated for proving a property
+<I>P</I> of type <I>B</I>.<BR><BR>
+The [<I>I</I>:<I>A</I>|<I>B</I>] is defined as the smallest relation satisfying the
+following rules:<BR><BR>
+<DL>
+<DT>
+Prod<DD> <DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD ALIGN=center><I>&nbsp;</I></TD>
+</TR>
+
+<TR><TD ALIGN=center><HR NOSHADE SIZE=2></TD>
+</TR>
+
+<TR><TD ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>[<I>I</I>:(<I>x</I>:<I>A</I>)<I>A'</I>|(<I>x</I>:<I>A</I>)<I>B'</I>]</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+
+
+<DT><FONT COLOR=purple>Prop</FONT><DD> <DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>[<I>I</I>:</TD>
+<TD nowrap><FONT COLOR=purple>Prop</FONT></TD>
+<TD nowrap>|<I>I<FONT FACE=symbol>®</FONT></I></TD>
+<TD nowrap><FONT COLOR=purple>Prop</FONT></TD>
+<TD nowrap>]</TD>
+</TR>
+</TABLE>
+</TD>
+<TD nowrap><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   </I></TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD ALIGN=center><I>&nbsp;</I></TD>
+</TR>
+
+<TR><TD ALIGN=center><HR NOSHADE SIZE=2></TD>
+</TR>
+
+<TR><TD ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>[<I>I</I>:</TD>
+<TD nowrap><FONT COLOR=purple>Prop</FONT></TD>
+<TD nowrap>|<I>I<FONT FACE=symbol>®</FONT> </I></TD>
+<TD nowrap><FONT COLOR=purple>Set</FONT></TD>
+<TD nowrap>]</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<BR><BR>
+
+<DT><FONT COLOR=purple>Set</FONT><DD> <DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD ALIGN=center><I>&nbsp;</I></TD>
+</TR>
+
+<TR><TD ALIGN=center><HR NOSHADE SIZE=2></TD>
+</TR>
+
+<TR><TD ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>[<I>I</I>:</TD>
+<TD nowrap><FONT COLOR=purple>Set</FONT></TD>
+<TD nowrap>|<I>I<FONT FACE=symbol>®</FONT> s</I>]</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+<TD nowrap><I>&nbsp;&nbsp;&nbsp;&nbsp;</I></TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD ALIGN=center><I>&nbsp;</I></TD>
+</TR>
+
+<TR><TD ALIGN=center><HR NOSHADE SIZE=2></TD>
+</TR>
+
+<TR><TD ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>[<I>I</I>:</TD>
+<TD nowrap><FONT COLOR=purple>Set</FONT></TD>
+<TD nowrap>|<I>I<FONT FACE=symbol>®</FONT> s</I>]</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+
+
+<DT><FONT COLOR=purple>Type</FONT><DD> <DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD ALIGN=center><I>&nbsp;</I></TD>
+</TR>
+
+<TR><TD ALIGN=center><HR NOSHADE SIZE=2></TD>
+</TR>
+
+<TR><TD ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>[<I>I</I>:</TD>
+<TD nowrap><FONT COLOR=purple>Type</FONT></TD>
+<TD nowrap>(<I>i</I>)|<I>I<FONT FACE=symbol>®</FONT> s</I>]</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+
+</DL>
+
+<H5>Notations.
+</H5>
+
+We write [<I>I</I>|<I>B</I>] for [<I>I</I>:<I>A</I>|<I>B</I>] where <I>A</I> is the type of
+<I>I</I>.<BR><BR>
+
+
+<H5>Singleton elimination
+</H5>
+
+<A NAME="@default259"></A>A <EM>singleton definition</EM> has always an informative content,
+even if it is a proposition.<BR><BR>
+A <EM>singleton
+definition</EM> has only one constructor and all the argument of this
+constructor are non informative. In that case, there is a canonical
+way to interpret the informative extraction on an object in that type,
+such that the elimination on sort <I>s</I> is legal.  Typical examples are
+the conjunction of non-informative propositions and the equality. In
+that case, the term <CODE>eq_rec</CODE> which was defined as an axiom, is
+now a term of the calculus.
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Print eq_rec.</CODE><BR>
+<TT><I>eq_rec&nbsp;=&nbsp;</I></TT><BR>
+<TT><I>[A:Set]</I></TT><BR>
+<TT><I>&nbsp;[x:A][P:A-&gt;Set][f:(P&nbsp;x)][y:A][e:x=y]&lt;P&gt;Cases&nbsp;e&nbsp;of&nbsp;refl_equal&nbsp;=&gt;&nbsp;f&nbsp;end</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(A:Set)(x:A)(P:A-&gt;Set)(P&nbsp;x)-&gt;(y:A)x=y-&gt;(P&nbsp;y)</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Extraction eq_rec.</CODE><BR>
+<TT><I>eq_rec&nbsp;==&gt;&nbsp;[A:Set][_:A][P:Set][f:P][_:A]f</I></TT><BR>
+<TT><I>&nbsp;:&nbsp;&nbsp;(A:Set)A-&gt;(P:Set)P-&gt;A-&gt;P</I></TT><BR>
+</DIV>
+
+
+
+<H5>Type of branches.
+</H5>
+
+Let <I>c</I> be a term of type <I>C</I>, we assume <I>C</I> is a type of constructor
+for an inductive definition <I>I</I>. Let <I>P</I> be a term that represents the
+property to be proved.
+We assume <I>r</I> is the number of parameters.<BR><BR>
+We define a new type {<I>c</I>:<I>C</I>}<I><SUP><FONT SIZE=2>P</FONT></SUP></I> which represents the type of the
+branch corresponding to the <I>c</I>:<I>C</I> constructor.
+<DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=left>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>{<I>c</I>:(<I>I<SUB><FONT SIZE=2>i</FONT></SUB>&nbsp;p<SUB><FONT SIZE=2>1</FONT></SUB>... p<SUB><FONT SIZE=2>r</FONT></SUB> t<SUB><FONT SIZE=2>1</FONT></SUB> ... t<SUB><FONT SIZE=2>p</FONT></SUB></I>)}<I><SUP><FONT SIZE=2>P</FONT></SUP></I></TD>
+</TR>
+</TABLE>
+</TD>
+<TD NOWRAP ALIGN=left><I><FONT FACE=symbol>º</FONT> </I>(<I>P&nbsp;t<SUB><FONT SIZE=2>1</FONT></SUB>... &nbsp;t<SUB><FONT SIZE=2>p</FONT></SUB>&nbsp;c</I>)</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>{<I>c</I>:(<I>x</I>:<I> T</I>)<I>C</I>}<I><SUP><FONT SIZE=2>P</FONT></SUP></I></TD>
+</TR>
+</TABLE>
+</TD>
+<TD NOWRAP ALIGN=left>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><I><FONT FACE=symbol>º</FONT> </I>(<I>x</I>:<I>T</I>)</TD>
+<TD nowrap>{(<I>c&nbsp;x</I>):<I>C</I>}<I><SUP><FONT SIZE=2>P</FONT></SUP></I></TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+We write {<I>c</I>}<I><SUP><FONT SIZE=2>P</FONT></SUP></I> for {<I>c</I>:<I>C</I>}<I><SUP><FONT SIZE=2>P</FONT></SUP></I> with <I>C</I> the type of <I>c</I>.
+<H5>Examples.
+</H5>
+
+For <FONT COLOR=purple>List_A</FONT> the type of <I>P</I> will be <FONT COLOR=purple>List_A</FONT><I><FONT FACE=symbol>®</FONT> s</I> for <I>s <FONT FACE=symbol>Î</FONT>
+</I>{<FONT COLOR=purple>Prop</FONT>,<FONT COLOR=purple>Set</FONT>,<FONT COLOR=purple>Type</FONT>(<I>i</I>)}.<BR>
+<I> </I>{(<FONT COLOR=purple>cons</FONT><I>&nbsp;A</I>)}<I><SUP><FONT SIZE=2>P</FONT></SUP></I><I> <FONT FACE=symbol>º</FONT>
+</I>(<I>a</I>:<I>A</I>)(<I>l</I>:<FONT COLOR=purple>List_A</FONT>)(<I>P&nbsp;</I>(<FONT COLOR=purple>cons</FONT><I>&nbsp;A&nbsp;a&nbsp;l</I>)).<BR><BR>
+For <FONT COLOR=purple>Length_A</FONT>, the type of <I>P</I> will be
+(<I>l</I>:<FONT COLOR=purple>List_A</FONT>)(<I>n</I>:<FONT COLOR=purple>nat</FONT>)(<FONT COLOR=purple>Length_A</FONT><I>&nbsp;l&nbsp;n</I>)<I><FONT FACE=symbol>®</FONT> </I><FONT COLOR=purple>Prop</FONT> and the expression
+{(<FONT COLOR=purple>Lcons</FONT><I>&nbsp;A</I>)}<I><SUP><FONT SIZE=2>P</FONT></SUP></I> is defined as:<BR>
+(<I>a</I>:<I>A</I>)(<I>l</I>:<FONT COLOR=purple>List_A</FONT>)(<I>n</I>:<FONT COLOR=purple>nat</FONT>)(<I>h</I>:(<FONT COLOR=purple>Length_A</FONT><I>&nbsp;l&nbsp;n</I>))(<I>P&nbsp;</I>(<FONT COLOR=purple>cons</FONT><I>&nbsp;A&nbsp;a&nbsp;l</I>)<I>&nbsp;</I>(<FONT COLOR=purple>S</FONT><I>&nbsp;n</I>)<I>&nbsp;</I>(<FONT COLOR=purple>Lcons</FONT><I>&nbsp;A&nbsp;a&nbsp;l&nbsp;n&nbsp;l</I>)).<BR>
+If <I>P</I> does not depend on its third argument, we find the more natural
+expression:<BR>
+(<I>a</I>:<I>A</I>)(<I>l</I>:<FONT COLOR=purple>List_A</FONT>)(<I>n</I>:<FONT COLOR=purple>nat</FONT>)(<FONT COLOR=purple>Length_A</FONT><I>&nbsp;l&nbsp;n</I>)<I><FONT FACE=symbol>®</FONT></I>(<I>P&nbsp;</I>(<FONT COLOR=purple>cons</FONT><I>&nbsp;A&nbsp;a&nbsp;l</I>)<I>&nbsp;</I>(<FONT COLOR=purple>S</FONT><I>&nbsp;n</I>)).
+<H5>Typing rule.
+</H5>
+Our very general destructor for inductive definition enjoys the
+following typing rule (we write <I>&lt;P&gt;</I><TT>Cases</TT><I>&nbsp;c&nbsp;</I><TT>of</TT><I>&nbsp;</I>[<I>x<SUB><FONT SIZE=2>11</FONT></SUB></I>:<I>T<SUB><FONT SIZE=2>11</FONT></SUB></I>]<I>...</I>[<I>x<SUB><FONT SIZE=2>1p<SUB><FONT SIZE=2>1</FONT></SUB></FONT></SUB></I>:<I>T<SUB><FONT SIZE=2>1p<SUB><FONT SIZE=2>1</FONT></SUB></FONT></SUB></I>]<I>f<SUB><FONT SIZE=2>1</FONT></SUB>...  </I>[<I>x<SUB><FONT SIZE=2>n1</FONT></SUB></I>:<I>T<SUB><FONT SIZE=2>n1</FONT></SUB></I>]<I>...</I>[<I>x<SUB><FONT SIZE=2>np<SUB><FONT SIZE=2>n</FONT></SUB></FONT></SUB></I>:<I>T<SUB><FONT SIZE=2>np<SUB><FONT SIZE=2>n</FONT></SUB></FONT></SUB>f<SUB><FONT SIZE=2>n</FONT></SUB>&nbsp;</I><TT>end</TT> for <I>&lt;P&gt;</I><TT>Cases</TT><I>&nbsp;m&nbsp;</I><TT>of</TT><I>&nbsp;</I>(<I>c<SUB><FONT SIZE=2>1</FONT></SUB>&nbsp;x<SUB><FONT SIZE=2>11</FONT></SUB>&nbsp;...&nbsp;x<SUB><FONT SIZE=2>1p<SUB><FONT SIZE=2>1</FONT></SUB></FONT></SUB></I>)<I> </I><TT>=&gt;</TT><I> f<SUB><FONT SIZE=2>1</FONT></SUB> ...
+</I>(<I>c<SUB><FONT SIZE=2>n</FONT></SUB>&nbsp;x<SUB><FONT SIZE=2>n1</FONT></SUB>&nbsp;</I>|<I>&nbsp;...&nbsp;</I>|<I>&nbsp;x<SUB><FONT SIZE=2>np<SUB><FONT SIZE=2>n</FONT></SUB></FONT></SUB></I>)<I> </I><TT>=&gt;</TT><I> f<SUB><FONT SIZE=2>n</FONT></SUB> &nbsp;</I><TT>end</TT>):<BR><BR>
+<DL>
+<DT>
+Case<DD> <A NAME="elimdep"></A> <A NAME="@default260"></A><DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD ALIGN=center><I>&nbsp;</I></TD>
+</TR>
+
+<TR><TD ALIGN=center><HR NOSHADE SIZE=2></TD>
+</TR>
+
+<TR><TD ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><I>E</I>[<I><FONT FACE=symbol>G</FONT></I>]<I> </I></TD>
+<TD nowrap> |-</TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><I>&lt;P&gt;</I></TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><TT>Cases</TT></TD>
+</TR>
+</TABLE>
+</TD>
+<TD nowrap><I>&nbsp;c&nbsp;</I></TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><TT>of</TT></TD>
+</TR>
+</TABLE>
+</TD>
+<TD nowrap><I>&nbsp;f<SUB><FONT SIZE=2>1</FONT></SUB>...  f<SUB><FONT SIZE=2>l</FONT></SUB>&nbsp;</I></TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><TT>end</TT></TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+<TD nowrap><I> </I>:<I> </I>(<I>P t<SUB><FONT SIZE=2>1</FONT></SUB>...  t<SUB><FONT SIZE=2>s</FONT></SUB> c</I>)</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+
+provided <I>I</I> is an inductive type in a declaration
+<FONT COLOR=purple>Ind</FONT>(<I><FONT FACE=symbol>D</FONT></I>)[<I><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>P</FONT></SUB></I>](<I><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>I</FONT></SUB></I>:<I>=<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>C</FONT></SUB>&nbsp;</I>) with |<I><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>P</FONT></SUB></I>|<I> = r</I>,
+<I><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>C</FONT></SUB> = </I>[<I>c<SUB><FONT SIZE=2>1</FONT></SUB></I>:<I>C<SUB><FONT SIZE=2>1</FONT></SUB></I>;<I>...</I>;<I>c<SUB><FONT SIZE=2>n</FONT></SUB></I>:<I>C<SUB><FONT SIZE=2>n</FONT></SUB></I>] and <I>c<SUB><FONT SIZE=2>p<SUB><FONT SIZE=2>1</FONT></SUB></FONT></SUB>...  c<SUB><FONT SIZE=2>p<SUB><FONT SIZE=2>l</FONT></SUB></FONT></SUB></I> are the
+only constructors of <I>I</I>.
+</DL>
+
+<H5>Example.
+</H5>
+
+For <FONT COLOR=purple>List</FONT> and <FONT COLOR=purple>Length</FONT> the typing rules for the <TT>Case</TT> expression
+are (writing just <I>t</I>:<I>M</I> instead of <I>E</I>[<I><FONT FACE=symbol>G</FONT></I>]<I> </I> |-<I> t </I>:<I> M</I>, the environment and
+context being the same in all the judgments).<DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD ALIGN=center><I>&nbsp;</I></TD>
+</TR>
+
+<TR><TD ALIGN=center><HR NOSHADE SIZE=2></TD>
+</TR>
+
+<TR><TD ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><I>&lt;P&gt;</I></TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><TT>Cases</TT></TD>
+</TR>
+</TABLE>
+</TD>
+<TD nowrap><I>&nbsp;l&nbsp;</I></TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><TT>of</TT></TD>
+</TR>
+</TABLE>
+</TD>
+<TD nowrap><I>&nbsp;f<SUB><FONT SIZE=2>1</FONT></SUB>&nbsp;f<SUB><FONT SIZE=2>2</FONT></SUB>&nbsp;</I></TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><TT>end</TT></TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+<TD nowrap>:(<I>P&nbsp;l</I>)</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD ALIGN=center><I>&nbsp;</I></TD>
+</TR>
+
+<TR><TD ALIGN=center><HR NOSHADE SIZE=2></TD>
+</TR>
+
+<TR><TD ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><I>&lt;P&gt;</I></TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><TT>Cases</TT></TD>
+</TR>
+</TABLE>
+</TD>
+<TD nowrap><I>&nbsp;H&nbsp;</I></TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><TT>of</TT></TD>
+</TR>
+</TABLE>
+</TD>
+<TD nowrap><I>&nbsp;f<SUB><FONT SIZE=2>1</FONT></SUB>&nbsp;f<SUB><FONT SIZE=2>2</FONT></SUB>&nbsp;</I></TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><TT>end</TT></TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+<TD nowrap>:(<I>P&nbsp;L&nbsp;N&nbsp;H</I>)</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+
+<H5>Definition of <I><FONT FACE=symbol>i</FONT></I>-reduction.
+</H5>
+<A NAME="iotared"></A>
+<A NAME="@default261"></A>We still have to define the <I><FONT FACE=symbol>i</FONT></I>-reduction in the general case.<BR><BR>
+A <I><FONT FACE=symbol>i</FONT></I>-redex is a term of the following form:
+<DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><I>&lt;P&gt;</I></TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><TT>Cases</TT></TD>
+</TR>
+</TABLE>
+</TD>
+<TD nowrap><I>&nbsp;</I>(<I>c<SUB><FONT SIZE=2>p<SUB><FONT SIZE=2>i</FONT></SUB></FONT></SUB>&nbsp;q<SUB><FONT SIZE=2>1</FONT></SUB>...  q<SUB><FONT SIZE=2>r</FONT></SUB>&nbsp;a<SUB><FONT SIZE=2>1</FONT></SUB>...  a<SUB><FONT SIZE=2>m</FONT></SUB></I>)<I>&nbsp;</I></TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><TT>of</TT></TD>
+</TR>
+</TABLE>
+</TD>
+<TD nowrap><I>&nbsp;f<SUB><FONT SIZE=2>1</FONT></SUB>...     f<SUB><FONT SIZE=2>l</FONT></SUB>&nbsp;</I></TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><TT>end</TT></TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+with <I>c<SUB><FONT SIZE=2>p<SUB><FONT SIZE=2>i</FONT></SUB></FONT></SUB></I> the <I>i</I>-th constructor of the inductive type <I>I</I> with <I>r</I>
+parameters.<BR><BR>
+The <I><FONT FACE=symbol>i</FONT></I>-contraction of this term is (<I>f<SUB><FONT SIZE=2>i</FONT></SUB>&nbsp;a<SUB><FONT SIZE=2>1</FONT></SUB>... a<SUB><FONT SIZE=2>m</FONT></SUB></I>) leading
+to the general reduction rule:
+<DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><I>&lt;P&gt;</I></TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><TT>Cases</TT></TD>
+</TR>
+</TABLE>
+</TD>
+<TD nowrap><I>&nbsp;</I>(<I>c<SUB><FONT SIZE=2>p<SUB><FONT SIZE=2>i</FONT></SUB></FONT></SUB>&nbsp;q<SUB><FONT SIZE=2>1</FONT></SUB>...  q<SUB><FONT SIZE=2>r</FONT></SUB>&nbsp;a<SUB><FONT SIZE=2>1</FONT></SUB>...  a<SUB><FONT SIZE=2>m</FONT></SUB></I>)<I>&nbsp;</I></TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><TT>of</TT></TD>
+</TR>
+</TABLE>
+</TD>
+<TD nowrap><I>&nbsp;f<SUB><FONT SIZE=2>1</FONT></SUB>...     f<SUB><FONT SIZE=2>n</FONT></SUB>&nbsp;</I></TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><TT>end</TT></TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+<TD nowrap><I> <FONT FACE=symbol>|></FONT></I></TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD><I>&nbsp;</I></TD>
+</TR>
+
+<TR><TD><I><FONT SIZE=2><FONT FACE=symbol>i</FONT></FONT></I></TD>
+</TR>
+</TABLE>
+</TD>
+<TD nowrap><I> </I>(<I>f<SUB><FONT SIZE=2>i</FONT></SUB>&nbsp;a<SUB><FONT SIZE=2>1</FONT></SUB>... a<SUB><FONT SIZE=2>m</FONT></SUB></I>)<I> </I></TD>
+</TR>
+</TABLE>
+</DIV>
+
+
+<H3>
+4.5.5&nbsp;Fixpoint definitions
+</H3>
+
+<A NAME="Fix-term"></A> <A NAME="@default262"></A>The second operator for elimination is fixpoint definition. 
+This fixpoint may involve several mutually recursive definitions.
+The basic syntax for a recursive set of declarations is 
+<DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><TT>Fix</TT></TD>
+<TD nowrap><I>&nbsp;</I>{<I>f<SUB><FONT SIZE=2>1</FONT></SUB></I>:<I>A<SUB><FONT SIZE=2>1</FONT></SUB></I>:<I>=t<SUB><FONT SIZE=2>1</FONT></SUB> ... f<SUB><FONT SIZE=2>n</FONT></SUB></I>:<I>A<SUB><FONT SIZE=2>n</FONT></SUB></I>:<I>=t<SUB><FONT SIZE=2>n</FONT></SUB></I>}</TD>
+</TR>
+</TABLE>
+</DIV>
+
+The terms are obtained by projections from this set of declarations
+and are written <TT>Fix</TT><I>&nbsp;f<SUB><FONT SIZE=2>i</FONT></SUB></I>{<I>f<SUB><FONT SIZE=2>1</FONT></SUB></I>:<I>A<SUB><FONT SIZE=2>1</FONT></SUB></I>:<I>=t<SUB><FONT SIZE=2>1</FONT></SUB> ... f<SUB><FONT SIZE=2>n</FONT></SUB></I>:<I>A<SUB><FONT SIZE=2>n</FONT></SUB></I>:<I>=t<SUB><FONT SIZE=2>n</FONT></SUB></I>}
+<H4>Typing rule
+</H4>
+
+The typing rule is the expected one for a fixpoint.<BR><BR>
+<DL>
+<DT>
+Fix<DD> <A NAME="@default263"></A><DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD ALIGN=center><I>&nbsp;</I></TD>
+</TR>
+
+<TR><TD ALIGN=center><HR NOSHADE SIZE=2></TD>
+</TR>
+
+<TR><TD ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><I>E</I>[<I><FONT FACE=symbol>G</FONT></I>]<I> </I></TD>
+<TD nowrap> |-</TD>
+<TD nowrap><TT>Fix</TT></TD>
+<TD nowrap><I>&nbsp;f<SUB><FONT SIZE=2>i</FONT></SUB></I>{<I>f<SUB><FONT SIZE=2>1</FONT></SUB></I>:<I>A<SUB><FONT SIZE=2>1</FONT></SUB></I>:<I>=t<SUB><FONT SIZE=2>1</FONT></SUB> ... f<SUB><FONT SIZE=2>n</FONT></SUB></I>:<I>A<SUB><FONT SIZE=2>n</FONT></SUB></I>:<I>=t<SUB><FONT SIZE=2>n</FONT></SUB></I>}<I> </I>:<I> A<SUB><FONT SIZE=2>i</FONT></SUB></I></TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+
+</DL>
+<BR><BR>
+Any fixpoint definition cannot be accepted because non-normalizing terms
+will lead to proofs of absurdity.<BR><BR>
+The basic scheme of recursion that should be allowed is the one needed for 
+defining primitive
+recursive functionals. In that case the fixpoint enjoys special
+syntactic restriction, namely one of the arguments belongs to an
+inductive type, the function starts with a case analysis and recursive
+calls are done on variables coming from patterns and representing subterms.<BR><BR>
+For instance in the case of natural numbers, a proof of the induction
+principle of type 
+<DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>(<I>P</I>:</TD>
+<TD nowrap><FONT COLOR=purple>nat</FONT></TD>
+<TD nowrap><I><FONT FACE=symbol>®</FONT></I></TD>
+<TD nowrap><FONT COLOR=purple>Prop</FONT></TD>
+<TD nowrap>)(<I>P&nbsp;</I></TD>
+<TD nowrap><FONT COLOR=purple>O</FONT></TD>
+<TD nowrap>)<I><FONT FACE=symbol>®</FONT></I>((<I>n</I>:</TD>
+<TD nowrap><FONT COLOR=purple>nat</FONT></TD>
+<TD nowrap>)(<I>P&nbsp;n</I>)<I><FONT FACE=symbol>®</FONT></I>(<I>P&nbsp;</I>(</TD>
+<TD nowrap><FONT COLOR=purple>S</FONT></TD>
+<TD nowrap><I>&nbsp;n</I>)))<I><FONT FACE=symbol>®</FONT></I>(<I>n</I>:</TD>
+<TD nowrap><FONT COLOR=purple>nat</FONT></TD>
+<TD nowrap>)(<I>P&nbsp;n</I>)</TD>
+</TR>
+</TABLE>
+</DIV>
+
+can be represented by the term:
+<DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=left>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap>[<I>P</I>:</TD>
+<TD nowrap><FONT COLOR=purple>nat</FONT></TD>
+<TD nowrap><I><FONT FACE=symbol>®</FONT></I></TD>
+<TD nowrap><FONT COLOR=purple>Prop</FONT></TD>
+<TD nowrap>][<I>f</I>:(<I>P&nbsp;</I></TD>
+<TD nowrap><FONT COLOR=purple>O</FONT></TD>
+<TD nowrap>)][<I>g</I>:(<I>n</I>:</TD>
+<TD nowrap><FONT COLOR=purple>nat</FONT></TD>
+<TD nowrap>)(<I>P&nbsp;n</I>)<I><FONT FACE=symbol>®</FONT></I>(<I>P&nbsp;</I>(</TD>
+<TD nowrap><FONT COLOR=purple>S</FONT></TD>
+<TD nowrap><I>&nbsp;n</I>))]</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+
+<TR><TD NOWRAP ALIGN=left>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><TT>Fix</TT></TD>
+<TD nowrap><I>&nbsp;h</I>{<I>h</I>:(<I>n</I>:</TD>
+<TD nowrap><FONT COLOR=purple>nat</FONT></TD>
+<TD nowrap>)(<I>P&nbsp;n</I>):<I>=</I>[<I>n</I>:</TD>
+<TD nowrap><FONT COLOR=purple>nat</FONT></TD>
+<TD nowrap>]</TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><I>&lt;P&gt;</I></TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><TT>Cases</TT></TD>
+</TR>
+</TABLE>
+</TD>
+<TD nowrap><I>&nbsp;n&nbsp;</I></TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><TT>of</TT></TD>
+</TR>
+</TABLE>
+</TD>
+<TD nowrap><I>&nbsp;f&nbsp;</I>[<I>p</I>:</TD>
+<TD nowrap><FONT COLOR=purple>nat</FONT></TD>
+<TD nowrap>](<I>g&nbsp;p&nbsp;</I>(<I>h&nbsp;p</I>))<I>&nbsp;</I></TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><TT>end</TT></TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+<TD nowrap>}</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<BR><BR>
+Before accepting a fixpoint definition as being correctly typed, we
+check that the definition is ``guarded''. A precise analysis of this
+notion can be found in&nbsp;<CITE>[<A HREF="node.4.html#Gim94">46</A>]</CITE>.<BR><BR>
+The first stage is to precise on which argument the fixpoint will be
+decreasing. The type of this argument should be an inductive
+definition.<BR><BR>
+For doing this the syntax of fixpoints is extended and becomes 
+ <DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><TT>Fix</TT></TD>
+<TD nowrap><I>&nbsp;f<SUB><FONT SIZE=2>i</FONT></SUB></I>{<I>f<SUB><FONT SIZE=2>1</FONT></SUB>/k<SUB><FONT SIZE=2>1</FONT></SUB></I>:<I>A<SUB><FONT SIZE=2>1</FONT></SUB></I>:<I>=t<SUB><FONT SIZE=2>1</FONT></SUB> ... f<SUB><FONT SIZE=2>n</FONT></SUB>/k<SUB><FONT SIZE=2>n</FONT></SUB></I>:<I>A<SUB><FONT SIZE=2>n</FONT></SUB></I>:<I>=t<SUB><FONT SIZE=2>n</FONT></SUB></I>}</TD>
+</TR>
+</TABLE>
+</DIV>
+
+where <I>k<SUB><FONT SIZE=2>i</FONT></SUB></I> are positive integers.
+Each <I>A<SUB><FONT SIZE=2>i</FONT></SUB></I> should be a type (reducible to a term) starting with at least
+<I>k<SUB><FONT SIZE=2>i</FONT></SUB></I> products (<I>y<SUB><FONT SIZE=2>1</FONT></SUB></I>:<I>B<SUB><FONT SIZE=2>1</FONT></SUB></I>)<I>... </I>(<I>y<SUB><FONT SIZE=2>k<SUB><FONT SIZE=2>i</FONT></SUB></FONT></SUB></I>:<I>B<SUB><FONT SIZE=2>k<SUB><FONT SIZE=2>i</FONT></SUB></FONT></SUB></I>)<I> A'<SUB><FONT SIZE=2>i</FONT></SUB></I> and <I>B<SUB><FONT SIZE=2>k<SUB><FONT SIZE=2>i</FONT></SUB></FONT></SUB></I>
+being an instance of an inductive definition.<BR><BR>
+Now in the definition <I>t<SUB><FONT SIZE=2>i</FONT></SUB></I>, if <I>f<SUB><FONT SIZE=2>j</FONT></SUB></I> occurs then it should be applied
+to at least <I>k<SUB><FONT SIZE=2>j</FONT></SUB></I> arguments and the <I>k<SUB><FONT SIZE=2>j</FONT></SUB></I>-th argument should be
+syntactically recognized as structurally smaller than <I>y<SUB><FONT SIZE=2>k<SUB><FONT SIZE=2>i</FONT></SUB></FONT></SUB></I><BR><BR>
+The definition of being structurally smaller is a bit technical.
+One needs first to  define the notion of 
+<EM>recursive arguments of a constructor</EM><A NAME="@default264"></A>.
+For an inductive definition <FONT COLOR=purple>Ind</FONT>(<I><FONT FACE=symbol>G</FONT></I>)[<I><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>P</FONT></SUB></I>](<I><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>I</FONT></SUB></I>:<I>=<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>C</FONT></SUB>&nbsp;</I>),
+the type of a constructor <I>c</I> have the form
+(<I>p<SUB><FONT SIZE=2>1</FONT></SUB></I>:<I>P<SUB><FONT SIZE=2>1</FONT></SUB></I>)<I>...</I>(<I>p<SUB><FONT SIZE=2>r</FONT></SUB></I>:<I>P<SUB><FONT SIZE=2>r</FONT></SUB></I>)(<I>x<SUB><FONT SIZE=2>1</FONT></SUB></I>:<I>T<SUB><FONT SIZE=2>1</FONT></SUB></I>)<I>... </I>(<I>x<SUB><FONT SIZE=2>r</FONT></SUB></I>:<I>T<SUB><FONT SIZE=2>r</FONT></SUB></I>)(<I>I<SUB><FONT SIZE=2>j</FONT></SUB>&nbsp;p<SUB><FONT SIZE=2>1</FONT></SUB>... 
+p<SUB><FONT SIZE=2>r</FONT></SUB>&nbsp;t<SUB><FONT SIZE=2>1</FONT></SUB>...  t<SUB><FONT SIZE=2>s</FONT></SUB></I>) the recursive arguments will correspond to <I>T<SUB><FONT SIZE=2>i</FONT></SUB></I> in
+which one of the <I>I<SUB><FONT SIZE=2>l</FONT></SUB></I> occurs.<BR><BR>
+The main rules for being structurally smaller are the following:<BR>
+Given a variable <I>y</I> of type an inductive
+definition in a declaration 
+<FONT COLOR=purple>Ind</FONT>(<I><FONT FACE=symbol>G</FONT></I>)[<I><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>P</FONT></SUB></I>](<I><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>I</FONT></SUB></I>:<I>=<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>C</FONT></SUB>&nbsp;</I>)
+where <I><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>I</FONT></SUB></I> is [<I>I<SUB><FONT SIZE=2>1</FONT></SUB></I>:<I>A<SUB><FONT SIZE=2>1</FONT></SUB></I>;<I>...</I>;<I>I<SUB><FONT SIZE=2>k</FONT></SUB></I>:<I>A<SUB><FONT SIZE=2>k</FONT></SUB></I>], and <I><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>C</FONT></SUB></I> is
+  [<I>c<SUB><FONT SIZE=2>1</FONT></SUB></I>:<I>C<SUB><FONT SIZE=2>1</FONT></SUB></I>;<I>...</I>;<I>c<SUB><FONT SIZE=2>n</FONT></SUB></I>:<I>C<SUB><FONT SIZE=2>n</FONT></SUB></I>].
+The terms structurally smaller than <I>y</I> are:
+<UL>
+<LI>
+(<I>t&nbsp;u</I>),<I> </I>[<I>x</I>:<I>u</I>]<I>t</I> when <I>t</I> is structurally smaller than <I>y</I> .
+
+<LI><I>&lt;P&gt;</I><TT>Cases</TT><I>&nbsp;c&nbsp;</I><TT>of</TT><I>&nbsp;f<SUB><FONT SIZE=2>1</FONT></SUB>... f<SUB><FONT SIZE=2>n</FONT></SUB>&nbsp;</I><TT>end</TT> when each <I>f<SUB><FONT SIZE=2>i</FONT></SUB></I> is structurally
+  smaller than <I>y</I>.<BR>
+If <I>c</I> is <I>y</I> or is structurally smaller than <I>y</I>, its type is an inductive
+  definition <I>I<SUB><FONT SIZE=2>p</FONT></SUB></I> part of the inductive
+  declaration corresponding to <I>y</I>. 
+  Each <I>f<SUB><FONT SIZE=2>i</FONT></SUB></I> corresponds to a type of constructor <I>C<SUB><FONT SIZE=2>q</FONT></SUB> <FONT FACE=symbol>º</FONT>
+  </I>(<I>y<SUB><FONT SIZE=2>1</FONT></SUB></I>:<I>B<SUB><FONT SIZE=2>1</FONT></SUB></I>)<I>... </I>(<I>y<SUB><FONT SIZE=2>k</FONT></SUB></I>:<I>B<SUB><FONT SIZE=2>k</FONT></SUB></I>)(<I>I&nbsp;a<SUB><FONT SIZE=2>1</FONT></SUB>... a<SUB><FONT SIZE=2>k</FONT></SUB></I>) and can consequently be
+  written [<I>y<SUB><FONT SIZE=2>1</FONT></SUB></I>:<I>B'<SUB><FONT SIZE=2>1</FONT></SUB></I>]<I>... </I>[<I>y<SUB><FONT SIZE=2>k</FONT></SUB></I>:<I>B'<SUB><FONT SIZE=2>k</FONT></SUB></I>]<I>g<SUB><FONT SIZE=2>i</FONT></SUB></I>.
+  (<I>B'<SUB><FONT SIZE=2>i</FONT></SUB></I> is obtained from <I>B<SUB><FONT SIZE=2>i</FONT></SUB></I> by substituting parameters variables)
+  the variables <I>y<SUB><FONT SIZE=2>j</FONT></SUB></I> occurring
+  in <I>g<SUB><FONT SIZE=2>i</FONT></SUB></I> corresponding to recursive arguments <I>B<SUB><FONT SIZE=2>i</FONT></SUB></I> (the ones in
+  which one of the <I>I<SUB><FONT SIZE=2>l</FONT></SUB></I> occurs) are structurally smaller than <I>y</I>.
+</UL>
+
+The following definitions are correct, we enter them using the
+<TT>Fixpoint</TT> command as described in section&nbsp;<A HREF="node.0.0.2.html#Fixpoint">1.3.4</A> and show
+the internal representation.
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Fixpoint plus [n:nat] : nat -&gt; nat :=</CODE><BR>
+<CODE>Coq &lt;  [m:nat]Case n of m [p:nat](S (plus p m)) end.</CODE><BR>
+<TT><I>plus&nbsp;is&nbsp;recursively&nbsp;defined</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Print plus.</CODE><BR>
+<TT><I>plus&nbsp;=&nbsp;</I></TT><BR>
+<TT><I>Fix&nbsp;plus{plus&nbsp;[n:nat]&nbsp;:&nbsp;nat-&gt;nat&nbsp;:=&nbsp;</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[m:nat]Cases&nbsp;n&nbsp;of</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;O&nbsp;=&gt;&nbsp;m</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(S&nbsp;p)&nbsp;=&gt;&nbsp;(S&nbsp;(plus&nbsp;p&nbsp;m))</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end}</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;nat-&gt;nat-&gt;nat</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Fixpoint lgth [A:Set;l:(list A)] : nat :=</CODE><BR>
+<CODE>Coq &lt;   Case l of O [a:A][l':(list A)](S (lgth A l')) end.</CODE><BR>
+<TT><I>lgth&nbsp;is&nbsp;recursively&nbsp;defined</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Print lgth.</CODE><BR>
+<TT><I>lgth&nbsp;=&nbsp;</I></TT><BR>
+<TT><I>Fix&nbsp;lgth{lgth&nbsp;[A:(Set);l:(list&nbsp;A)]&nbsp;:&nbsp;nat&nbsp;:=&nbsp;</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cases&nbsp;l&nbsp;of</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nil&nbsp;=&gt;&nbsp;O</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(cons&nbsp;_&nbsp;l')&nbsp;=&gt;&nbsp;(S&nbsp;(lgth&nbsp;A&nbsp;l'))</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end}</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(A:Set)(list&nbsp;A)-&gt;nat</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Fixpoint sizet [t:tree] : nat </CODE><BR>
+<CODE>Coq &lt;   := Case t of [f:forest](S (sizef f)) end</CODE><BR>
+<CODE>Coq &lt; with     sizef [f:forest] : nat </CODE><BR>
+<CODE>Coq &lt;   := Case f of O [t:tree][f:forest](plus (sizet t) (sizef f)) end.</CODE><BR>
+<TT><I>sizet,&nbsp;sizef&nbsp;are&nbsp;recursively&nbsp;defined</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Print sizet.</CODE><BR>
+<TT><I>sizet&nbsp;=&nbsp;</I></TT><BR>
+<TT><I>Fix&nbsp;sizet{sizet&nbsp;[t:tree]&nbsp;:&nbsp;nat&nbsp;:=&nbsp;</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cases&nbsp;t&nbsp;of&nbsp;(node&nbsp;f)&nbsp;=&gt;&nbsp;(S&nbsp;(sizef&nbsp;f))&nbsp;end</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;with</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sizef&nbsp;[f:forest]&nbsp;:&nbsp;nat&nbsp;:=&nbsp;</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cases&nbsp;f&nbsp;of</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;emptyf&nbsp;=&gt;&nbsp;O</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(consf&nbsp;t&nbsp;f0)&nbsp;=&gt;&nbsp;(plus&nbsp;(sizet&nbsp;t)&nbsp;(sizef&nbsp;f0))</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end}</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;tree-&gt;nat</I></TT><BR>
+</DIV>
+
+
+
+<H4>Reduction rule
+</H4>
+
+<A NAME="@default265"></A>Let <I>F</I> be the set of declarations: <I>f<SUB><FONT SIZE=2>1</FONT></SUB>/k<SUB><FONT SIZE=2>1</FONT></SUB></I>:<I>A<SUB><FONT SIZE=2>1</FONT></SUB></I>:<I>=t<SUB><FONT SIZE=2>1</FONT></SUB> ...
+f<SUB><FONT SIZE=2>n</FONT></SUB>/k<SUB><FONT SIZE=2>n</FONT></SUB></I>:<I>A<SUB><FONT SIZE=2>n</FONT></SUB></I>:<I>=t<SUB><FONT SIZE=2>n</FONT></SUB></I>.
+The reduction for fixpoints is:
+<DIV ALIGN=center>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD nowrap><I> </I>(</TD>
+<TD nowrap><TT>Fix</TT></TD>
+<TD nowrap><I>&nbsp;f<SUB><FONT SIZE=2>i</FONT></SUB></I>{<I>F</I>}<I>&nbsp;a<SUB><FONT SIZE=2>1</FONT></SUB>...a<SUB><FONT SIZE=2>k<SUB><FONT SIZE=2>i</FONT></SUB></FONT></SUB></I>)<I> <FONT FACE=symbol>|></FONT></I></TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD><I>&nbsp;</I></TD>
+</TR>
+
+<TR><TD><I><FONT SIZE=2><FONT FACE=symbol>i</FONT></FONT></I></TD>
+</TR>
+</TABLE>
+</TD>
+<TD nowrap><I> t<SUB><FONT SIZE=2>i</FONT></SUB></I>{(<I>f<SUB><FONT SIZE=2>k</FONT></SUB>/</I></TD>
+<TD nowrap><TT>Fix</TT></TD>
+<TD nowrap><I>&nbsp;f<SUB><FONT SIZE=2>k</FONT></SUB></I>{<I>F</I>})</TD>
+<TD nowrap>
+<TABLE VALIGN=middle CELLSPACING=0 CELLPADDING=0>
+<TR><TD><I>&nbsp;</I></TD>
+</TR>
+
+<TR><TD><I><FONT SIZE=2>k=1... n</FONT></I></TD>
+</TR>
+</TABLE>
+</TD>
+<TD nowrap>}</TD>
+</TR>
+</TABLE>
+</DIV>
+
+when <I>a<SUB><FONT SIZE=2>k<SUB><FONT SIZE=2>i</FONT></SUB></FONT></SUB></I> starts with a constructor.
+This last restriction is needed in order to keep strong normalization
+and corresponds to the reduction for primitive recursive operators.<BR><BR>
+We can illustrate this behavior on examples.
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Goal (n,m:nat)(plus (S n) m)=(S (plus n m)).</CODE><BR>
+<TT><I>1&nbsp;subgoal</I></TT><BR>
+<TT><I>&nbsp;&nbsp;</I></TT><BR>
+<TT><I>&nbsp;&nbsp;============================</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;(n,m:nat)(plus&nbsp;(S&nbsp;n)&nbsp;m)=(S&nbsp;(plus&nbsp;n&nbsp;m))</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Reflexivity.</CODE><BR>
+<TT><I>Subtree&nbsp;proved!</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Abort.</CODE><BR>
+<TT><I>Current&nbsp;goal&nbsp;aborted</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Goal (f:forest)(sizet (node f))=(S (sizef f)).</CODE><BR>
+<TT><I>1&nbsp;subgoal</I></TT><BR>
+<TT><I>&nbsp;&nbsp;</I></TT><BR>
+<TT><I>&nbsp;&nbsp;============================</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;(f:forest)(sizet&nbsp;(node&nbsp;f))=(S&nbsp;(sizef&nbsp;f))</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Reflexivity.</CODE><BR>
+<TT><I>Subtree&nbsp;proved!</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Abort.</CODE><BR>
+<TT><I>Current&nbsp;goal&nbsp;aborted</I></TT><BR>
+</DIV>
+
+
+
+But assuming the definition of a son function from <FONT COLOR=purple>tree</FONT> to <FONT COLOR=purple>forest</FONT>:
+
+<DIV ALIGN=left>
+<CODE>Coq &lt;   Definition sont : tree -&gt; forest := [t]Case t of [f]f end.</CODE><BR>
+<TT><I>sont&nbsp;is&nbsp;defined</I></TT><BR>
+</DIV>
+
+
+
+The following is not a conversion but can be proved after a case analysis.
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Goal (t:tree)(sizet t)=(S (sizef (sont t))).</CODE><BR>
+<TT><I>1&nbsp;subgoal</I></TT><BR>
+<TT><I>&nbsp;&nbsp;</I></TT><BR>
+<TT><I>&nbsp;&nbsp;============================</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;(t:tree)(sizet&nbsp;t)=(S&nbsp;(sizef&nbsp;(sont&nbsp;t)))</I></TT><BR>
+<BR>
+<CODE>Coq &lt; (* this one fails *)</CODE><BR>
+<CODE>Coq &lt; Reflexivity.</CODE><BR>
+<TT><I>Error&nbsp;during&nbsp;interpretation&nbsp;of&nbsp;command:</I></TT><BR>
+<TT><I>Reflexivity.</I></TT><BR>
+<TT><I>Error:&nbsp;Impossible&nbsp;to&nbsp;unify&nbsp;S&nbsp;with&nbsp;sizet</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Destruct t.</CODE><BR>
+<TT><I>1&nbsp;subgoal</I></TT><BR>
+<TT><I>&nbsp;&nbsp;</I></TT><BR>
+<TT><I>&nbsp;&nbsp;t&nbsp;:&nbsp;tree</I></TT><BR>
+<TT><I>&nbsp;&nbsp;============================</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;(f:forest)(sizet&nbsp;(node&nbsp;f))=(S&nbsp;(sizef&nbsp;(sont&nbsp;(node&nbsp;f))))</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Reflexivity.</CODE><BR>
+<TT><I>Subtree&nbsp;proved!</I></TT><BR>
+</DIV>
+
+
+
+<H4>The <TT>Match ...with ...end</TT> expression
+</H4>
+
+<A NAME="Matchexpr"></A>
+<A NAME="@default266"></A>The <TT>Match</TT> operator which was a primitive notion in older
+presentations of the Calculus of Inductive Constructions is now just a
+macro definition which generates the good combination of <TT>Case</TT>
+and <TT>Fix</TT> operators in order to generate an operator for primitive
+recursive definitions. It always considers an inductive definition as 
+a single inductive definition.<BR><BR>
+The following examples illustrates this feature.
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Definition nat_pr : (C:Set)C-&gt;(nat-&gt;C-&gt;C)-&gt;nat-&gt;C </CODE><BR>
+<CODE>Coq &lt;   :=[C,x,g,n]Match n with x g end.</CODE><BR>
+<TT><I>nat_pr&nbsp;is&nbsp;defined</I></TT><BR>
+<BR>
+<CODE>Coq &lt; Print nat_pr.</CODE><BR>
+<TT><I>nat_pr&nbsp;=&nbsp;</I></TT><BR>
+<TT><I>[C:Set]</I></TT><BR>
+<TT><I>&nbsp;[x:C]</I></TT><BR>
+<TT><I>&nbsp;&nbsp;[g:nat-&gt;C-&gt;C]</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;[n:nat]</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;(Fix&nbsp;F{F&nbsp;[n0:nat]&nbsp;:&nbsp;C&nbsp;:=&nbsp;</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cases&nbsp;n0&nbsp;of</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;O&nbsp;=&gt;&nbsp;x</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(S&nbsp;n1)&nbsp;=&gt;&nbsp;(g&nbsp;n1&nbsp;(F&nbsp;n1))</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end}&nbsp;n)</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(C:Set)C-&gt;(nat-&gt;C-&gt;C)-&gt;nat-&gt;C</I></TT><BR>
+</DIV>
+
+
+
+
+<DIV ALIGN=left>
+<CODE>Coq &lt; Definition forest_pr </CODE><BR>
+<CODE>Coq &lt;   : (C:Set)C-&gt;(tree-&gt;forest-&gt;C-&gt;C)-&gt;forest-&gt;C</CODE><BR>
+<CODE>Coq &lt;   := [C,x,g,n]Match n with x g end.</CODE><BR>
+<TT><I>forest_pr&nbsp;is&nbsp;defined</I></TT><BR>
+</DIV>
+
+
+<BR><BR>
+
+The principles of mutual induction can be automatically generated 
+using the <TT>Scheme</TT> command described in section&nbsp;<A HREF="node.1.2.14.html#Scheme">7.15</A>.<BR><BR>
+<HR>
+
+<A HREF="node.0.3.3.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.0.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.3.5.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>
