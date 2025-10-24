@@ -1,0 +1,103 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+13.7&nbsp;When does the expansion strategy fail ?
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.2.5.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+13.7&nbsp;When does the expansion strategy fail ?
+</H2>
+
+
+<A NAME="limitations"></A>
+The strategy works very like in ML languages when treating
+patterns of non-dependent type. 
+But there are new cases of failure that are due to the presence of 
+dependencies. <BR>
+<BR>
+The error messages of the current implementation may be sometimes
+confusing. When the tactic fails because patterns are somehow
+incorrect then error messages refer to the initial expression. But the
+strategy may succeed to build an expression whose sub-expressions are
+well typed when the whole expression is not. In this situation the
+message makes reference to the expanded expression. We encourage
+users, when they have patterns with the same outer constructor in
+different equations, to name the variable patterns in the same
+positions with the same name. 
+E.g. to write <TT>(cons n O x) =&gt; e1</TT> 
+and <TT>(cons n _ x) =&gt; e2</TT> instead of
+<TT>(cons n O x) =&gt; e1</TT> and 
+<TT>(cons n' _ x') =&gt; e2</TT>. 
+This helps to maintain certain name correspondence between the
+generated expression and the original.<BR>
+<BR>
+Here is a summary of the error messages corresponding to each situation:<BR>
+<BR>
+<UL>
+<LI>
+ patterns are incorrect (because constructors are not applied to
+ the correct number of the arguments, because they are not linear or
+ they are wrongly typed)
+<UL>
+<LI>
+ <TT>The constructor  </TT><TT><I><FONT COLOR=maroon>ident</FONT></I></TT><TT> expects  </TT><TT><I><FONT COLOR=maroon>num</FONT></I></TT><TT> arguments</TT><BR>
+<BR>
+
+<LI><TT> The variable  </TT><TT><I><FONT COLOR=maroon>ident</FONT></I></TT><TT> is bound several times
+ in pattern  </TT><TT><I><FONT COLOR=maroon>term</FONT></I></TT><BR>
+<BR>
+
+<LI><TT> Found a constructor of inductive type </TT><I><FONT COLOR=maroon>term</FONT></I><TT>
+ while a constructor of </TT><I><FONT COLOR=maroon>term</FONT></I><TT> is expected
+</TT></UL><BR>
+
+<LI> the pattern matching is not exhaustive
+<UL>
+<LI>
+ <TT>Non exhaustive pattern-matching
+</TT></UL>
+
+<LI> the elimination predicate provided to <TT>Cases</TT> has not the
+ expected arity<BR>
+<BR>
+<UL>
+<LI>
+ <TT>The elimination predicate  </TT><TT><I><FONT COLOR=maroon>term</FONT></I></TT><TT> should be
+ of arity  </TT><TT><I><FONT COLOR=maroon>num</FONT></I></TT><TT> (for non dependent case) or  </TT><TT><I><FONT COLOR=maroon>num</FONT></I></TT><TT> (for dependent case)
+</TT></UL><BR>
+
+<LI> the whole expression is wrongly typed<BR>
+<BR>
+
+<LI> there is a type mismatch between the different branches<BR>
+<BR>
+ <UL>
+<LI>
+  <TT>Unable to infer a Cases predicate<BR>Either there is a type incompatiblity or the problem involves<BR>dependencies</TT>
+ </UL><BR>
+ Then the user should provide an elimination predicate.</UL>
+ <HR>
+
+<A HREF="node.3.2.5.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

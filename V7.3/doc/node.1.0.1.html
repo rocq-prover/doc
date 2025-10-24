@@ -1,0 +1,221 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+5.2&nbsp;Requests to the environment
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.1.0.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.0.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+5.2&nbsp;Requests to the environment
+</H2>
+
+
+
+<H3>
+
+5.2.1&nbsp;<TT>Check </TT><I><FONT COLOR=maroon>term</FONT></I><TT>.
+</TT></H3>
+
+<A NAME="Check"></A>
+<A NAME="@default301"></A><A NAME="@command50"></A>
+This command displays the type of <I><FONT COLOR=maroon>term</FONT></I>. When called in proof mode, 
+the term is checked in the local context of the current subgoal.<BR>
+<BR>
+<BR><B>Variants: </B><OL type=1>
+<LI>
+ <TT>Check </TT><I><FONT COLOR=maroon>num</FONT></I><TT> </TT><I><FONT COLOR=maroon>term</FONT></I><BR>Displays the type of <I><FONT COLOR=maroon>term</FONT></I> in the context of the <I><FONT COLOR=maroon>num</FONT></I>-th
+ subgoal.
+</OL>
+<H3>
+
+5.2.2&nbsp;<TT>Eval </TT><I><FONT COLOR=maroon>convtactic</FONT></I><TT> in </TT><I><FONT COLOR=maroon>term</FONT></I><TT>.
+</TT></H3>
+
+<A NAME="@default302"></A><A NAME="@command51"></A>This command performs the specified reduction on <I><FONT COLOR=maroon>term</FONT></I>, and displays
+the resulting term with its type. The term to be reduced may depend on
+hypothesis introduced in the first subgoal (if a proof is in
+progress).<BR>
+<BR>
+<BR><B>Variants: </B><OL type=1>
+<LI>
+ <TT>Eval </TT><I><FONT COLOR=maroon>num</FONT></I><TT> </TT><I><FONT COLOR=maroon>convtactic</FONT></I><TT> in </TT><I><FONT COLOR=maroon>term</FONT></I><TT>.</TT><BR>Evaluates <I><FONT COLOR=maroon>term</FONT></I> in the context of the <I><FONT COLOR=maroon>num</FONT></I>-th subgoal.
+</OL><BR><B>See also: </B>section&nbsp;<A HREF="node.1.2.4.html#Conversion-tactics">7.5</A>.<BR>
+<BR>
+
+<H3>
+
+5.2.3&nbsp;<TT>Extraction </TT><I><FONT COLOR=maroon>term</FONT></I><TT>.
+</TT></H3>
+
+<A NAME="ExtractionTerm"></A>
+<A NAME="@default303"></A><A NAME="@command52"></A> 
+This command displays the extracted term from
+<I><FONT COLOR=maroon>term</FONT></I>. The extraction is processed according to the distinction
+between <FONT COLOR=purple>Set</FONT> and <FONT COLOR=purple>Prop</FONT>; that is to say, between logical and
+computational content (see section <A HREF="node.0.3.0.html#Sorts">4.1.1</A>). The extracted term is
+displayed in Objective Caml syntax, where global identifiers are still
+displayed as in <FONT COLOR=purple>Coq</FONT> terms.<BR>
+<BR>
+<BR><B>Variants: </B><OL type=1>
+<LI>
+ <TT>Recursive Extraction </TT><I><FONT COLOR=maroon>qualid</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> ... </TT><I><FONT COLOR=maroon>qualid</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT>.</TT><BR>Recursively extracts all the material needed for the extraction of 
+ globals <I><FONT COLOR=maroon>qualid</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> ... <I><FONT COLOR=maroon>qualid</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>.
+</OL><BR><B>See also: </B>chapter&nbsp;<A HREF="node.3.6.html#Extraction">17</A>.<BR>
+<BR>
+
+<H3>
+
+5.2.4&nbsp;<TT>Opaque </TT><I><FONT COLOR=maroon>qualid</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> ...</TT><I><FONT COLOR=maroon>qualid</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT>.
+</TT></H3>
+
+<A NAME="@default304"></A><A NAME="@command53"></A><A NAME="Opaque"></A> This command tells not to unfold the
+the constants <I><FONT COLOR=maroon>qualid</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> ...<I><FONT COLOR=maroon>qualid</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> in tactics using
+<FONT FACE=symbol>d</FONT>-conversion. Unfolding a constant is replacing it by its
+definition. <TT>Opaque</TT> can only apply on constants originally
+defined as <TT>Transparent</TT>.<BR>
+<BR>
+Constants defined by a proof ended by <TT>Qed</TT> are automatically
+stamped as <TT>Opaque</TT> and can no longer be considered as <TT>Transparent</TT>. This is to keep with the usual mathematical practice of
+<EM>proof irrelevance</EM>: what matters in a mathematical development is
+the sequence of lemma statements, not their actual proofs. This
+distinguishes lemmas from the usual defined constants, whose actual
+values are of course relevant in general.<BR><B>See also: </B>sections <A HREF="node.1.2.4.html#Conversion-tactics">7.5</A>, <A HREF="node.1.2.10.html#Automatizing">7.11</A>,
+<A HREF="node.1.1.0.html#Theorem">6.1.3</A><BR>
+<BR>
+<BR><B>Error messages: </B><OL type=1>
+<LI>
+ <TT>The reference </TT><I><FONT COLOR=maroon>qualid</FONT></I><TT> was not found in the current
+environment</TT><A NAME="@error14"></A><BR>There is no constant referred by <I><FONT COLOR=maroon>qualid</FONT></I> in the environment.
+ Nevertheless, if you asked <TT>Opaque foo bar</TT>
+ and if <TT>bar</TT> does not exist, <TT>foo</TT> is set opaque.
+</OL>
+<H3>
+
+5.2.5&nbsp;<TT>Transparent </TT><I><FONT COLOR=maroon>qualid</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> ...</TT><I><FONT COLOR=maroon>qualid</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT>.
+</TT></H3>
+
+<A NAME="@default305"></A><A NAME="@command54"></A><A NAME="Transparent"></A>
+This command is the converse of <TT>Opaque</TT> and can only apply on constants originally defined as <TT>Transparent</TT> to restore their initial behaviour after an <TT>Opaque</TT> command.<BR>
+<BR>
+The constants automatically declared transparent are the ones defined by a proof ended by <TT>Defined</TT>, or by a <TT>Definition</TT> or <TT>Local</TT> with an explicit body.<BR><B>Warning: </B><TT>Transparent</TT> and <TT>Opaque</TT> are not synchronous
+with the reset mechanism. If a constant was transparent at point A, if
+you set it opaque at point B and reset to point A, you return to state
+of point A with the difference that the constant is still opaque. This
+can cause changes in tactic scripts behaviour.<BR>
+<BR>
+At section or module closing, a constant recovers the status it got at
+the time of its definition.<BR>
+<BR>
+<BR><B>Error messages: </B><OL type=1>
+<LI>
+ <TT>The reference </TT><I><FONT COLOR=maroon>qualid</FONT></I><TT> was not found in the current
+environment</TT><A NAME="@error15"></A><BR>There is no constant referred by <I><FONT COLOR=maroon>qualid</FONT></I> in the environment.
+</OL><BR><B>See also: </B>sections <A HREF="node.1.2.4.html#Conversion-tactics">7.5</A>, <A HREF="node.1.2.10.html#Automatizing">7.11</A>,
+<A HREF="node.1.1.0.html#Theorem">6.1.3</A><BR>
+<BR>
+
+<H3>
+
+5.2.6&nbsp;<TT>Search </TT><I><FONT COLOR=maroon>qualid</FONT></I><TT>.
+</TT></H3>
+<A NAME="@default306"></A><A NAME="@command55"></A>
+This command displays the name and type of all theorems of the current
+context whose statement's conclusion has the form <TT>(</TT><I><FONT COLOR=maroon>qualid</FONT></I><TT> t1 ..
+ tn)</TT>. This command is useful to remind the user of the name of
+library lemmas.
+<BR><B>Error messages: </B><OL type=1>
+<LI>
+ <TT>The reference </TT><I><FONT COLOR=maroon>qualid</FONT></I><TT> was not found in the current
+environment</TT><A NAME="@error16"></A><BR>There is no constant in the environment named
+ <I><FONT COLOR=maroon>qualid</FONT></I>.
+</OL>
+<H3>
+
+5.2.7&nbsp;<TT>SearchPattern </TT><I><FONT COLOR=maroon>term</FONT></I><TT>.
+</TT></H3>
+<A NAME="@default307"></A><A NAME="@command56"></A>This command displays the name and type of all theorems of the current
+context whose statement's conclusion matches the expression <I><FONT COLOR=maroon>term</FONT></I>
+where holes in the latter are denoted by ``<TT>?</TT>''.<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Require&nbsp;Arith.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;SearchPattern&nbsp;(plus&nbsp;?&nbsp;?)=?.</TT><BR><TT><I>le_plus_minus_r:&nbsp;(n,m:nat)(le&nbsp;n&nbsp;m)-</I></TT><TT><I>&gt;</I></TT><TT><I>(plus&nbsp;n&nbsp;(minus&nbsp;m&nbsp;n))=m</I></TT><BR><TT><I>mult_acc_aux:&nbsp;(n,s,m:nat)(plus&nbsp;s&nbsp;(mult&nbsp;n&nbsp;m))=(mult_acc&nbsp;s&nbsp;m&nbsp;n)</I></TT><BR><TT><I>plus_sym:&nbsp;(n,m:nat)(plus&nbsp;n&nbsp;m)=(plus&nbsp;m&nbsp;n)</I></TT><BR><TT><I>plus_Snm_nSm:&nbsp;(n,m:nat)(plus&nbsp;(S&nbsp;n)&nbsp;m)=(plus&nbsp;n&nbsp;(S&nbsp;m))</I></TT><BR><TT><I>plus_assoc_l:&nbsp;(n,m,p:nat)(plus&nbsp;n&nbsp;(plus&nbsp;m&nbsp;p))=(plus&nbsp;(plus&nbsp;n&nbsp;m)&nbsp;p)</I></TT><BR><TT><I>plus_permute:&nbsp;(n,m,p:nat)(plus&nbsp;n&nbsp;(plus&nbsp;m&nbsp;p))=(plus&nbsp;m&nbsp;(plus&nbsp;n&nbsp;p))</I></TT><BR><TT><I>plus_assoc_r:&nbsp;(n,m,p:nat)(plus&nbsp;(plus&nbsp;n&nbsp;m)&nbsp;p)=(plus&nbsp;n&nbsp;(plus&nbsp;m&nbsp;p))</I></TT><BR><TT><I>plus_permute_2_in_4:</I></TT><BR><TT><I>&nbsp;&nbsp;(a,b,c,d:nat)</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;(plus&nbsp;(plus&nbsp;a&nbsp;b)&nbsp;(plus&nbsp;c&nbsp;d))=(plus&nbsp;(plus&nbsp;a&nbsp;c)&nbsp;(plus&nbsp;b&nbsp;d))</I></TT><BR><TT><I>plus_tail_plus:&nbsp;(n,m:nat)(plus&nbsp;n&nbsp;m)=(tail_plus&nbsp;n&nbsp;m)</I></TT><BR><TT><I>plus_O_n:&nbsp;(n:nat)(plus&nbsp;(0)&nbsp;n)=n</I></TT><BR><TT><I>plus_Sn_m:&nbsp;(n,m:nat)(plus&nbsp;(S&nbsp;n)&nbsp;m)=(S&nbsp;(plus&nbsp;n&nbsp;m))</I></TT><BR><TT><I>mult_n_Sm:&nbsp;(n,m:nat)(plus&nbsp;(mult&nbsp;n&nbsp;m)&nbsp;n)=(mult&nbsp;n&nbsp;(S&nbsp;m))</I></TT><BR></DIV>
+<BR>
+Patterns need not be linear: you can express that the same
+expression must occur in two places by using indexed `<TT>?</TT>''.<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Require&nbsp;Arith.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;SearchPattern&nbsp;(plus&nbsp;?1&nbsp;?)=?1.</TT><BR></DIV>
+<BR>
+
+<H3>
+
+5.2.8&nbsp;<TT>SearchRewrite </TT><I><FONT COLOR=maroon>term</FONT></I><TT>.
+</TT></H3>
+<A NAME="@default308"></A><A NAME="@command57"></A>This command displays the name and type of all theorems of the current
+context whose statement's conclusion is an equality of which one side matches
+the expression <I><FONT COLOR=maroon>term</FONT></I>=. Holes in <I><FONT COLOR=maroon>term</FONT></I> are denoted by ``<TT>?</TT>''.<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Require&nbsp;Arith.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;SearchRewrite&nbsp;(plus&nbsp;?&nbsp;?).</TT><BR><TT><I>le_plus_minus:&nbsp;(n,m:nat)(le&nbsp;n&nbsp;m)-</I></TT><TT><I>&gt;</I></TT><TT><I>m=(plus&nbsp;n&nbsp;(minus&nbsp;m&nbsp;n))</I></TT><BR><TT><I>le_plus_minus_r:&nbsp;(n,m:nat)(le&nbsp;n&nbsp;m)-</I></TT><TT><I>&gt;</I></TT><TT><I>(plus&nbsp;n&nbsp;(minus&nbsp;m&nbsp;n))=m</I></TT><BR><TT><I>mult_plus_distr:</I></TT><BR><TT><I>&nbsp;&nbsp;(n,m,p:nat)(mult&nbsp;(plus&nbsp;n&nbsp;m)&nbsp;p)=(plus&nbsp;(mult&nbsp;n&nbsp;p)&nbsp;(mult&nbsp;m&nbsp;p))</I></TT><BR><TT><I>mult_plus_distr_r:</I></TT><BR><TT><I>&nbsp;&nbsp;(n,m,p:nat)(mult&nbsp;n&nbsp;(plus&nbsp;m&nbsp;p))=(plus&nbsp;(mult&nbsp;n&nbsp;m)&nbsp;(mult&nbsp;n&nbsp;p))</I></TT><BR><TT><I>mult_acc_aux:&nbsp;(n,s,m:nat)(plus&nbsp;s&nbsp;(mult&nbsp;n&nbsp;m))=(mult_acc&nbsp;s&nbsp;m&nbsp;n)</I></TT><BR><TT><I>plus_sym:&nbsp;(n,m:nat)(plus&nbsp;n&nbsp;m)=(plus&nbsp;m&nbsp;n)</I></TT><BR><TT><I>plus_Snm_nSm:&nbsp;(n,m:nat)(plus&nbsp;(S&nbsp;n)&nbsp;m)=(plus&nbsp;n&nbsp;(S&nbsp;m))</I></TT><BR><TT><I>plus_assoc_l:&nbsp;(n,m,p:nat)(plus&nbsp;n&nbsp;(plus&nbsp;m&nbsp;p))=(plus&nbsp;(plus&nbsp;n&nbsp;m)&nbsp;p)</I></TT><BR><TT><I>plus_permute:&nbsp;(n,m,p:nat)(plus&nbsp;n&nbsp;(plus&nbsp;m&nbsp;p))=(plus&nbsp;m&nbsp;(plus&nbsp;n&nbsp;p))</I></TT><BR><TT><I>plus_assoc_r:&nbsp;(n,m,p:nat)(plus&nbsp;(plus&nbsp;n&nbsp;m)&nbsp;p)=(plus&nbsp;n&nbsp;(plus&nbsp;m&nbsp;p))</I></TT><BR><TT><I>plus_permute_2_in_4:</I></TT><BR><TT><I>&nbsp;&nbsp;(a,b,c,d:nat)</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;(plus&nbsp;(plus&nbsp;a&nbsp;b)&nbsp;(plus&nbsp;c&nbsp;d))=(plus&nbsp;(plus&nbsp;a&nbsp;c)&nbsp;(plus&nbsp;b&nbsp;d))</I></TT><BR><TT><I>plus_tail_plus:&nbsp;(n,m:nat)(plus&nbsp;n&nbsp;m)=(tail_plus&nbsp;n&nbsp;m)</I></TT><BR><TT><I>plus_n_O:&nbsp;(n:nat)n=(plus&nbsp;n&nbsp;(0))</I></TT><BR><TT><I>plus_O_n:&nbsp;(n:nat)(plus&nbsp;(0)&nbsp;n)=n</I></TT><BR><TT><I>plus_n_Sm:&nbsp;(n,m:nat)(S&nbsp;(plus&nbsp;n&nbsp;m))=(plus&nbsp;n&nbsp;(S&nbsp;m))</I></TT><BR><TT><I>plus_Sn_m:&nbsp;(n,m:nat)(plus&nbsp;(S&nbsp;n)&nbsp;m)=(S&nbsp;(plus&nbsp;n&nbsp;m))</I></TT><BR><TT><I>mult_n_Sm:&nbsp;(n,m:nat)(plus&nbsp;(mult&nbsp;n&nbsp;m)&nbsp;n)=(mult&nbsp;n&nbsp;(S&nbsp;m))</I></TT><BR></DIV>
+<BR>
+<BR><B>Variants: </B><OL type=1>
+<LI>
+
+<TT>Search </TT><I><FONT COLOR=maroon>qualid</FONT></I><TT> inside
+</TT><I><FONT COLOR=maroon>module</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT>...</TT><I><FONT COLOR=maroon>module</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT>.</TT><A NAME="@default309"></A><A NAME="@command58"></A><BR><TT>SearchPattern </TT><I><FONT COLOR=maroon>term</FONT></I><TT> inside
+</TT><I><FONT COLOR=maroon>module</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT>...</TT><I><FONT COLOR=maroon>module</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT>.</TT><A NAME="@default310"></A><A NAME="@command59"></A><BR><TT>SearchRewrite </TT><I><FONT COLOR=maroon>term</FONT></I><TT> inside
+</TT><I><FONT COLOR=maroon>module</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT>...</TT><I><FONT COLOR=maroon>module</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT>.</TT><A NAME="@default311"></A><A NAME="@command60"></A><BR>
+<BR>
+This restricts the search to constructions defined in modules <I><FONT COLOR=maroon>module</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>...<I><FONT COLOR=maroon>module</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>.<BR>
+<BR>
+
+<LI> <TT>Search </TT><I><FONT COLOR=maroon>qualid</FONT></I><TT> outside </TT><I><FONT COLOR=maroon>module</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT>...</TT><I><FONT COLOR=maroon>module</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT>.</TT><A NAME="@default312"></A><A NAME="@command61"></A><BR><TT>SearchPattern </TT><I><FONT COLOR=maroon>term</FONT></I><TT> outside </TT><I><FONT COLOR=maroon>module</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT>...</TT><I><FONT COLOR=maroon>module</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT>.</TT><A NAME="@default313"></A><A NAME="@command62"></A><BR><TT>SearchRewrite </TT><I><FONT COLOR=maroon>term</FONT></I><TT> outside </TT><I><FONT COLOR=maroon>module</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT>...</TT><I><FONT COLOR=maroon>module</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT>.</TT><A NAME="@default314"></A><A NAME="@command63"></A><BR>
+<BR>
+ This restricts the search to constructions not defined in modules
+<I><FONT COLOR=maroon>module</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>...<I><FONT COLOR=maroon>module</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>.</OL>
+<BR><B>Error messages: </B><OL type=1>
+<LI>
+ <TT>Module/section </TT><I><FONT COLOR=maroon>module</FONT></I><TT> not found</TT><A NAME="@error17"></A>
+No module <I><FONT COLOR=maroon>module</FONT></I> has been required (see section&nbsp;<A HREF="node.1.0.3.html#Require">5.4.2</A>).
+</OL>
+<H3>
+
+5.2.9&nbsp;<TT>Locate </TT><I><FONT COLOR=maroon>qualid</FONT></I><TT>.
+</TT></H3>
+<A NAME="@default315"></A><A NAME="@command64"></A>
+This command displays the full name of the qualified identifier <I><FONT COLOR=maroon>qualid</FONT></I>
+and consequently the <FONT COLOR=purple>Coq</FONT> module in which it is defined.<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Locate&nbsp;nat.</TT><BR><TT><I>Coq.Init.Datatypes.nat</I></TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Locate&nbsp;Datatypes.O.</TT><BR><TT><I>Coq.Init.Datatypes.O</I></TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Locate&nbsp;Init.Datatypes.O.</TT><BR><TT><I>Coq.Init.Datatypes.O</I></TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Locate&nbsp;Coq.Init.Datatypes.O.</TT><BR><TT><I>Coq.Init.Datatypes.O</I></TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Locate&nbsp;I.Dont.Exist.</TT><BR><TT><I>Error:&nbsp;I.Dont.Exist&nbsp;is&nbsp;not&nbsp;a&nbsp;defined&nbsp;object</I></TT><BR></DIV>
+<BR>
+<HR>
+
+<A HREF="node.1.0.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.0.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

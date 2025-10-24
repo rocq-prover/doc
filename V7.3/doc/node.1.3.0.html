@@ -1,0 +1,59 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+8.1&nbsp;Refine
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.1.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.3.1.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+8.1&nbsp;<TT>Refine
+</TT></H2>
+
+
+
+<A NAME="@default555"></A><A NAME="@tactic122"></A>
+<A NAME="Refine-example"></A>This tactic applies to any goal. It behaves like <TT>Exact</TT> with a
+big difference : the user can leave some holes (denoted by <TT>?</TT> or 
+<TT>(?::</TT><I>type</I><TT>)</TT>) in the term. 
+<TT>Refine</TT> will generate as many
+subgoals as they are holes in the term. The type of holes must be
+either synthesized by the system or declared by an
+explicit cast like <CODE>(?::nat-&gt;Prop)</CODE>. This low-level
+tactic can be useful to advanced users.<BR><B>Example: </B><BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Inductive&nbsp;Option:&nbsp;Set&nbsp;:=&nbsp;Fail&nbsp;:&nbsp;Option&nbsp;|&nbsp;Ok&nbsp;:&nbsp;bool-</TT><TT>&gt;</TT><TT>Option.</TT><BR></DIV>
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Definition&nbsp;get:&nbsp;(x:Option)~x=Fail-</TT><TT>&gt;</TT><TT>bool.</TT><BR><TT><I>1&nbsp;subgoal</I></TT><BR><TT><I>&nbsp;&nbsp;</I></TT><BR><TT><I>&nbsp;&nbsp;============================</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;(x:Option)~x=Fail-</I></TT><TT><I>&gt;</I></TT><TT><I>bool</I></TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Refine</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;[x:Option]</TT><TT>&lt;</TT><TT>[x:Option]~x=Fail-</TT><TT>&gt;</TT><TT>bool</TT><TT>&gt;</TT><TT>Cases&nbsp;x&nbsp;of</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fail&nbsp;&nbsp;&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;&nbsp;?</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(Ok&nbsp;b)&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;&nbsp;[_:?]b&nbsp;end.</TT><BR><TT><I>1&nbsp;subgoal</I></TT><BR><TT><I>&nbsp;&nbsp;</I></TT><BR><TT><I>&nbsp;&nbsp;x&nbsp;:&nbsp;Option</I></TT><BR><TT><I>&nbsp;&nbsp;============================</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;~Fail=Fail-</I></TT><TT><I>&gt;</I></TT><TT><I>bool</I></TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Intros;Absurd&nbsp;Fail=Fail;Trivial.</TT><BR><TT><I>Subtree&nbsp;proved!</I></TT><BR></DIV>
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Defined.</TT><BR></DIV>
+<BR>
+<HR>
+
+<A HREF="node.1.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.3.1.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

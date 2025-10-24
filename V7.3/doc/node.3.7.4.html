@@ -1,0 +1,188 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+18.5&nbsp;Add a ring structure
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.7.3.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.7.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.7.5.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+18.5&nbsp;Add a ring structure
+</H2>
+
+
+It can be done in the <FONT COLOR=purple>Coq</FONT>toplevel (No ML file to edit and to link
+with <FONT COLOR=purple>Coq</FONT>). First, <TT>Ring</TT> can handle two kinds of structure:
+rings and semi-rings. Semi-rings are like rings without an opposite to
+addition. Their precise specification (in <FONT COLOR=purple>Gallina</FONT>) can be found in
+the file<BR>
+<BR>
+<BLOCKQUOTE>
+<PRE>
+contrib/ring/Ring_theory.v
+</PRE></BLOCKQUOTE>The typical example of ring is <TT>Z</TT>, the typical
+example of semi-ring is <TT>nat</TT>.<BR>
+<BR>
+The specification of a
+ring is divided in two parts: first the record of constants
+(<FONT FACE=symbol>Å</FONT>, <FONT FACE=symbol>Ä</FONT>, 1, 0, ) and then the theorems
+(associativity, commutativity, etc.).<BR>
+<BR>
+
+<DIV ALIGN=left>
+<PRE>
+Section Theory_of_semi_rings.
+
+Variable A : Type.
+Variable Aplus : A -&gt; A -&gt; A.
+Variable Amult : A -&gt; A -&gt; A.
+Variable Aone : A.
+Variable Azero : A.
+(* There is also a "weakly decidable" equality on A. That means 
+  that if (A_eq x y)=true then x=y but x=y can arise when 
+  (A_eq x y)=false. On an abstract ring the function [x,y:A]false
+  is a good choice. The proof of A_eq_prop is in this case easy. *)
+Variable Aeq : A -&gt; A -&gt; bool.
+
+Record Semi_Ring_Theory : Prop :=
+{ SR_plus_sym  : (n,m:A)[| n + m == m + n |];
+  SR_plus_assoc : (n,m,p:A)[| n + (m + p) == (n + m) + p |];
+
+  SR_mult_sym : (n,m:A)[| n*m == m*n |];
+  SR_mult_assoc : (n,m,p:A)[| n*(m*p) == (n*m)*p |];
+  SR_plus_zero_left :(n:A)[| 0 + n == n|];
+  SR_mult_one_left : (n:A)[| 1*n == n |];
+  SR_mult_zero_left : (n:A)[| 0*n == 0 |];
+  SR_distr_left   : (n,m,p:A) [| (n + m)*p == n*p + m*p |];
+  SR_plus_reg_left : (n,m,p:A)[| n + m == n + p |] -&gt; m==p;
+  SR_eq_prop : (x,y:A) (Is_true (Aeq x y)) -&gt; x==y
+}.
+</PRE></DIV>
+<BR>
+
+<DIV ALIGN=left>
+<PRE>
+Section Theory_of_rings.
+
+Variable A : Type.
+
+Variable Aplus : A -&gt; A -&gt; A.
+Variable Amult : A -&gt; A -&gt; A.
+Variable Aone : A.
+Variable Azero : A.
+Variable Aopp : A -&gt; A.
+Variable Aeq : A -&gt; A -&gt; bool.
+
+
+Record Ring_Theory : Prop :=
+{ Th_plus_sym  : (n,m:A)[| n + m == m + n |];
+  Th_plus_assoc : (n,m,p:A)[| n + (m + p) == (n + m) + p |];
+  Th_mult_sym : (n,m:A)[| n*m == m*n |];
+  Th_mult_assoc : (n,m,p:A)[| n*(m*p) == (n*m)*p |];
+  Th_plus_zero_left :(n:A)[| 0 + n == n|];
+  Th_mult_one_left : (n:A)[| 1*n == n |];
+  Th_opp_def : (n:A) [| n + (-n) == 0 |];
+  Th_distr_left   : (n,m,p:A) [| (n + m)*p == n*p + m*p |];
+  Th_eq_prop : (x,y:A) (Is_true (Aeq x y)) -&gt; x==y
+}.
+</PRE></DIV>
+<BR>
+To define a ring structure on A, you must provide an addition, a
+multiplication, an opposite function and two unities 0 and 1.<BR>
+<BR>
+You must then prove all theorems that make
+(A,Aplus,Amult,Aone,Azero,Aeq) 
+a ring structure, and pack them with the <CODE>Build_Ring_Theory</CODE> 
+constructor.<BR>
+<BR>
+Finally to register a ring the syntax is:<BR>
+<BR>
+<A NAME="@default647"></A><A NAME="@command189"></A>
+<BLOCKQUOTE>
+ <TT>Add Ring</TT> <I>A Aplus Amult Aone Azero Ainv Aeq T</I>
+ <TT>[</TT> <I>c1 ...cn</I> <TT>].</TT>
+</BLOCKQUOTE>where <I>A</I> is a term of type <TT>Set</TT>, 
+<I>Aplus</I> is a term of type <TT>A-&gt;A-&gt;A</TT>,
+<I>Amult</I> is a term of type <TT>A-&gt;A-&gt;A</TT>,
+<I>Aone</I> is a term of type <TT>A</TT>,
+<I>Azero</I> is a term of type <TT>A</TT>,
+<I>Ainv</I> is a term of type <TT>A-&gt;A</TT>,
+<I>Aeq</I> is a term of type <TT>A-&gt;bool</TT>,
+<I>T</I> is a term of type 
+<TT>(Ring_Theory </TT><I>A Aplus Amult Aone Azero Ainv
+ Aeq</I><TT>)</TT>.
+The arguments <I>c1 ...cn</I>, 
+are the names of constructors which define closed terms: a
+subterm will be considered as a constant if it is either one of the
+terms <I>c1 ...cn</I> or the application of one of these terms to
+closed terms. For <TT>nat</TT>, the given constructors are <TT>S</TT>
+and <TT>O</TT>, and the closed terms are <TT>O</TT>, <TT>(S O)</TT>,
+<TT>(S (S O))</TT>, ...<BR>
+<BR>
+<BR><B>Variants: </B><OL type=1>
+<LI>
+ <TT>Add Semi Ring</TT> <I>A Aplus Amult Aone Azero Aeq T</I> 
+ <TT>[</TT> <I>c1 ... cn</I> <TT>].</TT><A NAME="@default648"></A><A NAME="@command190"></A><BR>There are two differences with the <TT>Add Ring</TT> command: 
+ there is no inverse function and the term <I>T</I> must be of type 
+ <TT>(Semi_Ring_Theory </TT><I>A Aplus Amult Aone Azero
+ Aeq</I><TT>)</TT>. <BR>
+<BR>
+
+<LI> <TT>Add Abstract Ring</TT> <I>A Aplus Amult Aone Azero Ainv 
+ Aeq T</I><TT>.</TT><A NAME="@default649"></A><A NAME="@command191"></A><BR>This command should be used for when the operations of rings are not 
+ computable; for example the real numbers of
+ <TT>theories/REALS/</TT>. Here 0+1 is not beta-reduced to 1 but
+ you still may want to <I>rewrite</I> it to 1 using the ring
+ axioms. The argument <TT>Aeq</TT> is not used; a good choice for
+ that function is <CODE>[x:A]false</CODE>.<BR>
+<BR>
+
+<LI> <TT>Add Abstract Semi Ring</TT> <I>A Aplus Amult Aone Azero
+ Aeq T</I><TT>.</TT><A NAME="@default650"></A><A NAME="@command192"></A><BR></OL><BR><B>Error messages: </B><OL type=1>
+<LI>
+ <TT>Not a valid (semi)ring theory</TT><A NAME="@error118"></A>.<BR>That happens when the typing condition does not hold.
+</OL>Currently, the hypothesis is made than no more than one ring structure
+may be declared for a given type in <TT>Set</TT> or <TT>Type</TT>.
+This allows automatic detection of the theory used to achieve the
+normalization. On popular demand, we can change that and allow several
+ring structures on the same set.<BR>
+<BR>
+The table of theories of <TT>Ring</TT> is compatible with the <FONT COLOR=purple>Coq</FONT> 
+sectioning mechanism. If you declare a Ring inside a section, the
+declaration will be thrown away when closing the section.
+And when you load a compiled file, all the <TT>Add Ring</TT>
+commands of this file that are not inside a section will be loaded.<BR>
+<BR>
+The typical example of ring is <TT>Z</TT>, and the typical example of
+semi-ring is <TT>nat</TT>. Another ring structure is defined on the
+booleans. <BR><B>Warning: </B>Only the ring of booleans is loaded by default with the
+<TT>Ring</TT> module. To load the ring structure for <TT>nat</TT>,
+load the module <TT>ArithRing</TT>, and for <TT>Z</TT>,
+load the module <TT>ZArithRing</TT>.<BR>
+<BR>
+
+ <HR>
+
+<A HREF="node.3.7.3.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.7.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.7.5.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

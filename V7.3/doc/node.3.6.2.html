@@ -1,0 +1,78 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+17.3&nbsp;Differences between Coq and ML type systems
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.6.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.6.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.6.3.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+17.3&nbsp;Differences between <FONT COLOR=purple>Coq</FONT> and ML type systems
+</H2>
+
+
+Due to differences between <FONT COLOR=purple>Coq</FONT> and ML type systems, 
+some extracted programs are not typable in ML. 
+For example, Here are two kinds of problem that can occur: <BR>
+<BR>
+<UL>
+<LI>
+  If some part of the program is <EM>very</EM> polymorphic, there
+ may be no ML type for it. In that case the extraction to ML works
+ all right but the generated code may be refused by the ML
+ type-checker. A very well known example is the <EM>distr-pair</EM>
+ function:
+<DIV ALIGN=center><TT>Definition dp := [A,B:Set][x:A][y:B][f:(C:Set)C-&gt;C](f A x,f B y).
+</TT></DIV>
+In Ocaml, for instance, the extracted term is 
+<CODE>let dp x y f = pair((f () x),(f () y))</CODE> and has type
+<DIV ALIGN=center><TT>dp : 'a -&gt; 'a -&gt; (unit -&gt; 'a -&gt; 'b) -&gt; ('b,'b) prod
+</TT></DIV>
+which is not its original type, but a restriction.<BR>
+<BR>
+ 
+<LI> Some definitions of <FONT COLOR=purple>Coq</FONT> may have no counterpart in ML. This
+ happens when there is a quantification over types inside the type
+ of a constructor; for example:
+<DIV ALIGN=center><TT>Inductive anything : Set := dummy : (A:Set)A-&gt;anything.
+</TT></DIV>
+which corresponds to the definition of ML dynamics.
+</UL>It is still possible to run the
+programs by switching off the type-checker during compilation. Unless
+you misused the semantical attachment facilities you should never get
+any message like ``segmentation fault'' for which the extracted code
+would be to blame. For example, to bypass the Ocaml type-checker, 
+we can use the
+function <TT>Obj.magic</TT> which gives the type <TT>'a</TT> to any
+object. Work is underway to generate those <TT>Obj.magic</TT> automatically.<BR>
+<BR>
+We have to say, though, that in most ``realistic'' programs, these
+problems do not occur. For example all the programs of the library are
+accepted by Caml type-checker (see examples below).<BR>
+<BR>
+
+ <HR>
+
+<A HREF="node.3.6.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.6.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.6.3.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

@@ -1,0 +1,689 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+3.1&nbsp;The basic library
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.0.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.2.1.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+3.1&nbsp;The basic library
+</H2>
+
+
+
+<A NAME="Prelude"></A>This section lists the basic notions and results which are directly
+available in the standard <FONT COLOR=purple>Coq</FONT> system
+<A NAME="text4" HREF="#note4"><SUP><FONT SIZE=2>1</FONT></SUP></A>.<BR>
+<BR>
+
+<H3>
+
+3.1.1&nbsp;Logic
+</H3>
+ <A NAME="Logic"></A>The basic library of <FONT COLOR=purple>Coq</FONT> comes with the definitions of standard
+(intuitionistic) logical connectives (they are defined as inductive
+constructions). They are equipped with an appealing syntax enriching the
+(subclass <I><FONT COLOR=maroon>form</FONT></I>) of the syntactic class <I><FONT COLOR=maroon>term</FONT></I>. The syntax
+extension
+<A NAME="text5" HREF="#note5"><SUP><FONT SIZE=2>2</FONT></SUP></A>
+ is shown on figure <A HREF="node.0.2.0.html#formulas-syntax">3.1.1</A>.<BR>
+<BR>
+<BLOCKQUOTE><DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV>
+<A NAME="formulas-syntax"></A>
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=1>
+<TR><TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>form</FONT></I></TD>
+<TD ALIGN=center NOWRAP>::=</TD>
+<TD ALIGN=left NOWRAP><TT>True</TT></TD>
+<TD ALIGN=right NOWRAP>(<TT>True</TT>)</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><TT>False</TT></TD>
+<TD ALIGN=right NOWRAP>(<TT>False</TT>)</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><CODE>~</CODE> <I><FONT COLOR=maroon>form</FONT></I></TD>
+<TD ALIGN=right NOWRAP>(<TT>not</TT>)</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>form</FONT></I> <TT>/</TT><TT>\</TT> <I><FONT COLOR=maroon>form</FONT></I></TD>
+<TD ALIGN=right NOWRAP>(<TT>and</TT>)</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>form</FONT></I> <TT>\</TT><TT>/</TT> <I><FONT COLOR=maroon>form</FONT></I></TD>
+<TD ALIGN=right NOWRAP>(<TT>or</TT>)</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>form</FONT></I> <TT>-&gt;</TT> <I><FONT COLOR=maroon>form</FONT></I></TD>
+<TD ALIGN=right NOWRAP>(<EM>primitive implication</EM><EM>)</EM></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>form</FONT></I> <TT>&lt;-&gt;</TT> <I><FONT COLOR=maroon>form</FONT></I></TD>
+<TD ALIGN=right NOWRAP>(<TT>iff</TT>)</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><TT>(</TT> <I><FONT COLOR=maroon>ident</FONT></I> <TT>:</TT> <I><FONT COLOR=maroon>type</FONT></I> <TT>)</TT>
+ <I><FONT COLOR=maroon>form</FONT></I></TD>
+<TD ALIGN=right NOWRAP>(<EM>primitive for all</EM><EM>)</EM></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><TT>( ALL</TT> <I><FONT COLOR=maroon>ident</FONT></I> <I><FONT COLOR=maroon>[</FONT></I><TT>:</TT> <I><FONT COLOR=maroon>specif</FONT></I><I><FONT COLOR=maroon>]</FONT></I> <TT>|</TT>
+ <I><FONT COLOR=maroon>form</FONT></I> <TT>)</TT></TD>
+<TD ALIGN=right NOWRAP>(<TT>all</TT>)</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><TT>( EX</TT> <I><FONT COLOR=maroon>ident</FONT></I> <I><FONT COLOR=maroon>[</FONT></I><TT>:</TT> <I><FONT COLOR=maroon>specif</FONT></I><I><FONT COLOR=maroon>]</FONT></I> <TT>|</TT> <I><FONT COLOR=maroon>form</FONT></I> <TT>)</TT></TD>
+<TD ALIGN=right NOWRAP>(<TT>ex</TT>)</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><TT>( EX</TT> <I><FONT COLOR=maroon>ident</FONT></I> <I><FONT COLOR=maroon>[</FONT></I><TT>:</TT> <I><FONT COLOR=maroon>specif</FONT></I><I><FONT COLOR=maroon>]</FONT></I> <TT>|</TT> <I><FONT COLOR=maroon>form</FONT></I> <TT>&amp;</TT> <I><FONT COLOR=maroon>form</FONT></I> <TT>)</TT></TD>
+<TD ALIGN=right NOWRAP>(<TT>ex2</TT>)</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>term</FONT></I> <TT>=</TT> <I><FONT COLOR=maroon>term</FONT></I></TD>
+<TD ALIGN=right NOWRAP>(<TT>eq</TT>)</TD>
+</TR></TABLE>
+</DIV><BR><BR><B>Remark: </B>The implication is not defined but primitive
+(it is a non-dependent product of a proposition over another proposition).
+There is also a primitive universal quantification (it is a
+dependent product over a proposition). The primitive universal
+quantification allows both first-order and higher-order
+quantification. There is true reason to
+have the notation <TT>( ALL</TT> <I><FONT COLOR=maroon>ident</FONT></I> <I><FONT COLOR=maroon>[</FONT></I><TT>:</TT> <I><FONT COLOR=maroon>specif</FONT></I><I><FONT COLOR=maroon>]</FONT></I> <TT>|</TT> <I><FONT COLOR=maroon>form</FONT></I> <TT>)</TT> propositions), except to have a notation dual of
+the notation for first-order existential quantification.
+<BR>
+<BR>
+<DIV ALIGN=center>Figure 3.1: Syntax of formulas</DIV><BR>
+
+<DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV></BLOCKQUOTE>
+<H4>
+Propositional Connectives
+</H4>
+ <A NAME="Connectives"></A>
+<A NAME="@default87"></A>First, we find propositional calculus connectives:
+<A NAME="@default88"></A>
+<A NAME="@default89"></A>
+<A NAME="@default90"></A>
+<A NAME="@default91"></A>
+<A NAME="@default92"></A>
+<A NAME="@default93"></A>
+<A NAME="@default94"></A>
+<A NAME="@default95"></A><BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Inductive&nbsp;True&nbsp;:&nbsp;Prop&nbsp;:=&nbsp;I&nbsp;:&nbsp;True.&nbsp;</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Inductive&nbsp;False&nbsp;:&nbsp;Prop&nbsp;:=&nbsp;.&nbsp;</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Definition&nbsp;not&nbsp;:=&nbsp;[A:Prop]&nbsp;A-</TT><TT>&gt;</TT><TT>False.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Inductive&nbsp;and&nbsp;[A,B:Prop]&nbsp;:&nbsp;Prop&nbsp;:=&nbsp;conj&nbsp;:&nbsp;A&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;B&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;A/\B.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Section&nbsp;Projections.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Variables&nbsp;A,B&nbsp;:&nbsp;Prop.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Theorem&nbsp;proj1&nbsp;:&nbsp;A/\B&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;A.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Theorem&nbsp;proj2&nbsp;:&nbsp;A/\B&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;B.</TT><BR></DIV>
+
+<A NAME="@default96"></A>
+<A NAME="@default97"></A>
+<A NAME="@default98"></A>
+<A NAME="@default99"></A>
+<A NAME="@default100"></A>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;End&nbsp;Projections.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Inductive&nbsp;or&nbsp;[A,B:Prop]&nbsp;:&nbsp;Prop</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;or_introl&nbsp;:&nbsp;A&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;A\/B&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;or_intror&nbsp;:&nbsp;B&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;A\/B.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Definition&nbsp;iff&nbsp;:=&nbsp;[P,Q:Prop]&nbsp;(P-</TT><TT>&gt;</TT><TT>Q)&nbsp;/\&nbsp;(Q-</TT><TT>&gt;</TT><TT>P).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Definition&nbsp;IF&nbsp;:=&nbsp;[P,Q,R:Prop]&nbsp;(P/\Q)&nbsp;\/&nbsp;(~P/\R).</TT><BR></DIV>
+<BR>
+
+<H4>
+Quantifiers
+</H4>
+ <A NAME="Quantifiers"></A>
+<A NAME="@default101"></A>Then we find first-order quantifiers:
+<A NAME="@default102"></A>
+<A NAME="@default103"></A>
+<A NAME="@default104"></A>
+<A NAME="@default105"></A>
+<A NAME="@default106"></A>
+<A NAME="@default107"></A>
+<A NAME="@default108"></A>
+<A NAME="@default109"></A>
+<A NAME="@default110"></A><BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Definition&nbsp;all&nbsp;:=&nbsp;[A:Set][P:A-</TT><TT>&gt;</TT><TT>Prop](x:A)(P&nbsp;x).&nbsp;</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Inductive&nbsp;ex&nbsp;[A:Set;P:A-</TT><TT>&gt;</TT><TT>Prop]&nbsp;:&nbsp;Prop&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;ex_intro&nbsp;:&nbsp;(x:A)(P&nbsp;x)-</TT><TT>&gt;</TT><TT>(ex&nbsp;A&nbsp;P).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Inductive&nbsp;ex2&nbsp;[A:Set;P,Q:A-</TT><TT>&gt;</TT><TT>Prop]&nbsp;:&nbsp;Prop</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;ex_intro2&nbsp;:&nbsp;(x:A)(P&nbsp;x)-</TT><TT>&gt;</TT><TT>(Q&nbsp;x)-</TT><TT>&gt;</TT><TT>(ex2&nbsp;A&nbsp;P&nbsp;Q).</TT><BR></DIV>
+<BR>
+The following abbreviations are allowed:
+<DIV ALIGN=center>
+ <TABLE BORDER=1 CELLSPACING=0 CELLPADDING=1>
+<TR><TD ALIGN=left NOWRAP><CODE>(ALL x:A | P)</CODE></TD>
+<TD ALIGN=right NOWRAP><CODE>(all A [x:A]P)</CODE></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><CODE>(ALL x | P)</CODE></TD>
+<TD ALIGN=right NOWRAP><CODE>(all A [x:A]P)</CODE></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><CODE>(EX x:A | P)</CODE></TD>
+<TD ALIGN=right NOWRAP><CODE>(ex A [x:A]P)</CODE></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><CODE>(EX x | P)</CODE></TD>
+<TD ALIGN=right NOWRAP><CODE>(ex A [x:A]P)</CODE></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><CODE>(EX x:A | P &amp; Q)</CODE></TD>
+<TD ALIGN=right NOWRAP><CODE>(ex2 A [x:A]P [x:A]Q)</CODE></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><CODE>(EX x | P &amp; Q)</CODE></TD>
+<TD ALIGN=right NOWRAP><CODE>(ex2 A [x:A]P [x:A]Q)</CODE></TD>
+</TR></TABLE>
+</DIV><BR>
+The type annotation <TT>:A</TT> can be omitted when <TT>A</TT> can be
+synthesized by the system.<BR>
+<BR>
+
+<H4>
+Equality
+</H4>
+ <A NAME="Equality"></A>
+<A NAME="@default111"></A>Then, we find equality, defined as an inductive relation. That is,
+given a <CODE>Set</CODE> <CODE>A</CODE> and an <CODE>x</CODE> of type <CODE>A</CODE>, the
+predicate <CODE>(eq A x)</CODE> is the smallest one which contains <CODE>x</CODE>.
+This definition, due to Christine Paulin-Mohring, is equivalent to
+define <CODE>eq</CODE> as the smallest reflexive relation, and it is also
+equivalent to Leibniz' equality.<BR>
+<BR>
+<A NAME="@default112"></A>
+<A NAME="@default113"></A><BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Inductive&nbsp;eq&nbsp;[A:Set;x:A]&nbsp;:&nbsp;A-</TT><TT>&gt;</TT><TT>Prop</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;refl_equal&nbsp;:&nbsp;(eq&nbsp;A&nbsp;x&nbsp;x).</TT><BR></DIV>
+<BR>
+
+<H4>
+Lemmas
+</H4>
+ <A NAME="PreludeLemmas"></A>
+Finally, a few easy lemmas are provided.<BR>
+<BR>
+<A NAME="@default114"></A><BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Theorem&nbsp;absurd&nbsp;:&nbsp;(A:Prop)(C:Prop)&nbsp;A&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;~A&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;C.</TT><BR></DIV>
+
+<A NAME="@default115"></A>
+<A NAME="@default116"></A>
+<A NAME="@default117"></A>
+<A NAME="@default118"></A>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Section&nbsp;equality.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;Variable&nbsp;A,B&nbsp;:&nbsp;Set.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;Variable&nbsp;f&nbsp;&nbsp;&nbsp;:&nbsp;A-</TT><TT>&gt;</TT><TT>B.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;Variable&nbsp;x,y,z&nbsp;:&nbsp;A.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;Theorem&nbsp;sym_eq&nbsp;:&nbsp;x=y&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;y=x.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;Theorem&nbsp;trans_eq&nbsp;:&nbsp;x=y&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;y=z&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;x=z.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;Theorem&nbsp;f_equal&nbsp;:&nbsp;x=y&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;(f&nbsp;x)=(f&nbsp;y).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;Theorem&nbsp;sym_not_eq&nbsp;:&nbsp;~(x=y)&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;~(y=x).</TT><BR></DIV>
+
+<A NAME="@default119"></A>
+<A NAME="@default120"></A>
+<A NAME="@default121"></A>
+<A NAME="@default122"></A>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;End&nbsp;equality.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Definition&nbsp;eq_ind_r&nbsp;:&nbsp;(A:Set)(x:A)(P:A-</TT><TT>&gt;</TT><TT>Prop)(P&nbsp;x)-</TT><TT>&gt;</TT><TT>(y:A)(y=x)-</TT><TT>&gt;</TT><TT>(P&nbsp;y).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Definition&nbsp;eq_rec_r&nbsp;:&nbsp;(A:Set)(x:A)(P:A-</TT><TT>&gt;</TT><TT>Set)(P&nbsp;x)-</TT><TT>&gt;</TT><TT>(y:A)(y=x)-</TT><TT>&gt;</TT><TT>(P&nbsp;y).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Definition&nbsp;eq_rect_r&nbsp;:&nbsp;(A:Set)(x:A)(P:A-</TT><TT>&gt;</TT><TT>Type)(P&nbsp;x)-</TT><TT>&gt;</TT><TT>(y:A)(y=x)-</TT><TT>&gt;</TT><TT>(P&nbsp;y).</TT><BR></DIV>
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Hints&nbsp;Immediate&nbsp;sym_eq&nbsp;sym_not_eq&nbsp;:&nbsp;core.</TT><BR></DIV>
+
+<A NAME="@default123"></A><BR>
+The theorem <TT>f_equal</TT> is extended to functions with two to five
+arguments. The theorem are names <TT>f_equal2</TT>, <TT>f_equal3</TT>, 
+<TT>f_equal4</TT> and <TT>f_equal5</TT>.
+For instance <TT>f_equal3</TT> is defined the following way.
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Theorem&nbsp;f_equal3&nbsp;:&nbsp;(A1,A2,A3,B:Set)(f:A1-</TT><TT>&gt;</TT><TT>A2-</TT><TT>&gt;</TT><TT>A3-</TT><TT>&gt;</TT><TT>B)</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;(x1,y1:A1)(x2,y2:A2)(x3,y3:A3)</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;(x1=y1)&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;(x2=y2)&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;(x3=y3)-</TT><TT>&gt;</TT><TT>&nbsp;(f&nbsp;x1&nbsp;x2&nbsp;x3)=(f&nbsp;y1&nbsp;y2&nbsp;y3).</TT><BR></DIV>
+<BR>
+
+<H3>
+
+3.1.2&nbsp;Datatypes
+</H3>
+ <A NAME="Datatypes"></A>In the basic library, we find the definition<A NAME="text6" HREF="#note6"><SUP><FONT SIZE=2>3</FONT></SUP></A> 
+of the basic data-types of programming, 
+again defined as inductive constructions over the sort
+<CODE>Set</CODE>. Some of them come with a special syntax shown on figure
+<A HREF="node.0.2.0.html#specif-syntax">3.1.3</A>.<BR>
+<BR>
+
+<H4>
+Programming
+</H4>
+ <A NAME="Programming"></A>
+<A NAME="@default124"></A>
+<A NAME="@default125"></A><A NAME="@default126"></A>
+<A NAME="@default127"></A>
+<A NAME="@default128"></A>
+<A NAME="@default129"></A>
+<A NAME="@default130"></A>
+<A NAME="@default131"></A>
+<A NAME="@default132"></A>
+<A NAME="@default133"></A>
+<A NAME="@default134"></A>
+<A NAME="@default135"></A>
+<A NAME="@default136"></A>
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Inductive&nbsp;unit&nbsp;:&nbsp;Set&nbsp;:=&nbsp;tt&nbsp;:&nbsp;unit.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Inductive&nbsp;bool&nbsp;:&nbsp;Set&nbsp;:=&nbsp;true&nbsp;:&nbsp;bool&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;false&nbsp;:&nbsp;bool.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Inductive&nbsp;option&nbsp;[A:Set]&nbsp;:&nbsp;Set&nbsp;:=&nbsp;Some&nbsp;:&nbsp;A&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;(option&nbsp;A)</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;None&nbsp;:&nbsp;(option&nbsp;A).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Inductive&nbsp;nat&nbsp;:&nbsp;Set&nbsp;:=&nbsp;O&nbsp;:&nbsp;nat&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;S&nbsp;:&nbsp;nat-</TT><TT>&gt;</TT><TT>nat.</TT><BR></DIV>
+<BR>
+Note that zero is the letter <CODE>O</CODE>, and <I><FONT COLOR=maroon>not</FONT></I> the numeral
+<CODE>0</CODE>.<BR>
+<BR>
+We then define the disjoint sum of <CODE>A+B</CODE> of two sets <CODE>A</CODE> and
+<CODE>B</CODE>, and their product <CODE>A*B</CODE>.
+<A NAME="@default137"></A>
+<A NAME="@default138"></A>
+<A NAME="@default139"></A>
+<A NAME="@default140"></A>
+<A NAME="@default141"></A>
+<A NAME="@default142"></A>
+<A NAME="@default143"></A>
+<A NAME="@default144"></A>
+<A NAME="@default145"></A>
+<A NAME="@default146"></A>
+<A NAME="@default147"></A>
+<A NAME="@default148"></A>
+<A NAME="@default149"></A><BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Inductive&nbsp;sum&nbsp;[A,B:Set]&nbsp;:&nbsp;Set</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;inl&nbsp;:&nbsp;A&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;(sum&nbsp;A&nbsp;B)</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;inr&nbsp;:&nbsp;B&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;(sum&nbsp;A&nbsp;B).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Inductive&nbsp;prod&nbsp;[A,B:Set]&nbsp;:&nbsp;Set&nbsp;:=&nbsp;pair&nbsp;:&nbsp;A&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;B&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;(prod&nbsp;A&nbsp;B).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Section&nbsp;projections.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;Variables&nbsp;A,B:Set.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;Definition&nbsp;fst&nbsp;:=&nbsp;[H:(prod&nbsp;A&nbsp;B)]&nbsp;Cases&nbsp;H&nbsp;of&nbsp;(pair&nbsp;x&nbsp;y)&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;x&nbsp;end.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;Definition&nbsp;snd&nbsp;:=&nbsp;[H:(prod&nbsp;A&nbsp;B)]&nbsp;Cases&nbsp;H&nbsp;of&nbsp;(pair&nbsp;x&nbsp;y)&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;y&nbsp;end.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;End&nbsp;projections.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Syntactic&nbsp;Definition&nbsp;Fst&nbsp;:=&nbsp;(fst&nbsp;?&nbsp;?).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Syntactic&nbsp;Definition&nbsp;Snd&nbsp;:=&nbsp;(snd&nbsp;?&nbsp;?).</TT><BR></DIV>
+<BR>
+
+<H3>
+
+3.1.3&nbsp;Specification
+</H3>
+The following notions<A NAME="text7" HREF="#note7"><SUP><FONT SIZE=2>4</FONT></SUP></A> allows to build new datatypes and specifications. 
+They are available with the syntax shown on
+figure <A HREF="node.0.2.0.html#specif-syntax">3.1.3</A><A NAME="text8" HREF="#note8"><SUP><FONT SIZE=2>5</FONT></SUP></A>.<BR>
+<BR>
+For instance, given <CODE>A:Set</CODE> and <CODE>P:A-&gt;Prop</CODE>, the construct
+<CODE>{x:A | (P x)}</CODE> (in abstract syntax <CODE>(sig A P)</CODE>) is a
+<CODE>Set</CODE>. We may build elements of this set as <CODE>(exist x p)</CODE>
+whenever we have a witness <CODE>x:A</CODE> with its justification
+<CODE>p:(P x)</CODE>.<BR>
+<BR>
+From such a <CODE>(exist x p)</CODE> we may in turn extract its witness
+<CODE>x:A</CODE> (using an elimination construct such as <CODE>Cases</CODE>) but
+<I><FONT COLOR=maroon>not</FONT></I> its justification, which stays hidden, like in an abstract
+data type. In technical terms, one says that <CODE>sig</CODE> is a ``weak
+(dependent) sum''. A variant <CODE>sig2</CODE> with two predicates is also
+provided.<BR>
+<BR>
+<A NAME="@default150"></A>
+<A NAME="@default151"></A>
+<A NAME="@default152"></A>
+<A NAME="@default153"></A>
+<A NAME="@default154"></A>
+<A NAME="@default155"></A><BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Inductive&nbsp;&nbsp;sig&nbsp;[A:Set;P:A-</TT><TT>&gt;</TT><TT>Prop]&nbsp;:&nbsp;Set</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;exist&nbsp;:&nbsp;(x:A)(P&nbsp;x)&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;(sig&nbsp;A&nbsp;P).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Inductive&nbsp;sig2&nbsp;[A:Set;P,Q:A-</TT><TT>&gt;</TT><TT>Prop]&nbsp;:&nbsp;Set</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;exist2&nbsp;:&nbsp;(x:A)(P&nbsp;x)&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;(Q&nbsp;x)&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;(sig2&nbsp;A&nbsp;P&nbsp;Q).</TT><BR></DIV>
+<BR>
+A ``strong (dependent) sum'' <CODE>{x:A &amp; (P x)}</CODE> may be also defined,
+when the predicate <CODE>P</CODE> is now defined as a <CODE>Set</CODE>
+constructor.<BR>
+<BR>
+<A NAME="@default156"></A>
+<A NAME="@default157"></A>
+<A NAME="@default158"></A>
+<A NAME="@default159"></A>
+<A NAME="@default160"></A>
+<A NAME="@default161"></A>
+<A NAME="@default162"></A>
+<A NAME="@default163"></A><BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Inductive&nbsp;sigS&nbsp;[A:Set;P:A-</TT><TT>&gt;</TT><TT>Set]&nbsp;:&nbsp;Set</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;existS&nbsp;:&nbsp;(x:A)(P&nbsp;x)&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;(sigS&nbsp;A&nbsp;P).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Section&nbsp;sigSprojections.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;Variable&nbsp;A:Set.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;Variable&nbsp;P:A-</TT><TT>&gt;</TT><TT>Set.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;Definition&nbsp;projS1&nbsp;:=&nbsp;[H:(sigS&nbsp;A&nbsp;P)]&nbsp;let&nbsp;(x,h)&nbsp;=&nbsp;H&nbsp;in&nbsp;x.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;Definition&nbsp;projS2&nbsp;:=&nbsp;[H:(sigS&nbsp;A&nbsp;P)]</TT><TT>&lt;</TT><TT>[H:(sigS&nbsp;A&nbsp;P)](P&nbsp;(projS1&nbsp;H))</TT><TT>&gt;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;(x,h)&nbsp;=&nbsp;H&nbsp;in&nbsp;h.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;End&nbsp;sigSprojections.&nbsp;</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Inductive&nbsp;sigS2&nbsp;[A:Set;P,Q:A-</TT><TT>&gt;</TT><TT>Set]&nbsp;:&nbsp;Set</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;existS2&nbsp;:&nbsp;(x:A)(P&nbsp;x)&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;(Q&nbsp;x)&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;(sigS2&nbsp;A&nbsp;P&nbsp;Q).</TT><BR></DIV>
+<BR>
+A related non-dependent construct is the constructive sum
+<CODE>{A}+{B}</CODE> of two propositions <CODE>A</CODE> and <CODE>B</CODE>.
+<A NAME="sumbool"></A>
+<A NAME="@default164"></A>
+<A NAME="@default165"></A>
+<A NAME="@default166"></A>
+<A NAME="@default167"></A><BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Inductive&nbsp;sumbool&nbsp;[A,B:Prop]&nbsp;:&nbsp;Set</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;left&nbsp;&nbsp;:&nbsp;A&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;(sumbool&nbsp;A&nbsp;B)</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;right&nbsp;:&nbsp;B&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;(sumbool&nbsp;A&nbsp;B).</TT><BR></DIV>
+<BR>
+This <CODE>sumbool</CODE> construct may be used as a kind of indexed boolean
+data type. An intermediate between <CODE>sumbool</CODE> and <CODE>sum</CODE> is
+the mixed <CODE>sumor</CODE> which combines <CODE>A:Set</CODE> and <CODE>B:Prop</CODE>
+in the <CODE>Set</CODE> <CODE>A+{B}</CODE>.
+<A NAME="@default168"></A>
+<A NAME="@default169"></A>
+<A NAME="@default170"></A>
+<A NAME="@default171"></A><BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Inductive&nbsp;sumor&nbsp;[A:Set;B:Prop]&nbsp;:&nbsp;Set</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;inleft&nbsp;&nbsp;:&nbsp;A&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;(sumor&nbsp;A&nbsp;B)&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;inright&nbsp;:&nbsp;B&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;(sumor&nbsp;A&nbsp;B)&nbsp;.</TT><BR></DIV>
+<BR>
+<BLOCKQUOTE><DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV>
+<A NAME="specif-syntax"></A>
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=1>
+<TR><TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>specif</FONT></I></TD>
+<TD ALIGN=center NOWRAP>::=</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>specif</FONT></I> <TT>*</TT> <I><FONT COLOR=maroon>specif</FONT></I></TD>
+<TD ALIGN=right NOWRAP>(<TT>prod</TT>)</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>specif</FONT></I> <TT>+</TT> <I><FONT COLOR=maroon>specif</FONT></I></TD>
+<TD ALIGN=right NOWRAP>(<TT>sum</TT>)</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>specif</FONT></I> <TT>+ {</TT> <I><FONT COLOR=maroon>specif</FONT></I> <TT>}</TT></TD>
+<TD ALIGN=right NOWRAP>(<TT>sumor</TT>)</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><TT>{</TT> <I><FONT COLOR=maroon>specif</FONT></I> <TT>} + {</TT> <I><FONT COLOR=maroon>specif</FONT></I> <TT>}</TT></TD>
+<TD ALIGN=right NOWRAP>(<TT>sumbool</TT>)</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><TT>{</TT> <I><FONT COLOR=maroon>ident</FONT></I> <TT>:</TT> <I><FONT COLOR=maroon>specif</FONT></I> <TT>|</TT> <I><FONT COLOR=maroon>form</FONT></I> <TT>}</TT></TD>
+<TD ALIGN=right NOWRAP>(<TT>sig</TT>)</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><TT>{</TT> <I><FONT COLOR=maroon>ident</FONT></I> <TT>:</TT> <I><FONT COLOR=maroon>specif</FONT></I> <TT>|</TT> <I><FONT COLOR=maroon>form</FONT></I> <TT>&amp;</TT>
+ <I><FONT COLOR=maroon>form</FONT></I> <TT>}</TT></TD>
+<TD ALIGN=right NOWRAP>(<TT>sig2</TT>)</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><TT>{</TT> <I><FONT COLOR=maroon>ident</FONT></I> <TT>:</TT> <I><FONT COLOR=maroon>specif</FONT></I> <TT>&amp;</TT> <I><FONT COLOR=maroon>specif</FONT></I> <TT>}</TT></TD>
+<TD ALIGN=right NOWRAP>(<TT>sigS</TT>)</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><TT>{</TT> <I><FONT COLOR=maroon>ident</FONT></I> <TT>:</TT> <I><FONT COLOR=maroon>specif</FONT></I> <TT>&amp;</TT> <I><FONT COLOR=maroon>specif</FONT></I> <TT>&amp;</TT> <I><FONT COLOR=maroon>specif</FONT></I> <TT>}</TT></TD>
+<TD ALIGN=right NOWRAP>(<TT>sigS2</TT>)</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>&nbsp;</TD>
+<TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=right NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>term</FONT></I></TD>
+<TD ALIGN=center NOWRAP>::=</TD>
+<TD ALIGN=left NOWRAP><TT>(</TT> <I><FONT COLOR=maroon>term</FONT></I> <TT>,</TT> <I><FONT COLOR=maroon>term</FONT></I> <TT>)</TT></TD>
+<TD ALIGN=right NOWRAP>(<TT>pair</TT>)</TD>
+</TR></TABLE>
+<BR>
+<DIV ALIGN=center>Figure 3.2: Syntax of datatypes and specifications</DIV><BR>
+
+</DIV>
+<DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV></BLOCKQUOTE>We may define variants of the axiom of choice, like in Martin-Löf's
+Intuitionistic Type Theory.
+<A NAME="@default172"></A>
+<A NAME="@default173"></A>
+<A NAME="@default174"></A><BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Lemma&nbsp;Choice&nbsp;:&nbsp;(S,S':Set)(R:S-</TT><TT>&gt;</TT><TT>S'-</TT><TT>&gt;</TT><TT>Prop)((x:S){y:S'|(R&nbsp;x&nbsp;y)})</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;{f:S-</TT><TT>&gt;</TT><TT>S'|(z:S)(R&nbsp;z&nbsp;(f&nbsp;z))}.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Lemma&nbsp;Choice2&nbsp;:&nbsp;(S,S':Set)(R:S-</TT><TT>&gt;</TT><TT>S'-</TT><TT>&gt;</TT><TT>Set)((x:S){y:S'&nbsp;&amp;&nbsp;(R&nbsp;x&nbsp;y)})</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;{f:S-</TT><TT>&gt;</TT><TT>S'&nbsp;&amp;&nbsp;(z:S)(R&nbsp;z&nbsp;(f&nbsp;z))}.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Lemma&nbsp;bool_choice&nbsp;:&nbsp;(S:Set)(R1,R2:S-</TT><TT>&gt;</TT><TT>Prop)((x:S){(R1&nbsp;x)}+{(R2&nbsp;x)})&nbsp;-</TT><TT>&gt;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;{f:S-</TT><TT>&gt;</TT><TT>bool&nbsp;|&nbsp;(x:S)(&nbsp;((f&nbsp;x)=true&nbsp;&nbsp;/\&nbsp;(R1&nbsp;x))&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\/&nbsp;((f&nbsp;x)=false&nbsp;/\&nbsp;(R2&nbsp;x)))}.</TT><BR></DIV>
+<BR>
+The next constructs builds a sum between a data type <CODE>A:Set</CODE> and
+an exceptional value encoding errors:<BR>
+<BR>
+<A NAME="@default175"></A>
+<A NAME="@default176"></A>
+<A NAME="@default177"></A><BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Definition&nbsp;Exc&nbsp;:=&nbsp;option.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Definition&nbsp;value&nbsp;:=&nbsp;Some.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Definition&nbsp;error&nbsp;:=&nbsp;None.</TT><BR></DIV>
+<BR>
+This module ends with theorems, 
+relating the sorts <CODE>Set</CODE> and
+<CODE>Prop</CODE> in a way which is consistent with the realizability
+interpretation.
+<A NAME="@default178"></A>
+<A NAME="@default179"></A>
+<A NAME="@default180"></A>
+<A NAME="@default181"></A>
+<A NAME="@default182"></A><BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Definition&nbsp;except&nbsp;:=&nbsp;False_rec.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Syntactic&nbsp;Definition&nbsp;Except&nbsp;:=&nbsp;(except&nbsp;?).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Theorem&nbsp;absurd_set&nbsp;:&nbsp;(A:Prop)(C:Set)A-</TT><TT>&gt;</TT><TT>(~A)-</TT><TT>&gt;</TT><TT>C.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Theorem&nbsp;and_rec&nbsp;:&nbsp;(A,B:Prop)(C:Set)(A-</TT><TT>&gt;</TT><TT>B-</TT><TT>&gt;</TT><TT>C)-</TT><TT>&gt;</TT><TT>(A/\B)-</TT><TT>&gt;</TT><TT>C.</TT><BR></DIV>
+
+<BR>
+
+<H3>
+
+3.1.4&nbsp;Basic Arithmetics
+</H3>
+The basic library includes a few elementary properties of natural numbers,
+together with the definitions of predecessor, addition and
+multiplication<A NAME="text9" HREF="#note9"><SUP><FONT SIZE=2>6</FONT></SUP></A>.
+<A NAME="@default183"></A>
+<A NAME="@default184"></A>
+<A NAME="@default185"></A>
+<A NAME="@default186"></A>
+<A NAME="@default187"></A>
+<A NAME="@default188"></A>
+<A NAME="@default189"></A>
+<A NAME="@default190"></A>
+<A NAME="@default191"></A>
+<A NAME="@default192"></A>
+<A NAME="@default193"></A>
+<A NAME="@default194"></A>
+<A NAME="@default195"></A>
+<A NAME="@default196"></A><BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Theorem&nbsp;eq_S&nbsp;:&nbsp;(n,m:nat)&nbsp;n=m&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;(S&nbsp;n)=(S&nbsp;m).</TT><BR></DIV>
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Definition&nbsp;pred&nbsp;:&nbsp;nat-</TT><TT>&gt;</TT><TT>nat&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;[n:nat](</TT><TT>&lt;</TT><TT>nat</TT><TT>&gt;</TT><TT>Cases&nbsp;n&nbsp;of&nbsp;O&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;O&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(S&nbsp;u)&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;u&nbsp;end).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Theorem&nbsp;pred_Sn&nbsp;:&nbsp;(m:nat)&nbsp;m=(pred&nbsp;(S&nbsp;m)).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Theorem&nbsp;eq_add_S&nbsp;:&nbsp;(n,m:nat)&nbsp;(S&nbsp;n)=(S&nbsp;m)&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;n=m.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Hints&nbsp;Immediate&nbsp;eq_add_S&nbsp;:&nbsp;core.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Theorem&nbsp;not_eq_S&nbsp;:&nbsp;(n,m:nat)&nbsp;~(n=m)&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;~((S&nbsp;n)=(S&nbsp;m)).</TT><BR></DIV>
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Definition&nbsp;IsSucc&nbsp;:&nbsp;nat-</TT><TT>&gt;</TT><TT>Prop</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;:=&nbsp;[n:nat](Cases&nbsp;n&nbsp;of&nbsp;O&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;False</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(S&nbsp;p)&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;True&nbsp;end).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Theorem&nbsp;O_S&nbsp;:&nbsp;(n:nat)&nbsp;~(O=(S&nbsp;n)).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Theorem&nbsp;n_Sn&nbsp;:&nbsp;(n:nat)&nbsp;~(n=(S&nbsp;n)).</TT><BR></DIV>
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Fixpoint&nbsp;plus&nbsp;[n:nat]&nbsp;:&nbsp;nat&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;nat&nbsp;:=&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;[m:nat](Cases&nbsp;n&nbsp;of&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;O&nbsp;&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;m&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;|&nbsp;(S&nbsp;p)&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;(S&nbsp;(plus&nbsp;p&nbsp;m))&nbsp;end).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Lemma&nbsp;plus_n_O&nbsp;:&nbsp;(n:nat)&nbsp;n=(plus&nbsp;n&nbsp;O).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Lemma&nbsp;plus_n_Sm&nbsp;:&nbsp;(n,m:nat)&nbsp;(S&nbsp;(plus&nbsp;n&nbsp;m))=(plus&nbsp;n&nbsp;(S&nbsp;m)).</TT><BR></DIV>
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Fixpoint&nbsp;mult&nbsp;[n:nat]&nbsp;:&nbsp;nat&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;nat&nbsp;:=&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;[m:nat](Cases&nbsp;n&nbsp;of&nbsp;O&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;O&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(S&nbsp;p)&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;(plus&nbsp;m&nbsp;(mult&nbsp;p&nbsp;m))&nbsp;end).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Lemma&nbsp;mult_n_O&nbsp;:&nbsp;(n:nat)&nbsp;O=(mult&nbsp;n&nbsp;O).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Lemma&nbsp;mult_n_Sm&nbsp;:&nbsp;(n,m:nat)&nbsp;(plus&nbsp;(mult&nbsp;n&nbsp;m)&nbsp;n)=(mult&nbsp;n&nbsp;(S&nbsp;m)).</TT><BR></DIV>
+<BR>
+Finally, it gives the definition of the usual orderings <CODE>le</CODE>,
+<CODE>lt</CODE>, <CODE>ge</CODE>, and <CODE>gt</CODE>.
+<A NAME="@default197"></A>
+<A NAME="@default198"></A>
+<A NAME="@default199"></A>
+<A NAME="@default200"></A>
+<A NAME="@default201"></A>
+<A NAME="@default202"></A><BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Inductive&nbsp;le&nbsp;[n:nat]&nbsp;:&nbsp;nat&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;Prop</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;le_n&nbsp;:&nbsp;(le&nbsp;n&nbsp;n)</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;le_S&nbsp;:&nbsp;(m:nat)(le&nbsp;n&nbsp;m)-</TT><TT>&gt;</TT><TT>(le&nbsp;n&nbsp;(S&nbsp;m)).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Definition&nbsp;lt&nbsp;:=&nbsp;[n,m:nat](le&nbsp;(S&nbsp;n)&nbsp;m).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Definition&nbsp;ge&nbsp;:=&nbsp;[n,m:nat](le&nbsp;m&nbsp;n).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Definition&nbsp;gt&nbsp;:=&nbsp;[n,m:nat](lt&nbsp;m&nbsp;n).</TT><BR></DIV>
+<BR>
+Properties of these relations are not initially known, but may be
+required by the user from modules <CODE>Le</CODE> and <CODE>Lt</CODE>. Finally,
+<CODE>Peano</CODE> gives some lemmas allowing pattern-matching, and a double
+induction principle.<BR>
+<BR>
+<A NAME="@default203"></A>
+<A NAME="@default204"></A><BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Theorem&nbsp;nat_case&nbsp;:&nbsp;(n:nat)(P:nat-</TT><TT>&gt;</TT><TT>Prop)(P&nbsp;O)-</TT><TT>&gt;</TT><TT>((m:nat)(P&nbsp;(S&nbsp;m)))-</TT><TT>&gt;</TT><TT>(P&nbsp;n).</TT><BR></DIV>
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Theorem&nbsp;nat_double_ind&nbsp;:&nbsp;(R:nat-</TT><TT>&gt;</TT><TT>nat-</TT><TT>&gt;</TT><TT>Prop)</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((n:nat)(R&nbsp;O&nbsp;n))&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;((n:nat)(R&nbsp;(S&nbsp;n)&nbsp;O))</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;((n,m:nat)(R&nbsp;n&nbsp;m)-</TT><TT>&gt;</TT><TT>(R&nbsp;(S&nbsp;n)&nbsp;(S&nbsp;m)))</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;(n,m:nat)(R&nbsp;n&nbsp;m).</TT><BR></DIV>
+<BR>
+
+<H3>
+
+3.1.5&nbsp;Well-founded recursion
+</H3>
+The basic library contains the basics of well-founded recursion and 
+well-founded induction<A NAME="text10" HREF="#note10"><SUP><FONT SIZE=2>7</FONT></SUP></A>.
+<A NAME="@default205"></A>
+<A NAME="@default206"></A>
+<A NAME="@default207"></A>
+<A NAME="@default208"></A>
+<A NAME="@default209"></A>
+<A NAME="@default210"></A>
+<A NAME="@default211"></A><BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Chapter&nbsp;Well_founded.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Variable&nbsp;A&nbsp;:&nbsp;Set.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Variable&nbsp;R&nbsp;:&nbsp;A&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;A&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;Prop.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Inductive&nbsp;Acc&nbsp;:&nbsp;A&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;Prop&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;Acc_intro&nbsp;:&nbsp;(x:A)((y:A)(R&nbsp;y&nbsp;x)-</TT><TT>&gt;</TT><TT>(Acc&nbsp;y))-</TT><TT>&gt;</TT><TT>(Acc&nbsp;x).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Lemma&nbsp;Acc_inv&nbsp;:&nbsp;(x:A)(Acc&nbsp;x)&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;(y:A)(R&nbsp;y&nbsp;x)&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;(Acc&nbsp;y).</TT><BR></DIV>
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Section&nbsp;AccRec.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Variable&nbsp;P&nbsp;:&nbsp;A&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;Set.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Variable&nbsp;F&nbsp;:&nbsp;(x:A)((y:A)(R&nbsp;y&nbsp;x)-</TT><TT>&gt;</TT><TT>(Acc&nbsp;y))-</TT><TT>&gt;</TT><TT>((y:A)(R&nbsp;y&nbsp;x)-</TT><TT>&gt;</TT><TT>(P&nbsp;y))-</TT><TT>&gt;</TT><TT>(P&nbsp;x).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Fixpoint&nbsp;Acc_rec&nbsp;[x:A;a:(Acc&nbsp;x)]&nbsp;:&nbsp;(P&nbsp;x)</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;(F&nbsp;x&nbsp;(Acc_inv&nbsp;x&nbsp;a)&nbsp;[y:A][h:(R&nbsp;y&nbsp;x)](Acc_rec&nbsp;y&nbsp;(Acc_inv&nbsp;x&nbsp;a&nbsp;y&nbsp;h))).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;End&nbsp;AccRec.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Definition&nbsp;well_founded&nbsp;:=&nbsp;(a:A)(Acc&nbsp;a).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Hypothesis&nbsp;Rwf&nbsp;:&nbsp;well_founded.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Theorem&nbsp;well_founded_induction&nbsp;:&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(P:A-</TT><TT>&gt;</TT><TT>Set)((x:A)((y:A)(R&nbsp;y&nbsp;x)-</TT><TT>&gt;</TT><TT>(P&nbsp;y))-</TT><TT>&gt;</TT><TT>(P&nbsp;x))-</TT><TT>&gt;</TT><TT>(a:A)(P&nbsp;a).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Theorem&nbsp;well_founded_ind&nbsp;:&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(P:A-</TT><TT>&gt;</TT><TT>Prop)((x:A)((y:A)(R&nbsp;y&nbsp;x)-</TT><TT>&gt;</TT><TT>(P&nbsp;y))-</TT><TT>&gt;</TT><TT>(P&nbsp;x))-</TT><TT>&gt;</TT><TT>(a:A)(P&nbsp;a).</TT><BR></DIV>
+
+<TT>Acc_rec</TT> can be used to define functions by fixpoints using
+well-founded relations to justify termination. Assuming
+extensionality of the functional used for the recursive call, the
+fixpoint equation can be proved.
+<A NAME="@default212"></A>
+<A NAME="@default213"></A>
+<A NAME="@default214"></A>
+<A NAME="@default215"></A>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Section&nbsp;FixPoint.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Variable&nbsp;P&nbsp;:&nbsp;A&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;Set.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Variable&nbsp;F&nbsp;:&nbsp;(x:A)((y:A)(R&nbsp;y&nbsp;x)-</TT><TT>&gt;</TT><TT>(P&nbsp;y))-</TT><TT>&gt;</TT><TT>(P&nbsp;x).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Fixpoint&nbsp;Fix_F&nbsp;[x:A;r:(Acc&nbsp;x)]&nbsp;:&nbsp;(P&nbsp;x)&nbsp;:=&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(F&nbsp;x&nbsp;[y:A][p:(R&nbsp;y&nbsp;x)](Fix_F&nbsp;y&nbsp;(Acc_inv&nbsp;x&nbsp;r&nbsp;y&nbsp;p))).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Definition&nbsp;fix&nbsp;:=&nbsp;[x:A](Fix_F&nbsp;x&nbsp;(Rwf&nbsp;x)).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Hypothesis&nbsp;F_ext&nbsp;:&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;(x:A)(f,g:(y:A)(R&nbsp;y&nbsp;x)-</TT><TT>&gt;</TT><TT>(P&nbsp;y))</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;((y:A)(p:(R&nbsp;y&nbsp;x))((f&nbsp;y&nbsp;p)=(g&nbsp;y&nbsp;p)))-</TT><TT>&gt;</TT><TT>(F&nbsp;x&nbsp;f)=(F&nbsp;x&nbsp;g).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Lemma&nbsp;Fix_F_eq</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;:&nbsp;(x:A)(r:(Acc&nbsp;x))</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(F&nbsp;x&nbsp;[y:A][p:(R&nbsp;y&nbsp;x)](Fix_F&nbsp;y&nbsp;(Acc_inv&nbsp;x&nbsp;r&nbsp;y&nbsp;p)))=(Fix_F&nbsp;x&nbsp;r).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Lemma&nbsp;Fix_F_inv&nbsp;:&nbsp;(x:A)(r,s:(Acc&nbsp;x))(Fix_F&nbsp;x&nbsp;r)=(Fix_F&nbsp;x&nbsp;s).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Lemma&nbsp;fix_eq&nbsp;:&nbsp;(x:A)(fix&nbsp;x)=(F&nbsp;x&nbsp;[y:A][p:(R&nbsp;y&nbsp;x)](fix&nbsp;y)).</TT><BR></DIV>
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;End&nbsp;FixPoint.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;End&nbsp;Well_founded.&nbsp;</TT><BR></DIV>
+<BR>
+
+<H3>
+
+3.1.6&nbsp;Accessing the <FONT COLOR=purple>Type</FONT> level
+</H3>
+The basic library includes the definitions<A NAME="text11" HREF="#note11"><SUP><FONT SIZE=2>8</FONT></SUP></A> of logical quantifiers axiomatized at the
+<CODE>Type</CODE> level. <BR>
+<BR>
+<A NAME="@default216"></A>
+<A NAME="@default217"></A>
+<A NAME="@default218"></A>
+<A NAME="@default219"></A>
+<A NAME="@default220"></A>
+<A NAME="@default221"></A>
+<A NAME="@default222"></A>
+<A NAME="@default223"></A>
+<A NAME="@default224"></A>
+<A NAME="@default225"></A>
+<A NAME="@default226"></A>
+<A NAME="@default227"></A>
+<A NAME="@default228"></A><BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Definition&nbsp;allT&nbsp;:=&nbsp;[A:Type][P:A-</TT><TT>&gt;</TT><TT>Prop](x:A)(P&nbsp;x).&nbsp;</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Section&nbsp;universal_quantification.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Variable&nbsp;A&nbsp;:&nbsp;Type.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Variable&nbsp;P&nbsp;:&nbsp;A-</TT><TT>&gt;</TT><TT>Prop.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Theorem&nbsp;inst&nbsp;:&nbsp;&nbsp;(x:A)(ALLT&nbsp;x&nbsp;|&nbsp;(P&nbsp;x))-</TT><TT>&gt;</TT><TT>(P&nbsp;x).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Theorem&nbsp;gen&nbsp;:&nbsp;(B:Prop)(f:(y:A)B-</TT><TT>&gt;</TT><TT>(P&nbsp;y))B-</TT><TT>&gt;</TT><TT>(allT&nbsp;?&nbsp;P).</TT><BR></DIV>
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;End&nbsp;universal_quantification.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Inductive&nbsp;&nbsp;exT&nbsp;[A:Type;P:A-</TT><TT>&gt;</TT><TT>Prop]&nbsp;:&nbsp;Prop</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;exT_intro&nbsp;:&nbsp;(x:A)(P&nbsp;x)-</TT><TT>&gt;</TT><TT>(exT&nbsp;A&nbsp;P).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Inductive&nbsp;exT2&nbsp;[A:Type;P,Q:A-</TT><TT>&gt;</TT><TT>Prop]&nbsp;:&nbsp;Prop</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;exT_intro2&nbsp;:&nbsp;(x:A)(P&nbsp;x)-</TT><TT>&gt;</TT><TT>(Q&nbsp;x)-</TT><TT>&gt;</TT><TT>(exT2&nbsp;A&nbsp;P&nbsp;Q).</TT><BR></DIV>
+<BR>
+It defines also Leibniz equality <CODE>x==y</CODE> when <CODE>x</CODE> and
+<CODE>y</CODE> belong to <CODE>A:Type</CODE>.
+<A NAME="@default229"></A>
+<A NAME="@default230"></A>
+<A NAME="@default231"></A>
+<A NAME="@default232"></A>
+<A NAME="@default233"></A>
+<A NAME="@default234"></A>
+<A NAME="@default235"></A>
+<A NAME="@default236"></A><BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Inductive&nbsp;eqT&nbsp;[A:Type;x:A]&nbsp;:&nbsp;A&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;Prop</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;refl_eqT&nbsp;:&nbsp;(eqT&nbsp;A&nbsp;x&nbsp;x).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Section&nbsp;Equality_is_a_congruence.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Variables&nbsp;A,B&nbsp;:&nbsp;Type.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Variable&nbsp;&nbsp;f&nbsp;:&nbsp;A-</TT><TT>&gt;</TT><TT>B.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Variable&nbsp;x,y,z&nbsp;:&nbsp;A.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Lemma&nbsp;sym_eqT&nbsp;:&nbsp;(x==y)&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;(y==x).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Lemma&nbsp;trans_eqT&nbsp;:&nbsp;(x==y)&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;(y==z)&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;(x==z).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Lemma&nbsp;congr_eqT&nbsp;:&nbsp;(x==y)-</TT><TT>&gt;</TT><TT>((f&nbsp;x)==(f&nbsp;y)).</TT><BR></DIV>
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;End&nbsp;Equality_is_a_congruence.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Hints&nbsp;Immediate&nbsp;sym_eqT&nbsp;sym_not_eqT&nbsp;:&nbsp;core.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Definition&nbsp;eqT_ind_r:&nbsp;(A:Type)(x:A)(P:A-</TT><TT>&gt;</TT><TT>Prop)(P&nbsp;x)-</TT><TT>&gt;</TT><TT>(y:A)y==x&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;(P&nbsp;y).</TT><BR></DIV>
+<BR>
+The figure <A HREF="node.0.2.0.html#formulas-syntax-type">3.1.6</A> presents the syntactic notations 
+corresponding to the main definitions
+<A NAME="text12" HREF="#note12"><SUP><FONT SIZE=2>9</FONT></SUP></A><BR>
+<BR>
+<BLOCKQUOTE><DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV>
+<A NAME="formulas-syntax-type"></A>
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=1>
+<TR><TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>form</FONT></I></TD>
+<TD ALIGN=center NOWRAP>::=</TD>
+<TD ALIGN=left NOWRAP><TT>( ALLT</TT> <I><FONT COLOR=maroon>ident</FONT></I> <I><FONT COLOR=maroon>[</FONT></I><TT>:</TT> <I><FONT COLOR=maroon>specif</FONT></I><I><FONT COLOR=maroon>]</FONT></I> <TT>|</TT>
+ <I><FONT COLOR=maroon>form</FONT></I> <TT>)</TT></TD>
+<TD ALIGN=right NOWRAP>(<TT>allT</TT>)</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><TT>( EXT</TT> <I><FONT COLOR=maroon>ident</FONT></I> <I><FONT COLOR=maroon>[</FONT></I><TT>:</TT> <I><FONT COLOR=maroon>specif</FONT></I><I><FONT COLOR=maroon>]</FONT></I> <TT>|</TT> <I><FONT COLOR=maroon>form</FONT></I> <TT>)</TT></TD>
+<TD ALIGN=right NOWRAP>(<TT>exT</TT>)</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><TT>( EXT</TT> <I><FONT COLOR=maroon>ident</FONT></I> <I><FONT COLOR=maroon>[</FONT></I><TT>:</TT> <I><FONT COLOR=maroon>specif</FONT></I><I><FONT COLOR=maroon>]</FONT></I> <TT>|</TT> <I><FONT COLOR=maroon>form</FONT></I> <TT>&amp;</TT> <I><FONT COLOR=maroon>form</FONT></I> <TT>)</TT></TD>
+<TD ALIGN=right NOWRAP>(<TT>exT2</TT>)</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>term</FONT></I> <TT>==</TT> <I><FONT COLOR=maroon>term</FONT></I></TD>
+<TD ALIGN=right NOWRAP>(<TT>eqT</TT>)</TD>
+</TR></TABLE>
+</DIV>
+<BR>
+<DIV ALIGN=center>Figure 3.3: Syntax of first-order formulas in the type universe</DIV><BR>
+
+<DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV></BLOCKQUOTE>At the end, it defines datatypes at the <FONT COLOR=purple>Type</FONT> level.<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Inductive&nbsp;EmptyT:&nbsp;Type&nbsp;:=.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Inductive&nbsp;UnitT&nbsp;:&nbsp;Type&nbsp;:=&nbsp;IT&nbsp;:&nbsp;UnitT.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Definition&nbsp;notT&nbsp;:=&nbsp;[A:Type]&nbsp;A-</TT><TT>&gt;</TT><TT>EmptyT.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Inductive&nbsp;identityT&nbsp;[A:Type;&nbsp;a:A]&nbsp;:&nbsp;A-</TT><TT>&gt;</TT><TT>Type&nbsp;:=</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;refl_identityT&nbsp;:&nbsp;(identityT&nbsp;A&nbsp;a&nbsp;a).</TT><BR></DIV>
+<BR>
+<HR>
+
+<A HREF="node.0.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.2.1.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>
