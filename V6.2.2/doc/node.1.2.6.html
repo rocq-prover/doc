@@ -1,0 +1,213 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+7.7&nbsp;Eliminations (Induction and Case Analysis)
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.1.2.5.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.7.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+7.7&nbsp;Eliminations (Induction and Case Analysis)
+</H2>
+
+
+
+Elimination tactics are useful to prove statements by induction or
+case analysis.
+Indeed, they make use of the elimination (or induction) principles
+generated with inductive definitions (see section
+<A HREF="node.0.3.4.html#Cic-inductive-definitions">4.5</A>).<BR>
+<BR>
+
+<H3>
+
+7.7.1&nbsp;<TT>Elim </TT><I><FONT COLOR=maroon>term</FONT></I><TT>
+</TT></H3>
+
+<A NAME="@default411"></A><A NAME="@tactic35"></A><A NAME="Elim"></A>
+This tactic applies to any goal. The type of the argument
+<I><FONT COLOR=maroon>term</FONT></I> must be an inductive constant. Then according to the type of
+the goal, the tactic <TT>Elim</TT> chooses the right destructor and
+applies it (as in the case of the <TT>Apply</TT> tactic). For instance,
+assume that our proof context contains <TT>n:nat</TT>, assume that our
+current goal is <TT>T</TT> of type <TT>Prop</TT>, then
+<TT>Elim n</TT> is equivalent to <TT>Apply nat_ind with n:=n</TT>.<BR>
+<BR>
+<BR><B>Error messages: </B><OL>
+<LI><TT>Not an inductive product</TT>
+
+<LI><TT>Cannot refine to conclusions with meta-variables</TT><BR>As <TT>Elim</TT> uses <TT>Apply</TT>, see section <A HREF="node.1.2.2.html#Apply">7.3.4</A> and the variant
+ <TT>Elim ...with ...</TT> below.
+</OL><BR><B>Variants: </B><OL>
+<LI><TT>Elim </TT><I><FONT COLOR=maroon>term</FONT></I> also works when the type of <I><FONT COLOR=maroon>term</FONT></I> starts with
+ products and the head symbol is an inductive definition. In that
+ case the tactic tries both to find an object in the inductive
+ definition and to use this inductive definition for elimination. In
+ case of non-dependent products in the type, subgoals are generated
+ corresponding to the hypotheses. In the case of dependent products,
+ the tactic will try to find an instance for which the elimination
+ lemma applies.<BR>
+<BR>
+
+<LI><TT>Elim </TT><I><FONT COLOR=maroon>term</FONT></I><TT> with </TT><I><FONT COLOR=maroon>term</FONT></I><TT><SUB><FONT SIZE=2>1</FONT></SUB></TT><TT> ...</TT><I><FONT COLOR=maroon>term</FONT></I><TT><SUB><FONT SIZE=2><I>n</I></FONT></SUB></TT>
+ <A NAME="@default412"></A><A NAME="@tactic36"></A><BR>Allows the user to give explicitly the values for dependent
+ premises of the elimination schema. All arguments must be given.<BR><BR><B>Error message: </B><TT>Not the right number of dependent arguments</TT>
+
+<LI><TT>Elim </TT><I><FONT COLOR=maroon>term</FONT></I><TT> with </TT><I><FONT COLOR=maroon>ref</FONT></I><TT><SUB><FONT SIZE=2>1</FONT></SUB></TT><TT> := </TT><I><FONT COLOR=maroon>term</FONT></I><TT><SUB><FONT SIZE=2>1</FONT></SUB></TT><TT> ...</TT><I><FONT COLOR=maroon>ref</FONT></I><TT><SUB><FONT SIZE=2><I>n</I></FONT></SUB></TT><TT>
+ := </TT><I><FONT COLOR=maroon>term</FONT></I><TT><SUB><FONT SIZE=2><I>n</I></FONT></SUB></TT><BR>Provides also <TT>Elim</TT> with values for instantiating premises by
+ associating explicitly variables (or non dependent products) with
+ their intended instance.
+
+<LI><TT>Elim </TT><I><FONT COLOR=maroon>term</FONT></I><TT><SUB><FONT SIZE=2>1</FONT></SUB></TT><TT> using </TT><I><FONT COLOR=maroon>term</FONT></I><TT><SUB><FONT SIZE=2>2</FONT></SUB></TT>
+<A NAME="@default413"></A><A NAME="@tactic37"></A><BR>Allows the user to give explicitly an elimination predicate
+ <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB> which is not the standard one for the underlying
+ inductive type of <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>. Each of the <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> and <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB> is
+ either a simple term or a term with a bindings list (see
+ <A HREF="node.1.2.2.html#Binding-list">7.3.7</A>). 
+
+<LI><TT>ElimType </TT><I><FONT COLOR=maroon>form</FONT></I><A NAME="@default414"></A><A NAME="@tactic38"></A><BR>The argument <I><FONT COLOR=maroon>form</FONT></I> must be inductively defined. <TT>ElimType I</TT>
+ is equivalent to <TT>Cut I. Intro H</TT><I><FONT COLOR=maroon>n</FONT></I><TT>; Elim H</TT><I><FONT COLOR=maroon>n</FONT></I><TT>; 
+ Clear H</TT><I><FONT COLOR=maroon>n</FONT></I>
+ Therefore the hypothesis <TT>H</TT><I><FONT COLOR=maroon>n</FONT></I> will not appear in the
+ context(s) of the subgoal(s).<BR>Conversely, if <TT>t</TT> is a term of (inductive) type <TT>I</TT> and
+ which does not occur in the goal then
+ <TT>Elim t</TT> is equivalent to <TT>ElimType I; 2: Exact t.</TT><BR>
+<BR>
+ <BR><B>Error message: </B><TT>Impossible to unify ...with ...</TT><BR>Arises when
+ <I><FONT COLOR=maroon>form</FONT></I> needs to be applied to parameters.<BR>
+<BR>
+
+<LI><TT>Induction </TT><I><FONT COLOR=maroon>ident</FONT></I><A NAME="@default415"></A><A NAME="@tactic39"></A><BR>Is equivalent to <TT>Intros until </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>; Pattern </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>; Elim
+ </TT><I><FONT COLOR=maroon>ident</FONT></I>
+
+<LI><TT>Induction </TT><I><FONT COLOR=maroon>num</FONT></I><BR>Is analogous to <TT>Induction </TT><I><FONT COLOR=maroon>ident</FONT></I> but for the <I><FONT COLOR=maroon>num</FONT></I>-th
+ non-dependent premise of the goal.
+</OL>
+<H3>
+
+7.7.2&nbsp;<TT>Case </TT><I><FONT COLOR=maroon>term</FONT></I><TT>
+</TT></H3>
+<A NAME="Case"></A><A NAME="@default416"></A><A NAME="@tactic40"></A>The tactic <TT>Case</TT> is used to perform case
+analysis without recursion. The type of <I><FONT COLOR=maroon>term</FONT></I> must be inductively defined. <BR>
+<BR>
+<BR><B>Variants: </B><OL>
+<LI><TT>Case </TT><I><FONT COLOR=maroon>term</FONT></I><TT> with </TT><I><FONT COLOR=maroon>term</FONT></I><TT><SUB><FONT SIZE=2>1</FONT></SUB></TT><TT> ...</TT><I><FONT COLOR=maroon>term</FONT></I><TT><SUB><FONT SIZE=2><I>n</I></FONT></SUB></TT>
+ <A NAME="@default417"></A><A NAME="@tactic41"></A><BR>Analogous to <TT>Elim ...with</TT> above.
+
+<LI><TT>Destruct </TT><I><FONT COLOR=maroon>ident</FONT></I><A NAME="@default418"></A><A NAME="@tactic42"></A><BR>Is equivalent to the tactical <TT>Intros Until </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>; Case </TT><I><FONT COLOR=maroon>ident</FONT></I>.
+
+<LI><TT>Destruct </TT><I><FONT COLOR=maroon>num</FONT></I><BR>Is equivalent to <TT>Destruct </TT><I><FONT COLOR=maroon>ident</FONT></I> but for the <I><FONT COLOR=maroon>num</FONT></I>-th non
+ dependent premises of the goal.
+</OL>
+<H3>
+
+7.7.3&nbsp;<TT>Intros </TT><I><FONT COLOR=maroon>pattern</FONT></I><TT>
+</TT></H3>
+<A NAME="Intros-pattern"></A><A NAME="@default419"></A><A NAME="@tactic43"></A>The tactic <TT>Intros</TT> applied to a pattern performs both
+introduction of variables and case analysis in order to give names to
+components of an hypothesis.<BR>
+<BR>
+A pattern is either:
+<UL>
+<LI>a variable
+
+<LI>a list of patterns: <I>p</I><SUB><FONT SIZE=2>1</FONT></SUB>&nbsp;...&nbsp;<I>p</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>
+
+<LI>a disjunction of patterns: <TT>[</TT><I>p</I><SUB><FONT SIZE=2>1</FONT></SUB> <TT>|</TT> ... <TT>|</TT> <I>p</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> <TT>]</TT>
+
+<LI>a conjunction of patterns: <TT>(</TT> <I>p</I><SUB><FONT SIZE=2>1</FONT></SUB> <TT>,</TT> ... <TT>,</TT> <I>p</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> <TT>)</TT>
+</UL>The behavior of <TT>Intros</TT> is defined inductively over the
+structure of the pattern given as argument:
+<UL>
+<LI>introduction on a variable behaves like described in&nbsp;<A HREF="node.1.2.2.html#Intro">7.3.3</A>; 
+
+<LI>introduction over a
+list of patterns <I>p</I><SUB><FONT SIZE=2>1</FONT></SUB>&nbsp;...&nbsp;<I>p</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> is equivalent to the sequence of
+introductions over the patterns namely:
+<TT>Intros </TT><TT><I>p</I><SUB><FONT SIZE=2>1</FONT></SUB></TT><TT>;...; Intros </TT><TT><I>p</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB></TT>, the goal should start with
+at least <I>n</I> products;
+
+<LI>introduction over a
+disjunction of patterns [<I>p</I><SUB><FONT SIZE=2>1</FONT></SUB>&nbsp;|&nbsp;&nbsp;...&nbsp;|&nbsp;<I>p</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>], it 
+introduces a new variable <I>X</I>, its type should be an inductive
+definition with <I>n</I>
+constructors, then it performs a case analysis over <I>X</I> 
+(which generates <I>n</I> subgoals), it 
+clears <I>X</I> and performs on each generated subgoals the corresponding
+<TT>Intros</TT>&nbsp;<I>p</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB> tactic;
+
+<LI>introduction over a 
+conjunction of patterns (<I>p</I><SUB><FONT SIZE=2>1</FONT></SUB>,...,<I>p</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>), it
+introduces a new variable <I>X</I>, its type should be an inductive 
+definition with 1
+constructor with (at least) <I>n</I> arguments, then it performs a case 
+analysis over <I>X</I> 
+(which generates 1 subgoal with at least <I>n</I> products), it 
+clears <I>X</I> and performs an introduction over the list of patterns <I>p</I><SUB><FONT SIZE=2>1</FONT></SUB>&nbsp;...&nbsp;<I>p</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>.
+</UL>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Lemma&nbsp;intros_test&nbsp;:&nbsp;(A,B,C:Prop)(A\/(B/\C))-&gt;(A-&gt;C)-&gt;C.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(A,B,C:Prop)A\/B/\C-&gt;(A-&gt;C)-&gt;C</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Intros&nbsp;A&nbsp;B&nbsp;C&nbsp;[a|(b,c)]&nbsp;f.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>2&nbsp;subgoals</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;A&nbsp;:&nbsp;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;B&nbsp;:&nbsp;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;C&nbsp;:&nbsp;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;a&nbsp;:&nbsp;A</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;f&nbsp;:&nbsp;A-&gt;C</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;C</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>subgoal&nbsp;2&nbsp;is:</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;C</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Apply&nbsp;(f&nbsp;a).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;A&nbsp;:&nbsp;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;B&nbsp;:&nbsp;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;C&nbsp;:&nbsp;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;b&nbsp;:&nbsp;B</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;c&nbsp;:&nbsp;C</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;f&nbsp;:&nbsp;A-&gt;C</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;C</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Proof&nbsp;c.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>intros_test&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+
+<H3>
+
+7.7.4&nbsp;<TT>Double Induction </TT><I><FONT COLOR=maroon>num</FONT></I><TT><SUB><FONT SIZE=2>1</FONT></SUB></TT><TT> </TT><I><FONT COLOR=maroon>num</FONT></I><TT><SUB><FONT SIZE=2>2</FONT></SUB></TT><TT>
+</TT></H3>
+
+<A NAME="@default420"></A><A NAME="@tactic44"></A>This tactic applies to any goal. If the <I><FONT COLOR=maroon>num</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>th and <I><FONT COLOR=maroon>num</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB>th
+premises of the goal have an inductive type, then this tactic
+performs double induction on these premises.
+For instance, if the current goal is <CODE>(n,m:nat)(P n m)</CODE> then,
+<TT>Double Induction 1 2</TT> yields the four cases with their respective
+inductive hypothesis. In particular the case for
+<CODE>(P (S n) (S m))</CODE>
+with the inductive hypothesis about both <CODE>n</CODE> and <CODE>m</CODE>.<BR>
+<BR>
+<BR><B>Remark: </B>This tactic is not automatically loaded; it is
+available by doing <CODE>Require Double</CODE>.<BR>
+<BR>
+
+<H3>
+
+7.7.5&nbsp;<TT>Decompose [ </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> ... </TT><I><FONT COLOR=maroon>idents</FONT></I><TT> ] </TT><I><FONT COLOR=maroon>term</FONT></I><TT>
+</TT></H3>
+
+<A NAME="Decompose"></A>
+<A NAME="@default421"></A><A NAME="@tactic45"></A>This tactic allows to recursively decompose a
+complex proposition in order to obtain atomic ones.
+Example: <BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Lemma&nbsp;ex1:&nbsp;(A,B,C:Prop)(A/\B/\C&nbsp;\/&nbsp;B/\C&nbsp;\/&nbsp;C/\A)&nbsp;-&gt;&nbsp;C.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(A,B,C:Prop)A/\B/\C\/B/\C\/C/\A-&gt;C</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Intros&nbsp;A&nbsp;B&nbsp;C&nbsp;H;&nbsp;Decompose&nbsp;[and&nbsp;or]&nbsp;H;&nbsp;Assumption.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Subtree&nbsp;proved!</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Qed.</TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+<BR><B>Variants: </B><OL>
+<LI><TT>Decompose Sum </TT><I><FONT COLOR=maroon>term</FONT></I><A NAME="@default422"></A><A NAME="@tactic46"></A>This decomposes sum types (like <TT>or</TT>).
+
+<LI><TT>Decompose Record </TT><I><FONT COLOR=maroon>term</FONT></I><A NAME="@default423"></A><A NAME="@tactic47"></A>This decomposes record types (inductive types with one constructor,
+ like <TT>and</TT> and <TT>exists</TT> and those defined with the
+ <TT>Record</TT> macro, see p. <A HREF="node.0.1.0.html#Record">X</A>).
+</OL><HR>
+
+<A HREF="node.1.2.5.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.7.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

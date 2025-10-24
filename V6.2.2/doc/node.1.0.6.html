@@ -1,0 +1,115 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+5.7&nbsp;Syntax facilities
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.1.0.5.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.0.7.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+5.7&nbsp;Syntax facilities
+</H2>
+
+
+We present quickly in this section some syntactic facilities.
+We will only sketch them here and refer the
+interested reader to chapter <A HREF="node.2.0.html#Addoc-syntax">9</A> for more details and
+examples.<BR>
+<BR>
+
+<H3>
+
+5.7.1&nbsp;<TT>Implicit Arguments </TT><TT>[</TT><TT> On </TT><TT>|</TT><TT> Off </TT><TT>]</TT><TT>.
+</TT></H3>
+
+<A NAME="@default317"></A><A NAME="@command88"></A><A NAME="@default318"></A><A NAME="@command89"></A>These commands sets and unsets the implicit argument mode. This mode
+forces not explicitly give some arguments (typically type arguments in
+polymorphic functions) which are deductible from the other arguments.<BR>
+<BR>
+<BR><B>See also: </B>section <A HREF="node.0.1.5.html#Auto-implicit">2.6.2</A><BR>
+<BR>
+
+<H3>
+
+5.7.2&nbsp;<TT>Syntactic Definition </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> := </TT><I><FONT COLOR=maroon>term</FONT></I><TT>.
+</TT></H3>
+
+<A NAME="@default319"></A><A NAME="@command90"></A><A NAME="@default320"></A>This command defines <I><FONT COLOR=maroon>ident</FONT></I> as an
+abbreviation with implicit arguments. Implicit arguments are denoted
+in <I><FONT COLOR=maroon>term</FONT></I> by <TT>?</TT> and they will have to be synthesized by the
+system.<BR>
+<BR>
+<BR><B>Remark: </B>Since it may contain don't care variables <TT>?</TT>, the argument
+<I><FONT COLOR=maroon>term</FONT></I> cannot be typechecked at
+definition time. But each of its subsequent usages will be.<BR>
+<BR>
+<BR><B>See also: </B>section <A HREF="node.0.1.5.html#Syntactic-Definition">2.6.3</A><BR>
+<BR>
+
+<H3>
+
+5.7.3&nbsp;<TT>Syntax </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> </TT><I><FONT COLOR=maroon>syntax-rules</FONT></I><TT>.
+</TT></H3>
+
+<A NAME="@default321"></A><A NAME="@command91"></A><A NAME="@default322"></A>This command addresses the extensible
+pretty-printing mechanism of <FONT COLOR=purple>Coq</FONT>. It allows <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB> to be 
+pretty-printed as specified in <I><FONT COLOR=maroon>syntax-rules</FONT></I>. Many examples
+of the <TT>Syntax</TT> command usage may be found in the <TT>PreludeSyntax</TT> file (see directory <TT>$COQLIB/theories/INIT</TT>).<BR>
+<BR>
+<BR><B>See also: </B>chapter <A HREF="node.2.0.html#Addoc-syntax">9</A><BR>
+<BR>
+
+<H3>
+
+5.7.4&nbsp;<TT>Grammar </TT><I><FONT COLOR=maroon>ident</FONT></I><TT><SUB><FONT SIZE=2>1</FONT></SUB></TT><TT> </TT><I><FONT COLOR=maroon>ident</FONT></I><TT><SUB><FONT SIZE=2>2</FONT></SUB></TT><TT> := </TT><I><FONT COLOR=maroon>grammar-rule</FONT></I><TT>.
+</TT></H3>
+
+<A NAME="@default323"></A><A NAME="@command92"></A><A NAME="@default324"></A>This command allows to give explicitly new grammar rules for parsing
+the user's own notation. It may be used instead of the <TT>Syntactic
+Definition</TT> pragma. It can also be used by an advanced <FONT COLOR=purple>Coq</FONT>'s user
+who programs his own tactics.<BR>
+<BR>
+<BR><B>See also: </B>chapters <A HREF="node.2.0.html#Addoc-syntax">9</A>, 
+<A HREF="node.2.1.html#WritingTactics">10</A><BR>
+<BR>
+
+<H3>
+
+5.7.5&nbsp;<TT>Infix </TT><I><FONT COLOR=maroon>num</FONT></I><TT> </TT><I><FONT COLOR=maroon>string</FONT></I><TT> </TT><I><FONT COLOR=maroon>ident</FONT></I>.
+</H3>
+<A NAME="@default325"></A><A NAME="@command93"></A>This command declares a prefix operator <I><FONT COLOR=maroon>ident</FONT></I> as infix, with the
+syntax <I><FONT COLOR=maroon>term</FONT></I> <I><FONT COLOR=maroon>string</FONT></I> <I><FONT COLOR=maroon>term</FONT></I>. <I><FONT COLOR=maroon>num</FONT></I> is the precedence associated to
+the operator; it must lie between 1 and 10. The infix operator <I><FONT COLOR=maroon>string</FONT></I>
+associates to the left. <I><FONT COLOR=maroon>string</FONT></I> must be a legal token. Both grammar
+and pretty-print rules are automatically generated for <I><FONT COLOR=maroon>string</FONT></I>.<BR>
+<BR>
+<BR><B>Variants: </B><OL>
+<LI><TT>Infix </TT><I><FONT COLOR=maroon>assoc</FONT></I><TT> </TT><I><FONT COLOR=maroon>num</FONT></I><TT> </TT><I><FONT COLOR=maroon>string</FONT></I><TT> </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>.</TT><BR>Declares <I><FONT COLOR=maroon>ident</FONT></I> as an infix operator with an alternate
+ associativity. <I><FONT COLOR=maroon>assoc</FONT></I> may be one of <TT>LEFTA</TT>, <TT>RIGHTA</TT> and <TT>NONA</TT>. The default is <TT>LEFTA</TT>. When an
+ associativity is given, the precedence level must lie between 6 and
+ 9. 
+</OL><HR>
+
+<A HREF="node.1.0.5.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.0.7.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

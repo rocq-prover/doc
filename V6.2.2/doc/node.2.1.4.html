@@ -1,0 +1,419 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+10.5&nbsp;A Complete Example
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.2.1.3.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.2.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.2.1.5.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+10.5&nbsp;A Complete Example
+</H2>
+
+
+
+<A NAME="ACompleteExample"></A>In order to illustrate the implementation of a new tactic, let us come
+back to the problem of deciding the equality of two elements of an
+inductive type.<BR>
+<BR>
+
+<H3>
+
+10.5.1&nbsp;Preliminaries
+</H3>
+Let us call <TT>newtactic</TT> the directory that will contain the
+implementation of the new tactic. In this directory will lay two
+files: a file <TT>eqdecide.ml</TT>, containing the Ocaml sources that
+implements the tactic, and a <FONT COLOR=purple>Coq</FONT> file <TT>Eqdecide.v</TT>, containing
+its associated grammar rules and the commands to generate a module
+that can be loaded dynamically from <FONT COLOR=purple>Coq</FONT>'s toplevel. The following file
+<TT>Makefile</TT> is used to automatically update the files in the
+directory <TT>newtactic</TT> using the tool <TT>make</TT>:<BR>
+<BR>
+<PRE>
+#-------------------------------------------------------
+# To be filled in:
+#COQTOP= &lt;Coq's home directory&gt;
+#COQBIN= &lt;Coq's bin  directory&gt;
+
+ZLIBS= -I $(COQTOP)/src/lib/util -I $(COQTOP)/src/meta    \
+       -I $(COQTOP)/src/constr   -I $(COQTOP)/src/typing  \
+       -I $(COQTOP)/src/proofs   -I $(COQTOP)/src/tactics \
+       -I $(COQTOP)/src/parsing  -I $(COQTOP)/tactics
+COQC=$(COQBIN)/coqc -I $(ZLIBS) 
+CAMLDEP=$(COQBIN)/coqdep -c
+objects = eqdecide.cmo
+vofiles = EqDecide.vo
+byte: $(objects) $(vofiles)
+ALLFILES=$(objects) $(objects:.cmo=.cmi) $(vofiles)
+.mli.cmi:
+        ocamlc   -c $(ZLIBS) $&lt;
+.ml.cmo:
+        ocamlc   -c $(ZLIBS) $&lt;
+.ml.cmx:
+        ocamlopt -c $(ZLIBS) $&lt;
+.v.vo:
+        $(COQC) $*
+clean:
+        rm -f *.cm* *.o *.v?
+depend:
+        $(CAMLDEP) $(ZLIBS) *.ml *.mli *.v &gt; .depend
+include .depend
+#-------------------------------------------------------
+</PRE>
+<H3>
+
+10.5.2&nbsp;Implementing the Tactic
+</H3>
+The file <TT>eqdecide.ml</TT> contains the implementation of the
+tactic in Ocaml. Let us recall the main steps of the proof strategy
+for deciding the proposition (<I>x</I>,<I>y</I>:<I>R</I>){<I>x</I>=<I>y</I>}+{¬ <I>x</I>=<I>y</I>} on the
+inductive type <I>R</I>:
+<OL>
+<LI>Eliminate <I>x</I> and then <I>y</I>.
+
+<LI>Try discrimination to solve those goals where <I>x</I> and <I>y</I> has
+been introduced by different constructors.
+
+<LI>If <I>x</I> and <I>y</I> have been introduced by the same constructor,
+ then analyze one by one the corresponding pairs of arguments.
+ If they are equal, rewrite one into the other. If they are
+ not, derive a contradiction from the invectiveness of the
+ constructor.
+
+<LI>Once all the arguments have been rewritten, solve the left half
+of the goal by reflexivity.
+</OL>In the sequel we implement these steps one by one. We start opening
+the modules necessary for the implementation of the tactic:<BR>
+<BR>
+<PRE>
+open Names
+open Term
+open Tactics
+open Tacticals
+open Hiddentac
+open Equality
+open Auto
+open Pattern
+open Names
+open Termenv
+open Std
+open Proof_trees
+open Tacmach
+</PRE>The first step of the procedure can be straightforwardly implemented as
+follows:<BR>
+<BR>
+<PRE>
+let clear_last = (tclLAST_HYP (fun c -&gt; (clear_one (destVar c))));;
+</PRE><PRE>
+let mkBranches = 
+        (tclTHEN  intro 
+        (tclTHEN (tclLAST_HYP h_simplest_elim)
+        (tclTHEN  clear_last
+        (tclTHEN  intros 
+        (tclTHEN (tclLAST_HYP h_simplest_case)
+        (tclTHEN  clear_last
+                  intros))))));;
+</PRE>Notice the use of the tactical <TT>tclLAST_HYP</TT>, which avoids to
+give a (potentially clashing) name to the quantified variables of the
+goal when they are introduced.<BR>
+<BR>
+The second step of the procedure is implemented by the following
+tactic:<BR>
+<BR>
+<PRE>
+let solveRightBranch  = (tclTHEN simplest_right discrConcl);;
+</PRE>In order to illustrate how the implementation of a tactic can be 
+hidden, let us do it with the tactic above:<BR>
+<BR>
+<PRE>
+let h_solveRightBranch =
+    hide_atomic_tactic "solveRightBranch" solveRightBranch
+;;
+</PRE>As it was already mentioned in Section <A HREF="node.2.1.2.html#WhatIsATactic">10.3.4</A>, the
+combinator <TT>hide_atomic_tactic</TT> first registers the tactic
+<TT>solveRightBranch</TT> in the table, and returns a tactic which
+calls the interpreter with the used to register it. Hence, when the
+tactical <TT>Info</TT> is used, our tactic will just inform that
+<TT>solveRightBranch</TT> was applied, omitting all the details
+corresponding to <TT>simplest_right</TT> and <TT>discrConcl</TT>.<BR>
+<BR>
+The third step requires some auxiliary functions for constructing the
+type {<I>c</I><SUB><FONT SIZE=2>1</FONT></SUB>=<I>c</I><SUB><FONT SIZE=2>2</FONT></SUB>}+{¬ <I>c</I><SUB><FONT SIZE=2>1</FONT></SUB>=<I>c</I><SUB><FONT SIZE=2>2</FONT></SUB>} for a given inductive type <I>R</I> and
+two constructions <I>c</I><SUB><FONT SIZE=2>1</FONT></SUB> and <I>c</I><SUB><FONT SIZE=2>2</FONT></SUB>, and for generalizing this type over
+<I>c</I><SUB><FONT SIZE=2>1</FONT></SUB> and <I>c</I><SUB><FONT SIZE=2>2</FONT></SUB>:<BR>
+<BR>
+<PRE>
+let mmk         = make_module_marker ["#Logic.obj";"#Specif.obj"];;
+let eqpat       = put_pat mmk "eq";;                 
+let sumboolpat  = put_pat mmk "sumbool";;             
+let notpat      = put_pat mmk "not";;   
+let eq          = get_pat eqpat;;
+let sumbool     = get_pat sumboolpat;;
+let not         = get_pat notpat;;
+
+let mkDecideEqGoal rectype c1 c2 g = 
+     let equality    = mkAppL [eq;rectype;c1;c2] in
+     let disequality = mkAppL [not;equality]
+     in  mkAppL [sumbool;equality;disequality]
+;;
+let mkGenDecideEqGoal rectype g = 
+      let hypnames = ids_of_sign (pf_hyps g) in 
+      let xname    = next_ident_away (id_of_string "x") hypnames
+      and yname    = next_ident_away (id_of_string "y") hypnames
+      in  (mkNamedProd xname rectype 
+           (mkNamedProd yname rectype 
+            (mkDecideEqGoal rectype (mkVar xname) (mkVar yname) g)))
+;;
+</PRE>The tactic will depend on the <FONT COLOR=purple>Coq</FONT>modules <TT>Logic</TT> and
+<TT>Specif</TT>, since we use the constants corresponding to
+propositional equality (<TT>eq</TT>), computational disjunction
+(<TT>sumbool</TT>), and logical negation (<TT>not</TT>), defined in
+that modules. This is specified creating the module maker
+<TT>mmk</TT> (cf. Section <A HREF="node.2.1.3.html#Patterns">10.4.1</A>).<BR>
+<BR>
+The third step of the procedure can be divided into three sub-steps.
+Assume that both <I>x</I> and <I>y</I> have been introduced by the same
+constructor. For each corresponding pair of arguments of that
+constructor, we have to consider whether they are equal or not. If
+they are equal, the following tactic is applied to rewrite one into
+the other:<BR>
+<BR>
+<PRE>
+let eqCase  tac = 
+         (tclTHEN intro  
+         (tclTHEN (tclLAST_HYP h_rewriteLR)
+         (tclTHEN clear_last 
+                  tac)))
+;;
+</PRE>If they are not equal, then the goal is contraposed and a
+contradiction is reached form the invectiveness of the constructor:<BR>
+<BR>
+<PRE>
+let diseqCase = 
+    let diseq  = (id_of_string "diseq") in
+    let absurd = (id_of_string "absurd")
+    in (tclTHEN (intro_using diseq)
+       (tclTHEN  h_simplest_right
+       (tclTHEN  red_in_concl
+       (tclTHEN  (intro_using absurd)
+       (tclTHEN  (h_simplest_apply (mkVar diseq))
+       (tclTHEN  (h_injHyp absurd)
+                  trivial ))))))
+;;
+</PRE>In the tactic above we have chosen to name the hypotheses because
+they have to be applied later on. This introduces a potential risk
+of name clashing if the context already contains other hypotheses 
+also named ``diseq'' or ``absurd''.<BR>
+<BR>
+We are now ready to implement the tactic <I><FONT COLOR=maroon>SolveArg</FONT></I>. Given the
+two arguments <I>a</I><SUB><FONT SIZE=2>1</FONT></SUB> and <I>a</I><SUB><FONT SIZE=2>2</FONT></SUB> of the constructor, this tactic cuts the
+goal with the proposition {<I>a</I><SUB><FONT SIZE=2>1</FONT></SUB>=<I>a</I><SUB><FONT SIZE=2>2</FONT></SUB>}+{¬ <I>a</I><SUB><FONT SIZE=2>1</FONT></SUB>=<I>a</I><SUB><FONT SIZE=2>2</FONT></SUB>}, and then
+applies the tactics above to each of the generated cases. If the
+disjunction cannot be solved automatically, it remains as a sub-goal
+to be proven.<BR>
+<BR>
+<PRE>
+let solveArg a1 a2 tac  g = 
+     let rectype = pf_type_of g a1 in
+     let decide  = mkDecideEqGoal rectype a1 a2 g
+     in  (tclTHENS  (h_elimType decide) 
+                      [(eqCase tac);diseqCase;default_auto]) g
+;;
+</PRE>The following tactic implements the third and fourth steps of the
+proof procedure:<BR>
+<BR>
+<PRE>
+let conclpatt = put_pat mmk "{&lt;?1&gt;?2=?3}+{?4}"
+;;
+let solveLeftBranch rectype g = 
+      let (_::(lhs::(rhs::_))) = 
+               try (dest_somatch (pf_concl g) conclpatt) 
+               with UserError ("somatch",_)-&gt; error "Unexpected conclusion!" in
+      let nparams   = mind_nparams rectype   in
+      let getargs l = snd (chop_list nparams (snd (decomp_app l))) in
+      let rargs   = getargs rhs
+      and largs   = getargs lhs
+      in  List.fold_right2 
+             solveArg largs rargs (tclTHEN h_simplest_left h_reflexivity) g
+;;
+</PRE>Notice the use of a pattern to decompose the goal and obtain the
+inductive type and the left and right hand sides of the equality. A
+certain number of arguments correspond to the general parameters of
+the type, and must be skipped over. Once the corresponding list of
+arguments <TT>rargs</TT> and <TT>largs</TT> have been obtained, the
+tactic <TT>solveArg</TT> is iterated on them, leaving a disjunction
+whose left half can be solved by reflexivity.<BR>
+<BR>
+The following tactic joints together the three steps of the 
+proof procedure:<BR>
+<BR>
+<PRE>
+let initialpatt = put_pat mmk "(x,y:?1){&lt;?1&gt;x=y}+{~(&lt;?1&gt;x=y)}"
+;;
+let decideGralEquality g = 
+  let (typ::_) = try (dest_somatch (pf_concl g) initialpatt)
+                 with UserError ("somatch",_) -&gt; 
+                        error "The goal does not have the expected form" in
+  let headtyp = hd_app (pf_compute g typ) in
+  let rectype = match (kind_of_term  headtyp) with
+                 IsMutInd _ -&gt; headtyp 
+               | _          -&gt; error ("This decision procedure only"
+                                      " works for inductive objects") 
+  in (tclTHEN   mkBranches 
+     (tclORELSE h_solveRightBranch (solveLeftBranch rectype))) g
+;;
+;;
+</PRE>The tactic above can be specialized in two different ways: either to
+decide a particular instance {<I>c</I><SUB><FONT SIZE=2>1</FONT></SUB>=<I>c</I><SUB><FONT SIZE=2>2</FONT></SUB>}+{¬ <I>c</I><SUB><FONT SIZE=2>1</FONT></SUB>=<I>c</I><SUB><FONT SIZE=2>2</FONT></SUB>} of the
+universal quantification; or to eliminate this property and obtain two
+subgoals containing the hypotheses <I>c</I><SUB><FONT SIZE=2>1</FONT></SUB>=<I>c</I><SUB><FONT SIZE=2>2</FONT></SUB> and ¬ <I>c</I><SUB><FONT SIZE=2>1</FONT></SUB>=<I>c</I><SUB><FONT SIZE=2>2</FONT></SUB>
+respectively.<BR>
+<BR>
+<PRE>
+let decideGralEquality = 
+  (tclTHEN mkBranches (tclORELSE h_solveRightBranch solveLeftBranch))
+;;
+let decideEquality c1 c2 g = 
+     let rectype = pf_type_of g c1 in
+     let decide  = mkGenDecideEqGoal rectype g
+     in  (tclTHENS (cut decide) [default_auto;decideGralEquality]) g
+;;
+let compare c1 c2 g = 
+     let rectype = pf_type_of g c1 in
+     let decide  = mkDecideEqGoal rectype c1 c2 g
+     in  (tclTHENS (cut decide) 
+                [(tclTHEN  intro 
+                 (tclTHEN (tclLAST_HYP simplest_case)
+                          clear_last));
+                  decideEquality c1 c2]) g
+;;
+</PRE>Next, for each of the tactics that will have an entry in the grammar
+we construct the associated dynamic one to be registered in the table
+of tactics. This function can be used to overload a tactic name with
+several similar tactics. For example, the tactic proving the general
+decidability property and the one proving a particular instance for
+two terms can be grouped together with the following convention: if
+the user provides two terms as arguments, then the specialized tactic
+is used; if no argument is provided then the general tactic is invoked.<BR>
+<BR>
+<PRE>
+let dyn_decideEquality  args g =
+      match args with 
+       [(COMMAND com1);(COMMAND com2)]  -&gt; 
+          let c1 = pf_constr_of_com g com1
+          and c2 = pf_constr_of_com g com2
+          in  decideEquality c1 c2 g 
+     | [] -&gt;  decideGralEquality g
+     | _  -&gt;  error "Invalid arguments for dynamic tactic"
+;;
+add_tactic "DecideEquality" dyn_decideEquality
+;;
+
+let dyn_compare args g =
+      match args with 
+       [(COMMAND com1);(COMMAND com2)]  -&gt; 
+          let c1 = pf_constr_of_com g com1
+          and c2 = pf_constr_of_com g com2
+          in  compare c1 c2 g
+     | _  -&gt;  error "Invalid arguments for dynamic tactic"
+;; 
+add_tactic "Compare" tacargs_compare
+;;
+</PRE>This completes the implementation of the tactic. We turn now to the
+<FONT COLOR=purple>Coq</FONT>file <TT>Eqdecide.v</TT>.<BR>
+<BR>
+
+<H3>
+
+10.5.3&nbsp;The Grammar Rules
+</H3>
+Associated to the implementation of the tactic there is a <FONT COLOR=purple>Coq</FONT> file
+containing the grammar and pretty-printing rules for the new tactic,
+and the commands to generate an object module that can be then loaded
+dynamically during a <FONT COLOR=purple>Coq</FONT> session. In order to generate an ML module,
+the <FONT COLOR=purple>Coq</FONT> file must contain a
+<TT>Declare ML module</TT> command for all the Ocaml files concerning
+the implementation of the tactic --in our case there is only one file,
+the file <TT>eqdecide.ml</TT>: <BR>
+<BR>
+<PRE>
+Declare ML Module "eqdecide".
+</PRE>The following grammar and pretty-printing rules are
+self-explanatory. We refer the reader to the Section <A HREF="node.2.0.1.html#Grammar">9.2</A> for
+the details:<BR>
+<BR>
+<PRE>
+Grammar tactic simple_tactic :=
+  EqDecideRuleG1 
+       [ "Decide"  "Equality" comarg($com1)  comarg($com2)] -&gt; 
+       [(DecideEquality $com1 $com2)]
+| EqDecideRuleG2 
+       [ "Decide" "Equality"  ] -&gt; 
+       [(DecideEquality)]
+| CompareRule 
+       [ "Compare" comarg($com1) comarg($com2)] -&gt; 
+       [(Compare $com1 $com2)].
+
+Syntax tactic level 0:
+  EqDecideRulePP1 
+       [(DecideEquality)]   -&gt; 
+       ["Decide" "Equality"]
+| EqDecideRulePP2 
+       [(DecideEquality $com1 $com2)]   -&gt; 
+       ["Decide" "Equality" $com1 $com2]
+| ComparePP 
+       [(Compare $com1 $com2)] -&gt; 
+       ["Compare" $com1 $com2].
+</PRE>
+<H5>
+Important:
+</H5>
+ The names used to label the abstract syntax tree 
+in the grammar rules ---in this case ``DecideEquality'' and
+``Compare''--- must be the same as the name used to register the
+tactic in the tactics table. This is what makes the links between the
+input entered by the user and the tactic executed by the interpreter.<BR>
+<BR>
+
+<H3>
+
+10.5.4&nbsp;Loading the Tactic
+</H3>
+Once the module <TT>EqDecide.v</TT> has been compiled, the tactic can
+be dynamically loaded using the <TT>Require</TT> command. <BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Require&nbsp;EqDecide.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>[Reinterning&nbsp;EqDecide&nbsp;...done]</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>[Loading&nbsp;ML&nbsp;file&nbsp;eqdecide.cmo&nbsp;...done]</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Goal&nbsp;(x,y:nat){x=y}+{~x=y}.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(x,y:nat){x=y}+{~x=y}</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Decide&nbsp;Equality.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Subtree&nbsp;proved!</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+The implementation of the tactic can be accessed through the
+tactical <TT>Info</TT>:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Undo.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(x,y:nat){x=y}+{~x=y}</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Info&nbsp;Decide&nbsp;Equality.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;==&nbsp;Intro&nbsp;x;&nbsp;Elim&nbsp;x.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;Clear&nbsp;x;&nbsp;Intro&nbsp;y;&nbsp;Case&nbsp;y.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;Clear&nbsp;y;&nbsp;Left;&nbsp;Reflexivity.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;Clear&nbsp;y;&nbsp;Intro&nbsp;n;&nbsp;solveRightBranch.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;Clear&nbsp;x;&nbsp;Intro&nbsp;n;&nbsp;Intro&nbsp;H;&nbsp;Intro&nbsp;y;&nbsp;Case&nbsp;y.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;Clear&nbsp;y;&nbsp;solveRightBranch.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;Clear&nbsp;y;&nbsp;Intro&nbsp;n0;&nbsp;ElimType&nbsp;{n=n0}+{~n=n0}.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;Intro&nbsp;y;&nbsp;Rewrite&nbsp;y;&nbsp;Clear&nbsp;y;&nbsp;Left;&nbsp;Reflexivity.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;Intro&nbsp;diseq;&nbsp;Right;&nbsp;Change&nbsp;(S&nbsp;n)=(S&nbsp;n0)-&gt;False;&nbsp;Intro&nbsp;absurd;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Apply&nbsp;diseq;&nbsp;Injection&nbsp;absurd;&nbsp;Trivial.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;Apply&nbsp;H.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Subtree&nbsp;proved!</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Remark that the task performed by the tactic <TT>solveRightBranch</TT>
+is not displayed, since we have chosen to hide its implementation.<BR>
+<BR>
+<HR>
+
+<A HREF="node.2.1.3.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.2.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.2.1.5.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

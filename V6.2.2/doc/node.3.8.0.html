@@ -1,0 +1,357 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+19.1&nbsp;The Extraction module
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.8.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.8.1.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+19.1&nbsp;The <TT>Extraction</TT> module
+</H2>
+
+
+
+<A NAME="Extraction"></A>This section explains how to import ML objects, to realize axioms and
+finally to generate ML code from the extracted programs of <I>F</I><SUB><FONT SIZE=2><FONT FACE=symbol>w</FONT></FONT></SUB>.<BR>
+<BR>
+These features do not belong to the core system, and appear as an
+independent module called <TT>Extraction.v</TT> (which is compiled during the
+installation of the system). So the first thing to do is to load this
+module:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Require&nbsp;Extraction.</TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+
+ 
+<H3>
+
+19.1.1&nbsp;Generating executable ML code
+</H3>
+
+<A NAME="@default604"></A><A NAME="@command172"></A><A NAME="@default605"></A><A NAME="@command173"></A><A NAME="@default606"></A><A NAME="@command174"></A>The <FONT COLOR=purple>Coq</FONT> commands to generate ML code are:
+<DIV ALIGN=center>
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=left><TT>Write Caml File "</TT><I><FONT COLOR=maroon>string</FONT></I><TT>" [ </TT><I><FONT COLOR=maroon>ident</FONT></I><TT><SUB><FONT SIZE=2>1</FONT></SUB></TT><TT> ... </TT><I><FONT COLOR=maroon>ident</FONT></I><TT><SUB><FONT SIZE=2><I>n</I></FONT></SUB></TT><TT> ].</TT></TD>
+<TD NOWRAP ALIGN=left>(<EM>for Objective Caml syntax</EM>)</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left><TT>Write CamlLight File "</TT><I><FONT COLOR=maroon>string</FONT></I><TT>" [ </TT><I><FONT COLOR=maroon>ident</FONT></I><TT><SUB><FONT SIZE=2>1</FONT></SUB></TT><TT> ... </TT><I><FONT COLOR=maroon>ident</FONT></I><TT><SUB><FONT SIZE=2><I>n</I></FONT></SUB></TT><TT> ].</TT></TD>
+<TD NOWRAP ALIGN=left>&nbsp;</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left><TT>Write Haskell File "</TT><I><FONT COLOR=maroon>string</FONT></I><TT>" [ </TT><I><FONT COLOR=maroon>ident</FONT></I><TT><SUB><FONT SIZE=2>1</FONT></SUB></TT><TT> ... </TT><I><FONT COLOR=maroon>ident</FONT></I><TT><SUB><FONT SIZE=2><I>n</I></FONT></SUB></TT><TT> ].</TT></TD>
+<TD NOWRAP ALIGN=left>&nbsp;</TD>
+</TR></TABLE></DIV>
+where <I><FONT COLOR=maroon>string</FONT></I> is the name given to the file to be produced (the suffix
+<TT>.ml</TT> is added if necessary), and <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> ... <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> the
+names of the constants to be extracted. This list does not need to be
+exhaustive: it is automatically completed into a complete and minimal
+environment. Remaining axioms are translated into exceptions, and a
+warning is printed in that case. In particular, this will be the case
+for <TT>False_rec</TT>. (We will see below how to realize axioms).<BR>
+<BR>
+
+<H5>
+Remark about strict languages.
+</H5>
+ 
+Since Caml Light and Objective Caml are strict languages, the extracted
+code has to be optimized in order to be efficient (for instance, when
+using induction principles we do not want to compute all the recursive
+calls but only the needed ones). So an optimization routine will be
+called each time the user want to generate Caml programs. Essentially,
+it performs constants expansions and reductions. Therefore some
+constants will not appear in the resulting Caml program (A warning is
+printed for each such constant). To avoid this, just put the constant
+name in the previous list <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> ... <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> and it will not
+be expanded.<BR>
+<BR>
+
+ 
+<H3>
+
+19.1.2&nbsp;Realizing axioms
+</H3>
+
+<A NAME="@default607"></A><A NAME="@command175"></A>It is possible to assume some axioms while developing a proof. Since
+these axioms can be any kind of proposition or object type, they may
+perfectly well have some computational content. But a program must be
+a closed term, and of course the system cannot guess the program which
+realizes an axiom. Therefore, it is possible to tell the system
+what program (an <I>F</I><SUB><FONT SIZE=2><FONT FACE=symbol>w</FONT></FONT></SUB> term actually) corresponds to a given <FONT COLOR=purple>Coq</FONT>
+axiom. The command is <TT>Link</TT> and the syntax:
+<DIV ALIGN=center><TT>Link </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> := Fwterm.</TT></DIV>
+where <I><FONT COLOR=maroon>ident</FONT></I> is the name of the axiom to realize and Fwterm the
+term which realizes it. The system checks that this term has the same
+type as the axiom <I><FONT COLOR=maroon>ident</FONT></I>, and returns an error if not. This command
+attaches a body to an axiom, and can be seen as a transformation of an
+axiom into a constant.<BR>
+<BR>
+These semantical attachments have to be done <EM>before</EM> generating
+the ML code. All type variables must be realized, and term variables
+which are not realized will be translated into exceptions. <BR>
+<BR>
+<BR><B>Example: </B>Let us illustrate this feature on a small
+example. Assume that you have a type variable <TT>A</TT> of type <FONT COLOR=purple>Set</FONT>:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Parameter&nbsp;A&nbsp;:&nbsp;Set.</TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+and that your specification proof assumes that there is an order
+relation <EM>inf</EM> over that type (which has no computational
+content), and that this relation is total and decidable:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Parameter&nbsp;inf&nbsp;:&nbsp;A&nbsp;-&gt;&nbsp;A&nbsp;-&gt;&nbsp;Prop.</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Axiom&nbsp;inf_total&nbsp;:&nbsp;(x,y:A)&nbsp;{(inf&nbsp;x&nbsp;y)}+{(inf&nbsp;y&nbsp;x)}.</TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Now suppose that we want to use this specification proof on natural
+numbers; this means <TT>A</TT> has to be instantiated by <TT>nat</TT>
+and the axiom <TT>inf_total</TT> will be realized, for instance, using the
+order relation <TT>le</TT> on that type and the decidability lemma 
+<TT>le_lt_dec</TT>. Here is how to proceed:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Require&nbsp;Compare_dec.</TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Link&nbsp;A&nbsp;:=&nbsp;nat.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Constant&nbsp;A&nbsp;linked&nbsp;to&nbsp;nat</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Link&nbsp;inf_total&nbsp;:=&nbsp;le_lt_dec.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Constant&nbsp;inf_total&nbsp;linked&nbsp;to&nbsp;le_lt_dec</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+<BR><B>Warning: </B>There is no rollback on the command <TT>Link</TT>, that
+is the semantical attachments are not forgotten when doing a <TT>Reset</TT>,
+or a <TT>Restore State</TT> command. This will be corrected in a later
+version.<BR>
+<BR>
+
+ 
+<H3>
+
+19.1.3&nbsp;Importing ML objects
+</H3>
+
+In order to realize axioms and to instantiate programs on real data
+types, like <TT>int</TT>, <TT>string</TT>, ... or more complicated data
+structures, one want to import existing ML objects in the <I>F</I><SUB><FONT SIZE=2><FONT FACE=symbol>w</FONT></FONT></SUB>
+environment. The system provides such features, through the commands
+<TT>ML Import Constant</TT> and <TT>ML Import Inductive</TT>.
+The first one imports an ML
+object as a new axiom and the second one adds a new inductive
+definition corresponding to an ML inductive type. <BR>
+<BR>
+
+<H5>
+Warning.
+</H5>
+
+In the case of Caml dialects, the system would be able to check the
+correctness of the imported objects by looking into the interfaces
+files of Caml modules (<TT>.mli</TT> files), but this feature is not yet
+implemented. So one must be careful when declaring the types of the
+imported objects.<BR>
+<BR>
+
+<H5>
+Caml names.
+</H5>
+
+When referencing a Caml object, you can use strings instead of
+identifiers. Therefore you can use the double
+underscore notation <CODE>module__name</CODE> (Caml Light objects)
+or the dot notation <CODE>module.name</CODE> (Objective Caml objects)
+to precise the module in which lies the object.<BR>
+<BR>
+
+ 
+<H3>
+
+19.1.4&nbsp;Importing inductive types
+</H3>
+
+<A NAME="@default608"></A><A NAME="@command176"></A>The <FONT COLOR=purple>Coq</FONT> command to import an ML inductive type is:
+<DIV ALIGN=center><TT>ML Import Inductive </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> [</TT><I><FONT COLOR=maroon>ident</FONT></I><TT><SUB><FONT SIZE=2>1</FONT></SUB></TT><TT> ... </TT><I><FONT COLOR=maroon>ident</FONT></I><TT><SUB><FONT SIZE=2><I>n</I></FONT></SUB></TT><TT>] == </TT><TT><EM>&lt;Inductive Definition&gt;</EM></TT><TT>.</TT></DIV>
+where <I><FONT COLOR=maroon>ident</FONT></I> is the name of the ML type, <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> ...
+<I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> the name of its constructors, and <TT><EM>&lt;Inductive
+ Definition&gt;</EM></TT> the corresponding <FONT COLOR=purple>Coq</FONT> inductive definition
+(see <A HREF="node.0.0.2.html#Inductive">1.3.3</A> in the Reference Manual for the syntax of
+inductive definitions). <BR>
+<BR>
+This command inserts the <TT><EM>&lt;Inductive Definition&gt;</EM></TT> in the <I>F</I><SUB><FONT SIZE=2><FONT FACE=symbol>w</FONT></FONT></SUB>
+environment, without elimination principles. From that moment, it is
+possible to use that type like any other <I>F</I><SUB><FONT SIZE=2><FONT FACE=symbol>w</FONT></FONT></SUB> object, and in
+particular to use it to realize axioms. The names <I><FONT COLOR=maroon>ident</FONT></I> <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>
+... <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> may be different from the names given in the
+inductive definition, in order to avoid clash with previous
+constants, and are restored when generating the ML code. <BR>
+<BR>
+One can also import mutual inductive types with the command:
+<DIV ALIGN=center>
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=right><TT>ML Import Inductive</TT></TD>
+<TD NOWRAP ALIGN=left><I><FONT COLOR=maroon>ident</FONT></I><TT><SUB><FONT SIZE=2>1</FONT></SUB></TT><TT> [</TT><I><FONT COLOR=maroon>ident</FONT></I><TT><SUB><FONT SIZE=2>1</FONT></SUB><SUP><FONT SIZE=2>1</FONT></SUP></TT><TT> ... </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2><I>n</I><SUB><FONT SIZE=1>1</FONT></SUB></FONT></TT></SUB><TT><SUP><FONT SIZE=2>1</FONT></SUP></TT><TT>]</TT></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=left>...</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=left><I><FONT COLOR=maroon>ident</FONT></I><TT><SUB><FONT SIZE=2><I>k</I></FONT></SUB></TT><TT> [</TT><I><FONT COLOR=maroon>ident</FONT></I><TT><SUB><FONT SIZE=2>1</FONT></SUB><SUP><FONT SIZE=2><I>k</I></FONT></SUP></TT><TT> ... </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2><I>n</I><SUB><FONT SIZE=1><I>k</I></FONT></SUB></FONT></TT></SUB><TT><SUP><FONT SIZE=2><I>k</I></FONT></SUP></TT><TT>]</TT></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=left>&nbsp;&nbsp;&nbsp;&nbsp; <TT>== </TT><TT><EM>&lt;Mutual Inductive Definition&gt;</EM></TT><TT>.</TT>
+ </TD>
+</TR></TABLE></DIV> <BR>
+<BR><B>Examples:</B>
+<OL>
+<LI>Let us show for instance how to import the
+ type <TT>bool</TT> of Caml Light booleans:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;ML&nbsp;Import&nbsp;Inductive&nbsp;bool&nbsp;[&nbsp;true&nbsp;false&nbsp;]&nbsp;==</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Inductive&nbsp;BOOL&nbsp;:&nbsp;Set&nbsp;:=&nbsp;TRUE&nbsp;&nbsp;:&nbsp;BOOL</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;FALSE&nbsp;:&nbsp;BOOL.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>ML&nbsp;inductive&nbsp;type(s)&nbsp;bool&nbsp;imported.</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Here we changed the names because the type <TT>bool</TT> is already
+defined in the initial state of <FONT COLOR=purple>Coq</FONT>.<BR>
+<BR>
+ 
+<LI>Assuming that one defined the mutual inductive types <TT>tree</TT> and <TT>forest</TT> in a Caml Light module, one can import them
+with the command:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;ML&nbsp;Import&nbsp;Inductive&nbsp;tree&nbsp;[node]&nbsp;forest&nbsp;[empty&nbsp;cons]&nbsp;==</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mutual&nbsp;[A:Set]&nbsp;Inductive&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tree&nbsp;:&nbsp;Set&nbsp;:=&nbsp;node&nbsp;:&nbsp;A&nbsp;-&gt;&nbsp;(forest&nbsp;A)&nbsp;-&gt;&nbsp;(tree&nbsp;A)</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;with</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;forest&nbsp;:&nbsp;Set&nbsp;:=&nbsp;empty&nbsp;:&nbsp;(forest&nbsp;A)&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;cons&nbsp;:&nbsp;(tree&nbsp;A)&nbsp;-&gt;&nbsp;(forest&nbsp;A)&nbsp;-&gt;&nbsp;(forest&nbsp;A).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>ML&nbsp;inductive&nbsp;type(s)&nbsp;tree,</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>forest&nbsp;imported.</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+ 
+<LI>One can import the polymorphic type of Caml Light lists with
+the command:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;ML&nbsp;Import&nbsp;Inductive&nbsp;list&nbsp;[nil&nbsp;cons]&nbsp;==&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Inductive&nbsp;list&nbsp;[A:Set]&nbsp;:&nbsp;Set&nbsp;:=&nbsp;nil&nbsp;:&nbsp;(list&nbsp;A)</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;cons&nbsp;:&nbsp;A-&gt;(list&nbsp;A)-&gt;(list&nbsp;A).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>ML&nbsp;inductive&nbsp;type(s)&nbsp;list&nbsp;imported.</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+<BR><B>Remark: </B>One would have to re-define <TT>nil</TT> and <TT>cons</TT> at
+the top of its program because these constructors have no name in Caml Light.
+</OL>
+ 
+<H3>
+
+19.1.5&nbsp;Importing terms and abstract types
+</H3>
+
+<A NAME="@default609"></A><A NAME="@command177"></A>The other command to import an ML object is:
+<DIV ALIGN=center><TT>ML Import Constant </TT><I><FONT COLOR=maroon>ident</FONT></I><TT><SUB><FONT SIZE=2><I>ML</I></FONT></SUB></TT><TT> == </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> : Fwterm.</TT></DIV>
+where <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>ML</I></FONT></SUB> is the name of the ML object and Fwterm its type in
+<I>F</I><SUB><FONT SIZE=2><FONT FACE=symbol>w</FONT></FONT></SUB>. This command defines an axiom in <I>F</I><SUB><FONT SIZE=2><FONT FACE=symbol>w</FONT></FONT></SUB> of name <I><FONT COLOR=maroon>ident</FONT></I> and type
+Fwterm.<BR>
+<BR>
+<BR><B>Example: </B>To import the type <TT>int</TT> of Caml Light
+integers, and the &lt; binary relation on this type, just do
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;ML&nbsp;Import&nbsp;Constant&nbsp;int&nbsp;==&nbsp;int&nbsp;:&nbsp;Set.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>int&nbsp;imported.</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;ML&nbsp;Import&nbsp;Constant&nbsp;lt_int&nbsp;==&nbsp;lt_int&nbsp;:&nbsp;int&nbsp;-&gt;&nbsp;int&nbsp;-&gt;&nbsp;BOOL.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>lt_int&nbsp;imported.</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT>
+assuming that the Caml Light type <TT>bool</TT> is already imported (with the
+name <TT>BOOL</TT>, as above).<BR>
+<BR>
+
+ 
+<H3>
+
+19.1.6&nbsp;Direct use of ML objects
+</H3>
+
+<A NAME="@default610"></A><A NAME="@command178"></A><A NAME="@default611"></A><A NAME="@command179"></A>Sometimes the user do not want to extract <FONT COLOR=purple>Coq</FONT> objects to new ML code
+but wants to use already existing ML objects. For instance, it is the
+case for the booleans, which already exist in ML: the user do not want
+to extract the <FONT COLOR=purple>Coq</FONT> inductive type <TT>bool</TT> to a new type for
+booleans, but wants to use the primitive boolean of ML.<BR>
+<BR>
+The command <TT>Extract</TT> fulfills this requirement.
+It allows the user to declare constant and inductive types which will not be
+extracted but replaced by ML objects. The syntax is the following
+<DIV ALIGN=center>
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=left><TT>Extract Constant </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> =&gt; </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>'.</TT></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left><TT>Extract Inductive </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> 
+ =&gt; </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>' [ </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>'</TT><TT><SUB><FONT SIZE=2>1</FONT></SUB></TT><TT> ...</TT><I><FONT COLOR=maroon>ident</FONT></I><TT>'</TT><TT><SUB><FONT SIZE=2><I>n</I></FONT></SUB></TT><TT> ].</TT> 
+</TD>
+</TR></TABLE></DIV> where <I><FONT COLOR=maroon>ident</FONT></I> is the name of the <FONT COLOR=purple>Coq</FONT> object and the prime identifiers 
+the name of the corresponding ML objects (the names between brackets
+are the names of the constructors).
+Mutually recursive types are declared one by one, in any order.<BR>
+<BR>
+<BR><B>Example: </B>Typical examples are the following:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Extract&nbsp;Inductive&nbsp;unit&nbsp;=&gt;&nbsp;unit&nbsp;[&nbsp;"()"&nbsp;].</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Extract&nbsp;Inductive&nbsp;bool&nbsp;=&gt;&nbsp;bool&nbsp;[&nbsp;true&nbsp;false&nbsp;].</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Extract&nbsp;Inductive&nbsp;sumbool&nbsp;=&gt;&nbsp;bool&nbsp;[&nbsp;true&nbsp;false&nbsp;].</TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+
+ 
+<H3>
+
+19.1.7&nbsp;Differences between <FONT COLOR=purple>Coq</FONT> and ML type systems
+</H3>
+
+<H4>
+ML types that are not <I>F</I><SUB><FONT SIZE=2><FONT FACE=symbol>w</FONT></FONT></SUB> types
+</H4>
+Some ML recursive types have no counterpart in the type system of
+<FONT COLOR=purple>Coq</FONT>, like types using the record construction, or non positive types
+like
+<PRE>
+# type T = C of T-&gt;T;;
+</PRE>In that case, you cannot import those types as inductive types, and
+the only way to do is to import them as abstract types (with <TT>ML
+Import</TT>) together with the corresponding building and de-structuring
+functions (still with <TT>ML Import Constant</TT>).<BR>
+<BR>
+
+<H4>
+Programs that are not ML-typable
+</H4>
+On the contrary, some extracted programs in <I>F</I><SUB><FONT SIZE=2><FONT FACE=symbol>w</FONT></FONT></SUB> are not typable in
+ML. There are in fact two cases which can be problematic:
+<UL>
+<LI>If some part of the program is <EM>very</EM> polymorphic, there
+ may be no ML type for it. In that case the extraction to ML works
+ all right but the generated code may be refused by the ML
+ type-checker. A very well known example is the <EM>distr-pair</EM>
+ function:
+<DIV ALIGN=center><TT>Definition dp := [A,B:Set][x:A][y:B][f:(C:Set)C-&gt;C](f A x,f B y).
+</TT></DIV>
+In Caml Light, for instance, the extracted term is 
+<CODE>let dp x y f = pair((f x),(f y))</CODE> and has type
+<DIV ALIGN=center><TT>dp : 'a -&gt; 'a -&gt; ('a -&gt; 'b) -&gt; ('b,'b) prod
+</TT></DIV>
+which is not its original type, but a restriction.<BR>
+<BR>
+ 
+<LI>Some definitions of <I>F</I><SUB><FONT SIZE=2><FONT FACE=symbol>w</FONT></FONT></SUB> may have no counterpart in ML. This
+ happens when there is a quantification over types inside the type
+ of a constructor; for example:
+<DIV ALIGN=center><TT>Inductive anything : Set := dummy : (A:Set)A-&gt;anything.
+</TT></DIV>
+which corresponds to the definition of ML dynamics.
+</UL>The first case is not too problematic: it is still possible to run the
+programs by switching off the type-checker during compilation. Unless
+you misused the semantical attachment facilities you should never get
+any message like ``segmentation fault'' for which the extracted code
+would be to blame. To switch off the Caml type-checker, use the
+function <TT>obj__magic</TT> which gives the type <TT>'a</TT> to any
+object; but this implies changing a little the extracted code by hand.<BR>
+<BR>
+The second case is fatal. If some inductive type cannot be translated
+to ML, one has to change the proof (or possibly to ``cheat'' by
+some low-level manipulations we would not describe here). <BR>
+<BR>
+We have to say, though, that in most ``realistic'' programs, these
+problems do not occur. For example all the programs of the library are
+accepted by Caml type-checker except <TT>Higman.v</TT><A NAME="text19.1"></A><A HREF="node.7.html#note19.1"><SUP><FONT SIZE=2>1</FONT></SUP></A>
+.<BR>
+<BR>
+
+ <HR>
+
+<A HREF="node.3.8.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.8.1.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

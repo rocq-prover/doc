@@ -1,0 +1,60 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+7.16&nbsp;A Simple way to define tactic macros
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.1.2.14.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+7.16&nbsp;A Simple way to define tactic macros
+</H2>
+
+
+
+<A NAME="@tactic110"></A><A NAME="@default503"></A><A NAME="@default504"></A><A NAME="@command138"></A><A NAME="TacticDefinition"></A>A simple example has more value than a long explanation: <BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Tactic&nbsp;Definition&nbsp;Solve&nbsp;:=&nbsp;[&lt;:tactic:&lt;Simpl;&nbsp;Intros;&nbsp;Auto&gt;&gt;].</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Tactic&nbsp;Definition&nbsp;ElimBoolRewrite&nbsp;[$b&nbsp;$H1&nbsp;$H2]&nbsp;:=&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;[&lt;:tactic:&lt;Elim&nbsp;$b;&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Intros;&nbsp;Rewrite&nbsp;$H1;&nbsp;EAuto&nbsp;|&nbsp;Intros;&nbsp;Rewrite&nbsp;$H2;&nbsp;EAuto&nbsp;]&gt;&gt;].</TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Those tactic definitions are just macros, they behave like the
+syntactic definitions in the tactic world. The right side of the
+definition is an AST (see page&nbsp;<A HREF="node.2.0.0.html#astsyntax">X</A>), 
+but you can type a command if you
+enclose it between <CODE>&lt;&lt; &gt;&gt;</CODE> or <CODE>&lt;:command:&lt; &gt;&gt;</CODE>, and you can
+type a tactic script (the most frequent case) if you enclose it
+between <CODE>&lt;:tactic:&lt; &gt;&gt;</CODE>.<BR>
+<BR>
+The tactics macros are synchronous with the <FONT COLOR=purple>Coq</FONT> section mechanism:
+a <TT>Tactic Definition</TT> is deleted from the current environment
+when you close the section (see also <A HREF="node.0.1.4.html#Section">2.5</A>) 
+where it was defined. If you want that a
+tactic macro defined in a module is usable in the modules that
+require it, you should put it outside of any section.<BR>
+<BR>
+This command is designed to be simple, so the user who wants to do
+complicate things with it should better read the chapter
+<A HREF="node.2.1.html#WritingTactics">10</A> about the user-defined tactics.<BR>
+<BR>
+<HR>
+
+<A HREF="node.1.2.14.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

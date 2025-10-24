@@ -1,0 +1,132 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+11.5&nbsp;Options
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.0.3.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+11.5&nbsp;Options
+</H2>
+
+
+
+<A NAME="@default533"></A>The following command-line options are recognized by the commands <TT>coqc</TT> and <TT>coqtop</TT>:<BR>
+<BR>
+<DL>
+<DT><TT>-opt</TT><DD> <BR>Run the native-code version of <FONT COLOR=purple>Coq</FONT> (or <FONT COLOR=purple>Coq_SearchIsos</FONT> for <TT>coqtop</TT>).<BR>
+<BR>
+
+<DT><TT>-full</TT><DD> <BR>Run a native-code version of <FONT COLOR=purple>Coq</FONT>with all tactics.<BR>
+<BR>
+
+<DT><TT>-I</TT> <EM>directory</EM>, <TT>-include</TT> <EM>directory</EM><DD> <BR>Add <EM>directory</EM> to the searched directories when looking for a
+ file.<BR>
+<BR>
+
+<DT><TT>-is</TT> <EM>file</EM>, <TT>-inputstate</TT> <EM>file</EM><DD> <BR>Cause <FONT COLOR=purple>Coq</FONT>&nbsp;to use the state put in the file <EM>file</EM> as its input
+ state. The default state is <EM>tactics.coq</EM>.
+ Mainly useful to build the standard input state.<BR>
+<BR>
+
+<DT><TT>-nois</TT><DD> <BR>Cause <FONT COLOR=purple>Coq</FONT>&nbsp;to begin with an empty state. Mainly useful to build the
+ standard input state.<BR>
+<BR>
+
+<DT><TT>-notactics</TT><DD> <BR>Forbid the dynamic loading of tactics, and start on the input state
+ <EM>state.coq</EM>.<BR>
+<BR>
+
+<DT><TT>-init-file</TT> <EM>file</EM><DD> <BR>Take <EM>file</EM> as resource file, instead of <TT>$HOME/.coqrc.6.2</TT>.<BR>
+<BR>
+
+<DT><TT>-q</TT><DD> <BR>Cause <FONT COLOR=purple>Coq</FONT>&nbsp;not to load the resource file.<BR>
+<BR>
+
+<DT><TT>-user</TT> <EM>username</EM><DD> <BR>Take resource file of user <EM>username</EM> (that is 
+ <CODE>~</CODE><EM>username</EM><TT>/.coqrc.6.2</TT>) instead of yours.<BR>
+<BR>
+
+<DT><TT>-load-ml-source</TT> <EM>file</EM><DD> <BR>Load the Caml source file <EM>file</EM>.<BR>
+<BR>
+
+<DT><TT>-load-ml-object</TT> <EM>file</EM><DD> <BR>Load the Caml object file <EM>file</EM>.<BR>
+<BR>
+
+<DT><TT>-load-vernac-source</TT> <EM>file</EM><DD> <BR>Load <FONT COLOR=purple>Coq</FONT>&nbsp;file <EM>file</EM><TT>.v</TT><BR>
+<BR>
+
+<DT><TT>-load-vernac-object</TT> <EM>file</EM><DD> <BR>Load <FONT COLOR=purple>Coq</FONT>&nbsp;compiled file <EM>file</EM><TT>.vo</TT><BR>
+<BR>
+
+<DT><TT>-require</TT> <EM>file</EM><DD> <BR>Load <FONT COLOR=purple>Coq</FONT>&nbsp;compiled file <EM>file</EM><TT>.vo</TT> and import it (<TT>Require</TT> <EM>file</EM>).<BR>
+<BR>
+
+<DT><TT>-batch</TT><DD> <BR>Batch mode : exit just after arguments parsing. This option is only
+ used by <TT>coqc</TT>.<BR>
+<BR>
+
+<DT><TT>-debug</TT><DD> <BR>Switch on the debug flag.<BR>
+<BR>
+
+<DT><TT>-emacs</TT><DD> <BR>Tells <FONT COLOR=purple>Coq</FONT> it is executed under Emacs.<BR>
+<BR>
+
+<DT><TT>-db</TT><DD> <BR>Launch <FONT COLOR=purple>Coq</FONT> under the Objective Caml debugger (provided that <FONT COLOR=purple>Coq</FONT>
+ has been compiled for debugging; see next chapter).<BR>
+<BR>
+
+<DT><TT>-image</TT> <EM>file</EM><DD> <BR>This option sets the binary image to be used to be <EM>file</EM>
+ instead of the standard one. Not of general use.<BR>
+<BR>
+
+<DT><TT>-bindir</TT> <EM>directory</EM><DD> <BR>It is equivalent to do <TT>export COQBIN=</TT><EM>directory</EM>
+ before lauching <FONT COLOR=purple>Coq</FONT>.<BR>
+<BR>
+
+<DT><TT>-libdir</TT> <EM>file</EM><DD> <BR>It is equivalent to do <TT>export COQLIB=</TT><EM>directory</EM>
+ before lauching <FONT COLOR=purple>Coq</FONT>.
+ <BR>
+<BR>
+
+<DT><TT>-where</TT><DD> <BR>Print the <FONT COLOR=purple>Coq</FONT>'s standard library location and exit.<BR>
+<BR>
+
+<DT><TT>-v</TT><DD> <BR>Print the <FONT COLOR=purple>Coq</FONT>'s version and exit.<BR>
+<BR>
+
+<DT><TT>-h</TT>, <TT>--help</TT><DD> <BR>Print a short usage and exit.
+</DL><TT>coqtop</TT> owns an additional option:<BR>
+<BR>
+<DL>
+<DT><TT>-searchisos</TT><DD> <BR>Launch the <FONT COLOR=purple>Coq_SearchIsos</FONT> toplevel
+ (see section&nbsp;<A HREF="node.3.1.3.html#coqsearchisos">12.4</A>, page&nbsp;<A HREF="node.3.1.3.html#coqsearchisos">X</A>).
+</DL>See the manual pages for more details.
+<BR>
+<BR>
+ <BR>
+<BR>
+<HR>
+
+<A HREF="node.3.0.3.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

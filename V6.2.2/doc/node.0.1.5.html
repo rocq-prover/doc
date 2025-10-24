@@ -1,0 +1,184 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+2.6&nbsp;Implicit arguments
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.0.1.4.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.0.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.1.6.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+2.6&nbsp;Implicit arguments
+</H2>
+
+
+The <FONT COLOR=purple>Coq</FONT> system allows to skip during a function application certain
+arguments that can be automatically inferred from the other
+arguments. Such arguments are called <EM>implicit</EM>. Typical implicit
+arguments are the type arguments in polymorphic functions.<BR>
+<BR>
+The user can force a subterm to be guessed by replacing it by
+<TT>?</TT>. If possible, the correct subterm will be automatically generated.<BR>
+<BR>
+In addition, there are two ways to systematically avoid to write
+``<TT>?</TT>'' where a term can be automatically inferred.<BR>
+<BR>
+The first mode is automatic. Switching to this mode forces some
+easy-to-infer subterms to always be implicit.
+The command to use the second mode is <TT>Syntactic
+Definition</TT>. See below.<BR>
+<BR>
+
+<H3>
+
+2.6.1&nbsp;Implicit arguments: ``<TT>?</TT>''
+</H3>
+When a subterm of a term can be automatically deduced by <FONT COLOR=purple>Coq</FONT> it can
+be replaced by <TT>?</TT>. This typically occurs when this subterm is the
+type of another subterm. <BR>
+<BR>
+<BR><B>Error message: </B><OL>
+<LI><TT>unconstrained isevar</TT><BR><FONT COLOR=purple>Coq</FONT> was not able to deduce an instantiation of a ``?''.
+</OL><BR><B>See also: </B>Section <A HREF="node.0.1.5.html#Syntactic-Definition">2.6.3</A>.<BR>
+<BR>
+
+<H3>
+
+2.6.2&nbsp;Auto-detection of implicit arguments
+</H3>
+
+<A NAME="Auto-implicit"></A>There is an automatic mode to declare implicit arguments of
+constants and variables which have a functional type. In this mode,
+to every declared object (even inductive types and theirs constructors) is
+associated the list of the positions of its implicit arguments. These
+implicit arguments correspond to the arguments which can be deduced
+from the following ones. Thus when one applies these functions to
+arguments, one can omit the implicit ones. They are then automatically
+replaced by symbols ``?'', to be inferred by the mechanism of
+synthesis of implicit arguments.<BR>
+<BR>
+The computation of implicit arguments takes account of the
+unfolding of constants. For instance, the variable <TT>p</TT> below has
+a type <TT>(Transitivity R)</TT> which is reducible to <TT>(x,y:U)(R x
+y) -&gt; (z:U)(R y z) -&gt; (R x z)</TT>. As the variables <TT>x</TT>, <TT>y</TT> and
+<TT>z</TT> appear in the body of the type, they are said implicit; they
+correspond respectively to the positions <TT>1</TT>, <TT>2</TT> and <TT>4</TT>.<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Implicit&nbsp;Arguments&nbsp;On.</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;X&nbsp;:&nbsp;Type.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>X&nbsp;is&nbsp;assumed</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Definition&nbsp;Relation&nbsp;:=&nbsp;X&nbsp;-&gt;&nbsp;X&nbsp;-&gt;&nbsp;Prop.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Relation&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Definition&nbsp;Transitivity&nbsp;:=&nbsp;[R:Relation]</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(x,y:X)(R&nbsp;x&nbsp;y)&nbsp;-&gt;&nbsp;(z:X)(R&nbsp;y&nbsp;z)&nbsp;-&gt;&nbsp;(R&nbsp;x&nbsp;z).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Transitivity&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Variables&nbsp;R:Relation;&nbsp;p:(Transitivity&nbsp;R).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>R&nbsp;is&nbsp;assumed</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>p&nbsp;is&nbsp;assumed</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Print&nbsp;p.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>***&nbsp;[&nbsp;p&nbsp;:&nbsp;(Transitivity&nbsp;R)&nbsp;]</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Positions&nbsp;[1;2;4]&nbsp;are&nbsp;implicit</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+
+<H4>
+<TT>Implicit Arguments </TT><I><FONT COLOR=maroon>switch</FONT></I><TT>.
+</TT></H4>
+
+<A NAME="@default69"></A><A NAME="@command37"></A><A NAME="Implicit Arguments"></A>If <I><FONT COLOR=maroon>switch</FONT></I> is <TT>On</TT> then the command switches on the automatic
+mode. If <I><FONT COLOR=maroon>switch</FONT></I> is <TT>Off</TT> then the command switches off the
+automatic mode. The mode <TT>Off</TT> is the default mode.<BR>
+<BR>
+
+<H4>
+Explicit Applications
+</H4>
+The mechanism of synthesis of implicit arguments is not complete, so
+we have sometimes to give explicitly certain implicit arguments of an
+application. The syntax is <TT><I>i</I></TT><TT>!</TT><I><FONT COLOR=maroon>term</FONT></I> where <I>i</I> is the position
+of an implicit argument and <I><FONT COLOR=maroon>term</FONT></I> is its corresponding explicit
+term. The number <I>i</I> is called <EM>explicitation number</EM>. We can
+also give all the arguments of an application, we have then to write
+<TT>(!</TT><I><FONT COLOR=maroon>ident</FONT></I><TT>&nbsp;</TT><I><FONT COLOR=maroon>term</FONT></I><TT><SUB><FONT SIZE=2>1</FONT></SUB></TT><TT>..</TT><I><FONT COLOR=maroon>term</FONT></I><TT><SUB><FONT SIZE=2><I>n</I></FONT></SUB></TT><TT>)</TT>.<BR>
+<BR>
+<BR><B>Error message: </B><OL>
+<LI><TT>Bad explicitation number</TT>
+</OL>
+<H4>
+Implicit Arguments and Pretty-Printing
+</H4>
+The basic pretty-printing rules hide the implicit arguments of an
+application. However an implicit argument <I><FONT COLOR=maroon>term</FONT></I> of an application
+which is not followed by any explicit argument is printed as follows
+<I>i</I>!<I><FONT COLOR=maroon>term</FONT></I> where <I>i</I> is its position.<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Variables&nbsp;a,b,c:X;&nbsp;&nbsp;r1:(R&nbsp;a&nbsp;b);&nbsp;r2:(R&nbsp;b&nbsp;c).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>a&nbsp;is&nbsp;assumed</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>b&nbsp;is&nbsp;assumed</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>c&nbsp;is&nbsp;assumed</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>r1&nbsp;is&nbsp;assumed</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>r2&nbsp;is&nbsp;assumed</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;(p&nbsp;r1&nbsp;r2).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>(p&nbsp;r1&nbsp;r2)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(R&nbsp;a&nbsp;c)</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;(p&nbsp;r1&nbsp;4!c).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>(p&nbsp;r1&nbsp;4!c)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(R&nbsp;b&nbsp;c)-&gt;(R&nbsp;a&nbsp;c)</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+
+<H3>
+
+2.6.3&nbsp;User-defined implicit arguments: <TT>Syntactic definition</TT>
+</H3>
+
+<A NAME="@default70"></A><A NAME="@command38"></A><A NAME="Syntactic-Definition"></A>The syntactic definitions define syntactic constants, i.e. give a name
+to a term possibly untyped but syntactically correct. Their syntax
+is:<BR>
+<BR>
+<DIV ALIGN=center><CODE>Syntactic Definition</CODE> <I>name</I> <CODE>:=</CODE> <I>term</I> <CODE>.</CODE><BR></DIV><BR>
+Syntactic definitions behave like macros: every occurrence of a
+syntactic constant in an expression is immediately replaced by its
+body.<BR>
+<BR>
+Let us extend our functional language with the definition of the
+identity function:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Definition&nbsp;explicit_id&nbsp;:=&nbsp;[A:Set][a:A]a.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>explicit_id&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+<A NAME="@default71"></A>We declare also a syntactic definition <TT>id</TT>:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Syntactic&nbsp;Definition&nbsp;id&nbsp;:=&nbsp;(explicit_id&nbsp;?).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>id&nbsp;is&nbsp;now&nbsp;a&nbsp;syntax&nbsp;macro</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+The term <TT>(explicit_id ?)</TT> is untyped since the implicit
+arguments cannot be synthesized. There is no type check during this
+definition. Let us see what happens when we use a syntactic constant
+in an expression like in the following example.<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;(id&nbsp;O).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>(explicit_id&nbsp;nat&nbsp;O)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;nat</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+First the syntactic constant <TT>id</TT> is replaced by its
+body <TT>(explicit_id ?)</TT> in the expression. Then the resulting
+expression is evaluated by the typechecker, which fills in
+``<CODE>?</CODE>'' place-holders.<BR>
+<BR>
+The standard usage of syntactic definitions is to give names to terms
+applied to implicit arguments ``<CODE>?</CODE>''. In this case, a special
+command is provided:<BR>
+<BR>
+<DIV ALIGN=center><CODE>Syntactic Definition</CODE> <I>name</I> <CODE>:=</CODE> <I>term</I> <CODE>|</CODE> <I>n</I> <CODE>.</CODE><BR></DIV><BR>
+The body of the syntactic constant is <I>term</I> applied to <I>n</I>
+place-holders ``<CODE>?</CODE>''.<BR>
+<BR>
+We can define a new syntactic definition <TT>id1</TT> for <TT>explicit_id</TT> using this command. We changed the name of the
+syntactic constant in order to avoid a name conflict with <TT>id</TT>.<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Syntactic&nbsp;Definition&nbsp;id1&nbsp;:=&nbsp;explicit_id&nbsp;|&nbsp;1.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>id1&nbsp;is&nbsp;now&nbsp;a&nbsp;syntax&nbsp;macro</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+The new syntactic constant <TT>id1</TT> has the same behavior as <TT>id</TT>:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;(id1&nbsp;O).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>(explicit_id&nbsp;nat&nbsp;O)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;nat</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+<BR><B>Warnings: </B><OL>
+<LI>Syntactic constants defined inside a section are no longer
+ available after closing the section.
+
+<LI>You cannot see the body of a syntactic constant with a <TT>Print</TT> command.
+</OL><HR>
+
+<A HREF="node.0.1.4.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.0.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.1.6.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>
