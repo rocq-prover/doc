@@ -1,0 +1,87 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+17.5&nbsp;Libraries
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.5.3.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.5.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.5.5.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+17.5&nbsp;Libraries
+</H2>
+
+
+
+<A NAME="@default622"></A>
+The tactic comes with some libraries, useful to write programs and
+specifications.
+The first set of libraries is automatically loaded with the module
+<TT>Correctness</TT>. Among them, you can find the modules:
+<DL COMPACT=compact><DT>
+ <B>ProgWf</B><DD>: this module defines a family of relations <I>Zwf</I> on type
+ <TT>Z</TT> by
+ <DIV ALIGN=center>(<I>Zwf</I> &nbsp; <I>c</I>) = <FONT FACE=symbol>l</FONT> <I>x</I>,<I>y</I>. <I>c</I><FONT FACE=symbol>£</FONT> <I>x</I>  <I>c</I> <FONT FACE=symbol>£</FONT> <I>y</I>  <I>x</I> &lt; <I>y</I></DIV>
+ and establishes that this relation is well-founded for all <I>c</I>
+ (lemma <TT>Zwf_well_founded</TT>). This lemma is automatically
+ used by the tactic <TT>Correctness</TT> when necessary.
+ When no relation is given for the variant of a loop or a recursive
+ function, then (<I>Zwf</I>&nbsp;0) is used <EM>i.e.</EM> the usual order
+ relation on positive integers.<BR>
+<BR>
+<DT><B>Arrays</B><DD>: this module defines an abstract type <TT>array</TT>
+ for arrays, with the corresponding operations <TT>new</TT>,
+ <TT>access</TT> and <TT>store</TT>. Access in a array <I>t</I> at index
+ <I>i</I> may be written <TT>#<I>t</I>[<I>i</I>]</TT> in <FONT COLOR=purple>Coq</FONT>, and in particular
+ inside specifications.
+ This module also provides some axioms to manipulate arrays
+ expression, among which <TT>store_def_1</TT> and
+ <TT>store_def_2</TT> allow you to simplify expressions of the
+ kind <TT>(access (store <I>t</I> <I>i</I> <I>v</I>) <I>j</I>)</TT>.
+</DL>
+Other useful modules, which are not automatically loaded, are the
+following:
+<DL COMPACT=compact><DT>
+ <B>Exchange</B><DD>: this module defines a predicate <TT>(exchange
+ <I>t</I> <I>t</I>' <I>i</I> <I>j</I>)</TT> which means that elements of indexes <I>i</I> and
+ <I>j</I> are swapped in arrays <I>t</I> and <I>t</I>', and other left unchanged.
+ This modules also provides some lemmas to establish this property
+ or conversely to get some consequences of this property.<BR>
+<BR>
+<DT><B>Permut</B><DD>: this module defines the notion of permutation between
+ two arrays, on a segment of the arrays (<TT>sub_permut</TT>) or
+ on the whole array (<TT>permut</TT>). 
+ Permutations are inductively defined as the smallest equivalence
+ relation containing the transpositions (defined in the module
+ <TT>Exchange</TT>).<BR>
+<BR>
+<DT><B>Sorted</B><DD>: this module defines the property for an array to be
+ sorted, either on the whole array (<TT>sorted_array</TT>) or on a segment
+ (<TT>sub_sorted_array</TT>). It also provides a few lemmas to
+ establish this property.
+</DL>
+
+ <HR>
+
+<A HREF="node.3.5.3.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.5.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.5.5.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

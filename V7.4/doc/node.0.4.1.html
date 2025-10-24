@@ -1,0 +1,760 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+5.2&nbsp;Typing Modules
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.0.4.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.0.4.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+5.2&nbsp;Typing Modules
+</H2>
+
+
+
+In order to introduce the typing system we must first slightly extend
+the syntactic class of terms and environments given in
+section&nbsp;<A HREF="node.0.3.0.html#Terms">4.1</A>. The environments, apart from definitions of
+constants and inductives will also hold any other signature elements.
+Terms, apart from variables, constants and complex terms, will also
+include access paths.<BR>
+<BR>
+We will also need additional typing judgments: 
+<UL><LI>
+<I>E</I>[] |- <FONT COLOR=red> <I>W</I><I>F</I></FONT>(<I>T</I>), denoting that a module type <I>T</I> is well-formed, <BR>
+<BR>
+<LI><I>E</I>[] |- <I>M</I> : <I>T</I>, denoting that a module expression <I>M</I> has type <I>T</I> in
+environment <I>E</I>.<BR>
+<BR>
+<LI><I>E</I>[] |- <I><I>Impl</I></I> : <I>Spec</I>, denoting that an implementation <I><I>Impl</I></I>
+ verifies a specification <I>Spec</I><BR>
+<BR>
+<LI><I>E</I>[] |- <I>T</I><SUB><FONT SIZE=2>1</FONT></SUB> &lt;: <I>T</I><SUB><FONT SIZE=2>2</FONT></SUB>, denoting that a module type <I>T</I><SUB><FONT SIZE=2>1</FONT></SUB> is a subtype of a
+module type <I>T</I><SUB><FONT SIZE=2>2</FONT></SUB>.<BR>
+<BR>
+<LI><I>E</I>[] |- <I>Spec</I><SUB><FONT SIZE=2>1</FONT></SUB> &lt;: <I>Spec</I><SUB><FONT SIZE=2>2</FONT></SUB>, denoting that a specification
+ <I>Spec</I><SUB><FONT SIZE=2>1</FONT></SUB> is more precise that a specification <I>Spec</I><SUB><FONT SIZE=2>2</FONT></SUB>.
+</UL>
+The rules for forming module types are the following:
+<UL><LI>
+WF-SIG
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center>
+ <FONT COLOR=red> <I>W</I><I>F</I></FONT>(<I>E</I>;<I>E</I>')[]
+ </TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center><I>E</I>[] |- <FONT COLOR=red> <I>W</I><I>F</I></FONT>(<FONT COLOR=purple> <I>Sig</I></FONT>&nbsp;<I>E</I>'&nbsp;<FONT COLOR=purple> <I>End</I></FONT>)
+ </TD>
+</TR></TABLE></DIV>
+<LI>WF-FUN
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>;<FONT COLOR=purple> <I>ModS</I></FONT>(<I>X</I>:<I>T</I>)[] |- <FONT COLOR=red> <I>W</I><I>F</I></FONT>(<I>T</I>')
+ </TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center><I>E</I>[] |- <FONT COLOR=red> <I>W</I><I>F</I></FONT>(<FONT COLOR=purple> <I>Funsig</I></FONT>(<I>X</I>:<I>T</I>)&nbsp;<I>T</I>')
+ </TD>
+</TR></TABLE></DIV>
+</UL>
+Rules for typing module expressions:
+<UL><LI>
+MT-STRUCT
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center><TABLE>
+<TR VALIGN=middle><TD NOWRAP>
+ </TD>
+<TD NOWRAP><TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD ALIGN=center NOWRAP><I>E</I>[] |- <FONT COLOR=red> <I>W</I><I>F</I></FONT>(<FONT COLOR=purple> <I>Sig</I></FONT>&nbsp;<I>Spec</I><SUB><FONT SIZE=2>1</FONT></SUB>;...;<I>Spec</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>&nbsp;<FONT COLOR=purple> <I>End</I></FONT>)</TD>
+</TR>
+<TR><TD ALIGN=center NOWRAP><I>E</I>;<I>Spec</I><SUB><FONT SIZE=2>1</FONT></SUB>;...;<I>Spec</I><SUB><FONT SIZE=2><I>i</I>-1</FONT></SUB>[] |- <I><I>Impl</I></I><SUB><FONT SIZE=2><I>i</I></FONT></SUB> : <I>Spec</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB>
+    for  <I>i</I>=1... <I>n</I></TD>
+</TR></TABLE></TD>
+</TR></TABLE></TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center><I>E</I>[] |- <FONT COLOR=purple> <I>Struct</I></FONT>&nbsp;<I><I>Impl</I></I><SUB><FONT SIZE=2>1</FONT></SUB>;...;<I><I>Impl</I></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>&nbsp;<FONT COLOR=purple> <I>End</I></FONT> : <FONT COLOR=purple> <I>Sig</I></FONT>&nbsp;<I>Spec</I><SUB><FONT SIZE=2>1</FONT></SUB>;...;<I>Spec</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>&nbsp;<FONT COLOR=purple> <I>End</I></FONT>
+ </TD>
+</TR></TABLE></DIV>
+<LI>MT-FUN
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>;<FONT COLOR=purple> <I>ModS</I></FONT>(<I>X</I>:<I>T</I>)[] |- <I>M</I> : <I>T</I>'
+ </TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center><I>E</I>[] |- <FONT COLOR=purple> <I>Functor</I></FONT>[<I>X</I>:<I>T</I>]&nbsp;<I>M</I> : <FONT COLOR=purple> <I>Funsig</I></FONT>(<I>X</I>:<I>T</I>)&nbsp;<I>T</I>'
+ </TD>
+</TR></TABLE></DIV>
+<LI>MT-APP
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[] |- <I>p</I>' : <FONT COLOR=purple> <I>Funsig</I></FONT>(<I>X</I>:<I>T</I>)&nbsp;<I>T</I>'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<I>E</I>[] |- <I>p</I>'' : <I>T</I>
+ </TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center><I>E</I>[] |- <I>p</I>' <I>p</I>'' : <I>T</I>'{<I>X</I>/<I>p</I>''}
+ </TD>
+</TR></TABLE></DIV>
+<LI>MT-SUB
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[] |- <I>M</I> : <I>T</I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<I>E</I>[] |- <I>T</I> &lt;: <I>T</I>'
+ </TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center><I>E</I>[] |- <I>M</I> : <I>T</I>'
+ </TD>
+</TR></TABLE></DIV>
+<LI>MT-STR
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[] |- <I>p</I> : <I>T</I>
+ </TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center><I>E</I>[] |- <I>p</I> : <I>T</I>/<I>p</I>
+ </TD>
+</TR></TABLE></DIV>
+</UL>
+The last rule, called strengthenning is used to make all module fields
+manifestly equal to themselves. The notation <I>T</I>/<I>p</I> has the following
+meaning:
+<UL><LI>
+if <I>T</I>=<FONT COLOR=purple> <I>Sig</I></FONT>&nbsp;<I>Spec</I><SUB><FONT SIZE=2>1</FONT></SUB>;...;<I>Spec</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>&nbsp;<FONT COLOR=purple> <I>End</I></FONT> then
+ <I>T</I>/<I>p</I>=<FONT COLOR=purple> <I>Sig</I></FONT>&nbsp;<I>Spec</I><SUB><FONT SIZE=2>1</FONT></SUB>/<I>p</I>;...;<I>Spec</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>/<I>p</I>&nbsp;<FONT COLOR=purple> <I>End</I></FONT> where <I>Spec</I>/<I>p</I> is defined as
+ follows:
+ <UL><LI>
+ <FONT COLOR=purple>Def</FONT>()(<I>c</I>:=<I>U</I>:<I>t</I>)/<I>p</I> &nbsp;=&nbsp; <FONT COLOR=purple>Def</FONT>()(<I>c</I>:=<I>U</I>:<I>t</I>)
+ <LI><FONT COLOR=purple>Assum</FONT>()(<I>c</I>:<I>U</I>)/<I>p</I> &nbsp;=&nbsp; <FONT COLOR=purple>Def</FONT>()(<I>c</I>:=<I>U</I>:<I>p</I>.<I>c</I>)
+ <LI><FONT COLOR=purple> <I>ModS</I></FONT>(<I>X</I>:<I>T</I>)/<I>p</I> &nbsp;=&nbsp; <FONT COLOR=purple> <I>ModSEq</I></FONT>(<I>X</I>:<I>T</I>/<I>p</I>.<I>X</I>==<I>p</I>.<I>X</I>)
+ <LI><FONT COLOR=purple> <I>ModSEq</I></FONT>(<I>X</I>:<I>T</I>==<I>p</I>')/<I>p</I> &nbsp;=&nbsp; <FONT COLOR=purple> <I>ModSEq</I></FONT>(<I>X</I>:<I>T</I>==<I>p</I>')
+ <LI><FONT COLOR=purple>Ind</FONT>()[<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>P</I></FONT></SUB>](<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>C</I></FONT></SUB>:=<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>I</I></FONT></SUB>&nbsp;)/<I>p</I> &nbsp;=&nbsp; <FONT COLOR=purple>Ind</FONT><SUB><FONT SIZE=2><I>p</I></FONT></SUB>()[<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>P</I></FONT></SUB>](<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD ALIGN=left NOWRAP><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>C</I></FONT></SUB>:=<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>I</I></FONT></SUB>
+ &nbsp;)</TD>
+</TR></TABLE>
+ <LI><FONT COLOR=purple>Ind</FONT><SUB><FONT SIZE=2><I>p</I>'</FONT></SUB>()[<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>P</I></FONT></SUB>](<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD ALIGN=left NOWRAP><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>C</I></FONT></SUB>:=<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>I</I></FONT></SUB>
+ &nbsp;)</TD>
+</TR></TABLE>/<I>p</I> &nbsp;=&nbsp; <FONT COLOR=purple>Ind</FONT><SUB><FONT SIZE=2><I>p</I>'</FONT></SUB>()[<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>P</I></FONT></SUB>](<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD ALIGN=left NOWRAP><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>C</I></FONT></SUB>:=<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>I</I></FONT></SUB>
+ &nbsp;)</TD>
+</TR></TABLE>
+ </UL>
+<LI>if <I>T</I>=<FONT COLOR=purple> <I>Funsig</I></FONT>(<I>X</I>:<I>T</I>)&nbsp;<I>T</I>' then <I>T</I>/<I>p</I>=<I>T</I>
+<LI>if <I>T</I> is an access path or a module type name, then we have to
+ unfold its definition and proceed according to the rules above. 
+</UL>
+The notation <FONT COLOR=purple>Ind</FONT><SUB><FONT SIZE=2><I>p</I></FONT></SUB>()[<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>P</I></FONT></SUB>](<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD ALIGN=left NOWRAP><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>C</I></FONT></SUB>:=<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>I</I></FONT></SUB>
+ &nbsp;)</TD>
+</TR></TABLE> denotes an
+inductive definition that is definitionally equal to the inductive
+definition in the module denoted by the path <I>p</I>. All rules which have
+<FONT COLOR=purple>Ind</FONT>()[<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>P</I></FONT></SUB>](<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>C</I></FONT></SUB>:=<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>I</I></FONT></SUB>&nbsp;) as premises are also valid for 
+<FONT COLOR=purple>Ind</FONT><SUB><FONT SIZE=2><I>p</I></FONT></SUB>()[<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>P</I></FONT></SUB>](<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD ALIGN=left NOWRAP><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>C</I></FONT></SUB>:=<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>I</I></FONT></SUB>
+ &nbsp;)</TD>
+</TR></TABLE>. We give the formation rule
+for <FONT COLOR=purple>Ind</FONT><SUB><FONT SIZE=2><I>p</I></FONT></SUB>()[<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>P</I></FONT></SUB>](<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD ALIGN=left NOWRAP><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>C</I></FONT></SUB>:=<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>I</I></FONT></SUB>
+ &nbsp;)</TD>
+</TR></TABLE> below as well as
+the equality rules on inductive types and constructors. <BR>
+<BR>
+The module subtyping rules:
+<UL><LI>
+MSUB-SIG
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center><TABLE>
+<TR VALIGN=middle><TD NOWRAP>
+ </TD>
+<TD NOWRAP><TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD ALIGN=center NOWRAP><I>E</I>;<I>Spec</I><SUB><FONT SIZE=2>1</FONT></SUB>;...;<I>Spec</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>[] |- <I>Spec</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB> &lt;: <I>Spec</I>'<SUB><FONT SIZE=2><FONT FACE=symbol>s</FONT>(<I>i</I>)</FONT></SUB> 
+   for  <I>i</I>=1..<I>n</I></TD>
+</TR>
+<TR><TD ALIGN=center NOWRAP><FONT FACE=symbol>s</FONT> : {1... <I>n</I>} <FONT FACE=symbol>®</FONT> {1... <I>m</I>}   injective</TD>
+</TR></TABLE></TD>
+</TR></TABLE></TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[] |- <FONT COLOR=purple> <I>Sig</I></FONT>&nbsp;<I>Spec</I><SUB><FONT SIZE=2>1</FONT></SUB>;...;<I>Spec</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>&nbsp;<FONT COLOR=purple> <I>End</I></FONT> &lt;: <FONT COLOR=purple> <I>Sig</I></FONT>&nbsp;<I>Spec</I>'<SUB><FONT SIZE=2>1</FONT></SUB>;...;<I>Spec</I>'<SUB><FONT SIZE=2><I>m</I></FONT></SUB>&nbsp;<FONT COLOR=purple> <I>End</I></FONT>
+ </TD>
+</TR></TABLE></DIV>
+<LI>MSUB-FUN
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[] |- <I>T</I><SUB><FONT SIZE=2>1</FONT></SUB>' &lt;: <I>T</I><SUB><FONT SIZE=2>1</FONT></SUB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<I>E</I>;<FONT COLOR=purple> <I>ModS</I></FONT>(<I>X</I>:<I>T</I><SUB><FONT SIZE=2>1</FONT></SUB>')[] |- <I>T</I><SUB><FONT SIZE=2>2</FONT></SUB> &lt;: <I>T</I><SUB><FONT SIZE=2>2</FONT></SUB>'
+ </TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center><I>E</I>[] |- <FONT COLOR=purple> <I>Funsig</I></FONT>(<I>X</I>:<I>T</I><SUB><FONT SIZE=2>1</FONT></SUB>)&nbsp;<I>T</I><SUB><FONT SIZE=2>2</FONT></SUB> &lt;: <FONT COLOR=purple> <I>Funsig</I></FONT>(<I>X</I>:<I>T</I><SUB><FONT SIZE=2>1</FONT></SUB>')&nbsp;<I>T</I><SUB><FONT SIZE=2>2</FONT></SUB>'
+ </TD>
+</TR></TABLE></DIV>
+<LI>MSUB-EQ
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[] |- <I>T</I><SUB><FONT SIZE=2>1</FONT></SUB> &lt;: <I>T</I><SUB><FONT SIZE=2>2</FONT></SUB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<I>E</I>[] |- <I>T</I><SUB><FONT SIZE=2>1</FONT></SUB> = <I>T</I><SUB><FONT SIZE=2>1</FONT></SUB>'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<I>E</I>[] |- <I>T</I><SUB><FONT SIZE=2>2</FONT></SUB> = <I>T</I><SUB><FONT SIZE=2>2</FONT></SUB>'
+ </TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center><I>E</I>[] |- <I>T</I><SUB><FONT SIZE=2>1</FONT></SUB>' &lt;: <I>T</I><SUB><FONT SIZE=2>2</FONT></SUB>'
+ </TD>
+</TR></TABLE></DIV>
+<LI>MSUB-REFL
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[] |- <FONT COLOR=red> <I>W</I><I>F</I></FONT>(<I>T</I>)
+ </TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[] |- <I>T</I> &lt;: <I>T</I>
+ </TD>
+</TR></TABLE></DIV>
+</UL>
+Specification subtyping rules:
+<UL><LI>
+ASSUM-ASSUM
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[] |- <I>U</I><SUB><FONT SIZE=2>1</FONT></SUB> <FONT FACE=symbol>£</FONT><SUB><FONT SIZE=2><FONT FACE=symbol>b</FONT><FONT FACE=symbol>d</FONT><FONT FACE=symbol>i</FONT><FONT FACE=symbol>z</FONT></FONT></SUB> <I>U</I><SUB><FONT SIZE=2>2</FONT></SUB>
+ </TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[] |- <FONT COLOR=purple>Assum</FONT>()(<I>c</I>:<I>U</I><SUB><FONT SIZE=2>1</FONT></SUB>) &lt;: <FONT COLOR=purple>Assum</FONT>()(<I>c</I>:<I>U</I><SUB><FONT SIZE=2>2</FONT></SUB>)
+ </TD>
+</TR></TABLE></DIV>
+<LI>DEF-ASSUM
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[] |- <I>U</I><SUB><FONT SIZE=2>1</FONT></SUB> <FONT FACE=symbol>£</FONT><SUB><FONT SIZE=2><FONT FACE=symbol>b</FONT><FONT FACE=symbol>d</FONT><FONT FACE=symbol>i</FONT><FONT FACE=symbol>z</FONT></FONT></SUB> <I>U</I><SUB><FONT SIZE=2>2</FONT></SUB>
+ </TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[] |- <FONT COLOR=purple>Def</FONT>()(<I>c</I>:=<I>U</I><SUB><FONT SIZE=2>1</FONT></SUB>:<I>t</I>) &lt;: <FONT COLOR=purple>Assum</FONT>()(<I>c</I>:<I>U</I><SUB><FONT SIZE=2>2</FONT></SUB>)
+ </TD>
+</TR></TABLE></DIV>
+<LI>ASSUM-DEF
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[] |- <I>U</I><SUB><FONT SIZE=2>1</FONT></SUB> <FONT FACE=symbol>£</FONT><SUB><FONT SIZE=2><FONT FACE=symbol>b</FONT><FONT FACE=symbol>d</FONT><FONT FACE=symbol>i</FONT><FONT FACE=symbol>z</FONT></FONT></SUB> <I>U</I><SUB><FONT SIZE=2>2</FONT></SUB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<I>E</I>[] |- <I>c</I> =<SUB><FONT SIZE=2><FONT FACE=symbol>b</FONT><FONT FACE=symbol>d</FONT><FONT FACE=symbol>i</FONT><FONT FACE=symbol>z</FONT></FONT></SUB> <I>t</I><SUB><FONT SIZE=2>2</FONT></SUB>
+ </TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[] |- <FONT COLOR=purple>Assum</FONT>()(<I>c</I>:<I>U</I><SUB><FONT SIZE=2>1</FONT></SUB>) &lt;: <FONT COLOR=purple>Def</FONT>()(<I>c</I>:=<I>U</I><SUB><FONT SIZE=2>2</FONT></SUB>:<I>t</I><SUB><FONT SIZE=2>2</FONT></SUB>)
+ </TD>
+</TR></TABLE></DIV>
+<LI>DEF-DEF
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[] |- <I>U</I><SUB><FONT SIZE=2>1</FONT></SUB> <FONT FACE=symbol>£</FONT><SUB><FONT SIZE=2><FONT FACE=symbol>b</FONT><FONT FACE=symbol>d</FONT><FONT FACE=symbol>i</FONT><FONT FACE=symbol>z</FONT></FONT></SUB> <I>U</I><SUB><FONT SIZE=2>2</FONT></SUB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<I>E</I>[] |- <I>t</I><SUB><FONT SIZE=2>1</FONT></SUB> =<SUB><FONT SIZE=2><FONT FACE=symbol>b</FONT><FONT FACE=symbol>d</FONT><FONT FACE=symbol>i</FONT><FONT FACE=symbol>z</FONT></FONT></SUB> <I>t</I><SUB><FONT SIZE=2>2</FONT></SUB>
+ </TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[] |- <FONT COLOR=purple>Def</FONT>()(<I>c</I>:=<I>U</I><SUB><FONT SIZE=2>1</FONT></SUB>:<I>t</I><SUB><FONT SIZE=2>1</FONT></SUB>) &lt;: <FONT COLOR=purple>Def</FONT>()(<I>c</I>:=<I>U</I><SUB><FONT SIZE=2>2</FONT></SUB>:<I>t</I><SUB><FONT SIZE=2>2</FONT></SUB>)
+ </TD>
+</TR></TABLE></DIV>
+<LI>MODS-MODS
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[] |- <I>T</I><SUB><FONT SIZE=2>1</FONT></SUB> &lt;: <I>T</I><SUB><FONT SIZE=2>2</FONT></SUB>
+ </TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[] |- <FONT COLOR=purple> <I>ModS</I></FONT>(<I>m</I>:<I>T</I><SUB><FONT SIZE=2>1</FONT></SUB>) &lt;: <FONT COLOR=purple> <I>ModS</I></FONT>(<I>m</I>:<I>T</I><SUB><FONT SIZE=2>2</FONT></SUB>)
+ </TD>
+</TR></TABLE></DIV>
+<LI>MODEQ-MODS
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[] |- <I>T</I><SUB><FONT SIZE=2>1</FONT></SUB> &lt;: <I>T</I><SUB><FONT SIZE=2>2</FONT></SUB>
+ </TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[] |- <FONT COLOR=purple> <I>ModSEq</I></FONT>(<I>m</I>:<I>T</I><SUB><FONT SIZE=2>1</FONT></SUB>==<I>p</I>) &lt;: <FONT COLOR=purple> <I>ModS</I></FONT>(<I>m</I>:<I>T</I><SUB><FONT SIZE=2>2</FONT></SUB>)
+ </TD>
+</TR></TABLE></DIV>
+<LI>MODS-MODEQ
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[] |- <I>T</I><SUB><FONT SIZE=2>1</FONT></SUB> &lt;: <I>T</I><SUB><FONT SIZE=2>2</FONT></SUB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<I>E</I>[] |- <I>m</I> = <I>p</I><SUB><FONT SIZE=2>2</FONT></SUB>
+ </TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[] |- <FONT COLOR=purple> <I>ModS</I></FONT>(<I>m</I>:<I>T</I><SUB><FONT SIZE=2>1</FONT></SUB>) &lt;: <FONT COLOR=purple> <I>ModSEq</I></FONT>(<I>m</I>:<I>T</I><SUB><FONT SIZE=2>2</FONT></SUB>==<I>p</I><SUB><FONT SIZE=2>2</FONT></SUB>)
+ </TD>
+</TR></TABLE></DIV>
+<LI>MODEQ-MODEQ
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[] |- <I>T</I><SUB><FONT SIZE=2>1</FONT></SUB> &lt;: <I>T</I><SUB><FONT SIZE=2>2</FONT></SUB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<I>E</I>[] |- <I>p</I><SUB><FONT SIZE=2>1</FONT></SUB> = <I>p</I><SUB><FONT SIZE=2>2</FONT></SUB>
+ </TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[] |- <FONT COLOR=purple> <I>ModSEq</I></FONT>(<I>m</I>:<I>T</I><SUB><FONT SIZE=2>1</FONT></SUB>==<I>p</I><SUB><FONT SIZE=2>1</FONT></SUB>) &lt;: <FONT COLOR=purple> <I>ModSEq</I></FONT>(<I>m</I>:<I>T</I><SUB><FONT SIZE=2>2</FONT></SUB>==<I>p</I><SUB><FONT SIZE=2>2</FONT></SUB>)
+ </TD>
+</TR></TABLE></DIV>
+<LI>MODTYPE-MODTYPE
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[] |- <I>T</I><SUB><FONT SIZE=2>1</FONT></SUB> &lt;: <I>T</I><SUB><FONT SIZE=2>2</FONT></SUB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<I>E</I>[] |- <I>T</I><SUB><FONT SIZE=2>2</FONT></SUB> &lt;: <I>T</I><SUB><FONT SIZE=2>1</FONT></SUB>
+ </TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[] |- <FONT COLOR=purple> <I>ModType</I></FONT>(<I>S</I>:=<I>T</I><SUB><FONT SIZE=2>1</FONT></SUB>) &lt;: <FONT COLOR=purple> <I>ModType</I></FONT>(<I>S</I>:=<I>T</I><SUB><FONT SIZE=2>2</FONT></SUB>)
+ </TD>
+</TR></TABLE></DIV>
+</UL>
+Verification of the specification
+<UL><LI>
+IMPL-SPEC
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center><TABLE>
+<TR VALIGN=middle><TD NOWRAP>
+ </TD>
+<TD NOWRAP><TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD ALIGN=center NOWRAP><FONT COLOR=red> <I>W</I><I>F</I></FONT>(<I>E</I>;<I>Spec</I>)[]</TD>
+</TR>
+<TR><TD ALIGN=center NOWRAP><I>Spec</I>  is one of  <FONT COLOR=purple> <I>Def</I>, <I>Assum</I>, <I>Ind</I>, <I>ModType</I></FONT></TD>
+</TR></TABLE></TD>
+</TR></TABLE></TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[] |- <I>Spec</I> : <I>Spec</I>
+ </TD>
+</TR></TABLE></DIV>
+<LI>MOD-MODS
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center>
+ <FONT COLOR=red> <I>W</I><I>F</I></FONT>(<I>E</I>;<FONT COLOR=purple> <I>ModS</I></FONT>(<I>m</I>:<I>T</I>))[]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<I>E</I>[] |- <I>M</I> : <I>T</I>
+ </TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[] |- <FONT COLOR=purple> <I>Mod</I></FONT>(<I>m</I>:<I>T</I>:=<I>M</I>) : <FONT COLOR=purple> <I>ModS</I></FONT>(<I>m</I>:<I>T</I>)
+ </TD>
+</TR></TABLE></DIV>
+<LI>MOD-MODEQ
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center>
+ <FONT COLOR=red> <I>W</I><I>F</I></FONT>(<I>E</I>;<FONT COLOR=purple> <I>ModSEq</I></FONT>(<I>m</I>:<I>T</I>==<I>p</I>))[]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<I>E</I>[] |- <I>p</I> = <I>p</I>'
+ </TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[] |- <FONT COLOR=purple> <I>Mod</I></FONT>(<I>m</I>:<I>T</I>:=<I>p</I>') : <FONT COLOR=purple> <I>ModSEq</I></FONT>(<I>m</I>:<I>T</I>==<I>p</I>')
+ </TD>
+</TR></TABLE></DIV></UL>
+
+New environment formation rules
+<UL><LI>
+WF-MODS
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center>
+ <FONT COLOR=red> <I>W</I><I>F</I></FONT>(<I>E</I>)[]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<I>E</I>[] |- <FONT COLOR=red> <I>W</I><I>F</I></FONT>(<I>T</I>)
+ </TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center>
+ <FONT COLOR=red> <I>W</I><I>F</I></FONT>(<I>E</I>;<FONT COLOR=purple> <I>ModS</I></FONT>(<I>m</I>:<I>T</I>))[]
+ </TD>
+</TR></TABLE></DIV>
+<LI>WF-MODEQ
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center>
+ <FONT COLOR=red> <I>W</I><I>F</I></FONT>(<I>E</I>)[]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<I>E</I>[] |- <I>p</I> : <I>T</I>
+ </TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center>
+ <FONT COLOR=red> <I>W</I><I>F</I></FONT>(<I>E</I>,<FONT COLOR=purple> <I>ModSEq</I></FONT>(<I>m</I>:<I>T</I>==<I>p</I>))[]
+ </TD>
+</TR></TABLE></DIV>
+<LI>WF-MODTYPE
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center>
+ <FONT COLOR=red> <I>W</I><I>F</I></FONT>(<I>E</I>)[]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<I>E</I>[] |- <FONT COLOR=red> <I>W</I><I>F</I></FONT>(<I>T</I>)
+ </TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center>
+ <FONT COLOR=red> <I>W</I><I>F</I></FONT>(<I>E</I>,<FONT COLOR=purple> <I>ModType</I></FONT>(<I>S</I>:=<I>T</I>))[]
+ </TD>
+</TR></TABLE></DIV>
+<LI>WF-IND
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center><TABLE>
+<TR VALIGN=middle><TD NOWRAP>
+ </TD>
+<TD NOWRAP><TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD ALIGN=center NOWRAP><FONT COLOR=red> <I>W</I><I>F</I></FONT>(<I>E</I>;<FONT COLOR=purple>Ind</FONT>()[<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>P</I></FONT></SUB>](<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>C</I></FONT></SUB>:=<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>I</I></FONT></SUB>&nbsp;))[]</TD>
+</TR>
+<TR><TD ALIGN=center NOWRAP><I>E</I>[] |- <I>p</I>:<FONT COLOR=purple> <I>Sig</I></FONT>&nbsp;<I>Spec</I><SUB><FONT SIZE=2>1</FONT></SUB>;...;<I>Spec</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>;<FONT COLOR=purple>Ind</FONT>()[<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>P</I></FONT></SUB>'](<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>C</I></FONT></SUB>':=<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>I</I></FONT></SUB>'&nbsp;);...&nbsp;<FONT COLOR=purple> <I>End</I></FONT> :</TD>
+</TR>
+<TR><TD ALIGN=center NOWRAP> <I>E</I>[] |- <FONT COLOR=purple>Ind</FONT>()[<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>P</I></FONT></SUB>'](<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>C</I></FONT></SUB>':=<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>I</I></FONT></SUB>'&nbsp;){<I>p</I>.<I>l</I>/<I>l</I>}<SUB><FONT SIZE=2><I>l</I>
+ <FONT FACE=symbol>Î</FONT> </FONT><FONT SIZE=2><I><I>labels</I></I></FONT><FONT SIZE=2>(<I>Spec</I></FONT><SUB><FONT SIZE=2>1</FONT></SUB><FONT SIZE=2>;...;<I>Spec</I></FONT><SUB><FONT SIZE=2><I>n</I></FONT></SUB><FONT SIZE=2>)</FONT></SUB> &lt;: <FONT COLOR=purple>Ind</FONT>()[<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>P</I></FONT></SUB>](<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>C</I></FONT></SUB>:=<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>I</I></FONT></SUB>&nbsp;)</TD>
+</TR></TABLE></TD>
+</TR></TABLE></TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center><TABLE>
+<TR VALIGN=middle><TD NOWRAP><FONT COLOR=red> <I>W</I><I>F</I></FONT>(<I>E</I>;</TD>
+<TD NOWRAP><FONT COLOR=purple>Ind</FONT><SUB><FONT SIZE=2><I>p</I></FONT></SUB>()[<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>P</I></FONT></SUB>](<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD ALIGN=left NOWRAP><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>C</I></FONT></SUB>:=<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>I</I></FONT></SUB>
+ &nbsp;)</TD>
+</TR></TABLE></TD>
+<TD NOWRAP>)[]</TD>
+</TR></TABLE></TD>
+</TR></TABLE></DIV>
+</UL>
+Component access rules
+<UL><LI>
+ACC-TYPE
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[<FONT FACE=symbol>G</FONT>] |- <I>p</I> : <FONT COLOR=purple> <I>Sig</I></FONT>&nbsp;<I>Spec</I><SUB><FONT SIZE=2>1</FONT></SUB>;...;<I>Spec</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB>;<FONT COLOR=purple>Assum</FONT>()(<I>c</I>:<I>U</I>);...&nbsp;<FONT COLOR=purple> <I>End</I></FONT>
+ </TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[<FONT FACE=symbol>G</FONT>] |- <I>p</I>.<I>c</I> : <I>U</I>{<I>p</I>.<I>l</I>/<I>l</I>}<SUB><FONT SIZE=2><I>l</I> <FONT FACE=symbol>Î</FONT> </FONT><FONT SIZE=2><I><I>labels</I></I></FONT><FONT SIZE=2>(<I>Spec</I></FONT><SUB><FONT SIZE=2>1</FONT></SUB><FONT SIZE=2>;...;<I>Spec</I></FONT><SUB><FONT SIZE=2><I>i</I></FONT></SUB><FONT SIZE=2>)</FONT></SUB>
+ </TD>
+</TR></TABLE></DIV>
+<LI>
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[<FONT FACE=symbol>G</FONT>] |- <I>p</I> : <FONT COLOR=purple> <I>Sig</I></FONT>&nbsp;<I>Spec</I><SUB><FONT SIZE=2>1</FONT></SUB>;...;<I>Spec</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB>;<FONT COLOR=purple>Def</FONT>()(<I>c</I>:=<I>U</I>:<I>t</I>);...&nbsp;<FONT COLOR=purple> <I>End</I></FONT>
+ </TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[<FONT FACE=symbol>G</FONT>] |- <I>p</I>.<I>c</I> : <I>U</I>{<I>p</I>.<I>l</I>/<I>l</I>}<SUB><FONT SIZE=2><I>l</I> <FONT FACE=symbol>Î</FONT> </FONT><FONT SIZE=2><I><I>labels</I></I></FONT><FONT SIZE=2>(<I>Spec</I></FONT><SUB><FONT SIZE=2>1</FONT></SUB><FONT SIZE=2>;...;<I>Spec</I></FONT><SUB><FONT SIZE=2><I>i</I></FONT></SUB><FONT SIZE=2>)</FONT></SUB>
+ </TD>
+</TR></TABLE></DIV>
+<LI> Notice that the following rule extends the delta rule defined in
+section&nbsp;<A HREF="node.0.3.2.html#delta">4.3</A>
+<LI>ACC-DELTA
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[<FONT FACE=symbol>G</FONT>] |- <I>p</I> : <FONT COLOR=purple> <I>Sig</I></FONT>&nbsp;<I>Spec</I><SUB><FONT SIZE=2>1</FONT></SUB>;...;<I>Spec</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB>;<FONT COLOR=purple>Def</FONT>()(<I>c</I>:=<I>U</I>:<I>t</I>);...&nbsp;<FONT COLOR=purple> <I>End</I></FONT>
+ </TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[<FONT FACE=symbol>G</FONT>] |- <I>p</I>.<I>c</I> <FONT FACE=symbol>|></FONT><SUB><FONT SIZE=2><FONT FACE=symbol>d</FONT></FONT></SUB> <I>t</I>{<I>p</I>.<I>l</I>/<I>l</I>}<SUB><FONT SIZE=2><I>l</I> <FONT FACE=symbol>Î</FONT> <I><I>labels</I></I>(<I>Spec</I></FONT><SUB><FONT SIZE=2>1</FONT></SUB><FONT SIZE=2>;...;<I>Spec</I></FONT><SUB><FONT SIZE=2><I>i</I></FONT></SUB><FONT SIZE=2>)</FONT></SUB>
+ </TD>
+</TR></TABLE></DIV>
+<LI> in the rules below we assume <FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>P</I></FONT></SUB> is [<I>p</I><SUB><FONT SIZE=2>1</FONT></SUB>:<I>P</I><SUB><FONT SIZE=2>1</FONT></SUB>;...;<I>p</I><SUB><FONT SIZE=2><I>r</I></FONT></SUB>:<I>P</I><SUB><FONT SIZE=2><I>r</I></FONT></SUB>],
+ <FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>I</I></FONT></SUB> is [<I>I</I><SUB><FONT SIZE=2>1</FONT></SUB>:<I>A</I><SUB><FONT SIZE=2>1</FONT></SUB>;...;<I>I</I><SUB><FONT SIZE=2><I>k</I></FONT></SUB>:<I>A</I><SUB><FONT SIZE=2><I>k</I></FONT></SUB>], and <FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>C</I></FONT></SUB> is
+ [<I>c</I><SUB><FONT SIZE=2>1</FONT></SUB>:<I>C</I><SUB><FONT SIZE=2>1</FONT></SUB>;...;<I>c</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>:<I>C</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>]
+<LI>ACC-IND
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[<FONT FACE=symbol>G</FONT>] |- <I>p</I> : <FONT COLOR=purple> <I>Sig</I></FONT>&nbsp;<I>Spec</I><SUB><FONT SIZE=2>1</FONT></SUB>;...;<I>Spec</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB>;<FONT COLOR=purple>Ind</FONT>()[<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>P</I></FONT></SUB>](<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>C</I></FONT></SUB>:=<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>I</I></FONT></SUB>&nbsp;);...&nbsp;<FONT COLOR=purple> <I>End</I></FONT>
+ </TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[<FONT FACE=symbol>G</FONT>] |- <I>p</I>.<I>I</I><SUB><FONT SIZE=2><I>j</I></FONT></SUB> : (<I>p</I><SUB><FONT SIZE=2>1</FONT></SUB>:<I>P</I><SUB><FONT SIZE=2>1</FONT></SUB>)...(<I>p</I><SUB><FONT SIZE=2><I>r</I></FONT></SUB>:<I>P</I><SUB><FONT SIZE=2><I>r</I></FONT></SUB>)<I>A</I><SUB><FONT SIZE=2><I>j</I></FONT></SUB>{<I>p</I>.<I>l</I>/<I>l</I>}<SUB><FONT SIZE=2><I>l</I> <FONT FACE=symbol>Î</FONT> </FONT><FONT SIZE=2><I><I>labels</I></I></FONT><FONT SIZE=2>(<I>Spec</I></FONT><SUB><FONT SIZE=2>1</FONT></SUB><FONT SIZE=2>;...;<I>Spec</I></FONT><SUB><FONT SIZE=2><I>i</I></FONT></SUB><FONT SIZE=2>)</FONT></SUB>
+ </TD>
+</TR></TABLE></DIV>
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[<FONT FACE=symbol>G</FONT>] |- <I>p</I> : <FONT COLOR=purple> <I>Sig</I></FONT>&nbsp;<I>Spec</I><SUB><FONT SIZE=2>1</FONT></SUB>;...;<I>Spec</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB>;<FONT COLOR=purple>Ind</FONT>()[<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>P</I></FONT></SUB>](<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>C</I></FONT></SUB>:=<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>I</I></FONT></SUB>&nbsp;);...&nbsp;<FONT COLOR=purple> <I>End</I></FONT>
+ </TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[<FONT FACE=symbol>G</FONT>] |- <I>p</I>.<I>c</I><SUB><FONT SIZE=2><I>m</I></FONT></SUB> : (<I>p</I><SUB><FONT SIZE=2>1</FONT></SUB>:<I>P</I><SUB><FONT SIZE=2>1</FONT></SUB>)...(<I>p</I><SUB><FONT SIZE=2><I>r</I></FONT></SUB>:<I>P</I><SUB><FONT SIZE=2><I>r</I></FONT></SUB>)<I>C</I><SUB><FONT SIZE=2><I>m</I></FONT></SUB>{<I>I</I><SUB><FONT SIZE=2><I>j</I></FONT></SUB>/(<I>I</I><SUB><FONT SIZE=2><I>j</I></FONT></SUB>&nbsp;<I>p</I><SUB><FONT SIZE=2>1</FONT></SUB>...
+ <I>p</I><SUB><FONT SIZE=2><I>r</I></FONT></SUB>)}<SUB><FONT SIZE=2><I>j</I>=1... <I>k</I></FONT></SUB>{<I>p</I>.<I>l</I>/<I>l</I>}<SUB><FONT SIZE=2><I>l</I> <FONT FACE=symbol>Î</FONT> </FONT><FONT SIZE=2><I><I>labels</I></I></FONT><FONT SIZE=2>(<I>Spec</I></FONT><SUB><FONT SIZE=2>1</FONT></SUB><FONT SIZE=2>;...;<I>Spec</I></FONT><SUB><FONT SIZE=2><I>i</I></FONT></SUB><FONT SIZE=2>)</FONT></SUB>
+ </TD>
+</TR></TABLE></DIV>
+<LI>ACC-INDP
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center><TABLE>
+<TR VALIGN=middle><TD NOWRAP>
+ <I>E</I>[] |- <I>p</I>:<FONT COLOR=purple> <I>Sig</I></FONT>&nbsp;<I>Spec</I><SUB><FONT SIZE=2>1</FONT></SUB>;...;<I>Spec</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>;</TD>
+<TD NOWRAP><FONT COLOR=purple>Ind</FONT><SUB><FONT SIZE=2><I>p</I>'</FONT></SUB>()[<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>P</I></FONT></SUB>](<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD ALIGN=left NOWRAP><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>C</I></FONT></SUB>:=<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>I</I></FONT></SUB>
+ &nbsp;)</TD>
+</TR></TABLE></TD>
+<TD NOWRAP>;...&nbsp;<FONT COLOR=purple> <I>End</I></FONT> : </TD>
+</TR></TABLE></TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[] |- <I>p</I>.<I>I</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB> <FONT FACE=symbol>|></FONT><SUB><FONT SIZE=2><FONT FACE=symbol>d</FONT></FONT></SUB> <I>p</I>'.<I>I</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB>
+ </TD>
+</TR></TABLE></DIV>
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center><TABLE>
+<TR VALIGN=middle><TD NOWRAP>
+ <I>E</I>[] |- <I>p</I>:<FONT COLOR=purple> <I>Sig</I></FONT>&nbsp;<I>Spec</I><SUB><FONT SIZE=2>1</FONT></SUB>;...;<I>Spec</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>;</TD>
+<TD NOWRAP><FONT COLOR=purple>Ind</FONT><SUB><FONT SIZE=2><I>p</I>'</FONT></SUB>()[<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>P</I></FONT></SUB>](<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD ALIGN=left NOWRAP><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>C</I></FONT></SUB>:=<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>I</I></FONT></SUB>
+ &nbsp;)</TD>
+</TR></TABLE></TD>
+<TD NOWRAP>;...&nbsp;<FONT COLOR=purple> <I>End</I></FONT> : </TD>
+</TR></TABLE></TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[] |- <I>p</I>.<I>c</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB> <FONT FACE=symbol>|></FONT><SUB><FONT SIZE=2><FONT FACE=symbol>d</FONT></FONT></SUB> <I>p</I>'.<I>c</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB>
+ </TD>
+</TR></TABLE></DIV>
+<LI>ACC-MOD
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[<FONT FACE=symbol>G</FONT>] |- <I>p</I> : <FONT COLOR=purple> <I>Sig</I></FONT>&nbsp;<I>Spec</I><SUB><FONT SIZE=2>1</FONT></SUB>;...;<I>Spec</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB>;<FONT COLOR=purple> <I>ModS</I></FONT>(<I>m</I>:<I>T</I>);...&nbsp;<FONT COLOR=purple> <I>End</I></FONT>
+ </TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[<FONT FACE=symbol>G</FONT>] |- <I>p</I>.<I>m</I> : <I>T</I>{<I>p</I>.<I>l</I>/<I>l</I>}<SUB><FONT SIZE=2><I>l</I> <FONT FACE=symbol>Î</FONT> </FONT><FONT SIZE=2><I><I>labels</I></I></FONT><FONT SIZE=2>(<I>Spec</I></FONT><SUB><FONT SIZE=2>1</FONT></SUB><FONT SIZE=2>;...;<I>Spec</I></FONT><SUB><FONT SIZE=2><I>i</I></FONT></SUB><FONT SIZE=2>)</FONT></SUB>
+ </TD>
+</TR></TABLE></DIV>
+<LI>
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[<FONT FACE=symbol>G</FONT>] |- <I>p</I> : <FONT COLOR=purple> <I>Sig</I></FONT>&nbsp;<I>Spec</I><SUB><FONT SIZE=2>1</FONT></SUB>;...;<I>Spec</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB>;<FONT COLOR=purple> <I>ModSEq</I></FONT>(<I>m</I>:<I>T</I>==<I>p</I>');...&nbsp;<FONT COLOR=purple> <I>End</I></FONT>
+ </TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[<FONT FACE=symbol>G</FONT>] |- <I>p</I>.<I>m</I> : <I>T</I>{<I>p</I>.<I>l</I>/<I>l</I>}<SUB><FONT SIZE=2><I>l</I> <FONT FACE=symbol>Î</FONT> </FONT><FONT SIZE=2><I><I>labels</I></I></FONT><FONT SIZE=2>(<I>Spec</I></FONT><SUB><FONT SIZE=2>1</FONT></SUB><FONT SIZE=2>;...;<I>Spec</I></FONT><SUB><FONT SIZE=2><I>i</I></FONT></SUB><FONT SIZE=2>)</FONT></SUB>
+ </TD>
+</TR></TABLE></DIV>
+<LI>ACC-MODEQ
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[<FONT FACE=symbol>G</FONT>] |- <I>p</I> : <FONT COLOR=purple> <I>Sig</I></FONT>&nbsp;<I>Spec</I><SUB><FONT SIZE=2>1</FONT></SUB>;...;<I>Spec</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB>;<FONT COLOR=purple> <I>ModSEq</I></FONT>(<I>m</I>:<I>T</I>==<I>p</I>');...&nbsp;<FONT COLOR=purple> <I>End</I></FONT>
+ </TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[<FONT FACE=symbol>G</FONT>] |- <I>p</I>.<I>m</I> = <I>p</I>'{<I>p</I>.<I>l</I>/<I>l</I>}<SUB><FONT SIZE=2><I>l</I> <FONT FACE=symbol>Î</FONT> <I><I>labels</I></I>(<I>Spec</I></FONT><SUB><FONT SIZE=2>1</FONT></SUB><FONT SIZE=2>;...;<I>Spec</I></FONT><SUB><FONT SIZE=2><I>i</I></FONT></SUB><FONT SIZE=2>)</FONT></SUB>
+ </TD>
+</TR></TABLE></DIV>
+<LI>ACC-MODTYPE
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[<FONT FACE=symbol>G</FONT>] |- <I>p</I> : <FONT COLOR=purple> <I>Sig</I></FONT>&nbsp;<I>Spec</I><SUB><FONT SIZE=2>1</FONT></SUB>;...;<I>Spec</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB>;<FONT COLOR=purple> <I>ModType</I></FONT>(<I>S</I>:=<I>T</I>);...&nbsp;<FONT COLOR=purple> <I>End</I></FONT>
+ </TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[<FONT FACE=symbol>G</FONT>] |- <I>p</I>.<I>S</I> = <I>T</I>{<I>p</I>.<I>l</I>/<I>l</I>}<SUB><FONT SIZE=2><I>l</I> <FONT FACE=symbol>Î</FONT> <I><I>labels</I></I>(<I>Spec</I></FONT><SUB><FONT SIZE=2>1</FONT></SUB><FONT SIZE=2>;...;<I>Spec</I></FONT><SUB><FONT SIZE=2><I>i</I></FONT></SUB><FONT SIZE=2>)</FONT></SUB>
+ </TD>
+</TR></TABLE></DIV>
+</UL>
+The function <I><I>labels</I></I>() is used to calculate the set of label of
+the set of specifications. It is defined by
+<I><I>labels</I></I>(<I>Spec</I><SUB><FONT SIZE=2>1</FONT></SUB>;...;<I>Spec</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>)=<I><I>labels</I></I>(<I>Spec</I><SUB><FONT SIZE=2>1</FONT></SUB>)<FONT FACE=symbol>È</FONT>...;<FONT FACE=symbol>È</FONT><I><I>labels</I></I>(<I>Spec</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>)
+where <I><I>labels</I></I>(<I>Spec</I>) is defined as follows:
+<UL><LI>
+<I><I>labels</I></I>(<FONT COLOR=purple>Assum</FONT>(<FONT FACE=symbol>G</FONT>)(<I>c</I>:<I>U</I>))={<I>c</I>},
+<LI><I><I>labels</I></I>(<FONT COLOR=purple>Def</FONT>(<FONT FACE=symbol>G</FONT>)(<I>c</I>:=<I>U</I>:<I>t</I>))={<I>c</I>},
+<LI><I><I>labels</I></I>(<FONT COLOR=purple>Ind</FONT>(<FONT FACE=symbol>G</FONT>)[<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>P</I></FONT></SUB>](<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>C</I></FONT></SUB>:=<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>I</I></FONT></SUB>&nbsp;))=<I><I>dom</I></I>(<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>C</I></FONT></SUB>)<FONT FACE=symbol>È</FONT><I><I>dom</I></I>(<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>I</I></FONT></SUB>),
+<LI><I><I>labels</I></I>(<FONT COLOR=purple> <I>ModS</I></FONT>(<I>m</I>:<I>T</I>))={<I>m</I>},
+<LI><I><I>labels</I></I>(<FONT COLOR=purple> <I>ModSEq</I></FONT>(<I>m</I>:<I>T</I>==<I>M</I>))={<I>m</I>},
+<LI><I><I>labels</I></I>(<FONT COLOR=purple> <I>ModType</I></FONT>(<I>S</I>:=<I>T</I>))={<I>S</I>}
+</UL>
+Environment access for modules and module types
+<UL><LI>
+ENV-MOD
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center>
+ <FONT COLOR=red> <I>W</I><I>F</I></FONT>(<I>E</I>;<FONT COLOR=purple> <I>ModS</I></FONT>(<I>m</I>:<I>T</I>);<I>E</I>')[<FONT FACE=symbol>G</FONT>]
+ </TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>;<FONT COLOR=purple> <I>ModS</I></FONT>(<I>m</I>:<I>T</I>);<I>E</I>'[<FONT FACE=symbol>G</FONT>] |- <I>m</I> : <I>T</I>
+ </TD>
+</TR></TABLE></DIV>
+<LI>
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center>
+ <FONT COLOR=red> <I>W</I><I>F</I></FONT>(<I>E</I>;<FONT COLOR=purple> <I>ModSEq</I></FONT>(<I>m</I>:<I>T</I>==<I>p</I>);<I>E</I>')[<FONT FACE=symbol>G</FONT>]
+ </TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>;<FONT COLOR=purple> <I>ModSEq</I></FONT>(<I>m</I>:<I>T</I>==<I>p</I>);<I>E</I>'[<FONT FACE=symbol>G</FONT>] |- <I>m</I> : <I>T</I>
+ </TD>
+</TR></TABLE></DIV>
+<LI>ENV-MODEQ
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center>
+ <FONT COLOR=red> <I>W</I><I>F</I></FONT>(<I>E</I>;<FONT COLOR=purple> <I>ModSEq</I></FONT>(<I>m</I>:<I>T</I>==<I>p</I>);<I>E</I>')[<FONT FACE=symbol>G</FONT>]
+ </TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>;<FONT COLOR=purple> <I>ModSEq</I></FONT>(<I>m</I>:<I>T</I>==<I>p</I>);<I>E</I>'[<FONT FACE=symbol>G</FONT>] |- <I>m</I> = <I>p</I>
+ </TD>
+</TR></TABLE></DIV>
+<LI>ENV-MODTYPE
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center>
+ <FONT COLOR=red> <I>W</I><I>F</I></FONT>(<I>E</I>;<FONT COLOR=purple> <I>ModType</I></FONT>(<I>S</I>:=<I>T</I>);<I>E</I>')[<FONT FACE=symbol>G</FONT>]
+ </TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>;<FONT COLOR=purple> <I>ModType</I></FONT>(<I>S</I>:=<I>T</I>);<I>E</I>'[<FONT FACE=symbol>G</FONT>] |- <I>S</I> = <I>T</I>
+ </TD>
+</TR></TABLE></DIV>
+<LI>ENV-INDP
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center><TABLE>
+<TR VALIGN=middle><TD NOWRAP>
+ <FONT COLOR=red> <I>W</I><I>F</I></FONT>(<I>E</I>;</TD>
+<TD NOWRAP><FONT COLOR=purple>Ind</FONT><SUB><FONT SIZE=2><I>p</I></FONT></SUB>()[<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>P</I></FONT></SUB>](<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD ALIGN=left NOWRAP><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>C</I></FONT></SUB>:=<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>I</I></FONT></SUB>
+ &nbsp;)</TD>
+</TR></TABLE></TD>
+<TD NOWRAP>)[]
+ </TD>
+</TR></TABLE></TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center><TABLE>
+<TR VALIGN=middle><TD NOWRAP>
+ </TD>
+<TD NOWRAP><I>E</I>;<FONT COLOR=purple>Ind</FONT><SUB><FONT SIZE=2><I>p</I></FONT></SUB>()[<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>P</I></FONT></SUB>](<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD ALIGN=left NOWRAP><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>C</I></FONT></SUB>:=<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>I</I></FONT></SUB>
+ &nbsp;)</TD>
+</TR></TABLE>[] |- <I>I</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB> <FONT FACE=symbol>|></FONT><SUB><FONT SIZE=2><FONT FACE=symbol>d</FONT></FONT></SUB> <I>p</I>.<I>I</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB></TD>
+</TR></TABLE></TD>
+</TR></TABLE></DIV>
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center><TABLE>
+<TR VALIGN=middle><TD NOWRAP>
+ <FONT COLOR=red> <I>W</I><I>F</I></FONT>(<I>E</I>;</TD>
+<TD NOWRAP><FONT COLOR=purple>Ind</FONT><SUB><FONT SIZE=2><I>p</I></FONT></SUB>()[<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>P</I></FONT></SUB>](<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD ALIGN=left NOWRAP><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>C</I></FONT></SUB>:=<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>I</I></FONT></SUB>
+ &nbsp;)</TD>
+</TR></TABLE></TD>
+<TD NOWRAP>)[]
+ </TD>
+</TR></TABLE></TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center><TABLE>
+<TR VALIGN=middle><TD NOWRAP>
+ </TD>
+<TD NOWRAP><I>E</I>;<FONT COLOR=purple>Ind</FONT><SUB><FONT SIZE=2><I>p</I></FONT></SUB>()[<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>P</I></FONT></SUB>](<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD ALIGN=left NOWRAP><FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>C</I></FONT></SUB>:=<FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>I</I></FONT></SUB>
+ &nbsp;)</TD>
+</TR></TABLE>[] |- <I>c</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB> <FONT FACE=symbol>|></FONT><SUB><FONT SIZE=2><FONT FACE=symbol>d</FONT></FONT></SUB> <I>p</I>.<I>c</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB></TD>
+</TR></TABLE></TD>
+</TR></TABLE></DIV>
+</UL>
+Module path equality is a transitive and reflexive closure of the
+relation generated by ACC-MODEQ and ENV-MODEQ.
+<UL><LI>
+MP-EQ-REFL
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[<FONT FACE=symbol>G</FONT>] |- <I>p</I> : <I>T</I>
+ </TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[<FONT FACE=symbol>G</FONT>] |- <I>p</I> : <I>p</I>
+ </TD>
+</TR></TABLE></DIV>
+<LI>MP-EQ-TRANS
+<DIV ALIGN=center><TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[<FONT FACE=symbol>G</FONT>] |- <I>p</I> = <I>p</I>'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<I>E</I>[<FONT FACE=symbol>G</FONT>] |- <I>p</I>' = <I>p</I>''
+ </TD>
+</TR>
+<TR><TD BGCOLOR=black><TABLE BORDER=0 WIDTH="100%" CELLSPACING=0 CELLPADDING=1><TR><TD></TD></TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center>
+ <I>E</I>[<FONT FACE=symbol>G</FONT>] |- <I>p</I>' = <I>p</I>''
+ </TD>
+</TR></TABLE></DIV></UL>
+<HR>
+
+<A HREF="node.0.4.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.0.4.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

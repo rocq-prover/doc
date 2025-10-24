@@ -1,0 +1,420 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+2.5&nbsp;Module system
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.0.1.3.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.0.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.1.5.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+2.5&nbsp;Module system
+</H2>
+
+
+
+The module system provides a way of packaging related elements
+together, as well as a mean of massive abstraction.
+<BLOCKQUOTE><DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV>
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=1>
+<TR><TD ALIGN=right NOWRAP><I><FONT COLOR=maroon>module_type</FONT></I></TD>
+<TD ALIGN=center NOWRAP>::=</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>ident</FONT></I></TD>
+</TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>module_type</FONT></I><TT> with Definition </TT><I><FONT COLOR=maroon>ident</FONT></I> <CODE>:=</CODE> <I><FONT COLOR=maroon>term</FONT></I></TD>
+</TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>|</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>module_type</FONT></I><TT> with Module </TT><I><FONT COLOR=maroon>ident</FONT></I> <CODE>:=</CODE> <I><FONT COLOR=maroon>qualid</FONT></I></TD>
+</TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>&nbsp;</TD>
+<TD ALIGN=left NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN=right NOWRAP><I><FONT COLOR=maroon>module_binding</FONT></I></TD>
+<TD ALIGN=center NOWRAP>::=</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>ident</FONT></I> <TT>,</TT> ... <TT>,</TT> <I><FONT COLOR=maroon>ident</FONT></I> <CODE>:</CODE> <I><FONT COLOR=maroon>module_type</FONT></I></TD>
+</TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>&nbsp;</TD>
+<TD ALIGN=left NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN=right NOWRAP><I><FONT COLOR=maroon>module_bindings</FONT></I></TD>
+<TD ALIGN=center NOWRAP>::=</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>module_binding</FONT></I> <TT>;</TT> ... <TT>;</TT> <I><FONT COLOR=maroon>module_binding</FONT></I></TD>
+</TR>
+<TR><TD ALIGN=right NOWRAP>&nbsp;</TD>
+<TD ALIGN=center NOWRAP>&nbsp;</TD>
+<TD ALIGN=left NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN=right NOWRAP><I><FONT COLOR=maroon>module_expression</FONT></I></TD>
+<TD ALIGN=center NOWRAP>::=</TD>
+<TD ALIGN=left NOWRAP><I><FONT COLOR=maroon>qualid</FONT></I>  ...  <I><FONT COLOR=maroon>qualid</FONT></I></TD>
+</TR></TABLE>
+<BR>
+<DIV ALIGN=center>Figure 2.3: Syntax of modules.</DIV><BR>
+
+<DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV></BLOCKQUOTE>
+
+<H3>
+
+2.5.1&nbsp;<TT>Module </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>
+</TT></H3>
+<A NAME="@default75"></A><A NAME="@command40"></A>
+This command is used to start an interactive module named <I><FONT COLOR=maroon>ident</FONT></I>.<BR>
+<B>Variants: </B><OL type=1><LI>
+<TT>Module </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>[</TT><I><FONT COLOR=maroon>module_bindings</FONT></I><TT>]</TT><BR>
+Starts an interactive functor with parameters given by <I><FONT COLOR=maroon>module_bindings</FONT></I>.
+<LI><TT>Module </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> </TT><CODE><TT>:</TT></CODE><TT> </TT><I><FONT COLOR=maroon>module_type</FONT></I><BR>
+Starts an interactive module specifying its module type. 
+<LI><TT>Module </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> [</TT><I><FONT COLOR=maroon>module_bindings</FONT></I><TT>] </TT><CODE><TT>:</TT></CODE><TT> </TT><I><FONT COLOR=maroon>module_type</FONT></I><BR>
+Starts an interactive functor with parameters given by
+ <I><FONT COLOR=maroon>module_bindings</FONT></I>, and output module type <I><FONT COLOR=maroon>module_type</FONT></I>.
+<LI><TT>Module </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> </TT><CODE><TT>&lt;:</TT></CODE><TT> </TT><I><FONT COLOR=maroon>module_type</FONT></I><BR>
+Starts an interactive module satisfying <I><FONT COLOR=maroon>module_type</FONT></I>. 
+<LI><TT>Module </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> [</TT><I><FONT COLOR=maroon>module_bindings</FONT></I><TT>] </TT><CODE><TT>&lt;:</TT></CODE><TT> </TT><I><FONT COLOR=maroon>module_type</FONT></I><BR>
+Starts an interactive functor with parameters given by
+ <I><FONT COLOR=maroon>module_bindings</FONT></I>. The output module type is verified against the
+ module type <I><FONT COLOR=maroon>module_type</FONT></I>.
+</OL>
+
+<H3>
+
+2.5.2&nbsp;<TT>End </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>
+</TT></H3>
+<A NAME="@default76"></A><A NAME="@command41"></A>
+This command closes the interactive module <I><FONT COLOR=maroon>ident</FONT></I>. If the module type
+was given the content of the module is matched against it and an error
+is signaled if the matching fails. If the module is basic (is not a
+functor) its components (constants, inductives, submodules etc) are
+now available through the dot notation.<BR>
+<B>Error messages: </B><OL type=1><LI>
+<TT>No such label </TT><I><FONT COLOR=maroon>ident</FONT></I><A NAME="@error10"></A>
+<LI><TT>Signature components for label </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> do not match</TT><A NAME="@error11"></A>
+<LI><TT>This is not the last opened module</TT><A NAME="@error12"></A>
+</OL>
+
+<H3>
+
+2.5.3&nbsp;<TT>Module </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> := </TT><I><FONT COLOR=maroon>module_expression</FONT></I><TT>
+</TT></H3>
+<A NAME="@default77"></A><A NAME="@command42"></A>
+This command defines the module identifier <I><FONT COLOR=maroon>ident</FONT></I> to be equal to <I><FONT COLOR=maroon>module_expression</FONT></I>.<BR>
+<B>Variants: </B><OL type=1><LI>
+<TT>Module </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>[</TT><I><FONT COLOR=maroon>module_bindings</FONT></I><TT>] := </TT><I><FONT COLOR=maroon>module_expression</FONT></I><BR>
+Defines a functor with parameters given by <I><FONT COLOR=maroon>module_bindings</FONT></I> and body <I><FONT COLOR=maroon>module_expression</FONT></I>.
+<LI><TT>Module </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> </TT><CODE><TT>:</TT></CODE><TT> </TT><I><FONT COLOR=maroon>module_type</FONT></I><TT> := </TT><I><FONT COLOR=maroon>module_expression</FONT></I><BR>
+Defines a module with body <I><FONT COLOR=maroon>module_expression</FONT></I> and interface <I><FONT COLOR=maroon>module_type</FONT></I>.
+<LI><TT>Module </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> </TT><CODE><TT>&lt;:</TT></CODE><TT> </TT><I><FONT COLOR=maroon>module_type</FONT></I><TT> := </TT><I><FONT COLOR=maroon>module_expression</FONT></I><BR>
+Defines a module with body <I><FONT COLOR=maroon>module_expression</FONT></I>, satisfying <I><FONT COLOR=maroon>module_type</FONT></I>.
+<LI><TT>Module </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> [</TT><I><FONT COLOR=maroon>module_bindings</FONT></I><TT>] </TT><CODE><TT>:</TT></CODE><TT> </TT><I><FONT COLOR=maroon>module_type</FONT></I><TT> := </TT><I><FONT COLOR=maroon>module_expression</FONT></I><BR>
+Defines a functor with parameters given by <I><FONT COLOR=maroon>module_bindings</FONT></I>, and
+ output module type <I><FONT COLOR=maroon>module_type</FONT></I>, with body <I><FONT COLOR=maroon>module_expression</FONT></I>. 
+<LI><TT>Module </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> [</TT><I><FONT COLOR=maroon>module_bindings</FONT></I><TT>] </TT><CODE><TT>&lt;:</TT></CODE><TT> </TT><I><FONT COLOR=maroon>module_type</FONT></I><TT> := </TT><I><FONT COLOR=maroon>module_expression</FONT></I><BR>
+Defines a functor with parameters given by <I><FONT COLOR=maroon>module_bindings</FONT></I> with body
+ <I><FONT COLOR=maroon>module_expression</FONT></I>. The body is checked against <I><FONT COLOR=maroon>module_type</FONT></I>.
+</OL>
+
+<H3>
+
+2.5.4&nbsp;<TT>Module Type </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>
+</TT></H3>
+<A NAME="@default78"></A><A NAME="@command43"></A>
+This command is used to start an interactive module type <I><FONT COLOR=maroon>ident</FONT></I>.<BR>
+<B>Variants: </B><OL type=1><LI>
+<TT>Module Type </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>[</TT><I><FONT COLOR=maroon>module_bindings</FONT></I><TT>]</TT><BR>
+Starts an interactive functor type with parameters given by <I><FONT COLOR=maroon>module_bindings</FONT></I>.
+</OL>
+
+<H3>
+
+2.5.5&nbsp;<TT>End </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>
+</TT></H3>
+<A NAME="@default79"></A><A NAME="@command44"></A>
+This command closes the interactive module type <I><FONT COLOR=maroon>ident</FONT></I>.<BR>
+<B>Error messages: </B><OL type=1><LI>
+<TT>This is not the last opened module type</TT><A NAME="@error13"></A>
+</OL>
+
+<H3>
+
+2.5.6&nbsp;<TT>Module Type </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> := </TT><I><FONT COLOR=maroon>module_type</FONT></I><TT>
+</TT></H3>
+
+Define a module type <I><FONT COLOR=maroon>ident</FONT></I> equal to <I><FONT COLOR=maroon>module_type</FONT></I>.<BR>
+<B>Variants: </B><OL type=1><LI>
+<TT>Module Type </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> [</TT><I><FONT COLOR=maroon>module_bindings</FONT></I><TT>] := </TT><I><FONT COLOR=maroon>module_type</FONT></I><BR>
+Define a functor type <I><FONT COLOR=maroon>ident</FONT></I> specifying functors taking arguments
+ <I><FONT COLOR=maroon>module_bindings</FONT></I> and returning <I><FONT COLOR=maroon>module_type</FONT></I>.
+</OL>
+
+<H3>
+
+2.5.7&nbsp;<TT>Declare Module </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>
+</TT></H3>
+
+Starts an interactive module declaration. This command is available
+only in module types. <BR>
+<B>Variants: </B><OL type=1><LI>
+<TT>Declare Module </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>[</TT><I><FONT COLOR=maroon>module_bindings</FONT></I><TT>]</TT><BR>
+Starts an interactive declaration of a functor with parameters given
+ by <I><FONT COLOR=maroon>module_bindings</FONT></I>.
+<LI><TT>Declare Module </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> </TT><CODE><TT>&lt;:</TT></CODE><TT> </TT><I><FONT COLOR=maroon>module_type</FONT></I><BR>
+Starts an interactive declaration of a module satisfying <I><FONT COLOR=maroon>module_type</FONT></I>.
+<LI><TT>Declare Module </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> [</TT><I><FONT COLOR=maroon>module_bindings</FONT></I><TT>] </TT><CODE><TT>&lt;:</TT></CODE><TT> </TT><I><FONT COLOR=maroon>module_type</FONT></I><BR>
+Starts an interactive declaration of a functor with parameters given
+ by <I><FONT COLOR=maroon>module_bindings</FONT></I>. The declared output module type is verified
+ against the module type <I><FONT COLOR=maroon>module_type</FONT></I>.
+</OL>
+
+<H3>
+
+2.5.8&nbsp;<TT>End </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>
+</TT></H3>
+
+This command closes the interactive declaration of module <I><FONT COLOR=maroon>ident</FONT></I>.
+
+<H3>
+
+2.5.9&nbsp;<TT>Declare Module </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> : </TT><I><FONT COLOR=maroon>module_type</FONT></I><TT>
+</TT></H3>
+
+Declares a module of <I><FONT COLOR=maroon>ident</FONT></I> of type <I><FONT COLOR=maroon>module_type</FONT></I>. This command is available
+only in module types. <BR>
+<B>Variants: </B><OL type=1><LI>
+<TT>Declare Module </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> [</TT><I><FONT COLOR=maroon>module_bindings</FONT></I><TT>] </TT><CODE><TT>:</TT></CODE><TT> </TT><I><FONT COLOR=maroon>module_type</FONT></I><BR>
+Declares a functor with parameters <I><FONT COLOR=maroon>module_bindings</FONT></I> and output module
+ type <I><FONT COLOR=maroon>module_type</FONT></I>.
+<LI><TT>Declare Module </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> := </TT><I><FONT COLOR=maroon>qualid</FONT></I><BR>
+Declares a module equal to the module <I><FONT COLOR=maroon>qualid</FONT></I>.
+<LI><TT>Declare Module </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> </TT><CODE><TT>&lt;:</TT></CODE><TT> </TT><I><FONT COLOR=maroon>module_type</FONT></I><TT> := </TT><I><FONT COLOR=maroon>qualid</FONT></I><BR>
+Declares a module equal to the module <I><FONT COLOR=maroon>qualid</FONT></I>, verifying that the
+ module type of the latter is a subtype of <I><FONT COLOR=maroon>module_type</FONT></I>.
+</OL>
+
+<H4>
+Example
+</H4>
+
+Let us define a simple module.
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Module&nbsp;M.</TT><BR>
+<TT><I>Interactive&nbsp;Module&nbsp;M&nbsp;started</I></TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Definition&nbsp;T:=nat.</TT><BR>
+<TT><I>T&nbsp;is&nbsp;defined</I></TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Definition&nbsp;x:=O.</TT><BR>
+<TT><I>x&nbsp;is&nbsp;defined</I></TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Definition&nbsp;y:bool.</TT><BR>
+<TT><I>1&nbsp;subgoal</I></TT><BR>
+<TT><I>&nbsp;&nbsp;</I></TT><BR>
+<TT><I>&nbsp;&nbsp;============================</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;bool</I></TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exact&nbsp;true.</TT><BR>
+<TT><I>Subtree&nbsp;proved!</I></TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Defined.</TT><BR>
+<TT><I>Exact&nbsp;true.</I></TT><BR>
+<TT><I>y&nbsp;is&nbsp;defined</I></TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;End&nbsp;M.</TT><BR>
+<TT><I>Module&nbsp;M&nbsp;is&nbsp;defined</I></TT><BR>
+</DIV>
+<BR>
+Inside a module one can define constants, prove theorems and do any
+other things that can be done in the toplevel. Components of a closed
+module can be accessed using the dot notation:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Print&nbsp;M.x.</TT><BR>
+<TT><I>M.x&nbsp;=&nbsp;(0)</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;nat</I></TT><BR>
+</DIV>
+
+A simple module type:
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Module&nbsp;Type&nbsp;SIG.</TT><BR>
+<TT><I>Interactive&nbsp;Module&nbsp;Type&nbsp;SIG&nbsp;started</I></TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Parameter&nbsp;T:Set.</TT><BR>
+<TT><I>T&nbsp;is&nbsp;assumed</I></TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Parameter&nbsp;x:T.</TT><BR>
+<TT><I>x&nbsp;is&nbsp;assumed</I></TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;End&nbsp;SIG.</TT><BR>
+<TT><I>Module&nbsp;Type&nbsp;SIG&nbsp;is&nbsp;defined</I></TT><BR>
+</DIV>
+<BR>
+Inside a module type the proof editing mode is not available.
+Consequently commands like <TT>Definition</TT> without body,
+<TT>Lemma</TT>, <TT>Theorem</TT> are not allowed. In order to declare
+constants, use <TT>Axiom</TT> and <TT>Parameter</TT>.<BR>
+<BR>
+Now we can create a new module from <TT>M</TT>, giving it a less
+precise specification: the <TT>y</TT> component is dropped as well
+as the body of <TT>x</TT>.<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Module&nbsp;N&nbsp;&nbsp;:&nbsp;&nbsp;SIG&nbsp;with&nbsp;Definition&nbsp;T:=nat&nbsp;&nbsp;:=&nbsp;&nbsp;M.</TT><BR>
+<TT><I>Module&nbsp;N&nbsp;is&nbsp;defined</I></TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;Print&nbsp;N.T.</TT><BR>
+<TT><I>N.T&nbsp;=&nbsp;nat</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Set</I></TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;Print&nbsp;N.x.</TT><BR>
+<TT><I>***&nbsp;[&nbsp;N.x&nbsp;:&nbsp;N.T&nbsp;]</I></TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;Print&nbsp;N.y.</TT><BR>
+<TT><I>Toplevel&nbsp;input,&nbsp;characters&nbsp;6-9</I></TT><BR>
+<TT><I>&gt;&nbsp;Print&nbsp;N.y.</I></TT><BR>
+<TT><I>&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^^^</I></TT><BR>
+<TT><I>Error:&nbsp;N.y&nbsp;not&nbsp;a&nbsp;defined&nbsp;object</I></TT><BR>
+</DIV>
+<BR>
+The definition of <TT>N</TT> using the module type expression
+<TT>SIG with Definition T:=nat</TT> is equivalent to the following
+one:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Module&nbsp;Type&nbsp;SIG'.</TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Definition&nbsp;T:Set:=nat.</TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Parameter&nbsp;x:T.</TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;End&nbsp;SIG'.</TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;Module&nbsp;N&nbsp;:&nbsp;SIG'&nbsp;:=&nbsp;M.</TT><BR>
+</DIV>
+
+If we just want to be sure that the our implementation satisfies a
+given module type without restricting the interface, we can use a
+transparent constraint
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Module&nbsp;P&nbsp;&lt;:&nbsp;SIG&nbsp;:=&nbsp;M.</TT><BR>
+<TT><I>Module&nbsp;P&nbsp;is&nbsp;defined</I></TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;Print&nbsp;P.y.</TT><BR>
+<TT><I>P.y&nbsp;=&nbsp;true</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;bool</I></TT><BR>
+</DIV>
+
+Now let us create a functor, i.e. a parametric module
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Module&nbsp;Two[X,Y:SIG].</TT><BR>
+<TT><I>Interactive&nbsp;Module&nbsp;Two&nbsp;started</I></TT><BR>
+</DIV>
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Definition&nbsp;T:=X.T&nbsp;*&nbsp;Y.T.</TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Definition&nbsp;x:=(X.x,&nbsp;Y.x).</TT><BR>
+</DIV>
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;End&nbsp;Two.</TT><BR>
+<TT><I>Module&nbsp;Two&nbsp;is&nbsp;defined</I></TT><BR>
+</DIV>
+
+and apply it to our modules and do some computations
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Module&nbsp;Q:=Two&nbsp;M&nbsp;N.</TT><BR>
+<TT><I>Module&nbsp;Q&nbsp;is&nbsp;defined</I></TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;Eval&nbsp;Compute&nbsp;in&nbsp;(plus&nbsp;(Fst&nbsp;Q.x)&nbsp;(Snd&nbsp;Q.x)).</TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;N.x</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;nat</I></TT><BR>
+</DIV>
+
+In the end, let us define a module type with two sub-modules, sharing
+some of the fields and give one of its possible implementations:
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Module&nbsp;Type&nbsp;SIG2.</TT><BR>
+<TT><I>Interactive&nbsp;Module&nbsp;Type&nbsp;SIG2&nbsp;started</I></TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Declare&nbsp;Module&nbsp;M1:SIG.</TT><BR>
+<TT><I>Module&nbsp;M1&nbsp;is&nbsp;declared</I></TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Declare&nbsp;Module&nbsp;M2&lt;:SIG.</TT><BR>
+<TT><I>Interactive&nbsp;Declaration&nbsp;of&nbsp;Module&nbsp;M2&nbsp;started</I></TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Definition&nbsp;T:=M1.T.</TT><BR>
+<TT><I>T&nbsp;is&nbsp;defined</I></TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Parameter&nbsp;x:T.</TT><BR>
+<TT><I>x&nbsp;is&nbsp;assumed</I></TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;End&nbsp;M2.</TT><BR>
+<TT><I>Module&nbsp;M2&nbsp;is&nbsp;declared</I></TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;End&nbsp;SIG2.</TT><BR>
+<TT><I>Module&nbsp;Type&nbsp;SIG2&nbsp;is&nbsp;defined</I></TT><BR>
+</DIV>
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Module&nbsp;Mod&nbsp;&lt;:&nbsp;SIG2.</TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Module&nbsp;M1.</TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Definition&nbsp;T:=nat.</TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Definition&nbsp;x:=(1).</TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;End&nbsp;M1.</TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Module&nbsp;M2:=M.</TT><BR>
+</DIV>
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;End&nbsp;Mod.</TT><BR>
+<TT><I>Module&nbsp;Mod&nbsp;is&nbsp;defined</I></TT><BR>
+</DIV>
+<BR>
+<B>Remarks: </B><OL type=1><LI>
+Modules and module types can be nested components of each other.
+<LI>When a module declaration is started inside a module type,
+ the proof editing mode is still unavailable.
+<LI>One can have sections inside a module or a module type, but
+ not a module or a module type inside a section.
+<LI>Commands like <TT>Hint</TT> or <TT>Syntactic Definition</TT> can
+ also appear inside modules and module types. Note that in case of a
+ module definition like:<BR>
+<TT>Module N : SIG := M.</TT><BR>
+<BR>
+<BR>
+or<BR>
+<TT>Module N : SIG.<BR>
+  ...<BR>
+End N.</TT><BR>
+hints and the like valid for <TT>N</TT> are not those defined in
+ <TT>M</TT> (or the module body) but the ones defined in
+ <TT>SIG</TT>.</OL>
+
+<H3>
+
+2.5.10&nbsp;<TT>Print Module </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>
+</TT></H3>
+<A NAME="@default80"></A><A NAME="@command45"></A>
+Prints the module type and (optionally) the body of the module <I><FONT COLOR=maroon>ident</FONT></I>.
+
+<H3>
+
+2.5.11&nbsp;<TT>Print Module Type </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>
+</TT></H3>
+<A NAME="@default81"></A><A NAME="@command46"></A>
+Prints the module type corresponding to <I><FONT COLOR=maroon>ident</FONT></I>.<BR>
+<BR>
+<HR>
+
+<A HREF="node.0.1.3.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.0.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.1.5.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

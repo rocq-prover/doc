@@ -1,0 +1,104 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+5.1&nbsp;Modules and module types
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.0.4.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.4.1.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+5.1&nbsp;Modules and module types
+</H2>
+
+
+
+
+<H5>
+Access path.
+</H5>
+ It is denoted by <I>p</I>, it can be either a module 
+variable <I>X</I> or, if <I>p</I>' is an access path and <I>id</I> an identifier, then
+<I>p</I>'.<I>id</I> is an access path.
+
+<H5>
+Structure element.
+</H5>
+ It is denoted by <I>Impl</I> and is either a
+definition of a constant, an assumption, a definition of an inductive
+or a definition of a module or a module type abbreviation.
+
+<H5>
+Module expression.
+</H5>
+ It is denoted by <I>M</I> and can be:
+<UL><LI>
+an access path <I>p</I>
+<LI>a structure <FONT COLOR=purple> <I>Struct</I></FONT>&nbsp;<I><I>Impl</I></I> <TT>;</TT> ... <TT>;</TT> <I><I>Impl</I></I>&nbsp;<FONT COLOR=purple> <I>End</I></FONT>
+<LI>a functor <FONT COLOR=purple> <I>Functor</I></FONT>[<I>X</I>:<I>T</I>]&nbsp;<I>M</I>', where <I>X</I> is a module variable,
+ <I>T</I> is a module type and <I>M</I>' is a module expression
+<LI>an application of access paths <I>p</I>' <I>p</I>''
+</UL>
+
+<H5>
+Signature element.
+</H5>
+ It is denoted by <I>Spec</I>, it is a
+specification of a constant, an assumption, an inductive, a module or
+a module type abbreviation.
+
+<H5>
+Module type
+</H5>
+, denoted by <I>T</I> can be:
+<UL><LI>
+a module type name
+<LI>an access path <I>p</I>
+<LI>a signature <FONT COLOR=purple> <I>Sig</I></FONT>&nbsp;<I>Spec</I> <TT>;</TT> ... <TT>;</TT> <I>Spec</I>&nbsp;<FONT COLOR=purple> <I>End</I></FONT>
+<LI>a functor type <FONT COLOR=purple> <I>Funsig</I></FONT>(<I>X</I>:<I>T</I>')&nbsp;<I>T</I>'', where <I>T</I>' and <I>T</I>'' are
+ module types
+</UL>
+
+<H5>
+Module definition
+</H5>
+, written <FONT COLOR=purple> <I>Mod</I></FONT>(<I>X</I>:<I>T</I>:=<I>M</I>) can be a
+structure element. It consists of a module variable <I>X</I>, a module type
+<I>T</I> and a module expression <I>M</I>.
+
+<H5>
+Module specification
+</H5>
+, written <FONT COLOR=purple> <I>ModS</I></FONT>(<I>X</I>:<I>T</I>) or
+<FONT COLOR=purple> <I>ModSEq</I></FONT>(<I>X</I>:<I>T</I>==<I>p</I>) can be a signature element or a part of an
+environment. It consists of a module variable <I>X</I>, a module type <I>T</I>
+and, optionally, a module path <I>p</I>. 
+
+<H5>
+Module type abbreviation
+</H5>
+, written <FONT COLOR=purple> <I>ModType</I></FONT>(<I>S</I>:=<I>T</I>), where
+<I>S</I> is a module type name and <I>T</I> is a module type.<BR>
+<BR>
+<HR>
+
+<A HREF="node.0.4.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.4.1.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

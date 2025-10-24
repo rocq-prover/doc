@@ -1,0 +1,134 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+12.5&nbsp;Options
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.0.3.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+12.5&nbsp;Options
+</H2>
+
+
+
+<A NAME="@default578"></A>
+The following command-line options are recognized by the commands <TT>coqc</TT> and <TT>coqtop</TT>:
+<DL COMPACT=compact><DT>
+<B><TT>-byte</TT></B><DD><BR>
+Run the byte-code version of <FONT COLOR=purple>Coq</FONT>.<BR>
+<BR>
+<DT><B><TT>-opt</TT></B><DD><BR>
+Run the native-code version of <FONT COLOR=purple>Coq</FONT>.<BR>
+<BR>
+<DT><B><TT>-I</TT> <EM>directory</EM>, <TT>-include</TT> <EM>directory</EM></B><DD><BR>
+Add <EM>directory</EM> to the searched directories when looking for a
+ file.<BR>
+<BR>
+<DT><B><TT>-R</TT> <EM>directory</EM> <I><FONT COLOR=maroon>dirpath</FONT></I></B><DD><BR>
+This maps the subdirectory structure of physical <EM>directory</EM> to
+ logical <I><FONT COLOR=maroon>dirpath</FONT></I> and adds <EM>directory</EM> and its subdirectories
+ to the searched directories when looking for a file.<BR>
+<BR>
+<DT><B><TT>-is</TT> <EM>file</EM>, <TT>-inputstate</TT> <EM>file</EM></B><DD><BR>
+Cause <FONT COLOR=purple>Coq</FONT>&nbsp;to use the state put in the file <EM>file</EM> as its input
+ state. The default state is <EM>initial.coq</EM>.
+ Mainly useful to build the standard input state.<BR>
+<BR>
+<DT><B><TT>-nois</TT></B><DD><BR>
+Cause <FONT COLOR=purple>Coq</FONT>&nbsp;to begin with an empty state. Mainly useful to build the
+ standard input state.<BR>
+<BR>
+<DT><B><TT>-notactics</TT></B><DD><BR>
+Forbid the dynamic loading of tactics.<BR>
+<BR>
+<DT><B><TT>-init-file</TT> <EM>file</EM></B><DD><BR>
+Take <EM>file</EM> as the resource file.<BR>
+<BR>
+<DT><B><TT>-q</TT></B><DD><BR>
+Cause <FONT COLOR=purple>Coq</FONT>&nbsp;not to load the resource file.<BR>
+<BR>
+<DT><B><TT>-user</TT> <EM>username</EM></B><DD><BR>
+Take resource file of user <EM>username</EM> (that is 
+ <CODE>~</CODE><EM>username</EM><TT>/.coqrc.7.0</TT>) instead of yours.<BR>
+<BR>
+<DT><B><TT>-load-ml-source</TT> <EM>file</EM></B><DD><BR>
+Load the Caml source file <EM>file</EM>.<BR>
+<BR>
+<DT><B><TT>-load-ml-object</TT> <EM>file</EM></B><DD><BR>
+Load the Caml object file <EM>file</EM>.<BR>
+<BR>
+<DT><B><TT>-load-vernac-source</TT> <EM>file</EM></B><DD><BR>
+Load <FONT COLOR=purple>Coq</FONT>&nbsp;file <EM>file</EM><TT>.v</TT><BR>
+<BR>
+<DT><B><TT>-load-vernac-object</TT> <EM>file</EM></B><DD><BR>
+Load <FONT COLOR=purple>Coq</FONT>&nbsp;compiled file <EM>file</EM><TT>.vo</TT><BR>
+<BR>
+<DT><B><TT>-require</TT> <EM>file</EM></B><DD><BR>
+Load <FONT COLOR=purple>Coq</FONT>&nbsp;compiled file <EM>file</EM><TT>.vo</TT> and import it (<TT>Require</TT> <EM>file</EM>).<BR>
+<BR>
+<DT><B><TT>-compile</TT> <EM>file</EM></B><DD><BR>
+This compiles file <EM>file</EM><TT>.v</TT> into <EM>file</EM><TT>.vo</TT>.
+ This option implies options <TT>-batch</TT> and <TT>-silent</TT>. It is
+ only available for <TT>coqtop</TT>.<BR>
+<BR>
+<DT><B><TT>-batch</TT></B><DD><BR>
+Batch mode : exit just after arguments parsing. This option is only
+ used by <TT>coqc</TT>.<BR>
+<BR>
+<DT><B><TT>-debug</TT></B><DD><BR>
+Switch on the debug flag.<BR>
+<BR>
+<DT><B><TT>-emacs</TT></B><DD><BR>
+Tells <FONT COLOR=purple>Coq</FONT> it is executed under Emacs.<BR>
+<BR>
+<DT><B><TT>-db</TT></B><DD><BR>
+Launch <FONT COLOR=purple>Coq</FONT> under the Objective Caml debugger (provided that <FONT COLOR=purple>Coq</FONT>
+ has been compiled for debugging; see next chapter).<BR>
+<BR>
+<DT><B><TT>-image</TT> <EM>file</EM></B><DD><BR>
+This option sets the binary image to be used to be <EM>file</EM>
+ instead of the standard one. Not of general use.<BR>
+<BR>
+<DT><B><TT>-bindir</TT> <EM>directory</EM></B><DD><BR>
+Set the directory containing <FONT COLOR=purple>Coq</FONT> binaries.
+ It is equivalent to do <TT>export COQBIN=</TT><EM>directory</EM>
+ before lauching <FONT COLOR=purple>Coq</FONT>.<BR>
+<BR>
+<DT><B><TT>-libdir</TT> <EM>file</EM></B><DD><BR>
+Set the directory containing <FONT COLOR=purple>Coq</FONT> libraries.
+ It is equivalent to do <TT>export COQLIB=</TT><EM>directory</EM>
+ before lauching <FONT COLOR=purple>Coq</FONT>.<BR>
+<BR>
+<DT><B><TT>-where</TT></B><DD><BR>
+Print the <FONT COLOR=purple>Coq</FONT>'s standard library location and exit.<BR>
+<BR>
+<DT><B><TT>-v</TT></B><DD><BR>
+Print the <FONT COLOR=purple>Coq</FONT>'s version and exit.<BR>
+<BR>
+<DT><B><TT>-h</TT>, <TT>--help</TT></B><DD><BR>
+Print a short usage and exit.
+</DL>
+<HR>
+
+<A HREF="node.3.0.3.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

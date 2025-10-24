@@ -1,0 +1,93 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+16.3&nbsp;Technical data
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.4.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.4.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.4.3.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+16.3&nbsp;Technical data
+</H2>
+
+
+
+<A NAME="technical"></A>
+
+ 
+<H3>
+
+16.3.1&nbsp;Overview of the tactic
+</H3>
+
+<UL><LI>The goal is negated twice and the first negation is introduced as an
+ hypothesis.
+<LI>Hypothesis are decomposed in simple equations or inequations. Multiple
+ goals may result from this phase.
+<LI>Equations and inequations over <CODE>nat</CODE> are translated over
+ <CODE>Z</CODE>, multiple goals may result from the translation of
+ substraction.
+<LI>Equations and inequations are normalized.
+<LI>Goals are solved by the <I>OMEGA</I> decision procedure.
+<LI>The script of the solution is replayed.</UL>
+
+ 
+<H3>
+
+16.3.2&nbsp;Overview of the <I>OMEGA</I> decision procedure
+</H3>
+
+The <I>OMEGA</I> decision procedure involved in the <TT>Omega</TT>&nbsp;tactic uses
+a small subset of the decision procedure presented in
+<BLOCKQUOTE>
+ "The Omega Test: a fast and practical integer programming
+algorithm for dependence analysis", William Pugh, Communication of the
+ACM , 1992, p 102-114.
+</BLOCKQUOTE>
+Here is an overview.
+The reader is refered to the original paper for more information.
+<UL><LI>Equations and inequations are normalized by division by the GCD of their
+ coefficients.
+<LI>Equations are eliminated, using the Banerjee test to get a coefficient 
+ equal to one.
+<LI>Note that each inequation defines a half space in the space of real value
+ of the variables.
+<LI>Inequations are solved by projecting on the hyperspace defined by 
+ cancelling one of the variable. 
+ They are partitioned according to the sign of
+ the coefficient of the eliminated variable. Pairs of inequations from
+ different classes define a new edge in the projection.
+<LI>Redundant inequations are eliminated or merged in new equations that can
+ be eliminated by the Banerjee test.
+<LI>The last two steps are iterated until a contradiction is reached
+ (success) or there is no more variable to eliminate (failure).</UL>
+It may happen that there is a real solution and no integer one. The last
+steps of the Omega procedure (dark shadow) are not implemented, so the 
+decision procedure is only partial.<BR>
+<BR>
+
+ <HR>
+
+<A HREF="node.3.4.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.4.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.4.3.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

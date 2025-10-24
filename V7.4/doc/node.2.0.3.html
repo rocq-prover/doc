@@ -1,0 +1,81 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+10.4&nbsp;Simple factorisation rules
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.2.0.2.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.2.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.2.0.4.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+10.4&nbsp;Simple factorisation rules
+</H2>
+
+
+
+Coq extensible parsing is performed by Camlp4 which is essentially a
+LL1 parser. Hence, some care has to be made not to hide already
+existing rules by new rules. Some simple left factorisation work has
+to be done. Here is an example.<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Notation&nbsp;"'EX'&nbsp;x&nbsp;|&nbsp;p"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;(ex&nbsp;?&nbsp;[x]p)&nbsp;(at&nbsp;level&nbsp;10).</TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;Notation&nbsp;"'EX'&nbsp;x&nbsp;|&nbsp;p&nbsp;&amp;&nbsp;q"&nbsp;:=&nbsp;(ex2&nbsp;?&nbsp;[x]p&nbsp;[x]q)&nbsp;(at&nbsp;level&nbsp;10).</TT><BR>
+</DIV>
+<BR>
+In order to factorise the left part of the rules, the subexpression
+referred by <TT>p</TT> has to be at the same level in both rules. However
+the default behaviour puts <TT>p</TT> at the next existing level below 10
+in the first rule (no associativity is the default), and at the level
+10 in the second rule (level 10 is the default when not on the border
+of a notation). To fix this, we need to force the parsing level of p,
+as follows.<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Notation&nbsp;"'EX'&nbsp;x&nbsp;|&nbsp;p"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;(ex&nbsp;?&nbsp;[x]p)&nbsp;(at&nbsp;level&nbsp;10,&nbsp;p&nbsp;at&nbsp;level&nbsp;9).</TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;Notation&nbsp;"'EX'&nbsp;x&nbsp;|&nbsp;p&nbsp;&amp;&nbsp;q"&nbsp;:=&nbsp;(ex2&nbsp;?&nbsp;[x]p&nbsp;[x]q)</TT><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;(at&nbsp;level&nbsp;10,&nbsp;p&nbsp;at&nbsp;level&nbsp;9).</TT><BR>
+</DIV>
+<BR>
+Actually, for a better homogeneity between p and q, it is reasonable
+to put q at the same level as p, hence the final version of the rules<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Notation&nbsp;"'EX'&nbsp;x&nbsp;|&nbsp;p"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;(ex&nbsp;?&nbsp;[x]p)&nbsp;(at&nbsp;level&nbsp;10,&nbsp;p&nbsp;at&nbsp;level&nbsp;9).</TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;Notation&nbsp;"'EX'&nbsp;x&nbsp;|&nbsp;p&nbsp;&amp;&nbsp;q"&nbsp;:=&nbsp;(ex2&nbsp;?&nbsp;[x]p&nbsp;[x]q)</TT><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;(at&nbsp;level&nbsp;10,&nbsp;p,&nbsp;q&nbsp;at&nbsp;level&nbsp;9).</TT><BR>
+</DIV>
+<BR>
+For the sake of factorisation with Coq predefined rules, simple rules
+have to be observed for notations starting with a symbol: e.g. rules
+starting with ``{'' or ``&lt;'' should be put at level 1 and rules
+starting with ``('' at level 0. The list of Coq predefined notations
+are given on figure&nbsp;<A HREF="node.2.0.1.html#coq-symbols">10.2</A>.<BR>
+<BR>
+<HR>
+
+<A HREF="node.2.0.2.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.2.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.2.0.4.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

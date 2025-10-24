@@ -1,0 +1,82 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+10.6&nbsp;Displaying symbolic notations
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.2.0.4.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.2.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.2.0.6.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+10.6&nbsp;Displaying symbolic notations
+</H2>
+
+
+
+The command <TT>Notation</TT> has an effect both on the Coq parser and
+on the Coq printer. For example:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;(and&nbsp;True&nbsp;True).</TT><BR>
+<TT><I>True/\True</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Prop</I></TT><BR>
+</DIV>
+<BR>
+However, printing, especially when we expect it to be pretty, requires
+more care than parsing. We may want well-chosen indentation,
+line-break, alignment if on several lines, etc. <BR>
+<BR>
+Printing notation is very rudimentary. When printed, each notation
+opens a <EM>formatting box</EM> in such a way that if a line-break is
+needed to print a large expression, all components of the notation are
+at the same indentation of the different lines required for the
+printing. Line breaks are done by default just before the symbols of
+the notation.<BR>
+<BR>
+The only control a user has on the printing of a notation is on the
+insertion of spaces at some places of the notation. This is performed
+by adding extra spaces between the symbols and parameters: each extra
+space (more that the single spaces needed to split the components) is
+interpreted as a space to be inserted by the printer. Here is an
+example showing how to add spaces around the bar of the notation.<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Notation&nbsp;"{&nbsp;x&nbsp;:&nbsp;A&nbsp;&nbsp;|&nbsp;&nbsp;P&nbsp;}"&nbsp;:=&nbsp;(sig&nbsp;A&nbsp;[x:A]P)</TT><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;(at&nbsp;level&nbsp;1,&nbsp;x&nbsp;at&nbsp;level&nbsp;10).</TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;(sig&nbsp;nat&nbsp;[x]x=x).</TT><BR>
+<TT><I>{x:nat&nbsp;|&nbsp;x=x}</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Set</I></TT><BR>
+</DIV>
+<BR>
+<B>Remark: </B>Sometimes, a notation is expected only for the parser (e.g. because
+the underlying parser of Coq, namely Camlp4, is LR1 and some extra
+rules are needed to circumvent the absence of factorisation).
+To do so, the option <EM>only parsing</EM> is allowed in the list of modifiers of
+<TT>Notation</TT>.<BR>
+<BR>
+<HR>
+
+<A HREF="node.2.0.4.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.2.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.2.0.6.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

@@ -1,0 +1,167 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+10.2&nbsp;Precedences and associativity
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.2.0.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.2.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.2.0.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+10.2&nbsp;Precedences and associativity
+</H2>
+
+
+
+<A NAME="@default570"></A>
+<A NAME="@default571"></A>
+Mixing different symbolic notations in a same text may cause serious
+parsing ambiguity. To deal with the ambiguity of notations, Coq uses
+precedence levels ranging from 0 to 100 and associativity rules.<BR>
+<BR>
+Consider for example the new notation<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Notation&nbsp;"A&nbsp;\/&nbsp;B"&nbsp;:=&nbsp;(or&nbsp;A&nbsp;B).</TT><BR>
+</DIV>
+<BR>
+Clearly, an expression such as <TT>(A:Prop)True </TT><CODE><TT>/\</TT></CODE><TT> A
+</TT><CODE><TT>\/</TT></CODE><TT> A </TT><CODE><TT>\/</TT></CODE><TT> False</TT> is ambiguous. To tell the Coq parser how
+to interpret the expression, a priority between the symbols <CODE>/\</CODE>
+and <CODE>\/</CODE>, and an associativity for each of the symbols has to be
+given. The convention is that conjunction binds more than
+disjunction. This is expressed in Coq by assigning a precedence level
+to each notation, knowing that a lower level binds more than a higher
+level. Hence the level for disjunction must be higher than the level
+for conjunction.<BR>
+<BR>
+Since connectives are the less tight articulation points of a text, it
+is reasonable to choose levels not so far from the higher level which
+is 100, for example 90 for disjunction and 80 for
+conjunction<SUP><A NAME="text20" HREF="#note20"><FONT SIZE=2>1</FONT></A></SUP>.<BR>
+<BR>
+An associativity is also needed to tells if <TT>True </TT><CODE><TT>/\</TT></CODE><TT>
+False </TT><CODE><TT>/\</TT></CODE><TT> False</TT> defaults to <TT>True </TT><CODE><TT>/\</TT></CODE><TT> (False
+</TT><CODE><TT>/\</TT></CODE><TT> False)</TT> (this is right associativity) or to <TT>(True
+</TT><CODE><TT>/\</TT></CODE><TT> False) </TT><CODE><TT>/\</TT></CODE><TT> False</TT> (this is left associativity). We may
+even consider that the expression is not well-formed and that
+parentheses are mandatory (this is a ``no associativity'')<SUP><A NAME="text21" HREF="#note21"><FONT SIZE=2>2</FONT></A></SUP>.
+We don't know of a special convention of the associativity of
+disjunction and conjunction, let's apply for instance a right
+associativity (which is the choice of Coq).<BR>
+<BR>
+Precedence levels and associativity rules of notations have to be
+given between parentheses in a list of modifiers that the
+<TT>Notation</TT> command understands. Here is how the previous
+examples refine.<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Notation&nbsp;"A&nbsp;/\&nbsp;B"&nbsp;(and&nbsp;A&nbsp;B)&nbsp;(at&nbsp;level&nbsp;6,&nbsp;right&nbsp;associativity).</TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;Notation&nbsp;"A&nbsp;\/&nbsp;B"&nbsp;(or&nbsp;A&nbsp;B)&nbsp;&nbsp;(at&nbsp;level&nbsp;7,&nbsp;right&nbsp;associativity).</TT><BR>
+</DIV>
+<BR>
+By default, the notation is considered non associative and its
+precedence level is 1. The list of level already assigned
+is on figure&nbsp;<A HREF="node.2.0.1.html#coq-symbols">10.2</A>.
+<BLOCKQUOTE><DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV>
+<A NAME="coq-symbols"></A>
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=1>
+<TR><TD ALIGN=left NOWRAP>notation</TD>
+<TD ALIGN=left NOWRAP>precedence/associativity</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><CODE>"_ &lt;-&gt; _"</CODE></TD>
+<TD ALIGN=left NOWRAP>100</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><CODE>"_ /\ _"</CODE></TD>
+<TD ALIGN=left NOWRAP>80&nbsp; R</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><CODE>"_ + _"</CODE></TD>
+<TD ALIGN=left NOWRAP>80&nbsp; R</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><CODE>"_ \/ _"</CODE></TD>
+<TD ALIGN=left NOWRAP>70&nbsp; R</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><CODE>"_ * _"</CODE></TD>
+<TD ALIGN=left NOWRAP>70&nbsp; R</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><CODE>"~ _"</CODE></TD>
+<TD ALIGN=left NOWRAP>60&nbsp; R</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><CODE>"_ = _"</CODE></TD>
+<TD ALIGN=left NOWRAP>50</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><CODE>"_ == _"</CODE></TD>
+<TD ALIGN=left NOWRAP>50</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><CODE>"_ === _"</CODE></TD>
+<TD ALIGN=left NOWRAP>50</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><CODE>"_ &lt;= _"</CODE></TD>
+<TD ALIGN=left NOWRAP>50</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><CODE>"_ &lt; _"</CODE></TD>
+<TD ALIGN=left NOWRAP>50</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><CODE>"_ &gt; _"</CODE></TD>
+<TD ALIGN=left NOWRAP>50</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><CODE>"_ &gt;= _"</CODE></TD>
+<TD ALIGN=left NOWRAP>50</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><CODE>"_ + _"</CODE></TD>
+<TD ALIGN=left NOWRAP>40&nbsp; L</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><CODE>"_ - _"</CODE></TD>
+<TD ALIGN=left NOWRAP>40&nbsp; L</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><CODE>"_ * _"</CODE></TD>
+<TD ALIGN=left NOWRAP>30&nbsp; L</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><CODE>"_ / _"</CODE></TD>
+<TD ALIGN=left NOWRAP>30&nbsp; L</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><CODE>"{ _ } + { _ }"</CODE></TD>
+<TD ALIGN=left NOWRAP>0</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><CODE>"_ + { _ }"</CODE></TD>
+<TD ALIGN=left NOWRAP>0</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><CODE>"{ _ : _ | _ }"</CODE></TD>
+<TD ALIGN=left NOWRAP>0</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><CODE>"{ _ : _ | _ &amp; _ }"</CODE></TD>
+<TD ALIGN=left NOWRAP>0</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><CODE>"{ _ : _ &amp; _ }"</CODE></TD>
+<TD ALIGN=left NOWRAP>0</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP><CODE>"{ _ : _ &amp; _ &amp; _ }"</CODE></TD>
+<TD ALIGN=left NOWRAP>0</TD>
+</TR></TABLE>
+<DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV></BLOCKQUOTE>
+<HR>
+
+<A HREF="node.2.0.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.2.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.2.0.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

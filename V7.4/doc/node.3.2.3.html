@@ -1,0 +1,110 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+14.4&nbsp;Using pattern matching to write proofs
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.2.2.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.2.4.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+14.4&nbsp;Using pattern matching to write proofs
+</H2>
+
+
+
+In all the previous examples the elimination predicate does not depend
+on the object(s) matched. But it may depend and the typical case 
+is when we write a proof by induction or a function that yields an
+object of dependent type. An example of proof using <TT>Cases</TT> in
+given in section <A HREF="node.1.3.0.html#Refine-example">9.1</A><BR>
+<BR>
+For example, we can write 
+the function <TT>buildlist</TT> that given a natural number
+<I>n</I> builds a list of length <I>n</I> containing zeros as follows:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Fixpoint&nbsp;buildlist&nbsp;[n:nat]&nbsp;:&nbsp;(listn&nbsp;n)&nbsp;:=</TT><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;[n:nat](listn&nbsp;n)&gt;Cases&nbsp;n&nbsp;of&nbsp;</TT><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;O&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;niln&nbsp;</TT><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;(S&nbsp;n)&nbsp;=&gt;&nbsp;(consn&nbsp;n&nbsp;O&nbsp;(buildlist&nbsp;n))</TT><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end.</TT><BR>
+<TT><I>buildlist&nbsp;is&nbsp;recursively&nbsp;defined</I></TT><BR>
+</DIV>
+<BR>
+We can also use multiple patterns whenever the elimination predicate has
+the correct arity. <BR>
+<BR>
+Consider the following definition of the predicate less-equal
+<TT>Le</TT>:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Inductive&nbsp;LE&nbsp;:&nbsp;nat-&gt;nat-&gt;Prop&nbsp;:=</TT><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;LEO:&nbsp;(n:nat)(LE&nbsp;O&nbsp;n)</TT><BR>
+<TT>Coq&nbsp;&lt;&nbsp;|&nbsp;LES:&nbsp;(n,m:nat)(LE&nbsp;n&nbsp;m)&nbsp;-&gt;&nbsp;(LE&nbsp;(S&nbsp;n)&nbsp;(S&nbsp;m)).</TT><BR>
+<TT><I>LE&nbsp;is&nbsp;defined</I></TT><BR>
+<TT><I>LE_ind&nbsp;is&nbsp;defined</I></TT><BR>
+</DIV>
+<BR>
+We can use multiple patterns to write the proof of the lemma
+ <TT>(n,m:nat) (LE n m)</TT><CODE>\/</CODE><TT>(LE m n)</TT>:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Fixpoint&nbsp;dec&nbsp;&nbsp;[n:nat]&nbsp;:&nbsp;(m:nat)(LE&nbsp;n&nbsp;m)&nbsp;\/&nbsp;(LE&nbsp;m&nbsp;n)&nbsp;:=</TT><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;[m:nat]&nbsp;&lt;[n,m:nat](LE&nbsp;n&nbsp;m)&nbsp;\/&nbsp;(LE&nbsp;m&nbsp;n)&gt;Cases&nbsp;n&nbsp;m&nbsp;of</TT><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;O&nbsp;&nbsp;&nbsp;x&nbsp;=&gt;&nbsp;&nbsp;(or_introl&nbsp;?&nbsp;(LE&nbsp;x&nbsp;O)&nbsp;(LEO&nbsp;x))</TT><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;x&nbsp;&nbsp;&nbsp;O&nbsp;=&gt;&nbsp;&nbsp;(or_intror&nbsp;(LE&nbsp;x&nbsp;O)&nbsp;?&nbsp;(LEO&nbsp;x))</TT><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;((S&nbsp;n)&nbsp;as&nbsp;n')&nbsp;((S&nbsp;m)&nbsp;as&nbsp;m')&nbsp;=&gt;</TT><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cases&nbsp;(dec&nbsp;n&nbsp;m)&nbsp;of</TT><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(or_introl&nbsp;h)&nbsp;=&gt;&nbsp;(or_introl&nbsp;?&nbsp;(LE&nbsp;m'&nbsp;n')&nbsp;(LES&nbsp;n&nbsp;m&nbsp;h))</TT><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;(or_intror&nbsp;h)&nbsp;=&gt;&nbsp;(or_intror&nbsp;(LE&nbsp;n'&nbsp;m')&nbsp;?&nbsp;(LES&nbsp;m&nbsp;n&nbsp;h))</TT><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end</TT><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end.</TT><BR>
+<TT><I>dec&nbsp;is&nbsp;recursively&nbsp;defined</I></TT><BR>
+</DIV>
+
+In the example of <TT>dec</TT> the elimination predicate is binary
+because we destructure two arguments of <TT>nat</TT> which is a
+non-dependent type. Notice that the first <TT>Cases</TT> is dependent while 
+the second is not.<BR>
+<BR>
+In general, consider the terms <I>e</I><SUB><FONT SIZE=2>1</FONT></SUB>... <I>e</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>,
+where the type of <I>e</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB> is an instance of a family type
+[<I>d</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB>:<I>D</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB>]<I>T</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB> (1<FONT FACE=symbol>£</FONT> <I>i</I>
+<FONT FACE=symbol>£</FONT> <I>n</I>). Then, in expression <TT>&lt;</TT><FONT COLOR=red> <I>P</I></FONT><TT>&gt;Cases</TT> <I>e</I><SUB><FONT SIZE=2>1</FONT></SUB>...
+<I>e</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> <TT>of</TT> ...<TT>end</TT>, the 
+elimination predicate <FONT COLOR=red> <I>P</I></FONT> should be of the form:
+[<I>d</I><SUB><FONT SIZE=2>1</FONT></SUB>:<I>D</I><SUB><FONT SIZE=2>1</FONT></SUB>][<I>x</I><SUB><FONT SIZE=2>1</FONT></SUB>:<I>T</I><SUB><FONT SIZE=2>1</FONT></SUB>]... [<I>d</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>:<I>D</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>][<I>x</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>:<I>T</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>]<I>Q</I>.<BR>
+<BR>
+The user can also use <TT>Cases</TT> in combination with the tactic
+<TT>Refine</TT> (see section <A HREF="node.1.2.1.html#Refine">8.2.2</A>) to build incomplete proofs
+beginning with a <TT>Cases</TT> construction.<BR>
+<BR>
+
+ <HR>
+
+<A HREF="node.3.2.2.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.2.4.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

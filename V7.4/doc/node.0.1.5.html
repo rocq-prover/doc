@@ -1,0 +1,97 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+2.6&nbsp;Logical paths of libraries and compilation units
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.0.1.4.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.0.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.1.6.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+2.6&nbsp;Logical paths of libraries and compilation units
+</H2>
+
+
+
+<A NAME="Libraries"></A>
+<A NAME="@default82"></A>
+<A NAME="@default83"></A>
+
+<H5>
+Libraries
+</H5>
+
+The theories developed in <FONT COLOR=purple>Coq</FONT> are stored in <EM>libraries</EM>. A
+library is characterized by a name called <I>root</I> of the
+library. The standard library of <FONT COLOR=purple>Coq</FONT> has root name <TT>Coq</TT> and is
+known by default when a <FONT COLOR=purple>Coq</FONT> session starts.<BR>
+<BR>
+Libraries have a tree structure. E.g., the <TT>Coq</TT> library
+contains the sub-libraries <TT>Init</TT>, <TT>Logic</TT>, <TT>Arith</TT>, <TT>Lists</TT>, ... The ``dot notation'' is used to separate the different
+component of a library name. For instance, the <TT>Arith</TT> library of
+<FONT COLOR=purple>Coq</FONT> standard library is written ``<TT>Coq.Arith</TT>''.<BR>
+<BR>
+<B>Remark: </B>no blank is allowed between the dot and the identifier on its
+right, otherwise the dot is interpreted as the full stop (period) of
+the command!
+<BR>
+
+
+<H5>
+Physical paths vs logical paths
+</H5>
+
+Libraries and sub-libraries are denoted by <EM>logical directory
+paths</EM> (written <I><FONT COLOR=maroon>dirpath</FONT></I> and of which the syntax is the same as
+<I><FONT COLOR=maroon>qualid</FONT></I>, see <A HREF="node.0.0.1.html#qualid">1.2.2</A>). Logical directory
+paths can be mapped to physical directories of the
+operating system using the command (see <A HREF="node.1.0.4.html#AddLoadPath">6.5.3</A>)
+<BLOCKQUOTE>
+<TT>Add LoadPath <I>physical_path</I> as </TT><I><FONT COLOR=maroon>dirpath</FONT></I>.
+</BLOCKQUOTE>
+A library can inherit the tree structure of a physical directory by
+using the <TT>-R</TT> option to <TT>coqtop</TT> or the
+command (see <A HREF="node.1.0.4.html#AddRecLoadPath">6.5.4</A>)
+<BLOCKQUOTE>
+<TT>Add Rec LoadPath <I>physical_path</I> as </TT><I><FONT COLOR=maroon>dirpath</FONT></I>.
+</BLOCKQUOTE>
+
+<H5>
+Compilation units (or modules)
+</H5>
+
+At some point, (sub-)libraries contain <I>modules</I> which coincide
+with files at the physical level. 
+As for sublibraries, the dot notation is used to denote a specific
+module of a library. Typically, <TT>Coq.Init.Logic</TT> is the logical path
+associated to the file <TT>Logic.v</TT> of <FONT COLOR=purple>Coq</FONT> standard library.<BR>
+<BR>
+If the physical directory where a file <TT>file.v</TT> lies is mapped to
+the empty logical directory path (which is the default when using the
+simple form of <TT>Add LoadPath</TT> or <TT>-I</TT> option to coqtop), then
+the name of the module it defines is simply <TT>file</TT>.<BR>
+<BR>
+<HR>
+
+<A HREF="node.0.1.4.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.0.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.1.6.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

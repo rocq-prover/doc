@@ -1,0 +1,268 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+11.1&nbsp;Syntax
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.2.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.2.1.1.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+11.1&nbsp;Syntax
+</H2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The syntax of the tactic language is given in table&nbsp;<A HREF="node.2.1.0.html#ltac">11.1</A>.
+Terminal symbols are set in 
+typewriter font (<TT>like this</TT>).
+Non-terminal symbols are set in italic font (<I>like</I> <I>that</I>). ... <I>|</I> ... denotes the or operation. <I>entry</I>  ...  <I>entry</I> denotes one or several
+repetitions of entry <I>entry</I>. <I>entry</I> <TT><I>sep</I></TT> ... <TT><I>sep</I></TT> <I>entry</I> denotes one or several repetitions separated by <I>sep</I>. 
+The main entry is <I><FONT COLOR=maroon>expr</FONT></I> and the entries <I><FONT COLOR=maroon>natural</FONT></I>, <I><FONT COLOR=maroon>integer</FONT></I>,
+<I><FONT COLOR=maroon>ident</FONT></I>, <I><FONT COLOR=maroon>qualid</FONT></I>, <I><FONT COLOR=maroon>term</FONT></I>, <I><FONT COLOR=maroon>pattern</FONT></I> and <I><FONT COLOR=maroon>primitive_tactic</FONT></I> represent respectively the natural and integer
+numbers, the authorized identificators and qualified names, <FONT COLOR=purple>Coq</FONT>'s terms and patterns and all the basic
+tactics. In <I><FONT COLOR=maroon>pattern</FONT></I>, there can be specific variables like <TT>?n</TT> where <TT>n</TT>
+is a <I><FONT COLOR=maroon>natural</FONT></I> or <TT>?</TT>, which are metavariables for pattern matching. <TT>?n</TT>
+allows us to keep instantiations and to make constraints whereas <TT>?</TT> shows
+that we are not interested in what will be matched.<BR>
+<BR>
+This language is used in proof mode but it can also be used in toplevel
+definitions as shown in table&nbsp;<A HREF="node.2.1.0.html#ltactop">11.2</A>.
+<BLOCKQUOTE><DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV>
+6in
+<DIV ALIGN=center>
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><I><FONT COLOR=maroon>expr</FONT></I></TD>
+<TD VALIGN=top ALIGN=left><DIV ALIGN=center>::=</DIV></TD>
+<TD VALIGN=top ALIGN=left NOWRAP><I><FONT COLOR=maroon>expr</FONT></I> <TT>;</TT> <I><FONT COLOR=maroon>expr</FONT></I></TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD>
+<TD VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD VALIGN=top ALIGN=left NOWRAP><I><FONT COLOR=maroon>expr</FONT></I> <TT>; [</TT> <I><FONT COLOR=maroon>expr</FONT></I> <TT>|</TT> ... <TT>|</TT> <I><FONT COLOR=maroon>expr</FONT></I> <TT>]</TT></TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD>
+<TD VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD VALIGN=top ALIGN=left NOWRAP><I><FONT COLOR=maroon>tacexpr</FONT></I><SUB><I><FONT COLOR=maroon><FONT SIZE=2><I>p</I></FONT></FONT></I></SUB></TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><I><FONT COLOR=maroon>tacexpr</FONT></I><SUB><I><FONT COLOR=maroon><FONT SIZE=2><I>p</I></FONT></FONT></I></SUB></TD>
+<TD VALIGN=top ALIGN=left><DIV ALIGN=center>::=</DIV></TD>
+<TD VALIGN=top ALIGN=left NOWRAP><TT>Do</TT> <I>(</I><I><FONT COLOR=maroon>natural</FONT></I> <I>|</I> <I><FONT COLOR=maroon>ident</FONT></I><I>)</I> <I><FONT COLOR=maroon>tacexpr</FONT></I><SUB><I><FONT COLOR=maroon><FONT SIZE=2><I>p</I></FONT></FONT></I></SUB></TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD>
+<TD VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD VALIGN=top ALIGN=left NOWRAP><TT>Repeat</TT> <I><FONT COLOR=maroon>tacexpr</FONT></I><SUB><I><FONT COLOR=maroon><FONT SIZE=2><I>p</I></FONT></FONT></I></SUB></TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD>
+<TD VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD VALIGN=top ALIGN=left NOWRAP><TT>Try</TT> <I><FONT COLOR=maroon>tacexpr</FONT></I><SUB><I><FONT COLOR=maroon><FONT SIZE=2><I>p</I></FONT></FONT></I></SUB></TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD>
+<TD VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD VALIGN=top ALIGN=left NOWRAP><TT>Progress</TT> <I><FONT COLOR=maroon>tacexpr</FONT></I><SUB><I><FONT COLOR=maroon><FONT SIZE=2><I>p</I></FONT></FONT></I></SUB></TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD>
+<TD VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD VALIGN=top ALIGN=left NOWRAP><TT>Info</TT> <I><FONT COLOR=maroon>tacexpr</FONT></I><SUB><I><FONT COLOR=maroon><FONT SIZE=2><I>p</I></FONT></FONT></I></SUB></TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD>
+<TD VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD VALIGN=top ALIGN=left NOWRAP><I><FONT COLOR=maroon>tacexpr</FONT></I><SUB><I><FONT COLOR=maroon><FONT SIZE=2><I>i</I></FONT></FONT></I></SUB></TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><I><FONT COLOR=maroon>tacexpr</FONT></I><SUB><I><FONT COLOR=maroon><FONT SIZE=2><I>i</I></FONT></FONT></I></SUB></TD>
+<TD VALIGN=top ALIGN=left><DIV ALIGN=center>::=</DIV></TD>
+<TD VALIGN=top ALIGN=left NOWRAP><I><FONT COLOR=maroon>atom</FONT></I> <TT>Orelse</TT> <I><FONT COLOR=maroon>tacexpr</FONT></I><SUB><I><FONT COLOR=maroon><FONT SIZE=2><I>p</I></FONT></FONT></I></SUB></TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD>
+<TD VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD VALIGN=top ALIGN=left NOWRAP><I><FONT COLOR=maroon>atom</FONT></I></TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><I><FONT COLOR=maroon>atom</FONT></I></TD>
+<TD VALIGN=top ALIGN=left><DIV ALIGN=center>::=</DIV></TD>
+<TD VALIGN=top ALIGN=left NOWRAP><TT>Fun</TT> <I><FONT COLOR=maroon>ident</FONT></I>  ...  <I><FONT COLOR=maroon>ident</FONT></I> <TT>-&gt;</TT> <I><FONT COLOR=maroon>expr</FONT></I></TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD>
+<TD VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD VALIGN=top ALIGN=left NOWRAP><TT>Let</TT> <I><FONT COLOR=maroon>let_clause</FONT></I> <TT>And</TT> ... <TT>And</TT> <I><FONT COLOR=maroon>let_clause</FONT></I> <TT>In</TT>
+<I><FONT COLOR=maroon>expr</FONT></I></TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD>
+<TD VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD VALIGN=top ALIGN=left NOWRAP><TT>Rec</TT> <I><FONT COLOR=maroon>rec_clause</FONT></I> <TT>And</TT> ... <TT>And</TT> <I><FONT COLOR=maroon>rec_clause</FONT></I> <TT>In</TT>
+<I><FONT COLOR=maroon>expr</FONT></I></TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD>
+<TD VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD VALIGN=top ALIGN=left NOWRAP><TT>Match Context With</TT> <I><FONT COLOR=maroon>context_rule</FONT></I> <TT>|</TT> ... <TT>|</TT> <I><FONT COLOR=maroon>context_rule</FONT></I></TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD>
+<TD VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD VALIGN=top ALIGN=left NOWRAP><TT>Match</TT> <I><FONT COLOR=maroon>term</FONT></I> <TT>With</TT> <I><FONT COLOR=maroon>match_rule</FONT></I> <TT>|</TT> ... <TT>|</TT> <I><FONT COLOR=maroon>match_rule</FONT></I></TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD>
+<TD VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD VALIGN=top ALIGN=left NOWRAP><TT>(</TT> <I><FONT COLOR=maroon>expr</FONT></I> <TT>)</TT></TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD>
+<TD VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD VALIGN=top ALIGN=left NOWRAP><TT>(</TT> <I><FONT COLOR=maroon>qualid</FONT></I> <I><FONT COLOR=maroon>arg</FONT></I>  ...  <I><FONT COLOR=maroon>arg</FONT></I> <TT>)</TT></TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD>
+<TD VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD VALIGN=top ALIGN=left NOWRAP><TT>First [</TT> <I><FONT COLOR=maroon>expr</FONT></I> <TT>|</TT> ... <TT>|</TT> <I><FONT COLOR=maroon>expr</FONT></I> <TT>]</TT></TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD>
+<TD VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD VALIGN=top ALIGN=left NOWRAP><TT>Solve [</TT> <I><FONT COLOR=maroon>expr</FONT></I> <TT>|</TT> ... <TT>|</TT> <I><FONT COLOR=maroon>expr</FONT></I> <TT>]</TT></TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD>
+<TD VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD VALIGN=top ALIGN=left NOWRAP><TT>Idtac</TT></TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD>
+<TD VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD VALIGN=top ALIGN=left NOWRAP><TT>Fail</TT> &nbsp;|&nbsp; <TT>Fail</TT> <I><FONT COLOR=maroon>natural</FONT></I></TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD>
+<TD VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD VALIGN=top ALIGN=left NOWRAP><I><FONT COLOR=maroon>primitive_tactic</FONT></I></TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD>
+<TD VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD VALIGN=top ALIGN=left NOWRAP><I><FONT COLOR=maroon>arg</FONT></I></TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><I><FONT COLOR=maroon>let_clause</FONT></I></TD>
+<TD VALIGN=top ALIGN=left><DIV ALIGN=center>::=</DIV></TD>
+<TD VALIGN=top ALIGN=left NOWRAP><I><FONT COLOR=maroon>ident</FONT></I> <TT>=</TT> <I><FONT COLOR=maroon>arg</FONT></I></TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><I><FONT COLOR=maroon>rec_clause</FONT></I></TD>
+<TD VALIGN=top ALIGN=left><DIV ALIGN=center>::=</DIV></TD>
+<TD VALIGN=top ALIGN=left NOWRAP><I><FONT COLOR=maroon>ident</FONT></I> <I><FONT COLOR=maroon>ident</FONT></I>  ...  <I><FONT COLOR=maroon>ident</FONT></I> <TT>-&gt;</TT> <I><FONT COLOR=maroon>expr</FONT></I></TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><I><FONT COLOR=maroon>context_rule</FONT></I></TD>
+<TD VALIGN=top ALIGN=left><DIV ALIGN=center>::=</DIV></TD>
+<TD VALIGN=top ALIGN=left NOWRAP><TT>[</TT> <I><FONT COLOR=maroon>context_hyps</FONT></I> <TT>;</TT> ... <TT>;</TT> <I><FONT COLOR=maroon>context_hyps</FONT></I> <TT>|-</TT>
+<I><FONT COLOR=maroon>pattern</FONT></I> <TT>] -&gt;</TT> <I><FONT COLOR=maroon>expr</FONT></I></TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD>
+<TD VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD VALIGN=top ALIGN=left NOWRAP><TT>[ |-</TT> <I><FONT COLOR=maroon>pattern</FONT></I> <TT>] -&gt;</TT> <I><FONT COLOR=maroon>expr</FONT></I></TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD>
+<TD VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD VALIGN=top ALIGN=left NOWRAP><TT>_ -&gt;</TT> <I><FONT COLOR=maroon>expr</FONT></I></TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><I><FONT COLOR=maroon>context_hyps</FONT></I></TD>
+<TD VALIGN=top ALIGN=left><DIV ALIGN=center>::=</DIV></TD>
+<TD VALIGN=top ALIGN=left NOWRAP><I><FONT COLOR=maroon>ident</FONT></I> <TT>:</TT> <I><FONT COLOR=maroon>pattern</FONT></I></TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD>
+<TD VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD VALIGN=top ALIGN=left NOWRAP><TT>_ :</TT> <I><FONT COLOR=maroon>pattern</FONT></I></TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><I><FONT COLOR=maroon>match_rule</FONT></I></TD>
+<TD VALIGN=top ALIGN=left><DIV ALIGN=center>::=</DIV></TD>
+<TD VALIGN=top ALIGN=left NOWRAP><TT>[</TT> <I><FONT COLOR=maroon>pattern</FONT></I> <TT>] -&gt;</TT> <I><FONT COLOR=maroon>expr</FONT></I></TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD>
+<TD VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD VALIGN=top ALIGN=left NOWRAP><TT>_ -&gt;</TT> <I><FONT COLOR=maroon>expr</FONT></I></TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><I><FONT COLOR=maroon>arg</FONT></I></TD>
+<TD VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD VALIGN=top ALIGN=left NOWRAP>integer</TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD>
+<TD VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD VALIGN=top ALIGN=left NOWRAP><I><FONT COLOR=maroon>ident</FONT></I></TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD>
+<TD VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD VALIGN=top ALIGN=left NOWRAP><TT>'</TT><I><FONT COLOR=maroon>term</FONT></I></TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD>
+<TD VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD VALIGN=top ALIGN=left NOWRAP><I><FONT COLOR=maroon>expr</FONT></I></TD>
+</TR></TABLE>
+</DIV>
+<BR>
+<DIV ALIGN=center>Table 11.1: Syntax of the tactic language</DIV><BR>
+
+<A NAME="ltac"></A>
+<DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV></BLOCKQUOTE>
+<BLOCKQUOTE><DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV>
+6in
+<DIV ALIGN=center>
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><I>top</I></TD>
+<TD VALIGN=top ALIGN=left><DIV ALIGN=center>::=</DIV></TD>
+<TD VALIGN=top ALIGN=left NOWRAP><TT>Tactic Definition</TT> <I><FONT COLOR=maroon>ident</FONT></I> <I><FONT COLOR=maroon>ident</FONT></I>  ...  <I><FONT COLOR=maroon>ident</FONT></I> <TT>:=</TT>
+<I><FONT COLOR=maroon>expr</FONT></I></TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD>
+<TD VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD VALIGN=top ALIGN=left NOWRAP><TT>Recursive Tactic Definition</TT> <I>trec</I>_<I>clause</I> <TT>And</TT> ... <TT>And</TT> <I>trec</I>_<I>clause</I></TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD VALIGN=top ALIGN=left NOWRAP><I>trec</I>_<I>clause</I></TD>
+<TD VALIGN=top ALIGN=left><DIV ALIGN=center>::=</DIV></TD>
+<TD VALIGN=top ALIGN=left NOWRAP><I><FONT COLOR=maroon>ident</FONT></I> <I><FONT COLOR=maroon>ident</FONT></I>  ...  <I><FONT COLOR=maroon>ident</FONT></I> <TT>:=</TT> <I><FONT COLOR=maroon>expr</FONT></I></TD>
+</TR></TABLE>
+</DIV>
+<BR>
+<DIV ALIGN=center>Table 11.2: Tactic toplevel definitions</DIV><BR>
+
+<A NAME="ltactop"></A>
+<DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV></BLOCKQUOTE>
+<HR>
+
+<A HREF="node.2.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.2.1.1.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

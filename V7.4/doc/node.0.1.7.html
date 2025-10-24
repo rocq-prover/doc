@@ -1,0 +1,313 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+2.8&nbsp;Implicit arguments
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.0.1.6.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.0.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.1.8.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+2.8&nbsp;Implicit arguments
+</H2>
+
+
+<A NAME="@default86"></A>
+The <FONT COLOR=purple>Coq</FONT> system allows to skip during a function application certain
+arguments that can be automatically inferred from the other
+arguments. Such arguments are called <EM>implicit</EM>. Typical implicit
+arguments are the type arguments in polymorphic functions.<BR>
+<BR>
+The user can force a subterm to be guessed by replacing it by
+<TT>?</TT>. If possible, the correct subterm will be automatically generated.<BR>
+<B>Error message: </B><OL type=1><LI>
+<TT>There is an unknown subterm I cannot solve</TT><A NAME="@error14"></A><BR>
+<FONT COLOR=purple>Coq</FONT> was not able to deduce an instantiation of a ``?''.
+</OL>
+In addition, there are two ways to systematically avoid to write
+``<TT>?</TT>'' where a term can be automatically inferred.<BR>
+<BR>
+The first mode is automatic. Switching to this mode forces some
+easy-to-infer subterms to always be implicit.
+The command to use the second mode is <TT>Syntactic
+Definition</TT>.
+
+<H3>
+
+2.8.1&nbsp;Auto-detection of implicit arguments
+</H3>
+
+<A NAME="Auto-implicit"></A>
+There is an automatic mode to declare as implicit some arguments of
+constants and variables which have a functional type. In this mode,
+to every declared object (even inductive types and theirs constructors) is
+associated the list of the positions of its implicit arguments. These
+implicit arguments correspond to the arguments which can be deduced
+from the following ones. Thus when one applies these functions to
+arguments, one can omit the implicit ones. They are then automatically
+replaced by symbols ``?'', to be inferred by the mechanism of
+synthesis of implicit arguments.
+
+<H4>
+<TT>Set Implicit Arguments.
+</TT></H4>
+
+<A NAME="@default87"></A><A NAME="@command47"></A>
+<A NAME="Implicit Arguments"></A>
+This command switches the automatic implicit arguments
+mode on. To switch it off, use <TT>Unset Implicit Arguments.</TT>.
+The mode is off by default.<BR>
+<BR>
+The computation of implicit arguments takes account of the
+unfolding of constants. For instance, the variable <TT>p</TT> below has
+a type <TT>(Transitivity R)</TT> which is reducible to <TT>(x,y:U)(R x
+y) -&gt; (z:U)(R y z) -&gt; (R x z)</TT>. As the variables <TT>x</TT>, <TT>y</TT> and
+<TT>z</TT> appear in the body of the type, they are said implicit; they
+correspond respectively to the positions <TT>1</TT>, <TT>2</TT> and <TT>4</TT>.<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Set&nbsp;Implicit&nbsp;Arguments.</TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;X&nbsp;:&nbsp;Type.</TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;Definition&nbsp;Relation&nbsp;:=&nbsp;X&nbsp;-&gt;&nbsp;X&nbsp;-&gt;&nbsp;Prop.</TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;Definition&nbsp;Transitivity&nbsp;:=&nbsp;[R:Relation]</TT><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(x,y:X)(R&nbsp;x&nbsp;y)&nbsp;-&gt;&nbsp;(z:X)(R&nbsp;y&nbsp;z)&nbsp;-&gt;&nbsp;(R&nbsp;x&nbsp;z).</TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;Variables&nbsp;R:Relation;&nbsp;p:(Transitivity&nbsp;R).</TT><BR>
+</DIV>
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Print&nbsp;p.</TT><BR>
+<TT><I>***&nbsp;[&nbsp;p&nbsp;:&nbsp;(Transitivity&nbsp;R)&nbsp;]</I></TT><BR>
+<TT><I>Positions&nbsp;[1;&nbsp;2;&nbsp;4]&nbsp;are&nbsp;implicit</I></TT><BR>
+</DIV>
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Variables&nbsp;a,b,c:X;&nbsp;&nbsp;r1:(R&nbsp;a&nbsp;b);&nbsp;r2:(R&nbsp;b&nbsp;c).</TT><BR>
+</DIV>
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;(p&nbsp;r1&nbsp;r2).</TT><BR>
+<TT><I>(p&nbsp;r1&nbsp;r2)</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(R&nbsp;a&nbsp;c)</I></TT><BR>
+</DIV>
+
+
+<H4>
+Explicit Applications
+</H4>
+
+<A NAME="@default88"></A><A NAME="@command48"></A>
+<A NAME="Implicits-explicitation"></A>
+The mechanism of synthesis of implicit arguments is not complete, so
+we have sometimes to give explicitly certain implicit arguments of an
+application. The syntax is <TT><I>i</I>!</TT><I><FONT COLOR=maroon>term</FONT></I> where <I>i</I> is the position
+of an implicit argument and <I><FONT COLOR=maroon>term</FONT></I> is its corresponding explicit
+term. The number <I>i</I> is called <EM>explicitation number</EM>. We can
+also give all the arguments of an application, we have then to write
+<TT>(!</TT><I><FONT COLOR=maroon>ident</FONT></I><TT>&nbsp;</TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT>..</TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT>)</TT>.<BR>
+<B>Error message: </B><OL type=1><LI>
+<TT>Bad explicitation number</TT><A NAME="@error15"></A>
+</OL><BR>
+<B>Example: </B><BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;(p&nbsp;r1&nbsp;4!c).</TT><BR>
+<TT><I>(p&nbsp;r1&nbsp;4!c)</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(R&nbsp;b&nbsp;c)-&gt;(R&nbsp;a&nbsp;c)</I></TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;(!p&nbsp;a&nbsp;b&nbsp;r1&nbsp;c&nbsp;r2).</TT><BR>
+<TT><I>(p&nbsp;r1&nbsp;r2)</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(R&nbsp;a&nbsp;c)</I></TT><BR>
+</DIV>
+
+
+<H4>
+Implicit Arguments and Pretty-Printing
+</H4>
+
+The basic pretty-printing rules hide the implicit arguments of an
+application. However an implicit argument <I><FONT COLOR=maroon>term</FONT></I> of an application
+which is not followed by any explicit argument is printed as follows
+<I>i</I>!<I><FONT COLOR=maroon>term</FONT></I> where <I>i</I> is its position.
+
+<H3>
+
+2.8.2&nbsp;User-defined implicit arguments: <TT>Syntactic definition</TT>
+</H3>
+
+<A NAME="@default89"></A><A NAME="@command49"></A>
+<A NAME="Syntactic-Definition"></A>
+The syntactic definitions define syntactic constants, i.e. give a name
+to a term possibly untyped but syntactically correct. Their syntax
+is:<BR>
+<DIV ALIGN=center>
+<CODE>Syntactic Definition</CODE> <I>name</I> <CODE>:=</CODE> <I>term</I> <CODE>.</CODE><BR>
+</DIV><BR>
+Syntactic definitions behave like macros: every occurrence of a
+syntactic constant in an expression is immediately replaced by its
+body.<BR>
+<BR>
+Let us extend our functional language with the definition of the
+identity function:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Definition&nbsp;explicit_id&nbsp;:=&nbsp;[A:Set][a:A]a.</TT><BR>
+<TT><I>explicit_id&nbsp;is&nbsp;defined</I></TT><BR>
+</DIV>
+<BR>
+<A NAME="@default90"></A>
+We declare also a syntactic definition <TT>id</TT>:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Syntactic&nbsp;Definition&nbsp;id&nbsp;:=&nbsp;(explicit_id&nbsp;?).</TT><BR>
+</DIV>
+<BR>
+The term <TT>(explicit_id ?)</TT> is untyped since the implicit
+arguments cannot be synthesized. There is no type check during this
+definition. Let us see what happens when we use a syntactic constant
+in an expression like in the following example.<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;(id&nbsp;O).</TT><BR>
+<TT><I>(explicit_id&nbsp;nat&nbsp;(0))</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;nat</I></TT><BR>
+</DIV>
+<BR>
+First the syntactic constant <TT>id</TT> is replaced by its
+body <TT>(explicit_id ?)</TT> in the expression. Then the resulting
+expression is evaluated by the typechecker, which fills in
+``<CODE>?</CODE>'' place-holders.<BR>
+<BR>
+The standard usage of syntactic definitions is to give names to terms
+applied to implicit arguments ``<CODE>?</CODE>''. In this case, a special
+command is provided:<BR>
+<DIV ALIGN=center>
+<CODE>Syntactic Definition</CODE> <I>name</I> <CODE>:=</CODE> <I>term</I> <CODE>|</CODE> <I>n</I> <CODE>.</CODE><BR>
+</DIV><BR>
+The body of the syntactic constant is <I>term</I> applied to <I>n</I>
+place-holders ``<CODE>?</CODE>''.<BR>
+<BR>
+We can define a new syntactic definition <TT>id1</TT> for <TT>explicit_id</TT> using this command. We changed the name of the
+syntactic constant in order to avoid a name conflict with <TT>id</TT>.<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Syntactic&nbsp;Definition&nbsp;id1&nbsp;:=&nbsp;explicit_id&nbsp;|&nbsp;1.</TT><BR>
+</DIV>
+<BR>
+The new syntactic constant <TT>id1</TT> has the same behavior as <TT>id</TT>:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;(id1&nbsp;O).</TT><BR>
+<TT><I>(explicit_id&nbsp;nat&nbsp;(0))</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;nat</I></TT><BR>
+</DIV>
+<BR>
+<B>Warnings: </B><OL type=1><LI>
+Syntactic constants defined inside a section are no longer
+ available after closing the section.
+<LI>You cannot see the body of a syntactic constant with a <TT>Print</TT> command.
+</OL>
+
+<H3>
+
+2.8.3&nbsp;Canonical structures
+</H3>
+
+A canonical structure is an instance of a record/structure type that
+can be used to solve equations involving implicit arguments. Assume
+that <I><FONT COLOR=maroon>qualid</FONT></I> denotes an object (<I>Build</I>_<I>struc</I>&nbsp; <I>c</I><SUB><FONT SIZE=2>1</FONT></SUB>&nbsp; ...&nbsp; <I>c</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>) in the
+structure <EM>struct</EM> of which the fields are <I>x</I><SUB><FONT SIZE=2>1</FONT></SUB>, ...,
+<I>x</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>. Assume that <I><FONT COLOR=maroon>qualid</FONT></I> is declared as a canonical structure
+using the command<BR>
+<BR>
+<BR>
+<BR>
+<TT>Canonical Structure </TT><I><FONT COLOR=maroon>qualid</FONT></I><TT>.</TT>
+<A NAME="@default91"></A><A NAME="@command50"></A>
+<BR>
+<BR>
+<BR>
+<BR>
+Then, each time an equation of the form (<I>x</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB>&nbsp;
+?)=<SUB><FONT SIZE=2><FONT FACE=symbol>b</FONT><FONT FACE=symbol>d</FONT><FONT FACE=symbol>i</FONT><FONT FACE=symbol>z</FONT></FONT></SUB><I>c</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB> has to be solved during the
+type-checking process, <I><FONT COLOR=maroon>qualid</FONT></I> is used as a solution. Otherwise
+said, <I><FONT COLOR=maroon>qualid</FONT></I> is canonically used to equip the field <I>c</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB> into a
+complete structure built on <I>c</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB>.<BR>
+<BR>
+Canonical structures are particularly useful when mixed with
+coercions and implicit arguments. Here is an example.<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Require&nbsp;Relations.</TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;Require&nbsp;EqNat.</TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;Set&nbsp;Implicit&nbsp;Arguments.</TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;Structure&nbsp;Setoid&nbsp;:&nbsp;Type&nbsp;:=</TT><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;{Carrier&nbsp;&nbsp;&nbsp;:&gt;&nbsp;Set;</TT><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Equal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(relation&nbsp;Carrier);</TT><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Prf_equiv&nbsp;:&nbsp;(equivalence&nbsp;Carrier&nbsp;Equal)}.</TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;Definition&nbsp;is_law&nbsp;:=&nbsp;[A,B:Setoid][f:A-&gt;B]</TT><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;(x,y:A)&nbsp;(Equal&nbsp;x&nbsp;y)&nbsp;-&gt;&nbsp;(Equal&nbsp;(f&nbsp;x)&nbsp;(f&nbsp;y)).</TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;Axiom&nbsp;eq_nat_equiv&nbsp;:&nbsp;(equivalence&nbsp;nat&nbsp;eq_nat).</TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;Definition&nbsp;nat_setoid&nbsp;:&nbsp;Setoid&nbsp;:=&nbsp;(Build_Setoid&nbsp;eq_nat_equiv).</TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;Canonical&nbsp;Structure&nbsp;nat_setoid.</TT><BR>
+</DIV>
+<BR>
+Thanks to <TT>nat_setoid</TT> declared as canonical, the implicit
+arguments <TT>A</TT> and <TT>B</TT> can be synthesized in the next statement.<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Lemma&nbsp;is_law_S&nbsp;:&nbsp;(is_law&nbsp;S).</TT><BR>
+<TT><I>1&nbsp;subgoal</I></TT><BR>
+<TT><I>&nbsp;&nbsp;</I></TT><BR>
+<TT><I>&nbsp;&nbsp;============================</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;(is_law&nbsp;1!nat_setoid&nbsp;2!nat_setoid&nbsp;S)</I></TT><BR>
+</DIV>
+<BR>
+<B>Remark: </B>If a same field occurs in several canonical structure, then
+only the structure declared first as canonical is considered.<BR>
+<B>Variants: </B><OL type=1><LI>
+<TT>Canonical Structure </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> := </TT><I><FONT COLOR=maroon>term</FONT></I><TT> : </TT><I><FONT COLOR=maroon>type</FONT></I><TT>.</TT><BR>
+<TT>Canonical Structure </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> := </TT><I><FONT COLOR=maroon>term</FONT></I><TT>.</TT><BR>
+<TT>Canonical Structure </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> : </TT><I><FONT COLOR=maroon>type</FONT></I><TT> := </TT><I><FONT COLOR=maroon>term</FONT></I><TT>.</TT><BR>
+These are equivalent to a regular definition of <I><FONT COLOR=maroon>ident</FONT></I> followed by
+the declaration <BR>
+<BR>
+<TT>Canonical Structure </TT><I><FONT COLOR=maroon>ident</FONT></I>.
+</OL><BR>
+<B>See also: </B>more examples in user contribution <TT>category</TT>
+(<TT>Rocq/ALGEBRA</TT>).<BR>
+<BR>
+<HR>
+
+<A HREF="node.0.1.6.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.0.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.1.8.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

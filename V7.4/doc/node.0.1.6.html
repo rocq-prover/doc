@@ -1,0 +1,126 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+2.7&nbsp;Qualified names
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.0.1.5.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.0.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.1.7.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+2.7&nbsp;Qualified names
+</H2>
+
+
+
+<A NAME="LongNames"></A>
+<A NAME="@default84"></A>
+<A NAME="@default85"></A>
+Modules contain constructions (axioms, parameters,
+definitions, lemmas, theorems, remarks or facts). The (full) name of a
+construction starts with the logical name of the module in which it is defined
+followed by the (short) name of the construction.
+Typically, <TT>Coq.Init.Logic.eq</TT> denotes Leibniz' equality
+defined in the module <TT>Logic</TT> in the sublibrary <TT>Init</TT> of the
+standard library of <FONT COLOR=purple>Coq</FONT>.
+
+<H5>
+Absolute and short names
+</H5>
+
+The full name of a library, module, section, definition, theorem,
+... is called <I>absolute name</I>. 
+The final identifier (in the example
+above, it is <TT>eq</TT>) is called <I>short name</I> (or sometimes <I>base name</I>). <FONT COLOR=purple>Coq</FONT> maintains a <I>names table</I> mapping short names
+to absolute names. This greatly simplifies the notations. <FONT COLOR=purple>Coq</FONT>
+cannot accept two constructions (definition, theorem, ...) with the
+same absolute name.
+
+<H5>
+The special case of remarks and facts
+</H5>
+
+In contrast with definitions, lemmas, theorems, axioms and parameters,
+the absolute name of remarks includes the segment of sections in which
+it is defined. Concretely, if a remark <TT>R</TT> is defined in
+subsection <TT>S2</TT> of section <TT>S1</TT> in module <TT>M</TT>, then its
+absolute name is <TT>M.S1.S2.R</TT>. The same for facts, except that the
+name of the innermost section is dropped from the full name. Then, if
+a fact <TT>F</TT> is defined in subsection <TT>S2</TT> of section <TT>S1</TT>
+in module <TT>M</TT>, then its absolute name is <TT>M.S1.F</TT>.
+
+<H5>
+Visibility and qualified names
+</H5>
+
+An absolute name is called <I>visible</I> when its base name suffices
+to denote it. This means the base name is mapped to the absolute name
+in <FONT COLOR=purple>Coq</FONT> name table.<BR>
+<BR>
+All the base names of definitions and
+theorems are automatically put in the <FONT COLOR=purple>Coq</FONT> name table. But
+sometimes, the short name of a construction defined in a module may
+hide the short name of another construction defined in another module.
+Instead of just distinguishing the clashing names by using the
+absolute names, it is enough to prefix the base name just by the name
+of the module in which the definition, theorem, ... is defined.
+Such a name built from single identifiers separated by dots is called
+a <EM>partially qualified name</EM> (or shortly a <EM>qualified name</EM>,
+written <I><FONT COLOR=maroon>qualid</FONT></I>). Especially, both absolute names and short names
+are qualified names. To ensure that a construction always remains
+accessible, absolute names can never be hidden.<BR>
+<BR>
+Examples:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;O.</TT><BR>
+<TT><I>(0)</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;nat</I></TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;Definition&nbsp;nat&nbsp;:=&nbsp;bool.</TT><BR>
+<TT><I>nat&nbsp;is&nbsp;defined</I></TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;O.</TT><BR>
+<TT><I>(0)</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Datatypes.nat</I></TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;Datatypes.nat.</TT><BR>
+<TT><I>Datatypes.nat</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Set</I></TT><BR>
+</DIV>
+<BR>
+<B>Remark: </B>There is also a names table for sublibraries, modules and sections.
+
+<H5>
+Requiring a file
+</H5>
+
+A module compiled in a ``.vo'' file comes with a logical names (e.g. 
+physical file <CODE>theories/Init/Datatypes.vo</CODE> in <FONT COLOR=purple>Coq</FONT> installation directory contains logical module <TT>Coq.Init.Datatypes</TT>). 
+When requiring the file, the mapping between physical directories and logical library should be consistent with the mapping used to compile the file (for modules of the standard library, this is automatic -- check it by typing <TT>Print LoadPath</TT>).<BR>
+<BR>
+The command <TT>Add Rec LoadPath</TT> is also available from <TT>coqtop</TT>
+and <TT>coqc</TT> by using option&nbsp;<CODE>-R</CODE>.<BR>
+<BR>
+<HR>
+
+<A HREF="node.0.1.5.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.0.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.1.7.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

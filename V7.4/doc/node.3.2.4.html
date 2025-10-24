@@ -1,0 +1,84 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+14.5&nbsp;Pattern-matching on inductive objects involving local
+definitions
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.2.3.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.2.5.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+14.5&nbsp;Pattern-matching on inductive objects involving local
+definitions
+</H2>
+
+
+
+If local definitions occur in the type of a constructor, then there
+are two ways to match on this constructor. Either the local
+definitions are skipped and matching is done only on the true arguments
+of the constructors, or the bindings for local definitions can also
+be caught in the matching.<BR>
+<BR>
+Example.<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Inductive&nbsp;list&nbsp;:&nbsp;nat&nbsp;-&gt;&nbsp;Set&nbsp;:=</TT><BR>
+<TT>Coq&nbsp;&lt;&nbsp;|&nbsp;nil&nbsp;:&nbsp;(list&nbsp;O)</TT><BR>
+<TT>Coq&nbsp;&lt;&nbsp;|&nbsp;cons&nbsp;:&nbsp;(n:nat)[m:=(mult&nbsp;(2)&nbsp;n)](list&nbsp;m)-&gt;(list&nbsp;(S&nbsp;(S&nbsp;m))).</TT><BR>
+</DIV>
+<BR>
+In the next example, the local definition is not caught.<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Fixpoint&nbsp;length&nbsp;[n;&nbsp;l:(list&nbsp;n)]&nbsp;:&nbsp;nat&nbsp;:=</TT><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Cases&nbsp;l&nbsp;of</TT><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nil&nbsp;=&gt;&nbsp;O</TT><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;|&nbsp;(cons&nbsp;n&nbsp;l0)&nbsp;=&gt;&nbsp;(S&nbsp;(length&nbsp;(mult&nbsp;(2)&nbsp;n)&nbsp;l0))</TT><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;end.</TT><BR>
+<TT><I>length&nbsp;is&nbsp;recursively&nbsp;defined</I></TT><BR>
+</DIV>
+<BR>
+But in this example, it is.<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Fixpoint&nbsp;length'&nbsp;[n;&nbsp;l:(list&nbsp;n)]&nbsp;:&nbsp;nat&nbsp;:=</TT><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Cases&nbsp;l&nbsp;of</TT><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nil&nbsp;=&gt;&nbsp;O</TT><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;|&nbsp;(cons&nbsp;_&nbsp;m&nbsp;l0)&nbsp;=&gt;&nbsp;(S&nbsp;(length'&nbsp;m&nbsp;l0))</TT><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;end.</TT><BR>
+<TT><I>length'&nbsp;is&nbsp;recursively&nbsp;defined</I></TT><BR>
+</DIV>
+<BR>
+<B>Remark: </B>for a given matching clause, either none of the local
+definitions or all of them can be caught.<BR>
+<BR>
+
+ <HR>
+
+<A HREF="node.3.2.3.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.2.5.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

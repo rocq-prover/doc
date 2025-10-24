@@ -1,0 +1,74 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+14.6&nbsp;Pattern-matching and coercions
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.2.4.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.2.6.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+14.6&nbsp;Pattern-matching and coercions
+</H2>
+
+
+
+If a mismatch occurs between the expected type of a pattern and its
+actual type, a coercion made from constructors is sought. If such a
+coercion can be found, it is automatically inserted around the
+pattern.<BR>
+<BR>
+Example:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Inductive&nbsp;I&nbsp;:&nbsp;Set&nbsp;:=</TT><BR>
+<TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;C1&nbsp;:&nbsp;nat&nbsp;-&gt;&nbsp;I</TT><BR>
+<TT>Coq&nbsp;&lt;&nbsp;|&nbsp;C2&nbsp;:&nbsp;I&nbsp;-&gt;&nbsp;I.</TT><BR>
+<TT><I>I&nbsp;is&nbsp;defined</I></TT><BR>
+<TT><I>I_rect&nbsp;is&nbsp;defined</I></TT><BR>
+<TT><I>I_ind&nbsp;is&nbsp;defined</I></TT><BR>
+<TT><I>I_rec&nbsp;is&nbsp;defined</I></TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;Coercion&nbsp;C1&nbsp;:&nbsp;nat&nbsp;&gt;-&gt;&nbsp;I.</TT><BR>
+<TT><I>C1&nbsp;is&nbsp;now&nbsp;a&nbsp;coercion</I></TT><BR><BR>
+<TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;[x]Cases&nbsp;x&nbsp;of&nbsp;(C2&nbsp;O)&nbsp;=&gt;&nbsp;O&nbsp;|&nbsp;_&nbsp;=&gt;&nbsp;O&nbsp;end.</TT><BR>
+<TT><I>[x:I]</I></TT><BR>
+<TT><I>&nbsp;Cases&nbsp;x&nbsp;of</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;(C1&nbsp;_)&nbsp;=&gt;&nbsp;(0)</I></TT><BR>
+<TT><I>&nbsp;|&nbsp;(C2&nbsp;i)&nbsp;=&gt;&nbsp;</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;Cases&nbsp;i&nbsp;of</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(C1&nbsp;n)&nbsp;=&gt;&nbsp;Cases&nbsp;n&nbsp;of</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(0)&nbsp;=&gt;&nbsp;(0)</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;((S&nbsp;_))&nbsp;=&gt;&nbsp;(0)</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(C2&nbsp;_)&nbsp;=&gt;&nbsp;(0)</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;end</I></TT><BR>
+<TT><I>&nbsp;end</I></TT><BR>
+<TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;I-&gt;nat</I></TT><BR>
+</DIV>
+<BR>
+
+ <HR>
+
+<A HREF="node.3.2.4.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.2.6.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

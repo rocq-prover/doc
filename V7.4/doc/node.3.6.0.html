@@ -1,0 +1,84 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+18.1&nbsp;Generating ML code
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.6.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.6.1.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+18.1&nbsp;Generating ML code
+</H2>
+
+
+
+<A NAME="@default624"></A><A NAME="@command181"></A>
+<A NAME="@default625"></A><A NAME="@command182"></A>
+<A NAME="@default626"></A><A NAME="@command183"></A>
+<A NAME="@default627"></A><A NAME="@command184"></A>
+The next two commands are meant to be used for rapid preview of
+extraction. They both display extracted term(s) inside <FONT COLOR=purple>Coq</FONT>.
+<DL COMPACT=compact><DT><DD><TT>Extraction </TT><I><FONT COLOR=maroon>qualid</FONT></I><TT>.</TT> &nbsp;<BR>
+<BR>
+Extracts one term in the <FONT COLOR=purple>Coq</FONT> toplevel.<BR>
+<BR>
+<DT><DD><TT>Recursive Extraction </TT><I><FONT COLOR=maroon>qualid</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> ... </TT><I><FONT COLOR=maroon>qualid</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT>.</TT> &nbsp;<BR>
+<BR>
+Recursive extraction of all the globals <I><FONT COLOR=maroon>qualid</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> ...
+ <I><FONT COLOR=maroon>qualid</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> and all their dependencies in the <FONT COLOR=purple>Coq</FONT> toplevel.
+</DL>
+All the following commands produce real ML files. User can choose to produce
+one monolithic file or one file per <FONT COLOR=purple>Coq</FONT> module. 
+<DL COMPACT=compact><DT><DD><TT>Extraction "<EM>file</EM>"</TT> 
+ <I><FONT COLOR=maroon>qualid</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> ... <I><FONT COLOR=maroon>qualid</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>. &nbsp;<BR>
+<BR>
+Recursive extraction of all the globals <I><FONT COLOR=maroon>qualid</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> ...
+ <I><FONT COLOR=maroon>qualid</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> and all their dependencies in one monolithic file <EM>file</EM>.
+ Global and local identifiers are renamed according to the choosen ML
+ language to fullfill its syntactic conventions, keeping original
+ names as much as possible.<BR>
+<BR>
+<DT><DD><TT>Extraction Module</TT> <I><FONT COLOR=maroon>ident</FONT></I>. &nbsp;<BR>
+<BR>
+Extraction of the <FONT COLOR=purple>Coq</FONT> module <I><FONT COLOR=maroon>ident</FONT></I> to an ML module <TT></TT><I><FONT COLOR=maroon>ident</FONT></I><TT>.ml</TT>.
+ In case of name clash, identifiers are here renamed using prefixes
+ <CODE>coq_</CODE> 
+ or <CODE>Coq_</CODE> to ensure a session-independent renaming.<BR>
+<BR>
+<DT><DD><TT>Recursive Extraction Module</TT> <I><FONT COLOR=maroon>ident</FONT></I>. &nbsp;<BR>
+<BR>
+Extraction of the <FONT COLOR=purple>Coq</FONT> module <I><FONT COLOR=maroon>ident</FONT></I> and all other modules <I><FONT COLOR=maroon>ident</FONT></I>
+ depends on. 
+</DL>
+The list of globals <I><FONT COLOR=maroon>qualid</FONT></I><SUB><FONT SIZE=2><I>i</I></FONT></SUB> does not need to be
+exhaustive: it is automatically completed into a complete and minimal
+environment. Extraction will fail if it encounters an informative
+axiom not realized (see section <A HREF="node.3.6.1.html#extraction:axioms">18.2.3</A>). 
+A warning will be issued if it encounters an logical axiom, to remind 
+user that inconsistant logical axioms may lead to incorrect or 
+non-terminating extracted terms. <BR>
+<BR>
+
+ <HR>
+
+<A HREF="node.3.6.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.6.1.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>
