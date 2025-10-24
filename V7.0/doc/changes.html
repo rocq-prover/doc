@@ -1,0 +1,742 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD><TITLE></TITLE>
+<META http-equiv="Content-Type" content="text/html; charset= ISO-8859-1">
+</HEAD>
+<BODY BGCOLOR=silver TEXT=black>
+<!--HTMLHEAD-->
+<!--ENDHTML-->
+<!--CUT DEF section 1 -->
+<BR>
+<BR>
+
+<DIV ALIGN=center>
+<FONT SIZE=6>
+</FONT><FONT SIZE=6><B>
+The Coq Proof Assistant<BR><BR>
+ Changes from </B></FONT><FONT SIZE=6><B><FONT COLOR=purple>Coq</FONT></B></FONT><FONT SIZE=6><B> V6.3.1 to </B></FONT><FONT SIZE=6><B><FONT COLOR=purple>Coq</FONT></B></FONT><FONT SIZE=6><B> V7<BR></B></FONT><FONT SIZE=6>
+</FONT>
+</DIV>
+<BR>
+<BR>
+<BR>
+<!--TOC section Overview-->
+
+<H2>Overview</H2>The new major version number is justified by a deep restructuration of
+the implementation code of <FONT COLOR=purple>Coq</FONT>. For the end-user, <FONT COLOR=purple>Coq</FONT>
+V7 provides the following novelties:<BR>
+<BR>
+<UL>
+<LI>
+A more high-level tactic language called <FONT COLOR=red> <I>L</I></FONT><SUB><FONT SIZE=2><I>tac</I></FONT></SUB> (see
+section&nbsp;<A HREF="#Tactics">2</A>)
+
+<LI>A primitive let-in construction (see section <A HREF="#Letin">1.1</A>)
+which can also be used in <TT>Record</TT> definitions
+ (as suggested by Randy Pollack)
+
+<LI>Structuration of the developments in libraries and use of the
+dot notation to access names (see section <A HREF="#Names">1.2</A>)
+
+<LI>A search facilities by pattern
+provided by Yves Bertot (see section <A HREF="#Search">3.1</A>)
+
+<LI>A ``natural'' syntax for real numbers (see section
+<A HREF="#SyntaxExtensions">1.3</A>) 
+
+<LI>New tactics (and developments) for real numbers 
+(see section&nbsp;<A HREF="#NewTactics">2.2</A>)
+
+<LI>The tactic <TT>Field</TT> which solves equalities using commutative field
+theory (see section&nbsp;<A HREF="#NewTactics">2.2</A>)
+
+<LI>The tactic <TT>Fourier</TT> to solve inequalities, developed by
+ Loïc Pottier has been integrated
+
+<LI>A command to export theories to XML to
+be used with Helm's publishing and rendering tools (see section
+<A HREF="#XML">3.2</A>)
+
+<LI>A new implementation of extraction (see section <A HREF="#Extraction">5</A>)
+</UL>Incompatibilities are described in section
+<A HREF="#Incompatibilities">7</A>. Please notice that 
+<TT>Program/Realizer</TT> is no more available in <FONT COLOR=purple>Coq</FONT> V7.<BR>
+<BR>
+Developers of tactics in ML are invited to read section
+<A HREF="#Developers">6</A>.<BR>
+<BR>
+<!--TOC paragraph Changes between <FONT COLOR=purple>Coq</FONT> V7beta and <FONT COLOR=purple>Coq</FONT> V7-->
+
+<H5> Changes between <FONT COLOR=purple>Coq</FONT> V7beta and <FONT COLOR=purple>Coq</FONT> V7</H5>
+Some functionalities of <FONT COLOR=purple>Coq</FONT> V6.3 that were not available in <FONT COLOR=purple>Coq</FONT>
+V7beta has been restored&nbsp;:
+<UL>
+<LI>
+A new mechanism for extraction of ML programs has been introduced.
+
+<LI><TT>Correctness</TT> is now supported.
+
+<LI>Syntax for user-defined tactics calls does not require extra
+ parenthesis.
+
+<LI><TT>Elim</TT> can be called even for non-inductive objects
+ when the apropriate elimination lemma exists.
+
+<LI>User defined tokens with arbitrary combination of letters and
+ symbols have been reintroduced.
+</UL>
+<!--TOC section Language-->
+
+<H2>1&nbsp;&nbsp; Language</H2>
+<A NAME="Language"></A>
+<!--TOC subsection Primitive <TT>let ... in ...</TT> construction-->
+
+<H3>1.1&nbsp;&nbsp; Primitive <TT>let ... in ...</TT> construction</H3>
+<A NAME="Letin"></A>
+The <TT>let ... in ...</TT> syntax in V6.3.1 was implemented as a
+macro. It is now a first-class construction.<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Require&nbsp;ZArith.</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Definition&nbsp;eight&nbsp;:=&nbsp;[two:=`1&nbsp;+&nbsp;1`][four:=`two&nbsp;+&nbsp;two`]`four&nbsp;+&nbsp;four`.&nbsp;</TT><BR><TT><I>eight&nbsp;is&nbsp;defined</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Print&nbsp;eight.</TT><BR><TT><I>eight&nbsp;=&nbsp;[two:=`1+1`][four:=`two+two`]`four+four`</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Z</I></TT><BR></DIV>
+<BR>
+<TT>Local</TT> definitions and <TT>Remark</TT> inside a section now behaves
+as local definitions outside the section.<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Section&nbsp;A.</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Local&nbsp;two&nbsp;:=&nbsp;`1&nbsp;+&nbsp;1`.</TT><BR><TT><I>two&nbsp;is&nbsp;defined</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Definition&nbsp;four&nbsp;:=&nbsp;`two&nbsp;+&nbsp;two`.</TT><BR><TT><I>four&nbsp;is&nbsp;defined</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;End&nbsp;A.</TT><BR><TT><I>four&nbsp;is&nbsp;discharged.</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Print&nbsp;four.</TT><BR><TT><I>four&nbsp;=&nbsp;[two:=`1+1`]`two+two`</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Z</I></TT><BR></DIV>
+<BR>
+The unfolding of a reference with respect to a definition local to a section
+is performed by <FONT FACE=symbol>d</FONT> rule. But a ``<TT>let ... in ...</TT>'' inside a term
+is not concerned by <FONT FACE=symbol>d</FONT> reduction. Commands to finely reduce this
+kind of expression remain to be provided.
+<BR><!--TOC paragraph Alternative syntax-->
+
+<H5> Alternative syntax</H5>
+ A less symbolic but equivalent syntax is available as&nbsp;:<BR><TT>let
+two = `1 + 1` in `two + two`</TT>.<BR>
+<BR>
+<!--TOC paragraph Local definitions in records-->
+
+<H5> Local definitions in records</H5>
+<TT>Local</TT> definitions can be used inside record definitions as
+suggested by Randy Pollack&nbsp;:
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Record&nbsp;local_record&nbsp;:&nbsp;Set&nbsp;:=&nbsp;{x:nat;&nbsp;y:=O;&nbsp;H:x=y}.</TT><BR><TT><I>local_record&nbsp;is&nbsp;defined</I></TT><BR><TT><I>local_record_ind&nbsp;is&nbsp;defined</I></TT><BR><TT><I>local_record_rec&nbsp;is&nbsp;defined</I></TT><BR><TT><I>local_record_rect&nbsp;is&nbsp;defined</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Print&nbsp;local_record.</TT><BR><TT><I>Inductive&nbsp;local_record&nbsp;&nbsp;:&nbsp;Set&nbsp;:=</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Build_local_record&nbsp;:&nbsp;(x:nat)[y:=(0)]x=y-&gt;local_record</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Print&nbsp;x.</TT><BR><TT><I>x&nbsp;=&nbsp;</I></TT><BR><TT><I>[l:local_record]</I></TT><BR><TT><I>&nbsp;Cases&nbsp;l&nbsp;of&nbsp;(Build_local_record&nbsp;x&nbsp;x0)&nbsp;=&gt;&nbsp;([y:=(0)][_:(x=y)]x&nbsp;x0)&nbsp;end</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;local_record-&gt;nat</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Print&nbsp;y.</TT><BR><TT><I>y&nbsp;=&nbsp;[_:local_record](0)</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;local_record-&gt;nat</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;H.</TT><BR><TT><I>H</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(l:local_record)(x&nbsp;l)=(y&nbsp;l)</I></TT><BR></DIV>
+<BR>
+<!--TOC subsection Libraries and qualified names-->
+
+<H3>1.2&nbsp;&nbsp; Libraries and qualified names</H3>
+<A NAME="Names"></A><!--TOC paragraph Identifiers-->
+
+<H5> Identifiers</H5> An identifier is any string beginning by a
+letter and followed by letters, digits or simple quotes. The bug
+with identifiers ended by a number greater than 2<SUP><FONT SIZE=2>30</FONT></SUP> is fixed!<BR>
+<BR>
+<!--TOC paragraph Libraries-->
+
+<H5> Libraries</H5>The theories developed in <FONT COLOR=purple>Coq</FONT> are now stored in <I>libraries</I>. A
+library is characterized by a name called <I>root</I> of the
+library. By default, two libraries are defined at the beginning of a
+<FONT COLOR=purple>Coq</FONT> session. The first library has root name <TT>Coq</TT> and contains the
+standard library of <FONT COLOR=purple>Coq</FONT>. The second has root name <TT>Scratch</TT> and
+contains all definitions and theorems not explicitly put in a specific
+library. <BR>
+<BR>
+Libraries have a tree structure. Typically, the <TT>Coq</TT> library
+contains the (sub-)libraries <TT>Init</TT>, <TT>Logic</TT>, <TT>Arith</TT>,
+<TT>Lists</TT>, ... The ``dot notation'' is used to write
+(sub-)libraries. Typically, the <TT>Arith</TT> library of <FONT COLOR=purple>Coq</FONT> standard
+library is written ``<TT>Coq.Arith</TT>''.<BR>Remark: no space is allowed
+between the dot and the following identifier, otherwise the dot is
+interpreted as the final dot of the command!
+<BR>Libraries and sublibraries can be mapped to physical directories of the
+operating system using the command<BR>
+<BR>
+<BLOCKQUOTE>
+<TT>Add LoadPath </TT><TT><I>physical_dir</I></TT><TT> as </TT><TT><I>(sub-)library</I></TT>.
+</BLOCKQUOTE>Incidentally, if a <I>(sub-)library</I> does not already
+exists, it is created by the command. This allows users to define new
+root libraries.<BR>
+<BR>
+A library can inherit the tree structure of a physical directory by
+using the command<BR>
+<BR>
+<BLOCKQUOTE>
+<TT>Add Rec LoadPath </TT><TT><I>physical_dir</I></TT><TT> as </TT><TT><I>(sub-)library</I></TT>.
+</BLOCKQUOTE>At some point, (sub-)libraries contain <I>modules</I> which coincides
+with files at the physical level. Modules themselves may contain
+sections, subsections, ... and eventually definitions and theorems.<BR>
+<BR>
+As for sublibraries, the dot notation is used to denote a specific
+module, section, definition or theorem of a library. Typically, <TT>Coq.Init.Logic.Equality.eq</TT> denotes the Leibniz' equality defined in
+section <TT>Equality</TT> of the module <TT>Logic</TT> in the
+sublibrary <TT>Init</TT> of the standard library of <FONT COLOR=purple>Coq</FONT>. By
+this way, a module, section, definition or theorem name is now unique
+in <FONT COLOR=purple>Coq</FONT>.<BR>
+<BR>
+<!--TOC paragraph Absolute and short names-->
+
+<H5> Absolute and short names</H5>The full name of a library, module, section, definition or theorem is
+called <I>absolute</I>. The final identifier <TT>eq</TT> is called the
+<I>base name</I>. We call <I>short name</I> a name reduced to a single
+identifier. <FONT COLOR=purple>Coq</FONT> maintains a <I>name table</I> mapping short names
+to absolute names. This greatly simplifies the notations and preserves
+compatibility with the previous versions of <FONT COLOR=purple>Coq</FONT>.<BR>
+<BR>
+<!--TOC paragraph Visibility and qualified names-->
+
+<H5> Visibility and qualified names</H5>
+An absolute path is called <I>visible</I> when its base name suffices
+to denote it. This means the base name is mapped to the absolute name
+in <FONT COLOR=purple>Coq</FONT> name table.<BR>
+<BR>
+All the base names of sublibraries, modules, sections, definitions and
+theorems are automatically put in the <FONT COLOR=purple>Coq</FONT> name table. But sometimes,
+names used in a module can hide names defined in another module.
+Instead of just distinguishing the clashing names by using the
+absolute names, it is enough to prefix the base name just by the name
+of its containing section (or module or library). 
+Such a name built from
+single identifiers separated by dots is called a <I>qualified</I>
+name. Especially, both absolute names and short names are qualified
+names. Root names cannot be hidden in such a way fully qualified
+(i.e. absolute names) cannot be hidden.<BR>
+<BR>
+Examples:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;O.</TT><BR><TT><I>O</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;nat</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Definition&nbsp;nat&nbsp;:=&nbsp;bool.</TT><BR><TT><I>nat&nbsp;is&nbsp;defined</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;O.</TT><BR><TT><I>O</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Datatypes.nat</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;Datatypes.nat.</TT><BR><TT><I>Datatypes.nat</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Set</I></TT><BR></DIV>
+<BR>
+<!--TOC paragraph Requiring a file-->
+
+<H5> Requiring a file</H5>When a ``.vo'' file is required in a physical directory mapped to some
+(sub-)library, it is adequately mapped in the whole library structure
+known by <FONT COLOR=purple>Coq</FONT>. However, no consistency check is currently done to
+ensure the required module has actually been compiled with the same
+absolute name (e.g. a module can be compiled with absolute name
+<TT>Mycontrib.Arith.Plus</TT> but required with absolute name
+<TT>HisContrib.ZArith.Plus</TT>).<BR>
+<BR>
+The command <TT>Add Rec LoadPath</TT> is also available from <TT>coqtop</TT>
+and <TT>coqc</TT> by using option <CODE>-R</CODE> (see section <A HREF="#Tools">4</A>).<BR>
+<BR>
+<!--TOC subsection Syntax extensions-->
+
+<H3>1.3&nbsp;&nbsp; Syntax extensions</H3>
+<A NAME="SyntaxExtensions"></A><!--TOC paragraph ``Natural'' syntax for real numbers-->
+
+<H5> ``Natural'' syntax for real numbers</H5>
+A ``natural'' syntax for real numbers and operations on reals is now
+available by putting expressions inside pairs of backquotes.<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Require&nbsp;Reals.</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;``2*3/(4+2)``.</TT><BR><TT><I>``2*3/(4+2)``</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;R</I></TT><BR></DIV>
+
+Remark: A constant, say <CODE>``4``</CODE>, is equivalent to
+<CODE>``(1+(1+(1+1)))``</CODE>.<BR>
+<BR>
+<!--TOC paragraph <TT>Infix</TT>-->
+
+<H5> <TT>Infix</TT></H5> was inactive on pretty-printer. Now it works.<BR>
+<BR>
+<!--TOC paragraph Consecutive symbols-->
+
+<H5> Consecutive symbols</H5> are now considered as an unique token.
+Exceptions have been coded in the lexer to separate tokens we do not want to
+separate (for example <CODE>A-&gt;~B</CODE>), but this is not exhaustive and some spaces
+may have to be inserted in some cases which have not been treated
+(e.g. <CODE>~&lt;nat&gt;O=O</CODE> should now be written <CODE>~ &lt;nat&gt;O=O</CODE>).<BR>
+<BR>
+<!--TOC paragraph The <TT>command</TT> syntactic class for <TT>Grammar</TT>-->
+
+<H5> The <TT>command</TT> syntactic class for <TT>Grammar</TT></H5> has
+been renamed <TT>constr</TT> consistently with the usage for <TT>Syntax</TT>
+extensions. Entries <TT>command1</TT>, <TT>command2</TT>, ... are renamed
+accordingly. The type <TT>List</TT> in <TT>Grammar</TT> rules has been
+renamed <TT>ast list</TT>.<BR>
+<BR>
+<!--TOC paragraph Default parser in <TT>Grammar</TT> and <TT>Syntax</TT>-->
+
+<H5> Default parser in <TT>Grammar</TT> and <TT>Syntax</TT></H5>
+<A NAME="GrammarSyntax"></A>The default parser for right-hand-side of <TT>Grammar</TT> rules and for
+left-hand-side of <TT>Syntax</TT> rule was the <TT>ast</TT> parser. Now it
+is the one of same name as the syntactic class extended (i.e. <TT>constr</TT>, <TT>tactic</TT> or <TT>vernac</TT>). As a consequence, 
+<CODE>&lt;&lt; ... &gt;&gt;</CODE> should be removed.<BR>
+<BR>
+On the opposite, in rules expecting the <TT>ast</TT> parser,
+<CODE>&lt;&lt; ... &gt;&gt;</CODE> should be added in the left-hand-side of <TT>Syntax</TT> rule.
+As for <TT>Grammar</TT> rule, a typing constraint, <TT>ast</TT> or <TT>ast
+list</TT> needs to be explicitly given to force the use of the <TT>ast</TT>
+parser. For <TT>Grammar</TT> rule building a new syntactic class,
+different from <TT>constr</TT>, <TT>tactic</TT>, <TT>vernac</TT> or <TT>ast</TT>,
+any of the previous keyword can be used as type (and therefore as
+parser).<BR>
+<BR>
+See examples in appendix.<BR>
+<BR>
+<!--TOC paragraph Syntax overloading-->
+
+<H5> Syntax overloading</H5> Binding of constructions in Grammar rules is now done with absolute
+ paths. This means overloading of syntax for different constructions
+ having the same base name is no longer possible.<BR>
+<BR>
+<!--TOC paragraph Timing or abbreviating a sequence of commands-->
+
+<H5> Timing or abbreviating a sequence of commands</H5>The syntax <TT>[ </TT><TT><I>phrase</I></TT><SUB><TT><I><FONT SIZE=2>1</FONT></I></TT></SUB><TT> ... </TT><TT><I>phrase</I></TT><SUB><TT><I><FONT SIZE=2><I>n</I></FONT></I></TT></SUB><TT> ].</TT> is now
+available to group several commands into a single one (useful for
+<TT>Time</TT> or for grammar extensions abbreviating sequence of commands).<BR>
+<BR>
+<!--TOC subsection Miscellaneous-->
+
+<H3>1.4&nbsp;&nbsp; Miscellaneous</H3><!--TOC paragraph Pattern aliases-->
+
+<H5> Pattern aliases</H5> of dependent type in <CODE>Cases</CODE>
+expressions are currently not supported.<BR>
+<BR>
+<!--TOC subsection Libraries-->
+
+<H3>1.5&nbsp;&nbsp; Libraries</H3>
+The names of directories in <TT>theories</TT> has been changed. The
+directory <TT>theories/Zarith</TT> has been renamed
+<TT>theories/ZArith</TT> between <FONT COLOR=purple>Coq</FONT> V7.0beta and V7.0.<BR>
+<BR>
+A new directory <TT>theories/IntMap</TT> has been added which
+contains an efficient representation of finite sets 
+as maps indexed by binary integers. This development has been
+developed by J. Goubault and was previously an external contribution.<BR>
+<BR>
+Some definitions, lemmas and theorems have been added or reorganised,
+see the Library documentation for more information.<BR>
+<BR>
+<!--TOC section Tactics-->
+
+<H2>2&nbsp;&nbsp; Tactics</H2>
+<A NAME="Tactics"></A>
+<!--TOC subsection A tactic language: <FONT COLOR=red> <I>L</I></FONT><SUB><FONT SIZE=2><I>tac</I></FONT></SUB>-->
+
+<H3>2.1&nbsp;&nbsp; A tactic language: <FONT COLOR=red> <I>L</I></FONT><SUB><FONT SIZE=2><I>tac</I></FONT></SUB></H3><FONT COLOR=red> <I>L</I></FONT><SUB><FONT SIZE=2><I>tac</I></FONT></SUB> is a new layer of metalanguage to write tactics and especially to deal
+with small automations for which the use of the full programmable metalanguage
+(<FONT COLOR=purple>Objective&nbsp;Caml</FONT>) would be excessive. <FONT COLOR=red> <I>L</I></FONT><SUB><FONT SIZE=2><I>tac</I></FONT></SUB> is mainly a small functional core with
+recursors and elaborated matching operators for terms but also for proof
+contexts. This language can be directly used in proof scripts or in toplevel
+definitions (<TT>Tactic&nbsp;Definition</TT>). It has been noticed that non-trivial
+tactics can be written with <FONT COLOR=red> <I>L</I></FONT><SUB><FONT SIZE=2><I>tac</I></FONT></SUB> and to provide a Turing-complete
+programming framework, a quotation has been built to use <FONT COLOR=red> <I>L</I></FONT><SUB><FONT SIZE=2><I>tac</I></FONT></SUB> in <FONT COLOR=purple>Objective&nbsp;Caml</FONT>.
+<FONT COLOR=red> <I>L</I></FONT><SUB><FONT SIZE=2><I>tac</I></FONT></SUB> has been contributed by David Delahaye and, for more details, see the
+Reference Manual. Regarding the foundations of this language, the author page
+can be visited at the following URL:<BR><FONT COLOR=purple>http://logical.inria.fr/~delahaye/</FONT><BR>
+<BR>
+<!--TOC paragraph Tactic debuger-->
+
+<H5> Tactic debuger</H5> <!--TOC paragraph <TT>Debug </TT><TT>(</TT><TT> On </TT><TT>|</TT><TT> Off </TT><TT>)</TT>-->
+
+<H5> <TT>Debug </TT><TT>(</TT><TT> On </TT><TT>|</TT><TT> Off </TT><TT>)</TT></H5> turns on/off the tactic
+ debuger for <FONT COLOR=red> <I>L</I></FONT><SUB><FONT SIZE=2><I>tac</I></FONT></SUB>.
+ This is still very experimental and no documentation is provided yet.<BR>
+<BR>
+<!--TOC subsection New tactics-->
+
+<H3>2.2&nbsp;&nbsp; New tactics</H3>
+<A NAME="NewTactics"></A>
+ <!--TOC paragraph <TT>Field</TT>-->
+
+<H5> <TT>Field</TT></H5> written by David&nbsp;Delahaye and Micaela&nbsp;Mayero solves
+equalities using commutative field theory. This tactic is reflexive and has
+been implemented using essentially the new tactic language <FONT COLOR=red> <I>L</I></FONT><SUB><FONT SIZE=2><I>tac</I></FONT></SUB>. Only the
+table of field theories (as for the tactic <TT>Ring</TT>) is dealt by means of an
+ part. This tactic is currently used in the real number theory. For more
+details, see the Reference Manual.<BR>
+<BR>
+ <!--TOC paragraph <TT>Fourier</TT>-->
+
+<H5> <TT>Fourier</TT></H5> written by Loïc Pottier solves linear inequations.<BR>
+<BR>
+ <!--TOC paragraph Other tactics and developments-->
+
+<H5> Other tactics and developments</H5> has been included in the real
+numbers library: <TT>DiscrR</TT> proves that a real integer constant <I>c</I><SUB><FONT SIZE=2>1</FONT></SUB> is non 
+equal to another real integer constant <I>c</I><SUB><FONT SIZE=2>2</FONT></SUB>; <TT>SplitAbsolu</TT> allows us to 
+unfold <TT>Rabsolu</TT> contants and split corresponding conjonctions; 
+<TT>SplitRmult</TT> allows us to split a condition that a product is non equal to 
+zero into subgoals corresponding to the condition on each subterm of the 
+product. All these tactics have been written with the tactic language 
+<FONT COLOR=red> <I>L</I></FONT><SUB><FONT SIZE=2><I>tac</I></FONT></SUB>.<BR>A development on Cauchy series, power series,... has been also added.<BR>For more details, see the Reference Manual.<BR>
+<BR>
+<!--TOC subsection Changes in pre-existing tactics-->
+
+<H3>2.3&nbsp;&nbsp; Changes in pre-existing tactics</H3>
+<A NAME="TacticChanges"></A> <!--TOC paragraph <TT>Tauto</TT> and <TT>Intuition</TT>-->
+
+<H5> <TT>Tauto</TT> and <TT>Intuition</TT></H5> have been rewritten using the
+ new tactic language <FONT COLOR=red> <I>L</I></FONT><SUB><FONT SIZE=2><I>tac</I></FONT></SUB>. The code is now quite shorter and a significant
+ increase in performances has been noticed. <TT>Tauto</TT> has exactly the same
+ behavior. <TT>Intuition</TT> is slightly less powerful (w.r.t. to dependent
+ types which are now considered as atomic formulas) but it has clearer
+ semantics. This may lead to some incompatibilities.<BR>
+<BR>
+ <!--TOC paragraph <TT>Simpl</TT>-->
+
+<H5> <TT>Simpl</TT></H5> now simplifies mutually defined fixpoints
+ as expected (i.e. it does not introduce <TT>Fix id
+ {...}</TT> expressions).<BR>
+<BR>
+ <!--TOC paragraph <TT>AutoRewrite</TT>-->
+
+<H5> <TT>AutoRewrite</TT></H5> now applies only on main goal and the remaining
+ subgoals are handled by<TT>Hint&nbsp;Rewrite</TT>. The syntax is now:<BR> <TT>Hint Rewrite </TT><TT>(</TT><TT> -&gt; </TT><TT>|</TT><TT> &lt;- </TT><TT>)*</TT><TT> [ </TT><TT><I>term</I></TT><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> </TT><TT>...</TT><TT> </TT><TT><I>term</I></TT><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT> ] in
+ </TT><TT><I>ident</I></TT><TT> using </TT><TT><I>tac</I></TT><BR> Adds the terms <I>term</I><SUB><FONT SIZE=2>1</FONT></SUB> ... <I>term</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> (their types must be equalities) in
+ the rewriting database <I>ident</I> with the corresponding orientation (given by
+ the arrows; default is left to right) and the tactic <I>tac</I> which is applied
+ to the subgoals generated by a rewriting, the main subgoal excluded.<BR> <TT>AutoRewrite [ </TT><TT><I>ident</I></TT><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> </TT><TT>...</TT><TT> </TT><TT><I>ident</I></TT><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT> ] using </TT><TT><I>tac</I></TT><BR> Performs all the rewritings given by the databases <I>ident</I><SUB><FONT SIZE=2>1</FONT></SUB> ... <I>ident</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>
+ applying <I>tac</I> to the main subgoal after each rewriting step.<BR> See the contribution <TT>contrib/Rocq/DEMOS/Demo_AutoRewrite.v</TT> for
+ examples.<BR>
+<BR>
+ <!--TOC paragraph <TT>Intro </TT><TT><I>hyp</I></TT> and <B><TT>Intros </TT></B><B><TT><I>hyp</I></TT></B><SUB><B><TT><FONT SIZE=2>1</FONT></TT></B></SUB><B><TT> ... </TT></B><B><TT><I>hyp</I></TT></B><SUB><B><TT><FONT SIZE=2><I>n</I></FONT></TT></B></SUB>-->
+
+<H5> <TT>Intro </TT><TT><I>hyp</I></TT> and <B><TT>Intros </TT></B><B><TT><I>hyp</I></TT></B><SUB><B><TT><FONT SIZE=2>1</FONT></TT></B></SUB><B><TT> ... </TT></B><B><TT><I>hyp</I></TT></B><SUB><B><TT><FONT SIZE=2><I>n</I></FONT></TT></B></SUB></H5>
+ now fail if the hypothesis/variable name provided already exists.<BR>
+<BR>
+ <!--TOC paragraph <TT>Prolog</TT>-->
+
+<H5> <TT>Prolog</TT></H5> is now part of the core
+ system. Don't use <TT>Require Prolog</TT>.<BR>
+<BR>
+ <!--TOC paragraph <TT>Unfold</TT>-->
+
+<H5> <TT>Unfold</TT></H5> now fails when its argument is not an
+ unfoldable constant.<BR>
+<BR>
+ <!--TOC paragraph Tactic <TT>Let</TT>-->
+
+<H5> Tactic <TT>Let</TT></H5> has been renamed into <TT>LetTac</TT>
+ and it now relies on the primitive <TT>let-in</TT> constructions<BR>
+<BR>
+ <!--TOC paragraph <TT>Apply ... with ...</TT>-->
+
+<H5> <TT>Apply ... with ...</TT></H5> when instantiations are
+ redundant or incompatible now behaves smoothly.<BR>
+<BR>
+ <!--TOC paragraph <TT>Decompose</TT>-->
+
+<H5> <TT>Decompose</TT></H5> has now less bugs. Also hypotheses
+ are now numbered in order.<BR>
+<BR>
+ <!--TOC paragraph <TT>Linear</TT>-->
+
+<H5> <TT>Linear</TT></H5> seems to be very rarely used. It has not
+ been ported in <FONT COLOR=purple>Coq</FONT> V7.<BR>
+<BR>
+ <!--TOC paragraph <TT>Program/Realizer</TT>-->
+
+<H5> <TT>Program/Realizer</TT></H5> has not been ported in <FONT COLOR=purple>Coq</FONT> V7.<BR>
+<BR>
+<!--TOC section Toplevel commands-->
+
+<H2>3&nbsp;&nbsp; Toplevel commands</H2><!--TOC subsection Searching the environment-->
+
+<H3>3.1&nbsp;&nbsp; Searching the environment</H3>
+<A NAME="Search"></A>
+A new searching mechanism by pattern has been contributed by Yves Bertot.<BR>
+<BR>
+<!--TOC paragraph <TT>SearchPattern </TT><I><FONT COLOR=maroon>term</FONT></I>-->
+
+<H5> <TT>SearchPattern </TT><I><FONT COLOR=maroon>term</FONT></I></H5>
+displays the name and type of all theorems of the current
+context whose statement's conclusion matches the expression <I><FONT COLOR=maroon>term</FONT></I>
+where holes in the latter are denoted by ``<TT>?</TT>''.<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Require&nbsp;Arith.</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;SearchPattern&nbsp;(plus&nbsp;?&nbsp;?)=?.</TT><BR><TT><I>le_plus_minus_r:&nbsp;(n,m:nat)(le&nbsp;n&nbsp;m)-&gt;(plus&nbsp;n&nbsp;(minus&nbsp;m&nbsp;n))=m</I></TT><BR><TT><I>mult_n_Sm:&nbsp;(n,m:nat)(plus&nbsp;(mult&nbsp;n&nbsp;m)&nbsp;n)=(mult&nbsp;n&nbsp;(S&nbsp;m))</I></TT><BR><TT><I>plus_sym:&nbsp;(n,m:nat)(plus&nbsp;n&nbsp;m)=(plus&nbsp;m&nbsp;n)</I></TT><BR><TT><I>plus_Snm_nSm:&nbsp;(n,m:nat)(plus&nbsp;(S&nbsp;n)&nbsp;m)=(plus&nbsp;n&nbsp;(S&nbsp;m))</I></TT><BR><TT><I>plus_assoc_l:&nbsp;(n,m,p:nat)(plus&nbsp;n&nbsp;(plus&nbsp;m&nbsp;p))=(plus&nbsp;(plus&nbsp;n&nbsp;m)&nbsp;p)</I></TT><BR><TT><I>plus_permute:&nbsp;(n,m,p:nat)(plus&nbsp;n&nbsp;(plus&nbsp;m&nbsp;p))=(plus&nbsp;m&nbsp;(plus&nbsp;n&nbsp;p))</I></TT><BR><TT><I>plus_assoc_r:&nbsp;(n,m,p:nat)(plus&nbsp;(plus&nbsp;n&nbsp;m)&nbsp;p)=(plus&nbsp;n&nbsp;(plus&nbsp;m&nbsp;p))</I></TT><BR><TT><I>plus_permute_2_in_4:</I></TT><BR><TT><I>&nbsp;&nbsp;(a,b,c,d:nat)</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;(plus&nbsp;(plus&nbsp;a&nbsp;b)&nbsp;(plus&nbsp;c&nbsp;d))=(plus&nbsp;(plus&nbsp;a&nbsp;c)&nbsp;(plus&nbsp;b&nbsp;d))</I></TT><BR></DIV>
+<BR>
+Patterns need not be linear: you can express that the same
+expression must occur in two places by using indexed ``<TT>?</TT>''.<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Require&nbsp;Arith.</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;SearchPattern&nbsp;(plus&nbsp;?&nbsp;?1)=(mult&nbsp;?1&nbsp;?).</TT><BR><TT><I>mult_n_Sm:&nbsp;(n,m:nat)(plus&nbsp;(mult&nbsp;n&nbsp;m)&nbsp;n)=(mult&nbsp;n&nbsp;(S&nbsp;m))</I></TT><BR></DIV>
+<BR>
+<!--TOC paragraph <TT>SearchRewrite </TT><I><FONT COLOR=maroon>term</FONT></I>-->
+
+<H5> <TT>SearchRewrite </TT><I><FONT COLOR=maroon>term</FONT></I></H5>
+displays the name and type of all theorems of the current
+context whose statement's conclusion is an equality of which one side matches
+the expression <I><FONT COLOR=maroon>term</FONT></I>. Holes in <I><FONT COLOR=maroon>term</FONT></I> are denoted by ``<TT>?</TT>''.<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Require&nbsp;Arith.</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;SearchRewrite&nbsp;(plus&nbsp;?&nbsp;(plus&nbsp;?&nbsp;?)).</TT><BR><TT><I>plus_assoc_l:&nbsp;(n,m,p:nat)(plus&nbsp;n&nbsp;(plus&nbsp;m&nbsp;p))=(plus&nbsp;(plus&nbsp;n&nbsp;m)&nbsp;p)</I></TT><BR><TT><I>plus_permute:&nbsp;(n,m,p:nat)(plus&nbsp;n&nbsp;(plus&nbsp;m&nbsp;p))=(plus&nbsp;m&nbsp;(plus&nbsp;n&nbsp;p))</I></TT><BR><TT><I>plus_assoc_r:&nbsp;(n,m,p:nat)(plus&nbsp;(plus&nbsp;n&nbsp;m)&nbsp;p)=(plus&nbsp;n&nbsp;(plus&nbsp;m&nbsp;p))</I></TT><BR><TT><I>plus_permute_2_in_4:</I></TT><BR><TT><I>&nbsp;&nbsp;(a,b,c,d:nat)</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;(plus&nbsp;(plus&nbsp;a&nbsp;b)&nbsp;(plus&nbsp;c&nbsp;d))=(plus&nbsp;(plus&nbsp;a&nbsp;c)&nbsp;(plus&nbsp;b&nbsp;d))</I></TT><BR></DIV>
+<BR>
+<BR><B>Variants: </B><OL>
+<LI>
+ <TT>SearchPattern </TT><I><FONT COLOR=maroon>term</FONT></I><TT> inside </TT><I><FONT COLOR=maroon>module</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT>...</TT><I><FONT COLOR=maroon>module</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><BR><TT>SearchRewrite </TT><I><FONT COLOR=maroon>term</FONT></I><TT> inside
+</TT><I><FONT COLOR=maroon>module</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT>...</TT><I><FONT COLOR=maroon>module</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT>.</TT><BR>
+<BR>
+ This restricts the search to constructions defined in modules <I><FONT COLOR=maroon>module</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>...<I><FONT COLOR=maroon>module</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>.<BR>
+<BR>
+
+<LI><TT>SearchPattern </TT><I><FONT COLOR=maroon>term</FONT></I><TT> outside </TT><I><FONT COLOR=maroon>module</FONT></I><TT>.</TT><BR><TT>SearchRewrite </TT><I><FONT COLOR=maroon>term</FONT></I><TT> outside </TT><I><FONT COLOR=maroon>module</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT>...</TT><I><FONT COLOR=maroon>module</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT>.</TT><BR>
+<BR>
+ This restricts the search to constructions not defined in modules <I><FONT COLOR=maroon>module</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>...<I><FONT COLOR=maroon>module</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>.</OL><!--TOC paragraph <TT>Search </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>.</TT>-->
+
+<H5> <TT>Search </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>.</TT></H5> has been extended to accept qualified
+identifiers and the <TT>inside</TT> and <TT>outside</TT> restrictions as
+<TT>SearchPattern</TT> and <TT>SearchRewrite</TT>.<BR>
+<BR>
+<!--TOC paragraph <TT>SearchIsos </TT><I><FONT COLOR=maroon>term</FONT></I><TT>.</TT>-->
+
+<H5> <TT>SearchIsos </TT><I><FONT COLOR=maroon>term</FONT></I><TT>.</TT></H5> has not been ported yet.<BR>
+<BR>
+<!--TOC subsection XML output-->
+
+<H3>3.2&nbsp;&nbsp; XML output</H3>
+<A NAME="XML"></A>A printer of <FONT COLOR=purple>Coq</FONT> theories into XML syntax has been contributed by
+Claudio Sacerdoti Coen. Various printing commands (such as <TT>Print
+XML Module </TT><I><FONT COLOR=maroon>ident</FONT></I>) allow to produce XML files from
+``.vo'' files. In order to experiment these possibilities, you need to
+require the <FONT COLOR=purple>Coq</FONT> <TT>Xml</TT> module first.<BR>
+<BR>
+These XML files can be published on the Web, retrieved
+and rendered by tools developed in the HELM project (see
+http://www.cs.unibo.it/helm).<BR>
+<BR>
+<!--TOC subsection Other new commands-->
+
+<H3>3.3&nbsp;&nbsp; Other new commands</H3> <!--TOC paragraph <TT>Implicits </TT><I><FONT COLOR=maroon>ident</FONT></I>-->
+
+<H5> <TT>Implicits </TT><I><FONT COLOR=maroon>ident</FONT></I></H5> associate to <I><FONT COLOR=maroon>ident</FONT></I> 
+ implicit arguments as if the implicit arguments mode was on.<BR>
+<BR>
+ <!--TOC paragraph <TT>Implicits </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> [</TT><I><FONT COLOR=maroon>num</FONT></I><TT> ...</TT><I><FONT COLOR=maroon>num</FONT></I><TT>]</TT>-->
+
+<H5> <TT>Implicits </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> [</TT><I><FONT COLOR=maroon>num</FONT></I><TT> ...</TT><I><FONT COLOR=maroon>num</FONT></I><TT>]</TT></H5>
+ allows to explicitly give what arguments
+ have to be considered as implicit in <I><FONT COLOR=maroon>ident</FONT></I>.<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Parameter&nbsp;exists&nbsp;:&nbsp;(A:Set)(P:A-&gt;Prop)(x:A)(P&nbsp;x)-&gt;(EX&nbsp;x:A&nbsp;|(P&nbsp;x)).</TT><BR><TT><I>exists&nbsp;is&nbsp;assumed</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Implicits&nbsp;exists.</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Print&nbsp;exists.</TT><BR><TT><I>***&nbsp;[&nbsp;exists&nbsp;:&nbsp;</I></TT><BR><TT><I>(A:Set;&nbsp;P:(A-&gt;Prop);&nbsp;x:A)(P&nbsp;x)-&gt;(EX&nbsp;x0:A&nbsp;|&nbsp;(P&nbsp;x0))&nbsp;]</I></TT><BR><TT><I>Positions&nbsp;[1;2;3]&nbsp;are&nbsp;implicit</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Implicits&nbsp;exists&nbsp;[1].</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Print&nbsp;exists.</TT><BR><TT><I>***&nbsp;[&nbsp;exists&nbsp;:&nbsp;</I></TT><BR><TT><I>(A:Set;&nbsp;P:(A-&gt;Prop);&nbsp;x:A)(P&nbsp;x)-&gt;(EX&nbsp;x0:A&nbsp;|&nbsp;(P&nbsp;x0))&nbsp;]</I></TT><BR><TT><I>Position&nbsp;[1]&nbsp;is&nbsp;implicit</I></TT><BR></DIV>
+
+<!--TOC subsection Syntax standardisation-->
+
+<H3>3.4&nbsp;&nbsp; Syntax standardisation</H3>The commands on the left are now equivalent to (old) commands on
+the right.<BR><TT>
+</TT>
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD  ALIGN=left NOWRAP><TT>Set Implicit Arguments</TT></TD>
+<TD  ALIGN=left NOWRAP><TT>Implicit Arguments On</TT></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP><TT>Unset Implicit Arguments &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT></TD>
+<TD  ALIGN=left NOWRAP><TT>Implicit Arguments Off</TT></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP><TT>Add LoadPath</TT></TD>
+<TD  ALIGN=left NOWRAP><TT>AddPath</TT></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP><TT>Add Rec LoadPath</TT></TD>
+<TD  ALIGN=left NOWRAP><TT>AddRecPath</TT></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP><TT>Remove LoadPath</TT></TD>
+<TD  ALIGN=left NOWRAP><TT>DelPath</TT></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP><TT>Set Silent</TT></TD>
+<TD  ALIGN=left NOWRAP><TT>Begin Silent</TT></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP><TT>Unset Silent</TT></TD>
+<TD  ALIGN=left NOWRAP><TT>End Silent</TT></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP><TT>Print Coercion Paths</TT></TD>
+<TD  ALIGN=left NOWRAP><TT>Print Path</TT></TD>
+</TR></TABLE><TT>
+</TT><BR>Commands on the right remains available for compatibility reasons (except for
+<TT>Begin Silent</TT> and <TT>End Silent</TT> which interfere with
+section closing, and for the misunderstandable <TT>Print Path</TT>).<BR>
+<BR>
+<!--TOC subsection Other Changes-->
+
+<H3>3.5&nbsp;&nbsp; Other Changes</H3><!--TOC paragraph Final dot-->
+
+<H5> Final dot</H5> Commands should now be ended by a final dot ``.'' followed by a blank
+(space, return, line feed or tabulation). This is to distinguish from
+the dot notation for qualified names where the dot must immediately be
+followed by a letter (see section <A HREF="#Names">1.2</A>).<BR>
+<BR>
+<!--TOC paragraph Eval Cbv Delta ... in ...-->
+
+<H5> Eval Cbv Delta ... in ...</H5> The <TT>[- </TT><TT><I>const</I></TT><TT>]</TT>, if any, should now immediately follow the <TT>Delta</TT> keyword.<BR>
+<BR>
+<!--TOC section Tools-->
+
+<H2>4&nbsp;&nbsp; Tools</H2>
+<A NAME="Tools"></A><!--TOC paragraph Consistency check for <TT>.vo</TT> files-->
+
+<H5> Consistency check for <TT>.vo</TT> files</H5> A check-sum test
+avoids to require inconsistent <TT>.vo</TT> files.<BR>
+<BR>
+<!--TOC paragraph Optimal compiler-->
+
+<H5> Optimal compiler</H5> If your architecture supports it, the native
+version of <TT>coqtop</TT> and <TT>coqc</TT> is used by default.<BR>
+<BR>
+<!--TOC paragraph Option -R-->
+
+<H5> Option -R</H5> The <TT>-R</TT> option to <TT>coqtop</TT> and <TT>coqc</TT> now serves to link physical path to logical paths (see
+<A HREF="#Names">1.2</A>). It expects two arguments, the first being the physical
+path and the second its logical alias. It still recursively scans
+subdirectories.<BR>
+<BR>
+<!--TOC paragraph Makefile automatic generation-->
+
+<H5> Makefile automatic generation</H5> <TT>coq_makefile</TT> is the
+new name for <TT>do_Makefile</TT>.<BR>
+<BR>
+<!--TOC paragraph Error localisation-->
+
+<H5> Error localisation</H5> Several kind of typing errors are now
+located in the source file.<BR>
+<BR>
+<!--TOC section Extraction-->
+
+<H2>5&nbsp;&nbsp; Extraction</H2><A NAME="Extraction"></A>
+Extraction code has been completely rewritten by J.-C. Filliâtre and
+P. Letouzey since version V6.3. 
+This work is still not finished, but most parts of it are already
+usable. It was successfully tested on the <FONT COLOR=purple>Coq</FONT> theories.<BR>
+<BR>
+The new mechanism is able to extract programs from any <FONT COLOR=purple>Coq</FONT> term
+(including terms at the Type level). 
+A new mechanism to extract Ocaml modules from Coq files has been
+added. <BR>
+<BR>
+However, the resulting ML term is not guaranteed to be typable in ML
+(the next version should incorporate automatically appropriate conversions).<BR>
+<BR>
+Only extraction towards Ocaml programs is currently available. 
+The <CODE>ML import</CODE> command is not available anymore, the command
+<CODE>Extract Constant</CODE> can be used to realize a <FONT COLOR=purple>Coq</FONT> axiom by 
+an ML program.<BR>
+<BR>
+More
+information can be found in <CODE>$COQTOP/contrib/extraction/README</CODE>. 
+The syntax of commands is described in the Reference Manual.<BR>
+<BR>
+<!--TOC section Developers-->
+
+<H2>6&nbsp;&nbsp; Developers</H2>
+<A NAME="Developers"></A>
+The internals of <FONT COLOR=purple>Coq</FONT> has changed a lot and will continue to change
+significantly in the next months. We recommend tactic developers to
+take contact with us for adapting their code. A document describing
+the interfaces of the ML modules constituting <FONT COLOR=purple>Coq</FONT> is available
+thanks to J.-C. Filliatre's ocamlweb
+documentation tool (see the ``doc'' directory in <FONT COLOR=purple>Coq</FONT> source).<BR>
+<BR>
+<!--TOC section Incompatibilities-->
+
+<H2>7&nbsp;&nbsp; Incompatibilities</H2>
+<A NAME="Incompatibilities"></A> You could have to modify your vernacular source for the following
+ reasons:<BR>
+<BR>
+ <UL>
+<LI>
+ 
+ Any of the tactic changes mentioned in section <A HREF="#TacticChanges">2.3</A>.<BR>
+<BR>
+ 
+<LI>The ``.vo'' files are not compatible and all ``.v'' files should
+ be recompiled.<BR>
+<BR>
+ 
+<LI>Consecutive symbols may have to be separated in some cases (see
+ section&nbsp;<A HREF="#SyntaxExtensions">1.3</A>).<BR>
+<BR>
+ 
+<LI>Default parsers in <TT>Grammar</TT> and <TT>Syntax</TT> are
+ different (see section <A HREF="#GrammarSyntax">1.3</A>).
+ 
+ 
+<LI>Definition of <TT>D_in</TT> (Rderiv.v) is now with Rdiv and not 
+ with Rmult and Rinv as before.<BR>
+<BR>
+ 
+<LI>Pattern aliases of dependent type in <CODE>Cases</CODE>
+ expressions are currently not supported.<BR>
+<BR>
+ </UL>A shell script <CODE>translate_V6-3-1_to_V7</CODE> is available in the archive to
+automatically translate V6.3.1 ``.v'' files to V7.0 syntax
+(incompatibilities due to changes in tactics semantics are not
+treated).<BR>
+<BR>
+<!--TOC section Installation procedure-->
+
+<H2>8&nbsp;&nbsp; Installation procedure</H2><FONT COLOR=purple>Coq</FONT> is available as a source package at <BR>
+<BR>
+<BLOCKQUOTE>
+<CODE>ftp://ftp.inria.fr/INRIA/coq/V7</CODE><BR><CODE>http://coq.inria.fr</CODE>
+</BLOCKQUOTE>You need Objective Caml version 3.00 or later, and the corresponding 
+Camlp4 version to compile the system. Both are available by anonymous ftp
+at:<BR>
+<BR>
+<BLOCKQUOTE>
+<CODE>ftp://ftp.inria.fr/Projects/Cristal</CODE><BR><CODE>http://caml.inria.fr</CODE>
+</BLOCKQUOTE><!--TOC section Appendix-->
+
+<H2>Appendix</H2>
+<A NAME="Appendix"></A>
+We detail the differences between <FONT COLOR=purple>Coq</FONT> V6.3.1 and V7.0 for the <TT>Syntax</TT> and <TT>Grammar</TT> default parsers.<BR><B>Examples in V6.3.1</B><BR>
+<BR>
+<PRE>
+Grammar command command0 :=
+  pair [ "(" lcommand($lc1) "," lcommand($lc2) ")" ] -&gt;
+         [&lt;&lt;(pair ? ? $lc1 $lc2)&gt;&gt;].
+
+Syntax constr
+  level 1:
+  pair [&lt;&lt;(pair $_ $_ $t3 $t4)&gt;&gt;] -&gt; [[&lt;hov 0&gt; "(" $t3:E ","[0 1] $t4:E ")" ]].
+
+Grammar znatural formula :=
+  form_expr [ expr($p) ] -&gt; [$p]
+| form_eq [ expr($p) "=" expr($c) ] -&gt; [&lt;&lt;(eq Z $p $c)&gt;&gt;].
+
+Syntax constr
+  level 0:
+    Zeq [&lt;&lt;(eq Z $n1 $n2)&gt;&gt;] -&gt; 
+      [[&lt;hov 0&gt; "`" (ZEXPR $n1) [1 0] "= "(ZEXPR $n2)"`"]].
+
+Grammar tactic simple_tactic :=
+  tauto [ "Tauto" ] -&gt; [(Tauto)].
+</PRE><BR><B>New form in V7.0beta</B><BR>
+<BR>
+<PRE>
+Grammar constr constr0 :=
+  pair [ "(" lconstr($lc1) "," lconstr($lc2) ")" ] -&gt; [ (pair ? ? $lc1 $lc2) ].
+
+Syntax constr
+  level 1:
+    pair [ (pair $_ $_ $t3 $t4) ] -&gt; [[&lt;hov 0&gt; "(" $t3:E ","[0 1] $t4:E ")" ]].
+
+Grammar znatural formula : constr :=
+  form_expr [ expr($p) ] -&gt; [ $p ]
+| form_eq [ expr($p) "=" expr($c) ] -&gt; [ (eq Z $p $c) ].
+
+Syntax constr
+ level 0:
+  Zeq [ (eq Z $n1 $n2) ] -&gt; 
+    [&lt;hov 0&gt; "`" (ZEXPR $n1) [1 0] "= "(ZEXPR $n2)"`"]].
+
+Grammar tactic simple_tactic: ast :=
+  tauto [ "Tauto" ] -&gt; [(Tauto)].
+</PRE><!--HTMLFOOT-->
+<!--ENDHTML-->
+
+<!--FOOTER-->
+<HR  SIZE=2>
+<BLOCKQUOTE><EM>This document was translated from L<sup>A</sup>T<sub>E</sub>X by </EM><A HREF="http://para.inria.fr/~maranget/hevea/index.html"><EM>H</EM><EM><FONT SIZE=2><sup>E</sup></FONT></EM><EM>V</EM><EM><FONT SIZE=2><sup>E</sup></FONT></EM><EM>A</EM></A><EM>.
+</EM></BLOCKQUOTE></BODY>
+</HTML>
+

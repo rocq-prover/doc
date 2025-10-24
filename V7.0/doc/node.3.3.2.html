@@ -1,0 +1,102 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+14.3&nbsp;Coercions
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.3.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.3.3.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+14.3&nbsp;Coercions
+</H2>
+
+
+
+<A NAME="@default585"></A>
+<A NAME="@default586"></A>
+ A name <I>f</I> can be declared as a coercion between a source user-class
+<I>C</I> with <I>n</I> parameters and a target class <I>D</I> if one of these
+conditions holds:<BR>
+<BR>
+<UL>
+<LI>
+<I>D</I> is a user-class, then the type of <I>f</I> must have the form
+ (<I>x</I><SUB><FONT SIZE=2>1</FONT></SUB>:<I>A</I><SUB><FONT SIZE=2>1</FONT></SUB>)..(<I>x</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>:<I>A</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>)(<I>y</I>:(<I>C</I>&nbsp;<I>x</I><SUB><FONT SIZE=2>1</FONT></SUB>..<I>x</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>)) (<I>D</I>&nbsp;<I>u</I><SUB><FONT SIZE=2>1</FONT></SUB>..<I>u</I><SUB><FONT SIZE=2><I>m</I></FONT></SUB>) where <I>m</I>
+ is the number of parameters of <I>D</I>.
+
+<LI><I>D</I> is <TT>FUNCLASS</TT>, then the type of <I>f</I> must have the form
+ (<I>x</I><SUB><FONT SIZE=2>1</FONT></SUB>:<I>A</I><SUB><FONT SIZE=2>1</FONT></SUB>)..(<I>x</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>:<I>A</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>)(<I>y</I>:(<I>C</I>&nbsp;<I>x</I><SUB><FONT SIZE=2>1</FONT></SUB>..<I>x</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>))(<I>x</I>:<I>A</I>)<I>B</I>. 
+
+<LI><I>D</I> is <TT>SORTCLASS</TT>, then the type of <I>f</I> must have the form
+ (<I>x</I><SUB><FONT SIZE=2>1</FONT></SUB>:<I>A</I><SUB><FONT SIZE=2>1</FONT></SUB>)..(<I>x</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>:<I>A</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>)(<I>y</I>:(<I>C</I>&nbsp;<I>x</I><SUB><FONT SIZE=2>1</FONT></SUB>..<I>x</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>))<I>s</I>. 
+</UL>We then write <I>f</I>:<I>C</I> <TT>&gt;-&gt;</TT> <I>D</I>. The restriction on the type
+of coercions is called <EM>the uniform inheritance condition</EM>.
+Remark that the abstract classes <TT>FUNCLASS</TT> and <TT>SORTCLASS</TT>
+cannot be source classes.<BR>
+<BR>
+ To coerce an object <I>t</I>:(<I>C</I>&nbsp;<I>t</I><SUB><FONT SIZE=2>1</FONT></SUB>..<I>t</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>) of <I>C</I> towards <I>D</I>, we have to
+apply the coercion <I>f</I> to it; the obtained term (<I>f</I>&nbsp;<I>t</I><SUB><FONT SIZE=2>1</FONT></SUB>..<I>t</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>&nbsp;<I>t</I>) is
+then an object of <I>D</I>.<BR>
+<BR>
+
+ 
+<H3>
+
+14.3.1&nbsp;Identity Coercions
+</H3>
+
+<A NAME="@default587"></A> Identity coercions are special cases of coercions used to go around
+the uniform inheritance condition. Let <I>C</I> and <I>D</I> be two classes
+with respectively <I>n</I> and <I>m</I> parameters and
+<I>f</I>:(<I>x</I><SUB><FONT SIZE=2>1</FONT></SUB>:<I>T</I><SUB><FONT SIZE=2>1</FONT></SUB>)..(<I>x</I><SUB><FONT SIZE=2><I>k</I></FONT></SUB>:<I>T</I><SUB><FONT SIZE=2><I>k</I></FONT></SUB>)(<I>y</I>:(<I>C</I>&nbsp;<I>u</I><SUB><FONT SIZE=2>1</FONT></SUB>..<I>u</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>))(<I>D</I>&nbsp;<I>v</I><SUB><FONT SIZE=2>1</FONT></SUB>..<I>v</I><SUB><FONT SIZE=2><I>m</I></FONT></SUB>) a function which
+does not verify the uniform inheritance condition. To declare <I>f</I> as
+coercion, one has first to declare a subclass <I>C</I>' of <I>C</I>:<BR>
+<BR>
+<DIV ALIGN=center><I>C</I>' := [<I>x</I><SUB><FONT SIZE=2>1</FONT></SUB>:<I>T</I><SUB><FONT SIZE=2>1</FONT></SUB>]..[<I>x</I><SUB><FONT SIZE=2><I>k</I></FONT></SUB>:<I>T</I><SUB><FONT SIZE=2><I>k</I></FONT></SUB>](<I>C</I>&nbsp;<I>u</I><SUB><FONT SIZE=2>1</FONT></SUB>..<I>u</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>)</DIV><BR>
+We then define an <EM>identity coercion</EM> between <I>C</I>' and <I>C</I>:
+<DIV ALIGN=center>
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD  ALIGN=right NOWRAP><I>Id</I>_<I>C</I>'_<I>C</I></TD>
+<TD  ALIGN=center NOWRAP>:=</TD>
+<TD  ALIGN=left NOWRAP>[<I>x</I><SUB><FONT SIZE=2>1</FONT></SUB>:<I>T</I><SUB><FONT SIZE=2>1</FONT></SUB>]..[<I>x</I><SUB><FONT SIZE=2><I>k</I></FONT></SUB>:<I>T</I><SUB><FONT SIZE=2><I>k</I></FONT></SUB>][<I>y</I>:(<I>C</I>'&nbsp;<I>x</I><SUB><FONT SIZE=2>1</FONT></SUB>..<I>x</I><SUB><FONT SIZE=2><I>k</I></FONT></SUB>)]</TD>
+</TR>
+<TR><TD  ALIGN=right NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>&nbsp;</TD>
+<TD  ALIGN=left NOWRAP>(<I>y</I>::(<I>C</I>&nbsp;<I>u</I><SUB><FONT SIZE=2>1</FONT></SUB>..<I>u</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>))</TD>
+</TR></TABLE></DIV><BR>
+We can now declare <I>f</I> as coercion from <I>C</I>' to <I>D</I>, since we can
+``cast'' its type as
+(<I>x</I><SUB><FONT SIZE=2>1</FONT></SUB>:<I>T</I><SUB><FONT SIZE=2>1</FONT></SUB>)..(<I>x</I><SUB><FONT SIZE=2><I>k</I></FONT></SUB>:<I>T</I><SUB><FONT SIZE=2><I>k</I></FONT></SUB>)(<I>y</I>:(<I>C</I>'&nbsp;<I>x</I><SUB><FONT SIZE=2>1</FONT></SUB>..<I>x</I><SUB><FONT SIZE=2><I>k</I></FONT></SUB>))(<I>D</I>&nbsp;<I>v</I><SUB><FONT SIZE=2>1</FONT></SUB>..<I>v</I><SUB><FONT SIZE=2><I>m</I></FONT></SUB>).<BR>The identity
+coercions have a special status: to coerce an object <I>t</I>:(<I>C</I>'&nbsp;<I>t</I><SUB><FONT SIZE=2>1</FONT></SUB>..<I>t</I><SUB><FONT SIZE=2><I>k</I></FONT></SUB>)
+of <I>C</I>' towards <I>C</I>, we have not to insert explicitly <I>Id</I>_<I>C</I>'_<I>C</I>
+since (<I>Id</I>_<I>C</I>'_<I>C</I>&nbsp;<I>t</I><SUB><FONT SIZE=2>1</FONT></SUB>..<I>t</I><SUB><FONT SIZE=2><I>k</I></FONT></SUB>&nbsp;<I>t</I>) is convertible with <I>t</I>. However we
+``rewrite'' the type of <I>t</I> to become an object of <I>C</I>; in this case,
+it becomes (<I>C</I>&nbsp;<I>u</I><SUB><FONT SIZE=2>1</FONT></SUB><SUP><FONT SIZE=2>*</FONT></SUP>..<I>u</I><SUB><FONT SIZE=2><I>k</I></FONT></SUB><SUP><FONT SIZE=2>*</FONT></SUP>) where each <I>u</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB><SUP><FONT SIZE=2>*</FONT></SUP> is the result of the
+substitution in <I>u</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB> of the variables <I>x</I><SUB><FONT SIZE=2><I>j</I></FONT></SUB> by <I>t</I><SUB><FONT SIZE=2><I>j</I></FONT></SUB>.<BR>
+<BR>
+
+ <HR>
+
+<A HREF="node.3.3.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.3.3.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

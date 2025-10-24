@@ -1,0 +1,81 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+18.2&nbsp;The variables map
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.7.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.7.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.7.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+18.2&nbsp;The variables map
+</H2>
+
+
+It is frequent to have an expression built with + and
+ ×, but rarely on variables only.
+Let us associate a number to each subterm of a ring
+expression in the <FONT COLOR=purple>Gallina</FONT> language. For example in the ring
+<TT>nat</TT>, consider the expression:<BR>
+<BR>
+<BLOCKQUOTE>
+<PRE>
+(plus (mult (plus (f (5)) x) x)
+      (mult (if b then (4) else (f (3))) (2)))
+</PRE>
+</BLOCKQUOTE>As a ring expression, is has 3 subterms. Give each subterm a
+number in an arbitrary order:<BR>
+<BR>
+
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD  ALIGN=center NOWRAP>0</TD>
+<TD  ALIGN=center NOWRAP>|<FONT FACE=symbol>®</FONT></TD>
+<TD  ALIGN=left NOWRAP><CODE>if b then (4) else (f (3))</CODE></TD>
+</TR>
+<TR><TD  ALIGN=center NOWRAP>1</TD>
+<TD  ALIGN=center NOWRAP>|<FONT FACE=symbol>®</FONT></TD>
+<TD  ALIGN=left NOWRAP><CODE>(f (5))</CODE></TD>
+</TR>
+<TR><TD  ALIGN=center NOWRAP>2</TD>
+<TD  ALIGN=center NOWRAP>|<FONT FACE=symbol>®</FONT></TD>
+<TD  ALIGN=left NOWRAP><CODE>x</CODE></TD>
+</TR></TABLE><BR>
+Then normalize the ``abstract'' polynomial <BR>
+<BR>
+<DIV ALIGN=center>((<I>V</I><SUB><FONT SIZE=2>1</FONT></SUB> <FONT FACE=symbol>Ä</FONT> <I>V</I><SUB><FONT SIZE=2>2</FONT></SUB>) <FONT FACE=symbol>Å</FONT> <I>V</I><SUB><FONT SIZE=2>2</FONT></SUB>) <FONT FACE=symbol>Å</FONT> (<I>V</I><SUB><FONT SIZE=2>0</FONT></SUB> <FONT FACE=symbol>Ä</FONT> 2) </DIV><BR>
+In our example the normal form is:<BR>
+<BR>
+<DIV ALIGN=center>(2 <FONT FACE=symbol>Ä</FONT> <I>V</I><SUB><FONT SIZE=2>0</FONT></SUB>) <FONT FACE=symbol>Å</FONT> (<I>V</I><SUB><FONT SIZE=2>1</FONT></SUB> <FONT FACE=symbol>Ä</FONT> <I>V</I><SUB><FONT SIZE=2>2</FONT></SUB>) <FONT FACE=symbol>Å</FONT> (<I>V</I><SUB><FONT SIZE=2>2</FONT></SUB> <FONT FACE=symbol>Ä</FONT> <I>V</I><SUB><FONT SIZE=2>2</FONT></SUB>)</DIV><BR>
+Then substitute the variables by their values in the variables map to
+get the concrete normal polynomial:<BR>
+<BR>
+<BLOCKQUOTE>
+<PRE>
+(plus (mult (2) (if b then (4) else (f (3)))) 
+      (plus (mult (f (5)) x) (mult x x))) 
+</PRE>
+</BLOCKQUOTE>
+ <HR>
+
+<A HREF="node.3.7.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.7.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.7.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

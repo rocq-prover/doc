@@ -1,0 +1,75 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+8.5&nbsp;AutoRewrite
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.1.3.3.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.3.5.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+8.5&nbsp;<TT>AutoRewrite
+</TT></H2>
+
+
+
+<A NAME="AutoRewrite-example"></A>Here are two examples of <TT>AutoRewrite</TT> use. The first one (<EM>Ackermann
+function</EM>) shows actually a quite basic use where there is no conditional
+rewriting. The second one (<EM>Mac Carthy function</EM>) involves conditional
+rewritings and shows how to deal with them using the optional tactic of the
+<TT>Hint&nbsp;Rewrite</TT> command.<BR>
+<BR>
+
+<BR><B>Example </B><B>1: </B><I>Ackermann function</I>
+
+<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Require&nbsp;Arith.</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;</TT><BR><TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;Ack:nat-&gt;nat-&gt;nat.</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;</TT><BR><TT>Coq&nbsp;&lt;&nbsp;Axiom&nbsp;Ack0:(m:nat)(Ack&nbsp;(0)&nbsp;m)=(S&nbsp;m).</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Axiom&nbsp;Ack1:(n:nat)(Ack&nbsp;(S&nbsp;n)&nbsp;(0))=(Ack&nbsp;n&nbsp;(1)).</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Axiom&nbsp;Ack2:(n,m:nat)(Ack&nbsp;(S&nbsp;n)&nbsp;(S&nbsp;m))=(Ack&nbsp;n&nbsp;(Ack&nbsp;(S&nbsp;n)&nbsp;m)).</TT><BR></DIV>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Hint&nbsp;Rewrite&nbsp;[&nbsp;Ack0&nbsp;Ack1&nbsp;Ack2&nbsp;]&nbsp;in&nbsp;base0.</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;</TT><BR><TT>Coq&nbsp;&lt;&nbsp;Lemma&nbsp;ResAck0:(Ack&nbsp;(3)&nbsp;(2))=(29).</TT><BR><TT><I>1&nbsp;subgoal</I></TT><BR><TT><I>&nbsp;&nbsp;</I></TT><BR><TT><I>&nbsp;&nbsp;============================</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;(Ack&nbsp;(3)&nbsp;(2))=(29)</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;AutoRewrite&nbsp;[&nbsp;base0&nbsp;]&nbsp;using&nbsp;Try&nbsp;Reflexivity.</TT><BR><TT><I>Subtree&nbsp;proved!</I></TT><BR></DIV>
+<BR>
+
+<BR><B>Example </B><B>2: </B><I>Mac Carthy function</I>
+
+<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Require&nbsp;Omega.</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;</TT><BR><TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;g:nat-&gt;nat-&gt;nat.</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;</TT><BR><TT>Coq&nbsp;&lt;&nbsp;Axiom&nbsp;g0:(m:nat)(g&nbsp;(0)&nbsp;m)=m.</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Axiom&nbsp;g1:</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;(n,m:nat)(gt&nbsp;n&nbsp;(0))-&gt;(gt&nbsp;m&nbsp;(100))-&gt;(g&nbsp;n&nbsp;m)=(g&nbsp;(pred&nbsp;n)&nbsp;(minus&nbsp;m&nbsp;(10))).</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Axiom&nbsp;g2:(n,m:nat)(gt&nbsp;n&nbsp;(0))-&gt;(le&nbsp;m&nbsp;(100))-&gt;(g&nbsp;n&nbsp;m)=(g&nbsp;(S&nbsp;n)&nbsp;(plus&nbsp;m&nbsp;(11))).</TT><BR></DIV>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Hint&nbsp;Rewrite&nbsp;[&nbsp;g0&nbsp;g1&nbsp;g2&nbsp;]&nbsp;in&nbsp;base1&nbsp;using&nbsp;Omega.</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;</TT><BR><TT>Coq&nbsp;&lt;&nbsp;Lemma&nbsp;Resg0:(g&nbsp;(1)&nbsp;(110))=(100).</TT><BR><TT><I>1&nbsp;subgoal</I></TT><BR><TT><I>&nbsp;&nbsp;</I></TT><BR><TT><I>&nbsp;&nbsp;============================</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;(g&nbsp;(1)&nbsp;(110))=(100)</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;AutoRewrite&nbsp;[&nbsp;base1&nbsp;]&nbsp;using&nbsp;Reflexivity&nbsp;Orelse&nbsp;Simpl.</TT><BR><TT><I>Subtree&nbsp;proved!</I></TT><BR></DIV>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Lemma&nbsp;Resg1:(g&nbsp;(1)&nbsp;(95))=(91).</TT><BR><TT><I>1&nbsp;subgoal</I></TT><BR><TT><I>&nbsp;&nbsp;</I></TT><BR><TT><I>&nbsp;&nbsp;============================</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;(g&nbsp;(1)&nbsp;(95))=(91)</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;AutoRewrite&nbsp;[&nbsp;base1&nbsp;]&nbsp;using&nbsp;Reflexivity&nbsp;Orelse&nbsp;Simpl.</TT><BR><TT><I>Subtree&nbsp;proved!</I></TT><BR></DIV>
+<BR>
+<HR>
+
+<A HREF="node.1.3.3.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.3.5.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

@@ -1,0 +1,399 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+10.2&nbsp;Semantic
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.2.1.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.2.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.2.1.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+10.2&nbsp;Semantic
+</H2>
+
+
+
+<H3>
+
+10.2.1&nbsp;Values
+</H3>
+Values are given by table&nbsp;<A HREF="node.2.1.1.html#ltacval">10.3</A>. All these values are tactic values,
+i.e. to be applied to a goal, except <FONT COLOR=purple>Fun</FONT>, <FONT COLOR=purple>Rec</FONT> and <I>arg</I> values.<BR>
+<BR>
+<BLOCKQUOTE><HR  SIZE=2>
+6in
+<DIV ALIGN=center>
+
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD  ALIGN=left NOWRAP><I>vexpr</I></TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>::=</DIV></TD>
+<TD  ALIGN=left NOWRAP><I>vexpr</I> <FONT COLOR=purple>;</FONT> <I>vexpr</I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><I>vexpr</I> <FONT COLOR=purple>; [</FONT> <I>(</I><I>vexpr</I> <FONT COLOR=purple>|</FONT><I>)</I><SUP><FONT SIZE=2>*</FONT></SUP> <I>vexpr</I> <FONT COLOR=purple>]</FONT></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><I>vatom</I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP><I>vatom</I></TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>::=</DIV></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>Fun</FONT> <I>input</I>_<I>fun</I><SUP><FONT SIZE=2>+</FONT></SUP> <FONT COLOR=purple>-&gt;</FONT> <I>expr</I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>Rec</FONT> <I>rec</I>_<I>clause</I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>Rec</FONT> <I>(</I><I>rec</I>_<I>clause</I> <FONT COLOR=purple>And</FONT><I>)</I><SUP><FONT SIZE=2>*</FONT></SUP> <I>rec</I>_<I>clause</I> <FONT COLOR=purple>In</FONT>
+<I>expr</I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>Match Context With</FONT> <I>(</I><I>context</I>_<I>rule</I> <FONT COLOR=purple>|</FONT><I>)</I><SUP><FONT SIZE=2>*</FONT></SUP>
+<I>context</I>_<I>rule</I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>(</FONT> <I>vexpr</I> <FONT COLOR=purple>)</FONT></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><I>vatom</I> <FONT COLOR=purple>Orelse</FONT> <I>vatom</I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>Do</FONT> <I>(</I><I>int</I> <I>|</I> <I>ident</I><I>)</I> <I>vatom</I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>Repeat</FONT> <I>vatom</I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>Try</FONT> <I>vatom</I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>First [</FONT> <I>(</I><I>vexpr</I> <FONT COLOR=purple>|</FONT><I>)</I><SUP><FONT SIZE=2>*</FONT></SUP> <I>vexpr</I> <FONT COLOR=purple>]</FONT></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>Solve [</FONT> <I>(</I><I>vexpr</I> <FONT COLOR=purple>|</FONT><I>)</I><SUP><FONT SIZE=2>*</FONT></SUP> <I>vexpr</I> <FONT COLOR=purple>]</FONT></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>Idtac</FONT></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>Fail</FONT></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><I>primitive</I>_<I>tactic</I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><I>arg</I></TD>
+</TR></TABLE>
+</DIV>
+
+<A NAME="ltacval"></A>
+<BR>
+<DIV ALIGN=center>Table 10.3: Values of <FONT COLOR=red> <I>L</I></FONT><SUB><FONT SIZE=2><I>tac</I></FONT></SUB></DIV>
+<HR  SIZE=2></BLOCKQUOTE>
+<H3>
+
+10.2.2&nbsp;Evaluation
+</H3>
+
+<H4>
+Local definitions
+</H4>
+Local definitions can be done as follows:<BR>
+<BR>
+<BR>
+<BR>
+
+<BR>
+<BR>
+
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD  ALIGN=left NOWRAP><FONT COLOR=purple>Let</FONT></TD>
+<TD  ALIGN=left NOWRAP><I>ident</I><SUB><FONT SIZE=2>1</FONT></SUB> <FONT COLOR=purple>=</FONT> <I>expr</I><SUB><FONT SIZE=2>1</FONT></SUB></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP><FONT COLOR=purple>And</FONT> <I>ident</I><SUB><FONT SIZE=2>2</FONT></SUB> <FONT COLOR=purple>=</FONT> <I>expr</I><SUB><FONT SIZE=2>2</FONT></SUB></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>...</TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP><FONT COLOR=purple>And</FONT> <I>ident</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> <FONT COLOR=purple>=</FONT> <I>expr</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> <FONT COLOR=purple>In</FONT></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP></TD>
+<TD  ALIGN=left NOWRAP><I>expr</I>
+</TD>
+</TR></TABLE><BR>
+<I>expr</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB> is evaluated to <I>v</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB>, then, <I>expr</I> is evaluated by subsituting <I>v</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB>
+to each occurrence of <I>ident</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB>, for <I>i</I>=1,...,<I>n</I>. There is no dependencies
+between the <I>expr</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB> and the <I>ident</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB>.<BR>
+<BR>
+
+<H4>
+Pattern matching on terms
+</H4>
+We can carry out pattern matching on terms with:<BR>
+<BR>
+<BR>
+<BR>
+
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD  ALIGN=left NOWRAP><FONT COLOR=purple>Match</FONT> <I>term</I> <FONT COLOR=purple>With</FONT></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP></TD>
+<TD  ALIGN=left NOWRAP></TD>
+<TD  ALIGN=left NOWRAP><I>term</I><SUB><FONT SIZE=2>1</FONT></SUB> <FONT COLOR=purple>-&gt;</FONT> <I>expr</I><SUB><FONT SIZE=2>1</FONT></SUB></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>|</FONT> <I>term</I><SUB><FONT SIZE=2>2</FONT></SUB> <FONT COLOR=purple>-&gt;</FONT> <I>expr</I><SUB><FONT SIZE=2>2</FONT></SUB></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP></TD>
+<TD  ALIGN=left NOWRAP>...</TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>|</FONT> <I>term</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> <FONT COLOR=purple>-&gt;</FONT> <I>expr</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>|</FONT> <FONT COLOR=purple>_</FONT></TD>
+<TD  ALIGN=left NOWRAP></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>-&gt;</FONT> <I>expr</I><SUB><FONT SIZE=2><I>n</I>+1</FONT></SUB>
+</TD>
+</TR></TABLE><BR>
+if <I>term</I> is matched (non-linear first order unification) by <I>term</I><SUB><FONT SIZE=2>1</FONT></SUB> then
+<I>expr</I><SUB><FONT SIZE=2>1</FONT></SUB> is evaluated by substituting the pattern matching instantiations to
+the metavariables. Else, <I>term</I><SUB><FONT SIZE=2>2</FONT></SUB> is tried and so on. If no <I>term</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB>, with
+<I>i</I>=1,...,<I>n</I>, matches <I>term</I> then the last clause is used and <I>expr</I><SUB><FONT SIZE=2><I>n</I>+1</FONT></SUB> is
+evaluated.<BR><FONT COLOR=purple>Error message:</FONT><BR><TT>No matching clauses for Match</TT><BR>
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;No pattern can be used and, in particular, there is no <FONT COLOR=purple>_</FONT> pattern.<BR>
+<BR>
+
+<H4>
+Application
+</H4>
+An application is an expression of the following form:<BR><FONT COLOR=purple>(</FONT> <I>expr</I> <I>expr</I><SUB><FONT SIZE=2>1</FONT></SUB> ... <I>expr</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> <FONT COLOR=purple>)</FONT><BR><I>expr</I> is evaluated to <I>v</I> and <I>expr</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB> is evaluated to <I>v</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB>, for <I>i</I>=1,...,<I>n</I>.
+If <I>expr</I> is a <FONT COLOR=purple>Fun</FONT> or <FONT COLOR=purple>Rec</FONT> value then the body is evaluated by
+substituting <I>v</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB> to the formal parameters, for <I>i</I>=1,...,<I>n</I>. For recursive
+clauses, the bodies are lazily substituted (when an identifier to be evaluated
+is the name of a recursive clause).<BR>
+<BR>
+
+<H3>
+
+10.2.3&nbsp;Application of tactic values
+</H3>
+
+<H4>
+Sequence
+</H4>
+A sequence is an expression of the following form:<BR><I>expr</I><SUB><FONT SIZE=2>1</FONT></SUB> <FONT COLOR=purple>;</FONT> <I>expr</I><SUB><FONT SIZE=2>2</FONT></SUB><BR><I>expr</I><SUB><FONT SIZE=2>1</FONT></SUB> and <I>expr</I><SUB><FONT SIZE=2>2</FONT></SUB> are evaluated to <I>v</I><SUB><FONT SIZE=2>1</FONT></SUB> and <I>v</I><SUB><FONT SIZE=2>2</FONT></SUB>. <I>v</I><SUB><FONT SIZE=2>1</FONT></SUB> and <I>v</I><SUB><FONT SIZE=2>2</FONT></SUB> must be
+tactic values. <I>v</I><SUB><FONT SIZE=2>1</FONT></SUB> is then applied and <I>v</I><SUB><FONT SIZE=2>2</FONT></SUB> is applied to the subgoals
+generated by the application of <I>v</I><SUB><FONT SIZE=2>1</FONT></SUB>. Sequence is left associating.<BR>
+<BR>
+
+<H4>
+General sequence
+</H4>
+We can generalize the previous sequence operator by:<BR><I>expr</I><SUB><FONT SIZE=2>0</FONT></SUB> <FONT COLOR=purple>; [</FONT> <I>expr</I><SUB><FONT SIZE=2>1</FONT></SUB> <FONT COLOR=purple>|</FONT> ... <FONT COLOR=purple>|</FONT> <I>expr</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> <FONT COLOR=purple>]</FONT><BR><I>expr</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB> is evaluated to <I>v</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB>, for <I>i</I>=0,...,<I>n</I>. <I>v</I><SUB><FONT SIZE=2>0</FONT></SUB> is applied and <I>v</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB> is
+applied to the <I>i</I>-th generated subgoal by the application of <I>v</I><SUB><FONT SIZE=2>0</FONT></SUB>, for
+=1,...,<I>n</I>. It fails if the application of <I>v</I><SUB><FONT SIZE=2>0</FONT></SUB> does not generate exactly <I>n</I>
+subgoals.<BR>
+<BR>
+
+<H4>
+Branching
+</H4>
+We can easily branch with the following structure:<BR><I>expr</I><SUB><FONT SIZE=2>1</FONT></SUB> <FONT COLOR=purple>Orelse</FONT> <I>expr</I><SUB><FONT SIZE=2>2</FONT></SUB><BR><I>expr</I><SUB><FONT SIZE=2>1</FONT></SUB> and <I>expr</I><SUB><FONT SIZE=2>2</FONT></SUB> are evaluated to <I>v</I><SUB><FONT SIZE=2>1</FONT></SUB> and <I>v</I><SUB><FONT SIZE=2>2</FONT></SUB>. <I>v</I><SUB><FONT SIZE=2>1</FONT></SUB> and <I>v</I><SUB><FONT SIZE=2>2</FONT></SUB> must be
+tactic values. <I>v</I><SUB><FONT SIZE=2>1</FONT></SUB> is applied and if it fails then <I>v</I><SUB><FONT SIZE=2>2</FONT></SUB> is applied.
+Branching is left associating.<BR>
+<BR>
+
+<H4>
+For loop
+</H4>
+We have a for loop with:<BR><FONT COLOR=purple>Do</FONT> <I>n</I> <I>expr</I><BR><I>expr</I> is evaluated to <I>v</I>. <I>v</I> must be a tactic value. <I>v</I> is applied <I>n</I>
+times. Supposing <I>n</I>&gt;1, after the first application of <I>v</I>, <I>v</I> is applied, at
+least once, to the generated subgoals and so on. It fails if the application of
+<I>v</I> fails before the <I>n</I> applications have been completed.<BR>
+<BR>
+
+<H4>
+Repeat loop
+</H4>
+We have a repeat loop with:<BR><FONT COLOR=purple>Repeat</FONT> <I>expr</I><BR><I>expr</I> is evaluated to <I>v</I>. <I>v</I> must be a tactic value. <I>v</I> is applied until it
+fails. Supposing <I>n</I>&gt;1, after the first application of <I>v</I>, <I>v</I> is applied, at
+least once, to the generated subgoals and so on. It stops when it fails for all
+the generated subgoals. It never fails.<BR>
+<BR>
+
+<H4>
+Error catching
+</H4>
+We can catch the tactic errors with:<BR><FONT COLOR=purple>Try</FONT> <I>expr</I><BR><I>expr</I> is evaluated to <I>v</I>. <I>v</I> must be a tactic value. <I>v</I> is applied. If the
+application of <I>v</I> fails, it catches the error and leaves the goal unchanged.
+It never fails.<BR>
+<BR>
+
+<H4>
+First tactic to work
+</H4>
+We may consider the first tactic to work (i.e. which does not fail) among a
+panel of tactics:<BR><FONT COLOR=purple>First [</FONT> <I>expr</I><SUB><FONT SIZE=2>1</FONT></SUB> <FONT COLOR=purple>|</FONT> ... <FONT COLOR=purple>|</FONT> <I>expr</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> <FONT COLOR=purple>]</FONT><BR><I>expr</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB> are evaluated to <I>v</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB> and <I>v</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB> must be tactic values, for 
+<I>i</I>=1,...,<I>n</I>. Supposing <I>n</I>&gt;1, it applies <I>v</I><SUB><FONT SIZE=2>1</FONT></SUB>, if it works, it stops else it
+tries to apply <I>v</I><SUB><FONT SIZE=2>2</FONT></SUB> and so on. It fails when there is no applicable tactic.<BR><FONT COLOR=purple>Error message:</FONT><BR><TT>No applicable tactic</TT><BR>
+<BR>
+
+<H4>
+Solving
+</H4>
+We may consider the first to solve (i.e. which generates no subgoal) among a
+panel of tactics:<BR><FONT COLOR=purple>Solve [</FONT> <I>expr</I><SUB><FONT SIZE=2>1</FONT></SUB> <FONT COLOR=purple>|</FONT> ... <FONT COLOR=purple>|</FONT> <I>expr</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> <FONT COLOR=purple>]</FONT><BR><I>expr</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB> are evaluated to <I>v</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB> and <I>v</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB> must be tactic values, for 
+<I>i</I>=1,...,<I>n</I>. Supposing <I>n</I>&gt;1, it applies <I>v</I><SUB><FONT SIZE=2>1</FONT></SUB>, if it solves, it stops else it
+tries to apply <I>v</I><SUB><FONT SIZE=2>2</FONT></SUB> and so on. It fails if there is no solving tactic.<BR><FONT COLOR=purple>Error message:</FONT><BR><TT>Cannot solve the goal</TT><BR>
+<BR>
+
+<H4>
+Identity
+</H4>
+We have the identity tactic:<BR><FONT COLOR=purple>Idtac</FONT><BR>It leaves the goal unchanged but it appears in the proof script.<BR>
+<BR>
+
+<H4>
+Failing
+</H4>
+We have the failing tactic:<BR><FONT COLOR=purple>Fail</FONT><BR>It always fails and leaves the goal unchanged. It does not appear in the proof
+script and can be catched by <FONT COLOR=purple>Try</FONT>.<BR>
+<BR>
+
+<H4>
+Pattern matching on proof contexts
+</H4>
+We can make pattern matching on proof contexts using the following
+expression:<BR>
+<BR>
+
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD  ALIGN=left NOWRAP><FONT COLOR=purple>Match Context With</FONT></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP></TD>
+<TD  ALIGN=left NOWRAP></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>[</FONT><I>context</I>_<I>hyps</I><SUB><FONT SIZE=2>1,1</FONT></SUB><FONT COLOR=purple>;</FONT>...<FONT COLOR=purple>;</FONT><I>context</I>_<I>hyps</I><SUB><FONT SIZE=2>1,<I>m</I></FONT></SUB><SUB><SUB><FONT SIZE=2>1</FONT></SUB></SUB></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>|-</FONT><I>term</I><SUB><FONT SIZE=2>1</FONT></SUB><FONT COLOR=purple>] -&gt;</FONT> <I>expr</I><SUB><FONT SIZE=2>1</FONT></SUB></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>|[</FONT><I>context</I>_<I>hyps</I><SUB><FONT SIZE=2>2,1</FONT></SUB><FONT COLOR=purple>;</FONT>...<FONT COLOR=purple>;</FONT><I>context</I>_<I>hyps</I><SUB><FONT SIZE=2>2,<I>m</I></FONT></SUB><SUB><SUB><FONT SIZE=2>2</FONT></SUB></SUB></TD>
+<TD  ALIGN=left NOWRAP></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>|-</FONT><I>term</I><SUB><FONT SIZE=2>2</FONT></SUB><FONT COLOR=purple>] -&gt;</FONT> <I>expr</I><SUB><FONT SIZE=2>2</FONT></SUB></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP></TD>
+<TD  ALIGN=left NOWRAP>...</TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>|[</FONT><I>context</I>_<I>hyps</I><SUB><FONT SIZE=2><I>n</I>,1</FONT></SUB><FONT COLOR=purple>;</FONT>...<FONT COLOR=purple>;</FONT><I>context</I>_<I>hyps</I><SUB><FONT SIZE=2><I>n</I>,<I>m</I></FONT></SUB><SUB><SUB><FONT SIZE=2><I>n</I></FONT></SUB></SUB></TD>
+<TD  ALIGN=left NOWRAP></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>|-</FONT><I>term</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB><FONT COLOR=purple>] -&gt;</FONT> <I>expr</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>|_</FONT></TD>
+<TD  ALIGN=left NOWRAP></TD>
+<TD  ALIGN=left NOWRAP></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>-&gt;</FONT> <I>expr</I><SUB><FONT SIZE=2><I>n</I>+1</FONT></SUB>
+</TD>
+</TR></TABLE><BR>
+If each hypothesis pattern <I>context</I>_<I>hyps</I><SUB><FONT SIZE=2>1,<I>i</I></FONT></SUB>, with <I>i</I>=1,...,<I>m</I><SUB><FONT SIZE=2>1</FONT></SUB> is matched
+(non-linear first order unification) by an hypothesis of the goal and if
+<I>term</I><SUB><FONT SIZE=2>1</FONT></SUB> is matched by the conclusion of the goal, then <I>expr</I><SUB><FONT SIZE=2>1</FONT></SUB> is evaluated
+to <I>v</I><SUB><FONT SIZE=2>1</FONT></SUB> by substituting the pattern matching to the metavariables and the real
+hypothesis names bound to the possible hypothesis names occurring in the
+hypothesis patterns. If <I>v</I><SUB><FONT SIZE=2>1</FONT></SUB> is a tactic value, then it is applied to the
+goal. If this application fails, then another combination of hypotheses is
+tried with the same proof context pattern. If there is no other combination of
+hypotheses then the second proof context pattern is tried and so on. If the
+next to last proof context pattern fails then <I>expr</I><SUB><FONT SIZE=2><I>n</I>+1</FONT></SUB> is evaluated to
+<I>v</I><SUB><FONT SIZE=2><I>n</I>+1</FONT></SUB> and <I>v</I><SUB><FONT SIZE=2><I>n</I>+1</FONT></SUB> is applied.<BR><FONT COLOR=purple>Error message:</FONT><BR><TT>No matching clauses for Match Context</TT><BR>
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;No proof context pattern can be used and, in particular, there is no <FONT COLOR=purple>_</FONT> proof<BR>
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;context pattern.<BR>
+<BR>
+
+<H3>
+
+10.2.4&nbsp;Tactic toplevel definitions
+</H3>
+Basically, tactics toplevel definitions are made as follows:<BR><FONT COLOR=purple>Tactic Definition</FONT> <I>ident</I> <FONT COLOR=purple>:=</FONT> <I>expr</I><BR><I>expr</I> is evaluated to <I>v</I> and <I>v</I> is associated to <I>ident</I>. Next, every
+script is evaluated by substituting <I>v</I> to <I>ident</I>.<BR>
+<BR>
+We can define functional definitions by:<BR><FONT COLOR=purple>Tactic Definition</FONT> <I>ident</I> <I>input</I>_<I>fun</I><SUB><FONT SIZE=2>1</FONT></SUB> ... <I>input</I>_<I>fun</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> <FONT COLOR=purple>:=</FONT>
+<I>expr</I><BR>This definition is nothing else than syntactical sugar for:<BR><FONT COLOR=purple>Tactic Definition</FONT> <I>ident</I> <FONT COLOR=purple>:= Fun</FONT> <I>input</I>_<I>fun</I><SUB><FONT SIZE=2>1</FONT></SUB> ... <I>input</I>_<I>fun</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>
+<FONT COLOR=purple>-&gt;</FONT> <I>expr</I><BR>Then, this definition is treated as above.<BR>
+<BR>
+Finally, mutal recursive function definitions are possible with:<BR>
+<BR>
+
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD  ALIGN=left NOWRAP></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>Recursive Tactic Definition</FONT></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP></TD>
+<TD  ALIGN=left NOWRAP></TD>
+<TD  ALIGN=left NOWRAP><I>ident</I><SUB><FONT SIZE=2>1</FONT></SUB> <I>input</I>_<I>fun</I><SUB><FONT SIZE=2>1,1</FONT></SUB> ...
+<I>input</I>_<I>fun</I><SUB><FONT SIZE=2>1,<I>m</I></FONT></SUB><SUB><SUB><FONT SIZE=2>1</FONT></SUB></SUB></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>:=</FONT> <I>expr</I><SUB><FONT SIZE=2>1</FONT></SUB></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>And</FONT> <I>ident</I><SUB><FONT SIZE=2>2</FONT></SUB> <I>input</I>_<I>fun</I><SUB><FONT SIZE=2>2,1</FONT></SUB> ... <I>input</I>_<I>fun</I><SUB><FONT SIZE=2>2,<I>m</I></FONT></SUB><SUB><SUB><FONT SIZE=2>2</FONT></SUB></SUB></TD>
+<TD  ALIGN=left NOWRAP></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>:=</FONT>
+<I>expr</I><SUB><FONT SIZE=2>2</FONT></SUB></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP></TD>
+<TD  ALIGN=left NOWRAP>...</TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>And</FONT> <I>ident</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> <I>input</I>_<I>fun</I><SUB><FONT SIZE=2><I>n</I>,1</FONT></SUB> ... <I>input</I>_<I>fun</I><SUB><FONT SIZE=2><I>n</I>,<I>m</I></FONT></SUB><SUB><SUB><FONT SIZE=2><I>n</I></FONT></SUB></SUB> <FONT COLOR=purple>:=</FONT>
+<I>expr</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>
+</TD>
+</TR></TABLE><BR>
+This definition bloc is a set of simultaneous functional definitions (use of
+the same previous syntactical sugar) and the other scripts are evaluated as
+usual except that the substitutions are lazily carried out (when an identifier
+to be evaluated is the name of a recursive definition).<BR>
+<BR>
+<HR>
+
+<A HREF="node.2.1.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.2.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.2.1.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

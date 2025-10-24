@@ -1,0 +1,249 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+10.1&nbsp;Syntax
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.2.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.2.1.1.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+10.1&nbsp;Syntax
+</H2>
+
+
+The syntax of the tactic language is given in table&nbsp;<A HREF="node.2.1.0.html#ltac">10.1</A>. We use a
+<FONT COLOR=purple>BNF</FONT>-like notation. Terminal symbols are set in sans serif font (<FONT COLOR=purple>like
+this</FONT>). Non-terminal symbols are set in italic font (<I>like</I> <I>that</I>). ... <I>|</I> ... denotes the or operation. ...<SUP><FONT SIZE=2>*</FONT></SUP> denotes zero, one or several
+repetitions. ...<SUP><FONT SIZE=2>+</FONT></SUP> denotes one or several repetitions. Parentheses <I>(</I>...<I>)</I> denote grouping. The main entry is <I>expr</I> and the entries <I>nat</I>,
+<I>ident</I>, <I>term</I> and <I>primitive</I>_<I>tactic</I> represent respectively the natural
+numbers, the authorized identificators, <FONT COLOR=purple>Coq</FONT>'s terms and all the basic
+tactics. In <I>term</I>, there can be specific variables like <FONT COLOR=purple>?n</FONT> where <FONT COLOR=purple>n</FONT>
+is a <I>nat</I> or <FONT COLOR=purple>?</FONT>, which are metavariables for pattern matching. <FONT COLOR=purple>?n</FONT>
+allows us to keep instantiations and to make constraints whereas <FONT COLOR=purple>?</FONT> shows
+that we are not interested in what will be matched.<BR>
+<BR>
+This language is used in proof mode but it can also be used in toplevel
+definitions as shown in table&nbsp;<A HREF="node.2.1.0.html#ltactop">10.2</A>.<BR>
+<BR>
+<BLOCKQUOTE><HR  SIZE=2>
+6in
+<DIV ALIGN=center>
+
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD  ALIGN=left NOWRAP><I>expr</I></TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>::=</DIV></TD>
+<TD  ALIGN=left NOWRAP><I>expr</I> <FONT COLOR=purple>;</FONT> <I>expr</I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><I>expr</I> <FONT COLOR=purple>; [</FONT> <I>(</I><I>expr</I> <FONT COLOR=purple>|</FONT><I>)</I><SUP><FONT SIZE=2>*</FONT></SUP> <I>expr</I> <FONT COLOR=purple>]</FONT></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><I>atom</I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP><I>atom</I></TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>::=</DIV></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>Fun</FONT> <I>input</I>_<I>fun</I><SUP><FONT SIZE=2>+</FONT></SUP> <FONT COLOR=purple>-&gt;</FONT> <I>expr</I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>Let</FONT> <I>(</I><I>let</I>_<I>clause</I> <FONT COLOR=purple>And</FONT><I>)</I><SUP><FONT SIZE=2>*</FONT></SUP> <I>let</I>_<I>clause</I> <FONT COLOR=purple>In</FONT>
+<I>expr</I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>Rec</FONT> <I>rec</I>_<I>clause</I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>Rec</FONT> <I>(</I><I>rec</I>_<I>clause</I> <FONT COLOR=purple>And</FONT><I>)</I><SUP><FONT SIZE=2>*</FONT></SUP> <I>rec</I>_<I>clause</I> <FONT COLOR=purple>In</FONT>
+<I>expr</I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>Match Context With</FONT> <I>(</I><I>context</I>_<I>rule</I> <FONT COLOR=purple>|</FONT><I>)</I><SUP><FONT SIZE=2>*</FONT></SUP>
+<I>context</I>_<I>rule</I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>Match</FONT> <I>term</I> <FONT COLOR=purple>With</FONT> <I>(</I><I>match</I>_<I>rule</I> <FONT COLOR=purple>|</FONT><I>)</I><SUP><FONT SIZE=2>*</FONT></SUP> <I>match</I>_<I>rule</I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>(</FONT> <I>expr</I> <FONT COLOR=purple>)</FONT></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>(</FONT> <I>expr</I> <I>expr</I><SUP><FONT SIZE=2>+</FONT></SUP> <FONT COLOR=purple>)</FONT></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><I>atom</I> <FONT COLOR=purple>Orelse</FONT> <I>atom</I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>Do</FONT> <I>(</I><I>int</I> <I>|</I> <I>ident</I><I>)</I> <I>atom</I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>Repeat</FONT> <I>atom</I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>Try</FONT> <I>atom</I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>First [</FONT> <I>(</I><I>expr</I> <FONT COLOR=purple>|</FONT><I>)</I><SUP><FONT SIZE=2>*</FONT></SUP> <I>expr</I> <FONT COLOR=purple>]</FONT></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>Solve [</FONT> <I>(</I><I>expr</I> <FONT COLOR=purple>|</FONT><I>)</I><SUP><FONT SIZE=2>*</FONT></SUP> <I>expr</I> <FONT COLOR=purple>]</FONT></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>Idtac</FONT></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>Fail</FONT></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><I>primitive</I>_<I>tactic</I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><I>arg</I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP><I>input</I>_<I>fun</I></TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>::=</DIV></TD>
+<TD  ALIGN=left NOWRAP><I>ident</I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>()</FONT></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP><I>let</I>_<I>clause</I></TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>::=</DIV></TD>
+<TD  ALIGN=left NOWRAP><I>ident</I> <FONT COLOR=purple>=</FONT> <I>expr</I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP><I>rec</I>_<I>clause</I></TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>::=</DIV></TD>
+<TD  ALIGN=left NOWRAP><I>ident</I> <I>input</I>_<I>fun</I><SUP><FONT SIZE=2>+</FONT></SUP> <FONT COLOR=purple>-&gt;</FONT> <I>expr</I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP><I>context</I>_<I>rule</I></TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>::=</DIV></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>[</FONT> <I>(</I><I>context</I>_<I>hyps</I> <FONT COLOR=purple>;</FONT><I>)</I><SUP><FONT SIZE=2>*</FONT></SUP> <I>context</I>_<I>hyps</I> <FONT COLOR=purple>|-</FONT>
+<I>term</I> <FONT COLOR=purple>] -&gt;</FONT> <I>expr</I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>[ |-</FONT> <I>term</I> <FONT COLOR=purple>] -&gt;</FONT> <I>expr</I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>_ -&gt;</FONT> <I>expr</I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP><I>context</I>_<I>hyps</I></TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>::=</DIV></TD>
+<TD  ALIGN=left NOWRAP><I>ident</I> <FONT COLOR=purple>:</FONT> <I>term</I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>_ :</FONT> <I>term</I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP><I>match</I>_<I>rule</I></TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>::=</DIV></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>[</FONT> <I>term</I> <FONT COLOR=purple>] -&gt;</FONT> <I>expr</I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>_ -&gt;</FONT> <I>expr</I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP><I>arg</I></TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>::=</DIV></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>()</FONT></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><I>nat</I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><I>ident</I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>'</FONT><I>term</I></TD>
+</TR></TABLE>
+</DIV>
+
+<A NAME="ltac"></A>
+<BR>
+<DIV ALIGN=center>Table 10.1: Syntax of the tactic language</DIV>
+<HR  SIZE=2></BLOCKQUOTE><BLOCKQUOTE><HR  SIZE=2>
+6in
+<DIV ALIGN=center>
+
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD  ALIGN=left NOWRAP><I>top</I></TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>::=</DIV></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>Tactic Definition</FONT> <I>ident</I> <I>input</I>_<I>fun</I><SUP><FONT SIZE=2>*</FONT></SUP> <FONT COLOR=purple>:=</FONT>
+<I>expr</I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>|</DIV></TD>
+<TD  ALIGN=left NOWRAP><FONT COLOR=purple>Recursive Tactic Definition</FONT> <I>(</I><I>trec</I>_<I>clause</I> <FONT COLOR=purple>And</FONT><I>)</I><SUP><FONT SIZE=2>*</FONT></SUP> <I>trec</I>_<I>clause</I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP><I>trec</I>_<I>clause</I></TD>
+<TD  VALIGN=top ALIGN=left><DIV ALIGN=center>::=</DIV></TD>
+<TD  ALIGN=left NOWRAP><I>ident</I> <I>input</I>_<I>fun</I><SUP><FONT SIZE=2>+</FONT></SUP> <FONT COLOR=purple>:=</FONT> <I>expr</I></TD>
+</TR></TABLE>
+</DIV>
+
+<A NAME="ltactop"></A>
+<BR>
+<DIV ALIGN=center>Table 10.2: Tactic toplevel definitions</DIV>
+<HR  SIZE=2></BLOCKQUOTE><HR>
+
+<A HREF="node.2.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.2.1.1.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

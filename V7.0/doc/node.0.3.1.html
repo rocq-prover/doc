@@ -1,0 +1,251 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+4.2&nbsp;Typed terms
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.0.3.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.0.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.3.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+4.2&nbsp;Typed terms
+</H2>
+
+
+<A NAME="Typed-terms"></A>As objects of type theory, terms are subjected to <EM>type
+discipline</EM>. The well typing of a term depends on an environment which
+consists in a global environment (see below) and a local context.<BR>
+<BR>
+
+<H5>
+Local context.
+</H5>
+
+A <EM>local context</EM> (or shortly context) is an ordered list of
+declarations of variables. The declaration of some variable <I>x</I> is
+either an assumption, written <I>x</I>:<I>T</I> (<I>T</I> is a type) or a definition,
+written <I>x</I>:=<I>t</I>:<I>T</I>. We use brackets to write contexts. A
+typical example is [<I>x</I>:<I>T</I>;<I>y</I>:=<I>u</I>:<I>U</I>;<I>z</I>:<I>V</I>]. Notice that the variables
+declared in a context must be distinct. If <FONT FACE=symbol>G</FONT> declares some <I>x</I>,
+we write <I>x</I> <FONT FACE=symbol>Î</FONT><FONT FACE=symbol>G</FONT>. By writing (<I>x</I>:<I>T</I>)<FONT FACE=symbol>Î</FONT><FONT FACE=symbol>G</FONT> we mean that
+either <I>x</I>:<I>T</I> is an assumption in <FONT FACE=symbol>G</FONT> or that there exists some <I>t</I> such
+that <I>x</I>:=<I>t</I>:<I>T</I> is a definition in <FONT FACE=symbol>G</FONT>. If <FONT FACE=symbol>G</FONT> defines some
+<I>x</I>:=<I>t</I>:<I>T</I>, we also write (<I>x</I>:=<I>t</I>:<I>T</I>)<FONT FACE=symbol>Î</FONT><FONT FACE=symbol>G</FONT>. Contexts must be
+themselves <EM>well formed</EM>. For the rest of the chapter, the
+notation <FONT FACE=symbol>G</FONT>::(<I>y</I>:<I>T</I>) (resp <FONT FACE=symbol>G</FONT>::(<I>y</I>:=<I>t</I>:<I>T</I>)) denotes the context
+<FONT FACE=symbol>G</FONT> enriched with the declaration <I>y</I>:<I>T</I> (resp <I>y</I>:=<I>t</I>:<I>T</I>). The
+notation [] denotes the empty context. <A NAME="@default255"></A><BR>
+<BR>
+A variable <I>x</I> is said to be free in <FONT FACE=symbol>G</FONT> if <FONT FACE=symbol>G</FONT> contains a
+declaration <I>y</I>:<I>T</I> such that <I>x</I> is free in <I>T</I>.<BR>
+<BR>
+
+<H5>
+Environment.
+</H5>
+<A NAME="@default256"></A>
+Because we are manipulating global declarations (constants and global
+assumptions), we also need to consider a global environment <I>E</I>.<BR>
+<BR>
+An environment is an ordered list of declarations of global
+names. Declarations are either assumptions or ``standard''
+definitions, that is abbreviations for well-formed terms
+but also definitions of inductive objects. In the latter
+case, an object in the environment will define one or more constants
+(that is types and constructors, see section <A HREF="node.0.3.4.html#Cic-inductive-definitions">4.5</A>).<BR>
+<BR>
+An assumption will be represented in the environment as
+<FONT COLOR=purple>Assum</FONT>(<FONT FACE=symbol>G</FONT>)(<I>c</I>:<I>T</I>) which means that <I>c</I> is assumed of some type <I>T</I>
+well-defined in some context <FONT FACE=symbol>G</FONT>. An (ordinary) definition will
+be represented in the environment as <FONT COLOR=purple>Def</FONT>(<FONT FACE=symbol>G</FONT>)(<I>c</I>:=<I>t</I>:<I>T</I>) which means
+that <I>c</I> is a constant which is valid in some context <FONT FACE=symbol>G</FONT> whose
+value is <I>t</I> and type is <I>T</I>.<BR>
+<BR>
+The rules for inductive definitions (see section
+<A HREF="node.0.3.4.html#Cic-inductive-definitions">4.5</A>) have to be considered as assumption
+rules to which the following definitions apply: if the name <I>c</I> is
+declared in <I>E</I>, we write <I>c</I> <FONT FACE=symbol>Î</FONT> <I>E</I> and if <I>c</I>:<I>T</I> or <I>c</I>:=<I>t</I>:<I>T</I> is
+declared in <I>E</I>, we write (<I>c</I> : <I>T</I>) <FONT FACE=symbol>Î</FONT> <I>E</I>.<BR>
+<BR>
+
+<H5>
+Typing rules.
+</H5>
+<A NAME="Typing-rules"></A><A NAME="@default257"></A>
+In the following, we assume <I>E</I> is a valid environment wrt to
+inductive definitions. We define simultaneously two
+judgments. The first one <I>E</I>[<FONT FACE=symbol>G</FONT>] |- <I>t</I> : <I>T</I> means the term <I>t</I> is well-typed
+and has type <I>T</I> in the environment <I>E</I> and context <FONT FACE=symbol>G</FONT>. The
+second judgment <FONT COLOR=red> <I>W</I><I>F</I></FONT>(<I>E</I>)[<FONT FACE=symbol>G</FONT>] means that the environment <I>E</I> is
+well-formed and the context <FONT FACE=symbol>G</FONT> is a valid context in this
+environment. It also means a third property which makes sure that any
+constant in <I>E</I> was defined in an environment which is included in
+<FONT FACE=symbol>G</FONT>
+<A NAME="text14"></A><A HREF="node.8.html#note14"><SUP><FONT SIZE=2>1</FONT></SUP></A>.<BR>
+<BR>
+A term <I>t</I> is well typed in an environment <I>E</I> iff there exists a
+context <FONT FACE=symbol>G</FONT> and a term <I>T</I> such that the judgment <I>E</I>[<FONT FACE=symbol>G</FONT>] |- <I>t</I> : <I>T</I> can
+be derived from the following rules.
+<UL>
+<LI>
+W-E <DIV ALIGN=center><FONT COLOR=red> <I>W</I><I>F</I></FONT>([])[[]]</DIV>
+
+<LI>W-S <DIV ALIGN=center>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR VALIGN=middle><TD NOWRAP>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center><I>E</I>[<FONT FACE=symbol>G</FONT>] |- <I>T</I> : <I>s</I>&nbsp;&nbsp;&nbsp;&nbsp;<I>s</I><FONT FACE=symbol>Î</FONT> <FONT COLOR=red> <I>S</I></FONT>&nbsp;&nbsp;&nbsp;&nbsp;<I>x</I> <FONT FACE=symbol>Ï</FONT> <FONT FACE=symbol>G</FONT> </TD>
+</TR>
+<TR><TD><HR NOSHADE SIZE=2></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center><FONT COLOR=red> <I>W</I><I>F</I></FONT>(<I>E</I>)[<FONT FACE=symbol>G</FONT>::(<I>x</I>:<I>T</I>)]</TD>
+</TR></TABLE></TD>
+<TD nowrap>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ </TD>
+<TD NOWRAP>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center><I>E</I>[<FONT FACE=symbol>G</FONT>] |- <I>t</I> : <I>T</I>&nbsp;&nbsp;&nbsp;&nbsp;<I>x</I> <FONT FACE=symbol>Ï</FONT> <FONT FACE=symbol>G</FONT> </TD>
+</TR>
+<TR><TD><HR NOSHADE SIZE=2></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center><FONT COLOR=red> <I>W</I><I>F</I></FONT>(<I>E</I>)[<FONT FACE=symbol>G</FONT>::(<I>x</I>:=<I>t</I>:<I>T</I>)]</TD>
+</TR></TABLE></TD>
+</TR></TABLE></DIV>
+
+<LI>Def <DIV ALIGN=center>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center><I>E</I>[<FONT FACE=symbol>G</FONT>] |- <I>t</I> : <I>T</I>&nbsp;&nbsp;&nbsp;<I>c</I> <FONT FACE=symbol>Ï</FONT> <I>E</I><FONT FACE=symbol>È</FONT> <FONT FACE=symbol>G</FONT></TD>
+</TR>
+<TR><TD><HR NOSHADE SIZE=2></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center><FONT COLOR=red> <I>W</I><I>F</I></FONT>(<I>E</I>;<FONT COLOR=purple>Def</FONT>(<FONT FACE=symbol>G</FONT>)(<I>c</I>:=<I>t</I>:<I>T</I>))[<FONT FACE=symbol>G</FONT>]</TD>
+</TR></TABLE></DIV>
+
+<LI>Ax <A NAME="@default258"></A>
+<DIV ALIGN=center>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR VALIGN=middle><TD NOWRAP>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center><FONT COLOR=red> <I>W</I><I>F</I></FONT>(<I>E</I>)[<FONT FACE=symbol>G</FONT>]</TD>
+</TR>
+<TR><TD><HR NOSHADE SIZE=2></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center><I>E</I>[<FONT FACE=symbol>G</FONT>] |- <FONT COLOR=purple>Prop</FONT> : <FONT COLOR=purple>Type</FONT>(<I>p</I>)</TD>
+</TR></TABLE></TD>
+<TD nowrap>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</TD>
+<TD NOWRAP>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center><FONT COLOR=red> <I>W</I><I>F</I></FONT>(<I>E</I>)[<FONT FACE=symbol>G</FONT>]</TD>
+</TR>
+<TR><TD><HR NOSHADE SIZE=2></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center><I>E</I>[<FONT FACE=symbol>G</FONT>] |- <FONT COLOR=purple>Set</FONT> : <FONT COLOR=purple>Type</FONT>(<I>q</I>)</TD>
+</TR></TABLE></TD>
+</TR></TABLE></DIV><BR><DIV ALIGN=center>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center><FONT COLOR=red> <I>W</I><I>F</I></FONT>(<I>E</I>)[<FONT FACE=symbol>G</FONT>]&nbsp;&nbsp;&nbsp;&nbsp;<I>i</I>&lt;<I>j</I></TD>
+</TR>
+<TR><TD><HR NOSHADE SIZE=2></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center><I>E</I>[<FONT FACE=symbol>G</FONT>] |- <FONT COLOR=purple>Type</FONT>(<I>i</I>) : <FONT COLOR=purple>Type</FONT>(<I>j</I>)</TD>
+</TR></TABLE></DIV>
+
+<LI>Var<A NAME="@default259"></A>
+ <DIV ALIGN=center>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center> <FONT COLOR=red> <I>W</I><I>F</I></FONT>(<I>E</I>)[<FONT FACE=symbol>G</FONT>]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<I>x</I>:<I>T</I>)<FONT FACE=symbol>Î</FONT><FONT FACE=symbol>G</FONT>&nbsp;&nbsp;or&nbsp;&nbsp;(<I>x</I>:=<I>t</I>:<I>T</I>)<FONT FACE=symbol>Î</FONT><FONT FACE=symbol>G</FONT>&nbsp;for some <I>t</I></TD>
+</TR>
+<TR><TD><HR NOSHADE SIZE=2></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center><I>E</I>[<FONT FACE=symbol>G</FONT>] |- <I>x</I> : <I>T</I></TD>
+</TR></TABLE></DIV>
+
+<LI>Const <A NAME="@default260"></A>
+<DIV ALIGN=center>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center><FONT COLOR=red> <I>W</I><I>F</I></FONT>(<I>E</I>)[<FONT FACE=symbol>G</FONT>]&nbsp;&nbsp;&nbsp;&nbsp;(<I>c</I>:<I>T</I>) <FONT FACE=symbol>Î</FONT> <I>E</I></TD>
+</TR>
+<TR><TD><HR NOSHADE SIZE=2></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center><I>E</I>[<FONT FACE=symbol>G</FONT>] |- <I>c</I> : <I>T</I></TD>
+</TR></TABLE></DIV>
+
+<LI>Prod <A NAME="@default261"></A>
+<DIV ALIGN=center>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center><I>E</I>[<FONT FACE=symbol>G</FONT>] |- <I>T</I> : <I>s</I><SUB><FONT SIZE=2>1</FONT></SUB>&nbsp;&nbsp;&nbsp;&nbsp;
+ <I>E</I>[<FONT FACE=symbol>G</FONT>::(<I>x</I>:<I>T</I>)] |- <I>U</I> : <I>s</I><SUB><FONT SIZE=2>2</FONT></SUB>&nbsp;&nbsp;&nbsp;<I>s</I><SUB><FONT SIZE=2>1</FONT></SUB><FONT FACE=symbol>Î</FONT>{<FONT COLOR=purple>Prop</FONT>, <FONT COLOR=purple>Set</FONT>}&nbsp;or&nbsp;
+ <I>s</I><SUB><FONT SIZE=2>2</FONT></SUB><FONT FACE=symbol>Î</FONT>{<FONT COLOR=purple>Prop</FONT>, <FONT COLOR=purple>Set</FONT>}</TD>
+</TR>
+<TR><TD><HR NOSHADE SIZE=2></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center> <I>E</I>[<FONT FACE=symbol>G</FONT>] |- (<I>x</I>:<I>T</I>)<I>U</I> : <I>s</I><SUB><FONT SIZE=2>2</FONT></SUB></TD>
+</TR></TABLE></DIV><BR><DIV ALIGN=center>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center><I>E</I>[<FONT FACE=symbol>G</FONT>] |- <I>T</I> : <FONT COLOR=purple>Type</FONT>(<I>i</I>)&nbsp;&nbsp;&nbsp;&nbsp;
+ <I>E</I>[<FONT FACE=symbol>G</FONT>::(<I>x</I>:<I>T</I>)] |- <I>U</I> : <FONT COLOR=purple>Type</FONT>(<I>j</I>)&nbsp;&nbsp;&nbsp;<I>i</I><FONT FACE=symbol>£</FONT>
+ <I>k</I>&nbsp;&nbsp;&nbsp;<I>j</I> <FONT FACE=symbol>£</FONT> <I>k</I></TD>
+</TR>
+<TR><TD><HR NOSHADE SIZE=2></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center> <I>E</I>[<FONT FACE=symbol>G</FONT>] |- (<I>x</I>:<I>T</I>)<I>U</I> : <FONT COLOR=purple>Type</FONT>(<I>k</I>)</TD>
+</TR></TABLE></DIV>
+
+<LI>Lam<A NAME="@default262"></A> 
+<DIV ALIGN=center>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center><I>E</I>[<FONT FACE=symbol>G</FONT>] |- (<I>x</I>:<I>T</I>)<I>U</I> : <I>s</I>&nbsp;&nbsp;&nbsp;&nbsp; <I>E</I>[<FONT FACE=symbol>G</FONT>::(<I>x</I>:<I>T</I>)] |- <I>t</I> : <I>U</I></TD>
+</TR>
+<TR><TD><HR NOSHADE SIZE=2></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center><I>E</I>[<FONT FACE=symbol>G</FONT>] |- [<I>x</I>:<I>T</I>]<I>t</I> : (<I>x</I>:<I>T</I>)<I>U</I></TD>
+</TR></TABLE></DIV>
+
+<LI>App<A NAME="@default263"></A>
+ <DIV ALIGN=center>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center><I>E</I>[<FONT FACE=symbol>G</FONT>] |- <I>t</I> : (<I>x</I>:<I>U</I>)<I>T</I>&nbsp;&nbsp;&nbsp;&nbsp;<I>E</I>[<FONT FACE=symbol>G</FONT>] |- <I>u</I> : <I>U</I></TD>
+</TR>
+<TR><TD><HR NOSHADE SIZE=2></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center><I>E</I>[<FONT FACE=symbol>G</FONT>] |- (<I>t</I> <I>u</I>) : <I>T</I>{<I>x</I>/<I>u</I>}</TD>
+</TR></TABLE></DIV>
+
+<LI>Let<A NAME="@default264"></A> 
+<DIV ALIGN=center>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center><I>E</I>[<FONT FACE=symbol>G</FONT>] |- <I>t</I> : <I>T</I>&nbsp;&nbsp;&nbsp;&nbsp; <I>E</I>[<FONT FACE=symbol>G</FONT>::(<I>x</I>:=<I>t</I>:<I>T</I>)] |- <I>u</I> : <I>U</I></TD>
+</TR>
+<TR><TD><HR NOSHADE SIZE=2></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center><I>E</I>[<FONT FACE=symbol>G</FONT>] |- [<I>x</I>:=<I>t</I>]<I>u</I> : <I>U</I>{<I>x</I>/<I>t</I>}</TD>
+</TR></TABLE></DIV>
+</UL><B>Remark. </B> We may have [<I>x</I>:=<I>t</I>]<I>u</I> well-typed without
+having ([<I>x</I>:<I>T</I>]<I>u</I>&nbsp;<I>t</I>) well-typed (where <I>T</I> is a type of <I>t</I>). This is because 
+the value <I>t</I> associated to <I>x</I> may be used in a conversion rule (see section <A HREF="node.0.3.2.html#conv-rules">4.3</A>).<BR>
+<BR>
+<HR>
+
+<A HREF="node.0.3.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.0.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.3.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

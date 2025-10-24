@@ -1,0 +1,126 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+15.1&nbsp;Description of Omega
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.4.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.4.1.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+15.1&nbsp;Description of <TT>Omega</TT>
+</H2>
+
+
+
+<A NAME="@default597"></A><A NAME="@tactic120"></A>
+<A NAME="description"></A><TT>Omega</TT>&nbsp;solves a goal in Presburger arithmetic, ie a universally
+quantified formula made of equations and inequations. Equations may
+be specified either on the type <CODE>nat</CODE> of natural numbers or on
+the type <CODE>Z</CODE> of binary-encoded integer numbers. Formulas on
+<CODE>nat</CODE> are automatically injected into <CODE>Z</CODE>. The procedure
+may use any hypothesis of the current proof session to solve the goal.<BR>
+<BR>
+Multiplication is handled by <TT>Omega</TT>&nbsp;but only goals where at
+least one of the two multiplicands of products is a constant are
+solvable. This is the restriction meaned by ``Presburger arithmetic''.<BR>
+<BR>
+If the tactic cannot solve the goal, it fails with an error message.
+In any case, the computation eventually stops.<BR>
+<BR>
+
+ 
+<H3>
+
+15.1.1&nbsp;Arithmetical goals recognized by <TT>Omega</TT>
+</H3>
+<TT>Omega</TT>&nbsp;applied only to quantifier-free formulas built from the
+connectors<BR>
+<BR>
+<BLOCKQUOTE>
+<CODE>/\, \/, ~, -&gt;</CODE>
+</BLOCKQUOTE>on atomic formulas. Atomic formulas are built from the predicates <BR>
+<BR>
+<BLOCKQUOTE>
+<CODE>=, le, lt, gt, ge</CODE>
+</BLOCKQUOTE> on <CODE>nat</CODE> or from the predicates<BR>
+<BR>
+<BLOCKQUOTE>
+<CODE>=, &lt;, &lt;=, &gt;, &gt;=</CODE>
+</BLOCKQUOTE> on <CODE>Z</CODE>. In expressions of type <CODE>nat</CODE>, <TT>Omega</TT>&nbsp;recognizes <BR>
+<BR>
+<BLOCKQUOTE>
+<CODE>plus, minus, mult, pred, S, O</CODE>
+</BLOCKQUOTE>and in expressions of type <CODE>Z</CODE>, <TT>Omega</TT>&nbsp;recognizes <BR>
+<BR>
+<BLOCKQUOTE>
+<CODE>+, -, *, Zs</CODE>, and constants.
+</BLOCKQUOTE>All expressions of type <CODE>nat</CODE> or <CODE>Z</CODE> not built on these
+operators are considered abstractly as if they
+were arbitrary variables of type <CODE>nat</CODE> or <CODE>Z</CODE>.<BR>
+<BR>
+
+ 
+<H3>
+
+15.1.2&nbsp;Messages from <TT>Omega</TT>
+</H3>
+
+<A NAME="errors"></A>When <TT>Omega</TT>&nbsp;does not solve the goal, one of the following errors
+is generated:<BR>
+<BR>
+<BR><B>Error messages: </B><OL>
+<LI>
+ 
+<TT>Omega can't solve this system</TT><A NAME="@error102"></A><BR>This may happen if your goal is not quantifier-free (if it is
+ universally quantified, try <TT>Intros</TT> first; if it contains
+ existentials quantifiers too, <TT>Omega</TT> is not strong enough to solve your
+ goal). This may happen also if your goal contains arithmetical
+ operators unknown from <TT>Omega</TT>. Finally, your goal may be really
+ wrong !<BR>
+<BR>
+
+<LI><TT>Omega: Not a quantifier-free goal</TT><A NAME="@error103"></A><BR>If your goal is universally quantified, you should first apply <TT>Intro</TT> as many time as needed.<BR>
+<BR>
+
+<LI><TT>Omega: Unrecognized predicate or connective:</TT><I><FONT COLOR=maroon>ident</FONT></I><A NAME="@error104"></A><BR>
+<BR>
+
+<LI><TT>Omega: Unrecognized atomic proposition:</TT><I><FONT COLOR=maroon>prop</FONT></I><A NAME="@error105"></A>
+ 
+
+<LI><TT>Omega: Can't solve a goal with proposition variables</TT><A NAME="@error106"></A><BR>
+<BR>
+
+<LI><TT>Omega: Unrecognized proposition</TT><A NAME="@error107"></A><BR>
+<BR>
+
+<LI><TT>Omega: Can't solve a goal with non-linear products</TT><A NAME="@error108"></A><BR>
+<BR>
+
+<LI><TT>Omega: Can't solve a goal with equality on </TT><I><FONT COLOR=maroon>type</FONT></I><A NAME="@error109"></A></OL> Use <TT>Set Omega </TT><I><FONT COLOR=maroon>flag</FONT></I> to set the flag
+ <I><FONT COLOR=maroon>flag</FONT></I>. Use <TT>Unset Omega </TT><I><FONT COLOR=maroon>flag</FONT></I> to unset it and
+<TT>Switch Omega </TT><I><FONT COLOR=maroon>flag</FONT></I> to toggle it.<BR>
+<BR>
+<HR>
+
+<A HREF="node.3.4.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.4.1.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

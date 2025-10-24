@@ -1,0 +1,84 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+17.2&nbsp;Realizing axioms
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.6.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.6.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.6.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+17.2&nbsp;Realizing axioms
+</H2>
+
+
+
+<A NAME="@default607"></A><A NAME="@command166"></A>It is possible to assume some axioms while developing a proof. Since
+these axioms can be any kind of proposition or object type, they may
+perfectly well have some computational content. But a program must be
+a closed term, and of course the system cannot guess the program which
+realizes an axiom. Therefore, it is possible to tell the system
+what ML term corresponds to a given axiom. Of course, it is the
+responsability of the user to ensure that the ML terms given to
+realize the axioms do have the expected types.<A NAME="@default608"></A><A NAME="@command167"></A><BR>
+<BR>
+
+<A NAME="@default609"></A><A NAME="@command168"></A>
+The system actually provides a more general mechanism to specify ML
+terms even for defined constants, inductive types and constructors.
+For instance, the user may want to use the ML native boolean type
+instead of <FONT COLOR=purple>Coq</FONT> one.
+The syntax is the following:
+<DL COMPACT=compact>
+<DT><DD><TT>Extract Constant </TT><I><FONT COLOR=maroon>qualid</FONT></I><TT> =&gt; </TT><I><FONT COLOR=maroon>string</FONT></I><TT>.</TT> &nbsp;<BR>
+<BR>
+Give an ML extraction for the given constant.
+ The <I><FONT COLOR=maroon>string</FONT></I> may be an identifier or a quoted string.
+
+<DT><DD><TT>Extract Inductive </TT><I><FONT COLOR=maroon>qualid</FONT></I><TT> =&gt; </TT><I><FONT COLOR=maroon>string</FONT></I><TT> [ </TT><I><FONT COLOR=maroon>string</FONT></I><TT> ...</TT><I><FONT COLOR=maroon>string</FONT></I><TT> ].</TT> &nbsp;<BR>
+<BR>
+Give an ML extraction for the given inductive type. You must specify
+ extractions for the type itself (first <I><FONT COLOR=maroon>string</FONT></I>) and all its
+ constructors (between square brackets). The ML extraction must be an
+ ML recursive datatype.
+</DL><BR><B>Remarks: </B><OL>
+<LI>
+ 
+
+ The given ML terms are always inlined; thus, it may be
+ useful to introduce definitions in a separate ML module and then to
+ use the corresponding qualified names.
+
+<LI>
+ The extraction of a module depending on axioms from another module
+ will not fail. It is the responsability of the ``extractor'' of that
+ other module to realize the given axioms.
+</OL><BR><B>Example: </B>Typical examples are the following:
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Extract&nbsp;Inductive&nbsp;unit&nbsp;=&gt;&nbsp;unit&nbsp;[&nbsp;"()"&nbsp;].</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Extract&nbsp;Inductive&nbsp;bool&nbsp;=&gt;&nbsp;bool&nbsp;[&nbsp;true&nbsp;false&nbsp;].</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Extract&nbsp;Inductive&nbsp;sumbool&nbsp;=&gt;&nbsp;bool&nbsp;[&nbsp;true&nbsp;false&nbsp;].</TT><BR></DIV>
+<BR>
+<HR>
+
+<A HREF="node.3.6.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.6.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.6.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

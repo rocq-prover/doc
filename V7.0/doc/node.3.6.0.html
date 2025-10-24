@@ -1,0 +1,103 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+17.1&nbsp;Generating ML code
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.6.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.6.1.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+17.1&nbsp;Generating ML code
+</H2>
+
+
+
+<A NAME="@default604"></A><A NAME="@command163"></A>
+<A NAME="@default605"></A><A NAME="@command164"></A>
+<A NAME="@default606"></A><A NAME="@command165"></A>The <FONT COLOR=purple>Coq</FONT> commands to generate ML code are:
+<DL COMPACT=compact>
+<DT><DD><TT>Extraction </TT><I><FONT COLOR=maroon>term</FONT></I><TT>.</TT> &nbsp;<BR>
+<BR>
+Extracts one term in the <FONT COLOR=purple>Coq</FONT> toplevel.
+ Extracted terms are displayed with an <FONT COLOR=purple>Objective Caml</FONT> syntax, where globals
+ are printed as in the <FONT COLOR=purple>Coq</FONT> toplevel (thus without any renaming).<BR>
+<BR>
+
+<DT><DD><TT>Recursive Extraction </TT><I><FONT COLOR=maroon>qualid</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> ... </TT><I><FONT COLOR=maroon>qualid</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT>.</TT> &nbsp;<BR>
+<BR>
+Recursive extraction of all the globals <I><FONT COLOR=maroon>qualid</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> ...
+ <I><FONT COLOR=maroon>qualid</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> and all their dependencies in the <FONT COLOR=purple>Coq</FONT> toplevel.<BR>
+<BR>
+
+<DT><DD><TT>Extraction "</TT><TT><EM>file</EM></TT><TT>"</TT> <EM>options</EM> 
+ <I><FONT COLOR=maroon>qualid</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> ... <I><FONT COLOR=maroon>qualid</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>. &nbsp;<BR>
+<BR>
+Recursive extraction of all the globals <I><FONT COLOR=maroon>qualid</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> ...
+ <I><FONT COLOR=maroon>qualid</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> and all their dependencies in file <EM>file</EM>.
+ Global and local identifiers are renamed accordingly to the target
+ language to fullfill its syntactic conventions, keeping original
+ names as much as possible.<BR>
+<BR>
+
+<DT><DD><TT>Extraction Module</TT> <EM>options</EM> <I><FONT COLOR=maroon>ident</FONT></I>. &nbsp;<BR>
+<BR>
+Extraction of the <FONT COLOR=purple>Coq</FONT> module <I><FONT COLOR=maroon>ident</FONT></I> to an ML module <I><FONT COLOR=maroon>ident</FONT></I><TT>.ml</TT>.
+ Identifiers are here renamed using prefixes <CODE>coq_</CODE> or
+ <CODE>Coq_</CODE> to ensure a session-independent renaming.
+</DL>
+The list of globals <I><FONT COLOR=maroon>qualid</FONT></I><SUB><FONT SIZE=2><I>i</I></FONT></SUB> does not need to be
+exhaustive: it is automatically completed into a complete and minimal
+environment. Extraction will fail if it encounters an axiom.<BR>
+<BR>
+
+<H5>
+Optimizations.
+</H5>
+ 
+Since Objective Caml is a strict language, the extracted
+code has to be optimized in order to be efficient (for instance, when
+using induction principles we do not want to compute all the recursive
+calls but only the needed ones). So an optimization routine will be
+called each time the user want to generate Caml programs. Essentially,
+it performs constants expansions and reductions. Therefore some
+constants will not appear in the resulting Caml program (A warning is
+printed for each such constant). To avoid this, just put the constant
+name in the previous list <I><FONT COLOR=maroon>qualid</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> ... <I><FONT COLOR=maroon>qualid</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> and it will not
+be expanded. Moreover, two options allow the user to control the
+expansion strategy:
+<DL COMPACT=compact>
+<DT><DD><TT>[ noopt ]</TT> &nbsp;<BR>
+<BR>
+specifies not to do any optimization.
+ 
+<DT><DD><TT>[ expand </TT><I><FONT COLOR=maroon>qualid</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> ... </TT><I><FONT COLOR=maroon>qualid</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT> ]</TT> &nbsp;<BR>
+<BR>
+forces the expansion of the constants <I><FONT COLOR=maroon>qualid</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> ... <I><FONT COLOR=maroon>qualid</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>
+ (when it is possible).
+</DL>
+Note that no optimization is performed for a modular extraction.<BR>
+<BR>
+
+ <HR>
+
+<A HREF="node.3.6.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.6.1.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>
