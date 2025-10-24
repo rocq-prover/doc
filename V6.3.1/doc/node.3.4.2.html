@@ -1,0 +1,389 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+15.3&nbsp;Customizing Natural
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.4.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.4.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.4.3.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+15.3&nbsp;Customizing <TT>Natural</TT>
+</H2>
+
+
+The transcription of proofs in natural language is mainly a paraphrase of
+the formal proofs, but some specific hints in the transcription
+can be given.
+Three kinds of customization are available.<BR>
+<BR>
+
+ 
+<H3>
+
+15.3.1&nbsp;Implicit proof steps
+</H3>
+
+<H4>
+Implicit lemmas
+</H4>
+Applying a given lemma or theorem <CODE>lem1</CODE> of statement, say <I>A</I>
+<FONT FACE=symbol>Þ</FONT> <I>B</I>, to an hypothesis, say <I>H</I> (assuming <I>A</I>) produces the
+following kind of output translation:<BR>
+<BR>
+<PRE>
+...
+Using lem1 with H we get B.
+...
+</PRE>But sometimes, you may prefer not to see the explicit invocation to
+the lemma. You may prefer to see:<BR>
+<BR>
+<PRE>
+...
+With H we have A.
+...
+</PRE>This is possible by declaring the lemma as implicit. You should type:<A NAME="@default598"></A><A NAME="@command164"></A><BR>
+<BR>
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Add&nbsp;Natural&nbsp;Implicit&nbsp;lem1.</TT><BR></DIV>
+<BR>
+By default, the lemmas <CODE>proj1</CODE>, <CODE>proj2</CODE>, <CODE>sym_equal</CODE>
+and <CODE>sym_eqT</CODE> are declared implicit. To remove a lemma or a theorem
+previously declared as implicit, say <CODE>lem1</CODE>, use the command<A NAME="@default599"></A><A NAME="@command165"></A><BR>
+<BR>
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Remove&nbsp;Natural&nbsp;Implicit&nbsp;lem1.</TT><BR></DIV>
+<BR>
+To test if the lemma or theorem <CODE>lem1</CODE> is, or is not,
+declared as implicit, type<A NAME="@default600"></A><A NAME="@command166"></A><BR>
+<BR>
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Test&nbsp;Natural&nbsp;Implicit&nbsp;lem1.</TT><BR></DIV>
+<BR>
+
+<H4>
+Implicit proof constructors
+</H4>
+Let <CODE>constr1</CODE> be a proof constructor of a given inductive
+proposition (or predicate)
+<CODE>Q</CODE> (of type <CODE>Prop</CODE>). Assume <CODE>constr1</CODE> proves 
+<CODE>(x:A)(P x)-&gt;(Q x)</CODE>. Then, applying <CODE>constr1</CODE> to an hypothesis,
+say <CODE>H</CODE> (assuming <CODE>(P a)</CODE>) produces the following kind of output:<BR>
+<BR>
+<PRE>
+...
+By the definition of Q, with H we have (Q a).
+...
+</PRE>But sometimes, you may prefer not to see the explicit invocation to
+this constructor. You may prefer to see:<BR>
+<BR>
+<PRE>
+...
+With H we have (Q a).
+...
+</PRE>This is possible by declaring the constructor as implicit. You should
+type, as before:<A NAME="@default601"></A><A NAME="@command167"></A><BR>
+<BR>
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Add&nbsp;Natural&nbsp;Implicit&nbsp;constr1.</TT><BR></DIV>
+<BR>
+By default, the proposition (or predicate) constructors<BR>
+<BR>
+<CODE>conj</CODE>, <CODE>or_introl</CODE>, <CODE>or_intror</CODE>, <CODE>ex_intro</CODE>,
+<CODE>exT_intro</CODE>, <CODE>refl_equal</CODE>, <CODE>refl_eqT</CODE> and <CODE>exist</CODE><BR>
+<BR>
+are declared implicit. Note that declaring implicit the
+constructor of a datatype (i.e. an inductive type of type <CODE>Set</CODE>)
+has no effect.<BR>
+<BR>
+As above, you can remove or test a constant declared implicit.<BR>
+<BR>
+
+<H4>
+Implicit inductive constants
+</H4>
+Let <CODE>Ind</CODE> be an inductive type (either a proposition (or a
+predicate) -- on <CODE>Prop</CODE> --, or a datatype -- on <CODE>Set</CODE>).
+Suppose the proof proceeds by induction on an hypothesis <CODE>h</CODE>
+proving <CODE>Ind</CODE> (or more generally <CODE>(Ind A1 ... An)</CODE>). The
+following kind of output is produced:<BR>
+<BR>
+<PRE>
+...
+With H, we will prove A by induction on the definition of Ind.
+Case 1. ...
+Case 2. ...
+...
+</PRE>But sometimes, you may prefer not to see the explicit invocation to
+<CODE>Ind</CODE>. You may prefer to see:<BR>
+<BR>
+<PRE>
+...
+We will prove A by induction on H.
+Case 1. ...
+Case 2. ...
+...
+</PRE>This is possible by declaring the inductive type as implicit. You should
+type, as before:<A NAME="@default602"></A><A NAME="@command168"></A><BR>
+<BR>
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Add&nbsp;Natural&nbsp;Implicit&nbsp;Ind.</TT><BR></DIV>
+<BR>
+This kind of parameterization works for any inductively defined
+proposition (or predicate) or datatype. Especially, it works whatever
+the definition is recursive or purely by cases.<BR>
+<BR>
+By default, the data type <CODE>nat</CODE> and the inductive connectives
+<CODE>and</CODE>, <CODE>or</CODE>, <CODE>sig</CODE>, <CODE>False</CODE>, <CODE>eq</CODE>,
+<CODE>eqT</CODE>, <CODE>ex</CODE> and <CODE>exT</CODE> are declared implicit.<BR>
+<BR>
+As above, you can remove or test a constant declared implicit. Use
+<TT>Remove Natural Contractible </TT><TT><I>id</I></TT> or <TT>Test Natural
+Contractible </TT><TT><I>id</I></TT>.<BR>
+<BR>
+
+ 
+<H3>
+
+15.3.2&nbsp;Contractible proof steps
+</H3>
+
+<H4>
+Contractible lemmas or constructors
+</H4>
+Some lemmas, theorems or proof constructors of inductive predicates are
+often applied in a row and you obtain an output of this kind:<BR>
+<BR>
+<PRE>
+...
+Using T with H1 and H2 we get P.
+      * By H3 we have Q.
+      Using T with theses results we get R.
+...
+</PRE>where <CODE>T</CODE>, <CODE>H1</CODE>, <CODE>H2</CODE> and <CODE>H3</CODE> prove statements
+of the form <CODE>(X,Y:Prop)X-&gt;Y-&gt;(L X Y)</CODE>, <CODE>A</CODE>, <CODE>B</CODE> and <CODE>C</CODE>
+respectively (and thus <CODE>R</CODE> is <CODE>(L (L A B) C)</CODE>).<BR>
+<BR>
+You may obtain a condensed output of the form<BR>
+<BR>
+<PRE>
+...
+Using T with H1, H2, and H3 we get R.
+...
+</PRE>by declaring <CODE>T</CODE> as contractible:<A NAME="@default603"></A><A NAME="@command169"></A><BR>
+<BR>
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Add&nbsp;Natural&nbsp;Contractible&nbsp;T.</TT><BR></DIV>
+<BR>
+By default, the lemmas <CODE>proj1</CODE>, <CODE>proj2</CODE> and the proof
+constructors <CODE>conj</CODE>, <CODE>or_introl</CODE>, <CODE>or_intror</CODE> are
+declared contractible. As for implicit notions, you can remove or
+test a lemma or constructor declared contractible.<BR>
+<BR>
+
+<H4>
+Contractible induction steps
+</H4>
+Let <CODE>Ind</CODE> be an inductive type. When the proof proceeds by
+induction in a row, you may obtain an output of this kind:<BR>
+<BR>
+<PRE>
+...
+We have (Ind A (Ind B C)).
+We use definition of Ind in a study in two cases.
+Case 1: We have A.
+Case 2: We have (Ind B C).
+  We use definition of Ind in a study of two cases.
+  Case 2.1: We have B.
+  Case 2.2: We have C.
+...
+</PRE>You may prefer to see<BR>
+<BR>
+<PRE>
+...
+We have (Ind A (Ind B C)).
+We use definition of Ind in a study in three cases.
+Case 1: We have A.
+Case 2: We have B.
+Case 3: We have C.
+...
+</PRE>This is possible by declaring <CODE>Ind</CODE> as contractible:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Add&nbsp;Natural&nbsp;Contractible&nbsp;T.</TT><BR></DIV>
+<BR>
+By default, only <CODE>or</CODE> is declared as a contractible inductive
+constant.
+As for implicit notions, you can remove or test an inductive notion declared
+contractible.<BR>
+<BR>
+
+ 
+<H3>
+
+15.3.3&nbsp;Transparent definitions
+</H3>
+``Normal'' definitions are all constructions except proofs and proof constructors.<BR>
+<BR>
+
+<H4>
+Transparent non inductive normal definitions
+</H4>
+When using the definition of a non inductive constant, say <CODE>D</CODE>, the
+following kind of output is produced:<BR>
+<BR>
+<PRE>
+...
+We have proved C which is equivalent to D.
+...
+</PRE>But you may prefer to hide that D comes from the definition of C as
+follows:<BR>
+<BR>
+<PRE>
+...
+We have prove D.
+...
+</PRE>This is possible by declaring <CODE>C</CODE> as transparent:<A NAME="@default604"></A><A NAME="@command170"></A><BR>
+<BR>
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Add&nbsp;Natural&nbsp;Transparent&nbsp;D.</TT><BR></DIV>
+<BR>
+By default, only <CODE>not</CODE> (normally written <CODE>~</CODE>) is declared as
+a non inductive transparent definition.
+As for implicit and contractible definitions, you can remove or test a
+non inductive definition declared transparent.
+Use <TT>Remove Natural Transparent</TT> <I><FONT COLOR=maroon>ident</FONT></I>or 
+<TT>Test Natural Transparent</TT> <I><FONT COLOR=maroon>ident</FONT></I>.<BR>
+<BR>
+
+<H4>
+Transparent inductive definitions
+</H4>
+Let <CODE>Ind</CODE> be an inductive proposition (more generally: a
+predicate <CODE>(Ind x1 ... xn)</CODE>). Suppose the definition of
+<CODE>Ind</CODE> is non recursive and built with just
+one constructor proving something like <CODE>A -&gt; B -&gt; Ind</CODE>.
+When coming back to the definition of <CODE>Ind</CODE> the
+following kind of output is produced:<BR>
+<BR>
+<PRE>
+...
+Assume Ind (H).
+      We use H with definition of Ind.
+      We have A and B.
+      ...
+</PRE>When <CODE>H</CODE> is not used a second time in the proof, you may prefer
+to hide that <CODE>A</CODE> and <CODE>B</CODE> comes from the definition of
+<CODE>Ind</CODE>. You may prefer to get directly:<BR>
+<BR>
+<PRE>
+...
+Assume A and B.
+...
+</PRE>This is possible by declaring <CODE>Ind</CODE> as transparent:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Add&nbsp;Natural&nbsp;Transparent&nbsp;Ind.</TT><BR></DIV>
+<BR>
+By default, <CODE>and</CODE>, <CODE>or</CODE>, <CODE>ex</CODE>, <CODE>exT</CODE>, <CODE>sig</CODE>
+are declared as inductive transparent constants. As for implicit and
+contractible constants, you can remove or test an inductive
+constant declared transparent.<BR>
+<BR>
+As for implicit and contractible constants, you can remove or test an
+inductive constant declared transparent.<BR>
+<BR>
+
+ 
+<H3>
+
+15.3.4&nbsp;Extending the maximal depth of nested text
+</H3>
+The depth of nested text is limited. To know the current depth, do:<A NAME="@default605"></A><A NAME="@command171"></A><BR>
+<BR>
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Set&nbsp;Natural&nbsp;Depth.</TT><BR><TT><I>The&nbsp;current&nbsp;max&nbsp;size&nbsp;of&nbsp;nested&nbsp;text&nbsp;is&nbsp;50</I></TT><BR></DIV>
+<BR>
+To change the maximal depth of nested text (for instance to 125) do:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Set&nbsp;Natural&nbsp;Depth&nbsp;125.</TT><BR><TT><I>The&nbsp;max&nbsp;size&nbsp;of&nbsp;nested&nbsp;text&nbsp;is&nbsp;now&nbsp;125</I></TT><BR></DIV>
+<BR>
+
+ 
+<H3>
+
+15.3.5&nbsp;Restoring the default parameterization
+</H3>
+The command <CODE>Set Natural Default</CODE> sets back the parameterization tables of
+<TT>Natural</TT>&nbsp; to their default values, as listed in the above sections.
+Moreover, the language is set back to English and the max depth of
+nested text is set back to its initial value.<BR>
+<BR>
+
+ 
+<H3>
+
+15.3.6&nbsp;Printing the current parameterization
+</H3>
+The commands <TT>Print Natural Implicit</TT>, <TT>Print Natural
+Contractible</TT> and <TT>Print<BR>Natural Transparent</TT> print the list of
+constructions declared <TT>Implicit</TT>, <TT>Contractible</TT>,
+<TT>Transparent</TT> respectively.<BR>
+<BR>
+
+ 
+<H3>
+
+15.3.7&nbsp;Interferences with <TT>Reset</TT>
+</H3>
+The customization of <TT>Natural</TT> is dependent of the <TT>Reset</TT>
+command. If you reset the environment back to a point preceding an
+<CODE>Add Natural ...</CODE> command, the effect of the command will be
+erased. Similarly, a reset back to a point before a 
+<CODE>Remove Natural ... </CODE> command invalidates the removal.<BR>
+<BR>
+
+ <HR>
+
+<A HREF="node.3.4.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.4.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.4.3.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

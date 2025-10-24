@@ -1,0 +1,187 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+19.2&nbsp;Some examples
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.8.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.8.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.8.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+19.2&nbsp;Some examples
+</H2>
+
+
+We present here few examples of extractions, taken from the <TT>theories</TT> library of <FONT COLOR=purple>Coq</FONT> (into the <TT>PROGRAMS</TT> directory). We
+choose Caml Light as target language, but all can be done in the other
+dialects with slight modifications.<BR>
+<BR>
+
+ 
+<H3>
+
+19.2.1&nbsp;Euclidean division
+</H3>
+The file <TT>Euclid_prog</TT> contains the proof of Euclidean division
+(theorem <TT>eucl_dev</TT>). The natural numbers defined in the example
+files are unary integers defined by two constructors <I>O</I> and <I>S</I>:
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Inductive&nbsp;nat&nbsp;:&nbsp;Set&nbsp;:=&nbsp;O&nbsp;:&nbsp;nat&nbsp;|&nbsp;S&nbsp;:&nbsp;nat&nbsp;-&gt;&nbsp;nat.</TT><BR></DIV>
+<BR>
+To use the proof, we begin by loading the module <TT>Extraction</TT> and the
+file into the <FONT COLOR=purple>Coq</FONT> environment:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Require&nbsp;Extraction.</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Require&nbsp;Euclid_prog.</TT><BR></DIV>
+<BR>
+This module contains a theorem <TT>eucl_dev</TT>, and its extracted term
+is of type <TT>(b:nat)(a:nat) (diveucl a b)</TT>, where <TT>diveucl</TT> is a
+type for the pair of the quotient and the modulo.
+We can now extract this program to Caml Light:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Write&nbsp;CamlLight&nbsp;File&nbsp;"euclid"&nbsp;[&nbsp;eucl_dev&nbsp;].</TT><BR><TT><I>Warning:&nbsp;The&nbsp;constant&nbsp;nat_rec&nbsp;is&nbsp;expanded.</I></TT><BR><TT><I>Warning:&nbsp;The&nbsp;constant&nbsp;sumbool_rec&nbsp;is&nbsp;expanded.</I></TT><BR><TT><I>Warning:&nbsp;The&nbsp;constant&nbsp;le_gt_dec&nbsp;is&nbsp;expanded.</I></TT><BR></DIV>
+<BR>
+This produces a file <TT>euclid.ml</TT> containing all the necessary
+definitions until <TT>let eucl_dev = ..</TT>. Let us play the resulting program:<BR>
+<BR>
+<PRE>
+# include "euclid";;
+# eucl_dev (S (S O)) (S (S (S (S (S O)))));;
+- : diveucl = divex (S (S O), S O)
+</PRE>
+It is easier to test on Caml Light integers:
+<PRE>
+# let rec nat_of = function 0 -&gt; O
+                          | n -&gt; S (nat_of (pred n));;
+# let rec int_of = function O   -&gt; 0
+                          | S p -&gt; succ (int_of p);;
+# let div a b = match eucl_dev (nat_of b) (nat_of a) with
+                  divex(q,r) -&gt; (int_of q, int_of r);;
+div : int -&gt; int -&gt; int * int = &lt;fun&gt;
+# div 173 15;;
+- : int * int = 11, 8
+</PRE>
+ 
+<H3>
+
+19.2.2&nbsp;Heapsort
+</H3>
+Let us see a more complicated example. The file <TT>Heap_prog.v</TT>
+contains the proof of an efficient list sorting algorithm described by
+Bjerner. Is is an adaptation of the well-known <EM>heapsort</EM>
+algorithm to functional languages. We first load the files:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Require&nbsp;Extraction.</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Require&nbsp;Heap_prog.</TT><BR></DIV>
+<BR>
+As we saw it above we have to instantiate or realize by hand some of
+the <FONT COLOR=purple>Coq</FONT> variables, which are in this case the type of the elements
+to sort (<TT>List_Dom</TT>, defined in <TT>List.v</TT>) and the
+decidability of the order relation (<TT>inf_total</TT>). We proceed as
+in section <A HREF="node.3.8.0.html#Extraction">19.1</A>:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;ML&nbsp;Import&nbsp;Constant&nbsp;int&nbsp;==&nbsp;int&nbsp;:&nbsp;Set.</TT><BR><TT><I>int&nbsp;imported.</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Link&nbsp;List_Dom&nbsp;:=&nbsp;int.</TT><BR><TT><I>Constant&nbsp;List_Dom&nbsp;linked&nbsp;to&nbsp;int</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;ML&nbsp;Import&nbsp;Inductive&nbsp;bool&nbsp;[&nbsp;true&nbsp;false&nbsp;]&nbsp;==</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Inductive&nbsp;BOOL&nbsp;:&nbsp;Set&nbsp;:=&nbsp;TRUE&nbsp;&nbsp;:&nbsp;BOOL</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;FALSE&nbsp;:&nbsp;BOOL.</TT><BR><TT><I>ML&nbsp;inductive&nbsp;type(s)&nbsp;bool&nbsp;imported.</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;ML&nbsp;Import&nbsp;Constant&nbsp;lt_int&nbsp;==&nbsp;lt_int&nbsp;:&nbsp;int-&gt;int-&gt;BOOL.</TT><BR><TT><I>lt_int&nbsp;imported.</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Link&nbsp;inf_total&nbsp;:=</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[x,y:int]Cases&nbsp;(lt_int&nbsp;x&nbsp;y)&nbsp;of</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRUE&nbsp;=&gt;&nbsp;left</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;FALSE&nbsp;=&gt;&nbsp;right</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end.</TT><BR><TT><I>Constant&nbsp;inf_total&nbsp;linked&nbsp;to</I></TT><BR><TT><I>[x,y:int]Cases&nbsp;(lt_int&nbsp;x&nbsp;y)&nbsp;of</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRUE&nbsp;=&gt;&nbsp;left</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;FALSE&nbsp;=&gt;&nbsp;right</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end</I></TT><BR></DIV>
+<BR>
+Then we extract the Caml Light program<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Write&nbsp;CamlLight&nbsp;File&nbsp;"heapsort"&nbsp;[&nbsp;heapsort&nbsp;].</TT><BR><TT><I>Warning:&nbsp;The&nbsp;constant&nbsp;is_heap_rec&nbsp;is&nbsp;expanded.</I></TT><BR><TT><I>Warning:&nbsp;The&nbsp;constant&nbsp;sort_rec&nbsp;is&nbsp;expanded.</I></TT><BR></DIV>
+
+and test it 
+<PRE>
+
+# include "heapsort";;
+# let rec listn = function 0 -&gt; nil
+                         | n -&gt; cons(random__int 10000,listn (pred n));;
+# heapsort (listn 10);;
+- : list = cons (136, cons (760, cons (1512, cons (2776, cons (3064, 
+cons (4536, cons (5768, cons (7560, cons (8856, cons (8952, nil))))))))))
+</PRE>Some tests on longer lists (100000 elements) show that the program is
+quite efficient for Caml code.<BR>
+<BR>
+
+ 
+<H3>
+
+19.2.3&nbsp;Balanced trees
+</H3>
+The file <TT>Avl_prog.v</TT> contains the proof of insertion in binary
+balanced trees (AVL). Here we choose to instantiate such trees on the
+type <TT>string</TT> of Caml Light (for instance to get efficient
+dictionary); as above we must realize the decidability of the order
+relation. It gives the following commands:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Require&nbsp;Extraction.</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Require&nbsp;Avl_prog.</TT><BR></DIV>
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;ML&nbsp;Import&nbsp;Constant&nbsp;string&nbsp;==&nbsp;string&nbsp;:&nbsp;Set.</TT><BR><TT><I>string&nbsp;imported.</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;ML&nbsp;Import&nbsp;Inductive&nbsp;bool&nbsp;[&nbsp;true&nbsp;false&nbsp;]&nbsp;==</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Inductive&nbsp;BOOL&nbsp;:&nbsp;Set&nbsp;:=&nbsp;TRUE&nbsp;&nbsp;:&nbsp;BOOL</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;FALSE&nbsp;:&nbsp;BOOL.</TT><BR><TT><I>ML&nbsp;inductive&nbsp;type(s)&nbsp;bool&nbsp;imported.</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;ML&nbsp;Import&nbsp;Constant&nbsp;lt_string&nbsp;==&nbsp;lt_string&nbsp;:&nbsp;string-&gt;string-&gt;BOOL.</TT><BR><TT><I>lt_string&nbsp;imported.</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Link&nbsp;a&nbsp;:=&nbsp;string.</TT><BR><TT><I>Constant&nbsp;a&nbsp;linked&nbsp;to&nbsp;string</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Link&nbsp;inf_dec&nbsp;:=</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;[x,y:string]Cases&nbsp;(lt_string&nbsp;x&nbsp;y)&nbsp;of</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRUE&nbsp;=&gt;&nbsp;left</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;FALSE&nbsp;=&gt;&nbsp;right</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end.</TT><BR><TT><I>Constant&nbsp;inf_dec&nbsp;linked&nbsp;to</I></TT><BR><TT><I>[x,y:string]Cases&nbsp;(lt_string&nbsp;x&nbsp;y)&nbsp;of</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRUE&nbsp;=&gt;&nbsp;left</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;FALSE&nbsp;=&gt;&nbsp;right</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Write&nbsp;CamlLight&nbsp;File&nbsp;"avl"&nbsp;[rot_d&nbsp;rot_g&nbsp;rot_gd&nbsp;insert].</TT><BR><TT><I>The&nbsp;axiom&nbsp;False_rec&nbsp;is&nbsp;translated&nbsp;into&nbsp;an&nbsp;exception.</I></TT><BR><TT><I>Warning:&nbsp;The&nbsp;constant&nbsp;eq_rec&nbsp;is&nbsp;expanded.</I></TT><BR><TT><I>Warning:&nbsp;The&nbsp;constant&nbsp;bal_rec&nbsp;is&nbsp;expanded.</I></TT><BR><TT><I>Warning:&nbsp;The&nbsp;constant&nbsp;avl_rec&nbsp;is&nbsp;expanded.</I></TT><BR><TT><I>Warning:&nbsp;The&nbsp;constant&nbsp;avl_ins_rec&nbsp;is&nbsp;expanded.</I></TT><BR><TT><I>Warning:&nbsp;The&nbsp;constant&nbsp;h_eqc&nbsp;is&nbsp;expanded.</I></TT><BR><TT><I>Warning:&nbsp;The&nbsp;constant&nbsp;h_plusc&nbsp;is&nbsp;expanded.</I></TT><BR></DIV>
+<BR>
+Notice that we do not want the constants <TT>rot_d</TT>, <TT>rot_g</TT>
+and <TT>rot_gd</TT> to be expanded in the function <TT>insert</TT>, and
+that is why we added them in the list of required functions. It makes
+the resulting program clearer, even if it becomes less efficient.<BR>
+<BR>
+Let us insert random words in an initially empty tree to check that it
+remains balanced:
+<PRE>
+% camllight
+# include "avl";;
+# let add a t = match insert a t with
+                 h_eq x -&gt; x
+               | h_plus x -&gt; x ;;
+# let rdmw () = let s = create_string 5 in
+                for i = 0 to 4 do
+                  set_nth_char s i (char_of_int (97+random__int 26))
+                done ; s ;;
+# let rec built = function 0 -&gt; nil
+                         | n -&gt; add (rdmw()) (built (pred n));;
+# built 10;;
+- : abe = node ("ogccy", node ("gmygy", node ("cwqug", node ("cjyrc", nil, ...
+
+
+# let rec size = function
+    nil -&gt; 0
+  | node(_,t1,t2,_) -&gt; 1+(max (size t1) (size t2)) ;;
+# let rec check = function
+    nil -&gt; true
+  | node(_,a1,a2,_) -&gt; 
+         let t1 = size a1 and t2 =size a2 in
+         if abs(t1-t2)&gt;1 then false else (check a1) &amp; (check a2) ;;
+
+# check (built 100);;
+- : bool = true
+</PRE><HR>
+
+<A HREF="node.3.8.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.8.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.8.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

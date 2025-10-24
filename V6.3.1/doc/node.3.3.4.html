@@ -1,0 +1,180 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+14.5&nbsp;Commands
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.3.3.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.3.5.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+14.5&nbsp;Commands
+</H2>
+
+
+
+ 
+<H3>
+
+14.5.1&nbsp;<TT>Class </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>.
+</TT></H3>
+<A NAME="@default587"></A><A NAME="@command155"></A>
+Declares the name <I><FONT COLOR=maroon>ident</FONT></I> as a new class.<BR>
+<BR>
+<BR><B>Error messages: </B><OL>
+<LI>
+ 
+<I><FONT COLOR=maroon>ident</FONT></I> <TT>not declared</TT><A NAME="@error91"></A>
+
+<LI><I><FONT COLOR=maroon>ident</FONT></I> <TT>is already a class</TT><A NAME="@error92"></A>
+
+<LI><TT>Type of </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> does not end with a sort</TT><A NAME="@error93"></A>
+</OL>
+ 
+<H3>
+
+14.5.2&nbsp;<TT>Class Local </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>.
+</TT></H3>
+ 
+Declares the name <I><FONT COLOR=maroon>ident</FONT></I> as a new local class to the current section.<BR>
+<BR>
+
+ 
+<H3>
+
+14.5.3&nbsp;<TT>Coercion </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> : </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> &gt;-&gt; </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>2</FONT></TT></SUB><TT>.
+</TT></H3>
+
+<A NAME="@default588"></A><A NAME="@command156"></A>Declares the name <I><FONT COLOR=maroon>ident</FONT></I> as a coercion between <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> and
+<I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB>. The classes <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> and <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB> are first
+declared if necessary.
+ 
+<BR><B>Error messages: </B><OL>
+<LI>
+ 
+<I><FONT COLOR=maroon>ident</FONT></I> <TT>not declared</TT><A NAME="@error94"></A>
+
+<LI><I><FONT COLOR=maroon>ident</FONT></I> <TT>is already a coercion</TT><A NAME="@error95"></A>
+
+<LI><TT>FUNCLASS cannot be a source class</TT><A NAME="@error96"></A>
+
+<LI><TT>SORTCLASS cannot be a source class</TT><A NAME="@error97"></A>
+
+<LI><TT>Does not correspond to a coercion</TT><A NAME="@error98"></A><BR><I><FONT COLOR=maroon>ident</FONT></I> is not a function.
+
+<LI><TT>We do not find the source class </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><A NAME="@error99"></A>
+
+<LI><I><FONT COLOR=maroon>ident</FONT></I> <TT>does not respect the inheritance uniform condition</TT><A NAME="@error100"></A>
+
+<LI><TT>The target class does not correspond to </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>2</FONT></TT></SUB><A NAME="@error101"></A>
+</OL> When the coercion <I><FONT COLOR=maroon>ident</FONT></I> is added to the inheritance graph, non
+valid path coercions are ignored; they are signaled by a warning.
+<BR><B>Warning :</B>
+<OL>
+<LI>
+ 
+
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD  ALIGN=left NOWRAP>
+<TT>Ambiguous paths: </TT></TD>
+<TD  ALIGN=left NOWRAP>[<I>f</I><SUB><FONT SIZE=2>1</FONT></SUB><SUP><FONT SIZE=2>1</FONT></SUP>;..;<I>f</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB><SUB><SUB><FONT SIZE=2>1</FONT></SUB></SUB><SUP><FONT SIZE=2>1</FONT></SUP>] : <I>C</I><SUB><FONT SIZE=2>1</FONT></SUB><TT>&gt;-&gt;</TT><I>D</I><SUB><FONT SIZE=2>1</FONT></SUB></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP></TD>
+<TD  ALIGN=left NOWRAP>...</TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP></TD>
+<TD  ALIGN=left NOWRAP>[<I>f</I><SUB><FONT SIZE=2>1</FONT></SUB><SUP><FONT SIZE=2><I>m</I></FONT></SUP>;..;<I>f</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB><SUB><SUB><FONT SIZE=2><I>m</I></FONT></SUB></SUB><SUP><FONT SIZE=2><I>m</I></FONT></SUP>] : <I>C</I><SUB><FONT SIZE=2><I>m</I></FONT></SUB><TT>&gt;-&gt;</TT><I>D</I><SUB><FONT SIZE=2><I>m</I></FONT></SUB>
+ </TD>
+</TR></TABLE>
+</OL>
+ 
+<H3>
+
+14.5.4&nbsp;<TT>Coercion Local </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>:</TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> &gt;-&gt;
+</TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>2</FONT></TT></SUB><TT>.
+</TT></H3>
+Declares the name <I><FONT COLOR=maroon>ident</FONT></I> as a local coercion to the current section.<BR>
+<BR>
+
+ 
+<H3>
+
+14.5.5&nbsp;<TT>Identity Coercion </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>:</TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> &gt;-&gt; </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>2</FONT></TT></SUB><TT>.
+</TT></H3>
+ We check that <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> is a constant with a value of the form
+[<I>x</I><SUB><FONT SIZE=2>1</FONT></SUB>:<I>T</I><SUB><FONT SIZE=2>1</FONT></SUB>]..[<I>x</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>:<I>T</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>](<I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB>&nbsp;<I>t</I><SUB><FONT SIZE=2>1</FONT></SUB>..<I>t</I><SUB><FONT SIZE=2><I>m</I></FONT></SUB>) where <I>m</I> is the
+number of parameters of <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB>. Then we define an identity
+function with the type
+(<I>x</I><SUB><FONT SIZE=2>1</FONT></SUB>:<I>T</I><SUB><FONT SIZE=2>1</FONT></SUB>)..(<I>x</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>:<I>T</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>)(<I>y</I>:(<I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>&nbsp;<I>x</I><SUB><FONT SIZE=2>1</FONT></SUB>..<I>x</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>))
+(<I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB>&nbsp;<I>t</I><SUB><FONT SIZE=2>1</FONT></SUB>..<I>t</I><SUB><FONT SIZE=2><I>m</I></FONT></SUB>), and we declare it as an identity
+coercion between <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> and <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB>.<BR>
+<BR>
+<BR><B>Error messages: </B><OL>
+<LI>
+ 
+<TT>Clash with previous constant </TT><I><FONT COLOR=maroon>ident</FONT></I><A NAME="@error102"></A>
+
+<LI><I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> <TT>must be a transparent constant</TT><A NAME="@error103"></A> 
+</OL>
+ 
+<H3>
+
+14.5.6&nbsp;<TT>Identity Coercion Local </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>:</TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> &gt;-&gt; </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>2</FONT></TT></SUB><TT>.
+</TT></H3>
+ Declares the name <I><FONT COLOR=maroon>ident</FONT></I> as a local identity coercion to the current section.<BR>
+<BR>
+
+ 
+<H3>
+
+14.5.7&nbsp;<TT>Print Classes.
+</TT></H3>
+ 
+<A NAME="@default589"></A><A NAME="@command157"></A>
+Print the list of declared classes in the current context.<BR>
+<BR>
+
+ 
+<H3>
+
+14.5.8&nbsp;<TT>Print Coercions.
+</TT></H3>
+
+<A NAME="@default590"></A><A NAME="@command158"></A>
+Print the list of declared coercions in the current context.<BR>
+<BR>
+
+ 
+<H3>
+
+14.5.9&nbsp;<TT>Print Graph.
+</TT></H3>
+ 
+<A NAME="@default591"></A><A NAME="@command159"></A>
+Print the list of valid path coercions in the current context.<BR>
+<BR>
+
+ <HR>
+
+<A HREF="node.3.3.3.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.3.5.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

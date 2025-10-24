@@ -1,0 +1,85 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+12.5&nbsp;Coq and LATEX
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.1.3.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.1.5.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+12.5&nbsp;<FONT COLOR=purple>Coq</FONT> and L<sup>A</sup>T<sub>E</sub>X
+</H2>
+
+
+<A NAME="Latex"></A>
+ <A NAME="@default571"></A>
+<H3>
+
+12.5.1&nbsp;Embedded <FONT COLOR=purple>Coq</FONT> phrases inside L<sup>A</sup>T<sub>E</sub>X documents
+</H3>
+
+ <A NAME="@default572"></A>When writing a documentation about a proof development, one may want
+to insert <FONT COLOR=purple>Coq</FONT> phrases inside a L<sup>A</sup>T<sub>E</sub>X document, possibly together with
+the corresponding answers of the system. We provide a
+mechanical way to process such <FONT COLOR=purple>Coq</FONT> phrases embedded in L<sup>A</sup>T<sub>E</sub>X files: the
+<TT>coq-tex</TT> filter. This filter extracts Coq phrases embedded in
+LaTeX files, evaluates them, and insert the outcome of the evaluation
+after each phrase.<BR>
+<BR>
+Starting with a file <EM>file</EM><TT>.tex</TT> containing <FONT COLOR=purple>Coq</FONT> phrases,
+the <TT>coq-tex</TT> filter produces a file named <EM>file</EM><TT>.v.tex</TT> with
+the <FONT COLOR=purple>Coq</FONT> outcome. <BR>
+<BR>
+There are options to produce the <FONT COLOR=purple>Coq</FONT> parts in smaller font, italic,
+between horizontal rules, etc.
+See the man page of <TT>coq-tex</TT> for more details.<BR><B>Remark.</B> This Reference Manual and the Tutorial
+have been completely produced with <TT>coq-tex</TT>.<BR>
+<BR>
+
+<H3>
+
+12.5.2&nbsp;Pretty printing <FONT COLOR=purple>Coq</FONT> listings with L<sup>A</sup>T<sub>E</sub>X
+</H3>
+
+ <A NAME="@default573"></A><CODE>coq2latex</CODE> is a tool for printing <FONT COLOR=purple>Coq</FONT> listings using L<sup>A</sup>T<sub>E</sub>X : 
+keywords are printed in bold face, comments in italic, some tokens
+are printed in a nicer way (<CODE>-&gt;</CODE> becomes <FONT FACE=symbol>®</FONT>, etc.)
+and indentations are kept at the beginning of lines.
+Line numbers are printed in the right margin, every 10 lines.<BR>
+<BR>
+In regular mode, the command <BR>
+<BR>
+<DIV ALIGN=left>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<TT>% coq2latex </TT><EM>file</EM>
+</DIV><BR>
+produces a L<sup>A</sup>T<sub>E</sub>X file which is sent to the <CODE>latex</CODE> command,
+and the result to the <CODE>dvips</CODE> command. <BR>
+<BR>
+It is also possible to get the L<sup>A</sup>T<sub>E</sub>X  file, DVI file or PostSCript
+file, on the standard output or in a file. See the man page of <TT>coq2latex</TT> for more details and options.<BR>
+<BR>
+<HR>
+
+<A HREF="node.3.1.3.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.1.5.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

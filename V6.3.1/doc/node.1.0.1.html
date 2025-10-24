@@ -1,0 +1,217 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+5.2&nbsp;Requests to the environment
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.1.0.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.0.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+5.2&nbsp;Requests to the environment
+</H2>
+
+
+
+<H3>
+
+5.2.1&nbsp;<TT>Check </TT><I><FONT COLOR=maroon>term</FONT></I><TT>.
+</TT></H3>
+
+<A NAME="Check"></A>
+<A NAME="@default284"></A><A NAME="@command55"></A>
+This command displays the type of <I><FONT COLOR=maroon>term</FONT></I>. When called in proof mode, 
+the term is checked in the local context of the current subgoal.<BR>
+<BR>
+<BR><B>Variants: </B><OL>
+<LI>
+ 
+<TT>Check </TT><I><FONT COLOR=maroon>num</FONT></I><TT> </TT><I><FONT COLOR=maroon>term</FONT></I><BR>Displays the type of <I><FONT COLOR=maroon>term</FONT></I> in the context of the <I><FONT COLOR=maroon>num</FONT></I>-th
+ subgoal.
+</OL>
+<H3>
+
+5.2.2&nbsp;<TT>Eval </TT><I><FONT COLOR=maroon>convtactic</FONT></I><TT> in </TT><I><FONT COLOR=maroon>term</FONT></I><TT>.
+</TT></H3>
+
+<A NAME="@default285"></A><A NAME="@command56"></A>This command performs the specified reduction on <I><FONT COLOR=maroon>term</FONT></I>, and displays
+the resulting term with its type. The term to be reduced may depend on
+hypothesis introduced in the first subgoal (if a proof is in
+progress).<BR>
+<BR>
+<BR><B>Variants: </B><OL>
+<LI>
+ 
+<TT>Eval </TT><I><FONT COLOR=maroon>num</FONT></I><TT> </TT><I><FONT COLOR=maroon>convtactic</FONT></I><TT> in </TT><I><FONT COLOR=maroon>term</FONT></I><TT>.</TT><BR>Evaluates <I><FONT COLOR=maroon>term</FONT></I> in the context of the <I><FONT COLOR=maroon>num</FONT></I>-th subgoal.
+</OL><BR><B>See also: </B>section&nbsp;<A HREF="node.1.2.4.html#Conversion-tactics">7.5</A>.<BR>
+<BR>
+
+<H3>
+
+5.2.3&nbsp;<TT>Extraction </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>.
+</TT></H3>
+
+<A NAME="ExtractionIdent"></A>
+<A NAME="@default286"></A><A NAME="@command57"></A>
+This command displays the <I>F</I><SUB><FONT SIZE=2><FONT FACE=symbol>w</FONT></FONT></SUB>-term extracted from <I><FONT COLOR=maroon>ident</FONT></I>. The name
+<I><FONT COLOR=maroon>ident</FONT></I> must refer to a defined constant or a theorem. The <I>F</I><SUB><FONT SIZE=2><FONT FACE=symbol>w</FONT></FONT></SUB>-term
+is extracted from the term defining <I><FONT COLOR=maroon>ident</FONT></I> when <I><FONT COLOR=maroon>ident</FONT></I> is a
+defined constant, or from the proof-term when <I><FONT COLOR=maroon>ident</FONT></I> is a
+theorem. The extraction is processed according to the distinction
+between <FONT COLOR=purple>Set</FONT> and <FONT COLOR=purple>Prop</FONT>; that is to say, between logical and
+computational content (see section <A HREF="node.0.3.0.html#Sorts">4.1.1</A>).<BR>
+<BR>
+<BR><B>Error messages: </B><OL>
+<LI>
+ 
+<TT>Non informative term</TT><A NAME="@error14"></A>
+</OL><BR><B>See also: </B>chapter <A HREF="node.3.8.0.html#Extraction">19.1</A><BR>
+<BR>
+
+<H3>
+
+5.2.4&nbsp;<TT>Opaque </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> ...</TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT>.
+</TT></H3>
+
+<A NAME="@default287"></A><A NAME="@command58"></A><A NAME="Opaque"></A>
+This command forbids the unfolding of the constants <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> ...<I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> by tactics using <FONT FACE=symbol>d</FONT>-conversion. Unfolding a constant
+is replacing it by its definition.<BR>
+<BR>
+By default, <TT>Theorem</TT> and its alternatives are stamped as <TT>Opaque</TT>. This is to keep with the usual mathematical practice of
+<EM>proof irrelevance</EM>: what matters in a mathematical development is
+the sequence of lemma statements, not their actual proofs. This
+distinguishes lemmas from the usual defined constants, whose actual
+values are of course relevant in general.<BR><B>See also: </B>sections <A HREF="node.1.2.4.html#Conversion-tactics">7.5</A>, <A HREF="node.1.2.10.html#Automatizing">7.11</A>,
+<A HREF="node.1.1.0.html#Theorem">6.1.3</A><BR>
+<BR>
+<BR><B>Error messages: </B><OL>
+<LI>
+ 
+<I><FONT COLOR=maroon>ident</FONT></I> <TT>does not exist.</TT><A NAME="@error15"></A><BR>There is no constant in the environment named
+ <I><FONT COLOR=maroon>ident</FONT></I>. Nevertheless, if you asked <TT>Opaque foo bar</TT>
+ and if <TT>bar</TT> does not exist, <TT>foo</TT> is set opaque.
+</OL>
+<H3>
+
+5.2.5&nbsp;<TT>Transparent </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> ...</TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT>.
+</TT></H3>
+
+<A NAME="@default288"></A><A NAME="@command59"></A><A NAME="Transparent"></A>
+This command is the converse of <TT>Opaque</TT>. By default, <TT>Definition</TT> and <TT>Local</TT> declare objects as <TT>Transparent</TT>.<BR><B>Warning: </B><TT>Transparent</TT> and <TT>Opaque</TT> are brutal and 
+not synchronous
+with the reset mechanism. If a constant was transparent at point A, if
+you set it opaque at point B and reset to point A, you return to state
+of point A with the difference that the constant is still opaque. This
+can cause changes in tactic scripts behavior.<BR>
+<BR>
+<BR><B>Error messages: </B><OL>
+<LI>
+ 
+<TT>Can not set transparent.</TT><A NAME="@error16"></A><BR>It is a constant from a required module or a parameter.
+
+<LI><I><FONT COLOR=maroon>ident</FONT></I> <TT>does not exist.</TT><A NAME="@error17"></A><BR>There is no constant in the environment named
+ <I><FONT COLOR=maroon>ident</FONT></I>. Nevertheless, if you give the command <CODE>Transparent foo bar.</CODE>
+ and if <TT>bar</TT> does not exist, <TT>foo</TT> is set opaque.
+</OL><BR><B>See also: </B>sections <A HREF="node.1.2.4.html#Conversion-tactics">7.5</A>, <A HREF="node.1.2.10.html#Automatizing">7.11</A>,
+<A HREF="node.1.1.0.html#Theorem">6.1.3</A><BR>
+<BR>
+
+<H3>
+
+5.2.6&nbsp;<TT>Search </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>.
+</TT></H3>
+<A NAME="@default289"></A><A NAME="@command60"></A>
+This command displays the name and type of all theorems of the current
+context whose statement's conclusion has the form <TT>(</TT><I><FONT COLOR=maroon>ident</FONT></I><TT> t1 ..
+ tn)</TT>. This command is useful to remind the user of the name of
+library lemmas.<BR>
+<BR>
+
+<H3>
+
+5.2.7&nbsp;<TT>SearchIsos </TT><I><FONT COLOR=maroon>term</FONT></I><TT>.
+</TT></H3>
+<A NAME="@default290"></A><A NAME="@command61"></A>
+<A NAME="searchisos"></A>
+<TT>SearchIsos</TT> searches terms by their type modulo isomorphism.
+This command displays the full name of all constants, variables,
+inductive types, and inductive constructors of the current
+context whose type is isomorphic to <I><FONT COLOR=maroon>term</FONT></I> modulo the contextual part of the
+following axiomatization (the mutual inductive types with one constructor,
+without implicit arguments, and for which projections exist, are regarded as a
+sequence of <FONT FACE=symbol>S</FONT>):<BR>
+<BR>
+
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD  ALIGN=left NOWRAP></TD>
+<TD  ALIGN=left NOWRAP>1.</TD>
+<TD  ALIGN=left NOWRAP><I>A</I>=<I>B</I>if <I>A</I><FONT FACE=symbol>¾®</FONT><SUP><FONT SIZE=2><FONT FACE=symbol>b</FONT><FONT FACE=symbol>i</FONT></FONT></SUP><I>B</I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP></TD>
+<TD  ALIGN=left NOWRAP>2.</TD>
+<TD  ALIGN=left NOWRAP><FONT FACE=symbol>S</FONT><I>x</I>:<I>A</I>.<I>B</I>=<FONT FACE=symbol>S</FONT><I>y</I>:<I>A</I>.<I>B</I>[<I>x</I><FONT FACE=symbol>¬</FONT><I>y</I>]if <I>y</I><FONT FACE=symbol>Ï</FONT><I>FV</I>(<FONT FACE=symbol>S</FONT><I>x</I>:<I>A</I>.<I>B</I>)</TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP></TD>
+<TD  ALIGN=left NOWRAP>3.</TD>
+<TD  ALIGN=left NOWRAP><FONT FACE=symbol>P</FONT><I>x</I>:<I>A</I>.<I>B</I>=<FONT FACE=symbol>P</FONT><I>y</I>:<I>A</I>.<I>B</I>[<I>x</I><FONT FACE=symbol>¬</FONT><I>y</I>]if <I>y</I><FONT FACE=symbol>Ï</FONT><I>FV</I>(<FONT FACE=symbol>P</FONT><I>x</I>:<I>A</I>.<I>B</I>)</TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP></TD>
+<TD  ALIGN=left NOWRAP>4.</TD>
+<TD  ALIGN=left NOWRAP><FONT FACE=symbol>S</FONT><I>x</I>:<I>A</I>.<I>B</I>=<FONT FACE=symbol>S</FONT><I>x</I>:<I>B</I>.<I>A</I>if <I>x</I><FONT FACE=symbol>Ï</FONT><I>FV</I>(<I>A</I>,<I>B</I>)</TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP></TD>
+<TD  ALIGN=left NOWRAP>5.</TD>
+<TD  ALIGN=left NOWRAP><FONT FACE=symbol>S</FONT><I>x</I>:(<FONT FACE=symbol>S</FONT><I>y</I>:<I>A</I>.<I>B</I>).<I>C</I>=<FONT FACE=symbol>S</FONT><I>x</I>:<I>A</I>.<FONT FACE=symbol>S</FONT><I>y</I>:<I>B</I>[<I>y</I><FONT FACE=symbol>¬</FONT><I>x</I>].<I>C</I>[<I>x</I><FONT FACE=symbol>¬</FONT>(<I>x</I>,<I>y</I>)]</TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP></TD>
+<TD  ALIGN=left NOWRAP>6.</TD>
+<TD  ALIGN=left NOWRAP><FONT FACE=symbol>P</FONT><I>x</I>:(<FONT FACE=symbol>S</FONT><I>y</I>:<I>A</I>.<I>B</I>).<I>C</I>=<FONT FACE=symbol>P</FONT><I>x</I>:<I>A</I>.<FONT FACE=symbol>P</FONT><I>y</I>:<I>B</I>[<I>y</I><FONT FACE=symbol>¬</FONT><I>x</I>].<I>C</I>[<I>x</I><FONT FACE=symbol>¬</FONT>(<I>x</I>,<I>y</I>)]</TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP></TD>
+<TD  ALIGN=left NOWRAP>7.</TD>
+<TD  ALIGN=left NOWRAP><FONT FACE=symbol>P</FONT><I>x</I>:<I>A</I>.<FONT FACE=symbol>S</FONT><I>y</I>:<I>B</I>.<I>C</I>=<FONT FACE=symbol>S</FONT><I>y</I>:(<FONT FACE=symbol>P</FONT><I>x</I>:<I>A</I>.<I>B</I>).(<FONT FACE=symbol>P</FONT><I>x</I>:<I>A</I>.<I>C</I>[<I>y</I><FONT FACE=symbol>¬</FONT>(<I>y</I> <I>x</I>)]</TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP></TD>
+<TD  ALIGN=left NOWRAP>8.</TD>
+<TD  ALIGN=left NOWRAP><FONT FACE=symbol>S</FONT><I>x</I>:<I>A</I>.<I>unit</I>=<I>A</I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP></TD>
+<TD  ALIGN=left NOWRAP>9.</TD>
+<TD  ALIGN=left NOWRAP><FONT FACE=symbol>S</FONT><I>x</I>:<I>unit</I>.<I>A</I>=<I>A</I>[<I>x</I><FONT FACE=symbol>¬</FONT><I>tt</I>]</TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP></TD>
+<TD  ALIGN=left NOWRAP>10.</TD>
+<TD  ALIGN=left NOWRAP><FONT FACE=symbol>P</FONT><I>x</I>:<I>A</I>.<I>unit</I>=<I>unit</I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP></TD>
+<TD  ALIGN=left NOWRAP>11.</TD>
+<TD  ALIGN=left NOWRAP><FONT FACE=symbol>P</FONT><I>x</I>:<I>unit</I>.<I>A</I>=<I>A</I>[<I>x</I><FONT FACE=symbol>¬</FONT><I>tt</I>]
+</TD>
+</TR></TABLE><BR>
+For more informations about the exact working of this command, see
+[<CITE><A HREF="#Del97"><CITE>30</CITE></A></CITE>].<BR>
+<BR>
+<HR>
+
+<A HREF="node.1.0.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.0.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

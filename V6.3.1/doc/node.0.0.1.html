@@ -1,0 +1,304 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+1.2&nbsp;Terms
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.0.0.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.0.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.0.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+1.2&nbsp;Terms
+</H2>
+
+
+<A NAME="term"></A><A NAME="@default5"></A>
+
+<H3>
+
+1.2.1&nbsp;Syntax of terms
+</H3>
+Figure <A HREF="node.0.0.1.html#term-syntax">1.1</A> describes the basic set of terms which form
+the <EM>Calculus
+of Inductive Constructions</EM> (also called <FONT COLOR=navy>Cic</FONT>). The formal
+presentation of <FONT COLOR=navy>Cic</FONT> is given in chapter <A HREF="node.0.3.html#Cic">4</A>. Extensions of
+this syntax are given in chapter
+<A HREF="node.0.1.html#Gallina-extension">2</A>. How to customize the syntax is described in
+chapter <A HREF="node.2.0.html#Addoc-syntax">9</A>.<BR>
+<BR>
+<BLOCKQUOTE><HR  SIZE=2>
+
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=1>
+<TR><TD  ALIGN=left NOWRAP><I><FONT COLOR=maroon>term</FONT></I></TD>
+<TD  ALIGN=center NOWRAP>::=</TD>
+<TD  ALIGN=left NOWRAP><I><FONT COLOR=maroon>ident</FONT></I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><I><FONT COLOR=maroon>sort</FONT></I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><I><FONT COLOR=maroon>term</FONT></I> <TT>-&gt;</TT> <I><FONT COLOR=maroon>term</FONT></I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><TT>(</TT> <I><FONT COLOR=maroon>typed_idents</FONT></I> <TT>;</TT> ... <TT>;</TT> <I><FONT COLOR=maroon>typed_idents</FONT></I> <TT>)</TT> <I><FONT COLOR=maroon>term</FONT></I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><TT>[</TT> <I><FONT COLOR=maroon>idents</FONT></I> <TT>;</TT> ... <TT>;</TT> <I><FONT COLOR=maroon>idents</FONT></I> <TT>]</TT> <I><FONT COLOR=maroon>term</FONT></I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><TT>(</TT> <I><FONT COLOR=maroon>term</FONT></I>  ...  <I><FONT COLOR=maroon>term</FONT></I> <TT>)</TT></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><TT><I><FONT COLOR=maroon>[</FONT></I></TT><I><FONT COLOR=maroon>annotation</FONT></I><TT><I><FONT COLOR=maroon>]</FONT></I></TT> <TT>Cases</TT> <I><FONT COLOR=maroon>term</FONT></I> <TT>of</TT>
+ <I><FONT COLOR=maroon>[</FONT></I><I><FONT COLOR=maroon>equation</FONT></I> <TT>|</TT> ... <TT>|</TT> <I><FONT COLOR=maroon>equation</FONT></I><I><FONT COLOR=maroon>]</FONT></I> <TT>end</TT></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><TT>Fix</TT> <I><FONT COLOR=maroon>ident</FONT></I> <CODE>{</CODE> <I><FONT COLOR=maroon>fix_body</FONT></I> <TT>with</TT> ... <TT>with</TT> <I><FONT COLOR=maroon>fix_body</FONT></I> <CODE>}</CODE></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><TT>CoFix</TT> <I><FONT COLOR=maroon>ident</FONT></I> <CODE>{</CODE> <I><FONT COLOR=maroon>cofix_body</FONT></I> <TT>with</TT> ... <TT>with</TT> <I><FONT COLOR=maroon>cofix_body</FONT></I> <CODE>}</CODE></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>&nbsp;</TD>
+<TD  ALIGN=left NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP><I><FONT COLOR=maroon>sort</FONT></I></TD>
+<TD  ALIGN=center NOWRAP>::=</TD>
+<TD  ALIGN=left NOWRAP><TT>Prop</TT></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><TT>Set</TT></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><TT>Type</TT></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>&nbsp;</TD>
+<TD  ALIGN=left NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP><I><FONT COLOR=maroon>annotation</FONT></I></TD>
+<TD  ALIGN=center NOWRAP>::=</TD>
+<TD  ALIGN=left NOWRAP><CODE>&lt;</CODE> <I><FONT COLOR=maroon>term</FONT></I> <CODE>&gt;</CODE></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>&nbsp;</TD>
+<TD  ALIGN=left NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP><I><FONT COLOR=maroon>typed_idents</FONT></I></TD>
+<TD  ALIGN=center NOWRAP>::=</TD>
+<TD  ALIGN=left NOWRAP><I><FONT COLOR=maroon>ident</FONT></I> <TT>,</TT> ... <TT>,</TT> <I><FONT COLOR=maroon>ident</FONT></I> <TT>:</TT> <I><FONT COLOR=maroon>term</FONT></I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP><I><FONT COLOR=maroon>idents</FONT></I></TD>
+<TD  ALIGN=center NOWRAP>::=</TD>
+<TD  ALIGN=left NOWRAP><I><FONT COLOR=maroon>ident</FONT></I> <TT>,</TT> ... <TT>,</TT> <I><FONT COLOR=maroon>ident</FONT></I> <I><FONT COLOR=maroon>[</FONT></I><TT>:</TT> <I><FONT COLOR=maroon>term</FONT></I><I><FONT COLOR=maroon>]</FONT></I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>&nbsp;</TD>
+<TD  ALIGN=left NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP><I><FONT COLOR=maroon>fix_body</FONT></I></TD>
+<TD  ALIGN=center NOWRAP>::=</TD>
+<TD  ALIGN=left NOWRAP><I><FONT COLOR=maroon>ident</FONT></I> <TT>[</TT> <I><FONT COLOR=maroon>typed_idents</FONT></I> <TT>;</TT> ... <TT>;</TT> <I><FONT COLOR=maroon>typed_idents</FONT></I> <TT>]</TT><CODE>:</CODE> 
+ <I><FONT COLOR=maroon>term</FONT></I> <CODE>:=</CODE> <I><FONT COLOR=maroon>term</FONT></I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP><I><FONT COLOR=maroon>cofix_body</FONT></I></TD>
+<TD  ALIGN=center NOWRAP>::=</TD>
+<TD  ALIGN=left NOWRAP><I><FONT COLOR=maroon>ident</FONT></I> <CODE>:</CODE> 
+ <I><FONT COLOR=maroon>term</FONT></I> <CODE>:=</CODE> <I><FONT COLOR=maroon>term</FONT></I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>&nbsp;</TD>
+<TD  ALIGN=left NOWRAP>&nbsp;</TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP><I><FONT COLOR=maroon>simple_pattern</FONT></I></TD>
+<TD  ALIGN=center NOWRAP>::=</TD>
+<TD  ALIGN=left NOWRAP><I><FONT COLOR=maroon>ident</FONT></I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><CODE>(</CODE> <I><FONT COLOR=maroon>ident</FONT></I>  ...  <I><FONT COLOR=maroon>ident</FONT></I> <CODE>)</CODE></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP><I><FONT COLOR=maroon>equation</FONT></I></TD>
+<TD  ALIGN=center NOWRAP>::=</TD>
+<TD  ALIGN=left NOWRAP><I><FONT COLOR=maroon>simple_pattern</FONT></I> &nbsp;<CODE>=&gt;</CODE> &nbsp;<I><FONT COLOR=maroon>term</FONT></I></TD>
+</TR></TABLE>
+
+<A NAME="term-syntax"></A>
+<A NAME="@default6"></A>
+<A NAME="@default7"></A>
+<BR>
+<DIV ALIGN=center>Figure 1.1: Syntax of terms</DIV>
+<HR  SIZE=2></BLOCKQUOTE>
+<H3>
+
+1.2.2&nbsp;Identifiers
+</H3>
+Identifiers denotes either <EM>variables</EM>, <EM>constants</EM>,
+<EM>inductive types</EM> or <EM>constructors of inductive types</EM>.<BR>
+<BR>
+
+<H3>
+
+1.2.3&nbsp;Sorts
+</H3>
+<A NAME="@default8"></A>
+<A NAME="@default9"></A>
+<A NAME="@default10"></A>
+<A NAME="@default11"></A>
+<A NAME="@default12"></A>
+<A NAME="Gallina-sorts"></A>There are three sorts <FONT COLOR=purple>Set</FONT>, <FONT COLOR=purple>Prop</FONT> and <FONT COLOR=purple>Type</FONT>.<BR>
+<BR>
+<UL>
+<LI>
+<FONT COLOR=purple>Prop</FONT> is the universe of <EM>logical propositions</EM>.
+The logical propositions themselves are typing the proofs.
+We denote propositions by <I><FONT COLOR=maroon>form</FONT></I>. This constitutes a semantic
+subclass of the syntactic class <I><FONT COLOR=maroon>term</FONT></I>.
+<A NAME="@default13"></A>
+
+<LI><FONT COLOR=purple>Set</FONT> is is the universe of <EM>program
+types</EM> or <EM>specifications</EM>.
+The specifications themselves are typing the programs.
+We denote specifications by <I><FONT COLOR=maroon>specif</FONT></I>. This constitutes a semantic
+subclass of the syntactic class <I><FONT COLOR=maroon>term</FONT></I>.
+<A NAME="@default14"></A>
+
+<LI><FONT COLOR=purple>Type</FONT> is the type of <FONT COLOR=purple>Set</FONT> and <FONT COLOR=purple>Prop</FONT>
+</UL>More on sorts can be found in section <A HREF="node.0.3.0.html#Sorts">4.1.1</A>.<BR>
+<BR>
+
+<H3>
+
+1.2.4&nbsp;Types
+</H3>
+<FONT COLOR=purple>Coq</FONT> terms are typed. <FONT COLOR=purple>Coq</FONT> types are recognized by the same
+syntactic class as <I><FONT COLOR=maroon>term</FONT></I>. We denote by <I><FONT COLOR=maroon>type</FONT></I> the semantic subclass
+of types inside the syntactic class <I><FONT COLOR=maroon>term</FONT></I>.
+<A NAME="@default15"></A><BR>
+<BR>
+
+<H3>
+
+1.2.5&nbsp;Abstractions
+</H3>
+
+<A NAME="@default16"></A>The expression ``<TT>[</TT> <I><FONT COLOR=maroon>ident</FONT></I> <TT>:</TT> <I><FONT COLOR=maroon>type</FONT></I><TT>]</TT>
+<I><FONT COLOR=maroon>term</FONT></I>'' denotes the <EM>abstraction</EM> of the variable <I><FONT COLOR=maroon>ident</FONT></I>
+of type <I><FONT COLOR=maroon>type</FONT></I>, over the term <I><FONT COLOR=maroon>term</FONT></I>.<BR>
+<BR>
+One can abstract several variables successively:
+the notation <TT>[</TT> <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> <TT>,</TT> ... <TT>,</TT> 
+<I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> <TT>:</TT> <I><FONT COLOR=maroon>type</FONT></I><TT>]</TT> <I><FONT COLOR=maroon>term</FONT></I> stands for 
+<TT>[</TT> <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> <TT>:</TT> <I><FONT COLOR=maroon>type</FONT></I><TT>](</TT> ... 
+<TT>([</TT> <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> <TT>:</TT> <I><FONT COLOR=maroon>type</FONT></I><TT>]</TT> <I><FONT COLOR=maroon>term</FONT></I> <TT>)</TT> 
+...<TT>)</TT> and the notation <TT>[</TT> <I><FONT COLOR=maroon>typed_idents</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> <TT>;</TT>
+... <TT>;</TT> <I><FONT COLOR=maroon>typed_idents</FONT></I><SUB><FONT SIZE=2><I>m</I></FONT></SUB> <TT>]</TT> <I><FONT COLOR=maroon>term</FONT></I> is a shorthand
+for <TT>[</TT>&nbsp;<I><FONT COLOR=maroon>typed_idents</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> <TT>](</TT> ... <TT>([</TT>
+<I><FONT COLOR=maroon>typed_idents</FONT></I><SUB><FONT SIZE=2><I>m</I></FONT></SUB> <TT>]</TT> <I><FONT COLOR=maroon>term</FONT></I> <TT>)</TT><BR><TT>[</TT> <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>
+<TT>,</TT> ... <TT>,</TT> <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> <TT>:</TT> <I><FONT COLOR=maroon>type</FONT></I><TT>]</TT> <I><FONT COLOR=maroon>term</FONT></I>.<BR><BR><B>Remark: </B>The types of variables may be omitted in an
+abstraction when they can be synthetized by the system.<BR>
+<BR>
+
+<H3>
+
+1.2.6&nbsp;Products
+</H3>
+
+<A NAME="@default17"></A>The expression ``<TT>(</TT>&nbsp;<I><FONT COLOR=maroon>ident</FONT></I> <TT>:</TT> <I><FONT COLOR=maroon>type</FONT></I><TT>)</TT>
+<I><FONT COLOR=maroon>term</FONT></I>'' denotes the <EM>product</EM> of the variable <I><FONT COLOR=maroon>ident</FONT></I>
+of type <I><FONT COLOR=maroon>type</FONT></I>, over the term <I><FONT COLOR=maroon>term</FONT></I>.<BR>
+<BR>
+Similarly, the expression <TT>(</TT> <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> <TT>,</TT> ... <TT>,</TT> <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> <TT>:</TT> <I><FONT COLOR=maroon>type</FONT></I><TT>)</TT> <I><FONT COLOR=maroon>term</FONT></I> is equivalent to <TT>(</TT> <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> <TT>:</TT> <I><FONT COLOR=maroon>type</FONT></I><TT>)(</TT> ... <TT>((</TT>
+<I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> <TT>:</TT> <I><FONT COLOR=maroon>type</FONT></I><TT>)</TT> <I><FONT COLOR=maroon>term</FONT></I> <TT>)</TT> ...<TT>)</TT>
+and the expression <TT>(</TT> <I><FONT COLOR=maroon>typed_idents</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> <TT>;</TT> ... <TT>;</TT> <I><FONT COLOR=maroon>typed_idents</FONT></I><SUB><FONT SIZE=2><I>m</I></FONT></SUB> <TT>)</TT> <I><FONT COLOR=maroon>term</FONT></I> is a equivalent to <TT>(</TT>&nbsp;<I><FONT COLOR=maroon>typed_idents</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> <TT>)(</TT> ... <TT>((</TT>
+<I><FONT COLOR=maroon>typed_idents</FONT></I><SUB><FONT SIZE=2><I>m</I></FONT></SUB> <TT>)</TT> <I><FONT COLOR=maroon>term</FONT></I> <TT>)</TT> ...<TT>)</TT><BR>
+<BR>
+
+<H3>
+
+1.2.7&nbsp;Applications
+</H3>
+
+<A NAME="@default18"></A><TT>(</TT><I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>0</FONT></SUB> <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB><TT>)</TT> denotes the application of
+ term <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>0</FONT></SUB> to <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>.<BR>
+<BR>
+The expression <TT>(</TT><I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>0</FONT></SUB> <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> ... <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB><TT>)</TT>
+denotes the application of the term <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>0</FONT></SUB> to the arguments
+<I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> ... then <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>. It is equivalent to <TT>(</TT> ...
+<TT>(</TT> <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>0</FONT></SUB> <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> <TT>)</TT> ... <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> <TT>)</TT>:
+associativity is to the left.<BR>
+<BR>
+
+<H3>
+
+1.2.8&nbsp;Definition by case analysis
+</H3>
+
+<A NAME="@default19"></A>In a simple pattern <CODE>(</CODE> <I><FONT COLOR=maroon>ident</FONT></I>  ...  <I><FONT COLOR=maroon>ident</FONT></I> <CODE>)</CODE>, the first <I><FONT COLOR=maroon>ident</FONT></I>
+is intended to be a constructor.<BR>
+<BR>
+The expression <TT><I><FONT COLOR=maroon>[</FONT></I></TT><I><FONT COLOR=maroon>annotation</FONT></I><TT><I><FONT COLOR=maroon>]</FONT></I></TT> <TT>Cases</TT> <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>0</FONT></SUB> <TT>of</TT>
+<I><FONT COLOR=maroon>pattern</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> <TT>=&gt;</TT> <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> <TT>|</TT> ... <TT>|</TT>
+<I><FONT COLOR=maroon>pattern</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> <TT>=&gt;</TT> <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> <TT>end</TT>, denotes a
+<EM>pattern-matching</EM> over the term <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>0</FONT></SUB> (expected to be of an
+inductive type). <BR>
+<BR>
+The <I><FONT COLOR=maroon>annotation</FONT></I> is the resulting type of the whole <TT>Cases</TT>
+expression. Most of the time, when this type is the same as the
+types of all the <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2><I>i</I></FONT></SUB>, the annotation is not needed<A NAME="text3"></A><A HREF="node.8.html#note3"><SUP><FONT SIZE=2>2</FONT></SUP></A>. The annotation has to be given when the 
+resulting type of the whole <TT>Cases</TT> depends on the actual <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>0</FONT></SUB>
+matched.<BR>
+<BR>
+
+<H3>
+
+1.2.9&nbsp;Recursive functions
+</H3>
+
+<A NAME="@default20"></A>The expression <TT>Fix</TT> <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>i</I></FONT></SUB> <CODE>{</CODE> <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> <TT>[</TT>
+<I><FONT COLOR=maroon>bindings</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> <TT>] :</TT> <I><FONT COLOR=maroon>type</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> <TT>:=</TT> <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> 
+<TT>with</TT> ... 
+<TT>with</TT> <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> <TT>[</TT> <I><FONT COLOR=maroon>bindings</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>&nbsp;<TT>]</TT><TT> :</TT> <I><FONT COLOR=maroon>type</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>
+<TT>:=</TT> <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> <CODE>}</CODE> denotes
+the <I>i</I>th component of a block of functions defined by mutual
+well-founded recursion.<BR>
+<BR>
+The expression <TT>CoFix</TT> <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>i</I></FONT></SUB> <CODE>{</CODE> <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>
+<TT>:</TT> <I><FONT COLOR=maroon>type</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> <TT>with</TT> ... <TT>with</TT>
+<I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> <TT>[</TT> <I><FONT COLOR=maroon>bindings</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> <TT>] :</TT> <I><FONT COLOR=maroon>type</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> <CODE>}</CODE> denotes
+the <I>i</I>th component of a block of terms defined by a mutual guarded recursion. <BR>
+<BR>
+<HR>
+
+<A HREF="node.0.0.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.0.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.0.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

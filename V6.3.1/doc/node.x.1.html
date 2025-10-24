@@ -1,0 +1,235 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+Credits
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.x.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H1>
+Credits
+</H1>
+
+
+
+<FONT COLOR=purple>Coq</FONT> is a proof assistant for higher-order logic, allowing the
+development of computer programs consistent with their formal
+specification. It is the result of about ten years of research of the
+Coq project. We shall briefly survey here three main aspects: the
+<I><FONT COLOR=maroon>logical language</FONT></I> in which we write our axiomatizations and
+specifications, the <I><FONT COLOR=maroon>proof assistant</FONT></I> which allows the development
+of verified mathematical proofs, and the <I><FONT COLOR=maroon>program extractor</FONT></I> which
+synthesizes computer programs obeying their formal specifications,
+written as logical assertions in the language.<BR>
+<BR>
+The logical language used by <FONT COLOR=purple>Coq</FONT> is a variety of type theory,
+called the <I><FONT COLOR=maroon>Calculus of Inductive Constructions</FONT></I>. Without going
+back to Leibniz and Boole, we can date the creation of what is now
+called mathematical logic to the work of Frege and Peano at the turn
+of the century. The discovery of antinomies in the free use of
+predicates or comprehension principles prompted Russell to restrict
+predicate calculus with a stratification of <I><FONT COLOR=maroon>types</FONT></I>. This effort
+culminated with <I><FONT COLOR=maroon>Principia Mathematica</FONT></I>, the first systematic
+attempt at a formal foundation of mathematics. A simplification of
+this system along the lines of simply typed <FONT FACE=symbol>l</FONT>-calculus
+occurred with Church's <I><FONT COLOR=maroon>Simple Theory of Types</FONT></I>. The
+<FONT FACE=symbol>l</FONT>-calculus notation, originally used for expressing
+functionality, could also be used as an encoding of natural deduction
+proofs. This Curry-Howard isomorphism was used by N. de Bruijn in the
+<I><FONT COLOR=maroon>Automath</FONT></I> project, the first full-scale attempt to develop and
+mechanically verify mathematical proofs. This effort culminated with
+Jutting's verification of Landau's <I><FONT COLOR=maroon>Grundlagen</FONT></I> in the 1970's.
+Exploiting this Curry-Howard isomorphism, notable achievements in
+proof theory saw the emergence of two type-theoretic frameworks; the
+first one, Martin-Löf's <I><FONT COLOR=maroon>Intuitionistic Theory of Types</FONT></I>,
+attempts a new foundation of mathematics on constructive principles.
+The second one, Girard's polymorphic <FONT FACE=symbol>l</FONT>-calculus <I>F</I><SUB><FONT SIZE=2><FONT FACE=symbol>w</FONT></FONT></SUB>, is
+a very strong functional system in which we may represent higher-order
+logic proof structures. Combining both systems in a higher-order
+extension of the Automath languages, T. Coquand presented in 1985 the
+first version of the <I><FONT COLOR=maroon>Calculus of Constructions</FONT></I>, CoC. This strong
+logical system allowed powerful axiomatizations, but direct inductive
+definitions were not possible, and inductive notions had to be defined
+indirectly through functional encodings, which introduced
+inefficiencies and awkwardness. The formalism was extended in 1989 by
+T. Coquand and C. Paulin with primitive inductive definitions, leading
+to the current <I><FONT COLOR=maroon>Calculus of Inductive Constructions</FONT></I>. This
+extended formalism is not rigorously defined here. Rather, numerous
+concrete examples are discussed. We refer the interested reader to
+relevant research papers for more information about the formalism, its
+meta-theoretic properties, and semantics. However, it should not be
+necessary to understand this theoretical material in order to write
+specifications. It is possible to understand the Calculus of Inductive
+Constructions at a higher level, as a mixture of predicate calculus,
+inductive predicate definitions presented as typed PROLOG, and
+recursive function definitions close to the language ML.<BR>
+<BR>
+Automated theorem-proving was pioneered in the 1960's by Davis and
+Putnam in propositional calculus. A complete mechanization (in the
+sense of a semi-decision procedure) of classical first-order logic was
+proposed in 1965 by J.A. Robinson, with a single uniform inference
+rule called <I><FONT COLOR=maroon>resolution</FONT></I>. Resolution relies on solving equations
+in free algebras (i.e. term structures), using the <I><FONT COLOR=maroon>unification
+ algorithm</FONT></I>. Many refinements of resolution were studied in the
+1970's, but few convincing implementations were realized, except of
+course that PROLOG is in some sense issued from this effort. A less
+ambitious approach to proof development is computer-aided
+proof-checking. The most notable proof-checkers developed in the
+1970's were LCF, designed by R. Milner and his colleagues at U.
+Edinburgh, specialized in proving properties about denotational
+semantics recursion equations, and the Boyer and Moore theorem-prover,
+an automation of primitive recursion over inductive data types. While
+the Boyer-Moore theorem-prover attempted to synthesize proofs by a
+combination of automated methods, LCF constructed its proofs through
+the programming of <I><FONT COLOR=maroon>tactics</FONT></I>, written in a high-level functional
+meta-language, ML.<BR>
+<BR>
+The salient feature which clearly distinguishes our proof assistant
+from say LCF or Boyer and Moore's, is its possibility to extract
+programs from the constructive contents of proofs. This computational
+interpretation of proof objects, in the tradition of Bishop's
+constructive mathematics, is based on a realizability interpretation,
+in the sense of Kleene, due to C. Paulin. The user must just mark his
+intention by separating in the logical statements the assertions
+stating the existence of a computational object from the logical
+assertions which specify its properties, but which may be considered
+as just comments in the corresponding program. Given this information,
+the system automatically extracts a functional term from a consistency
+proof of its specifications. This functional term may be in turn
+compiled into an actual computer program. This methodology of
+extracting programs from proofs is a revolutionary paradigm for
+software engineering. Program synthesis has long been a theme of
+research in artificial intelligence, pioneered by R. Waldinger. The
+Tablog system of Z. Manna and R. Waldinger allows the deductive
+synthesis of functional programs from proofs in tableau form of their
+specifications, written in a variety of first-order logic. Development
+of a systematic <I><FONT COLOR=maroon>programming logic</FONT></I>, based on extensions of
+Martin-Löf's type theory, was undertaken at Cornell U. by the Nuprl
+team, headed by R. Constable. The first actual program extractor, PX,
+was designed and implemented around 1985 by S. Hayashi from Kyoto
+University. It allows the extraction of a LISP program from a proof
+in a logical system inspired by the logical formalisms of S. Feferman.
+Interest in this methodology is growing in the theoretical computer
+science community. We can foresee the day when actual computer systems
+used in applications will contain certified modules, automatically
+generated from a consistency proof of their formal specifications. We
+are however still far from being able to use this methodology in a
+smooth interaction with the standard tools from software engineering,
+i.e. compilers, linkers, run-time systems taking advantage of special
+hardware, debuggers, and the like. We hope that <FONT COLOR=purple>Coq</FONT> can be of use
+to researchers interested in experimenting with this new methodology.<BR>
+<BR>
+A first implementation of CoC was started in 1984 by G. Huet and T.
+Coquand. Its implementation language was CAML, a functional
+programming language from the ML family designed at INRIA in
+Rocquencourt. The core of this system was a proof-checker for CoC seen
+as a typed <FONT FACE=symbol>l</FONT>-calculus, called the <I><FONT COLOR=maroon>Constructive Engine</FONT></I>.
+This engine was operated through a high-level notation permitting the
+declaration of axioms and parameters, the definition of mathematical
+types and objects, and the explicit construction of proof objects
+encoded as <FONT FACE=symbol>l</FONT>-terms. A section mechanism, designed and
+implemented by G. Dowek, allowed hierarchical developments of
+mathematical theories. This high-level language was called the <I><FONT COLOR=maroon>Mathematical Vernacular</FONT></I>. Furthermore, an interactive <I><FONT COLOR=maroon>Theorem
+ Prover</FONT></I> permitted the incremental construction of proof trees in a
+top-down manner, subgoaling recursively and backtracking from
+dead-alleys. The theorem prover executed tactics written in CAML, in
+the LCF fashion. A basic set of tactics was predefined, which the
+user could extend by his own specific tactics. This system (Version
+4.10) was released in 1989. Then, the system was extended to deal
+with the new calculus with inductive types by C. Paulin, with
+corresponding new tactics for proofs by induction. A new standard set
+of tactics was streamlined, and the vernacular extended for tactics
+execution. A package to compile programs extracted from proofs to
+actual computer programs in CAML or some other functional language was
+designed and implemented by B. Werner. A new user-interface, relying
+on a CAML-X interface by D. de Rauglaudre, was designed and
+implemented by A. Felty. It allowed operation of the theorem-prover
+through the manipulation of windows, menus, mouse-sensitive buttons,
+and other widgets. This system (Version 5.6) was released in 1991.<BR>
+<BR>
+Coq was ported to the new implementation Caml-light of X. Leroy and D.
+Doligez by D. de Rauglaudre (Version 5.7) in 1992. A new version of
+Coq was then coordinated by C. Murthy, with new tools designed by C.
+Parent to prove properties of ML programs (this methodology is dual to
+program extraction) and a new user-interaction loop. This system
+(Version 5.8) was released in May 1993. A Centaur interface CTCoq was
+then developed by Y. Bertot from the Croap project from
+INRIA-Sophia-Antipolis.<BR>
+<BR>
+In parallel, G. Dowek and H. Herbelin developed a new proof engine,
+allowing the general manipulation of existential variables
+consistently with dependent types in an experimental version of Coq
+(V5.9).<BR>
+<BR>
+The version V5.10 of Coq is based on a generic system for
+manipulating terms with binding operators due to Chet Murthy. A new
+proof engine allows the parallel development of partial proofs for
+independent subgoals. The structure of these proof trees is a mixed
+representation of derivation trees for the Calculus of Inductive
+Constructions with abstract syntax trees for the tactics scripts,
+allowing the navigation in a proof at various levels of details. The
+proof engine allows generic environment items managed in an
+object-oriented way. This new architecture, due to C. Murthy,
+supports several new facilities which make the system easier to extend
+and to scale up:<BR>
+<BR>
+<UL>
+<LI>
+User-programmable tactics are allowed
+
+<LI>It is possible to separately verify development modules, and to
+ load their compiled images without verifying them again - a quick
+ relocation process allows their fast loading
+
+<LI>A generic parsing scheme allows user-definable notations, with a
+ symmetric table-driven pretty-printer
+
+<LI>Syntactic definitions allow convenient abbreviations
+
+<LI>A limited facility of meta-variables allows the automatic
+ synthesis of certain type expressions, allowing generic notations
+ for e.g. equality, pairing, and existential quantification.
+</UL>In the Fall of 1994, C. Paulin-Mohring replaced the structure of
+inductively defined types and families by a new structure, allowing
+the mutually recursive definitions. P. Manoury implemented a
+translation of recursive definitions into the primitive recursive
+style imposed by the internal recursion operators, in the style of the
+ProPre system. C. Muñoz implemented a decision procedure for
+intuitionistic propositional logic, based on results of R. Dyckhoff.
+J.C. Filliâtre implemented a decision procedure for first-order
+logic without contraction, based on results of J. Ketonen and R.
+Weyhrauch. Finally C. Murthy implemented a library of inversion
+tactics, relieving the user from tedious definitions of ``inversion
+predicates''.<BR>
+<BR>
+<DIV ALIGN=right>
+Rocquencourt, Feb. 1st 1995<BR>Gérard Huet
+</DIV><BR>
+<UL>
+<LI><A HREF="node.x.1.0.html">
+Credits: addendum for version 6.1
+</A>
+<LI><A HREF="node.x.1.1.html">
+Credits: addendum for version 6.2
+</A>
+</UL><HR>
+
+<A HREF="node.x.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

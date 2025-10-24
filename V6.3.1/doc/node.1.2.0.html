@@ -1,0 +1,134 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+7.1&nbsp;Syntax of tactics and tacticals
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.1.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.1.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+7.1&nbsp;Syntax of tactics and tacticals
+</H2>
+
+
+
+<A NAME="tactic-syntax"></A>
+<A NAME="@default379"></A>A tactic is
+applied as an ordinary command. If the tactic does not
+address the first subgoal, the command may be preceded by the
+wished subgoal number. See figure&nbsp;<A HREF="node.1.2.0.html#InvokeTactic">7.1</A> for the syntax of
+tactic invocation and tacticals.<BR><BLOCKQUOTE><HR  SIZE=2>
+<DIV ALIGN=center>
+
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=1>
+<TR><TD  ALIGN=left NOWRAP><I><FONT COLOR=maroon>tactic</FONT></I></TD>
+<TD  ALIGN=center NOWRAP>::=</TD>
+<TD  ALIGN=left NOWRAP><I><FONT COLOR=maroon>atomic_tactic</FONT></I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><TT>(</TT> <I><FONT COLOR=maroon>tactic</FONT></I> <TT>)</TT></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><I><FONT COLOR=maroon>tactic</FONT></I> <TT>Orelse</TT> <I><FONT COLOR=maroon>tactic</FONT></I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><TT>Repeat</TT> <I><FONT COLOR=maroon>tactic</FONT></I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><TT>Do</TT> <I><FONT COLOR=maroon>num</FONT></I> <I><FONT COLOR=maroon>tactic</FONT></I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><TT>Info</TT> <I><FONT COLOR=maroon>tactic</FONT></I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><TT>Try</TT> <I><FONT COLOR=maroon>tactic</FONT></I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><TT>First [</TT> <I><FONT COLOR=maroon>tactic</FONT></I><TT> | ... | </TT><I><FONT COLOR=maroon>tactic</FONT></I> <TT>]</TT></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><TT>Solve [</TT> <I><FONT COLOR=maroon>tactic</FONT></I><TT> | ... | </TT><I><FONT COLOR=maroon>tactic</FONT></I> <TT>]</TT></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><TT>Abstract</TT> <I><FONT COLOR=maroon>tactic</FONT></I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><TT>Abstract</TT> <I><FONT COLOR=maroon>tactic</FONT></I> <TT>using</TT> <I><FONT COLOR=maroon>ident</FONT></I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><I><FONT COLOR=maroon>tactic</FONT></I> <TT>;</TT> <I><FONT COLOR=maroon>tactic</FONT></I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><I><FONT COLOR=maroon>tactic</FONT></I> <TT>;[</TT> <I><FONT COLOR=maroon>tactic</FONT></I> <CODE><TT>|</TT></CODE><TT>
+ ... </TT><CODE><TT>|</TT></CODE><TT> </TT><I><FONT COLOR=maroon>tactic</FONT></I><TT> </TT><TT>]</TT><TT></TT></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP><I><FONT COLOR=maroon>tactic_invocation</FONT></I></TD>
+<TD  ALIGN=center NOWRAP>::=</TD>
+<TD  ALIGN=left NOWRAP><I><FONT COLOR=maroon>num</FONT></I> <TT>:</TT> <I><FONT COLOR=maroon>tactic</FONT></I> <TT>.</TT></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><I><FONT COLOR=maroon>tactic</FONT></I> <TT>.</TT></TD>
+</TR></TABLE>
+</DIV>
+<A NAME="InvokeTactic"></A>
+<BR>
+<DIV ALIGN=center>Figure 7.1: Invocation of tactics and tacticals</DIV>
+<HR  SIZE=2></BLOCKQUOTE><BR><B>Remarks: </B><OL>
+<LI>
+ 
+The infix tacticals <TT>Orelse</TT> and ``... <TT>;</TT> ...'' are
+associative. 
+The tactical <TT>Orelse</TT> binds more than the prefix tacticals
+<TT>Try</TT>, <TT>Repeat</TT>, <TT>Do</TT>, <TT>Info</TT> and <TT>Abstract</TT> which
+themselves bind more than 
+the postfix tactical ``<TT>... ;[ ... ]</TT>'' which 
+binds more than ``... <TT>;</TT> ...''.<BR>
+<BR>
+For instance<BR>
+<BR>
+<TT>Try Repeat </TT><I><FONT COLOR=maroon>tactic</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> Orelse
+ </TT><I><FONT COLOR=maroon>tactic</FONT></I><SUB><TT><FONT SIZE=2>2</FONT></TT></SUB><TT>;</TT><I><FONT COLOR=maroon>tactic</FONT></I><SUB><TT><FONT SIZE=2>3</FONT></TT></SUB><TT>;[</TT><I><FONT COLOR=maroon>tactic</FONT></I><SUB><TT><FONT SIZE=2>31</FONT></TT></SUB><TT>|...|</TT><I><FONT COLOR=maroon>tactic</FONT></I><SUB><TT><FONT SIZE=2>3<I>n</I></FONT></TT></SUB><TT>);</TT><I><FONT COLOR=maroon>tactic</FONT></I><SUB><TT><FONT SIZE=2>4</FONT></TT></SUB><TT>)</TT><BR>
+<BR>
+is understood as <BR>
+<BR>
+<TT>(Try (Repeat (</TT><I><FONT COLOR=maroon>tactic</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> Orelse </TT><I><FONT COLOR=maroon>tactic</FONT></I><SUB><TT><FONT SIZE=2>2</FONT></TT></SUB><TT>)));
+ ((</TT><I><FONT COLOR=maroon>tactic</FONT></I><SUB><TT><FONT SIZE=2>3</FONT></TT></SUB><TT>;[</TT><I><FONT COLOR=maroon>tactic</FONT></I><SUB><TT><FONT SIZE=2>31</FONT></TT></SUB><TT>|...|</TT><I><FONT COLOR=maroon>tactic</FONT></I><SUB><TT><FONT SIZE=2>3<I>n</I></FONT></TT></SUB><TT>]);</TT><I><FONT COLOR=maroon>tactic</FONT></I><SUB><TT><FONT SIZE=2>4</FONT></TT></SUB><TT>)</TT>.<BR>
+<BR>
+
+<LI>An <I><FONT COLOR=maroon>atomic_tactic</FONT></I> is any of the tactics listed below.
+</OL><HR>
+
+<A HREF="node.1.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.1.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

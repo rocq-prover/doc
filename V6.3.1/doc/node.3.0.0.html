@@ -1,0 +1,64 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+11.1&nbsp;Interactive use (coqtop)
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.0.1.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+11.1&nbsp;Interactive use (<TT>coqtop</TT>)
+</H2>
+
+
+
+In the interactive mode, also known as the <FONT COLOR=purple>Coq</FONT>&nbsp;toplevel, the user can develop his theories and proofs
+step by step. The <FONT COLOR=purple>Coq</FONT>&nbsp;toplevel is ran by the
+command <TT>coqtop</TT>. This toplevel is based on a Caml toplevel (to
+allow the dynamic link of tactics). You can switch to the Caml
+toplevel with the command <CODE>Drop.</CODE>, and come back to the
+<FONT COLOR=purple>Coq</FONT>&nbsp;toplevel with the command <CODE>Coqtoplevel.go();;</CODE>.<A NAME="@default554"></A><BR>
+<BR>
+
+<A NAME="@default555"></A>
+<A NAME="binary-images"></A>
+They are three different binary images of <FONT COLOR=purple>Coq</FONT>: the byte-code one,
+the native-code one and the full native-code one. When invoking
+<CODE>coqtop</CODE>, the byte-code version of the system is used. The
+command <CODE>coqtop -opt</CODE> runs a native-code version of the
+<FONT COLOR=purple>Coq</FONT>&nbsp;system, and the command <CODE>coqtop -full</CODE> a native-code version
+with the implementation code of all the tactics (that is with the code
+of the tactics <CODE>Linear</CODE>, <CODE>Ring</CODE> and <CODE>Omega</CODE> which then
+can be required by <CODE>Require</CODE>) and tools (<CODE>Extraction</CODE> and
+<CODE>Natural</CODE> which again become available through the command
+<CODE>Require</CODE>). Those toplevels are significantly faster than the
+byte-code one. Notice that it is no longer possible to access the
+Caml toplevel, neither to load tactics.<BR>
+<BR>
+The command <CODE>coqtop -searchisos</CODE> runs the search tool <FONT COLOR=purple>Coq_SearchIsos</FONT> (see section&nbsp;<A HREF="node.3.1.3.html#coqsearchisos">12.4</A>,
+page&nbsp;<A HREF="node.3.1.3.html#coqsearchisos">X</A>) and, as the <FONT COLOR=purple>Coq</FONT>&nbsp;system, can be combined with the
+option <CODE>-opt</CODE>.<BR>
+<BR>
+<HR>
+
+<A HREF="node.3.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.0.1.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

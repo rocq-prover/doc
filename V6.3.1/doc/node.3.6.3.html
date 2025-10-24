@@ -1,0 +1,368 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+17.4&nbsp;Examples
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.6.2.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.6.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+17.4&nbsp;Examples
+</H2>
+
+
+
+<A NAME="program-examples"></A>
+
+ 
+<H3>
+
+17.4.1&nbsp;Ackermann Function
+</H3>
+
+Let us give the specification of Ackermann's function. We want to
+prove that for every <I>n</I> and <I>m</I>, there exists a <I>p</I> such that
+<I>ack</I>(<I>n</I>,<I>m</I>)=<I>p</I> with:<BR>
+<BR>
+<DIV ALIGN=center>
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD  ALIGN=right NOWRAP><I>ack</I>(0,<I>n</I>)</TD>
+<TD  ALIGN=center NOWRAP>=</TD>
+<TD  ALIGN=left NOWRAP><I>n</I>+1</TD>
+</TR>
+<TR><TD  ALIGN=right NOWRAP><I>ack</I>(<I>n</I>+1,0)</TD>
+<TD  ALIGN=center NOWRAP>=</TD>
+<TD  ALIGN=left NOWRAP><I>ack</I>(<I>n</I>,1)</TD>
+</TR>
+<TR><TD  ALIGN=right NOWRAP><I>ack</I>(<I>n</I>+1,<I>m</I>+1)</TD>
+<TD  ALIGN=center NOWRAP>=</TD>
+<TD  ALIGN=left NOWRAP><I>ack</I>(<I>n</I>,<I>ack</I>(<I>n</I>+1,<I>m</I>))</TD>
+</TR></TABLE></DIV><BR>
+An ML program following this specification can be:<BR>
+<BR>
+<PRE>
+let rec ack = function
+        0  -&gt; (function m -&gt; Sm)
+      | Sn -&gt; (function  0  -&gt; ack n 1
+                       | Sm -&gt; ack n (ack Sn m))
+</PRE>Suppose we give the following definition in <FONT COLOR=purple>Coq</FONT>&nbsp;of a ternary relation
+<CODE>(Ack n m p)</CODE> in a Prolog like form representing <I>p</I>=<I>ack</I>(<I>n</I>,<I>m</I>):<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Inductive&nbsp;Ack&nbsp;:&nbsp;nat-&gt;nat-&gt;nat-&gt;Prop&nbsp;:=</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AckO&nbsp;:&nbsp;(n:nat)(Ack&nbsp;O&nbsp;n&nbsp;(S&nbsp;n))</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;AcknO&nbsp;:&nbsp;(n,p:nat)(Ack&nbsp;n&nbsp;(S&nbsp;O)&nbsp;p)-&gt;(Ack&nbsp;(S&nbsp;n)&nbsp;O&nbsp;p)</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;AckSS&nbsp;:&nbsp;(n,m,p,q:nat)(Ack&nbsp;(S&nbsp;n)&nbsp;m&nbsp;q)-&gt;(Ack&nbsp;n&nbsp;q&nbsp;p)</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;(Ack&nbsp;(S&nbsp;n)&nbsp;(S&nbsp;m)&nbsp;p).</TT><BR></DIV>
+
+Then the goal is to prove that <FONT FACE=symbol>"</FONT> <I>n</I>,<I>m</I> .<FONT FACE=symbol>$</FONT> <I>p</I>.(<I>Ack</I>&nbsp;<I>n</I>&nbsp;<I>m</I>&nbsp;<I>p</I>), so
+the specification is:<BR>
+<BR>
+<CODE>(n,m:nat){p:nat|(Ack n m p)}</CODE>.
+The associated <FONT COLOR=purple>Real</FONT> program corresponding to the above ML program can be defined as a fixpoint:
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Fixpoint&nbsp;ack_func&nbsp;[n:nat]&nbsp;:&nbsp;nat&nbsp;-&gt;&nbsp;nat&nbsp;:=</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Cases&nbsp;n&nbsp;of</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;O&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;[m:nat](S&nbsp;m)</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;|&nbsp;(S&nbsp;n')&nbsp;=&gt;&nbsp;Fix&nbsp;ack_func2&nbsp;{ack_func2&nbsp;[m:nat]&nbsp;:&nbsp;nat&nbsp;:=</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cases&nbsp;m&nbsp;of</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;O&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;(ack_func&nbsp;n'&nbsp;(S&nbsp;O))</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(S&nbsp;m')&nbsp;=&gt;&nbsp;(ack_func&nbsp;n'&nbsp;(ack_func2&nbsp;m'))&nbsp;</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end}&nbsp;</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;end.</TT><BR></DIV>
+
+The program is associated by using <CODE>Realizer ack_func</CODE>. The
+program is automatically expanded. Each realizer which is a constant
+is automatically expanded. Then, by repeating the <CODE>Program</CODE>
+tactic, three logical lemmas are generated and are easily solved by
+using the property Ack0, Ackn0 and AckSS.
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Repeat&nbsp;Program.</TT><BR><TT><I>3&nbsp;subgoals</I></TT><BR><TT><I>&nbsp;&nbsp;</I></TT><BR><TT><I>&nbsp;&nbsp;ack_func&nbsp;:&nbsp;(n,m:nat){p:nat&nbsp;|&nbsp;(Ack&nbsp;n&nbsp;m&nbsp;p)}</I></TT><BR><TT><I>&nbsp;&nbsp;n&nbsp;:&nbsp;nat</I></TT><BR><TT><I>&nbsp;&nbsp;m&nbsp;:&nbsp;nat</I></TT><BR><TT><I>&nbsp;&nbsp;============================</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;(Ack&nbsp;O&nbsp;m&nbsp;(S&nbsp;m))</I></TT><BR><TT><I>subgoal&nbsp;2&nbsp;is:</I></TT><BR><TT><I>&nbsp;(Ack&nbsp;(S&nbsp;n')&nbsp;O&nbsp;n0)</I></TT><BR><TT><I>subgoal&nbsp;3&nbsp;is:</I></TT><BR><TT><I>&nbsp;(Ack&nbsp;(S&nbsp;n')&nbsp;(S&nbsp;m')&nbsp;n0)</I></TT><BR></DIV>
+<BR>
+
+ 
+<H3>
+
+17.4.2&nbsp;Euclidean Division
+</H3>
+
+This example shows the use of <B>recursive programs</B>. Let us
+give the specification of the euclidean division algorithm. We want to
+prove that for <I>a</I> and <I>b</I> (<I>b</I>&gt;0), there exist <I>q</I> and <I>r</I> such that
+<I>a</I>=<I>b</I>*<I>q</I>+<I>r</I> and <I>b</I>&gt;<I>r</I>.<BR>
+<BR>
+An ML program following this specification can be:
+<PRE>
+let div b a = divrec a where rec divrec = function
+        if (b&lt;=a) then let (q,r) = divrec (a-b) in (Sq,r)
+                  else (0,a)
+</PRE>
+Suppose we give the following definition in <FONT COLOR=purple>Coq</FONT>&nbsp;which describes what
+has to be proved, ie, <FONT FACE=symbol>$</FONT> <I>q</I> <FONT FACE=symbol>$</FONT> <I>r</I>.&nbsp;(<I>a</I>=<I>b</I>*<I>q</I>+<I>r</I> <FONT FACE=symbol>Ù</FONT> &nbsp;<I>b</I>&gt;<I>r</I>):
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Inductive&nbsp;diveucl&nbsp;[a,b:nat]&nbsp;:&nbsp;Set&nbsp;</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;divex&nbsp;:&nbsp;(q,r:nat)(a=(plus&nbsp;(mult&nbsp;q&nbsp;b)&nbsp;r))-&gt;(gt&nbsp;b&nbsp;r)</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;(diveucl&nbsp;a&nbsp;b).</TT><BR></DIV>
+
+The decidability of the ordering relation has to be proved first, by
+giving the associated function of type <CODE>nat-&gt;nat-&gt;bool</CODE>:
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Theorem&nbsp;le_gt_dec&nbsp;:&nbsp;(n,m:nat){(le&nbsp;n&nbsp;m)}+{(gt&nbsp;n&nbsp;m)}.</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Realizer&nbsp;Fix&nbsp;le_gt_bool&nbsp;{le_gt_bool&nbsp;[n:nat]&nbsp;:&nbsp;nat&nbsp;-&gt;&nbsp;bool&nbsp;:=&nbsp;</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cases&nbsp;n&nbsp;of&nbsp;</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;O&nbsp;=&gt;&nbsp;[m:nat]true</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(S&nbsp;n')&nbsp;=&gt;&nbsp;[m:nat]Cases&nbsp;m&nbsp;of</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;O&nbsp;=&gt;&nbsp;false</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(S&nbsp;m')&nbsp;=&gt;&nbsp;(le_gt_bool&nbsp;n'&nbsp;m')</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end}.</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Program_all.</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Save.</TT><BR></DIV>
+
+Then the specification is <CODE>(b:nat)(gt b O)-&gt;(a:nat)(diveucl a b)</CODE>.
+The associated program corresponding to the ML program will be:
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Realizer&nbsp;</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[b:nat](&lt;nat*nat&gt;rec&nbsp;div&nbsp;::&nbsp;::&nbsp;{&nbsp;lt&nbsp;}</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[a:nat]if&nbsp;(le_gt_dec&nbsp;b&nbsp;a)&nbsp;</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then&nbsp;let&nbsp;(q,r)&nbsp;=&nbsp;(div&nbsp;(minus&nbsp;a&nbsp;b))</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;in&nbsp;((S&nbsp;q),r)</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;(O,a)).</TT><BR></DIV>
+
+Where <CODE>lt</CODE> is the well-founded ordering relation defined by:
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Print&nbsp;lt.</TT><BR><TT><I>lt&nbsp;=&nbsp;[n,m:nat](gt&nbsp;m&nbsp;n)</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(_,_:nat)Prop</I></TT><BR></DIV>
+
+Note the syntax for recursive programs as explained before. The
+<CODE>rec</CODE> construction needs 4 arguments: the type result of the
+function (<CODE>nat*nat</CODE> because it returns two natural numbers)
+between <CODE>&lt;</CODE> and <CODE>&gt;</CODE>, the name of the induction hypothesis
+(which can be used for recursive calls), the ordering relation
+<CODE>lt</CODE> (as an annotation because it is a specification), and the
+program itself which must begin with a <FONT FACE=symbol>l</FONT>-abstraction. The
+specification of <CODE>le_gt_dec</CODE> is known because it is a previous
+lemma.
+The term <CODE>(le_gt_dec b a)</CODE> is seen by the <CODE>Program</CODE> tactic
+as a term of type <CODE>bool</CODE> which satisfies the specification 
+<CODE>{(le a b)}+{(gt a b)}</CODE>. 
+The tactics <CODE>Program_all</CODE> or <CODE>Program</CODE> can be used, and the
+following logical lemmas are obtained:
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Repeat&nbsp;Program.</TT><BR><TT><I>6&nbsp;subgoals</I></TT><BR><TT><I>&nbsp;&nbsp;</I></TT><BR><TT><I>&nbsp;&nbsp;b&nbsp;:&nbsp;nat</I></TT><BR><TT><I>&nbsp;&nbsp;H&nbsp;:&nbsp;(gt&nbsp;b&nbsp;(0))</I></TT><BR><TT><I>&nbsp;&nbsp;a&nbsp;:&nbsp;nat</I></TT><BR><TT><I>&nbsp;&nbsp;============================</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;(well_founded&nbsp;nat&nbsp;lt)</I></TT><BR><TT><I>subgoal&nbsp;2&nbsp;is:</I></TT><BR><TT><I>&nbsp;(lt&nbsp;(minus&nbsp;a0&nbsp;b)&nbsp;a0)</I></TT><BR><TT><I>subgoal&nbsp;3&nbsp;is:</I></TT><BR><TT><I>&nbsp;a0=(plus&nbsp;(mult&nbsp;(S&nbsp;q)&nbsp;b)&nbsp;r)</I></TT><BR><TT><I>subgoal&nbsp;4&nbsp;is:</I></TT><BR><TT><I>&nbsp;(gt&nbsp;b&nbsp;r)</I></TT><BR><TT><I>subgoal&nbsp;5&nbsp;is:</I></TT><BR><TT><I>&nbsp;a0=(plus&nbsp;(mult&nbsp;(0)&nbsp;b)&nbsp;a0)</I></TT><BR><TT><I>subgoal&nbsp;6&nbsp;is:</I></TT><BR><TT><I>&nbsp;(gt&nbsp;b&nbsp;a0)</I></TT><BR></DIV>
+
+The subgoals 4, 5 and 6 are resolved by <CODE>Auto</CODE> (if you use
+<CODE>Program_all</CODE> they don't appear, because <CODE>Program_all</CODE> tries
+to apply <CODE>Auto</CODE>). The other ones have to be solved by the user.<BR>
+<BR>
+
+ 
+<H3>
+
+17.4.3&nbsp;Insertion sort
+</H3>
+
+This example shows the use of <B>annotations</B>. Let us give the
+specification of a sorting algorithm. We want to prove that for a
+sorted list of natural numbers <I>l</I> and a natural number <I>a</I>, we can
+build another sorted list <I>l</I>', containing all the elements of <I>l</I>
+plus <I>a</I>.<BR>
+<BR>
+An ML program implementing the insertion sort and following this
+specification can be:
+<PRE>
+let sort a l = sortrec l where rec sortrec = function
+        []    -&gt; [a]
+      | b::l' -&gt; if a&lt;b then a::b::l' else b::(sortrec l')
+</PRE>
+Suppose we give the following definitions in <FONT COLOR=purple>Coq</FONT>:<BR>
+<BR>
+First, the decidability of the ordering relation:
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Fixpoint&nbsp;inf_dec&nbsp;[n:nat]&nbsp;:&nbsp;nat&nbsp;-&gt;&nbsp;bool&nbsp;:=</TT><BR><TT>Coq&nbsp;&lt;&nbsp;[m:nat]Cases&nbsp;n&nbsp;of</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;O&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;true</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(S&nbsp;n')&nbsp;=&gt;&nbsp;Cases&nbsp;m&nbsp;of</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;O&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;false&nbsp;</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(S&nbsp;m')&nbsp;=&gt;&nbsp;(inf_dec&nbsp;n'&nbsp;m')</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end&nbsp;</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end.</TT><BR></DIV>
+<BR>
+The definition of the type <CODE>list</CODE>:
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Inductive&nbsp;list&nbsp;:&nbsp;Set&nbsp;:=&nbsp;nil&nbsp;:&nbsp;list&nbsp;|&nbsp;cons&nbsp;:&nbsp;nat&nbsp;-&gt;&nbsp;list&nbsp;-&gt;&nbsp;list.</TT><BR></DIV>
+<BR>
+We define the property for an element <CODE>x</CODE> to be <B>in</B> a list
+<CODE>l</CODE> as the smallest relation such that: <FONT FACE=symbol>"</FONT> <I>a</I> <FONT FACE=symbol>"</FONT>
+<I>l</I>&nbsp;(<I>In</I>&nbsp;<I>x</I>&nbsp;<I>l</I>) <FONT FACE=symbol>Þ</FONT> (<I>In</I>&nbsp;<I>x</I>&nbsp;(<I>a</I>::<I>l</I>)) and <FONT FACE=symbol>"</FONT> <I>l</I>&nbsp;(<I>In</I>&nbsp;<I>x</I>&nbsp;(<I>x</I>::<I>l</I>)).
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Inductive&nbsp;In&nbsp;[x:nat]&nbsp;:&nbsp;list-&gt;Prop</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;Inl&nbsp;&nbsp;:&nbsp;(a:nat)(l:list)(In&nbsp;x&nbsp;l)&nbsp;-&gt;&nbsp;(In&nbsp;x&nbsp;(cons&nbsp;a&nbsp;l))</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;Ineq&nbsp;:&nbsp;(l:list)(In&nbsp;x&nbsp;(cons&nbsp;x&nbsp;l)).</TT><BR></DIV>
+<BR>
+A list <CODE>t'</CODE> is equivalent to a list <CODE>t</CODE> with one added
+element <CODE>y</CODE> iff: (<FONT FACE=symbol>"</FONT> <I>x</I>&nbsp;(<I>In</I>&nbsp;<I>x</I>&nbsp;<I>t</I>) <FONT FACE=symbol>Þ</FONT> (<I>In</I>&nbsp;<I>x</I>&nbsp;<I>t</I>')) and
+(<I>In</I>&nbsp;<I>y</I>&nbsp;<I>t</I>') and <FONT FACE=symbol>"</FONT> <I>x</I>&nbsp;(<I>In</I>&nbsp;<I>x</I>&nbsp;<I>t</I>') <FONT FACE=symbol>Þ</FONT> ((<I>In</I>&nbsp;<I>x</I>&nbsp;<I>t</I>) <FONT FACE=symbol>Ú</FONT> <I>y</I>=<I>x</I>). The
+following definition implements this ternary conjunction.
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Inductive&nbsp;equiv&nbsp;[y:nat;t,t':list]:&nbsp;Prop&nbsp;:=</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;equiv_cons&nbsp;:&nbsp;</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((x:nat)(In&nbsp;x&nbsp;t)-&gt;(In&nbsp;x&nbsp;t'))</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;(In&nbsp;y&nbsp;t')</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;((x:nat)(In&nbsp;x&nbsp;t')-&gt;((In&nbsp;x&nbsp;t)\/y=x))</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;(equiv&nbsp;y&nbsp;t&nbsp;t').</TT><BR></DIV>
+<BR>
+Definition of the property of list to be sorted, still defined
+inductively:
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Inductive&nbsp;sorted&nbsp;:&nbsp;list-&gt;Prop</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;sorted_nil&nbsp;&nbsp;:&nbsp;(sorted&nbsp;nil)</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;sorted_trans&nbsp;:&nbsp;(a:nat)(sorted&nbsp;(cons&nbsp;a&nbsp;nil))</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;sorted_cons&nbsp;:&nbsp;(a,b:nat)(l:list)(sorted&nbsp;(cons&nbsp;b&nbsp;l))&nbsp;-&gt;&nbsp;(le&nbsp;a&nbsp;b)&nbsp;</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;(sorted&nbsp;(cons&nbsp;a&nbsp;(cons&nbsp;b&nbsp;l))).</TT><BR></DIV>
+
+Then the specification is:<BR><CODE>(a:nat)(l:list)(sorted l)-&gt;{l':list|(equiv a l l')&amp;(sorted l')}</CODE>.<BR>
+<BR>
+The associated <FONT COLOR=purple>Real</FONT> program corresponding to the ML program will be:
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Realizer</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Fix&nbsp;list_insert{list_insert&nbsp;[a:nat;&nbsp;l:list]&nbsp;:&nbsp;list&nbsp;:=&nbsp;</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cases&nbsp;l&nbsp;of</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;nil&nbsp;=&gt;&nbsp;(cons&nbsp;a&nbsp;nil)</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(cons&nbsp;b&nbsp;m)&nbsp;=&gt;&nbsp;</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(inf_dec&nbsp;b&nbsp;a)&nbsp;::&nbsp;::&nbsp;{&nbsp;{(le&nbsp;b&nbsp;a)}+{(gt&nbsp;b&nbsp;a)}&nbsp;}&nbsp;</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then&nbsp;(cons&nbsp;b&nbsp;(list_insert&nbsp;a&nbsp;m))</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;(cons&nbsp;a&nbsp;(cons&nbsp;b&nbsp;m))</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end}.</TT><BR></DIV>
+
+Note that we have defined <CODE>inf_dec</CODE> as the program realizing the
+decidability of the ordering relation on natural numbers. But, it has
+no specification, so an annotation is needed to give this
+specification. This specification is used and then the decidability of
+the ordering relation on natural numbers has to be proved using the
+index program.<BR>
+<BR>
+Suppose <CODE>Program_all</CODE> is used, a few logical
+lemmas are obtained (which have to be solved by the user):
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Program_all.</TT><BR><TT><I>8&nbsp;subgoals</I></TT><BR><TT><I>&nbsp;&nbsp;</I></TT><BR><TT><I>&nbsp;&nbsp;list_insert&nbsp;:&nbsp;(a:nat;&nbsp;l:list)</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(sorted&nbsp;l)-&gt;{l':list|&nbsp;(equiv&nbsp;a&nbsp;l&nbsp;l')&nbsp;&amp;&nbsp;(sorted&nbsp;l')}</I></TT><BR><TT><I>&nbsp;&nbsp;a&nbsp;:&nbsp;nat</I></TT><BR><TT><I>&nbsp;&nbsp;l&nbsp;:&nbsp;list</I></TT><BR><TT><I>&nbsp;&nbsp;H&nbsp;:&nbsp;(sorted&nbsp;nil)</I></TT><BR><TT><I>&nbsp;&nbsp;============================</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;(equiv&nbsp;a&nbsp;nil&nbsp;(cons&nbsp;a&nbsp;nil))</I></TT><BR><TT><I>subgoal&nbsp;2&nbsp;is:</I></TT><BR><TT><I>&nbsp;(sorted&nbsp;(cons&nbsp;a&nbsp;nil))</I></TT><BR><TT><I>subgoal&nbsp;3&nbsp;is:</I></TT><BR><TT><I>&nbsp;(sorted&nbsp;(cons&nbsp;n'&nbsp;m))</I></TT><BR><TT><I>subgoal&nbsp;4&nbsp;is:</I></TT><BR><TT><I>&nbsp;(sorted&nbsp;m)</I></TT><BR><TT><I>subgoal&nbsp;5&nbsp;is:</I></TT><BR><TT><I>&nbsp;(equiv&nbsp;a&nbsp;(cons&nbsp;b&nbsp;m)&nbsp;(cons&nbsp;b&nbsp;x))</I></TT><BR><TT><I>subgoal&nbsp;6&nbsp;is:</I></TT><BR><TT><I>&nbsp;(sorted&nbsp;(cons&nbsp;b&nbsp;x))</I></TT><BR><TT><I>subgoal&nbsp;7&nbsp;is:</I></TT><BR><TT><I>&nbsp;(equiv&nbsp;a&nbsp;(cons&nbsp;b&nbsp;m)&nbsp;(cons&nbsp;a&nbsp;(cons&nbsp;b&nbsp;m)))</I></TT><BR><TT><I>subgoal&nbsp;8&nbsp;is:</I></TT><BR><TT><I>&nbsp;(sorted&nbsp;(cons&nbsp;a&nbsp;(cons&nbsp;b&nbsp;m)))</I></TT><BR></DIV>
+<BR>
+
+ 
+<H3>
+
+17.4.4&nbsp;Quicksort
+</H3>
+
+This example shows the use of <B>programs using previous
+programs</B>. Let us give the specification of Quicksort. We want to
+prove that for a list of natural numbers <I>l</I>, we can build a sorted
+list <I>l</I>', which is a permutation of the previous one.<BR>
+<BR>
+An ML program following this specification can be:
+<PRE>
+let rec quicksort l = function
+   []   -&gt; []
+ | a::m -&gt; let (l1,l2) = splitting a m in
+                 let m1 = quicksort l1 and
+                 let m2 = quicksort l2 in m1@[a]@m2
+</PRE>
+Where <CODE>splitting</CODE> is defined by:
+<PRE>
+let rec splitting a l = function
+        []   -&gt; ([],[])
+      | b::m -&gt; let (l1,l2) = splitting a m in
+                 if a&lt;b then (l1,b::l2)
+                        else (b::l1,l2)
+</PRE>
+Suppose we give the following definitions in <FONT COLOR=purple>Coq</FONT>:<BR>
+<BR>
+Declaration of the ordering relation:
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;&nbsp;&nbsp;inf&nbsp;:&nbsp;A&nbsp;-&gt;&nbsp;A&nbsp;-&gt;&nbsp;Prop.</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Definition&nbsp;sup&nbsp;&nbsp;:=&nbsp;[x,y:A]~(inf&nbsp;x&nbsp;y).</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Hypothesis&nbsp;inf_sup&nbsp;:&nbsp;(x,y:A){(inf&nbsp;x&nbsp;y)}+{(sup&nbsp;x&nbsp;y)}.</TT><BR></DIV>
+
+Definition of the concatenation of two lists:
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Fixpoint&nbsp;app&nbsp;[l:list]&nbsp;:&nbsp;list&nbsp;-&gt;&nbsp;list&nbsp;</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;[m:list]Cases&nbsp;l&nbsp;of</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nil&nbsp;=&gt;&nbsp;m&nbsp;</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(cons&nbsp;a&nbsp;l1)&nbsp;=&gt;&nbsp;(cons&nbsp;a&nbsp;(app&nbsp;l1&nbsp;m))&nbsp;end.</TT><BR></DIV>
+
+Definition of the permutation of two lists:
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Inductive&nbsp;permut&nbsp;:&nbsp;list-&gt;list-&gt;Prop&nbsp;:=</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;permut_nil&nbsp;&nbsp;:&nbsp;(permut&nbsp;nil&nbsp;nil)</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;|permut_tran&nbsp;:&nbsp;(l,m,n:list)(permut&nbsp;l&nbsp;m)-&gt;(permut&nbsp;m&nbsp;n)-&gt;(permut&nbsp;l&nbsp;n)</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;|permut_cmil&nbsp;:&nbsp;(a:A)(l,m,n:list)</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(permut&nbsp;l&nbsp;(app&nbsp;m&nbsp;n))-&gt;(permut&nbsp;(cons&nbsp;a&nbsp;l)&nbsp;(mil&nbsp;a&nbsp;m&nbsp;n))</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;|permut_milc&nbsp;:&nbsp;(a:A)(l,m,n:list)</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(permut&nbsp;(app&nbsp;m&nbsp;n)&nbsp;l)-&gt;(permut&nbsp;(mil&nbsp;a&nbsp;m&nbsp;n)&nbsp;(cons&nbsp;a&nbsp;l)).</TT><BR></DIV>
+
+The definitions <CODE>inf_list</CODE> and <CODE>sup_list</CODE> allow to know if
+an element is lower or greater than all the elements of a list:
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Section&nbsp;Rlist_.</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;R&nbsp;:&nbsp;A-&gt;Prop.</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Inductive&nbsp;Rlist&nbsp;&nbsp;:&nbsp;list&nbsp;-&gt;&nbsp;Prop&nbsp;:=</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rnil&nbsp;:&nbsp;(Rlist&nbsp;nil)</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;|&nbsp;Rcons&nbsp;:&nbsp;(x:A)(l:list)(R&nbsp;x)-&gt;(Rlist&nbsp;l)-&gt;(Rlist&nbsp;(cons&nbsp;x&nbsp;l)).</TT><BR></DIV>
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;End&nbsp;Rlist_.</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Hints&nbsp;Resolve&nbsp;Rnil&nbsp;Rcons.</TT><BR></DIV>
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Section&nbsp;Inf_Sup.</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Hypothesis&nbsp;x&nbsp;:&nbsp;A.</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Hypothesis&nbsp;l&nbsp;:&nbsp;list.</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Definition&nbsp;inf_list&nbsp;:=&nbsp;(Rlist&nbsp;(inf&nbsp;x)&nbsp;l).</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Definition&nbsp;sup_list&nbsp;:=&nbsp;(Rlist&nbsp;(sup&nbsp;x)&nbsp;l).</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;End&nbsp;Inf_Sup.</TT><BR></DIV>
+
+Definition of the property of a list to be sorted:
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Inductive&nbsp;sort&nbsp;:&nbsp;list-&gt;Prop&nbsp;:=</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sort_nil&nbsp;:&nbsp;(sort&nbsp;nil)</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;sort_mil&nbsp;:&nbsp;(a:A)(l,m:list)(sup_list&nbsp;a&nbsp;l)-&gt;(inf_list&nbsp;a&nbsp;m)</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;(sort&nbsp;l)-&gt;(sort&nbsp;m)-&gt;(sort&nbsp;(mil&nbsp;a&nbsp;l&nbsp;m)).</TT><BR></DIV>
+<BR>
+Then the goal to prove is 
+<FONT FACE=symbol>"</FONT> <I>l</I>&nbsp;<FONT FACE=symbol>$</FONT> <I>m</I>&nbsp;(<I>sort</I>&nbsp;<I>m</I>) <FONT FACE=symbol>Ù</FONT> (<I>permut</I>&nbsp;<I>l</I>&nbsp;<I>m</I>) and the specification is <BR>
+<BR>
+<CODE>(l:list){m:list|(sort m)&amp;(permut l m)</CODE>.<BR>
+<BR>
+Let us first prove a preliminary lemma. Let us define <CODE>ltl</CODE> a
+well-founded ordering relation.<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Definition&nbsp;ltl&nbsp;:=&nbsp;[l,m:list](gt&nbsp;(length&nbsp;m)&nbsp;(length&nbsp;l)).&nbsp;</TT><BR></DIV>
+
+Let us then give a definition of <CODE>Splitting_spec</CODE> corresponding
+to<BR><FONT FACE=symbol>$</FONT> <I>l</I><SUB><FONT SIZE=2>1</FONT></SUB> <FONT FACE=symbol>$</FONT> <I>l</I><SUB><FONT SIZE=2>2</FONT></SUB>.&nbsp;(<I>sup</I>_<I>list</I>&nbsp;<I>a</I>&nbsp;<I>l</I><SUB><FONT SIZE=2>1</FONT></SUB>) <FONT FACE=symbol>Ù</FONT> (<I>inf</I>_<I>list</I>&nbsp;<I>a</I>&nbsp;<I>l</I><SUB><FONT SIZE=2>2</FONT></SUB>) 
+<FONT FACE=symbol>Ù</FONT> (<I>l</I> <FONT FACE=symbol>º</FONT> <I>l</I><SUB><FONT SIZE=2>1</FONT></SUB>@<I>l</I><SUB><FONT SIZE=2>2</FONT></SUB>) <FONT FACE=symbol>Ù</FONT> (<I>ltl</I>&nbsp;<I>l</I><SUB><FONT SIZE=2>1</FONT></SUB>&nbsp;(<I>a</I>::<I>l</I>)) <FONT FACE=symbol>Ù</FONT>
+(<I>ltl</I>&nbsp;<I>l</I>2&nbsp;(<I>a</I>::<I>l</I>)) and a theorem on this definition.
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Inductive&nbsp;Splitting_spec&nbsp;[a:A;&nbsp;l:list]&nbsp;:&nbsp;Set&nbsp;:=</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Split_intro&nbsp;:&nbsp;(l1,l2:list)(sup_list&nbsp;a&nbsp;l1)-&gt;(inf_list&nbsp;a&nbsp;l2)</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;(permut&nbsp;l&nbsp;(app&nbsp;l1&nbsp;l2))</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;(ltl&nbsp;l1&nbsp;(cons&nbsp;a&nbsp;l))-&gt;(ltl&nbsp;l2&nbsp;(cons&nbsp;a&nbsp;l))</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;(Splitting_spec&nbsp;a&nbsp;l).</TT><BR></DIV>
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Theorem&nbsp;Splitting&nbsp;:&nbsp;(a:A)(l:list)(Splitting_spec&nbsp;a&nbsp;l).</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Realizer&nbsp;</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Fix&nbsp;split&nbsp;{split&nbsp;[a:A;l:list]&nbsp;:&nbsp;list*list&nbsp;:=&nbsp;</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cases&nbsp;l&nbsp;of&nbsp;</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;nil&nbsp;=&gt;&nbsp;(nil,nil)</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(cons&nbsp;b&nbsp;m)&nbsp;=&gt;&nbsp;let&nbsp;(l1,l2)&nbsp;=&nbsp;(split&nbsp;a&nbsp;m)&nbsp;in</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(inf_sup&nbsp;a&nbsp;b)</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then&nbsp;(*&nbsp;inf&nbsp;a&nbsp;b&nbsp;*)&nbsp;(l1,(cons&nbsp;b&nbsp;l2))</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;(*&nbsp;sup&nbsp;a&nbsp;b&nbsp;*)&nbsp;((cons&nbsp;b&nbsp;l1),l2)</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end}.</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Program_all.</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Simpl;&nbsp;Auto.</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Save.</TT><BR></DIV>
+
+<BR>
+The associated <FONT COLOR=purple>Real</FONT> program to the specification we wanted to first
+prove and corresponding to the ML program will be:
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Lemma&nbsp;Quicksort:&nbsp;(l:list){m:list|(sort&nbsp;m)&amp;(permut&nbsp;l&nbsp;m)}.</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Realizer&nbsp;&lt;list&gt;rec&nbsp;quick&nbsp;::&nbsp;::&nbsp;{&nbsp;ltl&nbsp;}</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[l:list]Cases&nbsp;l&nbsp;of&nbsp;</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nil&nbsp;=&gt;&nbsp;nil</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(cons&nbsp;a&nbsp;m)&nbsp;=&gt;&nbsp;let&nbsp;(l1,l2)&nbsp;=&nbsp;(Splitting&nbsp;a&nbsp;m)&nbsp;in</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(mil&nbsp;a&nbsp;(quick&nbsp;l1)&nbsp;(quick&nbsp;l2))</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end.</TT><BR></DIV>
+
+Then <CODE>Program_all</CODE> gives the following logical lemmas (they have
+to be resolved by the user):
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Program_all.</TT><BR><TT><I>3&nbsp;subgoals</I></TT><BR><TT><I>&nbsp;&nbsp;</I></TT><BR><TT><I>&nbsp;&nbsp;a&nbsp;:&nbsp;list</I></TT><BR><TT><I>&nbsp;&nbsp;============================</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;(well_founded&nbsp;list&nbsp;ltl)</I></TT><BR><TT><I>subgoal&nbsp;2&nbsp;is:</I></TT><BR><TT><I>&nbsp;(sort&nbsp;(app&nbsp;x0&nbsp;(cons&nbsp;a0&nbsp;x)))</I></TT><BR><TT><I>subgoal&nbsp;3&nbsp;is:</I></TT><BR><TT><I>&nbsp;(permut&nbsp;(cons&nbsp;a0&nbsp;m)&nbsp;(app&nbsp;x0&nbsp;(cons&nbsp;a0&nbsp;x)))</I></TT><BR></DIV>
+<BR>
+
+ 
+<H3>
+
+17.4.5&nbsp;Mutual Inductive Types
+</H3>
+
+<A NAME="program-ex-mutual"></A>
+This example shows the use of <B>mutual inductive types</B> with
+<CODE>Program</CODE>. Let us give the specification of trees and forest, and
+two predicate to say if a natural number is the size of a tree or a
+forest. <BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Section&nbsp;TreeForest.</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;</TT><BR><TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;A&nbsp;:&nbsp;Set.</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;</TT><BR><TT>Coq&nbsp;&lt;&nbsp;Mutual&nbsp;Inductive&nbsp;</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tree&nbsp;&nbsp;&nbsp;:&nbsp;Set&nbsp;:=&nbsp;node&nbsp;:&nbsp;A&nbsp;-&gt;&nbsp;forest&nbsp;-&gt;&nbsp;tree</TT><BR><TT>Coq&nbsp;&lt;&nbsp;with&nbsp;forest&nbsp;:&nbsp;Set&nbsp;:=&nbsp;empty&nbsp;:&nbsp;forest&nbsp;</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;cons&nbsp;:&nbsp;tree&nbsp;-&gt;&nbsp;forest&nbsp;-&gt;&nbsp;forest.</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;</TT><BR><TT>Coq&nbsp;&lt;&nbsp;Mutual&nbsp;Inductive&nbsp;Tree_Size&nbsp;:&nbsp;tree&nbsp;-&gt;&nbsp;nat&nbsp;-&gt;&nbsp;Prop&nbsp;:=</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Node_Size&nbsp;:&nbsp;(n:nat)(a:A)(f:forest)(Forest_Size&nbsp;f&nbsp;n)</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;(Tree_Size&nbsp;(node&nbsp;a&nbsp;f)&nbsp;(S&nbsp;n))</TT><BR><TT>Coq&nbsp;&lt;&nbsp;with&nbsp;Forest_Size&nbsp;:&nbsp;forest&nbsp;-&gt;&nbsp;nat&nbsp;-&gt;&nbsp;Prop&nbsp;:=</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Empty_Size&nbsp;:&nbsp;(Forest_Size&nbsp;empty&nbsp;O)</TT><BR><TT>Coq&nbsp;&lt;&nbsp;|&nbsp;Cons_Size&nbsp;:&nbsp;(n,m:nat)(t:tree)(f:forest)</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Tree_Size&nbsp;t&nbsp;n)</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;(Forest_Size&nbsp;f&nbsp;m)</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;(Forest_Size&nbsp;(cons&nbsp;t&nbsp;f)&nbsp;(plus&nbsp;n&nbsp;m)).</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;</TT><BR><TT>Coq&nbsp;&lt;&nbsp;Hints&nbsp;Resolve&nbsp;Node_Size&nbsp;Empty_Size&nbsp;Cons_Size.</TT><BR></DIV>
+<BR>
+Then, let us associate the two mutually dependent functions to compute
+the size of a forest and a tree to the the following specification:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Theorem&nbsp;tree_size_prog&nbsp;:&nbsp;(t:tree){n:nat&nbsp;|&nbsp;(Tree_Size&nbsp;t&nbsp;n)}.</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;</TT><BR><TT>Coq&nbsp;&lt;&nbsp;Realizer&nbsp;[t:tree]</TT><BR><TT>Coq&nbsp;&lt;&nbsp;(Fix&nbsp;tree_size{</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;tree_size&nbsp;[t:tree]&nbsp;:&nbsp;nat&nbsp;:=&nbsp;let&nbsp;(a,f)&nbsp;=&nbsp;t&nbsp;in&nbsp;(S&nbsp;(forest_size&nbsp;f))</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;with&nbsp;forest_size&nbsp;/1&nbsp;:&nbsp;forest&nbsp;-&gt;&nbsp;nat&nbsp;</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;([f:forest]Cases&nbsp;f&nbsp;of</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;empty&nbsp;=&gt;&nbsp;O</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(cons&nbsp;t&nbsp;f')&nbsp;=&gt;&nbsp;(plus&nbsp;(tree_size&nbsp;t)&nbsp;(forest_size&nbsp;f'))</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end)</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::&nbsp;::&nbsp;{(f:forest)&nbsp;{n:nat&nbsp;|&nbsp;(Forest_Size&nbsp;f&nbsp;n)}}}</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t).</TT><BR></DIV>
+<BR>
+It is necessary to add an annotation for the <CODE>forest_size</CODE>
+function. Indeed, the global specification corresponds to the
+specification of the <CODE>tree_size</CODE> function and the specification
+of <CODE>forest_size</CODE> cannot be automatically inferred from the
+initial one.<BR>
+<BR>
+Then, the <CODE>Program_all</CODE> tactic can be applied:
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Program_all.</TT><BR><TT><I>Subtree&nbsp;proved!</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Save.</TT><BR><TT><I>Realizer</I></TT><BR><TT><I>&nbsp;&nbsp;[t:tree]</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;(Fix&nbsp;tree_size</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{tree_size&nbsp;[t:tree]&nbsp;:&nbsp;nat&nbsp;:=</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Case&nbsp;t&nbsp;of&nbsp;[a,f:?](S&nbsp;(forest_size&nbsp;f))</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;with&nbsp;forest_size/1&nbsp;:&nbsp;forest-&gt;nat&nbsp;:=</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;([f:forest]</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cases&nbsp;f&nbsp;of</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;empty&nbsp;=&gt;&nbsp;O</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(cons&nbsp;t&nbsp;f')&nbsp;=&gt;&nbsp;(plus&nbsp;(tree_size&nbsp;t)&nbsp;(forest_size&nbsp;f'))</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end)&nbsp;::&nbsp;::&nbsp;{(f:forest){n:nat&nbsp;|&nbsp;(Forest_Size&nbsp;f&nbsp;n)}}}&nbsp;t).</I></TT><BR><TT><I>Program_all.</I></TT><BR><TT><I>tree_size_prog&nbsp;is&nbsp;defined</I></TT><BR></DIV>
+<BR>
+
+ <HR>
+
+<A HREF="node.3.6.2.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.6.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

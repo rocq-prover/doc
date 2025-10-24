@@ -1,0 +1,246 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+7.9&nbsp;Equality and inductive sets
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.1.2.7.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.9.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+7.9&nbsp;Equality and inductive sets
+</H2>
+
+
+
+We describe in this section some special purpose
+tactics dealing with equality and inductive sets or
+types. These tactics use the equalities <TT>eq:(A:Set)A-&gt;A-&gt;Prop</TT> defined in file <TT>Logic.v</TT>
+and <TT>eqT:(A:Type)A-&gt;A-&gt;Prop</TT> defined in file
+<TT>Logic_Type.v</TT> (see section <A HREF="node.0.2.0.html#Equality">3.1.1</A>).
+They are written <TT>t=u</TT> and <TT>t==u</TT>,
+respectively. In the following, unless it is stated
+otherwise, the notation <TT>t=u</TT> will represent
+either one of these two equalities.<BR>
+<BR>
+
+<H3>
+
+7.9.1&nbsp;<TT>Decide Equality
+</TT></H3>
+
+<A NAME="DecideEquality"></A>
+<A NAME="@default451"></A><A NAME="@tactic65"></A>
+This tactic solves a goal of the form
+(<I>x</I>,<I>y</I>:<I>R</I>){<I>x</I>=<I>y</I>}+{<CODE>~</CODE><I>x</I>=<I>y</I>}, where <I>R</I> is an inductive type
+such that its constructors do not take proofs or functions as
+arguments, nor objects in dependent types.<BR>
+<BR>
+<BR><B>Variants: </B><OL>
+<LI>
+ 
+<TT>Decide Equality </TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> </TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>2</FONT></TT></SUB><TT> </TT>.<BR>Solves a goal of the form <TT>{</TT><I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB><TT>=</TT><I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB><TT>}+{</TT><CODE><TT>~</TT></CODE><I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB><TT>=</TT><I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB><TT>}</TT>.
+</OL>
+<H3>
+
+7.9.2&nbsp;<TT>Compare </TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> </TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>2</FONT></TT></SUB><TT>
+</TT></H3>
+
+<A NAME="@default452"></A><A NAME="@tactic66"></A>
+This tactic compares two given objects <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> and <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB> 
+of an inductive datatype. If <I>G</I> is the current goal, it leaves the sub-goals
+<I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB><TT>=</TT><I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB> <TT>-&gt;</TT> <I>G</I> and <CODE>~</CODE><I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB><TT>=</TT><I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB>
+<TT>-&gt;</TT> <I>G</I>. The type
+of <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> and <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB> must satisfy the same restrictions as in the tactic
+<TT>Decide Equality</TT>.<BR>
+<BR>
+
+<H3>
+
+7.9.3&nbsp;<TT>Discriminate </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>
+</TT></H3>
+
+<A NAME="Discriminate"></A>
+<A NAME="@default453"></A><A NAME="@tactic67"></A>
+This tactic proves any goal from an absurd
+hypothesis stating that two structurally different terms of an
+inductive set are equal. For example, from the hypothesis <TT>(S (S
+ O))=(S O)</TT> we can derive by absurdity any proposition. Let <I><FONT COLOR=maroon>ident</FONT></I>
+be a hypothesis of type <I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> = </TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>2</FONT></TT></SUB> in the local
+context, <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> and <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB> being elements of an inductive set.
+To build the proof, the tactic traverses the normal
+forms<A NAME="text15"></A><A HREF="node.8.html#note15"><SUP><FONT SIZE=2>1</FONT></SUP></A> of <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> and <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB> looking for a
+couple of subterms <TT>u</TT> and <TT>w</TT> (<TT>u</TT> subterm of the normal
+form of <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> and <TT>w</TT> subterm of the normal form of
+<I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB>), placed at the same positions and whose
+head symbols are two different constructors. If such a couple of subterms
+exists, then the proof of the current goal is completed,
+otherwise the tactic fails.<BR>
+<BR>
+<BR><B>Error messages: </B><OL>
+<LI>
+ 
+<I><FONT COLOR=maroon>ident</FONT></I> <TT>Not a discriminable equality</TT><A NAME="@error70"></A> 
+ occurs when the type of
+ the specified hypothesis is an equation but does not verify the
+ expected preconditions.
+
+<LI><I><FONT COLOR=maroon>ident</FONT></I><TT>Not an equation</TT><A NAME="@error71"></A> occurs when the type of the specified
+ hypothesis is not an equation.
+</OL> <BR><B>Variants: </B><OL>
+<LI>
+ 
+<TT>Discriminate</TT><A NAME="@default454"></A><A NAME="@tactic68"></A><BR>It applies to a goal of the form <CODE><TT>~</TT></CODE><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT>=</TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>2</FONT></TT></SUB> and it is equivalent to: 
+ <TT>Unfold not; Intro </TT><I><FONT COLOR=maroon>ident</FONT></I> ; <TT>Discriminate
+ </TT><I><FONT COLOR=maroon>ident</FONT></I>.<BR>
+<BR>
+ <BR><B>Error messages: </B><OL>
+<LI>
+ 
+ <TT>goal does not satisfy the expected preconditions</TT><A NAME="@error72"></A>.
+ 
+<LI><TT>Not a discriminable equality</TT><A NAME="@error73"></A>
+ </OL><BR>
+
+<LI><TT>Simple Discriminate</TT>
+ <A NAME="@default455"></A><A NAME="@tactic69"></A><BR>This tactic applies to a goal which has the form
+ <CODE>~</CODE><I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>=<I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB> where <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> and <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB> 
+ belong to an inductive set and = denotes the equality <TT>eq</TT>.
+ This tactic proves trivial disequalities such as
+ <CODE>~O=(S n)</CODE> It checks that the head symbols of the head normal
+ forms of <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> and <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB> are not the same constructor.
+ When this is the case, the current goal is solved. <BR>
+<BR>
+ <BR><B>Error messages: </B><OL>
+<LI>
+ 
+ <TT>Not a discriminable equality</TT><A NAME="@error74"></A>
+ </OL></OL>
+<H3>
+
+7.9.4&nbsp;<TT>Injection </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>
+</TT></H3>
+
+<A NAME="Injection"></A>
+<A NAME="@default456"></A><A NAME="@tactic70"></A>
+The <TT>Injection</TT> tactic is based on the fact that constructors of
+inductive sets are injections. That means that if <I>c</I> is a constructor
+of an inductive set, and if (<I>c</I>&nbsp;<I>t</I><SUB><FONT SIZE=2>1</FONT></SUB>) and (<I>c</I>&nbsp;<I>t</I><SUB><FONT SIZE=2>2</FONT></SUB>) are two
+terms that are equal then &nbsp;<I>t</I><SUB><FONT SIZE=2>1</FONT></SUB> and &nbsp;<I>t</I><SUB><FONT SIZE=2>2</FONT></SUB> are equal
+too.<BR>
+<BR>
+If <I><FONT COLOR=maroon>ident</FONT></I> is an hypothesis of type <I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> = </TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>2</FONT></TT></SUB>,
+then <TT>Injection</TT> behaves as applying injection as deep as possible to
+derive the equality of all the subterms of <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> and <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB>
+placed in the same positions. For example, from the hypothesis <TT>(S
+ (S n))=(S (S (S m))</TT> we may derive <TT>n=(S m)</TT>. To use this
+tactic <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> and <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB> should be elements of an inductive
+set and they should be neither explicitly equal, nor structurally
+different. We mean by this that, if <TT>n</TT><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB> and <TT>n</TT><SUB><TT><FONT SIZE=2>2</FONT></TT></SUB> are
+their respective normal forms, then:
+<UL>
+<LI>
+<TT>n</TT><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB> and <TT>n</TT><SUB><TT><FONT SIZE=2>2</FONT></TT></SUB> should not be syntactically equal,
+
+<LI>there must not exist any couple of subterms <TT>u</TT> and <TT>w</TT>,
+ <TT>u</TT> subterm of <TT>n</TT><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB> and <TT>w</TT> subterm of <TT>n</TT><SUB><TT><FONT SIZE=2>2</FONT></TT></SUB> ,
+ placed in the same positions and having different constructors as
+ head symbols.
+</UL>
+If these conditions are satisfied, then, the tactic derives the
+equality of all the subterms of <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> and <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB> placed in
+the same positions and puts them as antecedents of the current goal.<BR><B>Example: </B>Consider the following goal:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Inductive&nbsp;list&nbsp;:&nbsp;Set&nbsp;&nbsp;:=&nbsp;</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nil:&nbsp;list&nbsp;|&nbsp;cons:&nbsp;nat-&gt;&nbsp;list&nbsp;-&gt;&nbsp;list.</TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;&nbsp;P&nbsp;:&nbsp;list&nbsp;-&gt;&nbsp;Prop.</TT><BR></DIV>
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Show.</TT><BR><TT><I>1&nbsp;subgoal</I></TT><BR><TT><I>&nbsp;&nbsp;</I></TT><BR><TT><I>&nbsp;&nbsp;l&nbsp;:&nbsp;list</I></TT><BR><TT><I>&nbsp;&nbsp;n&nbsp;:&nbsp;nat</I></TT><BR><TT><I>&nbsp;&nbsp;H&nbsp;:&nbsp;(P&nbsp;nil)</I></TT><BR><TT><I>&nbsp;&nbsp;H0&nbsp;:&nbsp;(cons&nbsp;n&nbsp;l)=(cons&nbsp;O&nbsp;nil)</I></TT><BR><TT><I>&nbsp;&nbsp;============================</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;(P&nbsp;l)</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Injection&nbsp;H0.</TT><BR><TT><I>1&nbsp;subgoal</I></TT><BR><TT><I>&nbsp;&nbsp;</I></TT><BR><TT><I>&nbsp;&nbsp;l&nbsp;:&nbsp;list</I></TT><BR><TT><I>&nbsp;&nbsp;n&nbsp;:&nbsp;nat</I></TT><BR><TT><I>&nbsp;&nbsp;H&nbsp;:&nbsp;(P&nbsp;nil)</I></TT><BR><TT><I>&nbsp;&nbsp;H0&nbsp;:&nbsp;(cons&nbsp;n&nbsp;l)=(cons&nbsp;O&nbsp;nil)</I></TT><BR><TT><I>&nbsp;&nbsp;============================</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;l=nil-&gt;n=O-&gt;(P&nbsp;l)</I></TT><BR></DIV>
+<BR>
+Beware that <TT>Injection</TT> yields always an equality in a sigma type
+whenever the injected object has a dependent type.<BR>
+<BR>
+<BR><B>Error messages: </B><OL>
+<LI>
+ 
+<I><FONT COLOR=maroon>ident</FONT></I> <TT>is not a projectable equality</TT><A NAME="@error75"></A> 
+ occurs when the type of
+ the hypothesis <I>id</I> does not verify the preconditions.
+
+<LI><TT>Not an equation</TT><A NAME="@error76"></A> occurs when the type of the
+ hypothesis <I>id</I> is not an equation.
+</OL><BR><B>Variants: </B><OL>
+<LI>
+ 
+<TT>Injection</TT><A NAME="@default457"></A><A NAME="@tactic71"></A><BR>If the current goal is of the form <CODE><TT>~</TT></CODE><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT>=</TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>2</FONT></TT></SUB>, 
+ the tactic computes the head normal form
+ of the goal and then behaves as the sequence: <TT>Unfold not; Intro
+ </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>; Injection </TT><I><FONT COLOR=maroon>ident</FONT></I>.<BR><BR><B>Error message: </B><TT>goal does not satisfy the expected preconditions</TT><A NAME="@error77"></A>
+</OL>
+<H3>
+
+7.9.5&nbsp;<TT>Simplify_eq </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>
+</TT></H3>
+
+<A NAME="@default458"></A><A NAME="@tactic72"></A>
+<A NAME="Simplify-eq"></A>
+Let <I><FONT COLOR=maroon>ident</FONT></I> be the name of an hypothesis of type <I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT>=</TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>2</FONT></TT></SUB> in the local context. If <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> and
+<I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB> are structurally different (in the sense described for the
+tactic <TT>Discriminate</TT>), then the tactic <TT>Simplify_eq</TT> behaves as <TT>Discriminate </TT><I><FONT COLOR=maroon>ident</FONT></I> otherwise it behaves as <TT>Injection
+ </TT><I><FONT COLOR=maroon>ident</FONT></I>.<BR>
+<BR>
+<BR><B>Variants: </B><OL>
+<LI>
+ 
+<TT>Simplify_eq</TT>
+If the current goal has form <CODE>~</CODE><I>t</I><SUB><FONT SIZE=2>1</FONT></SUB>=<I>t</I><SUB><FONT SIZE=2>2</FONT></SUB>, then this tactic does 
+<TT>Hnf; Intro </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>; Simplify_eq </TT><I><FONT COLOR=maroon>ident</FONT></I>.
+</OL>
+<H3>
+
+7.9.6&nbsp;<TT>Dependent Rewrite -&gt; </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>
+</TT></H3>
+
+<A NAME="@default459"></A><A NAME="@tactic73"></A>
+<A NAME="Dependent-Rewrite"></A>
+This tactic applies to any goal. If <I><FONT COLOR=maroon>ident</FONT></I> has type 
+<CODE>(existS A B a b)=(existS A B a' b')</CODE> 
+in the local context (i.e. each term of the
+equality has a sigma type { <I>a</I>:<I>A</I>&nbsp; &amp;&nbsp;(<I>B</I>&nbsp;<I>a</I>)}) this tactic rewrites
+<CODE>a</CODE> into <CODE>a'</CODE> and <CODE>b</CODE> into <CODE>b'</CODE> in the current
+goal. This tactic works even if <I>B</I> is also a sigma type. This kind
+of equalities between dependent pairs may be derived by the injection
+and inversion tactics.<BR>
+<BR>
+<BR><B>Variants: </B><OL>
+<LI>
+ 
+<TT>Dependent Rewrite &lt;- </TT><I><FONT COLOR=maroon>ident</FONT></I>
+<A NAME="@default460"></A><A NAME="@tactic74"></A><BR>Analogous to <TT>Dependent Rewrite -&gt;</TT> but uses the equality from
+right to left.
+</OL><HR>
+
+<A HREF="node.1.2.7.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.9.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

@@ -1,0 +1,393 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+7.3&nbsp;Basics
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.1.2.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.3.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+7.3&nbsp;Basics
+</H2>
+
+
+
+<A NAME="@default383"></A>
+Tactics presented in this section implement the basic typing rules of
+<FONT COLOR=navy>Cic</FONT> given in chapter <A HREF="node.0.3.html#Cic">4</A>.<BR>
+<BR>
+
+<H3>
+
+7.3.1&nbsp;<TT>Assumption</TT>
+</H3>
+
+<A NAME="@default384"></A><A NAME="@tactic2"></A>
+This tactic applies to any goal. It implements the
+``Var''<A NAME="@default385"></A> rule given in section
+<A HREF="node.0.3.1.html#Typed-terms">4.2</A>. It looks in the local context for an hypothesis
+which type is equal to the goal. If it is the case, the subgoal is
+proved. Otherwise, it fails.<BR>
+<BR>
+<BR><B>Error messages: </B><OL>
+<LI>
+ 
+<TT>No such assumption</TT><A NAME="@error38"></A>
+</OL>
+<H3>
+
+7.3.2&nbsp;<TT>Clear </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>.
+</TT></H3>
+<A NAME="@default386"></A><A NAME="@tactic3"></A>
+This tactic erases the hypothesis named <I><FONT COLOR=maroon>ident</FONT></I> in the local context
+of the current goal. Then <I><FONT COLOR=maroon>ident</FONT></I> is no more displayed and no more
+usable in the proof development.<BR>
+<BR>
+<BR><B>Error messages: </B><OL>
+<LI>
+ 
+<I><FONT COLOR=maroon>ident</FONT></I> <TT>is not among the assumptions.</TT><A NAME="@error39"></A>
+</OL>
+<H3>
+
+7.3.3&nbsp;<TT>Move </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> after </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>2</FONT></TT></SUB><TT>.
+</TT></H3>
+<A NAME="@default387"></A><A NAME="@tactic4"></A>
+This moves the hypothesis named <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> in the local context
+after the hypothesis named <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB>.<BR>
+<BR>
+If <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> comes before <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB> in the order of dependences,
+then all hypotheses between <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> and <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB> which
+(possibly indirectly) depend on <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> are moved also.<BR>
+<BR>
+If <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> comes after <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB> in the order of dependences,
+then all hypotheses between <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> and <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB> which 
+(possibly indirectly)) occur in <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> are moved also.<BR>
+<BR>
+<BR><B>Error messages: </B><OL>
+<LI>
+ 
+<TT>Cannot move </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> after </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>2</FONT></TT></SUB><TT>:
+		 it occurs in </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>2</FONT></TT></SUB><A NAME="@error40"></A>
+
+<LI><TT>Cannot move </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> after </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>2</FONT></TT></SUB><TT>:
+		 it depends on </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>2</FONT></TT></SUB><A NAME="@error41"></A>
+</OL>
+<H3>
+
+7.3.4&nbsp;<TT>Intro
+</TT></H3>
+
+<A NAME="@default388"></A><A NAME="@tactic5"></A>
+<A NAME="Intro"></A>
+This tactic applies to a goal which is a product. It implements the
+``Lam''<A NAME="@default389"></A> rule given in section
+<A HREF="node.0.3.1.html#Typed-terms">4.2</A>. Actually, only one subgoal will be generated since the
+other one can be automatically checked.<BR>
+<BR>
+If the current goal is a dependent product <TT>(x:T)U</TT> and
+<TT>x</TT> is a name that does not exist in the current context, then
+<TT>Intro</TT> puts <TT>x:T</TT> in the local context. Otherwise, it puts
+<TT>x</TT><I>n</I><TT>:T</TT> where <I>n</I> is such that <TT>x</TT><I>n</I> is a
+fresh name. The new subgoal is <TT>U</TT>. If the <TT>x</TT> has been
+renamed <TT>x</TT><I>n</I> then it is replaced by <TT>x</TT><I>n</I> in <TT>U</TT>.<BR>
+<BR>
+If the goal is a non dependent product T -&gt; U, then it
+puts in the local context either <TT>H</TT><I>n</I><TT>:T</TT> 
+(if <TT>T</TT> is <TT>Set</TT> or <TT>Prop</TT>) or <TT>X</TT><I>n</I><TT>:T</TT> (if
+the type of <TT>T</TT> is <TT>Type</TT>) or <TT>l</TT><I>n</I><TT>:T</TT> with <I>l</I>
+the first letter of the type of x. <I>n</I> is such that <TT>H</TT><I>n</I> or <TT>X</TT><I>n</I> <TT>l</TT><I>n</I> or are fresh identifiers.
+In both cases the new subgoal is <TT>U</TT>. <BR>
+<BR>
+If the goal is not a product, the tactic <TT>Intro</TT> applies the tactic
+<TT>Red</TT> until the tactic <TT>Intro</TT> can be applied or the goal is not
+reducible.<BR>
+<BR>
+<BR><B>Error messages: </B><OL>
+<LI>
+ 
+<TT>No product even after head-reduction</TT><A NAME="@error42"></A>
+</OL><BR><B>Warning: </B>: <I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> is already used; changed to </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>2</FONT></TT></SUB><BR>
+<BR>
+<BR><B>Variants: </B><OL>
+<LI>
+ 
+<TT>Intros</TT><A NAME="@default390"></A><A NAME="@tactic6"></A><BR>Repeats <TT>Intro</TT> until it meets the head-constant. It never reduces
+ head-constants and it never fails.<BR>
+<BR>
+
+<LI><TT>Intro </TT><I><FONT COLOR=maroon>ident</FONT></I><BR>Applies <TT>Intro</TT> but forces <I><FONT COLOR=maroon>ident</FONT></I> to be the name of the
+ introduced hypothesis.<BR>
+<BR><BR><B>Error message: </B><TT>name </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> is already bound </TT><A NAME="@error43"></A><BR>
+<BR><BR><B>Remark: </B><TT>Intro</TT> doesn't check the whole current context. Actually,
+ identifiers declared or defined in required modules can be used as
+ <I><FONT COLOR=maroon>ident</FONT></I> and, in this case, the old <I><FONT COLOR=maroon>ident</FONT></I> of the module is no
+ more reachable.<BR>
+<BR>
+
+<LI><TT>Intros </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> ... </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><BR>Is equivalent to the composed tactic <TT>Intro </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT>; ... ; Intro
+ </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB>.<BR>More generally, the <TT>Intros</TT> tactic takes a pattern as argument
+ in order to introduce names for components of an inductive
+ definition, it will be explained in&nbsp;<A HREF="node.1.2.6.html#Intros-pattern">7.7.3</A>.
+
+<LI><TT>Intros until </TT><I><FONT COLOR=maroon>ident</FONT></I>
+ <A NAME="@default391"></A><A NAME="@tactic7"></A><BR>Repeats <TT>Intro</TT> until it meets a premise of the goal having form
+ <TT>(</TT> <I><FONT COLOR=maroon>ident</FONT></I>&nbsp;<TT>:</TT>&nbsp;<I><FONT COLOR=maroon>term</FONT></I> <TT>)</TT>
+ and discharges the variable named <I><FONT COLOR=maroon>ident</FONT></I> of
+ the current goal.<BR>
+<BR><BR><B>Error message: </B><TT>No such hypothesis in current goal</TT><A NAME="@error44"></A><BR>
+<LI><TT>Intros until </TT><I><FONT COLOR=maroon>num</FONT></I>
+ <A NAME="@default392"></A><A NAME="@tactic8"></A><BR>Repeats <TT>Intro</TT> until the <I><FONT COLOR=maroon>num</FONT></I>-th non-dependant premise. For instance,
+ on the subgoal <CODE>(x,y:nat)x=y-&gt;(z:nat)h=x-&gt;z=y</CODE> the tactic
+ <TT>Intros until 2</TT> is equivalent to <TT>Intros x y H z H0</TT> (assuming
+ <TT>x, y, H, z</TT> and <TT>H0</TT> do not already occur in context).<BR>
+<BR><BR><B>Error message: </B><TT>No such hypothesis in current goal</TT><A NAME="@error45"></A><BR>Happens when <I><FONT COLOR=maroon>num</FONT></I> is 0 or is greater than the number of non-dependant
+ products of the goal.<BR>
+<BR>
+
+<LI><TT>Intro after </TT><I><FONT COLOR=maroon>ident</FONT></I>
+ <A NAME="@default393"></A><A NAME="@tactic9"></A><BR>Applies <TT>Intro</TT> but puts the introduced
+ hypothesis after the hypothesis <I><FONT COLOR=maroon>ident</FONT></I> in the hypotheses.<BR>
+<BR>
+<BR><B>Error messages: </B><OL>
+<LI>
+ 
+<TT>No product even after head-reduction</TT><A NAME="@error46"></A>
+
+<LI><TT>No such hypothesis</TT><A NAME="@error47"></A> : <I><FONT COLOR=maroon>ident</FONT></I>
+</OL><BR>
+
+<LI><TT>Intro </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> after </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>2</FONT></TT></SUB>
+ <A NAME="@default394"></A><A NAME="@tactic10"></A><BR>Behaves as previously but <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> is the name of the introduced
+ hypothesis.
+ It is equivalent to <TT>Intro </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT>; Move </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> after </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>2</FONT></TT></SUB>.<BR>
+<BR>
+<BR><B>Error messages: </B><OL>
+<LI>
+ 
+<TT>No product even after head-reduction</TT><A NAME="@error48"></A>
+
+<LI><TT>No such hypothesis</TT><A NAME="@error49"></A> : <I><FONT COLOR=maroon>ident</FONT></I>
+</OL>
+</OL>
+<H3>
+
+7.3.5&nbsp;<TT>Apply </TT><I><FONT COLOR=maroon>term</FONT></I><TT>
+</TT></H3>
+
+<A NAME="@default395"></A><A NAME="@tactic11"></A><A NAME="Apply"></A>
+This tactic applies to any goal. 
+The argument <I><FONT COLOR=maroon>term</FONT></I> is a term well-formed in the local context.
+The tactic <TT>Apply</TT> tries to match the
+current goal against the conclusion of the type of <I><FONT COLOR=maroon>term</FONT></I>. If it
+succeeds, then the tactic returns as many subgoals as the
+instantiations of the premises of the type of
+<I><FONT COLOR=maroon>term</FONT></I>.<BR>
+<BR>
+<BR><B>Error messages: </B><OL>
+<LI>
+ 
+<TT>Impossible to unify ... with ...</TT><A NAME="@error50"></A><BR>Since higher order unification is undecidable, the <TT>Apply</TT>
+ tactic may fail when you think it should work. In this case, if you
+ know that the conclusion of <I><FONT COLOR=maroon>term</FONT></I> and the current goal are
+ unifiable, you can help the <TT>Apply</TT> tactic by transforming your
+ goal with the <TT>Change</TT> or <TT>Pattern</TT> tactics (see sections
+ <A HREF="node.1.2.4.html#Pattern">7.5.7</A>, <A HREF="node.1.2.2.html#Change">7.3.9</A>).<BR>
+<BR>
+
+<LI><TT>Cannot refine to conclusions with meta-variables</TT><A NAME="@error51"></A><BR>This occurs when some instantiations of premises of <I><FONT COLOR=maroon>term</FONT></I> are not
+ deducible from the unification. This is the case, for instance, when
+ you want to apply a transitivity property. In this case, you have to
+ use one of the variants below:
+</OL><BR><B>Variants: </B><OL>
+<LI>
+ 
+<TT>Apply </TT><I><FONT COLOR=maroon>term</FONT></I><TT> with </TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> ... </TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB> 
+ <A NAME="@default396"></A><A NAME="@tactic12"></A><BR>Provides <TT>Apply</TT> with explicit instantiations for all dependent
+ premises of the type of <I><FONT COLOR=maroon>term</FONT></I> which do not occur in the
+ conclusion and consequently cannot be found by unification. Notice
+ that <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> ... <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> must be given according to the order
+ of these dependent premises of the type of <I><FONT COLOR=maroon>term</FONT></I>.<BR>
+<BR><BR><B>Error message: </B><TT>Not the right number of missing arguments</TT><A NAME="@error52"></A><BR>
+<BR>
+
+<LI><TT>Apply </TT><I><FONT COLOR=maroon>term</FONT></I><TT> with </TT><I><FONT COLOR=maroon>ref</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> := </TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> ... </TT><I><FONT COLOR=maroon>ref</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT>
+ := </TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><BR>This also provides <TT>Apply</TT> with values for instantiating
+ premises. But variables are referred by names and non dependent
+ products by order (see syntax in the section&nbsp;<A HREF="node.1.2.2.html#Binding-list">7.3.10</A>).<BR>
+<BR>
+
+<LI><TT>EApply </TT><I><FONT COLOR=maroon>term</FONT></I><A NAME="@default397"></A><A NAME="@tactic13"></A><A NAME="EApply"></A><BR>The tactic <TT>EApply</TT> behaves as <TT>Apply</TT> but does not fail when
+ no instantiation are deducible for some variables in the premises.
+ Rather, it turns these variables into so-called existential variables
+ which are variables still to instantiate. An existential variable is
+ identified by a name of the form <TT>?</TT><TT><I>n</I></TT> where <I>n</I> is a number.
+ The instantiation is intended to be found later in the proof.<BR>
+<BR>
+ An example of use of <TT>EApply</TT> is given in section
+ <A HREF="node.1.3.1.html#EApply-example">8.2</A>.<BR>
+<BR>
+
+<LI><TT>LApply </TT><I><FONT COLOR=maroon>term</FONT></I> <A NAME="@default398"></A><A NAME="@tactic14"></A><BR> This tactic applies to any goal, say <TT>G</TT>. The argument <I><FONT COLOR=maroon>term</FONT></I>
+ has to be well-formed in the current context, its type being
+ reducible to a non-dependent product <TT>A -&gt; B</TT> with <TT>B</TT>
+ possibly containing products. Then it generates two subgoals <TT>B-&gt;G</TT> and <TT>A</TT>. Applying <TT>LApply H</TT> (where <TT>H</TT> has type
+ <TT>A-&gt;B</TT> and <TT>B</TT> does not start with a product) does the same
+ as giving the sequence <TT>Cut B. 2:Apply H.</TT> where <TT>Cut</TT> is
+ described below.<BR>
+<BR><BR><B>Warning: </B>Be careful, when <I><FONT COLOR=maroon>term</FONT></I> contains more than one non
+ dependent product the tactic <TT>LApply</TT> only takes into account the
+ first product.</OL>
+<H3>
+
+7.3.6&nbsp;<TT>Let </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> </TT><TT>:=</TT><TT> </TT><I><FONT COLOR=maroon>term</FONT></I><TT> </TT><TT>in</TT><TT>
+ </TT><TT>Goal</TT><TT>
+</TT></H3>
+<A NAME="@default399"></A><A NAME="@tactic15"></A>This replaces <I><FONT COLOR=maroon>term</FONT></I> by <I><FONT COLOR=maroon>ident</FONT></I> in the goal and add the
+equality <I><FONT COLOR=maroon>ident</FONT></I><TT>=</TT> <I><FONT COLOR=maroon>term</FONT></I> in the local context.<BR>
+<BR>
+<BR><B>Variants: </B><OL>
+<LI>
+ 
+<TT>Let </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>0</FONT></TT></SUB><TT> </TT><TT>:=</TT><TT> </TT><I><FONT COLOR=maroon>term</FONT></I><TT> </TT><TT>in</TT><TT> </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><BR>
+<BR>
+This behaves the same but substitutes <I><FONT COLOR=maroon>term</FONT></I> not in the goal but in
+the hypothesis named <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>.<BR>
+<BR>
+
+<LI><TT>Let </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>0</FONT></TT></SUB><TT> </TT><TT>:=</TT><TT> </TT><I><FONT COLOR=maroon>term</FONT></I><TT> </TT><TT>in</TT><TT> </TT><I><FONT COLOR=maroon>num</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> ...
+</TT><I><FONT COLOR=maroon>num</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT> </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><BR>
+<BR>
+This notation allows to specify which occurrences of the hypothesis
+named <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> (or the goal if <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> is
+the word <TT>Goal</TT>) should be substituted. The occurrences are numbered
+from left to right. A negative occurrence number means an occurrence
+which should not be substituted. <BR>
+<BR>
+
+<LI><TT>Let </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>0</FONT></TT></SUB><TT> </TT><TT>:=</TT><TT> </TT><I><FONT COLOR=maroon>term</FONT></I><TT> </TT><TT>in</TT><TT> </TT><I><FONT COLOR=maroon>num</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><SUP><TT><FONT SIZE=2>1</FONT></TT></SUP><TT> ...
+</TT><I><FONT COLOR=maroon>num</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><SUB><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB></SUB><SUP><TT><FONT SIZE=2>1</FONT></TT></SUP><TT> </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> ...</TT><I><FONT COLOR=maroon>num</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><SUP><TT><FONT SIZE=2><I>m</I></FONT></TT></SUP><TT> ...
+</TT><I><FONT COLOR=maroon>num</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><SUB><SUB><TT><FONT SIZE=2><I>m</I></FONT></TT></SUB></SUB><SUP><TT><FONT SIZE=2><I>m</I></FONT></TT></SUP><TT> </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2><I>m</I></FONT></TT></SUB><BR>
+<BR>
+This is the general form. It substitutes <I><FONT COLOR=maroon>term</FONT></I> at occurrences
+<I><FONT COLOR=maroon>num</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB><SUP><FONT SIZE=2><I>i</I></FONT></SUP> ... <I><FONT COLOR=maroon>num</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB><SUB><SUB><FONT SIZE=2><I>i</I></FONT></SUB></SUB><SUP><FONT SIZE=2><I>i</I></FONT></SUP> of hypothesis <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>i</I></FONT></SUB>. One
+of the <I><FONT COLOR=maroon>ident</FONT></I>'s may be the word <TT>Goal</TT>.
+</OL>
+<H3>
+
+7.3.7&nbsp;<TT>Cut </TT><I><FONT COLOR=maroon>form</FONT></I><TT>
+</TT></H3>
+<A NAME="@default400"></A><A NAME="@tactic16"></A>
+This tactic applies to any goal. It implements the
+``App''<A NAME="@default401"></A> rule given in section
+<A HREF="node.0.3.1.html#Typed-terms">4.2</A>. <TT>Cut U</TT> transforms the current goal <TT>T</TT> 
+into the two following subgoals: <TT>U -&gt; T</TT> and <TT>U</TT>.<BR>
+<BR>
+<BR><B>Error messages: </B><OL>
+<LI>
+ 
+<TT>Not a proposition or a type</TT><A NAME="@error53"></A><BR>Arises when the argument <I><FONT COLOR=maroon>form</FONT></I> is neither of type <TT>Prop</TT>, <TT>Set</TT> nor <TT>Type</TT>.
+</OL>
+<H3>
+
+7.3.8&nbsp;<TT>Generalize </TT><I><FONT COLOR=maroon>term</FONT></I><TT>
+</TT></H3>
+
+<A NAME="@default402"></A><A NAME="@tactic17"></A><A NAME="Generalize"></A>
+This tactic applies to any goal. It generalizes the conclusion w.r.t. one
+subterm of it. For example:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Show.</TT><BR><TT><I>1&nbsp;subgoal</I></TT><BR><TT><I>&nbsp;&nbsp;</I></TT><BR><TT><I>&nbsp;&nbsp;x&nbsp;:&nbsp;nat</I></TT><BR><TT><I>&nbsp;&nbsp;y&nbsp;:&nbsp;nat</I></TT><BR><TT><I>&nbsp;&nbsp;============================</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;(le&nbsp;O&nbsp;(plus&nbsp;(plus&nbsp;x&nbsp;y)&nbsp;y))</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Generalize&nbsp;(plus&nbsp;(plus&nbsp;x&nbsp;y)&nbsp;y).</TT><BR><TT><I>1&nbsp;subgoal</I></TT><BR><TT><I>&nbsp;&nbsp;</I></TT><BR><TT><I>&nbsp;&nbsp;x&nbsp;:&nbsp;nat</I></TT><BR><TT><I>&nbsp;&nbsp;y&nbsp;:&nbsp;nat</I></TT><BR><TT><I>&nbsp;&nbsp;============================</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;(n:nat)(le&nbsp;O&nbsp;n)</I></TT><BR></DIV>
+<BR>
+If the goal is <I>G</I> and <I>t</I> is a subterm of type <I>T</I>
+in the goal, then <TT>Generalize</TT> <I>t</I> replaces the goal by <TT>(x:</TT><TT><I>T</I></TT><TT>)</TT><TT><I>G</I>'</TT> where <I>G</I>' is obtained from <I>G</I> by replacing all
+occurrences of <I>t</I> by <TT>x</TT>. The name of the variable (here <TT>x</TT>)
+is chosen accordingly to <I>T</I>.<BR>
+<BR>
+<BR><B>Variants: </B><OL>
+<LI>
+ 
+<TT>Generalize </TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> ... </TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><BR>Is equivalent to <TT>Generalize </TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT>; ... ; Generalize
+ </TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB>. Note that the sequence of <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2><I>i</I></FONT></SUB>'s are processed from 
+ <I>n</I> to 1.<BR>
+<BR>
+
+<LI><TT>Generalize Dependent </TT><I><FONT COLOR=maroon>term</FONT></I><BR><A NAME="@default403"></A><A NAME="@tactic18"></A>
+ This generalizes <I><FONT COLOR=maroon>term</FONT></I> but
+ also <EM>all</EM> hypotheses which depend on <I><FONT COLOR=maroon>term</FONT></I>.</OL>
+<H3>
+
+7.3.9&nbsp;<TT>Change </TT><I><FONT COLOR=maroon>term</FONT></I><TT>
+</TT></H3>
+
+<A NAME="@default404"></A><A NAME="@tactic19"></A><A NAME="Change"></A>
+This tactic applies to any goal. It implements the rule
+``Conv''<A NAME="@default405"></A> given in section <A HREF="node.0.3.2.html#Conv">4.3</A>.
+<TT>Change U</TT> replaces the current goal <TT>T</TT> with a <TT>U</TT> providing
+that <TT>U</TT> is well-formed and that <TT>T</TT> and <TT>U</TT> are
+convertible.<BR>
+<BR>
+<BR><B>Error messages: </B><OL>
+<LI>
+ 
+<TT>convert-concl rule passed non-converting term</TT><A NAME="@error54"></A>
+</OL><BR><B>Variants: </B><OL>
+<LI>
+ 
+<TT>Change </TT><I><FONT COLOR=maroon>term</FONT></I><TT> in </TT><I><FONT COLOR=maroon>ident</FONT></I><BR><A NAME="@default406"></A><A NAME="@tactic20"></A>
+ This applies the <TT>Change</TT> tactic not to the goal but to the
+ hypothesis <I><FONT COLOR=maroon>ident</FONT></I>.
+</OL><BR><B>See also: </B><A HREF="node.1.2.4.html#Conversion-tactics">7.5</A><BR>
+<BR>
+
+<H3>
+
+7.3.10&nbsp;Bindings list
+</H3>
+
+<A NAME="@default407"></A><A NAME="Binding-list"></A>
+<A NAME="@tactic21"></A>
+A bindings list is generally used after the keyword <TT>with</TT> in
+tactics. The general shape of a bindings list is <I><FONT COLOR=maroon>ref</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> :=
+ </TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> ... </TT><I><FONT COLOR=maroon>ref</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT> := </TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB> where <I><FONT COLOR=maroon>ref</FONT></I> is either an
+<I><FONT COLOR=maroon>ident</FONT></I> or a <I><FONT COLOR=maroon>num</FONT></I>. It is used to provide a tactic with a list of
+values (<I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>, ..., <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>) that have to be substituted
+respectively to <I><FONT COLOR=maroon>ref</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>, ..., <I><FONT COLOR=maroon>ref</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>. For all <I>i</I> <FONT FACE=symbol>Î</FONT> [1... <I>n</I>], if
+<I><FONT COLOR=maroon>ref</FONT></I><SUB><FONT SIZE=2><I>i</I></FONT></SUB> is <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>i</I></FONT></SUB> then it references the dependent product <I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2><I>i</I></FONT></TT></SUB><TT>:T</TT> (for some type <TT>T</TT>); if <I><FONT COLOR=maroon>ref</FONT></I><SUB><FONT SIZE=2><I>i</I></FONT></SUB> is <I><FONT COLOR=maroon>num</FONT></I><SUB><FONT SIZE=2><I>i</I></FONT></SUB> then it
+references the <I><FONT COLOR=maroon>num</FONT></I><SUB><FONT SIZE=2><I>i</I></FONT></SUB>-th non dependent premise.<BR>
+<BR>
+A bindings list can also be a simple list of terms <I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT>
+</TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>2</FONT></TT></SUB><TT> ...</TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB>. In that case the references to which these
+terms correspond are determined by the tactic. In case of <TT>Elim
+</TT><I><FONT COLOR=maroon>term</FONT></I> (see section <A HREF="node.1.2.6.html#Elim">7.7.1</A>) the terms should correspond to all the dependent products in
+the type of <I><FONT COLOR=maroon>term</FONT></I> while in the case of <TT>Apply </TT><I><FONT COLOR=maroon>term</FONT></I> only the
+dependent products which are not bound in the conclusion of the type
+are given.<BR>
+<BR>
+<HR>
+
+<A HREF="node.1.2.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.3.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

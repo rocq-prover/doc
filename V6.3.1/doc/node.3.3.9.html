@@ -1,0 +1,74 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+14.10&nbsp;Examples
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.3.8.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+14.10&nbsp;Examples
+</H2>
+
+
+<UL>
+<LI>
+Coercion between inductive types<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Definition&nbsp;bool_in_nat&nbsp;:=&nbsp;[b:bool]if&nbsp;b&nbsp;then&nbsp;O&nbsp;else&nbsp;(S&nbsp;O).</TT><BR><TT><I>bool_in_nat&nbsp;is&nbsp;defined</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Coercion&nbsp;bool_in_nat&nbsp;:&nbsp;bool&nbsp;&gt;-&gt;&nbsp;nat.</TT><BR><TT><I>bool_in_nat&nbsp;is&nbsp;now&nbsp;a&nbsp;coercion</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;O=true.</TT><BR><TT><I>O=(true)</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Prop</I></TT><BR></DIV><BR><B>Warning: </B>
+<LI><CODE>Check true=O.</CODE> fails. This is ``normal'' behaviour of
+coercions. To validate <CODE>true=O</CODE>, the coercion is searched from
+<CODE>nat</CODE> to <CODE>bool</CODE>. There is no one.<BR>
+<BR>
+
+<LI>Coercion to a sort<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;Graph&nbsp;:&nbsp;Type.</TT><BR><TT><I>Graph&nbsp;is&nbsp;assumed</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;Node&nbsp;:&nbsp;Graph&nbsp;-&gt;&nbsp;Type.</TT><BR><TT><I>Node&nbsp;is&nbsp;assumed</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Coercion&nbsp;Node&nbsp;:&nbsp;Graph&nbsp;&gt;-&gt;&nbsp;SORTCLASS.</TT><BR><TT><I>Node&nbsp;is&nbsp;now&nbsp;a&nbsp;coercion</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;G&nbsp;:&nbsp;Graph.</TT><BR><TT><I>G&nbsp;is&nbsp;assumed</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;Arrows&nbsp;:&nbsp;G&nbsp;-&gt;&nbsp;G&nbsp;-&gt;&nbsp;Type.</TT><BR><TT><I>Arrows&nbsp;is&nbsp;assumed</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;Arrows.</TT><BR><TT><I>Arrows</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(G)-&gt;(G)-&gt;Type</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;fg&nbsp;:&nbsp;G&nbsp;-&gt;&nbsp;G.</TT><BR><TT><I>fg&nbsp;is&nbsp;assumed</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;fg.</TT><BR><TT><I>fg</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(G)-&gt;(G)</I></TT><BR></DIV>
+<BR>
+
+<LI>Coercion to a function<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;bij&nbsp;:&nbsp;Set&nbsp;-&gt;&nbsp;Set&nbsp;-&gt;&nbsp;Set.</TT><BR><TT><I>bij&nbsp;is&nbsp;assumed</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;ap&nbsp;:&nbsp;(A,B:Set)(bij&nbsp;A&nbsp;B)&nbsp;-&gt;&nbsp;A&nbsp;-&gt;&nbsp;B.</TT><BR><TT><I>ap&nbsp;is&nbsp;assumed</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Coercion&nbsp;ap&nbsp;:&nbsp;bij&nbsp;&gt;-&gt;&nbsp;FUNCLASS.</TT><BR><TT><I>ap&nbsp;is&nbsp;now&nbsp;a&nbsp;coercion</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;b&nbsp;:&nbsp;(bij&nbsp;nat&nbsp;nat).</TT><BR><TT><I>b&nbsp;is&nbsp;assumed</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;(b&nbsp;O).</TT><BR><TT><I>(ap&nbsp;nat&nbsp;nat&nbsp;b&nbsp;O)</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;nat</I></TT><BR></DIV>
+<BR>
+
+<LI>Transitivity of coercion
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Variables&nbsp;C&nbsp;:&nbsp;nat&nbsp;-&gt;&nbsp;Set;&nbsp;D&nbsp;:&nbsp;nat&nbsp;-&gt;&nbsp;bool&nbsp;-&gt;&nbsp;Set;&nbsp;E&nbsp;:&nbsp;bool&nbsp;-&gt;&nbsp;Set.</TT><BR><TT><I>C&nbsp;is&nbsp;assumed</I></TT><BR><TT><I>D&nbsp;is&nbsp;assumed</I></TT><BR><TT><I>E&nbsp;is&nbsp;assumed</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;f&nbsp;:&nbsp;(n:nat)(C&nbsp;n)&nbsp;-&gt;&nbsp;(D&nbsp;(S&nbsp;n)&nbsp;true).</TT><BR><TT><I>f&nbsp;is&nbsp;assumed</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Coercion&nbsp;f&nbsp;:&nbsp;C&nbsp;&gt;-&gt;&nbsp;D.</TT><BR><TT><I>f&nbsp;is&nbsp;now&nbsp;a&nbsp;coercion</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;g&nbsp;:&nbsp;(n:nat)(b:bool)(D&nbsp;n&nbsp;b)&nbsp;-&gt;&nbsp;(E&nbsp;b).</TT><BR><TT><I>g&nbsp;is&nbsp;assumed</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Coercion&nbsp;g&nbsp;:&nbsp;D&nbsp;&gt;-&gt;&nbsp;E.</TT><BR><TT><I>g&nbsp;is&nbsp;now&nbsp;a&nbsp;coercion</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;c&nbsp;:&nbsp;(C&nbsp;O).</TT><BR><TT><I>c&nbsp;is&nbsp;assumed</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;T&nbsp;:&nbsp;(E&nbsp;true)&nbsp;-&gt;&nbsp;nat.</TT><BR><TT><I>T&nbsp;is&nbsp;assumed</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;(T&nbsp;c).</TT><BR><TT><I>(T&nbsp;(c))</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;nat</I></TT><BR></DIV>
+<BR>
+
+<LI>Identity coercion<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Definition&nbsp;D'&nbsp;:=&nbsp;[b:bool](D&nbsp;(S&nbsp;O)&nbsp;b).</TT><BR><TT><I>D'&nbsp;is&nbsp;defined</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Identity&nbsp;Coercion&nbsp;IdD'D&nbsp;:&nbsp;D'&nbsp;&gt;-&gt;&nbsp;D.</TT><BR><TT><I>IdD'D&nbsp;is&nbsp;now&nbsp;a&nbsp;coercion</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Print&nbsp;IdD'D.</TT><BR><TT><I>IdD'D&nbsp;=&nbsp;[b:bool;&nbsp;x:(D'&nbsp;b)]x</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(b:bool)(D'&nbsp;b)-&gt;(D&nbsp;(S&nbsp;O)&nbsp;b)</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;d'&nbsp;:&nbsp;(D'&nbsp;true).</TT><BR><TT><I>d'&nbsp;is&nbsp;assumed</I></TT><BR><BR><TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;(T&nbsp;d').</TT><BR><TT><I>(T&nbsp;(d'))</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;nat</I></TT><BR></DIV>
+</UL>
+ <HR>
+
+<A HREF="node.3.3.8.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

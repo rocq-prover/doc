@@ -1,0 +1,254 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+17.3&nbsp;Syntax for programs
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.6.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.6.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.6.3.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+17.3&nbsp;Syntax for programs
+</H2>
+
+
+
+<A NAME="program-syntax"></A>
+
+ 
+<H3>
+
+17.3.1&nbsp;Pure programs
+</H3>
+
+The language to express programs is called <FONT COLOR=purple>Real</FONT><A NAME="text20"></A><A HREF="node.8.html#note20"><SUP><FONT SIZE=2>1</FONT></SUP></A>. Programs are
+explicitly typed<A NAME="text21"></A><A HREF="node.8.html#note21"><SUP><FONT SIZE=2>2</FONT></SUP></A> like terms
+extracted from proofs. Some extra expressions have been added to have
+a simpler syntax.<BR>
+<BR>
+This is the raw form of what we call pure programs. But, in fact, it
+appeared that this simple type of programs is not sufficient. Indeed,
+all the logical part useful for the proof is not contained in these
+programs. That is why annotated programs are introduced.<BR>
+<BR>
+
+ 
+<H3>
+
+17.3.2&nbsp;Annotated programs
+</H3>
+
+The notion of annotation introduces in a program a logical assertion
+that will be used for the proof. The aim of the <CODE>Program</CODE> tactic
+is to start from a specification and a program and to generate
+subgoals either logical or associated with programs. However, to find
+the good specification for subprograms is not at all trivial in
+general. For instance, if we have to find an invariant for a loop, or
+a well founded order in a recursive call.<BR>
+<BR>
+So, annotations add in a program the logical part which is needed for
+the proof and which cannot be automatically retrieved. This allows the
+system to do proofs it could not do otherwise.<BR>
+<BR>
+For this, a particular syntax is needed which is the following: since
+they are specifications, annotations follow the same internal syntax
+as <FONT COLOR=purple>Coq</FONT>&nbsp;terms. We indicate they are annotations by putting them
+between <CODE>{</CODE> and <CODE>}</CODE> and preceding them with <CODE>:: ::</CODE>.
+Since annotations are <FONT COLOR=purple>Coq</FONT>&nbsp;terms, they can involve abstractions over
+logical propositions that have to be declared. Annotated-<FONT FACE=symbol>l</FONT>
+have to be written between <CODE>[{</CODE> and <CODE>}]</CODE>.
+Annotated-<FONT FACE=symbol>l</FONT> can be seen like usual <FONT FACE=symbol>l</FONT>-bindings but
+concerning just annotations and not <FONT COLOR=purple>Coq</FONT>&nbsp;programs.<BR>
+<BR>
+
+ 
+<H3>
+
+17.3.3&nbsp;Recursive Programs
+</H3>
+
+Programs can be recursively defined using the following syntax: <CODE>&lt;</CODE><I>type-of-the-result</I><CODE>&gt; rec</CODE> <A NAME="@default612"></A> <I>name-of-the-induction-hypothesis</I> <CODE>:: :: {</CODE> <I>well-founded-order-of-the-recursion</I> <CODE>}</CODE> and then the body of
+the program (see section <A HREF="node.3.6.3.html#program-examples">17.4</A>) which must always begin with
+an abstraction [x:A] where A is the type of the arguments of the
+function (also on which the ordering relation acts).<BR>
+<BR>
+
+ 
+<H3>
+
+17.3.4&nbsp;Implicit arguments
+</H3>
+A synthesis of implicit arguments has been added in order to
+allow the user to write a minimum of types in a program. Then, it is
+possible not to write a type inside a program term. This type has then
+to be automatically synthesized. For this, it is necessary to indicate
+where the implicit type to be synthesized appears. The syntax is the
+current one of implicit arguments in <FONT COLOR=purple>Coq</FONT>: the question mark
+<CODE>?</CODE>. <BR>
+<BR>
+This synthesis of implicit arguments is not possible everywhere in a
+program. In fact, the synthesis is only available inside a
+<CODE>Match</CODE>, a <CODE>Cases</CODE> or a <CODE>Fix</CODE> construction (where
+<CODE>Fix</CODE> is a syntax for defining fixpoints).<BR>
+<BR>
+
+ 
+<H3>
+
+17.3.5&nbsp;Grammar
+</H3>
+
+The grammar for programs is described in figure <A HREF="node.3.6.2.html#pgm-syntax">17.1</A>.<BR>
+<BR>
+<BLOCKQUOTE><HR  SIZE=2>
+
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD  ALIGN=left NOWRAP><I><FONT COLOR=maroon>pgm</FONT></I></TD>
+<TD  ALIGN=center NOWRAP>::=</TD>
+<TD  ALIGN=left NOWRAP><I><FONT COLOR=maroon>ident</FONT></I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><TT>?</TT></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><TT>[</TT> <I><FONT COLOR=maroon>ident</FONT></I> <TT>:</TT> <I><FONT COLOR=maroon>pgm</FONT></I> <TT>]</TT> <I><FONT COLOR=maroon>pgm</FONT></I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><TT>[</TT> <I><FONT COLOR=maroon>ident</FONT></I> <TT>]</TT> <I><FONT COLOR=maroon>pgm</FONT></I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><TT>(</TT> <I><FONT COLOR=maroon>ident</FONT></I> <TT>:</TT> <I><FONT COLOR=maroon>pgm</FONT></I> <TT>)</TT> <I><FONT COLOR=maroon>pgm</FONT></I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><TT>(</TT> <I><FONT COLOR=maroon>pgms</FONT></I> <TT>)</TT></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><TT>Match</TT> <I><FONT COLOR=maroon>pgm</FONT></I> <TT>with</TT> <I><FONT COLOR=maroon>pgms</FONT></I> <TT>end</TT></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><CODE>&lt;</CODE><I><FONT COLOR=maroon>pgm</FONT></I><CODE>&gt;</CODE><TT>Match</TT> <I><FONT COLOR=maroon>pgm</FONT></I> <TT>with</TT> <I><FONT COLOR=maroon>pgms</FONT></I> <TT>end</TT></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><TT>Cases</TT> <I><FONT COLOR=maroon>pgm</FONT></I> <TT>of</TT> <I><FONT COLOR=maroon>[</FONT></I><I><FONT COLOR=maroon>equation</FONT></I> <TT>|</TT> ... <TT>|</TT> <I><FONT COLOR=maroon>equation</FONT></I><I><FONT COLOR=maroon>]</FONT></I> <TT>end</TT></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><CODE>&lt;</CODE><I><FONT COLOR=maroon>pgm</FONT></I><CODE>&gt;</CODE><TT>Cases</TT> <I><FONT COLOR=maroon>pgm</FONT></I> <TT>of</TT>
+ <I><FONT COLOR=maroon>[</FONT></I><I><FONT COLOR=maroon>equation</FONT></I> <TT>|</TT> ... <TT>|</TT> <I><FONT COLOR=maroon>equation</FONT></I><I><FONT COLOR=maroon>]</FONT></I> <TT>end</TT></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><TT>Fix</TT> <I><FONT COLOR=maroon>ident</FONT></I> <CODE>{</CODE><I><FONT COLOR=maroon>fix_pgm</FONT></I> <TT>with</TT> ... <TT>with</TT> <I><FONT COLOR=maroon>fix_pgm</FONT></I> <CODE>}</CODE></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><TT>Cofix</TT> <I><FONT COLOR=maroon>ident</FONT></I> {<I><FONT COLOR=maroon>ident</FONT></I> <TT>:</TT> <I><FONT COLOR=maroon>pgm</FONT></I> <TT>:=</TT> <I><FONT COLOR=maroon>pgm</FONT></I>
+ <TT>with</TT> ... <TT>with</TT> <I><FONT COLOR=maroon>ident</FONT></I> <TT>:</TT> <I><FONT COLOR=maroon>pgm</FONT></I> <TT>:=</TT> <I><FONT COLOR=maroon>pgm</FONT></I>}</TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><I><FONT COLOR=maroon>pgm</FONT></I> <TT>::</TT> <TT>::</TT> { <I><FONT COLOR=maroon>term</FONT></I> }</TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><TT>[{</TT> <I><FONT COLOR=maroon>ident</FONT></I> <TT>:</TT> <I><FONT COLOR=maroon>term</FONT></I> <TT>}]</TT> <I><FONT COLOR=maroon>pgm</FONT></I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><TT>let</TT>
+ <TT>(</TT> <I><FONT COLOR=maroon>ident</FONT></I> <TT>,</TT> ... <TT>,</TT> <I><FONT COLOR=maroon>ident</FONT></I> <TT>,</TT> ...
+ <TT>,</TT> <I><FONT COLOR=maroon>ident</FONT></I> <TT>)</TT> <TT>=</TT> <I><FONT COLOR=maroon>pgm</FONT></I> <TT>in</TT> <I><FONT COLOR=maroon>pgm</FONT></I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><CODE>&lt;</CODE><I><FONT COLOR=maroon>pgm</FONT></I><CODE>&gt;</CODE><TT>let</TT> <TT>(</TT> <I><FONT COLOR=maroon>ident</FONT></I> <TT>,</TT>
+ ... <TT>,</TT> ... <TT>,</TT> <I><FONT COLOR=maroon>ident</FONT></I> <TT>)</TT> <TT>=</TT> <I><FONT COLOR=maroon>pgm</FONT></I> <TT>in</TT> <I><FONT COLOR=maroon>pgm</FONT></I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><TT>if</TT> <I><FONT COLOR=maroon>pgm</FONT></I> <TT>then</TT> <I><FONT COLOR=maroon>pgm</FONT></I> <TT>else</TT> <I><FONT COLOR=maroon>pgm</FONT></I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><CODE>&lt;</CODE><I><FONT COLOR=maroon>pgm</FONT></I><CODE>&gt;</CODE><TT>if</TT> <I><FONT COLOR=maroon>pgm</FONT></I> <TT>then</TT> <I><FONT COLOR=maroon>pgm</FONT></I> <TT>else</TT> <I><FONT COLOR=maroon>pgm</FONT></I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><CODE>&lt;</CODE><I><FONT COLOR=maroon>pgm</FONT></I><CODE>&gt;</CODE><TT>rec</TT> <I><FONT COLOR=maroon>ident</FONT></I> <TT>::</TT> <TT>::</TT> { <I><FONT COLOR=maroon>term</FONT></I>}
+ <TT>[</TT> <I><FONT COLOR=maroon>ident</FONT></I> <TT>:</TT> <I><FONT COLOR=maroon>pgm</FONT></I> <TT>]</TT> <I><FONT COLOR=maroon>pgm</FONT></I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP><I><FONT COLOR=maroon>pgms</FONT></I></TD>
+<TD  ALIGN=center NOWRAP>::=</TD>
+<TD  ALIGN=left NOWRAP><I><FONT COLOR=maroon>pgm</FONT></I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><I><FONT COLOR=maroon>pgm</FONT></I> <I><FONT COLOR=maroon>pgms</FONT></I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP><I><FONT COLOR=maroon>fix_pgm</FONT></I></TD>
+<TD  ALIGN=center NOWRAP>::=</TD>
+<TD  ALIGN=left NOWRAP><I><FONT COLOR=maroon>ident</FONT></I> <TT>[</TT> <I><FONT COLOR=maroon>typed_idents</FONT></I> <TT>;</TT> ... <TT>;</TT> <I><FONT COLOR=maroon>typed_idents</FONT></I> <TT>]</TT> <TT>:</TT> <I><FONT COLOR=maroon>pgm</FONT></I> <TT>:=</TT> <I><FONT COLOR=maroon>pgm</FONT></I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><I><FONT COLOR=maroon>ident</FONT></I> <TT>/</TT> <I><FONT COLOR=maroon>num</FONT></I> <TT>:</TT> <I><FONT COLOR=maroon>pgm</FONT></I> <TT>:=</TT> <I><FONT COLOR=maroon>pgm</FONT></I> <TT>::</TT> <TT>::</TT> { <I><FONT COLOR=maroon>term</FONT></I> }</TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP><I><FONT COLOR=maroon>simple_pattern</FONT></I></TD>
+<TD  ALIGN=center NOWRAP>::=</TD>
+<TD  ALIGN=left NOWRAP><I><FONT COLOR=maroon>ident</FONT></I></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP>&nbsp;</TD>
+<TD  ALIGN=center NOWRAP>|</TD>
+<TD  ALIGN=left NOWRAP><CODE>(</CODE> <I><FONT COLOR=maroon>ident</FONT></I>  ...  <I><FONT COLOR=maroon>ident</FONT></I> <CODE>)</CODE></TD>
+</TR>
+<TR><TD  ALIGN=left NOWRAP><I><FONT COLOR=maroon>equation</FONT></I></TD>
+<TD  ALIGN=center NOWRAP>::=</TD>
+<TD  ALIGN=left NOWRAP><I><FONT COLOR=maroon>simple_pattern</FONT></I> &nbsp;<CODE>=&gt;</CODE> &nbsp;<I><FONT COLOR=maroon>pgm</FONT></I></TD>
+</TR></TABLE>
+
+<A NAME="pgm-syntax"></A>
+<BR>
+<DIV ALIGN=center>Figure 17.1: Syntax of annotated programs</DIV>
+<HR  SIZE=2></BLOCKQUOTE>As for <FONT COLOR=purple>Coq</FONT> terms (see section <A HREF="node.0.0.1.html#term">1.2</A>), <TT>(</TT><I><FONT COLOR=maroon>pgms</FONT></I><TT>)</TT>
+associates to the left. The syntax of <I><FONT COLOR=maroon>term</FONT></I> is the one in section.
+The infix annotation operator <CODE>:: ::</CODE> binds more than the
+abstraction and product constructions.
+<A HREF="node.0.0.1.html#term">1.2</A>.<BR>
+<BR>
+The reference to an identifier of the <FONT COLOR=purple>Coq</FONT> context (in particular a
+constant) inside a program of the
+language <FONT COLOR=purple>Real</FONT> is a reference to its extracted contents.<BR>
+<BR>
+
+ <HR>
+
+<A HREF="node.3.6.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.6.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.6.3.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

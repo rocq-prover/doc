@@ -1,0 +1,61 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+13.2&nbsp;About patterns of parametric types
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.2.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.2.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+13.2&nbsp;About patterns of parametric types
+</H2>
+
+
+
+When matching objects of a parametric type, constructors in patterns
+<EM>do not expect</EM> the parameter arguments. Their value is deduced
+during expansion.<BR>
+<BR>
+Consider for example the polymorphic lists:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Inductive&nbsp;List&nbsp;[A:Set]&nbsp;:Set&nbsp;:=&nbsp;</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;nil:(List&nbsp;A)&nbsp;</TT><BR><TT>Coq&nbsp;&lt;&nbsp;|&nbsp;cons:A-&gt;(List&nbsp;A)-&gt;(List&nbsp;A).</TT><BR><TT><I>List_ind&nbsp;is&nbsp;defined</I></TT><BR><TT><I>List_rec&nbsp;is&nbsp;defined</I></TT><BR><TT><I>List_rect&nbsp;is&nbsp;defined</I></TT><BR><TT><I>List&nbsp;is&nbsp;defined</I></TT><BR></DIV>
+<BR>
+We can check the function <EM>tail</EM>:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;[l:(List&nbsp;nat)]Cases&nbsp;l&nbsp;of&nbsp;</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nil&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;(nil&nbsp;nat)</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(cons&nbsp;_&nbsp;l')&nbsp;=&gt;&nbsp;l'</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end.</TT><BR><TT><I>[l:(List&nbsp;nat)]Cases&nbsp;l&nbsp;of</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nil&nbsp;=&gt;&nbsp;(nil&nbsp;nat)</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(cons&nbsp;_&nbsp;l')&nbsp;=&gt;&nbsp;l'</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(List&nbsp;nat)-&gt;(List&nbsp;nat)</I></TT><BR></DIV>
+<BR>
+When we use parameters in patterns there is an error message:
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;[l:(List&nbsp;nat)]Cases&nbsp;l&nbsp;of&nbsp;</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(nil&nbsp;nat)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;(nil&nbsp;nat)</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(cons&nbsp;nat&nbsp;_&nbsp;l')&nbsp;=&gt;&nbsp;l'</TT><BR><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end.</TT><BR><TT><I>Toplevel&nbsp;input,&nbsp;characters&nbsp;6-169</I></TT><BR><TT><I>&gt;&nbsp;.....&nbsp;[l:(List&nbsp;nat)]Cases&nbsp;l&nbsp;of&nbsp;</I></TT><BR><TT><I>&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(nil&nbsp;nat)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;(nil&nbsp;nat)</I></TT><BR><TT><I>&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(cons&nbsp;nat&nbsp;_&nbsp;l')&nbsp;=&gt;&nbsp;l'</I></TT><BR><TT><I>&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end&nbsp;&nbsp;</I></TT><BR><TT><I>Error:&nbsp;In&nbsp;pattern&nbsp;(nil&nbsp;nat)&nbsp;the&nbsp;constructor&nbsp;nil&nbsp;expects&nbsp;0&nbsp;arguments.&nbsp;</I></TT><BR></DIV>
+<BR>
+
+ <HR>
+
+<A HREF="node.3.2.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.2.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>
