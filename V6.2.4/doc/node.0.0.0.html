@@ -1,0 +1,316 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+1.1&nbsp;Lexical conventions
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.0.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.0.1.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+1.1&nbsp;Lexical conventions
+</H2>
+
+
+
+<A NAME="lexical"></A><A NAME="@default1"></A>
+<H5>
+Blanks
+</H5>
+
+Space, newline and horizontal tabulation are considered as blanks.
+Blanks are ignored but they separate tokens.<BR>
+<BR>
+
+<H5>
+Comments
+</H5>
+Comments in <FONT COLOR=purple>Coq</FONT> are enclosed between <TT>(*</TT> and <TT>*)</TT><A NAME="@default2"></A>, and can be nested. Comments are treated as
+blanks.<BR>
+<BR>
+
+<H5>
+Identifiers
+</H5>
+Identifiers, written <I><FONT COLOR=maroon>ident</FONT></I>, are sequences of letters, digits,
+<CODE>_</CODE>, <CODE>$</CODE>
+and <CODE>'</CODE>, that do not start with a digit or <CODE>'</CODE>. That is,
+they are recognized by the following lexical class:<BR>
+<BR>
+<A NAME="@default3"></A><DIV ALIGN=center>
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=right><I><FONT COLOR=maroon>first_letter</FONT></I></TD>
+<TD NOWRAP ALIGN=center>::=</TD>
+<TD NOWRAP ALIGN=left><TT>a..z</TT>&nbsp;|&nbsp;<TT>A..Z</TT>&nbsp;|&nbsp;<TT>_</TT>&nbsp;|&nbsp;<TT>$</TT></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=right><I><FONT COLOR=maroon>subsequent_letter</FONT></I></TD>
+<TD NOWRAP ALIGN=center>::=</TD>
+<TD NOWRAP ALIGN=left><TT>a..z</TT>&nbsp;|&nbsp;<TT>A..Z</TT>&nbsp;|&nbsp;<TT>0..9</TT>&nbsp;|&nbsp;<TT>_</TT>&nbsp;|&nbsp;<TT>$</TT>&nbsp;|&nbsp;<TT>'</TT></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=right><I><FONT COLOR=maroon>ident</FONT></I></TD>
+<TD NOWRAP ALIGN=center>::=</TD>
+<TD NOWRAP ALIGN=left><I><FONT COLOR=maroon>first_letter</FONT></I>[<I><FONT COLOR=maroon>subsequent_letter</FONT></I>...<I><FONT COLOR=maroon>subsequent_letter</FONT></I>]</TD>
+</TR></TABLE>
+</DIV>
+Identifiers can contain at most 80 characters, and all characters are
+meaningful. In particular, identifiers are case-sensitive.<BR>
+<BR>
+
+<H5>
+Natural numbers and integers
+</H5>
+
+Numerals are sequences of digits. Integers are numerals optionally preceded by a minus sign.<BR>
+<BR>
+<A NAME="@default4"></A><DIV ALIGN=center>
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=right><I><FONT COLOR=maroon>digit</FONT></I></TD>
+<TD ALIGN=center>&nbsp;&nbsp;::=&nbsp;&nbsp;</TD>
+<TD NOWRAP ALIGN=left><TT>0..9</TT></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=right><I><FONT COLOR=maroon>num</FONT></I></TD>
+<TD ALIGN=center>&nbsp;&nbsp;::=&nbsp;&nbsp;</TD>
+<TD NOWRAP ALIGN=left><I><FONT COLOR=maroon>digit</FONT></I>...<I><FONT COLOR=maroon>digit</FONT></I></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=right><I><FONT COLOR=maroon>integer</FONT></I></TD>
+<TD ALIGN=center>&nbsp;&nbsp;::=&nbsp;&nbsp;</TD>
+<TD NOWRAP ALIGN=left><I><FONT COLOR=maroon>[</FONT></I><TT>-</TT><I><FONT COLOR=maroon>]</FONT></I><I><FONT COLOR=maroon>num</FONT></I></TD>
+</TR></TABLE>
+</DIV><BR>
+
+<H5>
+Strings
+</H5>
+
+Strings are delimited by <CODE>"</CODE> (double quote), and enclose a
+sequence of any characters different from <CODE>"</CODE> and <CODE>\</CODE>, or
+one of the following sequences
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=1>
+<TR><TD NOWRAP ALIGN=left>Sequence</TD>
+<TD NOWRAP ALIGN=left>Character denoted</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left><CODE>\\</CODE></TD>
+<TD NOWRAP ALIGN=left>backslash (<CODE>\</CODE>)</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left><CODE>\"</CODE></TD>
+<TD NOWRAP ALIGN=left>double quote (<CODE>"</CODE>)</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left><CODE>\n</CODE></TD>
+<TD NOWRAP ALIGN=left>newline (LF)</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left><CODE>\r</CODE></TD>
+<TD NOWRAP ALIGN=left>return (CR)</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left><CODE>\t</CODE></TD>
+<TD NOWRAP ALIGN=left>horizontal tabulation (TAB)</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left><CODE>\b</CODE></TD>
+<TD NOWRAP ALIGN=left>backspace (BS)</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left><CODE>\</CODE><I>ddd</I></TD>
+<TD NOWRAP ALIGN=left>the character with ASCII code <I>ddd</I> in decimal</TD>
+</TR></TABLE>
+</DIV>
+Strings can be split on several lines using a backslash (<CODE>\</CODE>) at
+the end of each line, just before the newline. For instance,<BR>
+<BR>
+<DIV ALIGN=left><PRE>
+AddPath "$COQLIB/\
+contrib/Rocq/LAMBDA".
+</PRE>
+</DIV>
+ 
+is correctly parsed, and equivalent to<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;AddPath&nbsp;"$COQLIB/contrib/Rocq/LAMBDA".</TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+
+<H5>
+Keywords
+</H5>
+
+The following identifiers are reserved keywords, and cannot be
+employed otherwise:
+<DIV ALIGN=center>
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=left><CODE>as</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>end</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>in</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>of</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>using</CODE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left><CODE>with</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Axiom</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Cases</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>CoFixpoint</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>CoInductive</CODE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left><CODE>Compile</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Definition</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Fixpoint</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Grammar</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Hypothesis</CODE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left><CODE>Inductive</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Load</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Parameter</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Proof</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Prop</CODE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left><CODE>Qed</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Quit</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Set</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Syntax</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Theorem</CODE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left><CODE>Type</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Variable</CODE></TD>
+<TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=left></TD>
+</TR></TABLE>
+</DIV><BR>
+Although they are not considered as keywords, it is not advised to use
+words of the following list as identifiers:
+<DIV ALIGN=center>
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=left><CODE>Add</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>AddPath</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Abort</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Abstraction</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>All</CODE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left><CODE>Begin</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Cd</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Chapter</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Check</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Compute</CODE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left><CODE>Defined</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>DelPath</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Drop</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>End</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Eval</CODE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left><CODE>Extraction</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Fact</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Focus</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Goal</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Guarded</CODE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left><CODE>Hint</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Immediate</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Induction</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Infix</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Inspect</CODE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left><CODE>Lemma</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Let</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>LoadPath</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Local</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Minimality</CODE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left><CODE>ML</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Module</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Modules</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Mutual</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Opaque</CODE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left><CODE>Parameters</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Print</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Pwd</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Remark</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Remove</CODE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left><CODE>Require</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Reset</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Restart</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Restore</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Resume</CODE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left><CODE>Save</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Scheme</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Search</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Section</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Show</CODE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left><CODE>Silent</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>State</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>States</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Suspend</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Syntactic</CODE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left><CODE>Test</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Transparent</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Undo</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Unset</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Unfocus</CODE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left><CODE>Variables</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>Write</CODE></TD>
+<TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=left></TD>
+</TR></TABLE>
+</DIV><BR>
+
+<H5>
+Special tokens
+</H5>
+
+The following sequences of characters are special tokens:
+<DIV ALIGN=center>
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=left><CODE>|</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>:</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>:=</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>=</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>&gt;</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>&gt;&gt;</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>&lt;&gt;</CODE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left><CODE>&lt;&lt;</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>&lt;</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>-&gt;</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>;</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>#</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>*</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>,</CODE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left><CODE>?</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>@</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>::</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>/</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>&lt;-</CODE></TD>
+<TD NOWRAP ALIGN=left><CODE>=&gt;</CODE></TD>
+<TD NOWRAP ALIGN=left></TD>
+</TR></TABLE>
+</DIV><BR>
+Lexical ambiguities are resolved according to the ``longest match''
+rule: when a sequence of non alphanumerical characters can be decomposed
+into several different ways, then the first token is the longest
+possible one (among all tokens defined at this moment), and so on.<BR>
+<BR>
+<HR>
+
+<A HREF="node.0.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.0.1.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

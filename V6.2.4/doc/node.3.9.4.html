@@ -1,0 +1,119 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+20.5&nbsp;Add a ring structure
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.9.3.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.9.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.9.5.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+20.5&nbsp;Add a ring structure
+</H2>
+
+
+It can be done in the <FONT COLOR=purple>Coq</FONT>toplevel (No ML file to edit and to link
+with <FONT COLOR=purple>Coq</FONT>). First, <TT>Ring</TT> can handle two kinds of structure:
+rings and semi-rings. Semi-rings are like rings without an opposite to
+addition. Their precise specification (in <FONT COLOR=purple>Gallina</FONT>) can be found in
+the file<BR>
+<BR>
+<BLOCKQUOTE><PRE>
+tactics/contrib/polynom/Ring_theory.v
+</PRE></BLOCKQUOTE>The typical example of ring is <TT>Z</TT>, the typical
+example of semi-ring is <TT>nat</TT>.<BR>
+<BR>
+The specification of a
+ring is divided in two parts : first the record of constants
+(<FONT FACE=symbol>Å</FONT>, <FONT FACE=symbol>Ä</FONT>, 1, 0, <FONT FACE=symbol>Q</FONT>) and then the theorems
+(associativity, commutativity, etc.).<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Section&nbsp;Theory_of_semi_rings.</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;A&nbsp;:&nbsp;Set.</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;Aplus&nbsp;:&nbsp;A&nbsp;-&gt;&nbsp;A&nbsp;-&gt;&nbsp;A.</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;Amult&nbsp;:&nbsp;A&nbsp;-&gt;&nbsp;A&nbsp;-&gt;&nbsp;A.</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;Aone&nbsp;:&nbsp;A.</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;Azero&nbsp;:&nbsp;A.</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;(*&nbsp;There&nbsp;is&nbsp;also&nbsp;a&nbsp;"weakly&nbsp;decidable"&nbsp;equality&nbsp;on&nbsp;A.&nbsp;That&nbsp;means&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;that&nbsp;if&nbsp;(A_eq&nbsp;x&nbsp;y)=true&nbsp;then&nbsp;x=y&nbsp;but&nbsp;x=y&nbsp;can&nbsp;arise&nbsp;when&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;(A_eq&nbsp;x&nbsp;y)=false.&nbsp;On&nbsp;an&nbsp;abstract&nbsp;ring&nbsp;the&nbsp;function&nbsp;[x,y:A]false</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;is&nbsp;a&nbsp;good&nbsp;choice.&nbsp;The&nbsp;proof&nbsp;of&nbsp;A_eq_prop&nbsp;is&nbsp;in&nbsp;this&nbsp;case&nbsp;easy.&nbsp;*)</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;Aeq&nbsp;:&nbsp;A&nbsp;-&gt;&nbsp;A&nbsp;-&gt;&nbsp;bool.</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Record&nbsp;Semi_Ring_Theory&nbsp;:&nbsp;Prop&nbsp;:=</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;{&nbsp;SR_plus_sym&nbsp;&nbsp;:&nbsp;(n,m:A)[|&nbsp;n&nbsp;+&nbsp;m&nbsp;=&nbsp;m&nbsp;+&nbsp;n&nbsp;|];</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;SR_plus_assoc&nbsp;:&nbsp;(n,m,p:A)[|&nbsp;n&nbsp;+&nbsp;(m&nbsp;+&nbsp;p)&nbsp;=&nbsp;(n&nbsp;+&nbsp;m)&nbsp;+&nbsp;p&nbsp;|];</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;SR_mult_sym&nbsp;:&nbsp;(n,m:A)[|&nbsp;n*m&nbsp;=&nbsp;m*n&nbsp;|];</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;SR_mult_assoc&nbsp;:&nbsp;(n,m,p:A)[|&nbsp;n*(m*p)&nbsp;=&nbsp;(n*m)*p&nbsp;|];</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;SR_plus_zero_left&nbsp;:(n:A)[|&nbsp;0&nbsp;+&nbsp;n&nbsp;=&nbsp;n|];</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;SR_mult_one_left&nbsp;:&nbsp;(n:A)[|&nbsp;1*n&nbsp;=&nbsp;n&nbsp;|];</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;SR_mult_zero_left&nbsp;:&nbsp;(n:A)[|&nbsp;0*n&nbsp;=&nbsp;0&nbsp;|];</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;SR_distr_left&nbsp;&nbsp;&nbsp;:&nbsp;(n,m,p:A)&nbsp;[|&nbsp;(n&nbsp;+&nbsp;m)*p&nbsp;=&nbsp;n*p&nbsp;+&nbsp;m*p&nbsp;|];</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;SR_plus_reg_left&nbsp;:&nbsp;(n,m,p:A)[|&nbsp;n&nbsp;+&nbsp;m&nbsp;=&nbsp;n&nbsp;+&nbsp;p&nbsp;|]&nbsp;-&gt;&nbsp;m=p;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;SR_eq_prop&nbsp;:&nbsp;(x,y:A)&nbsp;(Is_true&nbsp;(Aeq&nbsp;x&nbsp;y))&nbsp;-&gt;&nbsp;x=y</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;}.</TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Section&nbsp;Theory_of_rings.</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;A&nbsp;:&nbsp;Set.</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;Aplus&nbsp;:&nbsp;A&nbsp;-&gt;&nbsp;A&nbsp;-&gt;&nbsp;A.</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;Amult&nbsp;:&nbsp;A&nbsp;-&gt;&nbsp;A&nbsp;-&gt;&nbsp;A.</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;Aone&nbsp;:&nbsp;A.</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;Azero&nbsp;:&nbsp;A.</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;Aopp&nbsp;:&nbsp;A&nbsp;-&gt;&nbsp;A.</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;Aeq&nbsp;:&nbsp;A&nbsp;-&gt;&nbsp;A&nbsp;-&gt;&nbsp;bool.</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Record&nbsp;Ring_Theory&nbsp;:&nbsp;Prop&nbsp;:=</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;{&nbsp;Th_plus_sym&nbsp;&nbsp;:&nbsp;(n,m:A)[|&nbsp;n&nbsp;+&nbsp;m&nbsp;=&nbsp;m&nbsp;+&nbsp;n&nbsp;|];</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Th_plus_assoc&nbsp;:&nbsp;(n,m,p:A)[|&nbsp;n&nbsp;+&nbsp;(m&nbsp;+&nbsp;p)&nbsp;=&nbsp;(n&nbsp;+&nbsp;m)&nbsp;+&nbsp;p&nbsp;|];</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Th_mult_sym&nbsp;:&nbsp;(n,m:A)[|&nbsp;n*m&nbsp;=&nbsp;m*n&nbsp;|];</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Th_mult_assoc&nbsp;:&nbsp;(n,m,p:A)[|&nbsp;n*(m*p)&nbsp;=&nbsp;(n*m)*p&nbsp;|];</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Th_plus_zero_left&nbsp;:(n:A)[|&nbsp;0&nbsp;+&nbsp;n&nbsp;=&nbsp;n|];</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Th_mult_one_left&nbsp;:&nbsp;(n:A)[|&nbsp;1*n&nbsp;=&nbsp;n&nbsp;|];</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Th_opp_def&nbsp;:&nbsp;(n:A)&nbsp;[|&nbsp;n&nbsp;+&nbsp;(-n)&nbsp;=&nbsp;0&nbsp;|];</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Th_distr_left&nbsp;&nbsp;&nbsp;:&nbsp;(n,m,p:A)&nbsp;[|&nbsp;(n&nbsp;+&nbsp;m)*p&nbsp;=&nbsp;n*p&nbsp;+&nbsp;m*p&nbsp;|];</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Th_eq_prop&nbsp;:&nbsp;(x,y:A)&nbsp;(Is_true&nbsp;(Aeq&nbsp;x&nbsp;y))&nbsp;-&gt;&nbsp;x=y</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;}.</TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+To define a ring structure on A, you must provide an addition, a
+multiplication, an opposite function and two unities 0 and 1.<BR>
+<BR>
+You must then prove all theorems that make
+(A,Aplus,Amult,Aone,Azero,Aeq) 
+a ring structure, and pack them with the <CODE>Build_Ring_Theory</CODE> 
+constructor.<BR>
+<BR>
+Finally to register a ring you must type :<BR>
+<BR>
+<A NAME="@default618"></A><A NAME="@command187"></A><BLOCKQUOTE><TT>Add Ring</TT> <I>A Aplus Amult Aone Azero Ainv Aeq T</I> <TT>[</TT> <I>c1 ... cn</I> <TT>].</TT>
+</BLOCKQUOTE>where <I>A</I> is a term of type <TT>Set</TT>, 
+<I>Aplus</I> is a term of type <TT>A-&gt;A-&gt;A</TT>,
+<I>Amult</I> is a term of type <TT>A-&gt;A-&gt;A</TT>,
+<I>Aone</I> is a term of type <TT>A</TT>,
+<I>Azero</I> is a term of type <TT>A</TT>,
+<I>Ainv</I> is a term of type <TT>A-&gt;A</TT>,
+<I>T</I> is a term of type 
+<TT>(Ring_Theory </TT><I>A Aplus Amult Aone Azero Ainv
+ Aeq</I><TT>)</TT>.
+The arguments <I>c1 ... cn</I>, 
+are the names of constructors who define closed terms : a
+subterm will be considered as a constant if it is either one of the
+terms <I>c1 ... cn</I> or the application of one of these terms to
+closed terms. For <TT>nat</TT>, the given construtors are <TT>S</TT>
+and <TT>O</TT>, and the closed terms are <TT>O</TT>, <TT>(S O)</TT>,
+<TT>(S (S O))</TT>, ...<BR>
+<BR>
+<BR><B>Variants: </B><OL>
+<LI><TT>Add Semi Ring</TT> <I>A Aplus Amult Aone Azero Aeq T</I> 
+ <TT>[</TT> <I>c1 ... cn</I> <TT>].</TT><A NAME="@default619"></A><A NAME="@command188"></A><BR>There are two differences with the <TT>Add Ring</TT> command : 
+ there is no inverse function and the term T must be of type 
+ <TT>(Semi_Ring_Theory </TT><I>A Aplus Amult Aone Azero
+ Aeq</I><TT>)</TT>. 
+</OL><BR><B>Error messages: </B><OL>
+<LI><TT>Not a valid (semi)ring theory</TT>. That happens when the
+ condition on <I>a</I>, <I>c</I> and <I>t</I> does not hold.
+</OL>The typical example of ring is <TT>Z</TT>, and the typical example of
+semi-ring is <TT>nat</TT>. Another ring structure is defined on the
+booleans. These three rings are loaded by default when you type
+<TT>Require Ring</TT>.<BR>
+<BR>
+After the <TT>Add Ring</TT> command, you can use polynom for
+the declared ring or semi-ring in the way presented in last paragraph.<BR>
+<BR>
+Actually, the hypothesis is made than no more than one ring structure
+may be declared for a given type in <TT>Set</TT>. This allows automatic
+detection of the theory used to achieve the normalization. On popular
+demand, we can change that and allow
+several ring structures on the same set. Anyway the source
+code of <TT>Ring</TT> was written for didactic purposes, it is
+or should be clear and well documented, then
+you can easily hack it do to whatever you want.<BR>
+<BR>
+The table of theories of <TT>Ring</TT> is compatible with the <FONT COLOR=purple>Coq</FONT> 
+sectionning mechanism. If you declare a Ring inside a section, the
+declaration will be thrown away when closing the section.
+And when you require a compiled file, all the <TT>Add Ring</TT>
+commands of this file that are not inside a section will be loaded.<BR>
+<BR>
+
+ <HR>
+
+<A HREF="node.3.9.3.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.9.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.9.5.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

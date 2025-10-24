@@ -1,0 +1,203 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+18.7&nbsp;Examples
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.7.5.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.7.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.7.7.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+18.7&nbsp;Examples
+</H2>
+
+
+<A NAME="prog:examples"></A>
+ 
+<H3>
+
+18.7.1&nbsp;Computation of <I>X</I><SUP><FONT SIZE=2><I>n</I></FONT></SUP>
+</H3>
+As a first example, we prove the correctness of a program computing
+<I>X</I><SUP><FONT SIZE=2><I>n</I></FONT></SUP> using the following equations:
+<DIV ALIGN=center>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR VALIGN=middle><TD nowrap><FONT FACE=symbol>
+ì<BR>í<BR>î</FONT></TD>
+<TD NOWRAP>
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=left><I>X</I><SUP><FONT SIZE=2>2<I>n</I></FONT></SUP></TD>
+<TD NOWRAP ALIGN=center>=</TD>
+<TD NOWRAP ALIGN=left>(<I>X</I><SUP><FONT SIZE=2><I>n</I></FONT></SUP>)<SUP><FONT SIZE=2>2</FONT></SUP></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left><I>X</I><SUP><FONT SIZE=2>2<I>n</I>+1</FONT></SUP></TD>
+<TD NOWRAP ALIGN=center>=</TD>
+<TD NOWRAP ALIGN=left><I>X</I> × (<I>X</I><SUP><FONT SIZE=2><I>n</I></FONT></SUP>)<SUP><FONT SIZE=2>2</FONT></SUP>
+</TD>
+</TR></TABLE></TD>
+<TD nowrap>
+</TD>
+</TR></TABLE></DIV>
+If <I>x</I> and <I>n</I> are variables containing the input and <I>y</I> a variable that will
+contain the result (<I>x</I><SUP><FONT SIZE=2><I>n</I></FONT></SUP>), such a program may be the following one:
+<DIV ALIGN=center>8cm
+ 
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD><I>m</I> := !<I>x</I> ; <I>y</I> := 1 ;</TD>
+</TR>
+<TR><TD><FONT COLOR=purple>while</FONT> !<I>n</I> <FONT FACE=symbol>¹</FONT> 0 <FONT COLOR=purple>do</FONT></TD>
+</TR>
+<TR><TD>&nbsp;</TD>
+<TD><FONT COLOR=purple>if</FONT> (<I>odd</I> &nbsp; !<I>n</I>) <FONT COLOR=purple>then</FONT> <I>y</I> := !<I>y</I> × !<I>m</I> ;</TD>
+</TR>
+<TR><TD>&nbsp;</TD>
+<TD><I>m</I> := !<I>m</I> × !<I>m</I> ;</TD>
+</TR>
+<TR><TD>&nbsp;</TD>
+<TD><I>n</I> := !<I>n</I> / 2</TD>
+</TR>
+<TR><TD><FONT COLOR=purple>done</FONT></TD>
+</TR></TABLE>
+ 
+</DIV><BR>
+
+<H5>
+Specification part.
+</H5>
+Here we choose to use the binary integers of <TT>ZArith</TT>.
+The exponentiation <I>X</I><SUP><FONT SIZE=2><I>n</I></FONT></SUP> is defined, for <I>n</I> <FONT FACE=symbol>³</FONT> 0, in the module 
+<TT>Zpower</TT>:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Require&nbsp;ZArith.</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Require&nbsp;Zpower.</TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+In particular, the module <TT>ZArith</TT> loads a module <TT>Zmisc</TT>
+which contains the definitions of the predicate <TT>Zeven</TT> and
+<TT>Zodd</TT>, and the function <TT>Zdiv2</TT>.
+This module <TT>ProgBool</TT> also contains a test function
+<TT>Zeven_odd_bool</TT> of type 
+<FONT FACE=symbol>"</FONT> <I>n</I>. <FONT FACE=symbol>$</FONT> <I>b</I>. <FONT COLOR=purple><I>if</I></FONT> &nbsp; <I>b</I> &nbsp;<FONT COLOR=purple><I>then</I></FONT> &nbsp; (<I>Zeven</I>&nbsp;<I>n</I>) &nbsp; <FONT COLOR=purple><I>else</I></FONT> &nbsp; (<I>Zodd</I>&nbsp;<I>n</I>)
+derived from the proof <TT>Zeven_odd_dec</TT>,
+as explained in section&nbsp;<A HREF="node.3.7.1.html#prog:booleans">X</A>:<BR>
+<BR>
+
+<H5>
+Correctness part.
+</H5>
+Then we come to the correctness proof. We first import the <FONT COLOR=purple>Coq</FONT>
+module <TT>Programs</TT>:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Require&nbsp;Programs.</TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Then we introduce all the variables needed by the program:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Parameter&nbsp;x&nbsp;:&nbsp;Z.</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Global&nbsp;Variable&nbsp;n,m,y&nbsp;:&nbsp;Z&nbsp;ref.</TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+At last, we can give the annotated program:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Correctness&nbsp;i_exp</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;{&nbsp;`n&nbsp;&gt;=&nbsp;0`&nbsp;}</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;begin</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m&nbsp;:=&nbsp;x;&nbsp;y&nbsp;:=&nbsp;1;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;!n&nbsp;&gt;&nbsp;0&nbsp;do</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;invariant&nbsp;(Zpower&nbsp;x&nbsp;n@0)=(Zmult&nbsp;y&nbsp;(Zpower&nbsp;m&nbsp;n))&nbsp;/\&nbsp;`n&nbsp;&gt;=&nbsp;0`</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;variant&nbsp;n&nbsp;}</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(if&nbsp;not&nbsp;(Zeven_odd_bool&nbsp;!n)&nbsp;then&nbsp;y&nbsp;:=&nbsp;(Zmult&nbsp;!y&nbsp;!m))</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;(Zpower&nbsp;x&nbsp;n@0)&nbsp;=&nbsp;(Zmult&nbsp;y&nbsp;(Zpower&nbsp;m&nbsp;(Zdouble&nbsp;(Zdiv2&nbsp;n))))&nbsp;};</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m&nbsp;:=&nbsp;(Zsquare&nbsp;!m);</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n&nbsp;:=&nbsp;(Zdiv2&nbsp;!n)</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;done</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;end</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;y=(Zpower&nbsp;x&nbsp;n@0)&nbsp;}</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>5&nbsp;subgoals</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;m&nbsp;:&nbsp;Z</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;n&nbsp;:&nbsp;Z</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;y&nbsp;:&nbsp;Z</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;Pre2&nbsp;:&nbsp;`n&nbsp;&gt;=&nbsp;0`</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;phi0&nbsp;:&nbsp;Z</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;m1&nbsp;:&nbsp;Z</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;n0&nbsp;:&nbsp;Z</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;y1&nbsp;:&nbsp;Z</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;Variant1&nbsp;:&nbsp;`phi0&nbsp;=&nbsp;n0`</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;Pre1&nbsp;:&nbsp;`(Zpower&nbsp;x&nbsp;n)&nbsp;=&nbsp;y1*(Zpower&nbsp;m1&nbsp;n0)`/\`n0&nbsp;&gt;=&nbsp;0`</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;b&nbsp;:&nbsp;bool</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;Test2&nbsp;:&nbsp;`n0&nbsp;&gt;&nbsp;0`</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;b0&nbsp;:&nbsp;bool</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;Test1&nbsp;:&nbsp;(Zodd&nbsp;n0)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;`(Zpower&nbsp;x&nbsp;n)&nbsp;=&nbsp;y1*m1*(Zpower&nbsp;m1&nbsp;(Zdouble&nbsp;(Zdiv2&nbsp;n0)))`</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>subgoal&nbsp;2&nbsp;is:</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;`(Zpower&nbsp;x&nbsp;n)&nbsp;=&nbsp;y1*(Zpower&nbsp;m1&nbsp;(Zdouble&nbsp;(Zdiv2&nbsp;n0)))`</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>subgoal&nbsp;3&nbsp;is:</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;(Zwf&nbsp;`0`&nbsp;(Zdiv2&nbsp;n0)&nbsp;n0)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;/\`(Zpower&nbsp;x&nbsp;n)&nbsp;=&nbsp;y2*(Zpower&nbsp;(Zsquare&nbsp;m1)&nbsp;(Zdiv2&nbsp;n0))`</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;/\`(Zdiv2&nbsp;n0)&nbsp;&gt;=&nbsp;0`</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>subgoal&nbsp;4&nbsp;is:</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;`(Zpower&nbsp;x&nbsp;n)&nbsp;=&nbsp;1*(Zpower&nbsp;x&nbsp;n)`/\`n&nbsp;&gt;=&nbsp;0`</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>subgoal&nbsp;5&nbsp;is:</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;`y1&nbsp;=&nbsp;(Zpower&nbsp;x&nbsp;n)`</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+The proof obligations require some lemmas involving <TT>Zpower</TT> and
+<TT>Zdiv2</TT>. You can find the whole proof in the <FONT COLOR=purple>Coq</FONT> standard
+library (see below).
+Let us make some quick remarks about this program and the way it was
+written: 
+<UL>
+<LI>The name <CODE>n@0</CODE> is used to refer to the initial value of
+ the variable <CODE>n</CODE>, as well inside the loop invariant as in
+ the post-condition;<BR>
+<BR>
+ 
+<LI>Purely functional expressions are allowed anywhere in the
+ program and they can use any purely informative <FONT COLOR=purple>Coq</FONT> constants;
+ That is why we can use <TT>Zmult</TT>, <TT>Zsquare</TT> and
+ <TT>Zdiv2</TT> in the programs even if they are not other functions
+ previously introduced as programs.
+</UL>
+ 
+<H3>
+
+18.7.2&nbsp;A recursive program
+</H3>
+To give an example of a recursive program, let us rewrite the previous
+program into a recursive one. We obtain the following program:
+<DIV ALIGN=center>8cm
+ 
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD><FONT COLOR=purple>let</FONT> <FONT COLOR=purple>rec</FONT> <I>exp</I> <I>x</I> <I>n</I> =</TD>
+</TR>
+<TR><TD>&nbsp;</TD>
+<TD><FONT COLOR=purple>if</FONT> <I>n</I> = 0 <FONT COLOR=purple>then</FONT></TD>
+</TR>
+<TR><TD>&nbsp;</TD>
+<TD>&nbsp;</TD>
+<TD>1</TD>
+</TR>
+<TR><TD>&nbsp;</TD>
+<TD><FONT COLOR=purple>else</FONT></TD>
+</TR>
+<TR><TD>&nbsp;</TD>
+<TD>&nbsp;</TD>
+<TD><FONT COLOR=purple>let</FONT> <I>y</I> = (<I>exp</I> &nbsp; <I>x</I> &nbsp; (<I>n</I>/2)) <FONT COLOR=purple>in</FONT></TD>
+</TR>
+<TR><TD>&nbsp;</TD>
+<TD>&nbsp;</TD>
+<TD><FONT COLOR=purple>if</FONT> (<I>even</I> &nbsp; <I>n</I>) <FONT COLOR=purple>then</FONT> <I>y</I>× <I>y</I> 
+ <FONT COLOR=purple>else</FONT> <I>x</I>× (<I>y</I>× <I>y</I>)</TD>
+</TR></TABLE>
+ 
+</DIV><BR>
+This recursive program, once it is annotated, is given to the
+tactic <TT>Correctness</TT>:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Correctness&nbsp;r_exp</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;let&nbsp;rec&nbsp;exp&nbsp;(x:Z)&nbsp;(n:Z)&nbsp;:&nbsp;Z&nbsp;{&nbsp;variant&nbsp;n&nbsp;}&nbsp;=</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;`n&nbsp;&gt;=&nbsp;0`&nbsp;}</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(if&nbsp;n&nbsp;=&nbsp;0&nbsp;then</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;y&nbsp;=&nbsp;(exp&nbsp;x&nbsp;(Zdiv2&nbsp;n))&nbsp;in</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(if&nbsp;(Zeven_odd_bool&nbsp;n)&nbsp;then</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Zmult&nbsp;y&nbsp;y)</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Zmult&nbsp;x&nbsp;(Zmult&nbsp;y&nbsp;y)))&nbsp;{&nbsp;result=(Zpower&nbsp;x&nbsp;n)&nbsp;}</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;result=(Zpower&nbsp;x&nbsp;n)&nbsp;}</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>5&nbsp;subgoals</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;x0&nbsp;:&nbsp;Z</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;n&nbsp;:&nbsp;Z</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;rphi1&nbsp;:&nbsp;Z</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;exp&nbsp;:&nbsp;(phi:Z)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Zwf&nbsp;`0`&nbsp;phi&nbsp;rphi1)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;(x,n:Z)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`phi&nbsp;=&nbsp;n`-&gt;`n&nbsp;&gt;=&nbsp;0`-&gt;{result:Z&nbsp;|&nbsp;`result&nbsp;=&nbsp;(Zpower&nbsp;x&nbsp;n)`}</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;x1&nbsp;:&nbsp;Z</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;n0&nbsp;:&nbsp;Z</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;Variant1&nbsp;:&nbsp;`rphi1&nbsp;=&nbsp;n0`</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;Pre1&nbsp;:&nbsp;`n0&nbsp;&gt;=&nbsp;0`</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;b&nbsp;:&nbsp;bool</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;Test2&nbsp;:&nbsp;`n0&nbsp;=&nbsp;0`</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;`1&nbsp;=&nbsp;(Zpower&nbsp;x1&nbsp;n0)`</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>subgoal&nbsp;2&nbsp;is:</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;(Zwf&nbsp;`0`&nbsp;(Zdiv2&nbsp;n0)&nbsp;n0)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>subgoal&nbsp;3&nbsp;is:</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;`(Zdiv2&nbsp;n0)&nbsp;&gt;=&nbsp;0`</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>subgoal&nbsp;4&nbsp;is:</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;`y*y&nbsp;=&nbsp;(Zpower&nbsp;x1&nbsp;n0)`</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>subgoal&nbsp;5&nbsp;is:</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;`x1*(y*y)&nbsp;=&nbsp;(Zpower&nbsp;x1&nbsp;n0)`</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+You can notice that the specification is simpler in the recursive case:
+we only have to give the pre- and post-conditions --- which are the same
+as for the imperative version --- but there is no annotation
+corresponding to the loop invariant.
+The other two annotations in the recursive program are added for the
+recursive call and for the test inside the <FONT COLOR=purple>let in</FONT> construct
+(it can not be done automatically in general,
+so the user has to add it by himself).<BR>
+<BR>
+
+ 
+<H3>
+
+18.7.3&nbsp;Other examples
+</H3>
+You will find some other examples with the distribution of the system
+<FONT COLOR=purple>Coq</FONT>, in the sub-directory <CODE>tactics/programs/EXAMPLES</CODE> of the
+<FONT COLOR=purple>Coq</FONT> standard library. Those examples are mostly programs to compute
+the factorial and the exponentiation in various ways (on types <TT>nat</TT>
+or <TT>Z</TT>, in imperative way or recursively, with global
+variables or as functions, ...).<BR>
+<BR>
+There are also some bigger correctness developments in the 
+<FONT COLOR=purple>Coq</FONT> contributions, which are available on the web page
+<CODE>coq.inria.fr/contribs</CODE>.
+for the moment, you can find:
+<UL>
+<LI>A proof of <EM>insertion sort</EM> by Nicolas Magaud, ENS Lyon;
+ 
+<LI>A proof of <EM>quicksort</EM> and <EM>find</EM> by the author.
+</UL>
+ <HR>
+
+<A HREF="node.3.7.5.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.7.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.7.7.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

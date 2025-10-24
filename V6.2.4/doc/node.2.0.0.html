@@ -1,0 +1,339 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+9.1&nbsp;Abstract syntax trees (AST)
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.2.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.2.0.1.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+9.1&nbsp;Abstract syntax trees (AST)
+</H2>
+
+
+
+<A NAME="@default513"></A><A NAME="@default514"></A><A NAME="astsyntax"></A>The AST expressions are conceptually divided into two classes:
+<EM>constructive expressions</EM> (those that can be used in parsing
+rules) and <EM>destructive expressions</EM> (those that can be used in
+pretty printing rules). In the following we give the concrete syntax
+of expressions and some examples of their usage.<BR>
+<BR>
+The BNF grammar <I><FONT COLOR=maroon>ast</FONT></I> in Fig.&nbsp;<A HREF="node.2.0.0.html#astexpr">9.1</A> defines the syntax
+of both constructive and destructive expressions. The lexical
+conventions are the same as in section&nbsp;<A HREF="node.0.0.0.html#lexical">1.1</A>. Let us first
+describe the features common to constructive and destructive
+expressions.<BR>
+<BR>
+<BLOCKQUOTE><HR><DIV ALIGN=center>
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=1>
+<TR><TD NOWRAP ALIGN=right><I><FONT COLOR=maroon>ast</FONT></I></TD>
+<TD NOWRAP ALIGN=center>::=</TD>
+<TD NOWRAP ALIGN=left><I><FONT COLOR=maroon>meta</FONT></I></TD>
+<TD NOWRAP ALIGN=right>(metavariable)</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left><I><FONT COLOR=maroon>ident</FONT></I></TD>
+<TD NOWRAP ALIGN=right>(variable)</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left><I><FONT COLOR=maroon>integer</FONT></I></TD>
+<TD NOWRAP ALIGN=right>(positive integer)</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left><I><FONT COLOR=maroon>string</FONT></I></TD>
+<TD NOWRAP ALIGN=right>(quoted string)</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left><I><FONT COLOR=maroon>path</FONT></I></TD>
+<TD NOWRAP ALIGN=right>(section-path)</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left><CODE>{</CODE> <I><FONT COLOR=maroon>ident</FONT></I> <CODE>}</CODE></TD>
+<TD NOWRAP ALIGN=right>(identifier)</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left><CODE>[</CODE> <I><FONT COLOR=maroon>name</FONT></I> <CODE>]</CODE> <I><FONT COLOR=maroon>ast</FONT></I></TD>
+<TD NOWRAP ALIGN=right>(abstraction)</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left><CODE>(</CODE> <I><FONT COLOR=maroon>ident</FONT></I>&nbsp;&nbsp;<I><FONT COLOR=maroon>[</FONT></I><I><FONT COLOR=maroon>ast</FONT></I>  ...  <I><FONT COLOR=maroon>ast</FONT></I><I><FONT COLOR=maroon>]</FONT></I> <CODE>)</CODE></TD>
+<TD NOWRAP ALIGN=right>(application node)</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left><CODE>(</CODE> <I><FONT COLOR=maroon>special-tok</FONT></I>&nbsp;&nbsp;<I><FONT COLOR=maroon>meta</FONT></I> <CODE>)</CODE></TD>
+<TD NOWRAP ALIGN=right>(special-operator)</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left><CODE>'</CODE> <I><FONT COLOR=maroon>ast</FONT></I></TD>
+<TD NOWRAP ALIGN=right>(quoted ast)</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left><I><FONT COLOR=maroon>quotation</FONT></I></TD>
+<TD NOWRAP ALIGN=right>&nbsp;</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=right><I><FONT COLOR=maroon>meta</FONT></I></TD>
+<TD NOWRAP ALIGN=center>::=</TD>
+<TD NOWRAP ALIGN=left><CODE>$</CODE><I><FONT COLOR=maroon>ident</FONT></I></TD>
+<TD NOWRAP ALIGN=right>&nbsp;</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=right><I><FONT COLOR=maroon>path</FONT></I></TD>
+<TD NOWRAP ALIGN=center>::=</TD>
+<TD NOWRAP ALIGN=left><TT>#</TT><I><FONT COLOR=maroon>ident</FONT></I>  ...  <TT>#</TT><I><FONT COLOR=maroon>ident</FONT></I> <CODE>.</CODE> <I><FONT COLOR=maroon>kind</FONT></I></TD>
+<TD NOWRAP ALIGN=right>&nbsp;</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=right><I><FONT COLOR=maroon>kind</FONT></I></TD>
+<TD NOWRAP ALIGN=center>::=</TD>
+<TD NOWRAP ALIGN=left><CODE>cci</CODE> &nbsp;|&nbsp;<CODE>fw</CODE> &nbsp;|&nbsp; <CODE>obj</CODE></TD>
+<TD NOWRAP ALIGN=right>&nbsp;</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=right><I><FONT COLOR=maroon>name</FONT></I></TD>
+<TD NOWRAP ALIGN=center>::=</TD>
+<TD NOWRAP ALIGN=left><CODE>&lt;&gt;</CODE> &nbsp;|&nbsp; <I><FONT COLOR=maroon>ident</FONT></I> &nbsp;|&nbsp; <I><FONT COLOR=maroon>meta</FONT></I></TD>
+<TD NOWRAP ALIGN=right>&nbsp;</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=right><I><FONT COLOR=maroon>special-tok</FONT></I></TD>
+<TD NOWRAP ALIGN=center>::=</TD>
+<TD NOWRAP ALIGN=left><CODE>$LIST</CODE>&nbsp;|&nbsp;<CODE>$VAR</CODE>&nbsp;|&nbsp;<CODE>$NUM</CODE>&nbsp;|&nbsp;<CODE>$STR</CODE>&nbsp;|&nbsp;<CODE>$PATH</CODE>&nbsp;|&nbsp;<CODE>$ID</CODE></TD>
+<TD NOWRAP ALIGN=right>&nbsp;</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=right><I><FONT COLOR=maroon>quotation</FONT></I></TD>
+<TD NOWRAP ALIGN=center>::=</TD>
+<TD NOWRAP ALIGN=left><CODE>&lt;&lt;</CODE> &nbsp;<I><FONT COLOR=maroon>meta-command</FONT></I>&nbsp; <CODE>&gt;&gt;</CODE></TD>
+<TD NOWRAP ALIGN=right>&nbsp;</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left><CODE>&lt;:command:&lt;</CODE> &nbsp;<I><FONT COLOR=maroon>meta-command</FONT></I>&nbsp; <CODE>&gt;&gt;</CODE></TD>
+<TD NOWRAP ALIGN=right>&nbsp;</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left><CODE>&lt;:vernac:&lt;</CODE> &nbsp;<I><FONT COLOR=maroon>meta-vernac</FONT></I>&nbsp; <CODE>&gt;&gt;</CODE></TD>
+<TD NOWRAP ALIGN=right>&nbsp;</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left><CODE>&lt;:tactic:&lt;</CODE> &nbsp;<I><FONT COLOR=maroon>meta-tactic</FONT></I>&nbsp; <CODE>&gt;&gt;</CODE></TD>
+<TD NOWRAP ALIGN=right>&nbsp;</TD>
+</TR></TABLE>
+</DIV>
+<A NAME="astexpr"></A>
+<BR>
+<DIV ALIGN=center>Figure 9.1: Syntax of AST expressions</DIV>
+<HR></BLOCKQUOTE>
+<H4>
+Atomic AST
+</H4>
+An atomic AST can be either a variable, a natural number, a quoted
+string, a section path or an identifier. They are the basic components
+of an AST.<BR>
+<BR>
+
+<H4>
+Metavariable
+</H4>
+
+<A NAME="@default515"></A>As we will see later, metavariables may denote an AST or an AST list.
+So, we introduce two types of variables: <CODE>Ast</CODE> and
+<CODE>List</CODE>. The type of variables is checked statically: an
+expression refering to undefined metavariables, or using metavariables
+with an unappropriate type, will be rejected.<BR>
+<BR>
+Metavariables are used to perform substitutions in constructive
+expressions: they are replaced by their value in a given
+environment. They are also involved in the pattern matching operation:
+metavariables in destructive patterns create new bindings in the
+environment.<BR>
+<BR>
+
+<H4>
+Application node
+</H4>
+Note that the AST syntax is rather general, since application nodes
+may be labelled by an arbitrary identifier (but not a metavariable),
+and operators have no fixed arity. This enables the extensibility of
+the system.<BR>
+<BR>
+Nevertheless there are some application nodes that have some special
+meaning for the system. They are build on <CODE>(</CODE><I><FONT COLOR=maroon>special-tok</FONT></I>&nbsp;<I><FONT COLOR=maroon>meta</FONT></I><CODE>)</CODE>, and cannot be confused with regular
+nodes since <I><FONT COLOR=maroon>special-tok</FONT></I> begins with a <CODE>$</CODE>. There is a
+description of these nodes below.<BR>
+<BR>
+
+<H4>
+Abstraction
+</H4>
+The equality on AST's is the <FONT FACE=symbol>a</FONT>-conversion, i.e. two AST's are
+equal if only they are the same up to renaming of bound variables
+(thus, <CODE>[x]x</CODE> is equal to <CODE>[y]y</CODE>). This makes the difference
+between variables and identifiers clear: the former may be bound by
+abstractions, whereas identifiers cannot be bound. To illustrate this,
+<CODE>[x]{x}</CODE> is equal to <CODE>[y]{x}</CODE>, but not to <CODE>[y]{y}</CODE>.<BR>
+<BR>
+The binding structure of AST is used to represent the binders in the
+terms of <FONT COLOR=purple>Coq</FONT>: the product <CODE>(x:$A)$B</CODE> is mapped to the AST
+<CODE>(PROD $A [x]$B)</CODE>, whereas the non dependent product
+<CODE>$A-&gt;$B</CODE> is mapped to <CODE>(PROD $A [&lt;&gt;]$B)</CODE> (<CODE>[&lt;&gt;]t</CODE> is an
+anonymous abstraction).<BR>
+<BR>
+Metavariables can appear in abstractions. In that case, the value of
+the metavariable must be a variable (or a list of variables). If not,
+a run-time error is raised.<BR>
+<BR>
+
+<H4>
+Quoted AST
+</H4>
+
+<A NAME="@default516"></A>The <CODE>'</CODE><I>t</I> construction means that the AST <I>t</I> should not be
+interpreted at all. The main effect is that metavariables occurring in
+it cannot be substituted or considered as binding in patterns.<BR>
+<BR>
+
+<H4>
+Quotations
+</H4>
+
+<A NAME="@default517"></A>The non terminal symbols <I><FONT COLOR=maroon>meta-command</FONT></I>, <I><FONT COLOR=maroon>meta-vernac</FONT></I> and
+<I><FONT COLOR=maroon>meta-tactic</FONT></I> stand, respectively, for the syntax of commands,
+vernacular phrases and tactics. The prefix <I><FONT COLOR=maroon>meta-</FONT></I> is just to
+emphasize that the expression may refer to metavariables.<BR>
+<BR>
+Indeed, if the AST to generate corresponds to a term that already has
+a syntax, one can call a grammar to parse it and to return the AST
+result. For instance, <CODE>&lt;&lt;(eq ? $f $g)&gt;&gt;</CODE> denotes the AST which is
+the application (in the sense of CIC) of the constant <TT>eq</TT> to
+three arguments. It is coded as an AST node labelled <TT>APPLIST</TT>
+with four arguments.<BR>
+<BR>
+This term is parsable by <CODE>command command</CODE> grammar. This grammar
+is invoked on this term to generate an AST by putting the term between
+``<CODE>&lt;&lt;</CODE>'' and ``<CODE>&gt;&gt;</CODE>''.<BR>
+<BR>
+We can also invoke the initial grammars of several other predefined
+entries (see section&nbsp;<A HREF="node.2.0.1.html#predefined-grammars">9.2.1</A> for a description of
+these grammars).<BR>
+<BR>
+<UL>
+<LI><CODE>&lt;&lt; t &gt;&gt;</CODE> parses <TT>t</TT> with <TT>command command</TT> grammar
+(terms of CIC).
+
+<LI><CODE>&lt;:command:&lt; t &gt;&gt;</CODE> parses <TT>t</TT> with <TT>command command</TT>
+ grammar (same as <CODE>&lt;&lt; t &gt;&gt;</CODE>).
+
+<LI><CODE>&lt;:vernac:&lt; t &gt;&gt;</CODE> parses <TT>t</TT> with <TT>vernac vernac</TT>
+ grammar (vernacular commands).
+
+<LI><CODE>&lt;:tactic:&lt; t &gt;&gt;</CODE> parses <TT>t</TT> with <TT>tactic tactic</TT>
+ grammar (tactic expressions).
+</UL><BR><B>Warning: </B>One cannot invoke other grammars than those described.<BR>
+<BR>
+
+<H4>
+Special operators in constructive expressions
+</H4>
+The expressions <CODE>($LIST $x)</CODE> injects the AST list variable
+<TT>$x</TT> in an AST position. For example, an application node is
+composed of an identifier followed by a list of AST's that are glued
+together. Each of these expressions must denote an AST. If we want to
+insert an AST list, one has to use the <CODE>$LIST</CODE> operator. Assume
+the variable <CODE>$idl</CODE> is bound to the list <CODE>[x y z]</CODE>, the
+expression <CODE>(Intros ($LIST $idl) a b c)</CODE> will build the AST
+<CODE>(Intros x y z a b c)</CODE>. Note that <CODE>$LIST</CODE> does not occur in
+the result.<BR>
+<BR>
+Since we know the type of variables, the <CODE>$LIST</CODE> is not really
+necessary. We enforce this annotation to stress on the fact that the
+variable will be substituted by an arbitrary number of AST's.<BR>
+<BR>
+The other special operators (<TT>$VAR</TT>, <TT>$NUM</TT>, <TT>$STR</TT>,
+<TT>$PATH</TT> and <TT>$ID</TT>) are forbidden.<BR>
+<BR>
+
+<H4>
+Special operators in destructive expressions (AST patterns)
+</H4>
+
+<A NAME="patternsyntax"></A>
+<A NAME="@default518"></A>A pattern is an AST expression, in which some metavariables can
+appear. In a given environment a pattern matches any AST which is
+equal (w.r.t <FONT FACE=symbol>a</FONT>-conversion) to the value of the pattern in an
+extension of the current environment. The result of the matching is
+precisely this extended environment. This definition allows
+non-linear patterns (i.e. patterns in which a variable occurs several
+times).<BR>
+<BR>
+For instance, the pattern <CODE>(PAIR $x $x)</CODE> matches any AST which is
+a node labelled <TT>PAIR</TT> applied to two identical arguments, and
+binds this argument to <TT>$x</TT>. If <TT>$x</TT> was already bound, the
+arguments must also be equal to the current value of <TT>$x</TT>.<BR>
+<BR>
+The ``wildcard pattern'' <CODE>$_</CODE> is not a regular metavariable: it
+matches any term, but does not bind any variable. The pattern
+<CODE>(PAIR $_ $_)</CODE> matches any <TT>PAIR</TT> node applied to two
+arguments.<BR>
+<BR>
+The <TT>$LIST</TT> operator still introduces list variables. Typically,
+when a metavariable appears as argument of an application, one has to
+say if it must match <EM>one</EM> argument (binding an AST variable), or
+<EM>all</EM> the arguments (binding a list variable). Let us consider
+the patterns <CODE>(Intros $id)</CODE> and <CODE>(Intros ($LIST $idl))</CODE>. The
+former matches nodes with <EM>exactly</EM> one argument, which is bound
+in the AST variable <TT>$id</TT>. On the other hand, the latter pattern
+matches any AST node labelled <TT>Intros</TT>, and it binds the
+<EM>list</EM> of its arguments to the list variable <TT>$idl</TT>. The
+<TT>$LIST</TT> pattern must be the last item of a list pattern, because
+it would make the pattern matching operation more complicated. The
+pattern <CODE>(Intros ($LIST $idl) $lastid)</CODE> is not accepted.<BR>
+<BR>
+The other special operators allows checking what kind of leaf we
+are destructurating:
+<UL>
+<LI><TT>$VAR</TT> matches only variables
+
+<LI><TT>$NUM</TT> matches natural numbers
+
+<LI><TT>$STR</TT> matches quoted strings
+
+<LI><TT>$PATH</TT> matches section-paths
+
+<LI><TT>$ID</TT> matches identifiers
+</UL>
+For instance, the pattern <CODE>(DO ($NUM $n) $tc)</CODE> matches
+<CODE>(DO 5 (Intro))</CODE>, and creates the bindings (<TT>$n</TT>,5) and
+(<TT>$tc</TT>,<CODE>(Intro)</CODE>). The pattern matching would fail on
+<CODE>(DO "5" (Intro))</CODE>.<BR>
+<BR>
+<HR>
+
+<A HREF="node.2.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.2.0.1.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

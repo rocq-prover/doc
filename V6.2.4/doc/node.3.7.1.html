@@ -1,0 +1,605 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+18.2&nbsp;Syntax of annotated programs
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.7.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.7.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.7.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+18.2&nbsp;Syntax of annotated programs
+</H2>
+
+
+
+ 
+<H3>
+
+18.2.1&nbsp;Programs
+</H3>
+The syntax of programs is given in figure&nbsp;<A HREF="node.3.7.1.html#fig:ProgramsSyntax">X</A>.
+Basically, the programming language is a purely functional kernel
+with an addition of references and arrays on purely functional values.
+If you do not consider the logical assertions, the syntax coincide
+with <FONT COLOR=purple>Caml</FONT> syntax, except for elements of arrays which are written
+<I>t</I>[<I>i</I>]. In particular, the dereference of a mutable variable <I>x</I> is
+written !<I>x</I> and assignment is written <CODE>:=</CODE>
+(for instance, the increment of the variable <I>x</I> will
+be written <CODE>x := !x + 1</CODE>).
+Actually, that syntax does not really matters, since it would
+be extracted later to real concrete syntax, in different programming
+languages. <BR>
+<BR>
+<BLOCKQUOTE><HR><DIV ALIGN=center><DIV ALIGN=center>
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=left><I>prog</I></TD>
+<TD NOWRAP ALIGN=right>::=</TD>
+<TD NOWRAP ALIGN=left><CODE>{</CODE> &nbsp; <I>predicate</I> &nbsp; <CODE>}</CODE> *
+ &nbsp; <I>statement</I> &nbsp; [ <CODE>{</CODE> &nbsp; <I>predicate</I> &nbsp; <CODE>}</CODE> ]</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=left>&nbsp;</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left> <I>statement</I></TD>
+<TD NOWRAP ALIGN=right>::=</TD>
+<TD NOWRAP ALIGN=left><I>expression</I></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=right>|</TD>
+<TD NOWRAP ALIGN=left><I>identifier</I> &nbsp; <CODE>:=</CODE> &nbsp; <I>prog</I></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=right>|</TD>
+<TD NOWRAP ALIGN=left><I>identifier</I> &nbsp; <CODE>[</CODE> &nbsp; <I>expression</I> &nbsp; <CODE>]</CODE>
+ &nbsp; <CODE>:=</CODE> &nbsp; <I>prog</I></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=right>|</TD>
+<TD NOWRAP ALIGN=left><CODE>let</CODE> &nbsp; <I>identifier</I> &nbsp; <CODE>=</CODE> &nbsp; <CODE>ref</CODE> &nbsp;
+ <I>prog</I> &nbsp; <CODE>in</CODE> &nbsp; <I>prog</I></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=right>|</TD>
+<TD NOWRAP ALIGN=left><CODE>if</CODE> &nbsp; <I>prog</I> &nbsp; <CODE>then</CODE> &nbsp; <I>prog</I> 
+ &nbsp; [ <CODE>else</CODE> &nbsp; <I>prog</I> ]</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=right>|</TD>
+<TD NOWRAP ALIGN=left><CODE>while</CODE> &nbsp; <I>prog</I> &nbsp; <CODE>do</CODE> 
+ &nbsp; <I>loop</I>_<I>annot</I> &nbsp; <I>block</I> &nbsp; <CODE>done</CODE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=right>|</TD>
+<TD NOWRAP ALIGN=left><CODE>begin</CODE> &nbsp; <I>block</I> &nbsp; <CODE>end</CODE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=right>|</TD>
+<TD NOWRAP ALIGN=left><CODE>let</CODE> &nbsp; <I>identifier</I> &nbsp; <CODE>=</CODE> &nbsp; <I>prog</I> &nbsp; 
+ <CODE>in</CODE> &nbsp; <I>prog</I></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=right>|</TD>
+<TD NOWRAP ALIGN=left><CODE>fun</CODE> &nbsp; <I>binders</I> &nbsp; <CODE>-&gt;</CODE> &nbsp; <I>prog</I></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=right>|</TD>
+<TD NOWRAP ALIGN=left><CODE>let</CODE> &nbsp; <CODE>rec</CODE> &nbsp; <I>identifier</I> &nbsp; <I>binder</I> &nbsp; <CODE>:</CODE> 
+ &nbsp; <I>value</I>_<I>type</I></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=left>&nbsp;&nbsp; <CODE>{</CODE> &nbsp; <CODE>variant</CODE> &nbsp; <I>wf</I>_<I>arg</I> &nbsp; <CODE>}</CODE> 
+ &nbsp; <CODE>=</CODE> &nbsp; <I>prog</I> &nbsp; [ <CODE>in</CODE> &nbsp; <I>prog</I> ]</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=right>|</TD>
+<TD NOWRAP ALIGN=left><CODE>(</CODE> &nbsp; <I>prog</I> &nbsp;&nbsp; <I>prog</I> &nbsp; <CODE>)</CODE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=left>&nbsp;</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left> <I>expression</I></TD>
+<TD NOWRAP ALIGN=right>::=</TD>
+<TD NOWRAP ALIGN=left><I>identifier</I></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=right>|</TD>
+<TD NOWRAP ALIGN=left><CODE>!</CODE> &nbsp; <I>identifier</I></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=right>|</TD>
+<TD NOWRAP ALIGN=left><I>identifier</I> &nbsp; <CODE>[</CODE> &nbsp; <I>expression</I> &nbsp; <CODE>]</CODE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=right>|</TD>
+<TD NOWRAP ALIGN=left><I>integer</I></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=right>|</TD>
+<TD NOWRAP ALIGN=left><CODE>(</CODE> &nbsp; <I>expression</I>+ <CODE>)</CODE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=left>&nbsp;</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left> <I>block</I></TD>
+<TD NOWRAP ALIGN=right>::=</TD>
+<TD NOWRAP ALIGN=left><I>block</I>_<I>statement</I> &nbsp; [ &nbsp; <CODE>;</CODE> &nbsp; <I>block</I> &nbsp; ]</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=left>&nbsp;</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left> <I>block</I>_<I>statement</I></TD>
+<TD NOWRAP ALIGN=right>::=</TD>
+<TD NOWRAP ALIGN=left><I>prog</I></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=right>|</TD>
+<TD NOWRAP ALIGN=left><CODE>label</CODE> &nbsp; <I>identifier</I></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=right>|</TD>
+<TD NOWRAP ALIGN=left><CODE>assert</CODE> &nbsp; <CODE>{</CODE> &nbsp; <I>predicate</I> &nbsp; <CODE>}</CODE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=left>&nbsp;</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left> <I>binders</I></TD>
+<TD NOWRAP ALIGN=right>::=</TD>
+<TD NOWRAP ALIGN=left><CODE>(</CODE> &nbsp; <I>identifier</I>,...,<I>identifier</I> &nbsp; <CODE>:</CODE>
+ &nbsp; <I>value</I>_<I>type</I> &nbsp; <CODE>)</CODE> +</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=left>&nbsp;</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left> <I>loop</I>_<I>annot</I></TD>
+<TD NOWRAP ALIGN=right>::=</TD>
+<TD NOWRAP ALIGN=left><CODE>{</CODE> &nbsp; <CODE>invariant</CODE> &nbsp; <I>predicate</I> &nbsp;
+ <CODE>variant</CODE> &nbsp; <I>wf</I>_<I>arg</I> &nbsp; <CODE>}</CODE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=left>&nbsp;</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left> <I>wf</I>_<I>arg</I></TD>
+<TD NOWRAP ALIGN=right>::=</TD>
+<TD NOWRAP ALIGN=left><I>cic</I>_<I>term</I> &nbsp; [ <CODE>for</CODE> &nbsp; <I>cic</I>_<I>term</I> ]</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=left>&nbsp;</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left> <I>predicate</I></TD>
+<TD NOWRAP ALIGN=right>::=</TD>
+<TD NOWRAP ALIGN=left><I>cci</I>_<I>term</I> &nbsp; [ <CODE>as</CODE> &nbsp; <I>identifier</I> ]</TD>
+</TR></TABLE></DIV>
+ 
+ <A NAME="fig:ProgramsSyntax"></A>
+ </DIV>
+<BR>
+<DIV ALIGN=center>Figure 18.1: Syntax of annotated programs</DIV>
+<HR></BLOCKQUOTE>
+<H5>
+Syntactic sugar.
+</H5>
+<UL>
+<LI><B>Boolean expressions:</B> <BR>
+<BR>
+ Boolean expressions appearing in programs (and in particular in
+ <FONT COLOR=purple>if</FONT> and <FONT COLOR=purple>while</FONT> tests) are arbitrary programs of type <TT>bool</TT>.
+ In order to make programs more readable, some syntactic sugar is
+ provided for the usual logical connectives and the usual order
+ relations over type <TT>Z</TT>, with the following syntax:
+ <DIV ALIGN=center>
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=left><I>prog</I></TD>
+<TD NOWRAP ALIGN=right>::=</TD>
+<TD NOWRAP ALIGN=left><I>prog</I> &nbsp; <CODE>and</CODE> &nbsp; <I>prog</I></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=right>|</TD>
+<TD NOWRAP ALIGN=left><I>prog</I> &nbsp; <CODE>or</CODE> &nbsp; <I>prog</I></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=right>|</TD>
+<TD NOWRAP ALIGN=left><CODE>not</CODE> &nbsp; <I>prog</I></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=right>|</TD>
+<TD NOWRAP ALIGN=left><I>expression</I> &nbsp; <I>order</I>_<I>relation</I> &nbsp; <I>expression</I></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left><I>order</I>_<I>relation</I></TD>
+<TD NOWRAP ALIGN=right>::=</TD>
+<TD NOWRAP ALIGN=left><CODE>&gt;</CODE> &nbsp;|&nbsp; <CODE>&gt;=</CODE> &nbsp;|&nbsp; <CODE>&lt;</CODE> &nbsp;|&nbsp; <CODE>&lt;=</CODE> 
+ &nbsp;|&nbsp; <CODE>=</CODE> &nbsp;|&nbsp; <CODE>&lt;&gt;</CODE></TD>
+</TR></TABLE></DIV>
+ where the usual relations have the strongest precedences,
+ <CODE>not</CODE> has a stronger precedence than <CODE>and</CODE>,
+ and <CODE>and</CODE> a stronger precedence than <CODE>or</CODE>.
+ 
+ Order relations in other types, like <TT>lt</TT>, <TT>le</TT>, ...in
+ type <TT>nat</TT>, should be explicited as described in the
+ paragraph about <EM>Boolean expressions</EM>, page&nbsp;<A HREF="node.3.7.1.html#prog:booleans">X</A>.<BR>
+<BR>
+ 
+<LI><B>Arithmetical expressions:</B><BR>
+<BR>
+ Some syntactic sugar is provided for the usual arithmetic operator
+ over type <TT>Z</TT>, with the following syntax:
+ <DIV ALIGN=center>
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=left><I>prog</I></TD>
+<TD NOWRAP ALIGN=right>::=</TD>
+<TD NOWRAP ALIGN=left><I>prog</I> &nbsp; <CODE>*</CODE> &nbsp; <I>prog</I></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=right>|</TD>
+<TD NOWRAP ALIGN=left><I>prog</I> &nbsp; <CODE>+</CODE> &nbsp; <I>prog</I></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=right>|</TD>
+<TD NOWRAP ALIGN=left><I>prog</I> &nbsp; <CODE>-</CODE> &nbsp; <I>prog</I></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=right>|</TD>
+<TD NOWRAP ALIGN=left><CODE>-</CODE> &nbsp; <I>prog</I> 
+ </TD>
+</TR></TABLE></DIV>
+ where the unary operator <TT>-</TT> has the strongest precedence,
+ and <TT>*</TT> a stronger precedence than <TT>+</TT> and <TT>-</TT>.<BR>
+<BR>
+ Operations in other arithmetical types (such as type <TT>nat</TT>)
+ must be explicitly written as applications, like 
+ <TT>(plus&nbsp;a&nbsp;b)</TT>, <TT>(pred&nbsp;a)</TT>, etc.<BR>
+<BR>
+ 
+<LI><TT>if </TT><TT><I>b</I></TT><TT> then </TT><TT><I>p</I></TT> is a shortcut for
+ <TT>if </TT><TT><I>b</I></TT><TT> then </TT><TT><I>p</I></TT><TT> else tt</TT>, where <TT>tt</TT> is the
+ constant of type <TT>unit</TT>;<BR>
+<BR>
+ 
+<LI>Values in type <TT>Z</TT>
+ may be directly written as integers : 0,1,12546,...Negative integers are not recognized and must be written
+ as <TT>(Zinv </TT><TT><I>x</I></TT><TT>)</TT>;<BR>
+<BR>
+ 
+<LI>Multiple application may be written (<I>f</I>&nbsp;<I>a</I><SUB><FONT SIZE=2>1</FONT></SUB>&nbsp;...&nbsp;<I>a</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>),
+ which must be understood as left-associative
+ i.e. as (...((<I>f</I>&nbsp;<I>a</I><SUB><FONT SIZE=2>1</FONT></SUB>)&nbsp;<I>a</I><SUB><FONT SIZE=2>2</FONT></SUB>)...&nbsp;<I>a</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>).
+</UL>
+<H5>
+Restrictions.
+</H5>
+You can notice some restrictions with respect to real ML programs:
+<OL>
+<LI>Binders in functions (recursive or not) are explicitly typed,
+ and the type of the result of a recursive function is also given.
+ This is due to the lack of type inference.<BR>
+<BR>
+ 
+<LI>Full expressions are not allowed on left-hand side of assignment, but
+ only variables. Therefore, you can not write
+<PRE>
+    (if b then x else y) := 0
+</PRE>But, in most cases, you can rewrite
+ them into acceptable programs. For instance, the previous program
+ may be rewritten into the following one:
+<PRE>
+    if b then x := 0 else y := 0
+</PRE></OL>
+ 
+<H3>
+
+18.2.2&nbsp;Typing
+</H3>
+The types of annotated programs are split into two kinds: the types of
+<EM>values</EM> and the types of <EM>computations</EM>. Those two types
+families are recursively mutually defined with the following concrete syntax:
+<DIV ALIGN=center>
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=left><I>value</I>_<I>type</I></TD>
+<TD NOWRAP ALIGN=right>::=</TD>
+<TD NOWRAP ALIGN=left><I>cic</I>_<I>term</I></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=right>|</TD>
+<TD NOWRAP ALIGN=left><I>cic</I>_<I>term</I> &nbsp; <CODE>ref</CODE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=right>|</TD>
+<TD NOWRAP ALIGN=left><CODE>array</CODE> &nbsp; <I>cic</I>_<I>term</I> &nbsp; <CODE>of</CODE> &nbsp; <I>cic</I>_<I>term</I></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=right>|</TD>
+<TD NOWRAP ALIGN=left><CODE>fun</CODE> &nbsp; <CODE>(</CODE> &nbsp; <I>x</I> <CODE>:</CODE> <I>value</I>_<I>type</I> &nbsp; <CODE>)</CODE>+
+ &nbsp; <I>computation</I>_<I>type</I></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=left>&nbsp;</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left><I>computation</I>_<I>type</I></TD>
+<TD NOWRAP ALIGN=right>::=</TD>
+<TD NOWRAP ALIGN=left><CODE>returns</CODE> &nbsp; <I>identifier</I> <CODE>:</CODE> <I>value</I>_<I>type</I></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=left>[<CODE>reads</CODE> &nbsp; <I>identifier</I>,...,<I>identifier</I>] 
+ &nbsp; [<CODE>writes</CODE> &nbsp; <I>identifier</I>,...,<I>identifier</I>]</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=left>[<CODE>pre</CODE> &nbsp; <I>predicate</I>] &nbsp; [<CODE>post</CODE> &nbsp; <I>predicate</I>]</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=left><CODE>end</CODE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=left>&nbsp;</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left><I>predicate</I></TD>
+<TD NOWRAP ALIGN=right>::=</TD>
+<TD NOWRAP ALIGN=left><I>cic</I>_<I>term</I></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>&nbsp;</TD>
+<TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=left>&nbsp;</TD>
+</TR></TABLE></DIV><BR>
+The typing is mostly the one of ML, without polymorphism.
+The user should notice that:
+<UL>
+<LI>Arrays are indexed over the type <TT>Z</TT> of binary integers 
+ (defined in the module <TT>ZArith</TT>);<BR>
+<BR>
+ 
+<LI>Expressions must have purely functional types, and can not be 
+ references or arrays (but, of course, you can pass mutables to
+ functions as call-by-variable arguments);<BR>
+<BR>
+ 
+<LI>There is no partial application.
+</UL>
+ 
+<H3>
+
+18.2.3&nbsp;Specification
+</H3>
+The specification part of programs is made of different kind of
+annotations, which are terms of sort <FONT COLOR=purple>Prop</FONT> in the Calculus of Inductive
+Constructions.<BR>
+<BR>
+Those annotations can refer to the values of the variables
+directly by their names. <EM>There is no dereference operator ``!'' in
+annotations</EM>. Annotations are read with the <FONT COLOR=purple>Coq</FONT> parser, so you can
+use all the <FONT COLOR=purple>Coq</FONT> syntax to write annotations. For instance, if <I>x</I>
+and <I>y</I> are references over integers (in type <TT>Z</TT>), you can write the
+following annotation
+<DIV ALIGN=center><TT>{`0 &lt; x &lt;= x+y` }</TT>
+</DIV>
+In a post-condition, if necessary, you can refer to the value of the variable
+<I>x</I> <EM>before</EM> the evaluation with the notation <I>x</I>@.
+Actually, it is possible to refer to the value of a variable at any 
+moment of the evaluation with the notation <I>x</I>@<I>l</I>,
+provided that <I>l</I> is a <EM>label</EM> previously inserted in your program
+(see below the paragraph about labels).<BR>
+<BR>
+You have the possibility to give some names to the annotations, with
+the syntax
+<DIV ALIGN=center><TT>{</TT><TT><EM>annotation</EM></TT><TT> as </TT><TT><EM>identifier</EM></TT><TT> }</TT>
+</DIV>
+and then the annotation will be given this name in the proof
+obligations.
+Otherwise, fresh names are given automatically, of the kind
+<TT>Post3</TT>, <TT>Pre12</TT>, <TT>Test4</TT>, etc.
+You are encouraged to give explicit names, in order not to have to
+modify your proof script when your proof obligations change (for
+instance, if you modify a part of the program).<BR>
+<BR>
+
+ 
+<H4>
+Pre- and post-conditions
+</H4>
+Each program, and each of its sub-programs, may be annotated by a
+pre-condition and/or a post-condition.
+The pre-condition is an annotation about the values of variables
+<EM>before</EM> the evaluation, and the post-condition is an annotation
+about the values of variables <EM>before</EM> and <EM>after</EM> the
+evaluation. Example:
+<DIV ALIGN=center><TT>{`0 &lt; x` }x := (Zplus !x !x) {`x@ &lt; x` }</TT>
+</DIV>
+Moreover, you can assert some properties of the result of the evaluation
+in the post-condition, by referring to it through the name <EM>result</EM>.
+Example:
+<DIV ALIGN=center><TT>(Zs (Zplus !x !x)) {(Zodd result) }</TT>
+</DIV><BR>
+
+ 
+<H4>
+Loops invariants and variants
+</H4>
+Loop invariants and variants are introduced just after the <FONT COLOR=purple>do</FONT>
+keyword, with the following syntax:
+<DIV ALIGN=center>
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=left><FONT COLOR=purple><I>while</I></FONT> &nbsp; <I>B</I> &nbsp; <FONT COLOR=purple><I>do</I></FONT></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>&nbsp;&nbsp;&nbsp; {&nbsp; <FONT COLOR=purple><I>invariant</I></FONT> &nbsp; <I>I</I> &nbsp;&nbsp;&nbsp; <FONT COLOR=purple><I>variant</I></FONT> &nbsp; <FONT FACE=symbol>f</FONT> &nbsp; <FONT COLOR=purple><I>for</I></FONT> &nbsp; <I>R</I> &nbsp;
+ }</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>&nbsp;&nbsp;&nbsp; <I>block</I></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left><FONT COLOR=purple><I>done</I></FONT>
+</TD>
+</TR></TABLE></DIV><BR>
+The invariant <I>I</I> is an annotation about the values of variables
+when the loop is entered, since <I>B</I> has no side effects (<I>B</I> is a
+purely functional expression). Of course, <I>I</I> may refer to values of
+variables at any moment before the entering of the loop.<BR>
+<BR>
+The variant <FONT FACE=symbol>f</FONT> must be given in order to establish the termination of
+the loop. The relation <I>R</I> must be a term of type <I>A</I><FONT FACE=symbol>®</FONT>
+<I>A</I><FONT FACE=symbol>®</FONT><FONT COLOR=purple>Prop</FONT>, where <FONT FACE=symbol>f</FONT> is of type <I>A</I>.
+When <I>R</I> is not specified, then <FONT FACE=symbol>f</FONT> is assumed to be of type
+<TT>Z</TT> and the usual order relation on natural number is used.<BR>
+<BR>
+
+ 
+<H4>
+Recursive functions
+</H4>
+The termination of a recursive function is justified in the same way as
+loops, using a variant. This variant is introduced with the following syntax
+<DIV ALIGN=center><FONT COLOR=purple><I>let</I></FONT> &nbsp; <FONT COLOR=purple><I>rec</I></FONT> &nbsp; <I>f</I> &nbsp; (<I>x</I><SUB><FONT SIZE=2>1</FONT></SUB>:<I>V</I><SUB><FONT SIZE=2>1</FONT></SUB>)...(<I>x</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>:<I>V</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>) : <I>V</I>
+ &nbsp; {&nbsp; <FONT COLOR=purple><I>variant</I></FONT> &nbsp; <FONT FACE=symbol>f</FONT> &nbsp; <FONT COLOR=purple><I>for</I></FONT> &nbsp; <I>R</I> &nbsp; }= <I>prog</I>
+</DIV>
+and is interpreted as for loops. Of course, the variant may refer to
+the bound variables <I>x</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB>.
+The specification of a recursive function is the one of its body, <I>prog</I>.
+Example:
+<DIV ALIGN=center><FONT COLOR=purple><I>let</I></FONT> &nbsp; <FONT COLOR=purple><I>rec</I></FONT> &nbsp; <I>fact</I> &nbsp; (<I>x</I>:<I>Z</I>) : <I>Z</I> &nbsp; {&nbsp; <FONT COLOR=purple><I>variant</I></FONT> &nbsp; <I>x</I> }=
+ {&nbsp; <I>x</I><FONT FACE=symbol>³</FONT>0 &nbsp; }&nbsp; ... &nbsp; {&nbsp; <I>result</I>=<I>x</I>! &nbsp; }</DIV><BR>
+
+ 
+<H4>
+Assertions inside blocks
+</H4>
+Assertions may be inserted inside blocks, with the following syntax
+<DIV ALIGN=center><FONT COLOR=purple><I>begin</I></FONT> &nbsp; <I>block</I>_<I>statements</I> ...; &nbsp; <FONT COLOR=purple><I>assert</I></FONT> &nbsp; {&nbsp; <I>P</I> &nbsp; };
+ &nbsp; <I>block</I>_<I>statements</I> ... &nbsp; <FONT COLOR=purple><I>end</I></FONT>
+</DIV>
+The annotation <I>P</I> may refer to the values of variables at any labels
+known at this moment of evaluation.<BR>
+<BR>
+
+ 
+<H4>
+Inserting labels in your program
+</H4>
+In order to refer to the values of variables at any moment of
+evaluation of the program, you may put some <EM>labels</EM> inside your
+programs. Actually, it is only necessary to insert them inside blocks,
+since this is the only place where side effects can appear. The syntax
+to insert a label is the following:
+<DIV ALIGN=center><FONT COLOR=purple><I>begin</I></FONT> &nbsp; <I>block</I>_<I>statements</I> ...; &nbsp; <FONT COLOR=purple><I>label</I></FONT> &nbsp; <I>L</I>;
+ &nbsp; <I>block</I>_<I>statements</I> ... &nbsp; <FONT COLOR=purple><I>end</I></FONT>
+</DIV>
+Then it is possible to refer to the value of the variable <I>x</I> at step
+<I>L</I> with the notation <I>x</I>@<I>L</I>.<BR>
+<BR>
+There is a special label 0 which is automatically inserted at the
+beginning of the program. Therefore, <I>x</I>@0 will always refer to the
+initial value of the variable <I>x</I>.<BR>
+<BR>
+<BR><BR>
+<BR>
+Notice that this mechanism allows the user to get rid of the so-called
+<EM>auxiliary variables</EM>, which are usually widely used in
+traditional frameworks to refer to previous values of variables.<BR>
+<BR>
+
+<BR>
+<BR>
+
+ 
+<H4>
+Boolean expressions
+</H4>
+<A NAME="prog:booleans"></A>As explained above, boolean expressions appearing in <FONT COLOR=purple>if</FONT> and
+<FONT COLOR=purple>while</FONT> tests are arbitrary programs of type <TT>bool</TT>. 
+Actually, there is a little restriction: a test can not do some side
+effects. 
+Usually, a test if annotated in such a way:
+<DIV ALIGN=center><I>B</I> &nbsp; {<FONT COLOR=purple><I>if</I></FONT> &nbsp; <I>result</I> &nbsp;<FONT COLOR=purple><I>then</I></FONT> &nbsp; <I>T</I> &nbsp; <FONT COLOR=purple><I>else</I></FONT> &nbsp; <I>F</I> }</DIV>
+(The <FONT COLOR=purple>if then else</FONT> construction in the annotation is the one
+of <FONT COLOR=purple>Coq</FONT> !)
+Here <I>T</I> and <I>F</I> are the two propositions you want to get in the two
+branches of the test.
+If you do not annotate a test, then <I>T</I> and <I>F</I> automatically become
+<I>B</I>=<FONT COLOR=purple><I>true</I></FONT> and <I>B</I>=<FONT COLOR=purple><I>false</I></FONT>, which is the usual annotation in
+Floyd-Hoare logic.<BR>
+<BR>
+But you should take advantages of the fact that <I>T</I> and <I>F</I> may be
+arbitrary propositions, or you can even annotate <I>B</I> with any other
+kind of proposition (usually depending on <I>result</I>).<BR>
+<BR>
+As explained in the paragraph about the syntax of boolean expression,
+some syntactic sugar is provided for usual order relations over type
+<TT>Z</TT>. When you write <FONT COLOR=purple><I>if</I></FONT> &nbsp; <I>x</I>&lt;<I>y</I> &nbsp; ... in your program,
+it is only a shortcut for <FONT COLOR=purple><I>if</I></FONT> &nbsp; (<TT>Z_lt_ge_bool</TT>&nbsp;<I>x</I>&nbsp;<I>y</I>) &nbsp; ...,
+where <TT>Z_lt_ge_bool</TT> is the proof of
+<FONT FACE=symbol>"</FONT> <I>x</I>,<I>y</I>:<TT>Z</TT>. <FONT FACE=symbol>$</FONT> <I>b</I>:<TT>bool</TT>.
+ (<FONT COLOR=purple><I>if</I></FONT> &nbsp; <I>b</I> &nbsp;<FONT COLOR=purple><I>then</I></FONT> &nbsp; <I>x</I>&lt;<I>y</I> &nbsp; <FONT COLOR=purple><I>else</I></FONT> &nbsp; <I>x</I><FONT FACE=symbol>³</FONT> <I>y</I>)
+i.e. of a program returning a boolean with the expected post-condition.
+But you can use any other functional expression of such a type.
+In particular, the Programs standard library comes
+with a bunch of decidability theorems on type <TT>nat</TT>:
+<DIV ALIGN=center>
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=left><I>zerop</I>_<I>bool</I></TD>
+<TD NOWRAP ALIGN=left>: <FONT FACE=symbol>"</FONT> <I>n</I>:<FONT COLOR=purple><I>nat</I></FONT>.<FONT FACE=symbol>$</FONT> <I>b</I>:<TT>bool</TT>.
+ <FONT COLOR=purple><I>if</I></FONT> &nbsp; <I>b</I> &nbsp;<FONT COLOR=purple><I>then</I></FONT> &nbsp; <I>n</I>=0 &nbsp; <FONT COLOR=purple><I>else</I></FONT> &nbsp; 0&lt;<I>n</I></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left><I>nat</I>_<I>eq</I>_<I>bool</I></TD>
+<TD NOWRAP ALIGN=left>: <FONT FACE=symbol>"</FONT> <I>n</I>,<I>m</I>:<FONT COLOR=purple><I>nat</I></FONT>.<FONT FACE=symbol>$</FONT> <I>b</I>:<TT>bool</TT>.
+ <FONT COLOR=purple><I>if</I></FONT> &nbsp; <I>b</I> &nbsp;<FONT COLOR=purple><I>then</I></FONT> &nbsp; <I>n</I>=<I>m</I> &nbsp; <FONT COLOR=purple><I>else</I></FONT> &nbsp; <I>n</I><FONT FACE=symbol>¹</FONT><I>m</I></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left><I>le</I>_<I>lt</I>_<I>bool</I></TD>
+<TD NOWRAP ALIGN=left>: <FONT FACE=symbol>"</FONT> <I>n</I>,<I>m</I>:<FONT COLOR=purple><I>nat</I></FONT>.<FONT FACE=symbol>$</FONT> <I>b</I>:<TT>bool</TT>.
+ <FONT COLOR=purple><I>if</I></FONT> &nbsp; <I>b</I> &nbsp;<FONT COLOR=purple><I>then</I></FONT> &nbsp; <I>n</I><FONT FACE=symbol>£</FONT> <I>m</I> &nbsp; <FONT COLOR=purple><I>else</I></FONT> &nbsp; <I>m</I>&lt;<I>n</I></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left><I>lt</I>_<I>le</I>_<I>bool</I></TD>
+<TD NOWRAP ALIGN=left>: <FONT FACE=symbol>"</FONT> <I>n</I>,<I>m</I>:<FONT COLOR=purple><I>nat</I></FONT>.<FONT FACE=symbol>$</FONT> <I>b</I>:<TT>bool</TT>.
+ <FONT COLOR=purple><I>if</I></FONT> &nbsp; <I>b</I> &nbsp;<FONT COLOR=purple><I>then</I></FONT> &nbsp; <I>n</I>&lt;<I>m</I> &nbsp; <FONT COLOR=purple><I>else</I></FONT> &nbsp; <I>m</I><FONT FACE=symbol>£</FONT> <I>n</I></TD>
+</TR></TABLE></DIV>
+which you can combine with the logical connectives.<BR>
+<BR>
+It is often the case that you have a decidability theorem over some
+type, as for instance a theorem of decidability of equality over some
+type <I>S</I>:
+<DIV ALIGN=center><I>S</I>_<I>dec</I> : (<I>x</I>,<I>y</I>:<I>S</I>){<I>x</I>=<I>y</I>}+{¬ <I>x</I>=<I>y</I>}</DIV>
+Then you can build a test function corresponding to <I>S</I>_<I>dec</I> using the
+operator <TT>bool_of_sumbool</TT> provided with the
+<TT>Prorgams</TT> module, in such a way:
+<DIV ALIGN=center><TT>Definition</TT> &nbsp; <I>S</I>_<I>bool</I> &nbsp; <TT>:=</TT> 
+ [<I>x</I>,<I>y</I>:<I>S</I>](<TT>bool_of_sumbool</TT> &nbsp; ? &nbsp; ? &nbsp; (<I>S</I>_<I>dec</I> &nbsp; <I>x</I> &nbsp; <I>y</I>))
+</DIV>
+Then you can use the test function <I>S</I>_<I>bool</I> in your programs,
+and you will get the hypothesis <I>x</I>=<I>y</I> and ¬ <I>x</I>=<I>y</I> in the corresponding
+branches. 
+Of course, you can do the same for any function returning some result
+in the constructive sum {<I>A</I>}+{<I>B</I>}.<BR>
+<BR>
+
+ <HR>
+
+<A HREF="node.3.7.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.7.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.7.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>
