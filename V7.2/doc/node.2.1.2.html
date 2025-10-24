@@ -1,0 +1,245 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+10.3&nbsp;Examples
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.2.1.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.2.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+10.3&nbsp;Examples
+</H2>
+
+
+
+<H3>
+
+10.3.1&nbsp;About the cardinality of the natural number set
+</H3>
+A first example which shows how to use the pattern matching over the proof
+contexts is the proof that natural numbers have more than two elements. The
+proof of such a lemma can be done as shown in table&nbsp;<A HREF="node.2.1.2.html#cnatltac">10.4</A>.<BR>
+<BR>
+<BLOCKQUOTE><DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV>
+6in
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Lemma&nbsp;card_nat:&nbsp;~(EX&nbsp;x:nat|(EX&nbsp;y:nat|(z:nat)(x=z)/\(y=z))).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Proof.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Red;Intro&nbsp;H.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Elim&nbsp;H;Intros&nbsp;a&nbsp;Ha.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Elim&nbsp;Ha;Intros&nbsp;b&nbsp;Hb.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Elim&nbsp;(Hb&nbsp;(0));Elim&nbsp;(Hb&nbsp;(1));Elim&nbsp;(Hb&nbsp;(2));Intros;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;Match&nbsp;Context&nbsp;With</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[_:?1=?2;_:?1=?3|-?]&nbsp;-</TT><TT>&gt;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cut&nbsp;?2=?3;[Discriminate|Apply&nbsp;trans_equal&nbsp;with&nbsp;?1;Auto].</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Save.</TT><BR></DIV>
+
+
+<BR>
+<DIV ALIGN=center>Table 10.4: A proof on cardinality of natural numbers</DIV><BR>
+
+<A NAME="cnatltac"></A>
+<DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV></BLOCKQUOTE>We can notice that all the (very similar) cases coming from the three
+eliminations (with three distinct natural numbers) are successfully solved by
+a <FONT COLOR=purple>Match Context</FONT> structure and, in particular, with only one pattern (use
+of non-linear unification).<BR>
+<BR>
+
+<H3>
+
+10.3.2&nbsp;Permutation on closed lists
+</H3>
+Another more complex example is the problem of permutation on closed lists. The
+aim is to show that a closed list is a permutation of another one.<BR>
+<BR>
+First, we define the permutation predicate as shown in table&nbsp;<A HREF="node.2.1.2.html#permutpred">10.5</A>.<BR>
+<BR>
+<BLOCKQUOTE><DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV>
+6in
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Section&nbsp;Sort.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Variable&nbsp;A:Set.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Inductive&nbsp;permut:(list&nbsp;A)-</TT><TT>&gt;</TT><TT>(list&nbsp;A)-</TT><TT>&gt;</TT><TT>Prop:=</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;permut_refl:(l:(list&nbsp;A))(permut&nbsp;l&nbsp;l)</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;|permut_cons:</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(a:A)(l0,l1:(list&nbsp;A))(permut&nbsp;l0&nbsp;l1)-</TT><TT>&gt;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(permut&nbsp;(cons&nbsp;a&nbsp;l0)&nbsp;(cons&nbsp;a&nbsp;l1))</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;|permut_append:</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(a:A)(l:(list&nbsp;A))(permut&nbsp;(cons&nbsp;a&nbsp;l)&nbsp;(l^(cons&nbsp;a&nbsp;(nil&nbsp;A))))</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;|permut_trans:</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(l0,l1,l2:(list&nbsp;A))(permut&nbsp;l0&nbsp;l1)-</TT><TT>&gt;</TT><TT>(permut&nbsp;l1&nbsp;l2)-</TT><TT>&gt;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(permut&nbsp;l0&nbsp;l2).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;End&nbsp;Sort.</TT><BR></DIV>
+
+
+<BR>
+<DIV ALIGN=center>Table 10.5: Definition of the permutation predicate</DIV><BR>
+
+<A NAME="permutpred"></A>
+<DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV></BLOCKQUOTE>Next, we can write naturally the tactic and the result can be seen in
+table&nbsp;<A HREF="node.2.1.2.html#permutltac">10.6</A>. We can notice that we use two toplevel definitions <FONT COLOR=purple>PermutProve</FONT> and <FONT COLOR=purple>Permut</FONT>. The function to be called is <FONT COLOR=purple>PermutProve</FONT>
+which computes the lengths of the two lists and calls <FONT COLOR=purple>Permut</FONT> with the
+length if the two lists have the same length. <FONT COLOR=purple>Permut</FONT> works as expected.
+If the two lists are equal, it concludes. Otherwise, if the lists have
+identical first elements, it applies <FONT COLOR=purple>Permut</FONT> on the tail of the lists.
+Finally, if the lists have different first elements, it puts the first element
+of one of the lists (here the second one which appears in the <FONT COLOR=purple>permut</FONT>
+predicate) at the end if that is possible, i.e., if the new first element has
+been at this place previously. To verify that all rotations have been done for
+a list, we use the length of the list as an argument for <FONT COLOR=purple>Permut</FONT> and this
+length is decremented for each rotation down to, but not including, 1 because
+for a list of length <I>n</I>, we can make exactly <I>n</I>-1 rotations to generate at
+most <I>n</I> distinct lists. Here, it must be noticed that we use the natural
+numbers of <FONT COLOR=purple>Coq</FONT> for the rotation counter. In table&nbsp;<A HREF="node.2.1.0.html#ltac">10.1</A>, we can see
+that it is possible to use usual natural numbers but they are only used as
+arguments for primitive tactics and they cannot be handled, in particular, we
+cannot make computations with them. So, a natural choice is to use <FONT COLOR=purple>Coq</FONT> data
+structures so that <FONT COLOR=purple>Coq</FONT> makes the computations (reductions) by <FONT COLOR=purple>Eval
+Compute in</FONT> and we can get the terms back by <FONT COLOR=purple>Match</FONT>.<BR>
+<BR>
+<BLOCKQUOTE><DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV>
+6in
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Tactic&nbsp;Definition&nbsp;Permut&nbsp;n:=</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;Match&nbsp;Context&nbsp;With</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;[|-(permut&nbsp;?&nbsp;?1&nbsp;?1)]&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;Apply&nbsp;permut_refl</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;|[|-(permut&nbsp;?&nbsp;(cons&nbsp;?1&nbsp;?2)&nbsp;(cons&nbsp;?1&nbsp;?3))]&nbsp;-</TT><TT>&gt;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Let&nbsp;newn=Eval&nbsp;Compute&nbsp;in&nbsp;(length&nbsp;?2)&nbsp;In</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Apply&nbsp;permut_cons;(Permut&nbsp;newn)</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;|[|-(permut&nbsp;?1&nbsp;(cons&nbsp;?2&nbsp;?3)&nbsp;?4)]&nbsp;-</TT><TT>&gt;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Match&nbsp;Eval&nbsp;Compute&nbsp;in&nbsp;n&nbsp;With</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(1)]&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;Fail</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|_&nbsp;-</TT><TT>&gt;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Let&nbsp;l0'='(?3^(cons&nbsp;?2&nbsp;(nil&nbsp;?1)))&nbsp;In</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Apply&nbsp;(permut_trans&nbsp;?1&nbsp;(cons&nbsp;?2&nbsp;?3)&nbsp;l0'&nbsp;?4);</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Apply&nbsp;permut_append|</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Compute;(Permut&nbsp;'(pred&nbsp;n))]).</TT><BR><TT><I>Permut&nbsp;is&nbsp;defined</I></TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Tactic&nbsp;Definition&nbsp;PermutProve:=</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;Match&nbsp;Context&nbsp;With</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;[|-(permut&nbsp;?&nbsp;?1&nbsp;?2)]&nbsp;-</TT><TT>&gt;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Match&nbsp;Eval&nbsp;Compute&nbsp;in&nbsp;((length&nbsp;?1)=(length&nbsp;?2))&nbsp;With</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[?1=?1]&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;(Permut&nbsp;?1)).</TT><BR><TT><I>PermutProve&nbsp;is&nbsp;defined</I></TT><BR></DIV>
+
+
+<BR>
+<DIV ALIGN=center>Table 10.6: Permutation tactic</DIV><BR>
+
+<A NAME="permutltac"></A>
+<DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV></BLOCKQUOTE>With <FONT COLOR=purple>PermutProve</FONT>, we can now prove lemmas such those shown in
+table&nbsp;<A HREF="node.2.1.2.html#permutlem">10.7</A>.<BR>
+<BR>
+<BLOCKQUOTE><DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV>
+6in
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Lemma&nbsp;permut_ex1:</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;(permut&nbsp;nat&nbsp;(cons&nbsp;(1)&nbsp;(cons&nbsp;(2)&nbsp;(cons&nbsp;(3)&nbsp;(nil&nbsp;nat))))</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(cons&nbsp;(3)&nbsp;(cons&nbsp;(2)&nbsp;(cons&nbsp;(1)&nbsp;(nil&nbsp;nat))))).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Proof.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;PermutProve.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Save.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Lemma&nbsp;permut_ex2:</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;(permut&nbsp;nat</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;(cons&nbsp;(0)&nbsp;(cons&nbsp;(1)&nbsp;(cons&nbsp;(2)&nbsp;(cons&nbsp;(3)&nbsp;(cons&nbsp;(4)&nbsp;(cons&nbsp;(5)</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(cons&nbsp;(6)&nbsp;(cons&nbsp;(7)&nbsp;(cons&nbsp;(8)&nbsp;(cons&nbsp;(9)&nbsp;(nil&nbsp;nat)))))))))))</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;(cons&nbsp;(0)&nbsp;(cons&nbsp;(2)&nbsp;(cons&nbsp;(4)&nbsp;(cons&nbsp;(6)&nbsp;(cons&nbsp;(8)&nbsp;(cons&nbsp;(9)</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(cons&nbsp;(7)&nbsp;(cons&nbsp;(5)&nbsp;(cons&nbsp;(3)&nbsp;(cons&nbsp;(1)&nbsp;(nil&nbsp;nat)))))))))))).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Proof.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;PermutProve.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Save.</TT><BR></DIV>
+
+
+<BR>
+<DIV ALIGN=center>Table 10.7: Examples of <FONT COLOR=purple>PermutProve</FONT> use</DIV><BR>
+
+<A NAME="permutlem"></A>
+<DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV></BLOCKQUOTE>
+<H3>
+
+10.3.3&nbsp;Deciding intuitionistic propositional logic
+</H3>
+The pattern matching on proof contexts allows a complete and so a powerful
+backtracking when returning tactic values. An interesting application is the
+problem of deciding intuitionistic propositional logic. Considering the
+contraction-free sequent calculi <FONT COLOR=purple>LJT*</FONT> of Roy&nbsp;Dyckhoff ([<A HREF="#Dyc92"><CITE>Dyc92</CITE></A>]), it
+is quite natural to code such a tactic using the tactic language as shown in
+table&nbsp;<A HREF="node.2.1.2.html#tautoltac">10.8</A>. The tactic <FONT COLOR=purple>Axioms</FONT> tries to conclude using usual
+axioms. The tactic <FONT COLOR=purple>Simplif</FONT> applies all the reversible rules of Dyckhoff's
+system. Finally, the tactic <FONT COLOR=purple>TautoProp</FONT> (the main tactic to be called)
+simplifies with <FONT COLOR=purple>Simplif</FONT>, tries to conclude with <FONT COLOR=purple>Axioms</FONT> and tries
+several paths using the backtracking rules (one of the four Dyckhoff's rules
+for the left implication to get rid of the contraction and the right or).<BR>
+<BR>
+<BLOCKQUOTE><DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV>
+6in
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Tactic&nbsp;Definition&nbsp;Axioms:=</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;Match&nbsp;Context&nbsp;With</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;[|-True]&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;Trivial</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;|[_:False|-&nbsp;?]&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;ElimType&nbsp;False;Assumption</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;|[_:?1|-?1]&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;Auto.</TT><BR><TT><I>Axioms&nbsp;is&nbsp;defined</I></TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Tactic&nbsp;Definition&nbsp;Simplif:=</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;Repeat</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;(Intros;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;(Match&nbsp;Context&nbsp;With</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[id:~?|-?]&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;Red&nbsp;in&nbsp;id</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|[id:?/\?|-?]&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;Elim&nbsp;id;Do&nbsp;2&nbsp;Intro;Clear&nbsp;id</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|[id:?\/?|-?]&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;Elim&nbsp;id;Intro;Clear&nbsp;id</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|[id:?1/\?2-</TT><TT>&gt;</TT><TT>?3|-?]&nbsp;-</TT><TT>&gt;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cut&nbsp;?1-</TT><TT>&gt;</TT><TT>?2-</TT><TT>&gt;</TT><TT>?3;[Intro|Intros;Apply&nbsp;id;Split;Assumption]</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|[id:?1\/?2-</TT><TT>&gt;</TT><TT>?3|-?]&nbsp;-</TT><TT>&gt;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cut&nbsp;?2-</TT><TT>&gt;</TT><TT>?3;[Cut&nbsp;?1-</TT><TT>&gt;</TT><TT>?3;[Intros|</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Intro;Apply&nbsp;id;Left;Assumption]|</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Intro;Apply&nbsp;id;Right;Assumption]</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|[id0:?1-</TT><TT>&gt;</TT><TT>?2;id1:?1|-?]&nbsp;-</TT><TT>&gt;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cut&nbsp;?2;[Intro;Clear&nbsp;id0|Apply&nbsp;id0;Assumption]</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|[|-?/\?]&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;Split</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|[|-~?]&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;Red)).</TT><BR><TT><I>Simplif&nbsp;is&nbsp;defined</I></TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Recursive&nbsp;Tactic&nbsp;Definition&nbsp;TautoProp:=</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;Simplif;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;Axioms</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;Orelse</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;Match&nbsp;Context&nbsp;With</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[id:(?1-</TT><TT>&gt;</TT><TT>?2)-</TT><TT>&gt;</TT><TT>?3|-?]&nbsp;-</TT><TT>&gt;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cut&nbsp;?2-</TT><TT>&gt;</TT><TT>?3;[Intro;Cut&nbsp;?1-</TT><TT>&gt;</TT><TT>?2;[Intro;Cut&nbsp;?3;[Intro;Clear&nbsp;id|</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Apply&nbsp;id;Assumption]|Clear&nbsp;id]|</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Intro;Apply&nbsp;id;Intro;Assumption];TautoProp</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;|[id:~?1-</TT><TT>&gt;</TT><TT>?2|-?]-</TT><TT>&gt;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cut&nbsp;False-</TT><TT>&gt;</TT><TT>?2;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Intro;Cut&nbsp;?1-</TT><TT>&gt;</TT><TT>False;[Intro;Cut&nbsp;?2;[Intro;Clear&nbsp;id|</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Apply&nbsp;id;Assumption]|Clear&nbsp;id]|</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Intro;Apply&nbsp;id;Red;Intro;Assumption];TautoProp</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;|[|-?\/?]&nbsp;-</TT><TT>&gt;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Left;TautoProp)&nbsp;Orelse&nbsp;(Right;TautoProp).</TT><BR><TT><I>TautoProp&nbsp;is&nbsp;defined</I></TT><BR></DIV>
+
+
+<BR>
+<DIV ALIGN=center>Table 10.8: Deciding intuitionistic propositions</DIV><BR>
+
+<A NAME="tautoltac"></A>
+<DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV></BLOCKQUOTE>For example, with <FONT COLOR=purple>TautoProp</FONT>, we can prove tautologies like those in
+table&nbsp;<A HREF="node.2.1.2.html#tautolem">10.9</A>.<BR>
+<BR>
+<BLOCKQUOTE><DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV>
+6in
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Lemma&nbsp;tauto_ex1:(A,B:Prop)A/\B-</TT><TT>&gt;</TT><TT>A\/B.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Proof.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;TautoProp.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Save.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Lemma&nbsp;tauto_ex2:(A,B:Prop)(~~B-</TT><TT>&gt;</TT><TT>B)-</TT><TT>&gt;</TT><TT>(A-</TT><TT>&gt;</TT><TT>B)-</TT><TT>&gt;</TT><TT>~~A-</TT><TT>&gt;</TT><TT>B.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Proof.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;TautoProp.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Save.</TT><BR></DIV>
+
+
+<BR>
+<DIV ALIGN=center>Table 10.9: Proofs of tautologies with <FONT COLOR=purple>TautoProp</FONT></DIV><BR>
+
+<A NAME="tautolem"></A>
+<DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV></BLOCKQUOTE>
+<H3>
+
+10.3.4&nbsp;Deciding type isomorphisms
+</H3>
+A more tricky problem is to decide equalities between types and modulo
+isomorphisms. Here, we choose to use the isomorphisms of the simply typed
+<FONT FACE=symbol>l</FONT>-calculus with Cartesian product and <I>unit</I> type (see, for example,
+[<A HREF="#RC95"><CITE>RC95</CITE></A>]). The axioms of this <FONT FACE=symbol>l</FONT>-calculus are given by
+table&nbsp;<A HREF="node.2.1.2.html#isosax">10.10</A>.<BR>
+<BR>
+<BLOCKQUOTE><DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV>
+6in
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Section&nbsp;Iso_axioms.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Variable&nbsp;A,B,C:Set.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Axiom&nbsp;Com:(A*B)==(B*A).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Axiom&nbsp;Ass:(A*(B*C))==((A*B)*C).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Axiom&nbsp;Cur:((A*B)-</TT><TT>&gt;</TT><TT>C)==(A-</TT><TT>&gt;</TT><TT>B-</TT><TT>&gt;</TT><TT>C).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Axiom&nbsp;Dis:(A-</TT><TT>&gt;</TT><TT>(B*C))==((A-</TT><TT>&gt;</TT><TT>B)*(A-</TT><TT>&gt;</TT><TT>C)).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Axiom&nbsp;P_unit:(A*unit)==A.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Axiom&nbsp;AR_unit:(A-</TT><TT>&gt;</TT><TT>unit)==unit.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Axiom&nbsp;AL_unit:(unit-</TT><TT>&gt;</TT><TT>A)==A.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Lemma&nbsp;Cons:B==C-</TT><TT>&gt;</TT><TT>(A*B)==(A*C).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Proof.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Intro&nbsp;Heq;Rewrite&nbsp;Heq;Apply&nbsp;refl_eqT.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Save.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;End&nbsp;Iso_axioms.</TT><BR></DIV>
+
+
+<BR>
+<DIV ALIGN=center>Table 10.10: Type isomorphism axioms</DIV><BR>
+
+<A NAME="isosax"></A>
+<DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV></BLOCKQUOTE>The tactic to judge equalities modulo this axiomatization can be written as
+shown in tables&nbsp;<A HREF="node.2.1.2.html#isosltac1">10.11</A> and&nbsp;<A HREF="node.2.1.2.html#isosltac2">10.12</A>. The algorithm is quite
+simple. Types are reduced using axioms that can be oriented (this done by <FONT COLOR=purple>MainSimplif</FONT>). The normal forms are sequences of Cartesian
+products without Cartesian product in the left component. These normal forms
+are then compared modulo permutation of the components (this is done by <FONT COLOR=purple>CompareStruct</FONT>). The main tactic to be called and realizing this algorithm is
+<FONT COLOR=purple>IsoProve</FONT>.<BR>
+<BR>
+<BLOCKQUOTE><DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV>
+6in
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Recursive&nbsp;Tactic&nbsp;Definition&nbsp;Simplif&nbsp;trm:=</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;Match&nbsp;trm&nbsp;With</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;[(?1*?2)*?3]&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;Rewrite&nbsp;</TT><TT>&lt;</TT><TT>-&nbsp;(Ass&nbsp;?1&nbsp;?2&nbsp;?3);Try&nbsp;MainSimplif</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;|[(?1*?2)-</TT><TT>&gt;</TT><TT>?3]&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;Rewrite&nbsp;(Cur&nbsp;?1&nbsp;?2&nbsp;?3);Try&nbsp;MainSimplif</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;|[?1-</TT><TT>&gt;</TT><TT>(?2*?3)]&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;Rewrite&nbsp;(Dis&nbsp;?1&nbsp;?2&nbsp;?3);Try&nbsp;MainSimplif</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;|[?1*unit]&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;Rewrite&nbsp;(P_unit&nbsp;?1);Try&nbsp;MainSimplif</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;|[unit*?1]&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;Rewrite&nbsp;(Com&nbsp;unit&nbsp;?1);Try&nbsp;MainSimplif</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;|[?1-</TT><TT>&gt;</TT><TT>unit]&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;Rewrite&nbsp;(AR_unit&nbsp;?1);Try&nbsp;MainSimplif</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;|[unit-</TT><TT>&gt;</TT><TT>&nbsp;?1]&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;Rewrite&nbsp;(AL_unit&nbsp;?1);Try&nbsp;MainSimplif</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;|[?1*?2]&nbsp;-</TT><TT>&gt;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((Simplif&nbsp;?1);Try&nbsp;MainSimplif)&nbsp;Orelse</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((Simplif&nbsp;?2);Try&nbsp;MainSimplif)</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;|[?1-</TT><TT>&gt;</TT><TT>&nbsp;?2]&nbsp;-</TT><TT>&gt;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((Simplif&nbsp;?1);Try&nbsp;MainSimplif)&nbsp;Orelse</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((Simplif&nbsp;?2);Try&nbsp;MainSimplif)</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;And&nbsp;MainSimplif:=</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;Match&nbsp;Context&nbsp;With</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;[|-&nbsp;?1==&nbsp;?2]&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;Try&nbsp;(Simplif&nbsp;?1);Try&nbsp;(Simplif&nbsp;?2).</TT><BR><TT><I>MainSimplif&nbsp;is&nbsp;defined</I></TT><BR><TT><I>Simplif&nbsp;is&nbsp;defined</I></TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Tactic&nbsp;Definition&nbsp;Length&nbsp;trm:=</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;Match&nbsp;trm&nbsp;With</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;[?*?1]&nbsp;-</TT><TT>&gt;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Let&nbsp;succ=(Length&nbsp;?1)&nbsp;In</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'(S&nbsp;succ)</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;|_&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;'(1).</TT><BR><TT><I>Length&nbsp;is&nbsp;defined</I></TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Tactic&nbsp;Definition&nbsp;Assoc:=&nbsp;Repeat&nbsp;Rewrite&nbsp;</TT><TT>&lt;</TT><TT>-&nbsp;Ass.</TT><BR><TT><I>Assoc&nbsp;is&nbsp;defined</I></TT><BR></DIV>
+
+
+<BR>
+<DIV ALIGN=center>Table 10.11: Type isomorphism tactic (1)</DIV><BR>
+
+<A NAME="isosltac1"></A>
+<DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV></BLOCKQUOTE><BLOCKQUOTE><DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV>
+6in
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Recursive&nbsp;Tactic&nbsp;Definition&nbsp;DoCompare&nbsp;n:=</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;Match&nbsp;Context&nbsp;With</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;[|-?1==?1]&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;Apply&nbsp;refl_eqT</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;|[|-(?1*?2)==(?1*?3)]&nbsp;-</TT><TT>&gt;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Apply&nbsp;Cons;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Let&nbsp;newn=(Length&nbsp;?2)&nbsp;In</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(DoCompare&nbsp;newn)</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;|[|-(?1*?2)==?3]&nbsp;-</TT><TT>&gt;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Match&nbsp;Eval&nbsp;Compute&nbsp;in&nbsp;n&nbsp;With</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(1)]&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;Fail</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|_&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pattern&nbsp;1&nbsp;(?1*?2);Rewrite&nbsp;Com;Assoc;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(DoCompare&nbsp;'(pred&nbsp;n))).</TT><BR><TT><I>DoCompare&nbsp;is&nbsp;defined</I></TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Tactic&nbsp;Definition&nbsp;CompareStruct:=</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;Match&nbsp;Context&nbsp;With</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;[|-?1==?2]&nbsp;-</TT><TT>&gt;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Let&nbsp;l1=(Length&nbsp;?1)</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;And&nbsp;l2=(Length&nbsp;?2)&nbsp;In</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Match&nbsp;Eval&nbsp;Compute&nbsp;in&nbsp;l1=l2&nbsp;With</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[?1=?1]&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;(DoCompare&nbsp;?1)).</TT><BR><TT><I>CompareStruct&nbsp;is&nbsp;defined</I></TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Tactic&nbsp;Definition&nbsp;IsoProve:=MainSimplif;CompareStruct.</TT><BR><TT><I>IsoProve&nbsp;is&nbsp;defined</I></TT><BR></DIV>
+
+
+<BR>
+<DIV ALIGN=center>Table 10.12: Type isomorphism tactic (2)</DIV><BR>
+
+<A NAME="isosltac2"></A>
+<DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV></BLOCKQUOTE>Table&nbsp;<A HREF="node.2.1.2.html#isoslem">10.13</A> gives examples of what can be solved by <FONT COLOR=purple>IsoProve</FONT>.<BR>
+<BR>
+<BLOCKQUOTE><DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV>
+6in
+
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Lemma&nbsp;isos_ex1:(A,B:Set)((A*unit)*B)==(B*(unit*A)).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Proof.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Intros;IsoProve.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Save.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Lemma&nbsp;isos_ex2:(A,B,C:Set)</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;((A*unit)-</TT><TT>&gt;</TT><TT>(B*C*unit))==</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;(((A*unit)-</TT><TT>&gt;</TT><TT>((C-</TT><TT>&gt;</TT><TT>unit)*C))*(unit-</TT><TT>&gt;</TT><TT>(A-</TT><TT>&gt;</TT><TT>B))).</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Proof.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Intros;IsoProve.</TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Save.</TT><BR></DIV>
+
+
+<BR>
+<DIV ALIGN=center>Table 10.13: Type equalities solved by <FONT COLOR=purple>IsoProve</FONT></DIV><BR>
+
+<A NAME="isoslem"></A>
+<DIV ALIGN=center><HR WIDTH="80%" SIZE=2></DIV></BLOCKQUOTE>
+<HR>
+
+<A HREF="node.2.1.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.2.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

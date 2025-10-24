@@ -1,0 +1,125 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+14.6&nbsp;Declaration of Coercions
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.3.4.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.3.6.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+14.6&nbsp;Declaration of Coercions
+</H2>
+
+
+
+ 
+<H3>
+
+14.6.1&nbsp;<TT>Coercion </TT><I><FONT COLOR=maroon>qualid</FONT></I><TT> : </TT><I><FONT COLOR=maroon>class</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> &gt;-&gt; </TT><I><FONT COLOR=maroon>class</FONT></I><SUB><TT><FONT SIZE=2>2</FONT></TT></SUB><TT>.
+</TT></H3>
+
+<A NAME="@default603"></A><A NAME="@command156"></A>Declares the construction denoted by <I><FONT COLOR=maroon>qualid</FONT></I> as a coercion between
+<I><FONT COLOR=maroon>class</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> and <I><FONT COLOR=maroon>class</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB>.<BR>
+<BR>
+<BR><B>Error messages: </B><OL type=1>
+<LI>
+ <I><FONT COLOR=maroon>qualid</FONT></I> <TT>not declared</TT><A NAME="@error94"></A>
+
+<LI> <I><FONT COLOR=maroon>qualid</FONT></I> <TT>is already a coercion</TT><A NAME="@error95"></A>
+
+<LI> <TT>FUNCLASS cannot be a source class</TT><A NAME="@error96"></A>
+
+<LI> <TT>SORTCLASS cannot be a source class</TT><A NAME="@error97"></A>
+
+<LI> <TT>Does not correspond to a coercion</TT><A NAME="@error98"></A><BR><I><FONT COLOR=maroon>qualid</FONT></I> is not a function.
+
+<LI> <TT>Cannot find the source class</TT><A NAME="@error99"></A>
+
+<LI> <I><FONT COLOR=maroon>qualid</FONT></I> <TT>does not respect the inheritance uniform condition</TT><A NAME="@error100"></A>
+
+<LI> <TT>The target class does not correspond to </TT><I><FONT COLOR=maroon>class</FONT></I><SUB><TT><FONT SIZE=2>2</FONT></TT></SUB><A NAME="@error101"></A>
+</OL>When the coercion <I><FONT COLOR=maroon>qualid</FONT></I> is added to the inheritance graph, non
+valid coercion paths are ignored; they are signaled by a warning.
+<BR><B>Warning :</B>
+<OL type=1>
+<LI>
+ <TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD ALIGN=left NOWRAP>
+<TT>Ambiguous paths: </TT></TD>
+<TD ALIGN=left NOWRAP>[<I>f</I><SUB><FONT SIZE=2>1</FONT></SUB><SUP><FONT SIZE=2>1</FONT></SUP>;..;<I>f</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB><SUB><SUB><FONT SIZE=2>1</FONT></SUB></SUB><SUP><FONT SIZE=2>1</FONT></SUP>] : <I>C</I><SUB><FONT SIZE=2>1</FONT></SUB><TT>&gt;-&gt;</TT><I>D</I><SUB><FONT SIZE=2>1</FONT></SUB></TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP>...</TD>
+</TR>
+<TR><TD ALIGN=left NOWRAP></TD>
+<TD ALIGN=left NOWRAP>[<I>f</I><SUB><FONT SIZE=2>1</FONT></SUB><SUP><FONT SIZE=2><I>m</I></FONT></SUP>;..;<I>f</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB><SUB><SUB><FONT SIZE=2><I>m</I></FONT></SUB></SUB><SUP><FONT SIZE=2><I>m</I></FONT></SUP>] : <I>C</I><SUB><FONT SIZE=2><I>m</I></FONT></SUB><TT>&gt;-&gt;</TT><I>D</I><SUB><FONT SIZE=2><I>m</I></FONT></SUB>
+ </TD>
+</TR></TABLE>
+</OL><BR><B>Variants: </B><OL type=1>
+<LI>
+ <TT>Coercion Local </TT><I><FONT COLOR=maroon>qualid</FONT></I><TT> : </TT><I><FONT COLOR=maroon>class</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> &gt;-&gt; </TT><I><FONT COLOR=maroon>class</FONT></I><SUB><TT><FONT SIZE=2>2</FONT></TT></SUB><TT>.</TT>
+<A NAME="@default604"></A><A NAME="@command157"></A><BR>Declares the construction denoted by <I><FONT COLOR=maroon>qualid</FONT></I> as a coercion local to
+ the current section.<BR>
+<BR>
+
+<LI> <TT>Coercion </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> := </TT><I><FONT COLOR=maroon>term</FONT></I><A NAME="@default605"></A><A NAME="@command158"></A><BR>This defines <I><FONT COLOR=maroon>ident</FONT></I> just like <TT>Definition </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> :=
+ </TT><I><FONT COLOR=maroon>term</FONT></I>, and then declares <I><FONT COLOR=maroon>ident</FONT></I> as a coercion between it
+ source and its target.<BR>
+<BR>
+
+<LI> <TT>Coercion </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> := </TT><I><FONT COLOR=maroon>term</FONT></I><TT> : </TT><I><FONT COLOR=maroon>type</FONT></I><BR>This defines <I><FONT COLOR=maroon>ident</FONT></I> just like 
+ <TT>Definition </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> : </TT><I><FONT COLOR=maroon>type</FONT></I><TT> := </TT><I><FONT COLOR=maroon>term</FONT></I>, and then
+ declares <I><FONT COLOR=maroon>ident</FONT></I> as a coercion between it source and its target. <BR>
+<BR>
+
+<LI> <TT>Coercion Local </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> := </TT><I><FONT COLOR=maroon>term</FONT></I><A NAME="@default606"></A><A NAME="@command159"></A><BR>This defines <I><FONT COLOR=maroon>ident</FONT></I> just like <TT>Local </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> :=
+ </TT><I><FONT COLOR=maroon>term</FONT></I>, and then declares <I><FONT COLOR=maroon>ident</FONT></I> as a coercion between it
+ source and its target.
+</OL>
+ 
+<H3>
+
+14.6.2&nbsp;<TT>Identity Coercion </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>:</TT><I><FONT COLOR=maroon>class</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> &gt;-&gt; </TT><I><FONT COLOR=maroon>class</FONT></I><SUB><TT><FONT SIZE=2>2</FONT></TT></SUB><TT>.
+</TT></H3>
+ 
+<A NAME="@default607"></A><A NAME="@command160"></A>We check that <I><FONT COLOR=maroon>class</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> is a constant with a value of the form
+[<I>x</I><SUB><FONT SIZE=2>1</FONT></SUB>:<I>T</I><SUB><FONT SIZE=2>1</FONT></SUB>]..[<I>x</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>:<I>T</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>](<I><FONT COLOR=maroon>class</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB>&nbsp;<I>t</I><SUB><FONT SIZE=2>1</FONT></SUB>..<I>t</I><SUB><FONT SIZE=2><I>m</I></FONT></SUB>) where <I>m</I> is the
+number of parameters of <I><FONT COLOR=maroon>class</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB>. Then we define an identity
+function with the type
+(<I>x</I><SUB><FONT SIZE=2>1</FONT></SUB>:<I>T</I><SUB><FONT SIZE=2>1</FONT></SUB>)..(<I>x</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>:<I>T</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>)(<I>y</I>:(<I><FONT COLOR=maroon>class</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>&nbsp;<I>x</I><SUB><FONT SIZE=2>1</FONT></SUB>..<I>x</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>))
+(<I><FONT COLOR=maroon>class</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB>&nbsp;<I>t</I><SUB><FONT SIZE=2>1</FONT></SUB>..<I>t</I><SUB><FONT SIZE=2><I>m</I></FONT></SUB>), and we declare it as an identity
+coercion between <I><FONT COLOR=maroon>class</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> and <I><FONT COLOR=maroon>class</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB>.<BR>
+<BR>
+<BR><B>Error messages: </B><OL type=1>
+<LI>
+ <TT>Clash with previous constant </TT><I><FONT COLOR=maroon>ident</FONT></I><A NAME="@error102"></A>
+
+<LI> <I><FONT COLOR=maroon>class</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> <TT>must be a transparent constant</TT><A NAME="@error103"></A> 
+</OL><BR><B>Variants: </B><OL type=1>
+<LI>
+ <TT>Identity Coercion Local </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>:</TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> &gt;-&gt; </TT><I><FONT COLOR=maroon>ident</FONT></I><SUB><TT><FONT SIZE=2>2</FONT></TT></SUB><TT>.</TT><BR>Idem but locally to the current section.</OL>
+ <HR>
+
+<A HREF="node.3.3.4.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.3.6.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

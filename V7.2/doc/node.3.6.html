@@ -1,0 +1,88 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+Chapter&nbsp;17: Execution of extracted programs in Objective Caml and Haskell
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.5.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.7.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H1>
+
+Chapter&nbsp;17: Execution of extracted programs in Objective Caml and Haskell
+</H1>
+
+
+
+<A NAME="Extraction"></A>
+<FONT SIZE=5><B>Jean-Christophe Filliâtre and Pierre Letouzey</B></FONT> <BR><BR><BR><BR><BR><BR><A NAME="@default625"></A><BR>
+<BR>
+<DIV ALIGN=left>
+ <EM>The status of extraction is experimental.<BR>Haskell extraction is implemented, but not yet tested.
+</EM></DIV><BR>
+It is possible to use <FONT COLOR=purple>Coq</FONT> to build certified and relatively
+efficient programs, extracting them from the proofs of their
+specifications. The extracted objects can be 
+obtained at the <FONT COLOR=purple>Coq</FONT> toplevel with the command <TT>Extraction</TT>
+(see <A HREF="node.1.0.1.html#ExtractionTerm">5.2.3</A>).<BR>
+<BR>
+We present here a <FONT COLOR=purple>Coq</FONT> module, <TT>Extraction</TT>, which translates the
+extracted terms to ML dialects, namely Objective Caml and Haskell. 
+In the following, ``ML'' will be used to refer to any of the target 
+dialects.<BR>
+<BR>
+
+<H5>
+Differences with old versions.
+</H5>
+
+The current extraction mechanism is new for version 7.0 of <FONT COLOR=purple>Coq</FONT>.
+In particular, the <I>F</I><SUB><FONT SIZE=2><FONT FACE=symbol>w</FONT></FONT></SUB> toplevel used as an intermediate step between 
+<FONT COLOR=purple>Coq</FONT> and ML has been withdrawn. It is also not possible 
+any more to import ML objects in this <I>F</I><SUB><FONT SIZE=2><FONT FACE=symbol>w</FONT></FONT></SUB> toplevel.
+The current mechanism also differs from
+the one in previous versions of <FONT COLOR=purple>Coq</FONT>: there is no more
+an explicit toplevel for the language (formerly called <FONT COLOR=purple>Fml</FONT>). <BR>In the first part of this document we describe the commands of the
+<TT>Extraction</TT> module, and in the second part we give some examples.<BR>
+<BR>
+
+ <UL>
+<LI><A HREF="node.3.6.0.html">
+
+17.1&nbsp;Generating ML code
+</A>
+<LI><A HREF="node.3.6.1.html">
+
+17.2&nbsp;Extraction options and optimizations
+</A>
+<LI><A HREF="node.3.6.2.html">
+
+17.3&nbsp;Realizing axioms
+</A>
+<LI><A HREF="node.3.6.3.html">
+
+17.4&nbsp;Some examples
+</A>
+</UL><HR>
+
+<A HREF="node.3.5.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.7.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

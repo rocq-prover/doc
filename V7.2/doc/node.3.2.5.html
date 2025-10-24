@@ -1,0 +1,50 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+13.6&nbsp;Pattern-matching and coercions
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.2.4.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.2.6.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+13.6&nbsp;Pattern-matching and coercions
+</H2>
+
+
+If a mismatch occurs between the expected type of a pattern and its
+actual type, a coercion made from constructors is sought. If such a
+coercion can be found, it is automatically inserted around the
+pattern.<BR>
+<BR>
+Example:<BR>
+<BR>
+
+<DIV ALIGN=left>
+<TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Inductive&nbsp;I&nbsp;:&nbsp;Set&nbsp;:=</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;&nbsp;&nbsp;C1&nbsp;:&nbsp;nat&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;I</TT><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;|&nbsp;C2&nbsp;:&nbsp;I&nbsp;-</TT><TT>&gt;</TT><TT>&nbsp;I.</TT><BR><TT><I>I&nbsp;is&nbsp;defined</I></TT><BR><TT><I>I_ind&nbsp;is&nbsp;defined</I></TT><BR><TT><I>I_rec&nbsp;is&nbsp;defined</I></TT><BR><TT><I>I_rect&nbsp;is&nbsp;defined</I></TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Coercion&nbsp;C1&nbsp;:&nbsp;nat&nbsp;</TT><TT>&gt;</TT><TT>-</TT><TT>&gt;</TT><TT>&nbsp;I.</TT><BR><TT><I>C1&nbsp;is&nbsp;now&nbsp;a&nbsp;coercion</I></TT><BR><BR><TT>Coq&nbsp;</TT><TT>&lt;</TT><TT>&nbsp;Check&nbsp;[x]Cases&nbsp;x&nbsp;of&nbsp;(C2&nbsp;O)&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;O&nbsp;|&nbsp;_&nbsp;=</TT><TT>&gt;</TT><TT>&nbsp;O&nbsp;end.</TT><BR><TT><I>[x:I]</I></TT><BR><TT><I>&nbsp;Cases&nbsp;x&nbsp;of</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;(C1&nbsp;_)&nbsp;=</I></TT><TT><I>&gt;</I></TT><TT><I>&nbsp;(0)</I></TT><BR><TT><I>&nbsp;|&nbsp;(C2&nbsp;i)&nbsp;=</I></TT><TT><I>&gt;</I></TT><TT><I>&nbsp;</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;Cases&nbsp;i&nbsp;of</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(C1&nbsp;n)&nbsp;=</I></TT><TT><I>&gt;</I></TT><TT><I>&nbsp;Cases&nbsp;n&nbsp;of</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;=</I></TT><TT><I>&gt;</I></TT><TT><I>&nbsp;(0)</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(S&nbsp;_)&nbsp;=</I></TT><TT><I>&gt;</I></TT><TT><I>&nbsp;(0)</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(C2&nbsp;_)&nbsp;=</I></TT><TT><I>&gt;</I></TT><TT><I>&nbsp;(0)</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;end</I></TT><BR><TT><I>&nbsp;end</I></TT><BR><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;I-</I></TT><TT><I>&gt;</I></TT><TT><I>nat</I></TT><BR></DIV>
+<BR>
+
+ <HR>
+
+<A HREF="node.3.2.4.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.2.6.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

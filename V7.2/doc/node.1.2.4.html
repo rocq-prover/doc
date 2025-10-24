@@ -1,0 +1,226 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+7.5&nbsp;Conversion tactics
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.1.2.3.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.5.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+7.5&nbsp;Conversion tactics
+</H2>
+
+
+
+<A NAME="@default433"></A>
+<A NAME="@tactic29"></A>
+<A NAME="Conversion-tactics"></A>This set of tactics implements different specialized usages of the
+tactic <TT>Change</TT>.<BR>
+<BR>
+
+<H3>
+
+7.5.1&nbsp;<TT>Cbv</TT> <I><FONT COLOR=maroon>flag</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> ... <I><FONT COLOR=maroon>flag</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>, <TT>Lazy</TT> <I><FONT COLOR=maroon>flag</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>
+... <I><FONT COLOR=maroon>flag</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> and <TT>Compute</TT>
+</H3>
+
+<A NAME="@default434"></A><A NAME="@tactic30"></A><A NAME="@default435"></A><A NAME="@tactic31"></A>These parameterized reduction tactics apply to any goal and perform
+the normalization of the goal according to the specified flags. Since
+the reduction considered in <FONT COLOR=purple>Coq</FONT> include <FONT FACE=symbol>b</FONT> (reduction of
+functional application), <FONT FACE=symbol>d</FONT> (unfolding
+of transparent constants, see <A HREF="node.1.0.1.html#Transparent">5.2.5</A>),
+<FONT FACE=symbol>i</FONT> (reduction of <TT>Cases</TT>, <TT>Fix</TT> and <TT>CoFix</TT> expressions) and <FONT FACE=symbol>z</FONT> (removal of local definitions), every flag is one of <TT>Beta</TT>, <TT>Delta</TT>,
+<TT>Iota</TT>, <TT>Zeta</TT>, <TT>[</TT><I><FONT COLOR=maroon>qualid</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT>...</TT><I><FONT COLOR=maroon>qualid</FONT></I><SUB><TT><FONT SIZE=2><I>k</I></FONT></TT></SUB><TT>]</TT> and 
+<TT>-[</TT><I><FONT COLOR=maroon>qualid</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT>...</TT><I><FONT COLOR=maroon>qualid</FONT></I><SUB><TT><FONT SIZE=2><I>k</I></FONT></TT></SUB><TT>]</TT>.
+The last two flags give the list of
+constants to unfold, or the list of constants not to unfold. These two
+flags can occur only after the <TT>Delta</TT> flag. 
+In addition, there is a flag <TT>Evar</TT> to perform instantiation of exitential variables (``?'') when an instantiation actually exists.
+The goal may be
+normalized with two strategies: <EM>lazy</EM> (<TT>Lazy</TT> tactic), or
+<EM>call-by-value</EM> (<TT>Cbv</TT> tactic).<BR>
+<BR>
+The lazy strategy is a call-by-need strategy, with sharing of
+reductions: the arguments of a function call are partially evaluated
+only when necessary, but if an argument is used several times, it is
+computed only once. This reduction is efficient for reducing
+expressions with dead code. For instance, the proofs of a proposition
+<FONT FACE=symbol>$</FONT><SUB><FONT SIZE=2><I>T</I></FONT></SUB> &nbsp;<I>x</I>. <I>P</I>(<I>x</I>) reduce to a pair of a witness <I>t</I>, and a proof
+that <I>t</I> verifies the predicate <I>P</I>. Most of the time, <I>t</I> may be
+computed without computing the proof of <I>P</I>(<I>t</I>), thanks to the lazy
+strategy.<BR>
+<BR>
+The call-by-value strategy is the one used in ML languages: the
+arguments of a function call are evaluated first, using a weak
+reduction (no reduction under the <FONT FACE=symbol>l</FONT>-abstractions). Despite the
+lazy strategy always performs fewer reductions than the call-by-value
+strategy, the latter should be preferred for evaluating purely
+computational expressions (i.e. with few dead code).<BR>
+<BR>
+<BR><B>Variants: </B><OL type=1>
+<LI>
+ <TT>Compute</TT><BR><A NAME="@default436"></A><A NAME="@tactic32"></A>
+ This tactic is an alias for <TT>Cbv Beta Delta Evar Iota Zeta</TT>.
+</OL><BR><B>Error messages: </B><OL type=1>
+<LI>
+ <TT>Delta must be specified before</TT><A NAME="@error64"></A><BR>A list of constants appeared before the <TT>Delta</TT> flag.
+</OL>
+<H3>
+
+7.5.2&nbsp;<TT>Red</TT>
+</H3>
+
+<A NAME="@default437"></A><A NAME="@tactic33"></A>
+This tactic applies to a goal which have form <TT>(x:T1)...(xk:Tk)(c
+ t1 ... tn)</TT> where <TT>c</TT> is a constant. If <TT>c</TT> is transparent
+then it replaces <TT>c</TT> with its definition (say <TT>t</TT>) and then
+reduces <TT>(t t1 ... tn)</TT> according to <FONT FACE=symbol>b</FONT><FONT FACE=symbol>i</FONT>-reduction rules.<BR>
+<BR>
+<BR><B>Error messages: </B><OL type=1>
+<LI>
+ <TT>Not reducible</TT><A NAME="@error65"></A>
+</OL>
+<H3>
+
+7.5.3&nbsp;<TT>Hnf</TT>
+</H3>
+
+<A NAME="@default438"></A><A NAME="@tactic34"></A>
+This tactic applies to any goal. It replaces the current goal with its
+head normal form according to the <FONT FACE=symbol>b</FONT><FONT FACE=symbol>d</FONT><FONT FACE=symbol>i</FONT>-reduction
+rules. <TT>Hnf</TT> does not produce a real head normal form but either a
+product or an applicative term in head normal form or a variable.<BR><B>Example: </B>The term <CODE>(n:nat)(plus (S n) (S n))</CODE> is not reduced by <TT>Hnf</TT>.<BR><B>Remark: </B>The <FONT FACE=symbol>d</FONT> rule will only be applied to transparent constants
+(i.e. which have not been frozen with an <TT>Opaque</TT> command; see
+section <A HREF="node.1.0.1.html#Opaque">5.2.4</A>).<BR>
+<BR>
+
+<H3>
+
+7.5.4&nbsp;<TT>Simpl
+</TT></H3>
+
+<A NAME="@default439"></A><A NAME="@tactic35"></A>
+This tactic applies to any goal. The
+tactic <TT>Simpl</TT> first applies <FONT FACE=symbol>b</FONT><FONT FACE=symbol>i</FONT>-reduction rule.
+Then it expands transparent constants and tries to reduce <TT>T'</TT>
+according, once more, to 
+<FONT FACE=symbol>b</FONT><FONT FACE=symbol>i</FONT> rules. But when the <FONT FACE=symbol>i</FONT> rule is not applicable then
+possible <FONT FACE=symbol>d</FONT>-reductions are not applied. For instance trying to
+use <TT>Simpl</TT> on <TT>(plus n O)=n</TT> will change nothing.<BR>
+<BR>
+
+<H3>
+
+7.5.5&nbsp;<TT>Unfold </TT><I><FONT COLOR=maroon>qualid</FONT></I><TT>
+</TT></H3>
+
+<A NAME="@default440"></A><A NAME="@tactic36"></A><A NAME="Unfold"></A>
+This tactic applies to any goal. The argument <I><FONT COLOR=maroon>qualid</FONT></I> must denote
+a defined transparent constant or local definition (see section
+<A HREF="node.0.0.2.html#Simpl-definitions">1.3.2</A> and <A HREF="node.1.0.1.html#Transparent">5.2.5</A>). 
+The tactic <TT>Unfold</TT> applies the
+<FONT FACE=symbol>d</FONT> rule to each occurrence of the constant to which <I><FONT COLOR=maroon>qualid</FONT></I> refers
+ in the current goal and
+then replaces it with its <FONT FACE=symbol>b</FONT><FONT FACE=symbol>i</FONT>-normal form.<BR>
+<BR>
+<BR><B>Error messages: </B><OL type=1>
+<LI>
+ <I><FONT COLOR=maroon>qualid</FONT></I> <TT>does not denote an evaluable constant</TT><A NAME="@error66"></A>
+is printed.</OL><BR><B>Variants: </B><OL type=1>
+<LI>
+ <TT>Unfold </TT><I><FONT COLOR=maroon>qualid</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> ... </TT><I><FONT COLOR=maroon>qualid</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><BR><A NAME="@default441"></A><A NAME="@tactic37"></A>
+ Replaces <EM>simultaneously</EM> <I><FONT COLOR=maroon>qualid</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>, ..., <I><FONT COLOR=maroon>qualid</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> with
+ their definitions and replaces the current goal with its
+ <FONT FACE=symbol>b</FONT><FONT FACE=symbol>i</FONT> normal form.
+
+<LI> <TT>Unfold </TT><I><FONT COLOR=maroon>num</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><SUP><TT><FONT SIZE=2>1</FONT></TT></SUP><TT> ... </TT><I><FONT COLOR=maroon>num</FONT></I><SUB><TT><FONT SIZE=2><I>i</I></FONT></TT></SUB><SUP><TT><FONT SIZE=2>1</FONT></TT></SUP><TT> </TT><I><FONT COLOR=maroon>qualid</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> ...  </TT><I><FONT COLOR=maroon>num</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><SUP><TT><FONT SIZE=2><I>n</I></FONT></TT></SUP><TT>
+ ... </TT><I><FONT COLOR=maroon>num</FONT></I><SUB><TT><FONT SIZE=2><I>j</I></FONT></TT></SUB><SUP><TT><FONT SIZE=2><I>n</I></FONT></TT></SUP><TT> </TT><I><FONT COLOR=maroon>qualid</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><BR>The lists <I><FONT COLOR=maroon>num</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB><SUP><FONT SIZE=2>1</FONT></SUP>, ..., <I><FONT COLOR=maroon>num</FONT></I><SUB><FONT SIZE=2><I>i</I></FONT></SUB><SUP><FONT SIZE=2>1</FONT></SUP> and <I><FONT COLOR=maroon>num</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB><SUP><FONT SIZE=2><I>n</I></FONT></SUP>, ..., <I><FONT COLOR=maroon>num</FONT></I><SUB><FONT SIZE=2><I>j</I></FONT></SUB><SUP><FONT SIZE=2><I>n</I></FONT></SUP>
+ are to specify the occurrences of <I><FONT COLOR=maroon>qualid</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>, ..., <I><FONT COLOR=maroon>qualid</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> to be
+ unfolded. Occurrences are located from left to right in the linear
+ notation of terms.<BR><BR><B>Error message: </B><TT>bad occurrence numbers of </TT><I><FONT COLOR=maroon>qualid</FONT></I><SUB><TT><FONT SIZE=2><I>i</I></FONT></TT></SUB>
+</OL>
+<H3>
+
+7.5.6&nbsp;<TT>Fold</TT> <I><FONT COLOR=maroon>term</FONT></I>
+</H3>
+
+<A NAME="@default442"></A><A NAME="@tactic38"></A>This tactic applies to any goal. <I><FONT COLOR=maroon>term</FONT></I> is reduced using the <TT>Red</TT>
+tactic. Every occurrence of the resulting term in the goal is then
+substituted for <I><FONT COLOR=maroon>term</FONT></I>.<BR>
+<BR>
+<BR><B>Variants: </B><OL type=1>
+<LI>
+ <TT>Fold</TT> <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> ... <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB><BR>Equivalent to <TT>Fold</TT> <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB><TT>;</TT>...<TT>; Fold</TT> <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>.
+</OL>
+<H3>
+
+7.5.7&nbsp;<TT>Pattern </TT><I><FONT COLOR=maroon>term</FONT></I>
+</H3>
+
+<A NAME="@default443"></A><A NAME="@tactic39"></A><A NAME="Pattern"></A>
+This command applies to any goal. The argument <I><FONT COLOR=maroon>term</FONT></I> must be a free
+subterm of the current goal. The command <TT>Pattern</TT> performs
+<FONT FACE=symbol>b</FONT>-expansion (the inverse of <FONT FACE=symbol>b</FONT>-reduction) 
+of the current goal (say <TT>T</TT>) by
+<OL type=1>
+<LI>
+ replacing all occurrences of <I><FONT COLOR=maroon>term</FONT></I> in <TT>T</TT> with a fresh variable
+
+<LI> abstracting this variable
+
+<LI> applying the abstracted goal to <I><FONT COLOR=maroon>term</FONT></I>
+</OL>
+For instance, if the current goal <TT>T</TT> is <TT>(P t)</TT> when <TT>t</TT> does not occur in
+<TT>P</TT> then <TT>Pattern t</TT> transforms it into <TT>([x:A](P x) t)</TT>. This
+command has to be used, for instance, when an <TT>Apply</TT> command
+fails on matching.<BR>
+<BR>
+<BR><B>Variants: </B><OL type=1>
+<LI>
+ <TT>Pattern </TT><I><FONT COLOR=maroon>num</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> ... </TT><I><FONT COLOR=maroon>num</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><TT> </TT><I><FONT COLOR=maroon>term</FONT></I><BR>Only the occurrences <I><FONT COLOR=maroon>num</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> ... <I><FONT COLOR=maroon>num</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> of <I><FONT COLOR=maroon>term</FONT></I> will be
+ considered for <FONT FACE=symbol>b</FONT>-expansion. Occurrences are located from left
+ to right.
+
+<LI> <TT>Pattern </TT><I><FONT COLOR=maroon>num</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><SUP><TT><FONT SIZE=2>1</FONT></TT></SUP><TT> ... </TT><I><FONT COLOR=maroon>num</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><SUB><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB></SUB><SUP><TT><FONT SIZE=2>1</FONT></TT></SUP><TT> </TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT> ...</TT><I><FONT COLOR=maroon>num</FONT></I><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><SUP><TT><FONT SIZE=2><I>m</I></FONT></TT></SUP><TT> ... </TT><I><FONT COLOR=maroon>num</FONT></I><SUB><TT><FONT SIZE=2><I>n</I></FONT></TT></SUB><SUB><SUB><TT><FONT SIZE=2><I>m</I></FONT></TT></SUB></SUB><SUP><TT><FONT SIZE=2><I>m</I></FONT></TT></SUP><TT> </TT><I><FONT COLOR=maroon>term</FONT></I><SUB><TT><FONT SIZE=2><I>m</I></FONT></TT></SUB><BR>Will process occurrences <I><FONT COLOR=maroon>num</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB><SUP><FONT SIZE=2>1</FONT></SUP>, ..., <I><FONT COLOR=maroon>num</FONT></I><SUB><FONT SIZE=2><I>i</I></FONT></SUB><SUP><FONT SIZE=2>1</FONT></SUP> of <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>,
+ ..., <I><FONT COLOR=maroon>num</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB><SUP><FONT SIZE=2><I>m</I></FONT></SUP>, ..., <I><FONT COLOR=maroon>num</FONT></I><SUB><FONT SIZE=2><I>j</I></FONT></SUB><SUP><FONT SIZE=2><I>m</I></FONT></SUP> of <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2><I>m</I></FONT></SUB> starting from <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2><I>m</I></FONT></SUB>.
+ Starting from a goal <TT>(P t</TT><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT>... t</TT><SUB><TT><FONT SIZE=2><I>m</I></FONT></TT></SUB><TT>)</TT> with the <TT>t</TT><SUB><TT><FONT SIZE=2><I>i</I></FONT></TT></SUB> which do not occur in <I>P</I>, the tactic <TT>Pattern
+ t</TT><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT>... t</TT><SUB><TT><FONT SIZE=2><I>m</I></FONT></TT></SUB> generates the equivalent goal <TT>([x</TT><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT>:A</TT><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT>]... [x</TT><SUB><TT><FONT SIZE=2><I>m</I></FONT></TT></SUB><TT>:A</TT><SUB><TT><FONT SIZE=2><I>m</I></FONT></TT></SUB><TT>](P x</TT><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT>... x</TT><SUB><TT><FONT SIZE=2><I>m</I></FONT></TT></SUB><TT>)
+ t</TT><SUB><TT><FONT SIZE=2>1</FONT></TT></SUB><TT>... t</TT><SUB><TT><FONT SIZE=2><I>m</I></FONT></TT></SUB><TT>)</TT>.<BR>If <I>t</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB> occurs in one of the generated types A<SUB><FONT SIZE=2><I>j</I></FONT></SUB> these
+ occurrences will also be considered and possibly abstracted.
+</OL>
+<H3>
+
+7.5.8&nbsp;Conversion tactics applied to hypotheses
+</H3>
+<I><FONT COLOR=maroon>conv_tactic</FONT></I> <TT>in</TT> <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> ... <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> <BR>Applies the conversion tactic <I><FONT COLOR=maroon>conv_tactic</FONT></I> to the
+hypotheses <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>, ..., <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>. The tactic <I><FONT COLOR=maroon>conv_tactic</FONT></I> is
+any of the conversion tactics listed in this section. <BR>
+<BR>
+<BR><B>Error messages: </B><OL type=1>
+<LI>
+ <TT>No such hypothesis</TT><A NAME="@error67"></A> : <I><FONT COLOR=maroon>ident</FONT></I>.
+</OL><HR>
+
+<A HREF="node.1.2.3.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.5.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

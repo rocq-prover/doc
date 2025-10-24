@@ -1,0 +1,124 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+17.2&nbsp;Extraction options and optimizations
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.6.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.6.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.6.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+17.2&nbsp;Extraction options and optimizations
+</H2>
+
+
+<A NAME="extraction:com-options"></A>Since Objective Caml is a strict language, the extracted
+code has to be optimized in order to be efficient (for instance, when
+using induction principles we do not want to compute all the recursive
+calls but only the needed ones). So the extraction mechanism provides
+an automatic optimization routine that will be
+called each time the user want to generate Ocaml programs. Essentially,
+it performs constants inlining and reductions. Therefore some
+constants may not appear in resulting monolithic Ocaml program (a warning is
+printed for each such constant). In the case of modular extraction, 
+even if some inlining is done, the inlined constant are nevertheless
+printed, to ensure session-independent programs. <BR>
+<BR>
+Concerning Haskell, such optimizations are less useful because of
+lazyness. We still make some optimizations, for example in order to
+produce more readable code. <BR>
+<BR>
+All these optimizations are controled by the following <FONT COLOR=purple>Coq</FONT> options: <BR>
+<BR>
+<DL COMPACT=compact>
+<DT><DD> <TT>Set Extraction Optimize.</TT>
+
+<DT><DD> <TT>Unset Extraction Optimize.</TT> &nbsp;<BR>
+<BR>
+Default is Set. This control all optimizations made on the ML terms 
+(mostly reduction of dummy beta/iota redexes, but also simplications on 
+Cases, etc). Put this option to Unset if you want a ML term as close as 
+possible to the Coq term.<BR>
+<BR>
+
+<DT><DD> <TT>Set Extraction AutoInline.</TT>
+
+<DT><DD> <TT>Unset Extraction AutoInline</TT>. &nbsp;<BR>
+<BR>
+Default is Set, so by default, the extraction mechanism feels free to 
+inline the bodies of some defined constants, according to some heuristics 
+like size of bodies, useness of some arguments, etc. Those heuristics are 
+not always perfect, you may want to disable this feature, do it by Unset. <BR>
+<BR>
+
+<DT><DD> <TT>Extraction Inline</TT> <I><FONT COLOR=maroon>qualid</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> ... <I><FONT COLOR=maroon>qualid</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>. &nbsp;<BR>
+<BR>
+
+<DT><DD> <TT>Extraction NoInline</TT> <I><FONT COLOR=maroon>qualid</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> ... <I><FONT COLOR=maroon>qualid</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>. &nbsp;<BR>
+<BR>
+In addition to the automatic inline feature, you can now tell precisely to 
+inline some more constants by the <TT>Extraction Inline</TT> command. Conversely, 
+you can forbid the automatic inlining of some specific constants by
+the <TT>Extraction NoInline</TT> command.
+Those two commands enable a precise control of what is inlined and what is not. <BR>
+<BR>
+
+<DT><DD> <TT>Print Extraction Inline</TT>. &nbsp;<BR>
+<BR>
+Prints the current state of the table recording the custom inlinings 
+declared by the two previous commands. <BR>
+<BR>
+
+<DT><DD> <TT>Reset Extraction Inline</TT>. &nbsp;<BR>
+<BR>
+Puts the table recording the custom inlinings back to empty. </DL>
+<H5>
+Inlining and printing of a constant declaration.
+</H5>
+A user can explicitely asks a constant to be extracted by two means: 
+<UL>
+<LI>
+ by mentioning it on the extraction command line
+
+<LI> by extracting the whole <FONT COLOR=purple>Coq</FONT> module of this constant.
+</UL>
+In both cases, the declaration of this constant will be present in the
+produced file. 
+But this same constant may or may not be inlined in the following
+terms, depending on the automatic/custom inlining mechanism. <BR>
+<BR>
+For the constants non-explicitely required but needed for dependancy
+reasons, there are two cases: 
+<UL>
+<LI>
+ If an inlining decision is taken, wether automatically or not, 
+all occurences of this constant are replaced by its extracted body, and
+this constant is not declared in the generated file.
+
+<LI> If no inlining decision is taken, the constant is normally
+ declared in the produced file. 
+</UL>
+ <HR>
+
+<A HREF="node.3.6.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.6.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.6.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

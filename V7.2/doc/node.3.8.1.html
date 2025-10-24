@@ -1,0 +1,101 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+19.2&nbsp;Adding new setoid or morphisms
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.8.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.8.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.8.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+19.2&nbsp;Adding new setoid or morphisms
+</H2>
+
+
+Under the toplevel
+load the <TT>Setoid_replace</TT> files with the command:<BR>
+<BR>
+<BLOCKQUOTE>
+<PRE>
+Require Setoid.
+</PRE></BLOCKQUOTE>A setoid is just a type <CODE>A</CODE> and an equivalence relation on <CODE>A</CODE>.<BR>
+<BR>
+The specification of a setoid can be found in the file<BR>
+<BR>
+<BLOCKQUOTE>
+<PRE>
+theories/Setoids/Setoid.v
+</PRE></BLOCKQUOTE>It looks like :
+
+<DIV ALIGN=left>
+<PRE>
+Section Setoid.
+
+Variable A : Type.
+Variable Aeq : A -&gt; A -&gt; Prop.
+
+Record Setoid_Theory : Prop :=
+{ Seq_refl : (x:A) (Aeq x x);
+  Seq_sym : (x,y:A) (Aeq x y) -&gt; (Aeq y x);
+  Seq_trans : (x,y,z:A) (Aeq x y) -&gt; (Aeq y z) -&gt; (Aeq x z)
+}.
+</PRE></DIV>
+<BR>
+To define a setoid structure on <CODE>A</CODE>, you must provide a relation
+<CODE>Aeq</CODE> on <CODE>A</CODE> and prove that <CODE>Aeq</CODE> is an equivalence
+relation. That is, you have to define an object of type
+<CODE>(Setoid_Theory A Aeq)</CODE>.<BR>
+<BR>
+Finally to register a setoid the syntax is:<BR>
+<BR>
+<A NAME="@default639"></A><A NAME="@command183"></A>
+<BLOCKQUOTE>
+ <TT>Add Setoid</TT> <I> A Aeq ST</I>
+</BLOCKQUOTE>where <I>Aeq</I> is a term of type <TT>A-&gt;A-&gt;Prop</TT> and
+<I>ST</I> is a term of type 
+<TT>(Setoid_Theory </TT><I>A Aeq</I><TT>)</TT>.<BR>
+<BR>
+<BR><B>Error messages: </B><OL type=1>
+<LI>
+ <TT>Not a valid setoid theory</TT><A NAME="@error117"></A>.<BR>That happens when the typing condition does not hold.
+
+<LI> <TT>A Setoid Theory is already declared for </TT><TT><I>A</I></TT><A NAME="@error118"></A>.<BR>That happens when you try to declare a second setoid theory for the
+ same type.
+</OL>Currently, only one setoid structure
+may be declared for a given type.
+This allows automatic detection of the theory used to achieve the
+replacement.<BR>
+<BR>
+The table of setoid theories is compatible with the <FONT COLOR=purple>Coq</FONT> 
+sectioning mechanism. If you declare a setoid inside a section, the
+declaration will be thrown away when closing the section.
+And when you load a compiled file, all the <TT>Add Setoid</TT>
+commands of this file that are not inside a section will be loaded.<BR><B>Warning: </B>Only the setoid on <TT>Prop</TT> is loaded by default with the
+<TT>Setoid_replace</TT> module. The equivalence relation used is
+<TT>iff</TT> <I>i.e.</I> the logical equivalence.<BR>
+<BR>
+
+ <HR>
+
+<A HREF="node.3.8.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.8.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.8.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>
