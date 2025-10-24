@@ -1,0 +1,146 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+17.2&nbsp;Using Program
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.6.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.6.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.6.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+17.2&nbsp;Using <TT>Program</TT>
+</H2>
+
+
+
+The user has to give two things: the specification (given as usual by
+a goal) and the program (see section <A HREF="node.3.6.2.html#program-syntax">17.3</A>). Then, this program
+is associated to the current goal (to know which specification it
+corresponds to) and the user can use different tactics to develop an
+automatic proof.<BR>
+<BR>
+
+ 
+<H3>
+
+17.2.1&nbsp;<TT>Realizer </TT><I><FONT COLOR=maroon>term</FONT></I><TT>.
+</TT></H3>
+
+<A NAME="@default595"></A><A NAME="@tactic111"></A><A NAME="Realizer"></A>
+This command attaches a program <I><FONT COLOR=maroon>term</FONT></I> to the current goal. This is a
+necessary step before applying the first time the tactic <TT>Program</TT>. The syntax of programs is given in section <A HREF="node.3.6.2.html#program-syntax">17.3</A>.
+If a program is already attached to the current subgoal, <TT>Realizer</TT> can be also used to change it.<BR>
+<BR>
+
+ 
+<H3>
+
+17.2.2&nbsp;<TT>Show Program.
+</TT></H3>
+
+<A NAME="@default596"></A><A NAME="@command175"></A><A NAME="Show Program"></A> 
+The command <CODE>Show Program</CODE> shows the program associated to the
+current goal. The variant <CODE>Show Program n</CODE> shows the program associated to
+the nth subgoal.<BR>
+<BR>
+
+ 
+<H3>
+
+17.2.3&nbsp;<TT>Program.
+</TT></H3>
+
+<A NAME="@default597"></A><A NAME="@tactic112"></A><A NAME="Program"></A> 
+This tactics tries to build a proof of the current subgoal from the
+program associated to the current goal. This tactic performs
+<CODE>Intros</CODE> then either one <CODE>Apply</CODE> or one <CODE>Elim</CODE>
+depending on the syntax of the program. The <CODE>Program</CODE> tactic
+generates a list of subgoals which can be either logical or
+informative. Subprograms are automatically attached to the informative
+subgoals. <BR>
+<BR>
+When attached program are not automatically generated, an initial program
+has to be given by <TT>Realizer</TT>. <BR>
+<BR>
+<BR><B>Error messages: </B><OL>
+<LI><TT>No program associated to this subgoal</TT><BR>You need to attach a program to the current goal by using <TT>Realizer</TT>.
+Perhaps, you already attached a program but a <TT>Restart</TT> or an
+<TT>Undo</TT> has removed it.
+
+<LI><TT>Type of program and informative extraction of goal do not coincide</TT>
+
+<LI><TT>Cannot attach a realizer to a logical goal</TT><BR>The current goal is non informative (it lives in the world <TT>Prop</TT>
+of propositions or <TT>Type</TT> of abstract sets) while it should lives
+in the world <TT>Set</TT> of computational objects.
+
+<LI><TT>Perhaps a term of the Realizer is not an FW term and you
+then have<BR>to replace it by its extraction</TT><BR>Your program contains non informative subterms.
+</OL><BR><B>Variants: </B><OL>
+<LI><TT>Program_all.</TT>
+ <A NAME="@default598"></A><A NAME="@tactic113"></A><A NAME="Program_all"></A><BR>This tactic is equivalent to the composed tactic
+ <CODE>Repeat (Program OrElse Auto)</CODE>. It repeats the <CODE>Program</CODE>
+ tactic on every informative subgoal and tries the <CODE>Auto</CODE> tactic
+ on the logical subgoals. Note that the work of the <CODE>Program</CODE>
+ tactic is considered to be finished when all the informative subgoals
+ have been solved. This implies that logical lemmas can stay at the end
+ of the automatic proof which have to be solved by the user.
+
+<LI><TT>Program_Expand</TT>
+ <A NAME="@default599"></A><A NAME="@tactic114"></A><A NAME="Program_Expand"></A><BR>The <CODE>Program_Expand</CODE> tactic transforms the current program into
+ the same program with the head constant expanded. This tactic
+ particularly allows the user to force a program to be reduced before
+ each application of the <CODE>Program</CODE> tactic.
+ <BR><B>Error messages: </B><OL>
+<LI><TT>Not reducible</TT><BR>The head of the program is not a constant or is an opaque constant.
+ need to attach a program to the current goal by using <TT>Realizer</TT>.
+ Perhaps, you already attached a program but a <TT>Restart</TT> or an
+ <TT>Undo</TT> has removed it.
+ </OL>
+</OL>
+ 
+<H3>
+
+17.2.4&nbsp;Hints for <TT>Program</TT>
+</H3>
+<DL>
+<DT>Mutual inductive types<DD> The <CODE>Program</CODE> tactic can deal with
+ mutual inductive types. But, this needs the use of
+ annotations. Indeed, when associating a mutual fixpoint program to a
+ specification, the specification is associated to the first (the
+ outermost) function defined by the fixpoint. But, the specifications
+ to be associated to the other functions cannot be automatically
+ derived. They have to be explicitly given by the user as
+ annotations. See section <A HREF="node.3.6.3.html#program-ex-mutual">17.4.5</A> for an example.
+ 
+
+<DT>Constants<DD> The <CODE>Program</CODE> tactic is very sensitive to the
+ status of constants. Constants can be either opaque (their body
+ cannot be viewed) or transparent. The best of way of doing is to
+ leave constants opaque (this is the default). If it is needed after,
+ it is best to use the <CODE>Transparent</CODE> command <B>after</B> having
+ used the <CODE>Program</CODE> tactic.
+</DL>
+ <HR>
+
+<A HREF="node.3.6.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.6.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.6.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

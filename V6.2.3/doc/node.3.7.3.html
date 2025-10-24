@@ -1,0 +1,69 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+18.4&nbsp;Function call
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.7.2.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.7.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.7.4.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+18.4&nbsp;Function call
+</H2>
+
+
+Still following the syntax of ML, the function application is written
+(<I>f</I> &nbsp; <I>a</I><SUB><FONT SIZE=2>1</FONT></SUB>&nbsp; ... &nbsp; <I>a</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>), where <I>f</I> is a function and the <I>a</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB>'s
+its arguments. Notice that <I>f</I> and the <I>a</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB>'s may be annotated
+programs themselves.<BR>
+<BR>
+In the general case, <I>f</I> is a function already specified (either with
+<TT>Global Variable</TT> or with a proof of correctness) and has a
+pre-condition <I>P</I><SUB><FONT SIZE=2><I>f</I></FONT></SUB> and a post-condition <I>Q</I><SUB><FONT SIZE=2><I>f</I></FONT></SUB>.<BR>
+<BR>
+As expected, a proof obligation is generated, which correspond to
+<I>P</I><SUB><FONT SIZE=2><I>f</I></FONT></SUB> applied to the values of the arguments, once they are evaluated.<BR>
+<BR>
+Regarding the post-condition of <I>f</I>, there are different possible cases:
+<UL>
+<LI>either you did not annotate the function call, writing directly
+ <DIV ALIGN=center>(<I>f</I> &nbsp; <I>a</I><SUB><FONT SIZE=2>1</FONT></SUB>&nbsp; ... &nbsp; <I>a</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>)</DIV>
+ and then the post-condition of <I>f</I> is added automatically
+ <EM>if possible</EM>: indeed, if some arguments of <I>f</I> make side-effects
+ this is not always possible. In that case, you have to put a 
+ post-condition to the function call by yourself;<BR>
+<BR>
+ 
+<LI>or you annotated it with a post-condition, say <I>Q</I>:
+ <DIV ALIGN=center>(<I>f</I> &nbsp; <I>a</I><SUB><FONT SIZE=2>1</FONT></SUB>&nbsp; ... &nbsp; <I>a</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>) &nbsp; {&nbsp;<I>Q</I>&nbsp;}</DIV>
+ then you will have to prove that <I>Q</I> holds under the hypothesis that
+ the post-condition <I>Q</I><SUB><FONT SIZE=2><I>f</I></FONT></SUB> holds (where both are
+ instanciated by the results of the evaluation of the <I>a</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB>). 
+ Of course, if <I>Q</I> is exactly the post-condition of <I>f</I> then
+ the corresponding proof obligation will be automatically
+ discharged.
+</UL>
+ <HR>
+
+<A HREF="node.3.7.2.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.7.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.7.4.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

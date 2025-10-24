@@ -1,0 +1,82 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+18.3&nbsp;Local and global variables
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.7.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.7.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.7.3.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+18.3&nbsp;Local and global variables
+</H2>
+
+
+
+ 
+<H3>
+
+18.3.1&nbsp;Global variables
+</H3>
+
+<A NAME="@default603"></A><A NAME="@command177"></A>You can declare a new global variable with the following command
+<DIV ALIGN=center><TT>Global Variable</TT> &nbsp;&nbsp; <I>x</I> &nbsp; : &nbsp; <I>value</I>_<I>type</I>.
+</DIV>
+where <I>x</I> may be a reference, an array or a function.
+<BR><B>Example: </B><PRE>
+Parameter N : Z.
+Global Variable x : Z ref.
+Correctness foo { `x &lt; N` } begin x := (Zmult 2 !x) end { `x &lt; 2*N` }.
+</PRE><A NAME="@default604"></A><A NAME="@command178"></A>Each time you complete a correctness proof, the corresponding program is
+added to the programs environment. You can list the current programs
+environment with the command
+<DIV ALIGN=center><TT>Show Programs.</TT>
+</DIV><BR>
+
+ 
+<H3>
+
+18.3.2&nbsp;Local variables
+</H3>
+Local variables are introduced with the following syntax
+<DIV ALIGN=center><TT>let</TT> &nbsp; <I>x</I> &nbsp; = &nbsp; <TT>ref</TT> &nbsp; <I>e</I><SUB><FONT SIZE=2>1</FONT></SUB>&nbsp; <TT>in</TT> &nbsp; <I>e</I><SUB><FONT SIZE=2>2</FONT></SUB></DIV>
+where the scope of <I>x</I> is exactly the program <I>e</I><SUB><FONT SIZE=2>2</FONT></SUB>.
+Notice that, as usual in ML, local variables must be
+initialized (here with <I>e</I><SUB><FONT SIZE=2>1</FONT></SUB>).<BR>
+<BR>
+When specifying a program including local variables, you have to take
+care about their scopes. Indeed, the following two programs are not
+annotated in the same way:
+<UL>
+<LI><FONT COLOR=purple><I>let</I></FONT> &nbsp; <I>x</I> = <I>e</I><SUB><FONT SIZE=2>1</FONT></SUB>&nbsp; <FONT COLOR=purple><I>in</I></FONT> &nbsp; <I>e</I><SUB><FONT SIZE=2>2</FONT></SUB>&nbsp; {&nbsp;<I>Q</I>&nbsp;}<BR>The post-condition <I>Q</I> applies to <I>e</I><SUB><FONT SIZE=2>2</FONT></SUB>, and therefore <I>x</I> may
+ appear in <I>Q</I>;<BR>
+<BR>
+ 
+<LI>(<FONT COLOR=purple><I>let</I></FONT> &nbsp; <I>x</I> = <I>e</I><SUB><FONT SIZE=2>1</FONT></SUB>&nbsp; <FONT COLOR=purple><I>in</I></FONT> &nbsp; <I>e</I><SUB><FONT SIZE=2>2</FONT></SUB>) &nbsp; {&nbsp;<I>Q</I>&nbsp;}<BR>The post-condition <I>Q</I> applies to the whole program, and therefore
+ the local variable <I>x</I> may <EM>not</EM> appear in <I>Q</I> (it is beyond
+ its scope).
+</UL>
+ <HR>
+
+<A HREF="node.3.7.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.7.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.7.3.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

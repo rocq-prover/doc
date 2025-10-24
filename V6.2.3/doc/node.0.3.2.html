@@ -1,0 +1,191 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+4.3&nbsp;Conversion rules
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.0.3.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.0.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.3.3.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+4.3&nbsp;Conversion rules
+</H2>
+
+
+
+<A NAME="@default242"></A><A NAME="conv-rules"></A>
+
+<H5>
+<FONT FACE=symbol>b</FONT>-reduction.
+</H5>
+
+<A NAME="beta"></A><A NAME="@default243"></A>We want to be able to identify some terms as we can identify the
+application of a function to a given argument with its result. For
+instance the identity function over a given type <I>T</I> can be written
+[<I>x</I>:<I>T</I>]<I>x</I>. We want to identify any object <I>a</I> (of type <I>T</I>) with the
+application ([<I>x</I>:<I>T</I>]<I>x</I>&nbsp;<I>a</I>). We define for this a <EM>reduction</EM> (or a
+<EM>conversion</EM>) rule we call <FONT FACE=symbol>b</FONT>:
+<DIV ALIGN=center>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR VALIGN=middle><TD NOWRAP>([<I>x</I>:<I>T</I>]<I>t</I>&nbsp;<I>u</I>) <FONT FACE=symbol>|></FONT></TD>
+<TD NOWRAP>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD>&nbsp;</TD>
+</TR>
+<TR><TD NOWRAP><FONT SIZE=2><FONT FACE=symbol>b</FONT></FONT></TD>
+</TR></TABLE></TD>
+<TD nowrap> <I>t</I>{<I>x</I>/<I>u</I>}</TD>
+</TR></TABLE></DIV><BR>
+We say that <I>t</I>{<I>x</I>/<I>u</I>} is the <EM><FONT FACE=symbol>b</FONT></EM><EM>-contraction</EM> of
+([<I>x</I>:<I>T</I>]<I>t</I>&nbsp;<I>u</I>) and, conversely, that ([<I>x</I>:<I>T</I>]<I>t</I>&nbsp;<I>u</I>) is the <EM><FONT FACE=symbol>b</FONT></EM><EM>-expansion</EM> of <I>t</I>{<I>x</I>/<I>u</I>}.<BR>
+<BR>
+According to <FONT FACE=symbol>b</FONT>-reduction, terms of the <EM>Calculus of
+ Inductive Constructions</EM> enjoy some fundamental properties such as
+confluence, strong normalization, subject reduction. These results are
+theoretically of great importance but we will not detail them here and
+refer the interested reader to [<CITE><A HREF="node.4.html#Coq85"><CITE>17</CITE></A></CITE>].<BR>
+<BR>
+
+<H5>
+<FONT FACE=symbol>i</FONT>-reduction.
+</H5>
+
+<A NAME="iota"></A><A NAME="@default244"></A>A specific conversion rule is associated to the inductive objects in
+the environment. We shall give later on (section <A HREF="node.0.3.4.html#iotared">4.5.4</A>) the
+precise rules but it just says that a destructor applied to an object
+built from a constructor behaves as expected. This reduction is
+called <FONT FACE=symbol>i</FONT>-reduction and is more precisely studied in
+[<CITE><A HREF="node.4.html#Moh93"><CITE>86</CITE></A>, </CITE><CITE><A HREF="node.4.html#Wer94"><CITE>98</CITE></A></CITE>].<BR>
+<BR>
+
+<H5>
+<FONT FACE=symbol>d</FONT>-reduction.
+</H5>
+
+<A NAME="convertibility"></A>
+<A NAME="delta"></A><A NAME="@default245"></A>In the environment we also have constants representing abbreviations
+for terms. It is legal to identify a constant with its value. This
+reduction will be precised in section <A HREF="node.0.3.3.html#deltared">4.4.1</A> where we define
+well-formed environments. This reduction will be called
+<FONT FACE=symbol>d</FONT>-reduction.<BR>
+<BR>
+
+<H5>
+Convertibility.
+</H5>
+
+<A NAME="@default246"></A><A NAME="@default247"></A><A NAME="@default248"></A>Let us write <I>t</I> <FONT FACE=symbol>|></FONT> <I>u</I> for the relation <I>t</I> reduces to <I>u</I>
+with one of the previous reduction <FONT FACE=symbol>b</FONT>,<FONT FACE=symbol>i</FONT> or <FONT FACE=symbol>d</FONT>.<BR>
+<BR>
+We say that two terms <I>t</I><SUB><FONT SIZE=2>1</FONT></SUB> and <I>t</I><SUB><FONT SIZE=2>2</FONT></SUB> are <EM>convertible</EM> (or <EM>equivalent)</EM> iff there exists a term <I>u</I> such that <I>t</I><SUB><FONT SIZE=2>1</FONT></SUB><FONT FACE=symbol>|></FONT> ... <FONT FACE=symbol>|></FONT> <I>u</I> and <I>t</I><SUB><FONT SIZE=2>2</FONT></SUB><FONT FACE=symbol>|></FONT> ...
+<FONT FACE=symbol>|></FONT> <I>u</I>. We note <I>t</I><SUB><FONT SIZE=2>1</FONT></SUB>=<SUB><FONT SIZE=2><FONT FACE=symbol>b</FONT><FONT FACE=symbol>d</FONT><FONT FACE=symbol>i</FONT></FONT></SUB> <I>t</I><SUB><FONT SIZE=2>2</FONT></SUB>.<BR>
+<BR>
+The convertibility relation allows to introduce a new typing rule
+which says that two convertible well-formed types have the same
+inhabitants.<BR>
+<BR>
+At the moment, we did not take into account one rule between universes
+which says that any term in a universe of index <I>i</I> is also a term in
+the universe of index <I>i</I>+1. This property is included into the
+conversion rule by extending the equivalence relation of
+convertibility into an order inductively defined by:
+<OL>
+<LI>if <I>M</I>=<SUB><FONT SIZE=2><FONT FACE=symbol>b</FONT><FONT FACE=symbol>d</FONT><FONT FACE=symbol>i</FONT></FONT></SUB> <I>N</I> then <I>M</I><FONT FACE=symbol>£</FONT><SUB><FONT SIZE=2><FONT FACE=symbol>b</FONT><FONT FACE=symbol>d</FONT><FONT FACE=symbol>i</FONT></FONT></SUB> <I>N</I>,
+
+<LI>if <I>i</I> <FONT FACE=symbol>£</FONT> <I>j</I> then <FONT COLOR=purple>Type</FONT>(<I>i</I>)<FONT FACE=symbol>£</FONT><SUB><FONT SIZE=2><FONT FACE=symbol>b</FONT><FONT FACE=symbol>d</FONT><FONT FACE=symbol>i</FONT></FONT></SUB><FONT COLOR=purple>Type</FONT>(<I>j</I>),
+
+<LI>if <I>T</I> =<SUB><FONT SIZE=2><FONT FACE=symbol>b</FONT><FONT FACE=symbol>d</FONT><FONT FACE=symbol>i</FONT></FONT></SUB> <I>U</I> and <I>M</I><FONT FACE=symbol>£</FONT><SUB><FONT SIZE=2><FONT FACE=symbol>b</FONT><FONT FACE=symbol>d</FONT><FONT FACE=symbol>i</FONT></FONT></SUB> <I>N</I> then (<I>x</I>:<I>T</I>)<I>M</I><FONT FACE=symbol>£</FONT><SUB><FONT SIZE=2><FONT FACE=symbol>b</FONT><FONT FACE=symbol>d</FONT><FONT FACE=symbol>i</FONT></FONT></SUB>
+ (<I>x</I>:<I>U</I>)<I>N</I>.
+</OL>The conversion rule is now exactly:<BR>
+<BR>
+<UL>
+<LI><A NAME="Conv"></A>
+Conv<A NAME="@default249"></A><DIV ALIGN=center>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR VALIGN=middle><TD NOWRAP>
+ </TD>
+<TD NOWRAP>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD ALIGN=center>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR VALIGN=middle><TD NOWRAP><I>E</I>[<FONT FACE=symbol>G</FONT>] |- <I>U</I> : <I>S</I>&nbsp;&nbsp;&nbsp;&nbsp;<I>E</I>[<FONT FACE=symbol>G</FONT>] |- <I>t</I> : <I>T</I></TD>
+<TD NOWRAP>&nbsp;&nbsp;&nbsp;&nbsp;<I>T</I> <FONT FACE=symbol>£</FONT></TD>
+<TD NOWRAP>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD>&nbsp;</TD>
+</TR>
+<TR><TD NOWRAP><FONT SIZE=2><FONT FACE=symbol>b</FONT><FONT FACE=symbol>d</FONT><FONT FACE=symbol>i</FONT></FONT></TD>
+</TR></TABLE></TD>
+<TD nowrap> <I>U</I></TD>
+</TR></TABLE></TD>
+</TR>
+<TR><TD ALIGN=center><HR NOSHADE SIZE=1></TD>
+</TR>
+<TR><TD ALIGN=center> <I>E</I>[<FONT FACE=symbol>G</FONT>] |- <I>t</I> : <I>U</I></TD>
+</TR></TABLE></TD>
+</TR></TABLE></DIV>
+</UL>
+<H5>
+<FONT FACE=symbol>h</FONT>-conversion.
+</H5>
+<A NAME="eta"></A><A NAME="@default250"></A><A NAME="@default251"></A>An other important rule is the <FONT FACE=symbol>h</FONT>-conversion. It is to identify
+terms over a dummy abstraction of a variable followed by an
+application of this variable. Let <I>T</I> be a type, <I>t</I> be a term in
+which the variable <I>x</I> doesn't occurs free. We have
+<DIV ALIGN=center>[<I>x</I>:<I>T</I>](<I>t</I> <I>x</I>) <FONT FACE=symbol>|></FONT> <I>t</I> </DIV>
+Indeed, as <I>x</I> doesn't occurs free in <I>t</I>, for any <I>u</I> one
+applies to [<I>x</I>:<I>T</I>](<I>t</I> <I>x</I>), it <FONT FACE=symbol>b</FONT>-reduces to (<I>t</I> <I>u</I>). So
+[<I>x</I>:<I>T</I>](<I>t</I> <I>x</I>) and <I>t</I> can be identified.<BR>
+<BR>
+<BR><B>Remark: </B>The <FONT FACE=symbol>h</FONT>-reduction is not taken into account in the
+convertibility rule of <FONT COLOR=purple>Coq</FONT>.<BR>
+<BR>
+
+<H5>
+Normal form.
+</H5>
+<A NAME="@default252"></A><A NAME="Normal-form"></A><A NAME="Head-normal-form"></A><A NAME="@default253"></A>A term which cannot be any more reduced is said to be in <EM>normal
+ form</EM>. There are several ways (or strategies) to apply the reduction
+rule. Among them, we have to mention the <EM>head reduction</EM> which
+will play an important role (see chapter <A HREF="node.1.2.html#Tactics">7</A>). Any term can
+be written as [<I>x</I><SUB><FONT SIZE=2>1</FONT></SUB>:<I>T</I><SUB><FONT SIZE=2>1</FONT></SUB>]...[<I>x</I><SUB><FONT SIZE=2><I>k</I></FONT></SUB>:<I>T</I><SUB><FONT SIZE=2><I>k</I></FONT></SUB>](<I>t</I><SUB><FONT SIZE=2>0</FONT></SUB> <I>t</I><SUB><FONT SIZE=2>1</FONT></SUB>... <I>t</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>) where
+<I>t</I><SUB><FONT SIZE=2>0</FONT></SUB> is not an application. We say then that <I>t</I><SUB><FONT SIZE=2>0</FONT></SUB> is the <EM>head
+ of </EM><EM><I>t</I></EM>. If we assume that <I>t</I><SUB><FONT SIZE=2>0</FONT></SUB> is [<I>x</I>:<I>T</I>]<I>u</I><SUB><FONT SIZE=2>0</FONT></SUB> then one step of
+<FONT FACE=symbol>b</FONT>-head reduction of <I>t</I> is:
+<DIV ALIGN=center>[<I>x</I><SUB><FONT SIZE=2>1</FONT></SUB>:<I>T</I><SUB><FONT SIZE=2>1</FONT></SUB>]...[<I>x</I><SUB><FONT SIZE=2><I>k</I></FONT></SUB>:<I>T</I><SUB><FONT SIZE=2><I>k</I></FONT></SUB>]([<I>x</I>:<I>T</I>]<I>u</I><SUB><FONT SIZE=2>0</FONT></SUB> <I>t</I><SUB><FONT SIZE=2>1</FONT></SUB>... <I>t</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>) 
+&nbsp;<FONT FACE=symbol>|></FONT> &nbsp; [<I>x</I><SUB><FONT SIZE=2>1</FONT></SUB>:<I>T</I><SUB><FONT SIZE=2>1</FONT></SUB>]...[<I>x</I><SUB><FONT SIZE=2><I>k</I></FONT></SUB>:<I>T</I><SUB><FONT SIZE=2><I>k</I></FONT></SUB>](<I>u</I><SUB><FONT SIZE=2>0</FONT></SUB>{<I>x</I>/<I>t</I><SUB><FONT SIZE=2>1</FONT></SUB>} <I>t</I><SUB><FONT SIZE=2>2</FONT></SUB>... <I>t</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>)</DIV>
+Iterating the process of head reduction until the head of the reduced
+term is no more an abstraction leads to the <EM><FONT FACE=symbol>b</FONT></EM><EM>-head normal
+ form</EM> of <I>t</I>:
+<DIV ALIGN=center><I>t</I> <FONT FACE=symbol>|></FONT> ... <FONT FACE=symbol>|></FONT> [<I>x</I><SUB><FONT SIZE=2>1</FONT></SUB>:<I>T</I><SUB><FONT SIZE=2>1</FONT></SUB>]...[<I>x</I><SUB><FONT SIZE=2><I>k</I></FONT></SUB>:<I>T</I><SUB><FONT SIZE=2><I>k</I></FONT></SUB>](<I>v</I> <I>u</I><SUB><FONT SIZE=2>1</FONT></SUB>... <I>u</I><SUB><FONT SIZE=2><I>m</I></FONT></SUB>)</DIV>
+where <I>v</I> is not an abstraction (nor an application). Note that the
+head normal form must not be confused with the normal form since some
+<I>u</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB> can be reducible.<BR>
+<BR>
+Similar notions of head-normal forms involving <FONT FACE=symbol>d</FONT> and <FONT FACE=symbol>i</FONT>
+reductions or any combination of those can also be defined.<BR>
+<BR>
+<HR>
+
+<A HREF="node.0.3.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.0.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.3.3.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

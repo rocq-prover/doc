@@ -1,0 +1,140 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+10.2&nbsp;Tactic Macros
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.2.1.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.2.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.2.1.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+10.2&nbsp;Tactic Macros
+</H2>
+
+
+The simplest way to introduce it is to define it as new a
+<I><FONT COLOR=maroon>tactic macro</FONT></I>, as follows:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Tactic&nbsp;Definition&nbsp;DecideEq&nbsp;[$a&nbsp;$b]&nbsp;:=&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;[&lt;:tactic:&lt;Destruct&nbsp;$a;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Destruct&nbsp;$b;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Left;Reflexivity)&nbsp;Orelse&nbsp;(Right;Discriminate)&gt;&gt;].</TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+The general pattern of the proof is abstracted away using the
+tacticals ``<TT>;</TT>'' and <TT>Orelse</TT>, and introducing two
+parameters for the names of the arguments to be analyzed.<BR>
+<BR>
+Once defined, this tactic can be called like any other tactic, just
+supplying the list of terms corresponding to its real arguments. Let us
+revisit the proof of the former theorems using the new tactic
+<TT>DecideEq</TT>:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Theorem&nbsp;decideBool&nbsp;:&nbsp;(x,y:bool){x=y}+{~x=y}.</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;DecideEq&nbsp;x&nbsp;y.</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Defined.</TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Theorem&nbsp;decideColor&nbsp;:&nbsp;(c1,c2:Color){c1=c2}+{~c1=c2}.</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;DecideEq&nbsp;c1&nbsp;c2.</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Defined.</TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+In general, the command <TT>Tactic Definition</TT> associates a name
+to a parameterized tactic expression, built up from the tactics and
+tacticals that are already available. The general syntax rule for this
+command is the following:<BR>
+<BR>
+
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD>
+<TT>Tactic Definition</TT> <I>tactic-name</I></TD>
+<TD><TT>[</TT>$<I>id</I><SUB><FONT SIZE=2>1</FONT></SUB>... $<I>id</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB><TT>]</TT></TD>
+</TR>
+<TR><TD>&nbsp;</TD>
+<TD>:= <TT>[&lt;:tactic:&lt;</TT> <I>tactic-expression</I> <TT>&gt;&gt;]</TT>
+</TD>
+</TR></TABLE><BR>
+This command provides a quick but also very primitive mechanism for
+introducing new tactics. It does not support recursive definitions,
+and the arguments of a tactic macro are restricted to term
+expressions. Moreover, there is no static checking of the definition
+other than the syntactical one. Any error in the definition of the
+tactic ---for instance, a call to an undefined tactic--- will not be
+noticed until the tactic is called.<BR>
+<BR>
+Let us illustrate the weakness of this way of introducing new tactics
+trying to extend our proof procedure to work on a larger class of
+inductive types. Consider for example the decidability of equality
+for pairs of booleans and colors:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Theorem&nbsp;decideBoolXColor&nbsp;:&nbsp;(p1,p2:bool*Color){p1=p2}+{~p1=p2}.</TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+The proof still proceeds by a double case analysis, but now the
+constructors of the type take two arguments. Therefore, the sub-goals
+that can not be solved by discrimination need further considerations
+about the equality of such arguments:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Destruct&nbsp;p1;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Destruct&nbsp;p2;&nbsp;Try&nbsp;(Right;Discriminate);Intros.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;p1&nbsp;:&nbsp;bool*Color</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;b&nbsp;:&nbsp;bool</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;c&nbsp;:&nbsp;Color</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;p2&nbsp;:&nbsp;bool*Color</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;b0&nbsp;:&nbsp;bool</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;c0&nbsp;:&nbsp;Color</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;{(b,c)=(b0,c0)}+{~(b,c)=(b0,c0)}</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+The half of the disjunction to be chosen depends on whether or not
+<I>b</I>=<I>b</I><SUB><FONT SIZE=2>0</FONT></SUB> and <I>c</I>=<I>c</I><SUB><FONT SIZE=2>0</FONT></SUB>. These equalities can be decided automatically
+using the previous lemmas about booleans and colors. If both
+equalities are satisfied, then it is sufficient to rewrite <I>b</I> into
+<I>b</I><SUB><FONT SIZE=2>0</FONT></SUB> and <I>c</I> into <I>c</I><SUB><FONT SIZE=2>0</FONT></SUB>, so that the left half of the goal follows by
+reflexivity. Otherwise, the right half follows by first contraposing
+the disequality, and then applying the injectiveness of the pairing
+constructor.<BR>
+<BR>
+As the cases associated to each argument of the pair are very similar,
+a tactic macro can be introduced to abstract this part of the proof:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Hint&nbsp;decideBool&nbsp;decideColor.</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Tactic&nbsp;Definition&nbsp;SolveArg&nbsp;[$t1&nbsp;$t2]&nbsp;:=&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;[&lt;:tactic:&lt;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;ElimType&nbsp;{$t1=$t2}+{~$t1=$t2};</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;[(Intro&nbsp;equality;Rewrite&nbsp;equality;Clear&nbsp;equality)&nbsp;|</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Intro&nbsp;diseq;&nbsp;Right;&nbsp;Red;&nbsp;Intro&nbsp;absurd;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Apply&nbsp;diseq;Injection&nbsp;absurd;Trivial)&nbsp;|</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Auto]&gt;&gt;].</TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+This tactic is applied to each corresponding pair of arguments of the
+arguments, until the goal can be solved by reflexivity:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;SolveArg&nbsp;b&nbsp;b0;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;SolveArg&nbsp;c&nbsp;c0;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left;&nbsp;Reflexivity.</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Defined.</TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Therefore, a more general strategy for deciding the property 
+(<I>x</I>,<I>y</I>:<I>R</I>){<I>x</I>=<I>y</I>}+{¬ <I>x</I> =<I>y</I>} on <I>R</I> can be sketched as follows:
+<OL>
+<LI>Eliminate <I>x</I> and then <I>y</I>.
+
+<LI>Try discrimination to solve those goals where <I>x</I> and <I>y</I> has
+been introduced by different constructors.
+
+<LI>If <I>x</I> and <I>y</I> have been introduced by the same constructor,
+then iterate the tactic <I><FONT COLOR=maroon>SolveArg</FONT></I> for each pair of
+arguments. 
+
+<LI>Finally, solve the left half of the goal by reflexivity.
+</OL>The implementation of this stronger proof strategy needs to perform a
+term decomposition, in order to extract the list of arguments of each
+constructor. It also requires the introduction of recursively defined
+tactics, so that the <I><FONT COLOR=maroon>SolveArg</FONT></I> can be iterated on the lists of
+arguments. These features are not supported by the <TT>Tactic
+Definition</TT> command. One possibility could be extended this command in
+order to introduce recursion, general parameter passing,
+pattern-matching, etc, but this would quickly lead us to introduce the
+whole Ocaml into <FONT COLOR=purple>Coq</FONT><A NAME="text10.1"></A><A HREF="node.7.html#note10.1"><SUP><FONT SIZE=2>1</FONT></SUP></A>
+. Instead of doing this, we prefer to give to the user the
+possibility of writing his/her own tactics directly in Ocaml, and then
+to link them dynamically with <FONT COLOR=purple>Coq</FONT>'s code. This requires a minimal
+knowledge about <FONT COLOR=purple>Coq</FONT>'s implementation. The next section provides an
+overview of <FONT COLOR=purple>Coq</FONT>'s architecture.<BR>
+<BR>
+<HR>
+
+<A HREF="node.2.1.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.2.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.2.1.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

@@ -1,0 +1,49 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+15.1&nbsp;Introduction
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.4.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.4.1.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+15.1&nbsp;Introduction
+</H2>
+
+
+<TT>Natural</TT>&nbsp; is a package allowing the writing of proofs in natural
+language. For instance, the proof in <FONT COLOR=purple>Coq</FONT>&nbsp;of the induction principle on pairs
+of natural numbers looks like this:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Require&nbsp;Natural.</TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Print&nbsp;nat_double_ind.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>nat_double_ind&nbsp;=&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>[R:(nat-&gt;nat-&gt;Prop);</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;H:((n:nat)(R&nbsp;O&nbsp;n));</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;H0:((n:nat)(R&nbsp;(S&nbsp;n)&nbsp;O));</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;H1:((n,m:nat)(R&nbsp;n&nbsp;m)-&gt;(R&nbsp;(S&nbsp;n)&nbsp;(S&nbsp;m)));</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;n:nat]</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;(nat_ind&nbsp;[n0:nat](m:nat)(R&nbsp;n0&nbsp;m)&nbsp;H</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;[n0:nat;&nbsp;H2:((m:nat)(R&nbsp;n0&nbsp;m));&nbsp;m:nat]</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;(nat_ind&nbsp;[n1:nat](R&nbsp;(S&nbsp;n0)&nbsp;n1)&nbsp;(H0&nbsp;n0)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[n1:nat;&nbsp;_:(R&nbsp;(S&nbsp;n0)&nbsp;n1)](H1&nbsp;n0&nbsp;n1&nbsp;(H2&nbsp;n1))&nbsp;m)&nbsp;n)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(R:(nat-&gt;nat-&gt;Prop))</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((n:nat)(R&nbsp;O&nbsp;n))</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;((n:nat)(R&nbsp;(S&nbsp;n)&nbsp;O))</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;((n,m:nat)(R&nbsp;n&nbsp;m)-&gt;(R&nbsp;(S&nbsp;n)&nbsp;(S&nbsp;m)))</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;(n,m:nat)(R&nbsp;n&nbsp;m)</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Piping it through the <TT>Natural</TT>&nbsp;pretty-printer gives:<BR>
+<BR>
+<A NAME="@default574"></A><A NAME="@command155"></A><DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Print&nbsp;Natural&nbsp;nat_double_ind.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Theorem&nbsp;:&nbsp;nat_double_ind.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Statement&nbsp;:&nbsp;(R:(nat-&gt;nat-&gt;Prop))</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((n:nat)(R&nbsp;O&nbsp;n))</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;((n:nat)(R&nbsp;(S&nbsp;n)&nbsp;O))</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;((n,m:nat)(R&nbsp;n&nbsp;m)-&gt;(R&nbsp;(S&nbsp;n)&nbsp;(S&nbsp;m)))</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;(n,m:nat)(R&nbsp;n&nbsp;m).</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Proof&nbsp;:&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Consider&nbsp;a&nbsp;term&nbsp;R&nbsp;of&nbsp;type&nbsp;nat-&gt;nat-&gt;Prop&nbsp;such&nbsp;that</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>(n:nat)(R&nbsp;O&nbsp;n)&nbsp;(H),</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>(n:nat)(R&nbsp;(S&nbsp;n)&nbsp;O)&nbsp;(H0)&nbsp;and&nbsp;(n,m:nat)(R&nbsp;n&nbsp;m)-&gt;(R&nbsp;(S&nbsp;n)&nbsp;(S&nbsp;m))&nbsp;(H1);</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>consider&nbsp;an&nbsp;element&nbsp;n&nbsp;of&nbsp;nat.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>We&nbsp;will&nbsp;prove&nbsp;(m:nat)(R&nbsp;n&nbsp;m)&nbsp;by&nbsp;induction&nbsp;on&nbsp;n.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Case&nbsp;1.&nbsp;(base):</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;We&nbsp;use&nbsp;H.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Case&nbsp;2.&nbsp;(inductive):</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;We&nbsp;know&nbsp;an&nbsp;element&nbsp;n0&nbsp;of&nbsp;nat&nbsp;such&nbsp;that&nbsp;(m:nat)(R&nbsp;n0&nbsp;m)&nbsp;(H2).</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;To&nbsp;prove&nbsp;(m:nat)(R&nbsp;(S&nbsp;n0)&nbsp;m),&nbsp;consider&nbsp;an&nbsp;element&nbsp;m&nbsp;of&nbsp;nat.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;We&nbsp;will&nbsp;prove&nbsp;(R&nbsp;(S&nbsp;n0)&nbsp;m)&nbsp;by&nbsp;induction&nbsp;on&nbsp;m.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;Case&nbsp;2.1.&nbsp;(base):</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;From&nbsp;H0&nbsp;we&nbsp;obtain&nbsp;(R&nbsp;(S&nbsp;n0)&nbsp;O).</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;Case&nbsp;2.2.&nbsp;(inductive):</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;We&nbsp;know&nbsp;an&nbsp;element&nbsp;n1&nbsp;of&nbsp;nat&nbsp;such&nbsp;that&nbsp;(R&nbsp;(S&nbsp;n0)&nbsp;n1)&nbsp;(H3).</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;We&nbsp;will&nbsp;prove&nbsp;(R&nbsp;(S&nbsp;n0)&nbsp;(S&nbsp;n1)).</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;From&nbsp;H2&nbsp;we&nbsp;obtain&nbsp;(R&nbsp;n0&nbsp;n1).</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;We&nbsp;apply&nbsp;now&nbsp;H1.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Q.E.D.</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+
+ <HR>
+
+<A HREF="node.3.4.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.4.1.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

@@ -1,0 +1,83 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+Chapter&nbsp;19: Execution of extracted programs in Caml and Haskell
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.7.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.9.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H1>
+
+Chapter&nbsp;19: Execution of extracted programs in Caml and Haskell
+</H1>
+
+
+
+<A NAME="CamlHaskellExtraction"></A>
+<FONT SIZE=5><B>Benjamin Werner and Jean-Christophe Filliâtre</B></FONT> <BR><BR><BR><BR><BR><BR><A NAME="@default607"></A><BR>
+<BR>
+It is possible to use <FONT COLOR=purple>Coq</FONT> to build certified and relatively
+efficient programs, extracting them from the proofs of their
+specifications. The extracted objects are terms of <I>F</I><SUB><FONT SIZE=2><FONT FACE=symbol>w</FONT></FONT></SUB>, and can be 
+obtained at the <FONT COLOR=purple>Coq</FONT> toplevel with the command <TT>Extraction</TT>
+(see <A HREF="node.3.8.0.html#Extraction">19.1</A>).<BR>
+<BR>
+We present here a <FONT COLOR=purple>Coq</FONT> module, <TT>Extraction</TT>, which translates the
+extracted terms to ML dialects, namely Caml Light, Objective Caml and
+Haskell. In the following, we will not refer to a particular dialect
+when possible and ``ML'' will be used to refer to any of the target
+dialects.<BR>
+<BR>
+One builds effective programs in an <I>F</I><SUB><FONT SIZE=2><FONT FACE=symbol>w</FONT></FONT></SUB> toplevel (actually the <FONT COLOR=purple>Coq</FONT>
+toplevel) which contains the extracted objects and in which one can
+import ML objects. Indeed, in order to instantiate and realize <FONT COLOR=purple>Coq</FONT>
+type and term variables, it is possible to import ML
+objects in the <I>F</I><SUB><FONT SIZE=2><FONT FACE=symbol>w</FONT></FONT></SUB> toplevel, as inductive types or axioms.<BR>
+<BR>
+<BR><B>Remark: </B>The current mechanism of extraction of effective programs
+from <FONT COLOR=purple>Coq</FONT> proofs slightly differs from the one in the versions of
+<FONT COLOR=purple>Coq</FONT> anterior to the version V5.8. In these versions, there were an
+explicit toplevel for the language <FONT COLOR=purple>Fml</FONT>. Moreover, it was not
+possible to import ML objects in this <FONT COLOR=purple>Fml</FONT> toplevel.<BR>
+<BR>
+<BR>In the first part of this document we describe the commands of the
+<TT>Extraction</TT> module, and we give some examples in the second part.<BR>
+<BR>
+
+ <UL>
+<LI><A HREF="node.3.8.0.html">
+
+19.1&nbsp;The <TT>Extraction</TT> module
+</A>
+<LI><A HREF="node.3.8.1.html">
+
+19.2&nbsp;Some examples
+</A>
+<LI><A HREF="node.3.8.2.html">
+
+19.3&nbsp;Bugs
+</A>
+</UL><HR>
+
+<A HREF="node.3.7.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.9.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

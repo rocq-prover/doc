@@ -1,0 +1,61 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+2.3&nbsp;Forced type
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.0.1.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.0.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.1.3.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+2.3&nbsp;Forced type
+</H2>
+
+
+In some cases, one want to assign a particular type to a term. The
+syntax to force the type of a term is the following:<BR>
+<BR>
+<BR>
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=left><I><FONT COLOR=maroon>term</FONT></I></TD>
+<TD NOWRAP ALIGN=center>::=</TD>
+<TD NOWRAP ALIGN=left><TT>(</TT> <I><FONT COLOR=maroon>term</FONT></I> <TT>::</TT> <I><FONT COLOR=maroon>term</FONT></I> <TT>)</TT></TD>
+</TR></TABLE>
+<BR><BR>
+<BR>
+It forces the first term to be of type the second term. Of course, the
+type cannot be any type. It must be a type compatible with
+the term. More precisely it must be either a type convertible to
+the automatically inferred type (see chapter <A HREF="node.0.3.html#Cic">4</A>) (or a type
+coercible to it, see section <A HREF="node.0.1.6.html#Coercions">2.7</A>). When the type of a
+whole expression is forced, it is usually not necessary to give the types of
+the variables involved in the term.<BR>
+<BR>
+Example:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Definition&nbsp;ID&nbsp;:=&nbsp;(X:Set)&nbsp;X&nbsp;-&gt;&nbsp;X.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>ID&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Definition&nbsp;id&nbsp;:=&nbsp;(([X][x]x)&nbsp;::&nbsp;ID).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>id&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;id.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>id</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;ID</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+<HR>
+
+<A HREF="node.0.1.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.0.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.1.3.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

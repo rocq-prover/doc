@@ -1,0 +1,249 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+7.11&nbsp;Automatizing
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.1.2.9.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.11.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+7.11&nbsp;Automatizing
+</H2>
+
+
+
+<A NAME="Automatizing"></A>
+<H3>
+
+7.11.1&nbsp;<TT>Auto
+</TT></H3>
+
+<A NAME="@default465"></A><A NAME="@tactic81"></A>This tactic implements a Prolog-like resolution procedure to solve the
+current goal. It first tries to solve the goal using the <TT>Assumption</TT> tactic, then it reduces the goal to an atomic one using
+<TT>Intros</TT> and introducing the newly generated hypotheses as hints.
+Then it looks at the list of tactics associated to the head symbol of
+the goal and tries to apply one of them (starting from the tactics
+with lower cost). This process is recursively applied to the generated
+subgoals. <BR>
+<BR>
+By default, Auto only uses the hypotheses of the current goal and the
+hints of the database named "core". <BR>
+<BR>
+<BR><B>Variants: </B><OL>
+<LI><TT>Auto </TT><I><FONT COLOR=maroon>num</FONT></I><BR>Forces the search depth to be <I><FONT COLOR=maroon>num</FONT></I>. The maximal search depth is 5 by default.
+
+<LI><TT>Auto with </TT><I><FONT COLOR=maroon>ident</FONT></I><TT><SUB><FONT SIZE=2>1</FONT></SUB></TT><TT> ... </TT><I><FONT COLOR=maroon>ident</FONT></I><TT><SUB><FONT SIZE=2><I>n</I></FONT></SUB></TT><BR>Uses the hint databases <I><FONT COLOR=maroon><I>ident</I></FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> ... <I><FONT COLOR=maroon><I>ident</I></FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> in addition to
+ the database "core". See section <A HREF="node.1.2.12.html#Hints-databases">7.13</A> for the list
+ of pre-defined databases and the way to create or extend a database.
+ This option can be combined with the previous one.
+
+<LI><TT>Auto with *</TT><BR>Uses all existing hint databases, minus the special database
+ "v62". See section <A HREF="node.1.2.12.html#Hints-databases">7.13</A>
+
+<LI><TT>Trivial</TT><A NAME="@default466"></A><A NAME="@tactic82"></A><BR>This tactic is a restriction of <TT>Auto</TT> that is not recursive and 
+ tries only hints which cost is 0. Typically it solves trivial
+ equalities like <I>X</I>=<I>X</I>.
+
+<LI><TT>Trivial with </TT><I><FONT COLOR=maroon>ident</FONT></I><TT><SUB><FONT SIZE=2>1</FONT></SUB></TT><TT> ... </TT><I><FONT COLOR=maroon>ident</FONT></I><TT><SUB><FONT SIZE=2><I>n</I></FONT></SUB></TT><BR>
+<LI><TT>Trivial with *</TT><BR></OL><BR><B>Remark: </B><TT>Auto</TT> either solves completely the goal or else leave it
+intact. <TT>Auto</TT> and <TT>Trivial</TT> never fail.<BR>
+<BR>
+<BR><B>See also: </B>section <A HREF="node.1.2.12.html#Hints-databases">7.13</A><BR>
+<BR>
+
+<H3>
+
+7.11.2&nbsp;<TT>EAuto
+</TT></H3>
+<A NAME="@default467"></A><A NAME="@tactic83"></A><A NAME="EAuto"></A>This tactic generalizes <TT>Auto</TT>. In contrast with 
+the latter, <TT>EAuto</TT> uses unification of the goal
+against the hints rather than pattern-matching
+(in other words, it uses <TT>EApply</TT> instead of
+<TT>Apply</TT>).
+As a consequence, <TT>EAuto</TT> can solve such a goal:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Hints&nbsp;Resolve&nbsp;ex_intro.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Warning:&nbsp;Tactic&nbsp;EApply&nbsp;ex_intro&nbsp;in&nbsp;hints&nbsp;list&nbsp;is&nbsp;only&nbsp;used&nbsp;by&nbsp;EAuto</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Goal&nbsp;(P:nat-&gt;Prop)(P&nbsp;O)-&gt;(EX&nbsp;n&nbsp;|&nbsp;(P&nbsp;n)).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(P:(nat-&gt;Prop))(P&nbsp;O)-&gt;(EX&nbsp;n:nat&nbsp;|&nbsp;(P&nbsp;n))</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;EAuto.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Subtree&nbsp;proved!</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Note that <TT>ex_intro</TT> should be declared as an
+hint.<BR>
+<BR>
+<BR><B>See also: </B>section <A HREF="node.1.2.12.html#Hints-databases">7.13</A><BR>
+<BR>
+
+<H3>
+
+7.11.3&nbsp;<TT>Prolog [ </TT><I><FONT COLOR=maroon>term</FONT></I><TT><SUB><FONT SIZE=2>1</FONT></SUB></TT><TT> ... </TT><I><FONT COLOR=maroon>term</FONT></I><TT><SUB><FONT SIZE=2><I>n</I></FONT></SUB></TT><TT> ] </TT><I><FONT COLOR=maroon>num</FONT></I><TT>
+</TT></H3>
+
+<A NAME="@default468"></A><A NAME="@tactic84"></A><A NAME="Prolog"></A>
+This tactic, implemented by Chet Murthy, is based upon the concept of
+existential variables of Gilles Dowek, stating that resolution is a
+kind of unification. It tries to solve the current goal using the <TT>Assumption</TT> tactic, the <TT>Intro</TT> tactic, and applying hypotheses
+of the local context and terms of the given list <TT>[ </TT><I><FONT COLOR=maroon>term</FONT></I><TT><SUB><FONT SIZE=2>1</FONT></SUB></TT><TT>
+ ...</TT><I><FONT COLOR=maroon>term</FONT></I><TT><SUB><FONT SIZE=2><I>n</I></FONT></SUB></TT><TT> ]</TT>. It is more powerful than <TT>Auto</TT> since it
+may apply to any theorem, even those of the form <TT>(x:A)(P x) -&gt; Q</TT>
+where <TT>x</TT> does not appear free in <TT>Q</TT>. The maximal search
+depth is <I><FONT COLOR=maroon>num</FONT></I>.<BR>
+<BR>
+<BR><B>Error messages: </B><OL>
+<LI><TT>Prolog failed</TT><BR>The Prolog tactic was not able to prove the subgoal.
+</OL>
+<H3>
+
+7.11.4&nbsp;<TT>Tauto
+</TT></H3>
+<A NAME="@default469"></A><A NAME="@tactic85"></A><A NAME="Tauto"></A>
+This tactic, due to César Muñoz [<CITE><A HREF="node.4.html#Mun94"><CITE>73</CITE></A></CITE>], implements a
+decision procedure for intuitionistic propositional calculus based on
+the contraction-free sequent calculi LJT* of R. Dyckhoff [<CITE><A HREF="node.4.html#Dyc92"><CITE>41</CITE></A></CITE>].
+Note tha
+ t <TT>Tauto</TT> succeeds on any instance of an intuitionistic
+tautological proposition. For instance it succeeds on
+<CODE>(x:nat)(P:nat-&gt;Prop)x=O\/(P x)-&gt;~x=O-&gt;(P x)</CODE>
+while <TT>Auto</TT> fails.<BR>
+<BR>
+
+<H3>
+
+7.11.5&nbsp;<TT>Intuition
+</TT></H3>
+
+<A NAME="@default470"></A><A NAME="@tactic86"></A><A NAME="Intuition"></A>The tactic <CODE>Intuition</CODE> takes advantage of the search-tree builded
+by the decision procedure involved in the tactic <TT>Tauto</TT>. It uses
+this information to generate a set of subgoals equivalent to the
+original one (but simpler than it) and applies the tactic <TT>Auto</TT>
+to them [<CITE><A HREF="node.4.html#Mun94"><CITE>73</CITE></A></CITE>]. At the end, <TT>Intuition</TT>
+performs <TT>Intros</TT>.<BR>
+<BR>
+For instance, the tactic <TT>Intuition</TT> applied to the goal
+<PRE>
+((x:nat)(P x))/\B-&gt;((y:nat)(P y))/\(P O)\/B/\(P O)
+</PRE>internally replaces it by the equivalent one:
+<PRE>
+((x:nat)(P x) -&gt; B -&gt; (P O))
+</PRE>and then uses <TT>Auto with *</TT> which completes the proof.<BR>
+<BR>
+
+<H3>
+
+7.11.6&nbsp;<TT>Linear
+</TT></H3>
+<A NAME="@default471"></A><A NAME="@tactic87"></A><A NAME="Linear"></A>
+The tactic <TT>Linear</TT>, due to Jean-Christophe Filliâatre
+[<CITE><A HREF="node.4.html#Fil94"><CITE>42</CITE></A></CITE>], implements a decision procedure for <EM>Direct
+ Predicate Calculus</EM>, that is first-order Gentzen's Sequent Calculus
+without contraction rules [<CITE><A HREF="node.4.html#KeWe84"><CITE>63</CITE></A>, </CITE><CITE><A HREF="node.4.html#BeKe92"><CITE>10</CITE></A></CITE>]. Intuitively, a
+first-order goal is provable in Direct Predicate Calculus if it can be
+proved using each hypothesis at most once.<BR>
+<BR>
+Unlike the previous tactics, the <TT>Linear</TT> tactic does not belong
+to the initial state of the system, and it must be loaded explicitly
+with the command<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Require&nbsp;Linear.</TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+For instance, assuming that <TT>even</TT> and <TT>odd</TT> are two
+predicates on natural numbers, and <TT>a</TT> of type <TT>nat</TT>, the
+tactic <TT>Linear</TT> solves the following goal<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Lemma&nbsp;example&nbsp;:&nbsp;(even&nbsp;a)&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;((x:nat)((even&nbsp;x)-&gt;(odd&nbsp;(S&nbsp;x))))</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;(EX&nbsp;y&nbsp;|&nbsp;(odd&nbsp;y)).</TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+You can find examples of the use of <TT>Linear</TT> in
+<TT>theories/DEMOS/DemoLinear.v</TT>.<BR>
+<BR>
+<BR><B>Variants: </B><OL>
+<LI><TT>Linear with </TT><I><FONT COLOR=maroon>ident</FONT></I><TT><SUB><FONT SIZE=2>1</FONT></SUB></TT><TT> ...</TT><I><FONT COLOR=maroon>ident</FONT></I><TT><SUB><FONT SIZE=2><I>n</I></FONT></SUB></TT><BR><A NAME="@default472"></A><A NAME="@tactic88"></A>Is equivalent to apply first <TT>Generalize </TT><I><FONT COLOR=maroon>ident</FONT></I><TT><SUB><FONT SIZE=2>1</FONT></SUB></TT><TT> ...</TT><I><FONT COLOR=maroon>ident</FONT></I><TT><SUB><FONT SIZE=2><I>n</I></FONT></SUB></TT> (see section <A HREF="node.1.2.2.html#Generalize">7.3.6</A>) then the <TT>Linear</TT>
+ tactic. So one can use axioms, lemmas or hypotheses of the local
+ context with <TT>Linear</TT> in this way.
+</OL><BR><B>Error messages: </B><OL>
+<LI><TT>Not provable in Direct Predicate Calculus</TT>
+
+<LI><TT>Found </TT><TT><I>n</I></TT><TT> classical proof(s) but no intuitionistic one
+ !</TT><BR>The decision procedure looks actually for classical proofs of the
+ goals, and then checks that they are intuitionistic. In that case,
+ classical proofs have been found, which do not correspond to
+ intuitionistic ones.
+</OL>
+<H3>
+
+7.11.7&nbsp;<TT>Omega
+</TT></H3>
+
+<A NAME="@default473"></A><A NAME="@tactic89"></A><A NAME="Omega"></A>The tactic <TT>Omega</TT>, due to Pierre Crégut,
+is an automatic decision procedure for Prestburger
+arithmetic. It solves quantifier-free 
+formulae build with <CODE>~</CODE>, <CODE>\/</CODE>, <CODE>/\</CODE>,
+<CODE>-&gt;</CODE> on top of equations and inequations on
+both the type <TT>nat</TT> of natural numbers and <TT>Z</TT> of binary
+integers. This tactic must be loaded by the command <TT>Require
+ Omega</TT>. See the additional documentation about <TT>Omega</TT>.<BR>
+<BR>
+
+<H3>
+
+7.11.8&nbsp;<TT>Ring </TT><I><FONT COLOR=maroon>term</FONT></I><TT><SUB><FONT SIZE=2>1</FONT></SUB></TT><TT> ... </TT><I><FONT COLOR=maroon>term</FONT></I><TT><SUB><FONT SIZE=2><I>n</I></FONT></SUB></TT><TT>
+</TT></H3>
+
+<A NAME="@default474"></A><A NAME="@tactic90"></A><A NAME="@default475"></A><A NAME="@command134"></A><A NAME="@default476"></A><A NAME="@command135"></A>This tactic, written by Patrick Loiseleur and Samuel Boutin, 
+does AC rewriting on every
+ring. The tactic must be loaded by <TT>Require Ring</TT> under
+<TT>coqtop</TT> or <TT>coqtop -full</TT>.
+The ring must be declared in the <TT>Add Ring</TT>
+command (see <A HREF="node.3.9.html#Ring">20</A>). They are 3 pre-defined rings: naturals,
+booleans and integers. For these rings no <TT>Add Ring</TT> command is
+necessary. <BR>
+<BR>
+<I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>, ..., <I><FONT COLOR=maroon>term</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> must be subterms of the goal
+conclusion. <TT>Ring</TT> normalize these terms
+w.r.t. associativity and commutativity and replace them by their
+normal form.<BR>
+<BR>
+<BR><B>Variants: </B><OL>
+<LI><TT>Ring</TT> When the goal is an equality <I>t</I><SUB><FONT SIZE=2>1</FONT></SUB>=<I>t</I><SUB><FONT SIZE=2>2</FONT></SUB>, it
+ acts like <TT>Ring</TT> <I>t</I><SUB><FONT SIZE=2>1</FONT></SUB> <I>t</I><SUB><FONT SIZE=2>2</FONT></SUB> and then simplifies or solves
+ the equality.<BR>
+<BR>
+
+<LI><TT>ZRing</TT> It is a tactic macro for <TT>Unfold ZMinus;
+ Ring</TT>. <TT>Ring</TT> deals only with unary minus, so for an
+ expression who contains the binary minus <TT>Zminus</TT>, it is
+ necessary to unfold (see <A HREF="node.1.2.4.html#Unfold">7.5.6</A>) it before applying
+ <TT>Ring</TT><BR>
+<BR>
+
+<LI><TT>NatRing</TT> is a tactic macro for <TT>Repeat Rewrite
+ S_to_plus_one; Ring</TT>. The theorem <TT>S_to_plus_one</TT> is a
+ proof that <TT>(n:nat)(S n)=(plus (S O) n)</TT>.</OL><BR><B>Example: </B><DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Require&nbsp;Ring.</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Goal&nbsp;(a,b,c:Z)`(a+b+c)*(a+b+c)&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;a*a&nbsp;+&nbsp;b*b&nbsp;+&nbsp;c*c&nbsp;+&nbsp;2*a*b&nbsp;+&nbsp;2*a*c&nbsp;+&nbsp;2*b*c`.</TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Intros;&nbsp;Ring.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Subtree&nbsp;proved!</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+You can have a look at the file <TT>Ring.v</TT>
+to see examples of the <TT>Add Ring</TT> command.<BR>
+<BR>
+<BR><B>See also: </B><A HREF="node.3.9.html#Ring">20</A> for more detailed explanations about this tactic<BR>
+<BR>
+<HR>
+
+<A HREF="node.1.2.9.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.11.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

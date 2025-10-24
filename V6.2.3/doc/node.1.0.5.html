@@ -1,0 +1,106 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+5.6&nbsp;States and Reset
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.1.0.4.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.0.6.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+5.6&nbsp;States and Reset
+</H2>
+
+
+
+<H3>
+
+5.6.1&nbsp;<TT>Reset </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>.
+</TT></H3>
+
+<A NAME="@default314"></A><A NAME="@command84"></A>This command removes all the objects in the environment since <I><FONT COLOR=maroon>ident</FONT></I> 
+was introduced, including <I><FONT COLOR=maroon>ident</FONT></I>. <I><FONT COLOR=maroon>ident</FONT></I> may be the name of a defined
+or declared object as well as the name of a section. One cannot reset
+over the name of a module or of an object inside a module.<BR>
+<BR>
+<BR><B>Error messages: </B><OL>
+<LI><TT>cannot reset to a nonexistent object</TT>
+</OL>
+<H3>
+
+5.6.2&nbsp;<TT>Save State </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>.
+</TT></H3>
+
+<A NAME="@default315"></A><A NAME="@command85"></A>Saves the current state of the development (mainly the defined
+objects) such that one can go back at this point if necessary.<BR>
+<BR>
+<BR><B>Variants: </B><OL>
+<LI><TT>Save State </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> </TT><I><FONT COLOR=maroon>string</FONT></I><TT>.</TT><BR>Associates to the state of name <TT>ident</TT> the string <I><FONT COLOR=maroon>string</FONT></I> as a
+ comment.
+</OL>
+<H3>
+
+5.6.3&nbsp;<TT>Print States.
+</TT></H3>
+
+<A NAME="@default316"></A><A NAME="@command86"></A>Prints the names of the currently saved states with the associated
+comment. The state <TT>Initial</TT> is automatically built by the system
+and can not be removed.<BR>
+<BR>
+
+<H3>
+
+5.6.4&nbsp;<TT>Restore State </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>.
+</TT></H3>
+
+<A NAME="@default317"></A><A NAME="@command87"></A>Restores the set of known objects in the state <I><FONT COLOR=maroon>ident</FONT></I>.<BR>
+<BR>
+<BR><B>Variants: </B><OL>
+<LI><TT>Reset Initial.</TT><A NAME="@default318"></A><A NAME="@command88"></A><BR>Is equivalent to <TT>Restore State Initial</TT> and goes back to the
+ initial state (like after the command <TT>coqtop</TT>).
+</OL>
+<H3>
+
+5.6.5&nbsp;<TT>Remove State </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>.
+</TT></H3>
+
+<A NAME="@default319"></A><A NAME="@command89"></A>Remove the state <I><FONT COLOR=maroon>ident</FONT></I> from the states list.<BR>
+<BR>
+
+<H3>
+
+5.6.6&nbsp;<TT>Write States </TT><I><FONT COLOR=maroon>string</FONT></I><TT>.
+</TT></H3>
+
+<A NAME="@default320"></A><A NAME="@command90"></A>Writes the current list of states into a UNIX file <I><FONT COLOR=maroon>string</FONT></I><TT>.coq</TT> for
+use in a further session. This file can be given as the <TT>inputstate</TT> argument of the commands <TT>coqtop</TT> and <TT>coqc</TT>. A
+command <TT>Restore State </TT><I><FONT COLOR=maroon>ident</FONT></I> is necessary afterwards to choose
+explicitly which state to use (the default is to use the last saved state).<BR>
+<BR>
+<BR><B>Variants: </B><OL>
+<LI><TT>Write States </TT><I><FONT COLOR=maroon>ident</FONT></I> The suffix <TT>.coq</TT> is implicit,
+ and the state is saved in the current directory (see <A HREF="node.1.0.4.html#Pwd">X</A>).
+</OL><HR>
+
+<A HREF="node.1.0.4.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.0.6.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>
