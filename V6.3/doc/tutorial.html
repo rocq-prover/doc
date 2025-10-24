@@ -1,0 +1,1260 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD><TITLE></TITLE></HEAD>
+<BODY BGCOLOR=silver TEXT=black>
+<!--CUT DEF chapter 1 -->
+
+
+<DIV ALIGN=center><FONT SIZE=7><B>The Coq Proof Assistant<BR><BR>
+ A Tutorial<BR></B></FONT><FONT SIZE=7>
+</FONT>
+<BR><BR>
+<FONT SIZE=5><B><BR></B></FONT><FONT SIZE=5><B><FONT SIZE=5><B>Version 6.3</B></FONT></B></FONT><FONT SIZE=5><B>
+</B></FONT><A NAME="text0.1"></A><A HREF="#note0.1"><SUP><FONT SIZE=2>1</FONT></SUP></A>
+<FONT SIZE=5><B><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR>
+</B></FONT><FONT SIZE=5><B><B>Gérard Huet, Gilles Kahn and Christine Paulin-Mohring</B></B></FONT><FONT SIZE=5><B><BR></B></FONT><FONT SIZE=5><B><FONT SIZE=5><B>Coq Project</B></FONT></B></FONT><FONT SIZE=5><B><BR><BR>
+</B></FONT></DIV><BR>
+<BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR>
+
+<DIV ALIGN=left><FONT SIZE=4>V6.3,
+</FONT><BR><FONT SIZE=4>©INRIA 1999</FONT><BR></DIV>
+<BR>
+<!--CUT CHAPTER-->
+
+<H1>
+Getting started
+</H1>
+<FONT COLOR=purple>Coq</FONT> is a Proof Assistant for a Logical Framework known as the Calculus
+of Inductive Constructions. It allows the interactive construction of
+formal proofs, and also the manipulation of functional programs 
+consistently with their specifications. It runs as a computer program
+on many architectures, and mainly on Unix machines. It is available
+with a variety of user interfaces. The present document does not attempt
+to present a comprehensive view of all the possibilities of <FONT COLOR=purple>Coq</FONT>, but rather
+to present in the most elementary manner a tutorial on the basic
+specification language, called Gallina, in which formal axiomatisations
+may be developed, and on the main proof tools.<BR>
+<BR>
+We assume here that the potential user has installed <FONT COLOR=purple>Coq</FONT>&nbsp; on his workstation,
+that he calls <FONT COLOR=purple>Coq</FONT>&nbsp; from a standard teletype-like shell window, and that
+he does not use any special interface such as Emacs or Centaur. 
+Instructions on installation procedures, as well as more comprehensive
+documentation, may be found in the standard distribution of <FONT COLOR=purple>Coq</FONT>,
+which may be obtained by anonymous FTP from site <CODE>ftp.inria.fr</CODE>,
+directory <CODE>INRIA/coq/V6.2.4</CODE>. <BR>
+<BR>
+In the following, all examples preceded by the prompting sequence
+<CODE>Coq &lt; </CODE> represent user input, terminated by a period. The
+following lines usually show <FONT COLOR=purple>Coq</FONT>'s answer as it appears on the users's
+screen. The sequence of such examples is a valid <FONT COLOR=purple>Coq</FONT>&nbsp; session, unless
+otherwise specified. This version of the tutorial has been prepared 
+on a SPARC station running UNIX.
+The standard invocation of <FONT COLOR=purple>Coq</FONT> delivers a message such as:<BR>
+<BR>
+<DIV ALIGN=left><PRE>
+unix: coqtop
+Welcome to Coq V6.3 (July 1999)
+
+Coq &lt;
+</PRE></DIV><FONT SIZE=3>
+</FONT><BR>
+The first line gives a banner stating the precise version of <FONT COLOR=purple>Coq</FONT>&nbsp;
+used. You should always return this banner when you report an
+anomaly to our hotline <CODE>coq@pauillac.inria.fr</CODE>. 
+<BR>
+<BR>
+<!--CUT CHAPTER-->
+
+<H1>
+
+Chapter&nbsp;1: Basic Predicate Calculus
+</H1>
+<!--CUT SECTION-->
+
+<H2>
+
+1.1&nbsp;An overview of the specification language Gallina
+</H2>
+A formal development in Gallina consists in a sequence of <I><FONT COLOR=maroon>declarations</FONT></I>
+and <I><FONT COLOR=maroon>definitions</FONT></I>. You may also send <FONT COLOR=purple>Coq</FONT>&nbsp; <I><FONT COLOR=maroon>commands</FONT></I> which are
+not really part of the formal development, but correspond to information
+requests, or service routine invocations. For instance, the command:
+<PRE>
+Coq &lt; Quit.
+</PRE>terminates the current session.<BR>
+<BR>
+
+<H3>
+
+1.1.1&nbsp;Declarations
+</H3>
+A declaration associates a <I><FONT COLOR=maroon>name</FONT></I> with 
+a <I><FONT COLOR=maroon>specification</FONT></I>. 
+A name corresponds roughly to an identifier in a programming
+language, i.e. to a string of letters, digits, and a few ASCII symbols like
+underscore (<CODE>_</CODE>) and prime (<CODE>'</CODE>), starting with a letter. 
+We use case distinction, so that the names <CODE>A</CODE> and <CODE>a</CODE> are distinct.
+Certain strings are reserved as key-words of <FONT COLOR=purple>Coq</FONT>, and thus are forbidden 
+as user identifiers.<BR>
+<BR>
+A specification is a formal expression which classifies the notion which is
+being declared. There are basically three kinds of specifications: 
+<I><FONT COLOR=maroon>logical propositions</FONT></I>, <I><FONT COLOR=maroon>mathematical collections</FONT></I>, and
+<I><FONT COLOR=maroon>abstract types</FONT></I>. They are classified by the three basic sorts
+of the system, called respectively <CODE>Prop</CODE>, <CODE>Set</CODE>, and
+<CODE>Type</CODE>, which are themselves atomic abstract types.<BR>
+<BR>
+Every valid expression <I>e</I> in Gallina is associated with a specification,
+itself a valid expression, called its <I><FONT COLOR=maroon>type</FONT></I> <FONT FACE=symbol>t</FONT>(<I>E</I>). We write
+<I>e</I>:<FONT FACE=symbol>t</FONT>(<I>E</I>) for the judgement that <I>e</I> is of type <I>E</I>. 
+You may request <FONT COLOR=purple>Coq</FONT>&nbsp; to return to you the type of a valid expression by using
+the command <CODE>Check</CODE>:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;O.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>O</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;nat</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Thus we know that the identifier <CODE>O</CODE> (the name `O', not to be
+confused with the numeral `0' which is not a proper identifier!) is
+known in the current context, and that its type is the specification 
+<CODE>nat</CODE>. This specification is itself classified as a mathematical
+collection, as we may readily check:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;nat.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>nat</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Set</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+The specification <CODE>Set</CODE> is an abstract type, one of the basic
+sorts of the Gallina language, whereas the notions <I>nat</I> and <I>O</I> are
+axiomatised notions which are defined in the arithmetic prelude,
+automatically loaded when running the <FONT COLOR=purple>Coq</FONT> system.<BR>
+<BR>
+With what we already know, we may now enter in the system a declaration,
+corresponding to the informal mathematics <I><FONT COLOR=maroon>let n be a natural number</FONT></I>:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;n:nat.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>n&nbsp;is&nbsp;assumed</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+If we want to translate a more precise statement, such as
+<I><FONT COLOR=maroon>let n be a positive natural number</FONT></I>,
+we have to add another declaration, which will declare explicitly the
+hypothesis <CODE>Pos_n</CODE>, with specification the proper logical
+proposition:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Hypothesis&nbsp;Pos_n&nbsp;:&nbsp;(gt&nbsp;n&nbsp;O).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Pos_n&nbsp;is&nbsp;assumed</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Indeed we may check that the relation <CODE>gt</CODE> is known with the right type
+in the current context:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;gt.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>gt</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;nat-&gt;nat-&gt;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+which tells us that <CODE>gt</CODE> is a function expecting two arguments of
+type <CODE>nat</CODE> in order to build a logical proposition.
+What happens here is similar to what we are used to in a functional
+programming language: we may compose the (specification) type <CODE>nat</CODE>
+with the (abstract) type <CODE>Prop</CODE> of logical propositions through the
+arrow function constructor, in order to get a functional type
+<CODE>nat-&gt;Prop</CODE>:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;nat-&gt;Prop.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>nat-&gt;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Type</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT>
+which may be composed again with <CODE>nat</CODE> in order to obtain the
+type <CODE>nat-&gt;nat-&gt;Prop</CODE> of binary relations over natural numbers.
+Actually <CODE>nat-&gt;nat-&gt;Prop</CODE> is an abbreviation for 
+<CODE>nat-&gt;(nat-&gt;Prop)</CODE>. <BR>
+<BR>
+Functional notions may be composed in the usual way. An expression <I>f</I>
+of type <I>A</I><FONT FACE=symbol>®</FONT> <I>B</I> may be applied to an expression <I>e</I> of type <I>A</I> in order
+to form the expression (<I>f</I>&nbsp;<I>e</I>) of type <I>B</I>. Here we get that
+the expression <CODE>(gt n)</CODE> is well-formed of type <CODE>nat-&gt;Prop</CODE>,
+and thus that the expression <CODE>(gt n O)</CODE>, which abbreviates
+<CODE>((gt n) O)</CODE>, is a well-formed proposition.
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;(gt&nbsp;n&nbsp;O).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>(gt&nbsp;n&nbsp;O)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+
+<H3>
+
+1.1.2&nbsp;Definitions
+</H3>
+The initial prelude contains a few arithmetic definitions:
+<CODE>nat</CODE> is defined as a mathematical collection (type <CODE>Set</CODE>), constants
+<CODE>O</CODE>, <CODE>S</CODE>, <CODE>plus</CODE>, are defined as objects of types
+respectively <CODE>nat</CODE>, <CODE>nat-&gt;nat</CODE>, and <CODE>nat-&gt;nat-&gt;nat</CODE>.
+You may introduce new definitions, which link a name to a well-typed value.
+For instance, we may introduce the constant <CODE>one</CODE> as being defined
+to be equal to the successor of zero:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Definition&nbsp;one&nbsp;:=&nbsp;(S&nbsp;O).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>one&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT>
+We may optionally indicate the required type:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Definition&nbsp;two&nbsp;:&nbsp;nat&nbsp;:=&nbsp;(S&nbsp;one).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>two&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Actually <FONT COLOR=purple>Coq</FONT>&nbsp; allows several possible syntaxes:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Definition&nbsp;three&nbsp;:=&nbsp;(S&nbsp;two)&nbsp;:&nbsp;nat.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>three&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Here is a way to define the doubling function, which expects an
+argument <CODE>m</CODE> of type <CODE>nat</CODE> in order to build its result as
+<CODE>(plus m m)</CODE>:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Definition&nbsp;double&nbsp;:=&nbsp;[m:nat](plus&nbsp;m&nbsp;m).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>double&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT>
+The abstraction brackets are explained as follows. The expression
+<CODE>[x:A]e</CODE> is well formed of type <CODE>A-&gt;B</CODE> in a context
+whenever the expression <CODE>e</CODE> is well-formed of type <CODE>B</CODE> in 
+the given context to which we add the declaration that <CODE>x</CODE>
+is of type <CODE>A</CODE>. Here <I>x</I> is a bound, or dummy variable in
+the expression <CODE>[x:A]e</CODE>. For instance we could as well have
+defined <CODE>double</CODE> as <CODE>[n:nat](plus n n)</CODE>.<BR>
+<BR>
+Bound (local) variables and free (global) variables may be mixed.
+For instance, we may define the function which adds the constant <CODE>n</CODE>
+to its argument as
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Definition&nbsp;add_n&nbsp;:=&nbsp;[m:nat](plus&nbsp;m&nbsp;n).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>add_n&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT>
+However, note that here we may not rename the formal argument <I>m</I> into <I>n</I>
+without capturing the free occurrence of <I>n</I>, and thus changing the meaning
+of the defined notion.<BR>
+<BR>
+Binding operations are well known for instance in logic, where they
+are called quantifiers.
+Thus we may universally quantify a proposition such as <I>m</I>&gt;0 in order
+to get a universal proposition <FONT FACE=symbol>"</FONT> <I>m</I><FONT SIZE=5>·</FONT> <I>m</I>&gt;0. Indeed this
+operator is available in <FONT COLOR=purple>Coq</FONT>, with the following syntax:
+<CODE>(m:nat)(gt m O)</CODE>. Similarly to the case of the functional abstraction
+binding, we are obliged to declare explicitly the type of the quantified
+variable. We check:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;(m:nat)(gt&nbsp;m&nbsp;O).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>(m:nat)(gt&nbsp;m&nbsp;O)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+<!--CUT SECTION-->
+
+<H2>
+
+1.2&nbsp;Introduction to the proof engine: Minimal Logic
+</H2>
+In the following, we are going to consider various propositions, built
+from atomic propositions <I>A</I>, <I>B</I>, <I>C</I>. This may be done easily, by
+introducing these atoms as global variables declared of type <CODE>Prop</CODE>.
+It is easy to declare several names with the same specification:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Variables&nbsp;A,B,C:Prop.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>A&nbsp;is&nbsp;assumed</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>B&nbsp;is&nbsp;assumed</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>C&nbsp;is&nbsp;assumed</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+We shall consider simple implications, such as <I>A</I><FONT FACE=symbol>®</FONT> <I>B</I>, read as 
+``<I>A</I> implies <I>B</I>''. Remark that we overload the arrow symbol, which
+has been used above as the functionality type constructor, and which
+may be used as well as propositional connective:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;A-&gt;B.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>A-&gt;B</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Let us now embark on a simple proof. We want to prove the easy tautology
+((<I>A</I><FONT FACE=symbol>®</FONT> (<I>B</I><FONT FACE=symbol>®</FONT> <I>C</I>))<FONT FACE=symbol>®</FONT> (<I>A</I><FONT FACE=symbol>®</FONT> <I>B</I>)<FONT FACE=symbol>®</FONT> (<I>A</I><FONT FACE=symbol>®</FONT> <I>C</I>). 
+We enter the proof engine by the command
+<CODE>Goal</CODE>, followed by the conjecture we want to verify:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Goal&nbsp;(A-&gt;(B-&gt;C))-&gt;(A-&gt;B)-&gt;(A-&gt;C).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(A-&gt;B-&gt;C)-&gt;(A-&gt;B)-&gt;A-&gt;C</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+The system displays the current goal below a double line, local hypotheses
+(there are none initially) being displayed above the line. We call 
+the combination of local hypotheses with a goal a <I><FONT COLOR=maroon>judgement</FONT></I>.
+The new prompt <CODE>Unnamed_thm &lt;</CODE> indicates that we are now in an inner 
+loop of the system, in proof mode. New commands are available in this
+mode, such as <I><FONT COLOR=maroon>tactics</FONT></I>, which are proof combining primitives.
+A tactic operates on the current goal by attempting to construct a proof
+of the corresponding judgement, possibly from proofs of some
+hypothetical judgements, which are then added to the current
+list of conjectured judgements.
+For instance, the <CODE>Intro</CODE> tactic is applicable to any judgement
+whose goal is an implication, by moving the proposition to the left
+of the application to the list of local hypotheses:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Intro&nbsp;H.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;H&nbsp;:&nbsp;A-&gt;B-&gt;C</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(A-&gt;B)-&gt;A-&gt;C</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Several introductions may be done in one step:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Intros&nbsp;H'&nbsp;HA.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;H&nbsp;:&nbsp;A-&gt;B-&gt;C</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;H'&nbsp;:&nbsp;A-&gt;B</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;HA&nbsp;:&nbsp;A</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;C</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+We notice that <I>C</I>, the current goal, may be obtained from hypothesis
+<CODE>H</CODE>, provided the truth of <I>A</I> and <I>B</I> are established.
+The tactic <CODE>Apply</CODE> implements this piece of reasoning:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Apply&nbsp;H.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>2&nbsp;subgoals</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;H&nbsp;:&nbsp;A-&gt;B-&gt;C</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;H'&nbsp;:&nbsp;A-&gt;B</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;HA&nbsp;:&nbsp;A</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;A</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>subgoal&nbsp;2&nbsp;is:</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;B</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+We are now in the situation where we have two judgements as conjectures
+that remain to be proved. Only the first is listed in full, for the
+others the system displays only the corresponding subgoal, without its
+local hypotheses list. Remark that <CODE>Apply</CODE> has kept the local
+hypotheses of its father judgement, which are still available for
+the judgements it generated.<BR>
+<BR>
+In order to solve the current goal, we just have to notice that it is
+exactly available as hypothesis <I>HA</I>:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Exact&nbsp;HA.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;H&nbsp;:&nbsp;A-&gt;B-&gt;C</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;H'&nbsp;:&nbsp;A-&gt;B</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;HA&nbsp;:&nbsp;A</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;B</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Now <I>H</I>' applies:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Apply&nbsp;H'.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;H&nbsp;:&nbsp;A-&gt;B-&gt;C</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;H'&nbsp;:&nbsp;A-&gt;B</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;HA&nbsp;:&nbsp;A</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;A</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+And we may now conclude the proof as before, with <CODE>Exact HA.</CODE>
+Actually, we may not bother with the name <CODE>HA</CODE>, and just state that
+the current goal is solvable from the current local assumptions:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Assumption.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Subtree&nbsp;proved!</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+The proof is now finished. We may either discard it, by using the
+command <CODE>Abort</CODE> which returns to the standard <FONT COLOR=purple>Coq</FONT>&nbsp; toplevel loop
+without further ado, or else save it as a lemma in the current context,
+under name say <CODE>trivial_lemma</CODE>:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Save&nbsp;trivial_lemma.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Intro&nbsp;H.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Intros&nbsp;H'&nbsp;HA.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Apply&nbsp;H.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Exact&nbsp;HA.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Apply&nbsp;H'.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Assumption.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>trivial_lemma&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+As a comment, the system shows the proof script listing all tactic
+commands used in the proof. <BR>
+<BR>
+Let us redo the same proof with a few variations. First of all we may name
+the initial goal as a conjectured lemma:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Lemma&nbsp;distr_impl&nbsp;:&nbsp;(A-&gt;(B-&gt;C))-&gt;(A-&gt;B)-&gt;(A-&gt;C).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(A-&gt;B-&gt;C)-&gt;(A-&gt;B)-&gt;A-&gt;C</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Next, we may omit the names of local assumptions created by the introduction
+tactics, they can be automatically created by the proof engine as new
+non-clashing names.
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Intros.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;H&nbsp;:&nbsp;A-&gt;B-&gt;C</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;H0&nbsp;:&nbsp;A-&gt;B</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;H1&nbsp;:&nbsp;A</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;C</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+The <CODE>Intros</CODE> tactic, with no arguments, effects as many individual
+applications of <CODE>Intro</CODE> as is legal.<BR>
+<BR>
+Then, we may compose several tactics together in sequence, or in parallel,
+through <I><FONT COLOR=maroon>tacticals</FONT></I>, that is tactic combinators. The main constructions
+are the following:
+<UL>
+<LI><I>T</I><SUB><FONT SIZE=2>1</FONT></SUB> ; <I>T</I><SUB><FONT SIZE=2>2</FONT></SUB> (read <I>T</I><SUB><FONT SIZE=2>1</FONT></SUB> then <I>T</I><SUB><FONT SIZE=2>2</FONT></SUB>) applies tactic <I>T</I><SUB><FONT SIZE=2>1</FONT></SUB> to the current
+goal, and then tactic <I>T</I><SUB><FONT SIZE=2>2</FONT></SUB> to all the subgoals generated by <I>T</I><SUB><FONT SIZE=2>1</FONT></SUB>.
+
+<LI><I>T</I>; [<I>T</I><SUB><FONT SIZE=2>1</FONT></SUB> | <I>T</I><SUB><FONT SIZE=2>2</FONT></SUB> | ... | <I>T</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>] applies tactic <I>T</I> to the current
+goal, and then tactic <I>T</I><SUB><FONT SIZE=2>1</FONT></SUB> to the first newly generated subgoal, 
+..., <I>T</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> to the nth.
+</UL>We may thus complete the proof of <CODE>distr_impl</CODE> with one composite tactic:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Apply&nbsp;H;&nbsp;[Assumption&nbsp;|&nbsp;Apply&nbsp;H0;&nbsp;Assumption].</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Subtree&nbsp;proved!</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Let us now save lemma <CODE>distr_impl</CODE>:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Save.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Intros.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Apply&nbsp;H;&nbsp;[&nbsp;Assumption&nbsp;|&nbsp;Apply&nbsp;H0;&nbsp;Assumption&nbsp;].</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>distr_impl&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Here <CODE>Save</CODE> needs no argument, since we gave the name <CODE>distr_impl</CODE> 
+in advance;
+it is however possible to override the given name by giving a different 
+argument to command <CODE>Save</CODE>.<BR>
+<BR>
+Actually, such an easy combination of tactics <CODE>Intro</CODE>, <CODE>Apply</CODE>
+and <CODE>Assumption</CODE> may be found completely automatically by an automatic
+tactic, called <CODE>Auto</CODE>, without user guidance:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Lemma&nbsp;distr_imp&nbsp;:&nbsp;(A-&gt;(B-&gt;C))-&gt;(A-&gt;B)-&gt;(A-&gt;C).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(A-&gt;B-&gt;C)-&gt;(A-&gt;B)-&gt;A-&gt;C</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Auto.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Subtree&nbsp;proved!</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+This time, we do not save the proof, we just discard it with the <CODE>Abort</CODE> 
+command:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Abort.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Current&nbsp;goal&nbsp;aborted</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+At any point during a proof, we may use <CODE>Abort</CODE> to exit the proof mode
+and go back to Coq's main loop. We may also use <CODE>Restart</CODE> to restart
+from scratch the proof of the same lemma. We may also use <CODE>Undo</CODE> to
+backtrack one step, and more generally <CODE>Undo n</CODE> to
+backtrack n steps.<BR>
+<BR>
+We end this section by showing a useful command, <CODE>Inspect n.</CODE>,
+which inspects the global <FONT COLOR=purple>Coq</FONT>&nbsp; environment, showing the last <CODE>n</CODE> declared
+notions: <DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Inspect&nbsp;3.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>***&nbsp;[&nbsp;C&nbsp;:&nbsp;Prop&nbsp;]</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>trivial_lemma&nbsp;:&nbsp;(A-&gt;B-&gt;C)-&gt;(A-&gt;B)-&gt;A-&gt;C</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>distr_impl&nbsp;:&nbsp;(A-&gt;B-&gt;C)-&gt;(A-&gt;B)-&gt;A-&gt;C</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+The declarations, whether global parameters or axioms, are shown preceded by 
+<CODE>***</CODE>; definitions and lemmas are stated with their specification, but
+their value (or proof-term) is omitted.<BR>
+<BR>
+<!--CUT SECTION-->
+
+<H2>
+
+1.3&nbsp;Propositional Calculus
+</H2>
+
+<H3>
+
+1.3.1&nbsp;Conjunction
+</H3>
+We have seen that how <CODE>Intro</CODE> and <CODE>Apply</CODE> tactics could be combined
+in order to prove implicational statements. More generally, <FONT COLOR=purple>Coq</FONT>&nbsp; favors a style
+of reasoning, called <I><FONT COLOR=maroon>Natural Deduction</FONT></I>, which decomposes reasoning into 
+so called <I><FONT COLOR=maroon>introduction rules</FONT></I>, which tell how to prove a goal whose main 
+operator is a given propositional connective, and <I><FONT COLOR=maroon>elimination rules</FONT></I>,
+which tell how to use an hypothesis whose main operator is the propositional 
+connective. Let us show how to use these ideas for the propositional connectives
+<CODE>/\</CODE> and <CODE>\/</CODE>.<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Lemma&nbsp;and_commutative&nbsp;:&nbsp;A&nbsp;/\&nbsp;B&nbsp;-&gt;&nbsp;B&nbsp;/\&nbsp;A.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;A/\B-&gt;B/\A</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Intro.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;H&nbsp;:&nbsp;A/\B</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;B/\A</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+We make use of the conjunctive hypothesis <CODE>H</CODE> with the <CODE>Elim</CODE> tactic,
+which breaks it into its components:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Elim&nbsp;H.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;H&nbsp;:&nbsp;A/\B</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;A-&gt;B-&gt;B/\A</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+We now use the conjuction introduction tactic <CODE>Split</CODE>, which splits the 
+conjunctive goal into the two subgoals:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Split.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>2&nbsp;subgoals</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;H&nbsp;:&nbsp;A/\B</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;H0&nbsp;:&nbsp;A</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;H1&nbsp;:&nbsp;B</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;B</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>subgoal&nbsp;2&nbsp;is:</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;A</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+and the proof is now trivial. Indeed, the whole proof is obtainable as follows:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Restart.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;A/\B-&gt;B/\A</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Intro&nbsp;H;&nbsp;Elim&nbsp;H;&nbsp;Auto.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Subtree&nbsp;proved!</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Save.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Intro&nbsp;H;&nbsp;Elim&nbsp;H;&nbsp;Auto.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>and_commutative&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+The tactic <CODE>Auto</CODE> succeeded here because it knows as a hint the 
+conjunction introduction operator <CODE>conj</CODE>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;conj.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>conj</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(A,B:Prop)A-&gt;B-&gt;A/\B</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Actually, the tactic <CODE>Split</CODE> is just an abbreviation for <CODE>Apply conj.</CODE><BR>
+<BR>
+What we have just seen is that the <CODE>Auto</CODE> tactic is more powerful than
+just a simple application of local hypotheses; it tries to apply as well 
+lemmas which have been specified as hints. A 
+<CODE>Hints Resolve</CODE> command registers a
+lemma as a hint to be used from now on by the <CODE>Auto</CODE> tactic, whose power 
+may thus be incrementally augmented.<BR>
+<BR>
+
+<H3>
+
+1.3.2&nbsp;Disjunction
+</H3>
+In a similar fashion, let us consider disjunction:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Lemma&nbsp;or_commutative&nbsp;:&nbsp;A&nbsp;\/&nbsp;B&nbsp;-&gt;&nbsp;B&nbsp;\/&nbsp;A.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;A\/B-&gt;B\/A</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Intro&nbsp;H;&nbsp;Elim&nbsp;H.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>2&nbsp;subgoals</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;H&nbsp;:&nbsp;A\/B</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;A-&gt;B\/A</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>subgoal&nbsp;2&nbsp;is:</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;B-&gt;B\/A</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Let us prove the first subgoal in detail. We use <CODE>Intro</CODE> in order to
+be left to prove <CODE>B\/A</CODE> from <CODE>A</CODE>:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Intro&nbsp;HA.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>2&nbsp;subgoals</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;H&nbsp;:&nbsp;A\/B</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;HA&nbsp;:&nbsp;A</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;B\/A</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>subgoal&nbsp;2&nbsp;is:</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;B-&gt;B\/A</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Here the hypothesis <CODE>H</CODE> is not needed anymore. We could choose to
+actually erase it with the tactic <CODE>Clear</CODE>; in this simple proof it
+does not really matter, but in bigger proof developments it is useful to
+clear away unnecessary hypotheses which may clutter your screen.
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Clear&nbsp;H.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>2&nbsp;subgoals</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;HA&nbsp;:&nbsp;A</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;B\/A</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>subgoal&nbsp;2&nbsp;is:</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;B-&gt;B\/A</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+The disjunction connective has two introduction rules, since <CODE>P\/Q</CODE>
+may be obtained from <CODE>P</CODE> or from <CODE>Q</CODE>; the two corresponding
+proof constructors are called respectively <CODE>or_introl</CODE> and
+<CODE>or_intror</CODE>; they are applied to the current goal by tactics
+<CODE>Left</CODE> and <CODE>Right</CODE> respectively. For instance:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Right.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>2&nbsp;subgoals</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;HA&nbsp;:&nbsp;A</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;A</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>subgoal&nbsp;2&nbsp;is:</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;B-&gt;B\/A</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Trivial.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;H&nbsp;:&nbsp;A\/B</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;B-&gt;B\/A</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT>
+<BR>
+As before, all these tedious elementary steps may be performed automatically,
+as shown for the second symmetric case:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Auto.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Subtree&nbsp;proved!</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+However, <CODE>Auto</CODE> alone does not succeed in proving the full lemma, because
+it does not try any elimination step.
+It is a bit disappointing that <CODE>Auto</CODE> is not able to prove automatically 
+such a simple tautology. The reason is that we want to keep
+<CODE>Auto</CODE> efficient, so that it is always effective to use. <BR>
+<BR>
+
+<H3>
+
+1.3.3&nbsp;Tauto
+</H3>
+A complete tactic for propositional
+tautologies is indeed available in <FONT COLOR=purple>Coq</FONT>&nbsp; as the <CODE>Tauto</CODE> tactic. 
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Restart.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;A\/B-&gt;B\/A</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Tauto.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Subtree&nbsp;proved!</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Save.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Tauto.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>or_commutative&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+It is possible to inspect the actual proof tree constructed by <CODE>Tauto</CODE>,
+using a standard command of the system, which prints the value of any notion 
+currently defined in the context:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Print&nbsp;or_commutative.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>or_commutative&nbsp;=&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>[H:(A\/B)]</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;(or_ind&nbsp;A&nbsp;B&nbsp;B\/A&nbsp;[H0:A](or_intror&nbsp;B&nbsp;A&nbsp;H0)&nbsp;[H0:B](or_introl&nbsp;B&nbsp;A&nbsp;H0)&nbsp;H)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;A\/B-&gt;B\/A</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+It is not easy to understand the notation for proof terms without a few
+explanations. The square brackets, such as <CODE>[HH1:A\/B]</CODE>, correspond
+to <CODE>Intro HH1</CODE>, whereas a subterm such as 
+<CODE>(or_intror</CODE> <CODE>B A HH6)</CODE>
+corresponds to the sequence <CODE>Apply or_intror; Exact HH6</CODE>. The extra
+arguments <CODE>B</CODE> and <CODE>A</CODE> correspond to instanciations to the generic
+combinator <CODE>or_intror</CODE>, which are effected automatically by the tactic
+<CODE>Apply</CODE> when pattern-matching a goal. The specialist will of course
+recognize our proof term as a <FONT FACE=symbol>l</FONT>-term, used as notation for the
+natural deduction proof term through the Curry-Howard isomorphism. The
+naive user of <FONT COLOR=purple>Coq</FONT>&nbsp; may safely ignore these formal details.<BR>
+<BR>
+Let us exercise the <CODE>Tauto</CODE> tactic on a more complex example:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Lemma&nbsp;distr_and&nbsp;:&nbsp;A-&gt;(B/\C)&nbsp;-&gt;&nbsp;(A-&gt;B&nbsp;/\&nbsp;A-&gt;C).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;A-&gt;B/\C-&gt;A-&gt;B/\A-&gt;C</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Tauto.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Subtree&nbsp;proved!</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Save.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Tauto.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>distr_and&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+
+<H3>
+
+1.3.4&nbsp;Classical reasoning
+</H3>
+<CODE>Tauto</CODE> always comes back with an answer. Here is an example where it 
+fails:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Lemma&nbsp;Peirce&nbsp;:&nbsp;((A-&gt;B)-&gt;A)-&gt;A.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;((A-&gt;B)-&gt;A)-&gt;A</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Try&nbsp;Tauto.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;((A-&gt;B)-&gt;A)-&gt;A</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Note the use of the <CODE>Try</CODE> tactical, which does nothing if its tactic
+argument fails.<BR>
+<BR>
+This may come as a surprise to someone familiar with classical reasoning. 
+Peirce's lemma is true in Boolean logic, i.e. it evaluates to <CODE>true</CODE> for 
+every truth-assignment to <CODE>A</CODE> and <CODE>B</CODE>. Indeed the double negation
+of Peirce's law may be proved in <FONT COLOR=purple>Coq</FONT>&nbsp; using <CODE>Tauto</CODE>:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Abort.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Current&nbsp;goal&nbsp;aborted</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Lemma&nbsp;NNPeirce&nbsp;:&nbsp;~~(((A-&gt;B)-&gt;A)-&gt;A).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;~~(((A-&gt;B)-&gt;A)-&gt;A)</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Tauto.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Subtree&nbsp;proved!</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Save.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Tauto.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>NNPeirce&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+In classical logic, the double negation of a proposition is equivalent to this 
+proposition, but in the constructive logic of <FONT COLOR=purple>Coq</FONT>&nbsp; this is not so. If you 
+want to use classical logic in <FONT COLOR=purple>Coq</FONT>, you have to import explicitly the
+<CODE>Classical</CODE> module, which will declare the axiom <CODE>classic</CODE>
+of excluded middle, and classical tautologies such as de Morgan's laws.
+The <CODE>Require</CODE> command is used to import a module from <FONT COLOR=purple>Coq</FONT>'s library:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Require&nbsp;Classical.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>[Reinterning&nbsp;Classical&nbsp;...done]</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>[Reinterning&nbsp;Classical_Prop&nbsp;...done]</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>[Reinterning&nbsp;Classical_Pred_Set&nbsp;...done]</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;NNPP.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>NNPP</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(p:Prop)~~p-&gt;p</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+and it is now easy (although admittedly not the most direct way) to prove
+a classical law such as Peirce's:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Lemma&nbsp;Peirce&nbsp;:&nbsp;((A-&gt;B)-&gt;A)-&gt;A.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;((A-&gt;B)-&gt;A)-&gt;A</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Apply&nbsp;NNPP;&nbsp;Tauto.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Subtree&nbsp;proved!</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Save.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Apply&nbsp;NNPP;&nbsp;Tauto.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Peirce&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Here is one more example of propositional reasoning, in the shape of
+a scottish puzzle. A private club has the following rules:
+<OL>
+<LI>Every non-scottish member wears red socks
+
+<LI>Every member wears a kilt or doesn't wear red socks
+
+<LI>The married members don't go out on sunday
+
+<LI>A member goes out on sunday if and only if he is scottish
+
+<LI>Every member who wears a kilt is scottish and married
+
+<LI>Every scottish member wears a kilt
+</OL>
+Now, we show that these rules are so strict that no one can be accepted.
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Section&nbsp;club.</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;Scottish,&nbsp;RedSocks,&nbsp;WearKilt,&nbsp;Married,&nbsp;GoOutSunday&nbsp;:&nbsp;Prop.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Scottish&nbsp;is&nbsp;assumed</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>RedSocks&nbsp;is&nbsp;assumed</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>WearKilt&nbsp;is&nbsp;assumed</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Married&nbsp;is&nbsp;assumed</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>GoOutSunday&nbsp;is&nbsp;assumed</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Hypothesis&nbsp;rule1&nbsp;:&nbsp;~Scottish&nbsp;-&gt;&nbsp;RedSocks.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>rule1&nbsp;is&nbsp;assumed</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Hypothesis&nbsp;rule2&nbsp;:&nbsp;WearKilt&nbsp;\/&nbsp;~RedSocks.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>rule2&nbsp;is&nbsp;assumed</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Hypothesis&nbsp;rule3&nbsp;:&nbsp;Married&nbsp;-&gt;&nbsp;~GoOutSunday.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>rule3&nbsp;is&nbsp;assumed</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Hypothesis&nbsp;rule4&nbsp;:&nbsp;GoOutSunday&nbsp;&lt;-&gt;&nbsp;Scottish.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>rule4&nbsp;is&nbsp;assumed</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Hypothesis&nbsp;rule5&nbsp;:&nbsp;WearKilt&nbsp;-&gt;&nbsp;(Scottish&nbsp;/\&nbsp;Married).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>rule5&nbsp;is&nbsp;assumed</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Hypothesis&nbsp;rule6&nbsp;:&nbsp;Scottish&nbsp;-&gt;&nbsp;WearKilt.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>rule6&nbsp;is&nbsp;assumed</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Lemma&nbsp;NoMember&nbsp;:&nbsp;False.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;Scottish&nbsp;:&nbsp;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;RedSocks&nbsp;:&nbsp;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;WearKilt&nbsp;:&nbsp;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;Married&nbsp;:&nbsp;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;GoOutSunday&nbsp;:&nbsp;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;rule1&nbsp;:&nbsp;~Scottish-&gt;RedSocks</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;rule2&nbsp;:&nbsp;WearKilt\/~RedSocks</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;rule3&nbsp;:&nbsp;Married-&gt;~GoOutSunday</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;rule4&nbsp;:&nbsp;GoOutSunday&lt;-&gt;Scottish</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;rule5&nbsp;:&nbsp;WearKilt-&gt;Scottish/\Married</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;rule6&nbsp;:&nbsp;Scottish-&gt;WearKilt</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;False</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Tauto.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Subtree&nbsp;proved!</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Save.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Tauto.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>NoMember&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;End&nbsp;club.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Constant&nbsp;NoMember</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;:&nbsp;(Scottish,RedSocks,WearKilt,Married,GoOutSunday:Prop)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(~Scottish-&gt;RedSocks)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;WearKilt\/~RedSocks</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;(Married-&gt;~GoOutSunday)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;(GoOutSunday&lt;-&gt;Scottish)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;(WearKilt-&gt;Scottish/\Married)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;(Scottish-&gt;WearKilt)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;False</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+<!--CUT SECTION-->
+
+<H2>
+
+1.4&nbsp;Predicate Calculus
+</H2>
+Let us now move into predicate logic, and first of all into first-order
+predicate calculus. The essence of predicate calculus is that to try to prove 
+theorems in the most abstract possible way, without using the definitions of 
+the mathematical notions, but by formal manipulations of uninterpreted 
+function and predicate symbols. <BR>
+<BR>
+
+<H3>
+
+1.4.1&nbsp;Sections and signatures
+</H3>
+Usually one works in some domain of discourse, over which range the individual 
+variables and function symbols. In <FONT COLOR=purple>Coq</FONT>&nbsp; we speak in a language with a rich 
+variety of types, so me may mix several domains of discourse, in our 
+multi-sorted language. For the moment, we just do a few exercises, over a 
+domain of discourse <CODE>D</CODE> axiomatised as a <CODE>Set</CODE>, and we consider two 
+predicate symbols <CODE>P</CODE> and <CODE>R</CODE> over <CODE>D</CODE>, of arities 
+respectively 1 and 2. Such abstract entities may be entered in the context
+as global variables. But we must be careful about the pollution of our
+global environment by such declarations. For instance, we have already 
+polluted our <FONT COLOR=purple>Coq</FONT>&nbsp; session by declaring the variables
+<CODE>n</CODE>, <CODE>Pos_n</CODE>, <CODE>A</CODE>, <CODE>B</CODE>, and <CODE>C</CODE>. If we want to revert to the clean state of
+our initial session, we may use the <FONT COLOR=purple>Coq</FONT>&nbsp; <CODE>Reset</CODE> command, which returns
+to the state just prior the given global notion.
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Reset&nbsp;n.</TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT>
+<BR>
+We shall now declare a new <CODE>Section</CODE>, which will allow us to define
+notions local to a well-delimited scope. We start by assuming a domain of
+discourse <CODE>D</CODE>, and a binary relation <CODE>R</CODE> over <CODE>D</CODE>: 
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Section&nbsp;Predicate_calculus.</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;D:Set.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>D&nbsp;is&nbsp;assumed</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;R:&nbsp;D&nbsp;-&gt;&nbsp;D&nbsp;-&gt;&nbsp;Prop.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>R&nbsp;is&nbsp;assumed</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+As a simple example of predicate calculus reasoning, let us assume
+that relation <CODE>R</CODE> is symmetric and transitive, and let us show that
+<CODE>R</CODE> is reflexive in any point <CODE>x</CODE> which has an <CODE>R</CODE> successor.
+Since we do not want to make the assumptions about <CODE>R</CODE> global axioms of 
+a theory, but rather local hypotheses to a theorem, we open a specific
+section to this effect.
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Section&nbsp;R_sym_trans.</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Hypothesis&nbsp;R_symmetric&nbsp;:&nbsp;(x,y:D)&nbsp;(R&nbsp;x&nbsp;y)&nbsp;-&gt;&nbsp;(R&nbsp;y&nbsp;x).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>R_symmetric&nbsp;is&nbsp;assumed</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Hypothesis&nbsp;R_transitive&nbsp;:&nbsp;(x,y,z:D)&nbsp;(R&nbsp;x&nbsp;y)&nbsp;-&gt;&nbsp;(R&nbsp;y&nbsp;z)&nbsp;-&gt;&nbsp;(R&nbsp;x&nbsp;z).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>R_transitive&nbsp;is&nbsp;assumed</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Remark the syntax <CODE>(x:D)</CODE> which stands for universal quantification
+<FONT FACE=symbol>"</FONT> <I>x</I> : <I>D</I>.<BR>
+<BR>
+
+<H3>
+
+1.4.2&nbsp;Existential quantification
+</H3>
+We now state our lemma, and enter proof mode.
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Lemma&nbsp;refl_if&nbsp;:&nbsp;(x:D)(EX&nbsp;y&nbsp;|&nbsp;(R&nbsp;x&nbsp;y))&nbsp;-&gt;&nbsp;(R&nbsp;x&nbsp;x).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;D&nbsp;:&nbsp;Set</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;R&nbsp;:&nbsp;D-&gt;D-&gt;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;R_symmetric&nbsp;:&nbsp;(x,y:D)(R&nbsp;x&nbsp;y)-&gt;(R&nbsp;y&nbsp;x)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;R_transitive&nbsp;:&nbsp;(x,y,z:D)(R&nbsp;x&nbsp;y)-&gt;(R&nbsp;y&nbsp;z)-&gt;(R&nbsp;x&nbsp;z)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(x:D)(EX&nbsp;y:D&nbsp;|&nbsp;(R&nbsp;x&nbsp;y))-&gt;(R&nbsp;x&nbsp;x)</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Remark that the hypotheses which are local to the currently opened sections
+are listed as local hypotheses to the current goals.
+The rationale is that these hypotheses are going to be discharged, as we
+shall see, when we shall close the corresponding sections.<BR>
+<BR>
+Note the functional syntax for existential quantification. The existential
+quantifier is built from the operator <CODE>ex</CODE>, which expects a 
+predicate as argument:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;ex.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>ex</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(A:Set)(A-&gt;Prop)-&gt;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT>
+and the notation <CODE>(EX x | (P x))</CODE> is just concrete syntax for 
+<CODE>(ex D [x:D](P x))</CODE>. 
+Existential quantification is handled in <FONT COLOR=purple>Coq</FONT>&nbsp; in a similar
+fashion to the connectives <CODE>/\</CODE> and <CODE>\/</CODE> : it is introduced by
+the proof combinator <CODE>ex_intro</CODE>, which is invoked by the specific 
+tactic <CODE>Exists</CODE>, and its elimination provides a witness <CODE>a:D</CODE> to
+<CODE>P</CODE>, together with an assumption <CODE>h:(P a)</CODE> that indeed <CODE>a</CODE>
+verifies <CODE>P</CODE>. Let us see how this works on this simple example.
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Intros&nbsp;x&nbsp;x_Rlinked.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;D&nbsp;:&nbsp;Set</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;R&nbsp;:&nbsp;D-&gt;D-&gt;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;R_symmetric&nbsp;:&nbsp;(x,y:D)(R&nbsp;x&nbsp;y)-&gt;(R&nbsp;y&nbsp;x)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;R_transitive&nbsp;:&nbsp;(x,y,z:D)(R&nbsp;x&nbsp;y)-&gt;(R&nbsp;y&nbsp;z)-&gt;(R&nbsp;x&nbsp;z)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;x&nbsp;:&nbsp;D</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;x_Rlinked&nbsp;:&nbsp;(EX&nbsp;y:D&nbsp;|&nbsp;(R&nbsp;x&nbsp;y))</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(R&nbsp;x&nbsp;x)</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Remark that <CODE>Intro</CODE> treats universal quantification in the same way
+as the premisses of implications. Renaming of bound variables occurs
+when it is needed; for instance, had we started with <CODE>Intro y</CODE>,
+we would have obtained the goal:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Intro&nbsp;y.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;D&nbsp;:&nbsp;Set</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;R&nbsp;:&nbsp;D-&gt;D-&gt;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;R_symmetric&nbsp;:&nbsp;(x,y:D)(R&nbsp;x&nbsp;y)-&gt;(R&nbsp;y&nbsp;x)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;R_transitive&nbsp;:&nbsp;(x,y,z:D)(R&nbsp;x&nbsp;y)-&gt;(R&nbsp;y&nbsp;z)-&gt;(R&nbsp;x&nbsp;z)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;y&nbsp;:&nbsp;D</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(EX&nbsp;y0:D&nbsp;|&nbsp;(R&nbsp;y&nbsp;y0))-&gt;(R&nbsp;y&nbsp;y)</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Let us now use the existential hypothesis <CODE>x_Rlinked</CODE> to 
+exhibit an R-successor y of x. This is done in two steps, first with
+<CODE>Elim</CODE>, then with <CODE>Intros</CODE><BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Elim&nbsp;x_Rlinked.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;D&nbsp;:&nbsp;Set</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;R&nbsp;:&nbsp;D-&gt;D-&gt;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;R_symmetric&nbsp;:&nbsp;(x,y:D)(R&nbsp;x&nbsp;y)-&gt;(R&nbsp;y&nbsp;x)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;R_transitive&nbsp;:&nbsp;(x,y,z:D)(R&nbsp;x&nbsp;y)-&gt;(R&nbsp;y&nbsp;z)-&gt;(R&nbsp;x&nbsp;z)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;x&nbsp;:&nbsp;D</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;x_Rlinked&nbsp;:&nbsp;(EX&nbsp;y:D&nbsp;|&nbsp;(R&nbsp;x&nbsp;y))</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(x0:D)(R&nbsp;x&nbsp;x0)-&gt;(R&nbsp;x&nbsp;x)</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Intros&nbsp;y&nbsp;Rxy.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;D&nbsp;:&nbsp;Set</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;R&nbsp;:&nbsp;D-&gt;D-&gt;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;R_symmetric&nbsp;:&nbsp;(x,y:D)(R&nbsp;x&nbsp;y)-&gt;(R&nbsp;y&nbsp;x)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;R_transitive&nbsp;:&nbsp;(x,y,z:D)(R&nbsp;x&nbsp;y)-&gt;(R&nbsp;y&nbsp;z)-&gt;(R&nbsp;x&nbsp;z)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;x&nbsp;:&nbsp;D</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;x_Rlinked&nbsp;:&nbsp;(EX&nbsp;y:D&nbsp;|&nbsp;(R&nbsp;x&nbsp;y))</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;y&nbsp;:&nbsp;D</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;Rxy&nbsp;:&nbsp;(R&nbsp;x&nbsp;y)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(R&nbsp;x&nbsp;x)</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Now we want to use <CODE>R_transitive</CODE>. The <CODE>Apply</CODE> tactic will know
+how to match <CODE>x</CODE> with <CODE>x</CODE>, and <CODE>z</CODE> with <CODE>x</CODE>, but needs
+help on how to instanciate <CODE>y</CODE>, which appear in the hypotheses of
+<CODE>R_transitive</CODE>, but not in its conclusion. We give the proper hint
+to <CODE>Apply</CODE> in a <CODE>with</CODE> clause, as follows:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Apply&nbsp;R_transitive&nbsp;with&nbsp;y.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>2&nbsp;subgoals</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;D&nbsp;:&nbsp;Set</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;R&nbsp;:&nbsp;D-&gt;D-&gt;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;R_symmetric&nbsp;:&nbsp;(x,y:D)(R&nbsp;x&nbsp;y)-&gt;(R&nbsp;y&nbsp;x)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;R_transitive&nbsp;:&nbsp;(x,y,z:D)(R&nbsp;x&nbsp;y)-&gt;(R&nbsp;y&nbsp;z)-&gt;(R&nbsp;x&nbsp;z)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;x&nbsp;:&nbsp;D</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;x_Rlinked&nbsp;:&nbsp;(EX&nbsp;y:D&nbsp;|&nbsp;(R&nbsp;x&nbsp;y))</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;y&nbsp;:&nbsp;D</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;Rxy&nbsp;:&nbsp;(R&nbsp;x&nbsp;y)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(R&nbsp;x&nbsp;y)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>subgoal&nbsp;2&nbsp;is:</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;(R&nbsp;y&nbsp;x)</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+The rest of the proof is routine:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Assumption.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;D&nbsp;:&nbsp;Set</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;R&nbsp;:&nbsp;D-&gt;D-&gt;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;R_symmetric&nbsp;:&nbsp;(x,y:D)(R&nbsp;x&nbsp;y)-&gt;(R&nbsp;y&nbsp;x)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;R_transitive&nbsp;:&nbsp;(x,y,z:D)(R&nbsp;x&nbsp;y)-&gt;(R&nbsp;y&nbsp;z)-&gt;(R&nbsp;x&nbsp;z)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;x&nbsp;:&nbsp;D</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;x_Rlinked&nbsp;:&nbsp;(EX&nbsp;y:D&nbsp;|&nbsp;(R&nbsp;x&nbsp;y))</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;y&nbsp;:&nbsp;D</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;Rxy&nbsp;:&nbsp;(R&nbsp;x&nbsp;y)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(R&nbsp;y&nbsp;x)</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Apply&nbsp;R_symmetric;&nbsp;Assumption.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Subtree&nbsp;proved!</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Save.</TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Let us now close the current section.
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;End&nbsp;R_sym_trans.&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Constant&nbsp;refl_if</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;:&nbsp;((x,y:D)(R&nbsp;x&nbsp;y)-&gt;(R&nbsp;y&nbsp;x))</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;-&gt;((x,y,z:D)(R&nbsp;x&nbsp;y)-&gt;(R&nbsp;y&nbsp;z)-&gt;(R&nbsp;x&nbsp;z))</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;-&gt;(x:D)(EX&nbsp;y:D&nbsp;|&nbsp;(R&nbsp;x&nbsp;y))-&gt;(R&nbsp;x&nbsp;x)</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Here <FONT COLOR=purple>Coq</FONT>'s printout is a warning that all local hypotheses have been 
+discharged in the statement of <CODE>refl_if</CODE>, which now becomes a general
+theorem in the first-order language declared in section 
+<CODE>Predicate_calculus</CODE>. In this particular example, the use of section
+<CODE>R_sym_trans</CODE> has not been really significant, since we could have
+instead stated theorem <CODE>refl_if</CODE> in its general form, and done 
+basically the same proof, obtaining <CODE>R_symmetric</CODE> and
+<CODE>R_transitive</CODE> as local hypotheses by initial <CODE>Intros</CODE> rather
+than as global hypotheses in the context. But if we had pursued the
+theory by proving more theorems about relation <CODE>R</CODE>,
+we would have obtained all general statements at the closing of the section,
+with minimal dependencies on the hypotheses of symmetry and transitivity.<BR>
+<BR>
+
+<H3>
+
+1.4.3&nbsp;Paradoxes of classical predicate calculus
+</H3>
+Let us illustrate this feature by pursuing our <CODE>Predicate_calculus</CODE>
+section with an enrichment of our language: we declare a unary predicate
+<CODE>P</CODE> and a constant <CODE>d</CODE>:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;P:D-&gt;Prop.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>P&nbsp;is&nbsp;assumed</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;d:D.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>d&nbsp;is&nbsp;assumed</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+We shall now prove a well-known fact from first-order logic: a universal 
+predicate is non-empty, or in other terms existential quantification 
+follows from universal quantification.
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Lemma&nbsp;weird&nbsp;:&nbsp;((x:D)(P&nbsp;x))&nbsp;-&gt;&nbsp;(EX&nbsp;a&nbsp;|&nbsp;(P&nbsp;a)).&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;D&nbsp;:&nbsp;Set</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;R&nbsp;:&nbsp;D-&gt;D-&gt;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;P&nbsp;:&nbsp;D-&gt;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;d&nbsp;:&nbsp;D</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;((x:D)(P&nbsp;x))-&gt;(EX&nbsp;a:D&nbsp;|&nbsp;(P&nbsp;a))</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Intro&nbsp;UnivP.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;D&nbsp;:&nbsp;Set</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;R&nbsp;:&nbsp;D-&gt;D-&gt;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;P&nbsp;:&nbsp;D-&gt;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;d&nbsp;:&nbsp;D</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;UnivP&nbsp;:&nbsp;(x:D)(P&nbsp;x)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(EX&nbsp;a:D&nbsp;|&nbsp;(P&nbsp;a))</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+First of all, notice the pair of parentheses around <CODE>(x:D)(P x)</CODE> in
+the statement of lemma <CODE>weird</CODE>.
+If we had ommitted them, <FONT COLOR=purple>Coq</FONT>'s parser would have interpreted the
+statement as a truly trivial fact, since we would 
+postulate an <CODE>x</CODE> verifying <CODE>(P x)</CODE>. Here the situation is indeed
+more problematic. If we have some element in <CODE>Set</CODE> <CODE>D</CODE>, we may
+apply <CODE>UnivP</CODE> to it and conclude, otherwise we are stuck. Indeed
+such an element <CODE>d</CODE> exists, but this is just by virtue of our
+new signature. This points out a subtle difference between standard
+predicate calculus and <FONT COLOR=purple>Coq</FONT>. In standard first-order logic,
+the equivalent of lemma <CODE>weird</CODE> always holds, 
+because such a rule is wired in the inference rules for quantifiers, the
+semantic justification being that the interpretation domain is assumed to
+be non-empty. Whereas in <FONT COLOR=purple>Coq</FONT>, where types are not assumed to be 
+systematically inhabited, lemma <CODE>weird</CODE> only holds in signatures
+which allow the explicit construction of an element in the domain of
+the predicate. <BR>
+<BR>
+Let us conclude the proof, in order to show the use of the <CODE>Exists</CODE>
+tactic:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Exists&nbsp;d;&nbsp;Trivial.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Subtree&nbsp;proved!</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Save.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Intro&nbsp;UnivP.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Split&nbsp;with&nbsp;d;&nbsp;Trivial.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>weird&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Another fact which illustrates the sometimes disconcerting rules of
+classical 
+predicate calculus is Smullyan's drinkers' paradox: ``In any non-empty
+bar, there is a person such that if she drinks, then everyone drinks''.
+We modelize the bar by Set <CODE>D</CODE>, drinking by predicate <CODE>P</CODE>.
+We shall need classical reasoning. Instead of loading the <CODE>Classical</CODE>
+module as we did above, we just state the law of excluded middle as a
+local hypothesis schema at this point:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Hypothesis&nbsp;EM&nbsp;:&nbsp;(A:Prop)&nbsp;A&nbsp;\/&nbsp;~A.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>EM&nbsp;is&nbsp;assumed</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Lemma&nbsp;drinker&nbsp;:&nbsp;(EX&nbsp;x&nbsp;|&nbsp;(P&nbsp;x)&nbsp;-&gt;&nbsp;(x:D)(P&nbsp;x)).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;D&nbsp;:&nbsp;Set</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;R&nbsp;:&nbsp;D-&gt;D-&gt;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;P&nbsp;:&nbsp;D-&gt;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;d&nbsp;:&nbsp;D</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;EM&nbsp;:&nbsp;(A:Prop)A\/~A</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(EX&nbsp;x:D&nbsp;|&nbsp;(P&nbsp;x)-&gt;(x0:D)(P&nbsp;x0))</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT>
+The proof goes by cases on whether or not
+there is someone who does not drink. Such reasoning by cases proceeds
+by invoking the excluded middle principle, via <CODE>Elim</CODE> of the
+proper instance of <CODE>EM</CODE>:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Elim&nbsp;(EM&nbsp;&nbsp;(EX&nbsp;x&nbsp;|&nbsp;~(P&nbsp;x))).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>2&nbsp;subgoals</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;D&nbsp;:&nbsp;Set</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;R&nbsp;:&nbsp;D-&gt;D-&gt;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;P&nbsp;:&nbsp;D-&gt;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;d&nbsp;:&nbsp;D</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;EM&nbsp;:&nbsp;(A:Prop)A\/~A</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(EX&nbsp;x:D&nbsp;|&nbsp;~(P&nbsp;x))-&gt;(EX&nbsp;x:D&nbsp;|&nbsp;(P&nbsp;x)-&gt;(x0:D)(P&nbsp;x0))</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>subgoal&nbsp;2&nbsp;is:</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;~(EX&nbsp;x:D&nbsp;|&nbsp;~(P&nbsp;x))-&gt;(EX&nbsp;x:D&nbsp;|&nbsp;(P&nbsp;x)-&gt;(x0:D)(P&nbsp;x0))</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+We first look at the first case. Let Tom be the non-drinker:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Intro&nbsp;Non_drinker;&nbsp;Elim&nbsp;Non_drinker;&nbsp;Intros&nbsp;Tom&nbsp;Tom_does_not_drink.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>2&nbsp;subgoals</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;D&nbsp;:&nbsp;Set</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;R&nbsp;:&nbsp;D-&gt;D-&gt;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;P&nbsp;:&nbsp;D-&gt;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;d&nbsp;:&nbsp;D</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;EM&nbsp;:&nbsp;(A:Prop)A\/~A</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;Non_drinker&nbsp;:&nbsp;(EX&nbsp;x:D&nbsp;|&nbsp;~(P&nbsp;x))</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;Tom&nbsp;:&nbsp;D</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;Tom_does_not_drink&nbsp;:&nbsp;~(P&nbsp;Tom)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(EX&nbsp;x:D&nbsp;|&nbsp;(P&nbsp;x)-&gt;(x0:D)(P&nbsp;x0))</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>subgoal&nbsp;2&nbsp;is:</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;~(EX&nbsp;x:D&nbsp;|&nbsp;~(P&nbsp;x))-&gt;(EX&nbsp;x:D&nbsp;|&nbsp;(P&nbsp;x)-&gt;(x0:D)(P&nbsp;x0))</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+We conclude in that case by considering Tom, since his drinking leads to
+a contradiction:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Exists&nbsp;Tom;&nbsp;Intro&nbsp;Tom_drinks.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>2&nbsp;subgoals</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;D&nbsp;:&nbsp;Set</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;R&nbsp;:&nbsp;D-&gt;D-&gt;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;P&nbsp;:&nbsp;D-&gt;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;d&nbsp;:&nbsp;D</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;EM&nbsp;:&nbsp;(A:Prop)A\/~A</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;Non_drinker&nbsp;:&nbsp;(EX&nbsp;x:D&nbsp;|&nbsp;~(P&nbsp;x))</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;Tom&nbsp;:&nbsp;D</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;Tom_does_not_drink&nbsp;:&nbsp;~(P&nbsp;Tom)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;Tom_drinks&nbsp;:&nbsp;(P&nbsp;Tom)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(x:D)(P&nbsp;x)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>subgoal&nbsp;2&nbsp;is:</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;~(EX&nbsp;x:D&nbsp;|&nbsp;~(P&nbsp;x))-&gt;(EX&nbsp;x:D&nbsp;|&nbsp;(P&nbsp;x)-&gt;(x0:D)(P&nbsp;x0))</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+There are several ways in which we may eliminate a contradictory case;
+a simple one is to use the <CODE>Absurd</CODE> tactic as follows:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Absurd&nbsp;(P&nbsp;Tom);&nbsp;Trivial.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;D&nbsp;:&nbsp;Set</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;R&nbsp;:&nbsp;D-&gt;D-&gt;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;P&nbsp;:&nbsp;D-&gt;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;d&nbsp;:&nbsp;D</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;EM&nbsp;:&nbsp;(A:Prop)A\/~A</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;~(EX&nbsp;x:D&nbsp;|&nbsp;~(P&nbsp;x))-&gt;(EX&nbsp;x:D&nbsp;|&nbsp;(P&nbsp;x)-&gt;(x0:D)(P&nbsp;x0))</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+We now proceed with the second case, in which actually any person will do;
+such a John Doe is given by the non-emptyness witness <CODE>d</CODE>:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Intro&nbsp;No_nondrinker;&nbsp;Exists&nbsp;d;&nbsp;Intro&nbsp;d_drinks.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;D&nbsp;:&nbsp;Set</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;R&nbsp;:&nbsp;D-&gt;D-&gt;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;P&nbsp;:&nbsp;D-&gt;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;d&nbsp;:&nbsp;D</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;EM&nbsp;:&nbsp;(A:Prop)A\/~A</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;No_nondrinker&nbsp;:&nbsp;~(EX&nbsp;x:D&nbsp;|&nbsp;~(P&nbsp;x))</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;d_drinks&nbsp;:&nbsp;(P&nbsp;d)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(x:D)(P&nbsp;x)</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Now we consider any Dick in the bar, and reason by cases according to its
+drinking or not:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Intro&nbsp;Dick;&nbsp;Elim&nbsp;(EM&nbsp;(P&nbsp;Dick));&nbsp;Trivial.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;D&nbsp;:&nbsp;Set</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;R&nbsp;:&nbsp;D-&gt;D-&gt;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;P&nbsp;:&nbsp;D-&gt;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;d&nbsp;:&nbsp;D</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;EM&nbsp;:&nbsp;(A:Prop)A\/~A</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;No_nondrinker&nbsp;:&nbsp;~(EX&nbsp;x:D&nbsp;|&nbsp;~(P&nbsp;x))</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;d_drinks&nbsp;:&nbsp;(P&nbsp;d)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;Dick&nbsp;:&nbsp;D</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;~(P&nbsp;Dick)-&gt;(P&nbsp;Dick)</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+The only non-trivial case is again treated by contradiction:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Intro&nbsp;Dick_does_not_drink;&nbsp;Absurd&nbsp;(EX&nbsp;x&nbsp;|&nbsp;~(P&nbsp;x));&nbsp;Trivial.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;D&nbsp;:&nbsp;Set</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;R&nbsp;:&nbsp;D-&gt;D-&gt;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;P&nbsp;:&nbsp;D-&gt;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;d&nbsp;:&nbsp;D</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;EM&nbsp;:&nbsp;(A:Prop)A\/~A</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;No_nondrinker&nbsp;:&nbsp;~(EX&nbsp;x:D&nbsp;|&nbsp;~(P&nbsp;x))</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;d_drinks&nbsp;:&nbsp;(P&nbsp;d)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;Dick&nbsp;:&nbsp;D</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;Dick_does_not_drink&nbsp;:&nbsp;~(P&nbsp;Dick)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(EX&nbsp;x:D&nbsp;|&nbsp;~(P&nbsp;x))</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Exists&nbsp;Dick;&nbsp;Trivial.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Subtree&nbsp;proved!</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Save.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Elim&nbsp;(EM&nbsp;(EX&nbsp;x:?&nbsp;|&nbsp;~(P&nbsp;x))).</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Intro&nbsp;Non_drinker;&nbsp;Elim&nbsp;Non_drinker;&nbsp;Intros&nbsp;Tom&nbsp;Tom_does_not_drink.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Split&nbsp;with&nbsp;Tom;&nbsp;Intro&nbsp;Tom_drinks.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Absurd&nbsp;(P&nbsp;Tom);&nbsp;Trivial.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Intro&nbsp;No_nondrinker;&nbsp;Split&nbsp;with&nbsp;d;&nbsp;Intro&nbsp;d_drinks.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Intro&nbsp;Dick;&nbsp;Elim&nbsp;(EM&nbsp;(P&nbsp;Dick));&nbsp;Trivial.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Intro&nbsp;Dick_does_not_drink;&nbsp;Absurd&nbsp;(EX&nbsp;x:?&nbsp;|&nbsp;~(P&nbsp;x));&nbsp;Trivial.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Split&nbsp;with&nbsp;Dick;&nbsp;Trivial.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>drinker&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Now, let us close the main section:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;End&nbsp;Predicate_calculus.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Constant&nbsp;refl_if</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;:&nbsp;(D:Set;&nbsp;R:(D-&gt;D-&gt;Prop))</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((x,y:D)(R&nbsp;x&nbsp;y)-&gt;(R&nbsp;y&nbsp;x))</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;((x,y,z:D)(R&nbsp;x&nbsp;y)-&gt;(R&nbsp;y&nbsp;z)-&gt;(R&nbsp;x&nbsp;z))</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;(x:D)(EX&nbsp;y:D&nbsp;|&nbsp;(R&nbsp;x&nbsp;y))-&gt;(R&nbsp;x&nbsp;x)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Constant&nbsp;weird&nbsp;:&nbsp;(D:Set;&nbsp;P:(D-&gt;Prop))D-&gt;((x:D)(P&nbsp;x))-&gt;(EX&nbsp;a:D&nbsp;|&nbsp;(P&nbsp;a))</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Constant&nbsp;drinker</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;:&nbsp;(D:Set;&nbsp;P:(D-&gt;Prop))</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D-&gt;((A:Prop)A\/~A)-&gt;(EX&nbsp;x:D&nbsp;|&nbsp;(P&nbsp;x)-&gt;(x0:D)(P&nbsp;x0))</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Remark how the three theorems are completely generic is the most general 
+fashion;
+the domain <CODE>D</CODE> is discharged in all of them, <CODE>R</CODE> is discharged in
+<CODE>refl_if</CODE> only, <CODE>P</CODE> is discharged only in <CODE>weird</CODE> and
+<CODE>drinker</CODE>, along with the hypothesis that <CODE>D</CODE> is inhabited. 
+Finally, the excluded middle hypothesis is discharged only in 
+<CODE>drinker</CODE>.<BR>
+<BR>
+Note that the name <CODE>d</CODE> has vanished as well from
+the statements of <CODE>weird</CODE> and <CODE>drinker</CODE>, 
+since <FONT COLOR=purple>Coq</FONT>'s prettyprinter replaces
+systematically a quantification such as <CODE>(d:D)E</CODE>, where <CODE>d</CODE>
+does not occur in <CODE>E</CODE>, by the functional notation <CODE>D-&gt;E</CODE>. 
+Similarly the name <CODE>EM</CODE> does not appear in <CODE>drinker</CODE>. <BR>
+<BR>
+Actually, universal quantification, implication, 
+as well as function formation, are
+all special cases of one general construct of type theory called
+<I><FONT COLOR=maroon>dependent product</FONT></I>. This is the mathematical construction 
+corresponding to an indexed family of functions. A function 
+<I>f</I><FONT FACE=symbol>Î</FONT> <FONT FACE=symbol>P</FONT> <I>x</I>:<I>D</I><FONT SIZE=5>·</FONT> <I>Cx</I> maps an element <I>x</I> of its domain <I>D</I> to its
+(indexed) codomain <I>Cx</I>. Thus a proof of <FONT FACE=symbol>"</FONT> <I>x</I>:<I>D</I><FONT SIZE=5>·</FONT> <I>Px</I> is
+a function mapping an element <I>x</I> of <I>D</I> to a proof of proposition <I>Px</I>.<BR>
+<BR>
+
+<H3>
+
+1.4.4&nbsp;Flexible use of local assumptions
+</H3>
+Very often during the course of a proof we want to retrieve a local
+assumption and reintroduce it explicitly in the goal, for instance
+in order to get a more general induction hypothesis. The tactic
+<CODE>Generalize</CODE> is what is needed here:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;P,Q:nat-&gt;Prop.&nbsp;Variable&nbsp;R:&nbsp;nat-&gt;nat-&gt;Prop.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>P&nbsp;is&nbsp;assumed</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Q&nbsp;is&nbsp;assumed</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>R&nbsp;is&nbsp;assumed</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Lemma&nbsp;PQR&nbsp;:&nbsp;(x,y:nat)((R&nbsp;x&nbsp;x)-&gt;(P&nbsp;x)-&gt;(Q&nbsp;x))-&gt;(P&nbsp;x)-&gt;(R&nbsp;x&nbsp;y)-&gt;(Q&nbsp;x).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(x,y:nat)((R&nbsp;x&nbsp;x)-&gt;(P&nbsp;x)-&gt;(Q&nbsp;x))-&gt;(P&nbsp;x)-&gt;(R&nbsp;x&nbsp;y)-&gt;(Q&nbsp;x)</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Intros.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;x&nbsp;:&nbsp;nat</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;y&nbsp;:&nbsp;nat</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;H&nbsp;:&nbsp;(R&nbsp;x&nbsp;x)-&gt;(P&nbsp;x)-&gt;(Q&nbsp;x)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;H0&nbsp;:&nbsp;(P&nbsp;x)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;H1&nbsp;:&nbsp;(R&nbsp;x&nbsp;y)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(Q&nbsp;x)</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Generalize&nbsp;H0.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;x&nbsp;:&nbsp;nat</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;y&nbsp;:&nbsp;nat</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;H&nbsp;:&nbsp;(R&nbsp;x&nbsp;x)-&gt;(P&nbsp;x)-&gt;(Q&nbsp;x)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;H0&nbsp;:&nbsp;(P&nbsp;x)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;H1&nbsp;:&nbsp;(R&nbsp;x&nbsp;y)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(P&nbsp;x)-&gt;(Q&nbsp;x)</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Sometimes it may be convenient to use a lemma, although we do not have
+a direct way to appeal to such an already proven fact. The tactic <CODE>Cut</CODE>
+permits to use the lemma at this point, keeping the corresponding proof
+obligation as a new subgoal:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Cut&nbsp;(R&nbsp;x&nbsp;x);&nbsp;Trivial.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;x&nbsp;:&nbsp;nat</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;y&nbsp;:&nbsp;nat</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;H&nbsp;:&nbsp;(R&nbsp;x&nbsp;x)-&gt;(P&nbsp;x)-&gt;(Q&nbsp;x)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;H0&nbsp;:&nbsp;(P&nbsp;x)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;H1&nbsp;:&nbsp;(R&nbsp;x&nbsp;y)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(R&nbsp;x&nbsp;x)</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT>
+<BR>
+
+<H3>
+
+1.4.5&nbsp;Equality
+</H3>
+The basic equality provided in <FONT COLOR=purple>Coq</FONT>&nbsp; is Leibniz equality, noted infix like
+<CODE>x=y</CODE>, when <CODE>x</CODE> and <CODE>y</CODE> are two expressions of
+type the same Set. The replacement of <CODE>x</CODE> by <CODE>y</CODE> in any
+term is effected by a variety of tactics, such as <CODE>Rewrite</CODE>
+and <CODE>Replace</CODE>. <BR>
+<BR>
+Let us give a few examples of equality replacement. Let us assume that
+some arithmetic function <CODE>f</CODE> is null in zero:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;f:nat-&gt;nat.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>f&nbsp;is&nbsp;assumed</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Hypothesis&nbsp;foo&nbsp;:&nbsp;(f&nbsp;O)=O.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>foo&nbsp;is&nbsp;assumed</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+We want to prove the following conditional equality:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Lemma&nbsp;L1&nbsp;:&nbsp;(k:nat)k=O-&gt;(f&nbsp;k)=k.</TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+As usual, we first get rid of local assumptions with <CODE>Intro</CODE>:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Intros&nbsp;k&nbsp;E.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;k&nbsp;:&nbsp;nat</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;E&nbsp;:&nbsp;k=O</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(f&nbsp;k)=k</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Let us now use equation <CODE>E</CODE> as a left-to-right rewriting:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Rewrite&nbsp;E.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;k&nbsp;:&nbsp;nat</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;E&nbsp;:&nbsp;k=O</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(f&nbsp;O)=O</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT>
+This replaced both occurrences of <CODE>k</CODE> by <CODE>O</CODE>. <BR>
+<BR>
+<BR><B>Warning</B> to users of <FONT COLOR=purple>Coq</FONT>&nbsp; old versions: In <FONT COLOR=purple>Coq</FONT>V5.8 only the second
+occurrence of <CODE>k</CODE> would have been replaced, and we would have had
+to use <CODE>Rewrite</CODE> twice in order to get the same effect.
+<BR><BR>
+<BR>
+Now <CODE>Apply foo</CODE> will finish the proof:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Apply&nbsp;foo.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Subtree&nbsp;proved!</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Save.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Intros&nbsp;k&nbsp;E.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Rewrite&nbsp;E.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Apply&nbsp;foo.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>L1&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+When one wants to rewrite an equality in a right to left fashion, we should
+use <CODE>Rewrite &lt;- E</CODE> rather than <CODE>Rewrite E</CODE> or the equivalent
+<CODE>Rewrite -&gt; E</CODE>. 
+Let us now illustrate the tactic <CODE>Replace</CODE>.
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Lemma&nbsp;L2&nbsp;:&nbsp;(f&nbsp;(f&nbsp;O))=O.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(f&nbsp;(f&nbsp;O))=O</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Replace&nbsp;(f&nbsp;O)&nbsp;with&nbsp;O.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>2&nbsp;subgoals</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(f&nbsp;O)=O</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>subgoal&nbsp;2&nbsp;is:</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;O=(f&nbsp;O)</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT>
+What happened here is that the replacement left the first subgoal to be
+proved, but another proof obligation was generated by the <CODE>Replace</CODE>
+tactic, as the second subgoal. The first subgoal is solved immediately
+by appying lemma <CODE>foo</CODE>; the second one too, provided we apply first
+symmetry of equality, for instance with tactic <CODE>Symmetry</CODE>:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Apply&nbsp;foo.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;O=(f&nbsp;O)</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Symmetry;&nbsp;Apply&nbsp;foo.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Subtree&nbsp;proved!</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Save.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Replace&nbsp;(f&nbsp;O)&nbsp;with&nbsp;O.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Apply&nbsp;foo.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Symmetry;&nbsp;Apply&nbsp;foo.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>L2&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+
+<H3>
+
+1.4.6&nbsp;Predicate calculus over Type
+</H3>
+We just explained the basis of first-order reasoning in the universe
+of mathematical Sets. Similar reasoning is available at the level of
+abstract Types. In order to develop such abtract reasoning, one must
+load the library <CODE>Logic_Type</CODE>.<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Require&nbsp;Logic_Type.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Warning:&nbsp;Logic_Type&nbsp;already&nbsp;imported</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+New proof combinators are now available, such as the existential
+quantification <CODE>exT</CODE> over a Type, available with syntax
+<CODE>(EXT x | (P x))</CODE>. The corresponding introduction
+combinator may be invoked by the tactic <CODE>Exists</CODE> as above.
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;exT_intro.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>exT_intro</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(A:Type;&nbsp;P:(A-&gt;Prop);&nbsp;x0:A)(P&nbsp;x0)-&gt;(ExT&nbsp;P)</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Similarly, equality over Type is available, with notation 
+<CODE>M==N</CODE>. The equality tactics process <CODE>==</CODE> in the same way
+as <CODE>=</CODE>.<BR>
+<BR>
+<!--CUT SECTION-->
+
+<H2>
+
+1.5&nbsp;Using definitions
+</H2>
+The development of mathematics does not simply proceed by logical 
+argumentation from first principles: definitions are used in an essential way.
+A formal development proceeds by a dual process of abstraction, where one
+proves abstract statements in predicate calculus, and use of definitions, 
+which in the contrary one instanciates general statements with particular 
+notions in order to use the structure of mathematical values for the proof of
+more specialised properties.<BR>
+<BR>
+
+<H3>
+
+1.5.1&nbsp;Unfolding definitions
+</H3>
+Assume that we want to develop the theory of sets represented as characteristic
+predicates over some universe <CODE>U</CODE>. For instance:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;U:Type.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>U&nbsp;is&nbsp;assumed</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Definition&nbsp;set&nbsp;:=&nbsp;U-&gt;Prop.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>set&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Definition&nbsp;element&nbsp;:=&nbsp;[x:U][S:set](S&nbsp;x).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>element&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Definition&nbsp;subset&nbsp;:=&nbsp;[A,B:set](x:U)(element&nbsp;x&nbsp;A)-&gt;(element&nbsp;x&nbsp;B).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>subset&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Now, assume that we have loaded a module of general properties about
+relations over some abstract type <CODE>T</CODE>, such as transitivity:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Definition&nbsp;transitive&nbsp;:=&nbsp;[T:Type][R:T-&gt;T-&gt;Prop]</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(x,y,z:T)(R&nbsp;x&nbsp;y)-&gt;(R&nbsp;y&nbsp;z)-&gt;(R&nbsp;x&nbsp;z).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>transitive&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Now, assume that we want to prove that <CODE>subset</CODE> is a <CODE>transitive</CODE>
+relation. 
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Lemma&nbsp;subset_transitive&nbsp;:&nbsp;(transitive&nbsp;set&nbsp;subset).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(transitive&nbsp;set&nbsp;subset)</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+In order to make any progress, one needs to use the definition of 
+<CODE>transitive</CODE>. The <CODE>Unfold</CODE> tactic, which replaces all occurrences of a
+defined notion by its definition in the current goal, may be used here.
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Unfold&nbsp;transitive.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(x,y,z:set)(subset&nbsp;x&nbsp;y)-&gt;(subset&nbsp;y&nbsp;z)-&gt;(subset&nbsp;x&nbsp;z)</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Now, we must unfold <CODE>subset</CODE>:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Unfold&nbsp;subset.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(x,y,z:set)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;((x0:U)(element&nbsp;x0&nbsp;x)-&gt;(element&nbsp;x0&nbsp;y))</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;-&gt;((x0:U)(element&nbsp;x0&nbsp;y)-&gt;(element&nbsp;x0&nbsp;z))</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;-&gt;(x0:U)(element&nbsp;x0&nbsp;x)-&gt;(element&nbsp;x0&nbsp;z)</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT>
+Now, unfolding <CODE>element</CODE> would be a mistake, because indeed a simple proof
+can be found by <CODE>Auto</CODE>, keeping <CODE>element</CODE> an abstract predicate:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Auto.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Subtree&nbsp;proved!</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Many variations on <CODE>Unfold</CODE> are provided in <FONT COLOR=purple>Coq</FONT>. For instance,
+we may selectively unfold one designated occurrence:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Undo&nbsp;2.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(x,y,z:set)(subset&nbsp;x&nbsp;y)-&gt;(subset&nbsp;y&nbsp;z)-&gt;(subset&nbsp;x&nbsp;z)</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Unfold&nbsp;2&nbsp;subset.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(x,y,z:set)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;(subset&nbsp;x&nbsp;y)-&gt;((x0:U)(element&nbsp;x0&nbsp;y)-&gt;(element&nbsp;x0&nbsp;z))-&gt;(subset&nbsp;x&nbsp;z)</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+One may also unfold a definition in a given local hypothesis, using the
+<CODE>in</CODE> notation:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Intros.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;x&nbsp;:&nbsp;set</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;y&nbsp;:&nbsp;set</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;z&nbsp;:&nbsp;set</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;H&nbsp;:&nbsp;(subset&nbsp;x&nbsp;y)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;H0&nbsp;:&nbsp;(x0:U)(element&nbsp;x0&nbsp;y)-&gt;(element&nbsp;x0&nbsp;z)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(subset&nbsp;x&nbsp;z)</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Unfold&nbsp;subset&nbsp;in&nbsp;H.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;x&nbsp;:&nbsp;set</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;y&nbsp;:&nbsp;set</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;z&nbsp;:&nbsp;set</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;H&nbsp;:&nbsp;(x0:U)(element&nbsp;x0&nbsp;x)-&gt;(element&nbsp;x0&nbsp;y)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;H0&nbsp;:&nbsp;(x0:U)(element&nbsp;x0&nbsp;y)-&gt;(element&nbsp;x0&nbsp;z)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(subset&nbsp;x&nbsp;z)</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Finally, the tactic <CODE>Red</CODE> does only unfolding of the head occurrence
+of the current goal:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Red.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;x&nbsp;:&nbsp;set</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;y&nbsp;:&nbsp;set</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;z&nbsp;:&nbsp;set</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;H&nbsp;:&nbsp;(x0:U)(element&nbsp;x0&nbsp;x)-&gt;(element&nbsp;x0&nbsp;y)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;H0&nbsp;:&nbsp;(x0:U)(element&nbsp;x0&nbsp;y)-&gt;(element&nbsp;x0&nbsp;z)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(x0:U)(element&nbsp;x0&nbsp;x)-&gt;(element&nbsp;x0&nbsp;z)</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Auto.&nbsp;Save.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Subtree&nbsp;proved!</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Unfold&nbsp;transitive.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Unfold&nbsp;2&nbsp;subset.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Intros.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Unfold&nbsp;subset&nbsp;in&nbsp;H.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Red.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Auto.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>subset_transitive&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+
+<H3>
+
+1.5.2&nbsp;Principle of proof irrelevance
+</H3>
+Even though in principle the proof term associated with a verified lemma
+corresponds to a defined value of the corresponding specification, such
+definitions cannot be unfolded in <FONT COLOR=purple>Coq</FONT>: a lemma is considered an <I><FONT COLOR=maroon>opaque</FONT></I>
+definition. This conforms to the mathematical tradition of <I><FONT COLOR=maroon>proof
+irrelevance</FONT></I>: the proof of a logical proposition does not matter, and the
+mathematical justification of a logical development relies only on
+<I><FONT COLOR=maroon>provability</FONT></I> of the lemmas used in the formal proof. <BR>
+<BR>
+Conversely, ordinary mathematical definitions can be unfolded at will, they
+are <I><FONT COLOR=maroon>transparent</FONT></I>. It is possible to enforce the reverse convention by
+declaring a definition as <I><FONT COLOR=maroon>opaque</FONT></I> or a lemma as <I><FONT COLOR=maroon>transparent</FONT></I>.<BR>
+<BR>
+<!--CUT CHAPTER-->
+
+<H1>
+
+Chapter&nbsp;2: Induction
+</H1>
+<!--CUT SECTION-->
+
+<H2>
+
+2.1&nbsp;Data Types as Inductively Defined Mathematical Collections
+</H2>
+All the notions which were studied until now pertain to traditional
+mathematical logic. Specifications of objects were abstract properties
+used in reasoning more or less constructively; we are now entering
+the realm of inductive types, which specify the existence of concrete
+mathematical constructions.<BR>
+<BR>
+
+<H3>
+
+2.1.1&nbsp;Booleans
+</H3>
+Let us start with the collection of booleans, as they are specified
+in the <FONT COLOR=purple>Coq</FONT>'s <CODE>Prelude</CODE> module: 
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Inductive&nbsp;bool&nbsp;:&nbsp;Set&nbsp;:=&nbsp;true&nbsp;:&nbsp;bool&nbsp;|&nbsp;false&nbsp;:&nbsp;bool.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>bool_ind&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>bool_rec&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>bool_rect&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>bool&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Such a declaration defines several objects at once. First, a new
+<CODE>Set</CODE> is declared, with name <CODE>bool</CODE>. Then the <I><FONT COLOR=maroon>constructors</FONT></I>
+of this <CODE>Set</CODE> are declared, called <CODE>true</CODE> and <CODE>false</CODE>.
+Those are analogous to introduction rules of the new Set <CODE>bool</CODE>.
+Finally, a specific elimination rule for <CODE>bool</CODE> is now available, which
+permits to reason by cases on <CODE>bool</CODE> values. Three instances are
+indeed defined as new combinators in the global context: <CODE>bool_ind</CODE>,
+a proof combinator corresponding to reasoning by cases,
+<CODE>bool_rec</CODE>, an if-then-else programming construct,
+and <CODE>bool_rect</CODE>, a similar combinator at the level of types.
+Indeed:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;bool_ind.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>bool_ind</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(P:(bool-&gt;Prop))(P&nbsp;true)-&gt;(P&nbsp;false)-&gt;(b:bool)(P&nbsp;b)</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;bool_rec.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>bool_rec</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(P:(bool-&gt;Set))(P&nbsp;true)-&gt;(P&nbsp;false)-&gt;(b:bool)(P&nbsp;b)</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;bool_rect.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>bool_rect</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(P:(bool-&gt;Type))(P&nbsp;true)-&gt;(P&nbsp;false)-&gt;(b:bool)(P&nbsp;b)</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Let us for instance prove that every Boolean is true or false.
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Lemma&nbsp;duality&nbsp;:&nbsp;(b:bool)(b=true&nbsp;\/&nbsp;b=false).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(b:bool)b=true\/b=false</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Intro&nbsp;b.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;b&nbsp;:&nbsp;bool</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;b=true\/b=false</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+We use the knowledge that <CODE>b</CODE> is a <CODE>bool</CODE> by calling tactic
+<CODE>Elim</CODE>, which is this case will appeal to combinator <CODE>bool_ind</CODE>
+in order to split the proof according to the two cases:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Elim&nbsp;b.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>2&nbsp;subgoals</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;b&nbsp;:&nbsp;bool</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;true=true\/true=false</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>subgoal&nbsp;2&nbsp;is:</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;false=true\/false=false</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+It is easy to conclude in each case:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Left;&nbsp;Trivial.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;b&nbsp;:&nbsp;bool</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;false=true\/false=false</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Right;&nbsp;Trivial.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Subtree&nbsp;proved!</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Indeed, the whole proof can be done with the combination of the
+<CODE>Induction</CODE> tactic, which combines <CODE>Intro</CODE> and <CODE>Elim</CODE>,
+with good old <CODE>Auto</CODE>:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Restart.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(b:bool)b=true\/b=false</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Induction&nbsp;b;&nbsp;Auto.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Subtree&nbsp;proved!</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Save.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Induction&nbsp;b;&nbsp;Auto.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>duality&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+
+<H3>
+
+2.1.2&nbsp;Natural numbers
+</H3>
+Similarly to Booleans, natural numbers are defined in the <CODE>Prelude</CODE>
+module with constructors <CODE>S</CODE> and <CODE>O</CODE>:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Inductive&nbsp;nat&nbsp;:&nbsp;Set&nbsp;:=&nbsp;O&nbsp;:&nbsp;nat&nbsp;|&nbsp;S&nbsp;:&nbsp;nat-&gt;nat.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>nat_ind&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>nat_rec&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>nat_rect&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>nat&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+The elimination principles which are automatically generated are Peano's
+induction principle, and a recursion operator:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;nat_ind.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>nat_ind</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(P:(nat-&gt;Prop))(P&nbsp;O)-&gt;((n:nat)(P&nbsp;n)-&gt;(P&nbsp;(S&nbsp;n)))-&gt;(n:nat)(P&nbsp;n)</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;nat_rec.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>nat_rec</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(P:(nat-&gt;Set))(P&nbsp;O)-&gt;((n:nat)(P&nbsp;n)-&gt;(P&nbsp;(S&nbsp;n)))-&gt;(n:nat)(P&nbsp;n)</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Let us start by showing how to program the standard primitive recursion
+operator <CODE>prim_rec</CODE> from the more general <CODE>nat_rec</CODE>:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Definition&nbsp;prim_rec&nbsp;:=&nbsp;(nat_rec&nbsp;[i:nat]nat).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>prim_rec&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+That is, instead of computing for natural <CODE>i</CODE> an element of the indexed
+<CODE>Set</CODE> <CODE>(P i)</CODE>, <CODE>prim_rec</CODE> computes uniformly an element of 
+<CODE>nat</CODE>. Let us check the type of <CODE>prim_rec</CODE>:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;prim_rec.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>prim_rec</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;([_:nat]nat&nbsp;O)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;((n:nat)([_:nat]nat&nbsp;n)-&gt;([_:nat]nat&nbsp;(S&nbsp;n)))</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;(n:nat)([_:nat]nat&nbsp;n)</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Oops! Instead of the expected type <CODE>nat-&gt;(nat-&gt;nat-&gt;nat)-&gt;nat-&gt;nat</CODE> we
+get an apparently more complicated expression. Indeed the type of
+<CODE>prim_rec</CODE> is equivalent by rule <FONT FACE=symbol>b</FONT> to its expected type; this may
+be checked in <FONT COLOR=purple>Coq</FONT>&nbsp; by command <CODE>Eval Cbv Beta</CODE>, which <FONT FACE=symbol>b</FONT>-reduces
+an expression to its <I><FONT COLOR=maroon>normal form</FONT></I>:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Eval&nbsp;Cbv&nbsp;Beta&nbsp;in</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;([_:nat]nat&nbsp;O)</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;((y:nat)([_:nat]nat&nbsp;y)-&gt;([_:nat]nat&nbsp;(S&nbsp;y)))</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;(n:nat)([_:nat]nat&nbsp;n).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;nat-&gt;(nat-&gt;nat-&gt;nat)-&gt;nat-&gt;nat</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Set</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Let us now show how to program addition with primitive recursion:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Definition&nbsp;addition&nbsp;:=&nbsp;[n,m:nat](prim_rec&nbsp;m&nbsp;[p:nat][rec:nat](S&nbsp;rec)&nbsp;n).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>addition&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+That is, we specify that <CODE>(addition n m)</CODE> computes by cases on <CODE>n</CODE>
+according to its main constructor; when <CODE>n=O</CODE>, we get <CODE>m</CODE>;
+ when <CODE>n=(S p)</CODE>, we get <CODE>(S rec)</CODE>, where <CODE>rec</CODE> is the result
+of the recursive computation <CODE>(addition p m)</CODE>. Let us verify it by
+asking <FONT COLOR=purple>Coq</FONT>&nbsp;to compute for us say 2+3:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Eval&nbsp;Compute&nbsp;in&nbsp;(addition&nbsp;(S&nbsp;(S&nbsp;O))&nbsp;(S&nbsp;(S&nbsp;(S&nbsp;O)))).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;(S&nbsp;(S&nbsp;(S&nbsp;(S&nbsp;(S&nbsp;O)))))</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;nat</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Actually, we do not have to do all explicitly. <FONT COLOR=purple>Coq</FONT> provides a
+special syntax <TT>Fixpoint/Cases</TT> for generic primitive recursion,
+and we could thus have defined directly addition as:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Fixpoint&nbsp;plus&nbsp;[n:nat]&nbsp;:&nbsp;nat&nbsp;-&gt;&nbsp;nat&nbsp;:=&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;[m:nat]Cases&nbsp;n&nbsp;of&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;O&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;m&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(S&nbsp;p)&nbsp;=&gt;&nbsp;(S&nbsp;(plus&nbsp;p&nbsp;m))</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>plus&nbsp;is&nbsp;recursively&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+For the rest of the session, we shall clean up what we did so far with 
+types <CODE>bool</CODE> and <CODE>nat</CODE>, in order to use the initial definitions
+given in <FONT COLOR=purple>Coq</FONT>'s <CODE>Prelude</CODE> module, and not to get confusing error
+messages due to our redefinitions. We thus revert to the state before
+our definition of <CODE>bool</CODE> with the <CODE>Reset</CODE> command:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Reset&nbsp;bool.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Current&nbsp;goals&nbsp;aborted</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+
+<H3>
+
+2.1.3&nbsp;Simple proofs by induction
+</H3>
+
+Let us now show how to do proofs by structural induction. We start with easy
+properties of the <CODE>plus</CODE> function we just defined. Let us first
+show that <I>n</I>=<I>n</I>+0.
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Lemma&nbsp;plus_n_O&nbsp;:&nbsp;(n:nat)n=(plus&nbsp;n&nbsp;O).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(n:nat)n=(plus&nbsp;n&nbsp;O)</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Intro&nbsp;n;&nbsp;Elim&nbsp;n.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>2&nbsp;subgoals</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;n&nbsp;:&nbsp;nat</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;O=(plus&nbsp;O&nbsp;O)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>subgoal&nbsp;2&nbsp;is:</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;(n0:nat)n0=(plus&nbsp;n0&nbsp;O)-&gt;(S&nbsp;n0)=(plus&nbsp;(S&nbsp;n0)&nbsp;O)</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+What happened was that <CODE>Elim n</CODE>, in order to construct a <CODE>Prop</CODE>
+(the initial goal) from a <CODE>nat</CODE> (i.e. <CODE>n</CODE>), appealed to the
+corresponding induction principle <CODE>nat_ind</CODE> which we saw was indeed
+excactly Peano's induction scheme. Pattern-matching instanciated the 
+corresponding predicate <CODE>P</CODE> to <CODE>[n:nat]n=(plus n O)</CODE>, and we get
+as subgoals the corresponding instanciations of the base case <CODE>(P O)</CODE> ,
+and of the inductive step <CODE>(y:nat)(P y)-&gt;(P (S y))</CODE>.
+In each case we get an instance of function <CODE>plus</CODE> in which its second
+argument starts with a constructor, and is thus amenable to simplification
+by primitive recursion. The <FONT COLOR=purple>Coq</FONT>&nbsp;tactic <CODE>Simpl</CODE> can be used for
+this purpose:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Simpl.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>2&nbsp;subgoals</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;n&nbsp;:&nbsp;nat</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;O=O</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>subgoal&nbsp;2&nbsp;is:</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;(n0:nat)n0=(plus&nbsp;n0&nbsp;O)-&gt;(S&nbsp;n0)=(plus&nbsp;(S&nbsp;n0)&nbsp;O)</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Auto.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;n&nbsp;:&nbsp;nat</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(n0:nat)n0=(plus&nbsp;n0&nbsp;O)-&gt;(S&nbsp;n0)=(plus&nbsp;(S&nbsp;n0)&nbsp;O)</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+We proceed in the same way for the base step:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Simpl;&nbsp;Auto.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Subtree&nbsp;proved!</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Save.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Intro&nbsp;n;&nbsp;Elim&nbsp;n.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Simpl.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Auto.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Simpl;&nbsp;Auto.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>plus_n_O&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Here <CODE>Auto</CODE> succeded, because it used as a hint lemma <CODE>eq_S</CODE>,
+which say that successor preserves equality:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;eq_S.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>eq_S</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(x,y:nat)x=y-&gt;(S&nbsp;x)=(S&nbsp;y)</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Actually, let us see how to declare our lemma <CODE>plus_n_O</CODE> as a hint
+to be used by <CODE>Auto</CODE>:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Hints&nbsp;Resolve&nbsp;plus_n_O.</TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+We now proceed to the similar property concerning the other constructor
+<CODE>S</CODE>:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Lemma&nbsp;plus_n_S&nbsp;:&nbsp;(n,m:nat)(S&nbsp;(plus&nbsp;n&nbsp;m))=(plus&nbsp;n&nbsp;(S&nbsp;m)).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(n,m:nat)(S&nbsp;(plus&nbsp;n&nbsp;m))=(plus&nbsp;n&nbsp;(S&nbsp;m))</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+We now go faster, remembering that tactic <CODE>Induction</CODE> does the
+necessary <CODE>Intros</CODE> before applying <CODE>Elim</CODE>. Factoring simplification
+and automation in both cases thanks to tactic composition, we prove this
+lemma in one line:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Induction&nbsp;n;&nbsp;Simpl;&nbsp;Auto.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Subtree&nbsp;proved!</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Save.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Induction&nbsp;n;&nbsp;Simpl;&nbsp;Auto.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>plus_n_S&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Hints&nbsp;Resolve&nbsp;plus_n_S.</TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Let us end this exercise with the commutativity of <CODE>plus</CODE>:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Lemma&nbsp;plus_com&nbsp;:&nbsp;(n,m:nat)(plus&nbsp;n&nbsp;m)=(plus&nbsp;m&nbsp;n).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(n,m:nat)(plus&nbsp;n&nbsp;m)=(plus&nbsp;m&nbsp;n)</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Here we have a choice on doing an induction on <CODE>n</CODE> or on <CODE>m</CODE>, the
+situation being symmetric. For instance:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Induction&nbsp;m;&nbsp;Simpl;&nbsp;Auto.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;n&nbsp;:&nbsp;nat</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;m&nbsp;:&nbsp;nat</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(n0:nat)(plus&nbsp;n&nbsp;n0)=(plus&nbsp;n0&nbsp;n)-&gt;(plus&nbsp;n&nbsp;(S&nbsp;n0))=(S&nbsp;(plus&nbsp;n0&nbsp;n))</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Here <CODE>Auto</CODE> succeded on the base case, thanks to our hint <CODE>plus_n_O</CODE>,
+but the induction step requires rewriting, which <CODE>Auto</CODE> does not handle:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Intros&nbsp;m'&nbsp;E;&nbsp;Rewrite&nbsp;&lt;-&nbsp;E;&nbsp;Auto.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Subtree&nbsp;proved!</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Save.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Induction&nbsp;m;&nbsp;Simpl;&nbsp;Auto.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Intros&nbsp;m'&nbsp;E;&nbsp;Rewrite&nbsp;&lt;-&nbsp;E;&nbsp;Auto.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>plus_com&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+
+<H3>
+
+2.1.4&nbsp;Discriminate
+</H3>
+It is also possible to define new propositions by primitive recursion.
+Let us for instance define the predicate which discriminates between
+the constructors <CODE>O</CODE> and <CODE>S</CODE>: it computes to <CODE>False</CODE> 
+when its argument is <CODE>O</CODE>, and to <CODE>True</CODE> when its argument is 
+of the form <CODE>(S n)</CODE>:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Definition&nbsp;Is_S</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;[n:nat]Cases&nbsp;n&nbsp;of&nbsp;O&nbsp;=&gt;&nbsp;False&nbsp;|&nbsp;(S&nbsp;p)&nbsp;=&gt;&nbsp;True&nbsp;end.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Is_S&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Now we may use the computational power of <CODE>Is_S</CODE> in order to prove
+trivially that <CODE>(Is_S (S n))</CODE>:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Lemma&nbsp;S_Is_S&nbsp;:&nbsp;(n:nat)(Is_S&nbsp;(S&nbsp;n)).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(n:nat)(Is_S&nbsp;(S&nbsp;n))</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Simpl;&nbsp;Trivial.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Subtree&nbsp;proved!</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Save.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Simpl;&nbsp;Trivial.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>S_Is_S&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+But we may also use it to transform a <CODE>False</CODE> goal into 
+<CODE>(Is_S O)</CODE>. Let us show a particularly important use of this feature;
+we want to prove that <CODE>O</CODE> and <CODE>S</CODE> construct different values, one
+of Peano's axioms:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Lemma&nbsp;no_confusion&nbsp;:&nbsp;(n:nat)~(O=(S&nbsp;n)).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(n:nat)~O=(S&nbsp;n)</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+First of all, we replace negation by its definition, by reducing the
+goal with tactic <CODE>Red</CODE>; then we get contradiction by successive
+<CODE>Intros</CODE>:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Red;&nbsp;Intros&nbsp;n&nbsp;H.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;n&nbsp;:&nbsp;nat</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;H&nbsp;:&nbsp;O=(S&nbsp;n)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;False</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Now we use our trick:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Change&nbsp;(Is_S&nbsp;O).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;n&nbsp;:&nbsp;nat</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;H&nbsp;:&nbsp;O=(S&nbsp;n)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(Is_S&nbsp;O)</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Now we use equality in order to get a subgoal which computes out to 
+<CODE>True</CODE>, which finishes the proof:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Rewrite&nbsp;H;&nbsp;Trivial.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;n&nbsp;:&nbsp;nat</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;H&nbsp;:&nbsp;O=(S&nbsp;n)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(Is_S&nbsp;(S&nbsp;n))</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Simpl;&nbsp;Trivial.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Subtree&nbsp;proved!</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Actually, a specific tactic <CODE>Discriminate</CODE> is provided
+to produce mechanically such proofs, without the need for the user to define
+explicitly the relevant discrimination predicates:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Restart.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(n:nat)~O=(S&nbsp;n)</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Intro&nbsp;n;&nbsp;Discriminate.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Subtree&nbsp;proved!</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Save.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Intro&nbsp;n;&nbsp;Discriminate.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>no_confusion&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+<!--CUT SECTION-->
+
+<H2>
+
+2.2&nbsp;Logic programming
+</H2>
+In the same way as we defined standard data-types above, we
+may define inductive families, and for instance inductive predicates.
+Here is the definition of predicate <FONT FACE=symbol>£</FONT> over type <CODE>nat</CODE>, as
+given in <FONT COLOR=purple>Coq</FONT>'s <CODE>Prelude</CODE> module:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Inductive&nbsp;le&nbsp;[n:nat]&nbsp;:&nbsp;nat&nbsp;-&gt;&nbsp;Prop</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;le_n&nbsp;:&nbsp;(le&nbsp;n&nbsp;n)</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;le_S&nbsp;:&nbsp;(m:nat)(le&nbsp;n&nbsp;m)-&gt;(le&nbsp;n&nbsp;(S&nbsp;m)).</TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+This definition introduces a new predicate <CODE>le:nat-&gt;nat-&gt;Prop</CODE>,
+and the two constructors <CODE>le_n</CODE> and <CODE>le_S</CODE>, which are the
+defining clauses of <CODE>le</CODE>. That is, we get not only the ``axioms''
+<CODE>le_n</CODE> and <CODE>le_S</CODE>, but also the converse property, that 
+<CODE>(le n m)</CODE> if and only if this statement can be obtained as a
+consequence of these defining clauses; that is, <CODE>le</CODE> is the
+minimal predicate verifying clauses <CODE>le_n</CODE> and <CODE>le_S</CODE>. This is
+insured, as in the case of inductive data types, by an elimination principle,
+which here amounts to an induction principle <CODE>le_ind</CODE>, stating this 
+minimality property:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;le.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>le</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;nat-&gt;nat-&gt;Prop</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Check&nbsp;le_ind.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>le_ind</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(n:nat;&nbsp;P:(nat-&gt;Prop))</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(P&nbsp;n)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;((m:nat)(le&nbsp;n&nbsp;m)-&gt;(P&nbsp;m)-&gt;(P&nbsp;(S&nbsp;m)))</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;(n0:nat)(le&nbsp;n&nbsp;n0)-&gt;(P&nbsp;n0)</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Let us show how proofs may be conducted with this principle.
+First we show that <I>n</I><FONT FACE=symbol>£</FONT> <I>m</I> <FONT FACE=symbol>Þ</FONT> <I>n</I>+1<FONT FACE=symbol>£</FONT> <I>m</I>+1:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Lemma&nbsp;le_n_S&nbsp;:&nbsp;(n,m:nat)(le&nbsp;n&nbsp;m)-&gt;(le&nbsp;(S&nbsp;n)&nbsp;(S&nbsp;m)).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(n,m:nat)(le&nbsp;n&nbsp;m)-&gt;(le&nbsp;(S&nbsp;n)&nbsp;(S&nbsp;m))</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Intros&nbsp;n&nbsp;m&nbsp;n_le_m.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;n&nbsp;:&nbsp;nat</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;m&nbsp;:&nbsp;nat</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;n_le_m&nbsp;:&nbsp;(le&nbsp;n&nbsp;m)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(le&nbsp;(S&nbsp;n)&nbsp;(S&nbsp;m))</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Elim&nbsp;n_le_m.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>2&nbsp;subgoals</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;n&nbsp;:&nbsp;nat</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;m&nbsp;:&nbsp;nat</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;n_le_m&nbsp;:&nbsp;(le&nbsp;n&nbsp;m)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(le&nbsp;(S&nbsp;n)&nbsp;(S&nbsp;n))</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>subgoal&nbsp;2&nbsp;is:</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;(m0:nat)(le&nbsp;n&nbsp;m0)-&gt;(le&nbsp;(S&nbsp;n)&nbsp;(S&nbsp;m0))-&gt;(le&nbsp;(S&nbsp;n)&nbsp;(S&nbsp;(S&nbsp;m0)))</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+What happens here is similar to the behaviour of <CODE>Elim</CODE> on natural
+numbers: it appeals to the relevant induction principle, here <CODE>le_ind</CODE>,
+which generates the two subgoals, which may then be solved easily
+with the help of the defining clauses of <CODE>le</CODE>.
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Apply&nbsp;le_n;&nbsp;Trivial.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;n&nbsp;:&nbsp;nat</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;m&nbsp;:&nbsp;nat</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;n_le_m&nbsp;:&nbsp;(le&nbsp;n&nbsp;m)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(m0:nat)(le&nbsp;n&nbsp;m0)-&gt;(le&nbsp;(S&nbsp;n)&nbsp;(S&nbsp;m0))-&gt;(le&nbsp;(S&nbsp;n)&nbsp;(S&nbsp;(S&nbsp;m0)))</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Intros;&nbsp;Apply&nbsp;le_S;&nbsp;Trivial.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Subtree&nbsp;proved!</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Now we know that it is a good idea to give the defining clauses as hints,
+so that the proof may proceed with a simple combination of 
+<CODE>Induction</CODE> and <CODE>Auto</CODE>.
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Restart.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(n,m:nat)(le&nbsp;n&nbsp;m)-&gt;(le&nbsp;(S&nbsp;n)&nbsp;(S&nbsp;m))</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Hints&nbsp;Resolve&nbsp;le_n&nbsp;le_S.</TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+We have a slight problem however. We want to say ``Do an induction on
+hypothesis <CODE>(le n m)</CODE>'', but we have no explicit name for it. What we
+do in this case is to say ``Do an induction on the first unnamed hypothesis'',
+as follows.
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Induction&nbsp;1;&nbsp;Auto.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Subtree&nbsp;proved!</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Save.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Induction&nbsp;1;&nbsp;Auto.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>le_n_S&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Here is a more tricky problem. Assume we want to show that
+<I>n</I><FONT FACE=symbol>£</FONT> 0 <FONT FACE=symbol>Þ</FONT> <I>n</I>=0. This reasoning ought to follow simply from the
+fact that only the first defining clause of <CODE>le</CODE> applies.
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Lemma&nbsp;tricky&nbsp;:&nbsp;(n:nat)(le&nbsp;n&nbsp;O)-&gt;n=O.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(n:nat)(le&nbsp;n&nbsp;O)-&gt;n=O</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+However, here trying something like <CODE>Induction 1</CODE> would lead
+nowhere (try it and see what happens). 
+An induction on <CODE>n</CODE> would not be convenient either.
+What we must do here is analyse the definition of <CODE>le</CODE> in order
+to match hypothesis <CODE>(le n O)</CODE> with the defining clauses, to find
+that only <CODE>le_n</CODE> applies, whence the result. 
+This analysis may be performed by the ``inversion'' tactic
+<CODE>Inversion_clear</CODE> as follows:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Intros&nbsp;n&nbsp;H;&nbsp;Inversion_clear&nbsp;H.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;n&nbsp;:&nbsp;nat</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;O=O</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Trivial.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Subtree&nbsp;proved!</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Save.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Intros&nbsp;n&nbsp;H;&nbsp;Inversion_clear&nbsp;H.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Trivial.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>tricky&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+<!--CUT CHAPTER-->
+
+<H1>
+
+Chapter&nbsp;3: Modules
+</H1>
+<!--CUT SECTION-->
+
+<H2>
+
+3.1&nbsp;Opening library modules
+</H2>
+When you start <FONT COLOR=purple>Coq</FONT>&nbsp; without further requirements in the command line,
+you get a bare system with few libraries loaded. As we saw, a standard
+prelude module provides the standard logic connectives, and a few
+arithmetic notions. If you want to load and open other modules from
+the library, you have to use the <CODE>Require</CODE> command, as we saw for
+classical logic above. For instance, if you want more arithmetic
+constructions, you should request:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Require&nbsp;Arith.</TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Such a command looks for a (compiled) module file <CODE>Arith.vo</CODE>
+on the current <CODE>LoadPath</CODE>. This loadpath may be changed
+with the commands <CODE>AddPath</CODE> and <CODE>DelPath</CODE>.<BR>
+<BR>
+The loading of such a compiled file is quick, because the corresponding
+development is not typechecked again. This is a great saving compared
+to previous versions of our proof assistant.<BR>
+<BR>
+If you want to recursively import modules which are required for module
+M, you should use <CODE>Require Export M</CODE>. <BR>
+<BR>
+<B>Warning</B> <FONT COLOR=purple>Coq</FONT>&nbsp; does not yet provides parametric modules.<BR>
+<BR>
+<!--CUT SECTION-->
+
+<H2>
+
+3.2&nbsp;Creating your own modules
+</H2>
+You may create your own modules, by writing <FONT COLOR=purple>Coq</FONT>&nbsp; commands in a file,
+say <CODE>my_module.v</CODE>. Such a module may be simply loaded in the current
+context, with command <CODE>Load my_module</CODE>. It may also be compiled,
+using the command <CODE>Compile Module my_module</CODE> directly at the
+<FONT COLOR=purple>Coq</FONT>&nbsp; toplevel, or else in ``batch'' mode, using the UNIX command
+<CODE>coqc</CODE>. Compiling the module <CODE>my_module.v</CODE> creates a 
+file <CODE>my_module.vo</CODE> that can be reloaded with command
+<CODE>Require my_module</CODE>. <BR>
+<BR>
+<!--CUT SECTION-->
+
+<H2>
+
+3.3&nbsp;Managing the context
+</H2>
+It is often difficult to remember the names of all lemmas and
+definitions available in the current context, especially if large
+libraries have been loaded. A convenient <CODE>Search</CODE> command
+is available to lookup all known facts 
+concerning a given predicate. For instance, if you want to know all the
+known lemmas about the less or equal relation, juste ask:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Search&nbsp;le.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>le_n_S.obj:(n,m:nat)(le&nbsp;n&nbsp;m)-&gt;(le&nbsp;(S&nbsp;n)&nbsp;(S&nbsp;m))</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>le_n:(n:nat)(le&nbsp;n&nbsp;n)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>le_S:(n:nat;&nbsp;m:nat)(le&nbsp;n&nbsp;m)-&gt;(le&nbsp;n&nbsp;(S&nbsp;m))</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+A new and more convenient search tool is <FONT COLOR=purple>SearchIsos</FONT>. The
+argument to give is a type and it searches in the current context all
+constants having the same type modulo certain notion of
+<I>isomorphism</I>. For example&nbsp;:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Require&nbsp;Arith.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Warning:&nbsp;Arith&nbsp;already&nbsp;imported</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;SearchIsos&nbsp;nat&nbsp;-&gt;&nbsp;nat&nbsp;-&gt;&nbsp;Prop.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>#Peano#Inductive&nbsp;le&nbsp;[n:nat]&nbsp;:&nbsp;nat-&gt;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>#Peano#lt:nat-&gt;nat-&gt;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>#Peano#ge:nat-&gt;nat-&gt;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>#Peano#gt:nat-&gt;nat-&gt;Prop</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>#--*&nbsp;[R&nbsp;:&nbsp;nat-&gt;nat-&gt;Prop]</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>#Inductive&nbsp;le&nbsp;[n:nat]&nbsp;:&nbsp;nat-&gt;Prop</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;SearchIsos&nbsp;(x,y,z:nat)(le&nbsp;x&nbsp;y)&nbsp;-&gt;&nbsp;(le&nbsp;y&nbsp;z)&nbsp;-&gt;&nbsp;(le&nbsp;x&nbsp;z).</TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT>
+ 
+<!--CUT SECTION-->
+
+<H2>
+
+3.4&nbsp;Now you are on your own
+</H2>
+This tutorial is necessarily incomplete. If you wish to pursue serious
+proving in <FONT COLOR=purple>Coq</FONT>, you should now get your hands on <FONT COLOR=purple>Coq</FONT>'s Reference Manual,
+which contains a complete description of all the tactics we saw, 
+plus many more.
+You also should look in the library of developed theories which is distributed
+with <FONT COLOR=purple>Coq</FONT>, in order to acquaint yourself with various proof techniques.<BR>
+<BR>
+<BR>
+<BR>
+<!--BEGIN NOTES chapter-->
+<HR ALIGN=left WIDTH=50%>
+<DL>
+<DT><A NAME="note0.1"></A><A HREF="#text0.1"><FONT SIZE=5>1</FONT></A>
+<DD>This research was partly supported by ESPRIT Basic Research
+Action ``Types'' and by the GDR ``Programmation'' co-financed by MRE-PRC and CNRS.
+</DL><!--END NOTES-->
+<!--FOOTER-->
+<HR>
+
+<BLOCKQUOTE><EM>This document was translated from L<sup>A</sup>T<sub>E</sub>X by </EM><A HREF="http://para.inria.fr/~maranget/hevea"><EM>H</EM><EM><FONT SIZE=2><sup>E</sup></FONT></EM><EM>V</EM><EM><FONT SIZE=2><sup>E</sup></FONT></EM><EM>A</EM></A><EM>.
+</EM></BLOCKQUOTE></BODY>
+</HTML>
+

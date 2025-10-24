@@ -1,0 +1,56 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+8.5&nbsp;AutoRewrite
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.1.3.3.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.3.5.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+8.5&nbsp;<TT>AutoRewrite
+</TT></H2>
+
+
+
+<A NAME="AutoRewrite-example"></A><BR><B>Example: </B>Here is a basic use of <TT>AutoRewrite</TT> with the Ackermann function:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Require&nbsp;Arith.</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;Ack:nat-&gt;nat-&gt;nat.</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Axiom&nbsp;Ack0:(m:nat)(Ack&nbsp;(0)&nbsp;m)=(S&nbsp;m).</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Axiom&nbsp;Ack1:(n:nat)(Ack&nbsp;(S&nbsp;n)&nbsp;(0))=(Ack&nbsp;n&nbsp;(1)).</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Axiom&nbsp;Ack2:(n,m:nat)(Ack&nbsp;(S&nbsp;n)&nbsp;(S&nbsp;m))=(Ack&nbsp;n&nbsp;(Ack&nbsp;(S&nbsp;n)&nbsp;m)).</TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;HintRewrite&nbsp;base0&nbsp;[&nbsp;Ack0&nbsp;LR&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ack1&nbsp;LR</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ack2&nbsp;LR].</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Lemma&nbsp;ResAck0:(Ack&nbsp;(2)&nbsp;(1))=(5).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(Ack&nbsp;(2)&nbsp;(1))=(5)</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;AutoRewrite&nbsp;[base0]&nbsp;Step&nbsp;[Reflexivity].</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Toplevel&nbsp;input,&nbsp;characters&nbsp;25-26</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&gt;&nbsp;AutoRewrite&nbsp;[base0]&nbsp;Step&nbsp;[Reflexivity].</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Syntax&nbsp;error:&nbsp;'='&nbsp;expected&nbsp;after&nbsp;'Step'&nbsp;(in&nbsp;[tactic:autorew_largs])</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+<BR><B>Example: </B>The Mac Carthy function shows a more complex case:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Require&nbsp;Omega.</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Variable&nbsp;g:nat-&gt;nat-&gt;nat.</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Axiom&nbsp;g0:(m:nat)(g&nbsp;(0)&nbsp;m)=m.</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Axiom&nbsp;g1:</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;(n,m:nat)(gt&nbsp;n&nbsp;(0))-&gt;(gt&nbsp;m&nbsp;(100))-&gt;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;(g&nbsp;n&nbsp;m)=(g&nbsp;(pred&nbsp;n)&nbsp;(minus&nbsp;m&nbsp;(10))).</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Axiom&nbsp;g2:</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;(n,m:nat)(gt&nbsp;n&nbsp;(0))-&gt;(le&nbsp;m&nbsp;(100))-&gt;(g&nbsp;n&nbsp;m)=(g&nbsp;(S&nbsp;n)&nbsp;(plus&nbsp;m&nbsp;(11))).</TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;HintRewrite&nbsp;base1&nbsp;[&nbsp;g0&nbsp;LR&nbsp;g1&nbsp;LR].</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;HintRewrite&nbsp;base2&nbsp;[g2&nbsp;LR].</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Lemma&nbsp;Resg0:(g&nbsp;(1)&nbsp;(90))=(91).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;(g&nbsp;(1)&nbsp;(90))=(91)</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;AutoRewrite&nbsp;[base1&nbsp;base2]&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Step=[Simpl|Reflexivity]&nbsp;with&nbsp;All</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Rest=[Omega]&nbsp;with&nbsp;Cond&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Depth=10.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Warning:&nbsp;10&nbsp;rewriting(s)&nbsp;carried&nbsp;out</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Warning:&nbsp;20&nbsp;rewriting(s)&nbsp;carried&nbsp;out</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Subtree&nbsp;proved!</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+One can also give the full base definition instead of a name. This is
+useful to do rewritings with the hypotheses of current goal:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Show.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Error&nbsp;during&nbsp;interpretation&nbsp;of&nbsp;command:</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Show.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Error:&nbsp;No&nbsp;focused&nbsp;proof&nbsp;(No&nbsp;proof-editing&nbsp;in&nbsp;progress).</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;AutoRewrite&nbsp;[[g0&nbsp;LR&nbsp;g1&nbsp;LR]&nbsp;[g2&nbsp;LR]]&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Step=[Simpl|Reflexivity]&nbsp;with&nbsp;All</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Rest=[Omega]&nbsp;with&nbsp;Cond&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Depth=10.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Error&nbsp;during&nbsp;interpretation&nbsp;of&nbsp;command:</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>AutoRewrite&nbsp;[[g0&nbsp;LR&nbsp;g1&nbsp;LR]&nbsp;[g2&nbsp;LR]]&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;Step=[Simpl|Reflexivity]&nbsp;with&nbsp;All</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;Rest=[Omega]&nbsp;with&nbsp;Cond&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;Depth=10.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Error:&nbsp;No&nbsp;focused&nbsp;proof&nbsp;(No&nbsp;proof-editing&nbsp;in&nbsp;progress).</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+<HR>
+
+<A HREF="node.1.3.3.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.3.5.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

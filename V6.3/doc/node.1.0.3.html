@@ -1,0 +1,185 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+5.4&nbsp;Compiled files
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.1.0.2.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.0.4.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+5.4&nbsp;Compiled files
+</H2>
+
+
+<A NAME="compiled"></A><A NAME="@default294"></A>This feature allows to build files for a quick loading. When loaded,
+the commands contained in a compiled file will not be <EM>replayed</EM>.
+In particular, proofs will not be replayed. This avoids a useless
+waste of time.<BR>
+<BR>
+<BR><B>Remark: </B>A module containing an open section cannot be compiled. <BR>
+<BR>
+
+<H3>
+
+5.4.1&nbsp;<TT>Compile Module </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>.
+</TT></H3>
+
+<A NAME="@default295"></A><A NAME="@default296"></A><A NAME="@command64"></A><A NAME="@default297"></A>This command loads the file
+<I><FONT COLOR=maroon>ident</FONT></I><TT>.v</TT> and plays the script it contains. Declarations,
+definitions and proofs it contains are <EM>"packaged"</EM> in a compiled
+form: the <EM>module</EM> named <I><FONT COLOR=maroon>ident</FONT></I>.
+A file <I><FONT COLOR=maroon>ident</FONT></I><TT>.vo</TT> is then created.
+The file <I><FONT COLOR=maroon>ident</FONT></I><TT>.v</TT> is searched according to the
+current loadpath.
+The <I><FONT COLOR=maroon>ident</FONT></I><TT>.vo</TT> is then written in the directory where
+<I><FONT COLOR=maroon>ident</FONT></I><TT>.v</TT> was found.<BR>
+<BR>
+<BR><B>Variants: </B><OL>
+<LI><TT>Compile Module </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> </TT><I><FONT COLOR=maroon>string</FONT></I><TT>.</TT><BR>Uses the file <I><FONT COLOR=maroon>string</FONT></I><TT>.v</TT> or <I><FONT COLOR=maroon>string</FONT></I> if the previous one does not
+ exist to build the module <I><FONT COLOR=maroon>ident</FONT></I>. In this case, <I><FONT COLOR=maroon>string</FONT></I> is any
+ string giving a filename in the UNIX sense (see section
+ <A HREF="node.1.0.2.html#Load-str">1</A>). 
+ <BR><B>Warning: </B>The given filename can not contain other caracters than
+ the caracters of <FONT COLOR=purple>Coq</FONT>'s identifiers : letters or digits or the
+ underscore symbol ``_''.<BR>
+<BR>
+
+<LI><TT>Compile Module Specification </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>.</TT><BR><A NAME="@default298"></A><A NAME="@command65"></A>Builds a specification module: only the types of terms are stored
+ in the module. The bodies (the proofs) are <EM>not</EM> written
+ in the module. In that case, the file created is <I><FONT COLOR=maroon>ident</FONT></I><TT>.vi</TT>.
+ This is only useful when proof terms take too much place in memory
+ and are not necessary.
+ 
+
+<LI><TT>Compile Verbose Module </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>.</TT><BR><A NAME="@default299"></A><A NAME="@command66"></A>Verbose version of Compile: shows the contents of the file being
+ compiled.
+</OL>These different variants can be combined.<BR>
+<BR>
+<BR><B>Error messages: </B><OL>
+<LI><TT>You cannot open a module when there are things other than</TT><BR><TT>Modules and Imports in the context.</TT><BR>The only commands allowed before a Compile Module command are <TT>Require</TT>,<BR><TT>Read Module</TT> and <TT>Import</TT>. Actually, The normal way to
+ compile modules is by the <TT>coqc</TT> command (see chapter
+ <A HREF="node.3.0.html#Addoc-coqc">11</A>).
+</OL><BR><B>See also: </B>sections <A HREF="node.1.0.1.html#Opaque">5.2.4</A>, <A HREF="node.1.0.4.html#loadpath">5.5</A>, chapter
+<A HREF="node.3.0.html#Addoc-coqc">11</A><BR>
+<BR>
+
+<H3>
+
+5.4.2&nbsp;<TT>Read Module </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>.
+</TT></H3>
+<A NAME="@default300"></A><A NAME="@command67"></A>Loads the module stored in the file <I><FONT COLOR=maroon>ident</FONT></I>, but does not open it:
+its contents is invisible to the user. The implementation file
+(<I><FONT COLOR=maroon>ident</FONT></I><TT>.vo</TT>) is searched first, then the specification file
+(<I><FONT COLOR=maroon>ident</FONT></I><TT>.vi</TT>) in case of failure.<BR>
+<BR>
+
+<H3>
+
+5.4.3&nbsp;<TT>Import </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>.
+</TT></H3>
+<A NAME="@default301"></A><A NAME="@command68"></A>Opens the module <I><FONT COLOR=maroon>ident</FONT></I>. The module <I><FONT COLOR=maroon>ident</FONT></I> must have been
+previously loaded (through the <TT>Read Module</TT> command or embedded
+<TT>Require</TT> commands. See the description of the <TT>Require</TT>
+command below).<BR>
+<BR>
+
+<H3>
+
+5.4.4&nbsp;<TT>Require </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>.
+</TT></H3>
+
+<A NAME="@default302"></A><A NAME="@command69"></A><A NAME="Require"></A>
+This command loads and opens (imports) the module stored in the file
+<I><FONT COLOR=maroon>ident</FONT></I>. The implementation file (<I><FONT COLOR=maroon>ident</FONT></I><TT>.vo</TT>) is searched first,
+then the specification file (<I><FONT COLOR=maroon>ident</FONT></I><TT>.vi</TT>) in case of failure.
+If the module required has already been loaded, <FONT COLOR=purple>Coq</FONT> 
+simply opens it (as <TT>Import </TT><I><FONT COLOR=maroon>ident</FONT></I> would do it).
+If the module required is already loaded and open, <FONT COLOR=purple>Coq</FONT> 
+displays the following warning: <I><FONT COLOR=maroon>ident</FONT></I><TT> already imported</TT>.<BR>
+<BR>
+If a module <I>A</I> contains a command <TT>Require</TT> <I>B</I> then the
+command <TT>Require</TT> <I>A</I> loads the module <I>B</I> but does not
+open it (See the <TT>Require Export</TT> variant below).<BR>
+<BR>
+<BR><B>Variants: </B><OL>
+<LI><TT>Require Export </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>.</TT><BR><A NAME="@default303"></A><A NAME="@command70"></A>This command acts as <TT>Require</TT> <I><FONT COLOR=maroon>ident</FONT></I>. But if a module <I>A</I> contains a command <TT>Require Export</TT> <I>B</I>, then the
+ command <TT>Require</TT> <I>A</I> opens the module <I>B</I> as if the
+ user would have typed <TT>Require</TT><I>B</I>.
+
+<LI><TT>Require </TT><TT>[</TT><TT> Implementation </TT><TT>|</TT><TT> Specification </TT><TT>]</TT><TT> </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>.</TT><BR><A NAME="@default304"></A><A NAME="@command71"></A><A NAME="@default305"></A><A NAME="@command72"></A>Is the same as <TT>Require</TT>, but specifying explicitly the
+ implementation (<TT>.vo</TT> file) or the specification (<TT>.vi</TT>
+ file).
+
+<LI><TT>Require </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> </TT><I><FONT COLOR=maroon>string</FONT></I><TT>.</TT><BR>Specifies the file to load as being <I><FONT COLOR=maroon>string</FONT></I>, instead of
+ <I><FONT COLOR=maroon>ident</FONT></I>. The opened module is still <I><FONT COLOR=maroon>ident</FONT></I> and therefore
+ must have been loaded.
+
+<LI><TT>Require </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> </TT><I><FONT COLOR=maroon>string</FONT></I><TT>.</TT><BR>Specifies the file to load as being <I><FONT COLOR=maroon>string</FONT></I>, instead of
+ <I><FONT COLOR=maroon>ident</FONT></I>. The opened module is still <I><FONT COLOR=maroon>ident</FONT></I>.
+</OL>These different variants can be combined.<BR>
+<BR>
+<BR><B>Error messages: </B><OL>
+<LI><TT>Can't find module toto on loadpath</TT><A NAME="@error19"></A><BR>The command did not find the file <TT>toto.vo</TT>. Either <TT>toto.v</TT> exists but is not compiled or <TT>toto.vo</TT> is in a directory
+ which is not in your <TT>LoadPath</TT> (see section <A HREF="node.1.0.4.html#loadpath">5.5</A>).
+
+<LI><TT>Bad magic number</TT><A NAME="@error20"></A><BR><A NAME="@default306"></A>The file <I><FONT COLOR=maroon>ident</FONT></I><TT>.vo</TT> was found but either it is not a <FONT COLOR=purple>Coq</FONT>
+ compiled module, or it was compiled with an older and incompatible
+ version of <FONT COLOR=purple>Coq</FONT>.
+</OL><BR><B>See also: </B>chapter <A HREF="node.3.0.html#Addoc-coqc">11</A><BR>
+<BR>
+
+<H3>
+
+5.4.5&nbsp;<TT>Print Modules.
+</TT></H3>
+
+<A NAME="@default307"></A><A NAME="@command73"></A>This command shows the currently loaded and currently opened
+(imported) modules.<BR>
+<BR>
+
+<H3>
+
+5.4.6&nbsp;<TT>Declare ML Module </TT><I><FONT COLOR=maroon>string</FONT></I><TT><SUB><FONT SIZE=2>1</FONT></SUB></TT><TT> .. </TT><I><FONT COLOR=maroon>string</FONT></I><TT><SUB><FONT SIZE=2><I>n</I></FONT></SUB></TT><TT>.
+</TT></H3>
+
+<A NAME="@default308"></A><A NAME="@command74"></A>This commands loads the Objective Caml compiled files <I><FONT COLOR=maroon>string</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> ...<I><FONT COLOR=maroon>string</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> (dynamic link). It is mainly used to load tactics
+dynamically (see chapter <A HREF="node.2.1.html#WritingTactics">10</A>). The files are
+searched into the current Objective Caml loadpath (see the command <TT>Add ML Path</TT> in the section <A HREF="node.1.0.4.html#loadpath">5.5</A>). Loading of Objective Caml
+files is only possible under the bytecode version of <TT>coqtop</TT>
+(i.e. not using options <TT>-opt</TT> or <TT>-full</TT> -- see chapter 
+<A HREF="node.3.0.html#Addoc-coqc">11</A>).<BR>
+<BR>
+
+<H3>
+
+5.4.7&nbsp;<TT>Print ML Modules.
+</TT></H3>
+<A NAME="@default309"></A><A NAME="@command75"></A>This print the name of all <FONT COLOR=purple>Objective Caml</FONT>modules loaded with <TT>Declare
+ ML Module</TT>. To know from where these module were loaded, the user
+should use the command <TT>Locate File</TT> (<A HREF="node.1.0.4.html#Locate File">X</A>)<BR>
+<BR>
+<HR>
+
+<A HREF="node.1.0.2.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.0.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.0.4.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

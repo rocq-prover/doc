@@ -1,0 +1,83 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+2.5&nbsp;Section mechanism
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.0.1.3.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.0.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.1.5.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+2.5&nbsp;Section mechanism
+</H2>
+
+
+<A NAME="@default68"></A><A NAME="Section"></A>
+The sectioning mechanism allows to organize a proof in structured
+sections. Then local declarations become available (see section
+<A HREF="node.0.0.2.html#Simpl-definitions">1.3.2</A>).<BR>
+<BR>
+
+<H3>
+
+2.5.1&nbsp;<TT>Section </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>
+</TT></H3>
+<A NAME="@default69"></A><A NAME="@command35"></A>This command is used to open a section named <I><FONT COLOR=maroon>ident</FONT></I>.<BR>
+<BR>
+<BR><B>Variants: </B><OL>
+<LI><A NAME="@default70"></A><A NAME="@command36"></A><TT>Chapter </TT><I><FONT COLOR=maroon>ident</FONT></I><BR>Same as <TT>Section </TT><I><FONT COLOR=maroon>ident</FONT></I>
+</OL>
+<H3>
+
+2.5.2&nbsp;<TT>End </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>
+</TT></H3>
+<A NAME="@default71"></A><A NAME="@command37"></A>This command closes the section named <I><FONT COLOR=maroon>ident</FONT></I>. When a section is
+closed, all local declarations are discharged. This means that all
+global objects defined in the section are <I>closed</I> (in the sense
+of <FONT FACE=symbol>l</FONT>-calculus) with as many abstractions as there were local
+declarations in the section explicitly occurring in the term. A local
+object in the section is not exported and its value will be
+substituted in the other definitions.<BR>
+<BR>
+Here is an example :
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Section&nbsp;s1.</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Variables&nbsp;x,y&nbsp;:&nbsp;nat.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>x&nbsp;is&nbsp;assumed</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>y&nbsp;is&nbsp;assumed</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Local&nbsp;y'&nbsp;:=&nbsp;y.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>y'&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Definition&nbsp;x'&nbsp;:=&nbsp;(S&nbsp;x).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>x'&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Print&nbsp;x'.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>x'&nbsp;=&nbsp;(S&nbsp;x)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;nat</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;End&nbsp;s1.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>[Cooking&nbsp;#x'.cci]</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>[Cooking&nbsp;#x'.fw]</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Constant&nbsp;x'&nbsp;:&nbsp;nat-&gt;nat</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Print&nbsp;x'.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>x'&nbsp;=&nbsp;[x:nat](S&nbsp;x)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;nat-&gt;nat</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT>
+Note the difference between the value of <TT>x'</TT> inside section <TT>s1</TT> and outside.<BR>
+<BR>
+<BR><B>Error messages: </B><OL>
+<LI><TT>Section </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> does not exist (or is already closed)</TT><A NAME="@error9"></A>
+<LI><TT>Section </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> is not the innermost section</TT><A NAME="@error10"></A></OL><BR><B>Remarks: </B><OL>
+<LI>Most commands, like <TT>Hint </TT><I><FONT COLOR=maroon>ident</FONT></I> or <TT>Syntactic
+ Definition</TT> which appear inside a section are cancelled when the
+section is closed.
+
+<LI>Usually, all identifiers must be distinct. 
+However, a name already used in a closed section (see <A HREF="node.0.1.4.html#Section">2.5</A>)
+can be reused. In this case, the old name is no longer accessible.
+
+<LI>A module implicitly open a section. Be careful not to name a
+module with an identifier already used in the module (see <A HREF="node.1.0.3.html#compiled">5.4</A>).
+</OL><HR>
+
+<A HREF="node.0.1.3.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.0.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.1.5.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

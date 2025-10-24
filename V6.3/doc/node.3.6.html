@@ -1,0 +1,85 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+Chapter&nbsp;17: The Program Tactic
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.5.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.7.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H1>
+
+Chapter&nbsp;17: The Program Tactic
+</H1>
+
+
+
+<FONT SIZE=5><B>Catherine Parent</B></FONT> <BR><BR><BR><BR><BR><BR><A NAME="Addoc-program"></A><BR>
+<BR>
+The facilities described in this document pertain to a special aspect of
+the <FONT COLOR=purple>Coq</FONT> system: how to associate to a functional program, whose 
+specification is written in <FONT COLOR=purple>Gallina</FONT>, a proof of its correctness.<BR>
+<BR>
+This methodology is based on the Curry-Howard isomorphism between
+functional programs and constructive proofs. This isomorphism allows
+the synthesis of a functional program from the constructive part of its
+proof of correctness. That is, it is possible to analyze a <FONT COLOR=purple>Coq</FONT> proof,
+to erase all its non-informative parts (roughly speaking, removing the
+parts pertaining to sort <FONT COLOR=purple>Prop</FONT>, considered as comments, to keep only the
+parts pertaining to sort <FONT COLOR=purple>Set</FONT>). <BR>
+<BR>
+This <I><FONT COLOR=maroon>realizability interpretation</FONT></I>
+was defined by Christine Paulin-Mohring in her PhD dissertation 
+[<CITE><A HREF="node.4.html#Moh89b"><CITE>86</CITE></A></CITE>], and
+implemented as a <I><FONT COLOR=maroon>program extraction</FONT></I> facility in previous versions of 
+<FONT COLOR=purple>Coq</FONT>&nbsp; by Benjamin Werner (see [<CITE><A HREF="node.4.html#COQ93"><CITE>39</CITE></A></CITE>]). 
+However, the corresponding certified program
+development methodology was very awkward: the user had to understand very 
+precisely the extraction mechanism in order to guide the proof construction
+towards the desired algorithm. The facilities described in this chapter 
+attempt to do the reverse: i.e. to try and generate the proof of correctness
+from the program itself, given as argument to a specialized tactic.
+This work is based on the PhD dissertation of 
+Catherine Parent (see [<CITE><A HREF="node.4.html#CPar95"><CITE>81</CITE></A></CITE>])<BR>
+<BR>
+
+ <UL>
+<LI><A HREF="node.3.6.0.html">
+
+17.1&nbsp;Developing certified programs: Motivations
+</A>
+<LI><A HREF="node.3.6.1.html">
+
+17.2&nbsp;Using <TT>Program</TT>
+</A>
+<LI><A HREF="node.3.6.2.html">
+
+17.3&nbsp;Syntax for programs
+</A>
+<LI><A HREF="node.3.6.3.html">
+
+17.4&nbsp;Examples
+</A>
+</UL><HR>
+
+<A HREF="node.3.5.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.7.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

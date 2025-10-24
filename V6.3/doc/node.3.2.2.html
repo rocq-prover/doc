@@ -1,0 +1,151 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+13.3&nbsp;Matching objects of dependent types
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.2.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.2.3.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+13.3&nbsp;Matching objects of dependent types
+</H2>
+
+
+
+The previous examples illustrate pattern matching on objects of
+non-dependent types, but we can also 
+use the expansion strategy to destructure objects of dependent type.
+Consider the type <TT>listn</TT> of lists of a certain length:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Inductive&nbsp;listn&nbsp;:&nbsp;nat-&gt;&nbsp;Set&nbsp;:=&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;niln&nbsp;:&nbsp;(listn&nbsp;O)&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;|&nbsp;consn&nbsp;:&nbsp;(n:nat)nat-&gt;(listn&nbsp;n)&nbsp;-&gt;&nbsp;(listn&nbsp;(S&nbsp;n)).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>listn_ind&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>listn_rec&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>listn_rect&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>listn&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+
+ 
+<H3>
+
+13.3.1&nbsp;Understanding dependencies in patterns
+</H3>
+
+We can define the function <TT>length</TT> over <TT>listn</TT> by:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Definition&nbsp;length&nbsp;:=&nbsp;[n:nat][l:(listn&nbsp;n)]&nbsp;n.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>length&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Just for illustrating pattern matching, 
+we can define it by case analysis:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Reset&nbsp;length.</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Definition&nbsp;length&nbsp;:=&nbsp;[n:nat][l:(listn&nbsp;n)]</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cases&nbsp;l&nbsp;of&nbsp;&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;niln&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;O&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(consn&nbsp;n&nbsp;_&nbsp;_)&nbsp;=&gt;&nbsp;(S&nbsp;n)&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>length&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+We can understand the meaning of this definition using the
+same notions of usual pattern matching.<BR>
+<BR>
+Now suppose we split the second pattern of <TT>length</TT> into two 
+cases so to give an
+alternative definition using nested patterns:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Definition&nbsp;length1:=&nbsp;[n:nat]&nbsp;[l:(listn&nbsp;n)]</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;Cases&nbsp;l&nbsp;of&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;niln&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;O</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(consn&nbsp;n&nbsp;_&nbsp;niln)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;(S&nbsp;n)</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(consn&nbsp;n&nbsp;_&nbsp;(consn&nbsp;_&nbsp;_&nbsp;_))&nbsp;=&gt;&nbsp;(S&nbsp;n)</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;end.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>length1&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+It is obvious that <TT>length1</TT> is another version of
+<TT>length</TT>. We can also give the following definition:
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Definition&nbsp;length2:=&nbsp;[n:nat]&nbsp;[l:(listn&nbsp;n)]</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;Cases&nbsp;l&nbsp;of&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;niln&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;O</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;|&nbsp;(consn&nbsp;n&nbsp;_&nbsp;niln)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;(S&nbsp;O)</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;|&nbsp;(consn&nbsp;n&nbsp;_&nbsp;(consn&nbsp;m&nbsp;_&nbsp;_))&nbsp;=&gt;&nbsp;(S&nbsp;(S&nbsp;m))</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;end.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>length2&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+If we forget that <TT>listn</TT> is a dependent type and we read these
+definitions using the usual semantics of pattern matching, we can conclude
+that <TT>length1</TT>
+and <TT>length2</TT> are different functions.
+In fact, they are equivalent
+because the pattern <TT>niln</TT> implies that <TT>n</TT> can only match
+the value 0 and analogously the pattern <TT>consn</TT> determines that <TT>n</TT> can
+only match values of the form (<I>S</I>&nbsp;<I>v</I>) where <I>v</I> is the value matched by
+<TT>m</TT>. <BR>
+<BR>
+The converse is also true. If
+we destructure the length value with the pattern <TT>O</TT> then the list
+value should be <I>niln</I>. 
+Thus, the following term <TT>length3</TT> corresponds to the function
+<TT>length</TT> but this time defined by case analysis on the dependencies instead of on the list:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Definition&nbsp;length3&nbsp;:=&nbsp;[n:nat]&nbsp;[l:&nbsp;(listn&nbsp;n)]</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cases&nbsp;l&nbsp;of&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;niln&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;O</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;(consn&nbsp;O&nbsp;_&nbsp;_)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;(S&nbsp;O)</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;(consn&nbsp;(S&nbsp;n)&nbsp;_&nbsp;_)&nbsp;=&gt;&nbsp;(S&nbsp;(S&nbsp;n))</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Warning:&nbsp;This&nbsp;pattern&nbsp;matching&nbsp;may&nbsp;need&nbsp;dependent&nbsp;elimination&nbsp;to&nbsp;be&nbsp;compiled.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>I&nbsp;will&nbsp;try,&nbsp;but&nbsp;if&nbsp;fails&nbsp;try&nbsp;again&nbsp;giving&nbsp;dependent&nbsp;elimination&nbsp;predicate.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>length3&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+When we have nested patterns of dependent types, the semantics of
+pattern matching becomes a little more difficult because
+the set of values that are matched by a sub-pattern may be conditioned by the
+values matched by another sub-pattern. Dependent nested patterns are
+somehow constrained patterns. 
+In the examples, the expansion of
+<TT>length1</TT> and <TT>length2</TT> yields exactly the same term
+ but the
+expansion of <TT>length3</TT> is completely different. <TT>length1</TT> and
+<TT>length2</TT> are expanded into two nested case analysis on
+<TT>listn</TT> while <TT>length3</TT> is expanded into a case analysis on
+<TT>listn</TT> containing a case analysis on natural numbers inside.<BR>
+<BR>
+In practice the user can think about the patterns as independent and
+it is the expansion algorithm that cares to relate them.<BR><BR>
+<BR>
+
+ 
+<H3>
+
+13.3.2&nbsp;When the elimination predicate must be provided
+</H3>
+
+The examples given so far do not need an explicit elimination predicate
+between <TT>&lt;&gt;</TT> because all the rhs have the same type and the
+strategy succeeds to synthesize it.
+Unfortunately when dealing with dependent patterns it often happens
+that we need to write cases where the type of the rhs are 
+different instances of the elimination predicate.
+The function <TT>concat</TT> for <TT>listn</TT>
+is an example where the branches have different type
+and we need to provide the elimination predicate:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Fixpoint&nbsp;concat&nbsp;[n:nat;&nbsp;l:(listn&nbsp;n)]</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;:&nbsp;&nbsp;(m:nat)&nbsp;(listn&nbsp;m)&nbsp;-&gt;&nbsp;(listn&nbsp;(plus&nbsp;n&nbsp;m))</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;:=&nbsp;[m:nat][l':(listn&nbsp;m)]&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;[n:nat](listn&nbsp;(plus&nbsp;n&nbsp;m))&gt;Cases&nbsp;l&nbsp;&nbsp;of&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;niln&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;l'</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(consn&nbsp;n'&nbsp;a&nbsp;y)&nbsp;=&gt;&nbsp;(consn&nbsp;(plus&nbsp;n'&nbsp;m)&nbsp;a&nbsp;(concat&nbsp;n'&nbsp;y&nbsp;m&nbsp;l'))</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>concat&nbsp;is&nbsp;recursively&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Recall that a list of patterns is also a pattern. So, when
+we destructure several terms at the same time and the branches have
+different type we need to provide
+the elimination predicate for this multiple pattern.<BR>
+<BR>
+For example, an equivalent definition for <TT>concat</TT> (even though with a useless extra pattern) would have
+been:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Reset&nbsp;concat.</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Fixpoint&nbsp;concat&nbsp;[n:nat;&nbsp;l:(listn&nbsp;n)]&nbsp;:&nbsp;(m:nat)&nbsp;(listn&nbsp;m)&nbsp;-&gt;&nbsp;(listn&nbsp;(plus&nbsp;n&nbsp;m))&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;:=&nbsp;[m:nat][l':(listn&nbsp;m)]&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;[n,_:nat](listn&nbsp;(plus&nbsp;n&nbsp;m))&gt;Cases&nbsp;l&nbsp;l'&nbsp;of&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;niln&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;=&gt;&nbsp;x</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(consn&nbsp;n'&nbsp;a&nbsp;y)&nbsp;x&nbsp;=&gt;&nbsp;(consn&nbsp;(plus&nbsp;n'&nbsp;m)&nbsp;a&nbsp;(concat&nbsp;n'&nbsp;y&nbsp;m&nbsp;x))</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>concat&nbsp;is&nbsp;recursively&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Note that this time, the predicate <TT>[n,_:nat](listn (plus n
+ m))</TT> is binary because we
+destructure both <TT>l</TT> and <TT>l'</TT> whose types have arity one.
+In general, if we destructure the terms <I>e</I><SUB><FONT SIZE=2>1</FONT></SUB>... <I>e</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>
+the predicate will be of arity <I>m</I> where <I>m</I> is the sum of the
+number of dependencies of the type of <I>e</I><SUB><FONT SIZE=2>1</FONT></SUB>, <I>e</I><SUB><FONT SIZE=2>2</FONT></SUB>,... <I>e</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> 
+(the <FONT FACE=symbol>l</FONT>-abstractions
+should correspond from left to right to each dependent argument of the
+type of <I>e</I><SUB><FONT SIZE=2>1</FONT></SUB>... <I>e</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>).
+When the arity of the predicate (i.e. number of abstractions) is not
+correct Coq rises an error message. For example:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Fixpoint&nbsp;concat&nbsp;[n:nat;&nbsp;l:(listn&nbsp;n)]&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(m:nat)&nbsp;(listn&nbsp;m)&nbsp;-&gt;&nbsp;(listn&nbsp;(plus&nbsp;n&nbsp;m))&nbsp;:=&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;[m:nat][l':(listn&nbsp;m)]&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&lt;[n:nat](listn&nbsp;(plus&nbsp;n&nbsp;m))&gt;Cases&nbsp;l&nbsp;l'&nbsp;of&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;niln&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;=&gt;&nbsp;x</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(consn&nbsp;n'&nbsp;a&nbsp;y)&nbsp;x&nbsp;=&gt;&nbsp;(consn&nbsp;(plus&nbsp;n'&nbsp;m)&nbsp;a&nbsp;(concat&nbsp;n'&nbsp;y&nbsp;m&nbsp;x))</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Error&nbsp;during&nbsp;interpretation&nbsp;of&nbsp;command:</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Fixpoint&nbsp;concat&nbsp;[n:nat;&nbsp;l:(listn&nbsp;n)]&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(m:nat)&nbsp;(listn&nbsp;m)&nbsp;-&gt;&nbsp;(listn&nbsp;(plus&nbsp;n&nbsp;m))&nbsp;:=&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;[m:nat][l':(listn&nbsp;m)]&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&lt;[n:nat](listn&nbsp;(plus&nbsp;n&nbsp;m))&gt;Cases&nbsp;l&nbsp;l'&nbsp;of&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;niln&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;=&gt;&nbsp;x</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(consn&nbsp;n'&nbsp;a&nbsp;y)&nbsp;x&nbsp;=&gt;&nbsp;(consn&nbsp;(plus&nbsp;n'&nbsp;m)&nbsp;a&nbsp;(concat&nbsp;n'&nbsp;y&nbsp;m&nbsp;x))</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Error:&nbsp;The&nbsp;term</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;[n:nat;&nbsp;l:(listn&nbsp;n);&nbsp;m:nat;&nbsp;l':(listn&nbsp;m)]</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&lt;[n0:nat](listn&nbsp;(plus&nbsp;n0&nbsp;m))&gt;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cases&nbsp;l&nbsp;l'&nbsp;of</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;niln&nbsp;dum_x&nbsp;=&gt;&nbsp;dum_x</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(consn&nbsp;dum_n'&nbsp;dum_a&nbsp;dum_y)&nbsp;dum_x&nbsp;=&gt;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(consn&nbsp;(plus&nbsp;dum_n'&nbsp;m)&nbsp;dum_a&nbsp;(concat&nbsp;dum_n'&nbsp;dum_y&nbsp;m&nbsp;dum_x))</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end&nbsp;failed&nbsp;to&nbsp;typecheck:</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;The&nbsp;elimination&nbsp;predicate&nbsp;[n0:nat](listn&nbsp;(plus&nbsp;n0&nbsp;m))</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;should&nbsp;be&nbsp;of&nbsp;arity&nbsp;2&nbsp;(for&nbsp;non&nbsp;dependent&nbsp;case)&nbsp;&nbsp;or&nbsp;4&nbsp;(for&nbsp;dependent&nbsp;case).</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+
+ <HR>
+
+<A HREF="node.3.2.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.3.2.3.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

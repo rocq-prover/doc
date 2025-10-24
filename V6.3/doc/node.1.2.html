@@ -1,0 +1,139 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+Chapter&nbsp;7: Tactics
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.1.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.3.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H1>
+
+Chapter&nbsp;7: Tactics
+</H1>
+
+
+
+<A NAME="@default377"></A><A NAME="Tactics"></A>A deduction rule is a link between some (unique) formula, that we call
+the <EM>conclusion</EM> and (several) formulæ that we call the <EM>premises</EM>. Indeed, a deduction rule can be read in two ways. The first
+one has the shape: <I>``if I know this and this then I can deduce
+this''</I>. For instance, if I have a proof of <I>A</I> and a proof of <I>B</I>
+then I have a proof of <I>A</I> <FONT FACE=symbol>Ù</FONT> <I>B</I>. This is forward reasoning from
+premises to conclusion. The other way says: <I>``to prove this I
+have to prove this and this''</I>. For instance, to prove <I>A</I> <FONT FACE=symbol>Ù</FONT> <I>B</I>, I
+have to prove <I>A</I> and I have to prove <I>B</I>. This is backward reasoning
+which proceeds from conclusion to premises. We say that the conclusion
+is <EM>the goal</EM><A NAME="@default378"></A>to prove and premises are <EM>the
+subgoals</EM><A NAME="@default379"></A>. The tactics implement <EM>backward
+reasoning</EM>. When applied to a goal, a tactic replaces this goal with
+the subgoals it generates. We say that a tactic reduces a goal to its
+subgoal(s).<BR>
+<BR>
+Each (sub)goal is denoted with a number. The current goal is numbered
+1. By default, a tactic is applied to the current goal, but one can
+address a particular goal in the list by writing <I><FONT COLOR=maroon>n:</FONT></I><FONT COLOR=maroon><I><FONT COLOR=maroon>tactic</FONT></I></FONT> which
+means <I>``apply tactic </I><I><FONT COLOR=maroon>tactic</FONT></I><I> to goal number </I><I><I><FONT COLOR=maroon>n</FONT></I></I><I>''</I>.
+We can show the list of subgoals by typing <TT>Show</TT> (see section
+<A HREF="node.1.1.2.html#Show">6.3.1</A>).<BR>
+<BR>
+Since not every rule applies to a given statement, every tactic cannot be
+used to reduce any goal. In other words, before applying a tactic to a
+given goal, the system checks that some <EM>preconditions</EM> are
+satisfied. If it is not the case, the tactic raises an error message.<BR>
+<BR>
+Tactics are build from tacticals and atomic tactics. There are, at
+least, three levels of atomic tactics. The simplest one implements
+basic rules of the logical framework. The second level is the one of
+<EM>derived rules</EM> which are built by combination of other
+tactics. The third one implements heuristics or decision procedures to
+build a complete proof of a goal. 
+<BR>
+<BR>
+<UL>
+<LI><A HREF="node.1.2.0.html">
+
+7.1&nbsp;Syntax of tactics and tacticals
+</A>
+<LI><A HREF="node.1.2.1.html">
+
+7.2&nbsp;Explicit proof as a term
+</A>
+<LI><A HREF="node.1.2.2.html">
+
+7.3&nbsp;Basics
+</A>
+<LI><A HREF="node.1.2.3.html">
+
+7.4&nbsp;Negation and contradiction
+</A>
+<LI><A HREF="node.1.2.4.html">
+
+7.5&nbsp;Conversion tactics
+</A>
+<LI><A HREF="node.1.2.5.html">
+
+7.6&nbsp;Introductions
+</A>
+<LI><A HREF="node.1.2.6.html">
+
+7.7&nbsp;Eliminations (Induction and Case Analysis)
+</A>
+<LI><A HREF="node.1.2.7.html">
+
+7.8&nbsp;Equality
+</A>
+<LI><A HREF="node.1.2.8.html">
+
+7.9&nbsp;Equality and inductive sets
+</A>
+<LI><A HREF="node.1.2.9.html">
+
+7.10&nbsp;Inversion
+</A>
+<LI><A HREF="node.1.2.10.html">
+
+7.11&nbsp;Automatizing
+</A>
+<LI><A HREF="node.1.2.11.html">
+
+7.12&nbsp;Developing certified programs
+</A>
+<LI><A HREF="node.1.2.12.html">
+
+7.13&nbsp;The hints databases for Auto and EAuto
+</A>
+<LI><A HREF="node.1.2.13.html">
+
+7.14&nbsp;Tacticals
+</A>
+<LI><A HREF="node.1.2.14.html">
+
+7.15&nbsp;Generation of induction principles with <TT>Scheme</TT>
+</A>
+<LI><A HREF="node.1.2.15.html">
+
+7.16&nbsp;Simple tactic macros
+</A>
+</UL><HR>
+
+<A HREF="node.1.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.3.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

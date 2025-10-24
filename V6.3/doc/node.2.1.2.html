@@ -1,0 +1,986 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+10.3&nbsp;An Overview of Coq's Architecture
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.2.1.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.2.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.2.1.3.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+10.3&nbsp;An Overview of <FONT COLOR=purple>Coq</FONT>'s Architecture
+</H2>
+
+
+The implementation of <FONT COLOR=purple>Coq</FONT> is based on eight <I><FONT COLOR=maroon>logical
+modules</FONT></I>. By ``module'' we mean here a logical piece of code having a
+conceptual unity, that may concern several <FONT COLOR=purple>Objective Caml</FONT> files. By the sake of
+organization, all the <FONT COLOR=purple>Objective Caml</FONT> files concerning a logical module are
+grouped altogether into the same sub-directory. The eight modules
+are:<BR>
+<BR>
+
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=left>1.</TD>
+<TD NOWRAP ALIGN=left>The logical framework</TD>
+<TD NOWRAP ALIGN=left>(directory <TT>src/generic</TT>)</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>2.</TD>
+<TD NOWRAP ALIGN=left>The language of constructions</TD>
+<TD NOWRAP ALIGN=left>(directory <TT>src/constr</TT>)</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>3.</TD>
+<TD NOWRAP ALIGN=left>The type-checker</TD>
+<TD NOWRAP ALIGN=left>(directory <TT>src/typing</TT>)</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>4.</TD>
+<TD NOWRAP ALIGN=left>The proof engine</TD>
+<TD NOWRAP ALIGN=left>(directory <TT>src/proofs</TT>)</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>5.</TD>
+<TD NOWRAP ALIGN=left>The language of basic tactics</TD>
+<TD NOWRAP ALIGN=left>(directory <TT>src/tactics</TT>)</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>6.</TD>
+<TD NOWRAP ALIGN=left>The vernacular interpreter</TD>
+<TD NOWRAP ALIGN=left>(directory <TT>src/env</TT>)</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>7.</TD>
+<TD NOWRAP ALIGN=left>The parser and the pretty-printer</TD>
+<TD NOWRAP ALIGN=left>(directory <TT>src/parsing</TT>)</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>8.</TD>
+<TD NOWRAP ALIGN=left>The standard library</TD>
+<TD NOWRAP ALIGN=left>(directory <TT>src/lib</TT>)
+</TD>
+</TR></TABLE><BR>
+<BR><BR>
+<BR>
+The following sections briefly present each of the modules above.
+This presentation is not intended to be a complete description of <FONT COLOR=purple>Coq</FONT>'s
+implementation, but rather a guideline to be read before taking a look
+at the sources. For each of the modules, we also present some of its
+most important functions, which are sufficient to implement a large
+class of tactics.<BR>
+<BR>
+
+<H3>
+
+10.3.1&nbsp;The Logical Framework
+</H3>
+
+<A NAME="LogicalFramework"></A>At the very heart of <FONT COLOR=purple>Coq</FONT>there is a generic untyped language for
+expressing abstractions, applications and global constants. This
+language is used as a meta-language for expressing the terms of the
+Calculus of Inductive Constructions. General operations on terms like
+collecting the free variables of an expression, substituting a term for
+a free variable, etc, are expressed in this language.<BR>
+<BR>
+The meta-language <TT>'op term</TT> of terms has seven main
+constructors:
+<UL>
+<LI>(<TT>VAR</TT>&nbsp;<I>id</I>), a reference to a global identifier called <I>id</I>;
+
+<LI>(<TT>Rel</TT>&nbsp;<I>n</I>), a bound variable, whose binder is the <I>nth</I>
+ binder up in the term;
+
+<LI><TT>DLAM</TT>&nbsp;(<I>x</I>,<I>t</I>), a deBruijn's binder on the term <I>t</I>;
+
+<LI><TT>DLAMV</TT>&nbsp;(<I>x</I>,<I>vt</I>), a deBruijn's binder on all the terms of 
+ the vector <I>vt</I>;
+
+<LI>(<TT>DOP0</TT>&nbsp;<I>op</I>), a unary operator <I>op</I>;
+
+<LI><TT>DOP2</TT>&nbsp;(<I>op</I>,<I>t</I><SUB><FONT SIZE=2>1</FONT></SUB>,<I>t</I><SUB><FONT SIZE=2>2</FONT></SUB>), the application of a binary
+operator <I>op</I> to the terms <I>t</I><SUB><FONT SIZE=2>1</FONT></SUB> and <I>t</I><SUB><FONT SIZE=2>2</FONT></SUB>;
+
+<LI><TT>DOPN</TT> (<I>op</I>,<I>vt</I>), the application of an n-ary operator <I>op</I> to the
+vector of terms <I>vt</I>.
+</UL>In this meta-language, bound variables are represented using the
+so-called deBrujin's indexes. In this representation, an occurrence of
+a bound variable is denoted by an integer, meaning the number of
+binders that must be traversed to reach its own
+binder<A NAME="text10.2"></A><A HREF="node.8.html#note10.2"><SUP><FONT SIZE=2>2</FONT></SUP></A>
+. On the other hand, constants are referred by its
+name, as usual. For example, if <I>A</I> is a variable of the current
+section, then the lambda abstraction [<I>x</I>:<I>A</I>]<I>x</I> of the Calculus of
+Constructions is represented in the meta-language by the term:<BR>
+<BR>
+<DIV ALIGN=center>
+(<I>DOP</I>2 (<I>Lambda</I>,(<I>Var</I>&nbsp;<I>A</I>),<I>DLAM</I> (<I>x</I>,(<I>Rel</I>&nbsp;1)))
+</DIV><BR>
+In this term, <I>Lambda</I> is a binary operator. Its first argument
+correspond to the type <I>A</I> of the bound variable, while the second is
+a body of the abstraction, where <I>x</I> is bound. The name <I>x</I> is just kept
+to pretty-print the occurrences of the bound variable.<BR>
+<BR>
+The following functions perform some of the most frequent operations
+on the terms of the meta-language:
+<DL>
+<DT><DD><TT>val Generic.subst1 : 'op term -&gt; 'op term -&gt; 'op term</TT>. &nbsp;&nbsp;<BR>(<TT>subst1</TT>&nbsp;<I>t</I><SUB><FONT SIZE=2>1</FONT></SUB>&nbsp;<I>t</I><SUB><FONT SIZE=2>2</FONT></SUB>) substitutes <I>t</I><SUB><FONT SIZE=2>1</FONT></SUB> for 
+ <TT>(Rel</TT>&nbsp;1) in <I>t</I><SUB><FONT SIZE=2>2</FONT></SUB>.
+
+<DT><DD><TT>val Generic.occur_var : identifier -&gt; 'op term -&gt; bool</TT>. &nbsp;&nbsp;<BR>Returns true when the given identifier appears in the term,
+ and false otherwise.
+
+<DT><DD><TT>val Generic.eq_term : 'op term -&gt; 'op term -&gt; bool</TT>. &nbsp;&nbsp;<BR>Implements <FONT FACE=symbol>a</FONT>-equality for terms. 
+
+<DT><DD><TT>val Generic.dependent : 'op term -&gt; 'op term -&gt; bool</TT>. &nbsp;&nbsp;<BR>Returns true if the first term is a sub-term of the second.
+</DL>
+<H4>
+Identifiers, names and sections paths.
+</H4>
+ Three different kinds of names are used in the meta-language. They are
+all defined in the <FONT COLOR=purple>Objective Caml</FONT> file <TT>Names</TT>.<BR>
+<BR>
+
+<H5>
+Identifiers.
+</H5>
+ The simplest kind of names are
+<I><FONT COLOR=maroon>identifiers</FONT></I>. An identifier is a string possibly indexed by an
+integer. They are used to represent names that are not unique, like
+for example the name of a variable in the scope of a section. The
+following operations can be used for handling identifiers:<BR>
+<BR>
+<DL>
+<DT><DD><TT>val Names.make_ident : string -&gt; int -&gt; identifier</TT>. &nbsp;&nbsp;<BR>The value (<TT>make_ident</TT>&nbsp;<I>x</I>&nbsp;<I>i</I>) creates the
+ identifier <I>x</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB>. If <I>i</I>=-1, then the identifier has
+ is created with no index at all.
+
+<DT><DD><TT>val Names.repr_ident : identifier -&gt; string * int</TT>. &nbsp;&nbsp;<BR>The inverse operation of <TT>make_ident</TT>: 
+ it yields the string and the index of the identifier.
+
+<DT><DD><TT>val Names.lift_ident : identifier -&gt; identifier</TT>. &nbsp;&nbsp;<BR>Increases the index of the identifier by one.
+
+<DT><DD><TT>val Names.next_ident_away :<BR>&nbsp;&nbsp;&nbsp;&nbsp;identifier -&gt; identifier list -&gt; identifier</TT>. &nbsp;&nbsp;<BR><BR>Generates a new identifier with the same root string than the
+ given one, but with a new index, different from all the indexes of
+ a given list of identifiers. 
+
+<DT><DD><TT>val Names.id_of_string : string -&gt;
+ identifier</TT>. &nbsp;&nbsp;<BR>Creates an identifier from a string. 
+
+<DT><DD><TT>val Names.string_of_id : identifier -&gt; string</TT>. &nbsp;&nbsp;<BR>The inverse operation: transforms an identifier into a string
+</DL>
+<H5>
+Names.
+</H5>
+ A <I><FONT COLOR=maroon>name</FONT></I> is either an identifier or the 
+special name <TT>Anonymous</TT>. Names are used as arguments of
+binders, in order to pretty print bound variables.
+The following operations can be used for handling names:<BR>
+<BR>
+<DL>
+<DT><DD><TT>val Names.Name: identifier -&gt; Name</TT>. &nbsp;&nbsp;<BR>Constructs a name from an identifier.
+
+<DT><DD><TT>val Names.Anonymous : Name</TT>. &nbsp;&nbsp;<BR>Constructs a special, anonymous identifier, like the variable abstracted 
+ in the term [_:<I>A</I>]0.
+
+<DT><DD><TT>val
+ Names.next_name_away_with_default :<BR>&nbsp;&nbsp;&nbsp;&nbsp;string-&gt;name-&gt;identifier list-&gt;identifier</TT>. &nbsp;&nbsp;<BR><BR>If the name is not anonymous, then this function generates a new
+ identifier different from all the ones in a given list. Otherwise, it
+ generates an identifier from the given string.
+</DL>
+<H5>
+Section paths.
+</H5>
+ 
+<A NAME="SectionPaths"></A>
+A <I><FONT COLOR=maroon>section-path</FONT></I> is a global name to refer to an object without
+ambiguity. It can be seen as a sort of filename, where open sections
+play the role of directories. Each section path is formed by three
+components: a <I><FONT COLOR=maroon>directory</FONT></I> (the list of open sections); a
+<I><FONT COLOR=maroon>basename</FONT></I> (the identifier for the object); and a <I><FONT COLOR=maroon>kind</FONT></I>
+(either CCI for the terms of the Calculus of Constructions, FW for the
+the terms of <I>F</I><SUB><FONT SIZE=2><FONT FACE=symbol>w</FONT></FONT></SUB>, or OBJ for other objects). For example, the
+name of the following constant:
+<PRE>
+     Section A.
+     Section B.
+     Section C.
+     Definition zero := O.
+</PRE>is internally represented by the section path:<BR>
+<BR>
+<DIV ALIGN=center>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR VALIGN=middle><TD NOWRAP><TT>#<I>A</I>#<I>B</I>#<I>C</I></TT></TD>
+<TD NOWRAP></TD>
+<TD NOWRAP>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD>&nbsp;</TD>
+</TR>
+<TR><TD NOWRAP><FONT SIZE=2>dirpath</FONT></TD>
+</TR></TABLE></TD>
+<TD nowrap>
+<TT><TT>#<I>zero</I></TT></TT></TD>
+<TD NOWRAP></TD>
+<TD NOWRAP>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD>&nbsp;</TD>
+</TR>
+<TR><TD NOWRAP><FONT SIZE=2>basename</FONT></TD>
+</TR></TABLE></TD>
+<TD nowrap>
+</TD>
+<TD NOWRAP>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR VALIGN=middle><TD NOWRAP><TT><TT>.<I>cci</I></TT></TT></TD>
+<TD NOWRAP></TD>
+<TD NOWRAP>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD>&nbsp;</TD>
+</TR>
+<TR><TD NOWRAP><FONT SIZE=2>&nbsp;</FONT></TD>
+</TR></TABLE></TD>
+</TR></TABLE></TD>
+<TD NOWRAP></TD>
+<TD NOWRAP>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD>&nbsp;</TD>
+</TR>
+<TR><TD NOWRAP><FONT SIZE=2>kind</FONT></TD>
+</TR></TABLE></TD>
+</TR></TABLE></DIV><BR>
+When one of the sections is closed, a new constant is created with an
+updated section-path,a nd the old one is no longer reachable. In our
+example, after closing the section <TT>C</TT>, the new section-path
+for the constant <TT>zero</TT> becomes:
+<DIV ALIGN=center><TT> #A#B#zero.cci</TT>
+</DIV><BR>
+The following operations can be used to handle section paths:<BR>
+<BR>
+<DL>
+<DT><DD><TT>val Names.string_of_path : section_path -&gt; string</TT>. &nbsp;&nbsp;<BR>Transforms the section path into a string.
+
+<DT><DD><TT>val Names.path_of_string : string -&gt; section_path</TT>. &nbsp;&nbsp;<BR>Parses a string an returns the corresponding section path.
+
+<DT><DD><TT>val Names.basename : section_path -&gt; identifier</TT>. &nbsp;&nbsp;<BR>Provides the basename of a section path
+
+<DT><DD><TT>val Names.dirpath : section_path -&gt; string list</TT>. &nbsp;&nbsp;<BR>Provides the directory of a section path
+
+<DT><DD><TT>val Names.kind_of_path : section_path -&gt; path_kind</TT>. &nbsp;&nbsp;<BR>Provides the kind of a section path
+</DL>
+<H4>
+Signatures
+</H4>
+ A <I><FONT COLOR=maroon>signature</FONT></I> is a mapping associating different informations
+to identifiers (for example, its type, its definition, etc). The
+following operations could be useful for working with signatures:<BR>
+<BR>
+<DL>
+<DT><DD><TT>val Names.ids_of_sign : 'a signature -&gt; identifier list</TT>. &nbsp;&nbsp;<BR>Gets the list of identifiers of the signature.
+
+<DT><DD><TT>val Names.vals_of_sign : 'a signature -&gt; 'a list</TT>. &nbsp;&nbsp;<BR>Gets the list of values associated to the identifiers of the signature.
+
+<DT><DD><TT>val Names.lookup_glob1 :<BR>&nbsp;&nbsp;&nbsp;&nbsp;identifier -&gt; 'a signature -&gt; (identifier *
+ 'a)</TT>. &nbsp;&nbsp;<BR><BR>Gets the value associated to a given identifier of the signature.
+</DL>
+<H3>
+
+10.3.2&nbsp;The Terms of the Calculus of Constructions
+</H3>
+The language of the Calculus of Inductive Constructions described in
+Chapter <A HREF="node.0.3.html#Cic">4</A> is implemented on the top of the logical framework,
+instantiating the parameter <I>op</I> of the meta-language with a
+particular set of operators. In the implementation this language is
+called <TT>constr</TT>, the language of constructions.<BR>
+<BR>
+
+<H4>
+Building Constructions
+</H4>
+The user does not need to know the choices made to represent
+<TT>constr</TT> in the meta-language. They are abstracted away by the
+following constructor functions:<BR>
+<BR>
+<DL>
+<DT><DD><TT>val Term.mkRel : int -&gt; constr</TT>. &nbsp;&nbsp;<BR>(<TT>mkRel</TT>&nbsp;<I>n</I>) represents deBrujin's index <I>n</I>.<BR>
+<BR>
+
+<DT><DD><TT>val Term.mkVar : identifier -&gt; constr</TT>. &nbsp;&nbsp;<BR>(<TT>mkVar</TT>&nbsp;<I>id</I>)
+ represents a global identifier named <I>id</I>, like a variable
+ inside the scope of a section, or a hypothesis in a proof.<BR>
+<BR>
+
+<DT><DD><TT>val Term.mkExistential : constr</TT>. &nbsp;&nbsp;<BR><TT>mkExistential</TT> represents an implicit sub-term, like the question
+ marks in the term <TT>(pair ? ? O true)</TT>.<BR>
+<BR>
+
+<DT><DD><TT>val Term.mkProp : constr</TT>. &nbsp;&nbsp;<BR><TT>mkProp</TT> represents the sort <I><FONT COLOR=maroon>Prop</FONT></I>.<BR>
+<BR>
+
+<DT><DD><TT>val Term.mkSet : constr</TT>. &nbsp;&nbsp;<BR><TT>mkSet</TT> represents the sort <I><FONT COLOR=maroon>Set</FONT></I>.<BR>
+<BR>
+
+<DT><DD><TT>val Term.mkType : Impuniv.universe -&gt; constr</TT>. &nbsp;&nbsp;<BR>(<TT>mkType</TT>&nbsp;<I>u</I>) represents the term
+ <I><FONT COLOR=maroon>Type</FONT></I>(<I>u</I>). The universe <I>u</I> is represented as a 
+ section path indexed by an integer. <BR>
+<BR>
+
+<DT><DD><TT>val Term.mkConst : section_path -&gt; constr array -&gt; constr</TT>. &nbsp;&nbsp;<BR>(<TT>mkConst</TT>&nbsp;<I>c</I>&nbsp;<I>v</I>) represents a constant whose name is
+ <I>c</I>. The body of the constant is stored in a global table,
+ accessible through the name of the constant. The array of terms
+ <I>v</I> corresponds to the variables of the environment appearing in
+ the body of the constant when it was defined. For instance, a
+ constant defined in the section <I><FONT COLOR=maroon>Foo</FONT></I> containing the
+ variable <I>A</I>, and whose body is [<I>x</I>:<I>Prop</I><FONT FACE=symbol>®</FONT> <I>Prop</I>](<I>x</I>&nbsp;<I>A</I>) is
+ represented inside the scope of the section by
+ (<TT>mkConst</TT>&nbsp;<TT>#foo#f.cci</TT>&nbsp;[| <TT>mkVAR</TT>&nbsp;<I>A</I>
+ |]). Once the section is closed, the constant is represented by
+ the term (<TT>mkConst</TT>&nbsp;#<I>f</I>.<I>cci</I>&nbsp;[| |]), and its body
+ becomes [<I>A</I>:<I>Prop</I>][<I>x</I>:<I>Prop</I><FONT FACE=symbol>®</FONT> <I>Prop</I>](<I>x</I>&nbsp;<I>A</I>).<BR>
+<BR>
+
+<DT><DD><TT>val Term.mkMutInd : section_path -&gt; int -&gt; constr array -&gt;constr</TT>. &nbsp;&nbsp;<BR>(<TT>mkMutInd</TT>&nbsp;<I>c</I>&nbsp;<I>i</I>) represents the <I>ith</I> type
+ (starting from zero) of the block of mutually dependent
+ (co)inductive types, whose first type is <I>c</I>. Similarly to the
+ case of constants, the array of terms represents the current
+ environment of the (co)inductive type. The definition of the type
+ (its arity, its constructors, whether it is inductive or co-inductive, etc.)
+ is stored in a global hash table, accessible through the name of 
+ the type.<BR>
+<BR>
+
+<DT><DD><TT>val Term.mkMutConstruct :<BR>&nbsp;&nbsp;&nbsp;&nbsp;section_path -&gt; int -&gt; int -&gt; constr array
+ -&gt;constr</TT>. &nbsp;&nbsp;<BR><BR>(<TT>mkMutConstruct</TT>&nbsp;<I>c</I>&nbsp;<I>i</I>&nbsp;<I>j</I>) represents the
+ <I>jth</I> constructor of the <I>ith</I> type of the block of mutually
+ dependent (co)inductive types whose first type is <I>c</I>. The array
+ of terms represents the current environment of the (co)inductive
+ type.<BR>
+<BR>
+
+<DT><DD><TT>val Term.mkCast : constr -&gt; constr -&gt; constr</TT>. &nbsp;&nbsp;<BR>(<TT>mkCast</TT>&nbsp;<I>t</I>&nbsp;<I>T</I>) represents the annotated term <I>t</I>::<I>T</I> in
+ <FONT COLOR=purple>Coq</FONT>'s syntax. <BR>
+<BR>
+
+<DT><DD><TT>val Term.mkProd : name -&gt;constr -&gt;constr -&gt; constr</TT>. &nbsp;&nbsp;<BR>(<TT>mkProd</TT>&nbsp;<I>x</I>&nbsp;<I>A</I>&nbsp;<I>B</I>) represents the product (<I>x</I>:<I>A</I>)<I>B</I>.
+ The free ocurrences of <I>x</I> in <I>B</I> are represented by deBrujin's
+ indexes.<BR>
+<BR>
+
+<DT><DD><TT>val Term.mkNamedProd : identifier -&gt; constr -&gt; constr -&gt; constr</TT>. &nbsp;&nbsp;<BR>(<TT>produit</TT>&nbsp;<I>x</I>&nbsp;<I>A</I>&nbsp;<I>B</I>) represents the product (<I>x</I>:<I>A</I>)<I>B</I>,
+ but the bound occurrences of <I>x</I> in <I>B</I> are denoted by 
+ the identifier (<TT>mkVar</TT>&nbsp;<I>x</I>). The function automatically 
+ changes each occurrences of this identifier into the corresponding 
+ deBrujin's index.<BR>
+<BR>
+
+<DT><DD><TT>val Term.mkArrow : constr -&gt; constr -&gt; constr</TT>. &nbsp;&nbsp;<BR>(<TT>arrow</TT>&nbsp;<I>A</I>&nbsp;<I>B</I>) represents the type (<I>A</I><FONT FACE=symbol>®</FONT> <I>B</I>).<BR>
+<BR>
+
+<DT><DD><TT>val Term.mkLambda : name -&gt; constr -&gt; constr -&gt; constr</TT>. &nbsp;&nbsp;<BR>(<TT>mkLambda</TT>&nbsp;<I>x</I>&nbsp;<I>A</I>&nbsp;<I>b</I>) represents the lambda abstraction 
+ [<I>x</I>:<I>A</I>]<I>b</I>. The free ocurrences of <I>x</I> in <I>B</I> are represented by deBrujin's
+ indexes.<BR>
+<BR>
+
+<DT><DD><TT>val Term.mkNamedLambda : identifier -&gt; constr -&gt; constr -&gt; constr</TT>. &nbsp;&nbsp;<BR>(<TT>lambda</TT>&nbsp;<I>x</I>&nbsp;<I>A</I>&nbsp;<I>b</I>) represents the lambda abstraction 
+ [<I>x</I>:<I>A</I>]<I>b</I>, but the bound occurrences of <I>x</I> in <I>B</I> are denoted by 
+ the identifier (<TT>mkVar</TT>&nbsp;<I>x</I>). <BR>
+<BR>
+
+<DT><DD><TT>val Term.mkAppLA : constr array -&gt; constr</TT>. &nbsp;&nbsp;<BR>(<TT>mkAppLA</TT>&nbsp;<I>t</I>&nbsp;[|<I>t</I><SUB><FONT SIZE=2>1</FONT></SUB>... <I>t</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>|]) represents the application
+ (<I>t</I>&nbsp;<I>t</I><SUB><FONT SIZE=2>1</FONT></SUB>&nbsp;... <I>t</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>).<BR>
+<BR>
+
+<DT><DD><TT>val Term.mkMutCaseA :<BR>&nbsp;&nbsp;&nbsp;&nbsp;case_info -&gt; constr -&gt;constr
+ -&gt;constr array -&gt; constr</TT>. &nbsp;&nbsp;<BR><BR>(<TT>mkMutCaseA</TT>&nbsp;<I>r</I>&nbsp;<I>P</I>&nbsp;<I>m</I>&nbsp;[|<I>f</I><SUB><FONT SIZE=2>1</FONT></SUB>... <I>f</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>|])
+ represents the term &lt;<I>P</I>&gt;<TT>Cases</TT>&nbsp;<I>m</I>&nbsp;<TT>of</TT>&nbsp;<I>f</I><SUB><FONT SIZE=2>1</FONT></SUB>... <I>f</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>&nbsp;<TT>end</TT>. The first argument
+ <I>r</I> is either <TT>None</TT> or <TT>Some</TT>&nbsp;(<I>c</I>,<I>i</I>), where the
+ pair (<I>c</I>,<I>i</I>) refers to the inductive type that <I>m</I> belongs to.<BR>
+<BR>
+
+<DT><DD><TT>val Term.mkFix :<BR>&nbsp;&nbsp;&nbsp;&nbsp;int array-&gt;int-&gt;constr array-&gt;name
+ list-&gt;constr array-&gt;constr</TT>. &nbsp;&nbsp;<BR><BR>(<TT>mkFix</TT>&nbsp;[|<I>k</I><SUB><FONT SIZE=2>1</FONT></SUB>... <I>k</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> |]&nbsp;<I>i</I>&nbsp;[|<I>A</I><SUB><FONT SIZE=2>1</FONT></SUB>...
+ <I>A</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>|]&nbsp;[|<I>f</I><SUB><FONT SIZE=2>1</FONT></SUB>... <I>f</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>|]&nbsp;[|<I>t</I><SUB><FONT SIZE=2>1</FONT></SUB>... <I>t</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>|]) represents the term
+ <TT>Fix</TT>&nbsp;<I>f</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB>{<I>f</I><SUB><FONT SIZE=2>1</FONT></SUB>/<I>k</I><SUB><FONT SIZE=2>1</FONT></SUB>:<I>A</I><SUB><FONT SIZE=2>1</FONT></SUB>:=<I>t</I><SUB><FONT SIZE=2>1</FONT></SUB> ... <I>f</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>/<I>k</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>:<I>A</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>:=<I>t</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>}<BR>
+<BR>
+
+<DT><DD><TT>val Term.mkCoFix :<BR>&nbsp;&nbsp;&nbsp;&nbsp;int -&gt; constr array -&gt; name list -&gt;
+ constr array -&gt; constr</TT>. &nbsp;&nbsp;<BR><BR>(<TT>mkCoFix</TT>&nbsp;<I>i</I>&nbsp;[|<I>A</I><SUB><FONT SIZE=2>1</FONT></SUB>...
+ <I>A</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>|]&nbsp;[|<I>f</I><SUB><FONT SIZE=2>1</FONT></SUB>... <I>f</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>|]&nbsp;[|<I>t</I><SUB><FONT SIZE=2>1</FONT></SUB>... <I>t</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>|]) represents the term
+ <TT>CoFix</TT>&nbsp;<I>f</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB>{<I>f</I><SUB><FONT SIZE=2>1</FONT></SUB>:<I>A</I><SUB><FONT SIZE=2>1</FONT></SUB>:=<I>t</I><SUB><FONT SIZE=2>1</FONT></SUB> ... <I>f</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>:<I>A</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>:=<I>t</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>}. There are no
+ decreasing indexes in this case.
+</DL>
+<H4>
+Decomposing Constructions
+</H4>
+Each of the construction functions above has its corresponding
+(partial) destruction function, whose name is obtained changing the
+prefix <TT>mk</TT> by <TT>dest</TT>. In addition to these functions, a
+concrete datatype <TT>kindOfTerm</TT> can be used to do pattern
+matching on terms without dealing with their internal representation
+in the meta-language. This concrete datatype is described in the <FONT COLOR=purple>Objective Caml</FONT>
+file <TT>term.mli</TT>. The following function transforms a construction
+into an element of type <TT>kindOfTerm</TT>:<BR>
+<BR>
+<DL>
+<DT><DD><TT>val Term.kind_of_term : constr -&gt; kindOfTerm</TT>. &nbsp;&nbsp;<BR>Destructs a term of the language <TT>constr</TT>,
+yielding the direct components of the term. Hence, in order to do 
+pattern matching on an object <I>c</I> of <TT>constr</TT>, it is sufficient
+to do pattern matching on the value (<TT>kind_of_term</TT>&nbsp;<I>c</I>).
+</DL>Part of the information associated to the constants is stored in 
+global tables. The following functions give access to such 
+information:<BR>
+<BR>
+<DL>
+<DT><DD><TT>val Termenv.constant_value : constr -&gt; constr</TT>. &nbsp;&nbsp;<BR>If the term denotes a constant, projects the body of a constant
+
+<DT><DD><TT>Termenv.constant_type : constr -&gt; constr</TT>. &nbsp;&nbsp;<BR>If the term denotes a constant, projects the type of the constant
+
+<DT><DD><TT>val mind_arity : constr -&gt; constr</TT>. &nbsp;&nbsp;<BR>If the term denotes an inductive type, projects its arity (i.e.,
+ the type of the inductive type).
+
+<DT><DD><TT>val Termenv.mis_is_finite : mind_specif -&gt; bool</TT>. &nbsp;&nbsp;<BR>Determines whether a recursive type is inductive or co-inductive.
+
+<DT><DD><TT>val Termenv.mind_nparams : constr -&gt; int</TT>. &nbsp;&nbsp;<BR>If the term denotes an inductive type, projects the number of 
+ its general parameters.
+
+<DT><DD><TT>val Termenv.mind_is_recursive : constr -&gt; bool</TT>. &nbsp;&nbsp;<BR>If the term denotes an inductive type, 
+ determines if the type has at least one recursive constructor. 
+
+<DT><DD><TT>val Termenv.mind_recargs : constr -&gt; recarg list array array</TT>. &nbsp;&nbsp;<BR>If the term denotes an inductive type, returns an array <I>v</I> such 
+ that the nth element of <I>v</I>.(<I>i</I>).(<I>j</I>) is
+ <TT>Mrec</TT> if the <I>nth</I> argument of the <I>jth</I> constructor of
+ the <I>ith</I> type is recursive, and <TT>Norec</TT> if it is not..
+</DL>
+<H3>
+
+10.3.3&nbsp;The Type Checker
+</H3>
+
+<A NAME="TypeChecker"></A>The third logical module is the type checker. It concentrates two main
+tasks concerning the language of constructions.<BR>
+<BR>
+On one hand, it contains the type inference and type-checking
+functions. The type inference function takes a term
+<I>a</I> and a signature <FONT FACE=symbol>G</FONT>, and yields a term <I>A</I> such that
+<FONT FACE=symbol>G</FONT> |- <I>a</I>:<I>A</I>. The type-checking function takes two terms <I>a</I>
+and <I>A</I> and a signature <FONT FACE=symbol>G</FONT>, and determines whether or not
+<FONT FACE=symbol>G</FONT> |- <I>a</I>:<I>A</I>.<BR>
+<BR>
+On the other hand, this module is in charge of the compilation of
+<FONT COLOR=purple>Coq</FONT>'s abstract syntax trees into the language <TT>constr</TT> of
+constructions. This compilation seeks to eliminate all the ambiguities
+contained in <FONT COLOR=purple>Coq</FONT>'s abstract syntax, restoring the information
+necessary to type-check it. It concerns at least the following steps:
+<OL>
+<LI>Compiling the pattern-matching expressions containing 
+constructor patterns, wild-cards, etc, into terms that only
+use the primitive <I><FONT COLOR=maroon>Case</FONT></I> described in Chapter <A HREF="node.0.3.html#Cic">4</A>
+
+<LI>Restoring type coercions and synthesizing the implicit arguments
+(the one denoted by question marks in
+<FONT COLOR=purple>Coq</FONT> syntax: cf section <A HREF="node.0.1.6.html#Coercions">2.7</A>).
+
+<LI>Transforming the named bound variables into deBrujin's indexes.
+
+<LI>Classifying the global names into the different classes of
+constants (defined constants, constructors, inductive types, etc).
+</OL>
+<H3>
+
+10.3.4&nbsp;The Proof Engine
+</H3>
+The fourth stage of <FONT COLOR=purple>Coq</FONT>'s implementation is the <I><FONT COLOR=maroon>proof engine</FONT></I>:
+the interactive machine for constructing proofs. The aim of the proof
+engine is to construct a top-down derivation or <I><FONT COLOR=maroon>proof tree</FONT></I>,
+by the application of <I><FONT COLOR=maroon>tactics</FONT></I>. A proof tree has the following
+general structure:<BR><BR>
+<BR>
+<DIV ALIGN=center>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR VALIGN=middle><TD NOWRAP>
+</TD>
+<TD NOWRAP>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD ALIGN=center><FONT FACE=symbol>G</FONT> |- ? = <I>t</I>(?<SUB><FONT SIZE=2>1</FONT></SUB>,...?<SUB><FONT SIZE=2><I>n</I></FONT></SUB>) : <I>G</I></TD>
+</TR>
+<TR><TD ALIGN=center><HR NOSHADE SIZE=1></TD>
+</TR>
+<TR><TD ALIGN=center>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR VALIGN=middle><TD NOWRAP> &nbsp;&nbsp;&nbsp;</TD>
+<TD NOWRAP>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD ALIGN=center> <FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2>1</FONT></SUB> |- ?<SUB><FONT SIZE=2>1</FONT></SUB> = <I>t</I><SUB><FONT SIZE=2>1</FONT></SUB>(...) : <I>G</I><SUB><FONT SIZE=2>1</FONT></SUB></TD>
+</TR>
+<TR><TD ALIGN=center><HR NOSHADE SIZE=1></TD>
+</TR>
+<TR><TD ALIGN=center>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR VALIGN=middle><TD NOWRAP> 
+</TD>
+<TD NOWRAP>
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center><FONT SIZE=2>·<BR>·<BR>·</FONT></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR VALIGN=middle><TD NOWRAP> </TD>
+<TD NOWRAP>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR VALIGN=middle><TD NOWRAP><FONT FACE=symbol>G</FONT></TD>
+<TD NOWRAP>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD>&nbsp;</TD>
+</TR>
+<TR><TD NOWRAP><FONT SIZE=2><I>i</I><SUB><FONT SIZE=1>1</FONT></SUB></FONT></TD>
+</TR></TABLE></TD>
+<TD NOWRAP> |- ?</TD>
+<TD NOWRAP>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD>&nbsp;</TD>
+</TR>
+<TR><TD NOWRAP><FONT SIZE=2><I>i</I><SUB><FONT SIZE=1>1</FONT></SUB></FONT></TD>
+</TR></TABLE></TD>
+<TD NOWRAP> 
+ : <I>G</I></TD>
+<TD NOWRAP>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD>&nbsp;</TD>
+</TR>
+<TR><TD NOWRAP><FONT SIZE=2><I>i</I><SUB><FONT SIZE=1>1</FONT></SUB></FONT></TD>
+</TR></TABLE></TD>
+</TR></TABLE></TD>
+</TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center>&nbsp; </TD>
+</TR></TABLE></TD>
+</TR></TABLE></TD>
+</TR></TABLE></TD>
+<TD nowrap>(<I>tac</I><SUB><FONT SIZE=2>1</FONT></SUB>)
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ </TD>
+<TD NOWRAP>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD ALIGN=center> <FONT FACE=symbol>G</FONT><SUB><FONT SIZE=2><I>n</I></FONT></SUB> |- ?<SUB><FONT SIZE=2><I>n</I></FONT></SUB> = <I>t</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>(...) : <I>G</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB></TD>
+</TR>
+<TR><TD ALIGN=center><HR NOSHADE SIZE=1></TD>
+</TR>
+<TR><TD ALIGN=center>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR VALIGN=middle><TD NOWRAP>  
+</TD>
+<TD NOWRAP>
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=center><FONT SIZE=2>·<BR>·<BR>·</FONT></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR VALIGN=middle><TD NOWRAP> </TD>
+<TD NOWRAP>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR VALIGN=middle><TD NOWRAP><FONT FACE=symbol>G</FONT></TD>
+<TD NOWRAP>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD>&nbsp;</TD>
+</TR>
+<TR><TD NOWRAP><FONT SIZE=2><I>i</I><SUB><FONT SIZE=1><I>m</I></FONT></SUB></FONT></TD>
+</TR></TABLE></TD>
+<TD NOWRAP> |- ?</TD>
+<TD NOWRAP>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD>&nbsp;</TD>
+</TR>
+<TR><TD NOWRAP><FONT SIZE=2><I>i</I><SUB><FONT SIZE=1><I>m</I></FONT></SUB></FONT></TD>
+</TR></TABLE></TD>
+<TD NOWRAP> :
+ <I>G</I></TD>
+<TD NOWRAP>
+<TABLE CELLSPACING=0 CELLPADDING=0>
+<TR><TD>&nbsp;</TD>
+</TR>
+<TR><TD NOWRAP><FONT SIZE=2><I>i</I><SUB><FONT SIZE=1><I>m</I></FONT></SUB></FONT></TD>
+</TR></TABLE></TD>
+</TR></TABLE></TD>
+</TR></TABLE></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=center>&nbsp; </TD>
+</TR></TABLE></TD>
+</TR></TABLE></TD>
+</TR></TABLE></TD>
+<TD nowrap>(<I>tac</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>)</TD>
+</TR></TABLE></TD>
+</TR></TABLE></TD>
+<TD nowrap> (<I>tac</I>) 
+</TD>
+</TR></TABLE></DIV><BR>
+Each node of the tree is called a <I><FONT COLOR=maroon>goal</FONT></I>. A goal
+is a record type containing the following three fields:
+<OL>
+<LI>the conclusion <I>G</I> to be proven;
+
+<LI>a typing signature <FONT FACE=symbol>G</FONT> for the free variables in <I>G</I>;
+
+<LI>if the goal is an internal node of the proof tree, the
+definition <I>t</I>(?<SUB><FONT SIZE=2>1</FONT></SUB>,...?<SUB><FONT SIZE=2><I>n</I></FONT></SUB>) of an <I><FONT COLOR=maroon>existential variable</FONT></I>
+(i.e. a possible undefined constant) ? of type <I>G</I> in terms of the
+existential variables of the children sub-goals. If the node is a
+leaf, the existential variable maybe still undefined.
+</OL>Once all the existential variables have been defined the derivation is
+completed, and a construction can be generated from the proof tree,
+replacing each of the existential variables by its definition. This
+is exactly what happens when one of the commands
+<TT>Qed</TT>, <TT>Save</TT> or <TT>Defined</TT> is invoked
+(cf. Section <A HREF="node.1.1.0.html#Qed">6.1.2</A>). The saved theorem becomes a defined constant,
+whose body is the proof object generated.<BR>
+<BR>
+
+<H5>
+Important:
+</H5>
+ Before being added to the
+context, the proof object is type-checked, in order to verify that it is
+actually an object of the expected type <I>G</I>. Hence, the correctness
+of the proof actually does not depend on the tactics applied to
+generate it or the machinery of the proof engine, but only on the
+type-checker. In other words, extending the system with a potentially
+bugged new tactic never endangers the consistency of the system.<BR>
+<BR>
+
+<H4>
+What is a Tactic?
+</H4>
+
+<A NAME="WhatIsATactic"></A>
+From an operational point of view, the current state of the proof
+engine is given by the mapping <I>emap</I> from existential variables into
+goals, plus a pointer to one of the leaf goals <I>g</I>. Such a pointer
+indicates where the proof tree will be refined by the application of a
+<I><FONT COLOR=maroon>tactic</FONT></I>. A tactic is a function from the current state
+(<I>g</I>,<I>emap</I>) of the proof engine into a pair (<I>l</I>,<I>val</I>). The first
+component of this pair is the list of children sub-goals <I>g</I><SUB><FONT SIZE=2>1</FONT></SUB>,...
+<I>g</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> of <I>g</I> to be yielded by the tactic. The second one is a
+<I><FONT COLOR=maroon>validation function</FONT></I>. Once the proof trees <FONT FACE=symbol>p</FONT><SUB><FONT SIZE=2>1</FONT></SUB>,...
+<FONT FACE=symbol>p</FONT><SUB><FONT SIZE=2><I>n</I></FONT></SUB> for <I>g</I><SUB><FONT SIZE=2>1</FONT></SUB>,... <I>g</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> have been completed, this validation
+function must yield a proof tree (<I>val</I>&nbsp;<FONT FACE=symbol>p</FONT><SUB><FONT SIZE=2>1</FONT></SUB>,... <FONT FACE=symbol>p</FONT><SUB><FONT SIZE=2><I>n</I></FONT></SUB>) deriving
+<I>g</I>.<BR>
+<BR>
+Tactics can be classified into <I><FONT COLOR=maroon>primitive</FONT></I> ones and
+<I><FONT COLOR=maroon>defined</FONT></I> ones. Primitive tactics correspond to the five basic
+operations of the proof engine:<BR>
+<BR>
+<OL>
+<LI>Introducing a universally quantified variable into the local
+context of the goal.
+
+<LI>Defining an undefined existential variable 
+
+<LI>Changing the conclusion of the goal for another
+--definitionally equal-- term.
+
+<LI>Changing the type of a variable in the local context for another
+definitionally equal term.
+
+<LI>Erasing a variable from the local context.
+</OL><I><FONT COLOR=maroon>Defined</FONT></I> tactics are tactics constructed by combining these
+primitive operations. Defined tactics are registered in a hash table,
+so that they can be introduced dynamically. In order to define such a
+tactic table, it is necessary to fix what a <I><FONT COLOR=maroon>possible argument</FONT></I>
+of a tactic may be. The type <TT>tactic_arg</TT> of the possible
+arguments for tactics is a union type including:
+<UL>
+<LI>quoted strings;
+
+<LI>integers;
+
+<LI>identifiers;
+
+<LI>lists of identifiers;
+
+<LI>plain terms, represented by its abstract syntax tree;
+
+<LI>well-typed terms, represented by a construction;
+
+<LI>a substitution for bound variables, like the
+substitution in the tactic<BR><TT>Apply</TT>&nbsp;<I>t</I>&nbsp;<TT>with</TT>&nbsp;<I>x</I>:=<I>t</I><SUB><FONT SIZE=2>1</FONT></SUB>...
+<I>x</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>:=<I>t</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>, (cf. Section <A HREF="node.1.2.2.html#Apply">7.3.5</A>);
+
+<LI>a reduction expression, denoting the reduction strategy to be
+followed.
+</UL>
+Therefore, for each function <I>tac</I>:<I>a</I> <FONT FACE=symbol>®</FONT> <I>tactic</I> implementing a
+defined tactic, an associated dynamic tactic <I>tacargs</I>_<I>tac</I>:
+<TT>tactic_arg</TT>&nbsp;<I>list</I> <FONT FACE=symbol>®</FONT> <I>tactic</I> calling <I>tac</I> must be
+written. The aim of the auxiliary function <I>tacargs</I>_<I>tac</I> is to inject
+the arguments of the tactic <I>tac</I> into the type of possible arguments
+for a tactic.<BR>
+<BR>
+The following function can be used for registering and calling a
+defined tactic:<BR>
+<BR>
+<DL>
+<DT><DD><TT>val Tacmach.add_tactic :<BR>&nbsp;&nbsp;&nbsp;&nbsp;string -&gt; (tactic_arg list -&gt;tactic) -&gt; unit</TT>. &nbsp;&nbsp;<BR><BR>Registers a dynamic tactic with the given string as access index.
+
+<DT><DD><TT>val Tacinterp.vernac_tactic : string*tactic_arg list -&gt; tactic</TT>. &nbsp;&nbsp;<BR>Interprets a defined tactic given by its entry in the
+ tactics table with a particular list of possible arguments.
+
+<DT><DD><TT>val Tacinterp.vernac_interp : CoqAst.t -&gt; tactic</TT>. &nbsp;&nbsp;<BR>Interprets a tactic expression formed combining <FONT COLOR=purple>Coq</FONT>'s tactics and
+ tacticals, and described by its abstract syntax tree.
+</DL>When programming a new tactic that calls an already defined tactic
+<I>tac</I>, we have the choice between using the <FONT COLOR=purple>Objective Caml</FONT> function
+implementing <I>tac</I>, or calling the tactic interpreter with the name
+and arguments for interpreting <I>tac</I>. In the first case, a tactic call
+will left the trace of the whole implementation of <I>tac</I> in the proof
+tree. In the second, the implementation of <I>tac</I> will be hidden, and
+only an invocation of <I>tac</I> will be recalled (cf. the example of
+Section <A HREF="node.2.1.5.html#ACompleteExample">10.6</A>. The following combinators can be used
+to hide the implementation of a tactic:<BR>
+<BR>
+<PRE>
+type 'a hiding_combinator = string -&gt; ('a -&gt; tactic) -&gt; ('a -&gt; tactic)
+val Tacmach.hide_atomic_tactic  : string -&gt; tactic -&gt; tactic
+val Tacmach.hide_constr_tactic  : constr          hiding_combinator
+val Tacmach.hide_constrl_tactic : (constr list)   hiding_combinator
+val Tacmach.hide_numarg_tactic  : int             hiding_combinator
+val Tacmach.hide_ident_tactic   : identifier      hiding_combinator
+val Tacmach.hide_identl_tactic  : identifier      hiding_combinator
+val Tacmach.hide_string_tactic  : string          hiding_combinator
+val Tacmach.hide_bindl_tactic   : substitution    hiding_combinator
+val Tacmach.hide_cbindl_tactic  : 
+          (constr * substitution) hiding_combinator
+</PRE>These functions first register the tactic by a side effect, and then
+yield a function calling the interpreter with the registered name and
+the right injection into the type of possible arguments.<BR>
+<BR>
+
+<H3>
+
+10.3.5&nbsp;Tactics and Tacticals Provided by <FONT COLOR=purple>Coq</FONT>
+</H3>
+The fifth logical module is the library of tacticals and basic tactics
+provided by <FONT COLOR=purple>Coq</FONT>. This library is distributed into the directories
+<TT>tactics</TT> and <TT>src/tactics</TT>. The former contains those
+basic tactics that make use of the types contained in the basic state
+of <FONT COLOR=purple>Coq</FONT>. For example, inversion or rewriting tactics are in the
+directory <TT>tactics</TT>, since they make use of the propositional
+equality type. Those tactics which are independent from the context
+--like for example <TT>Cut</TT>, <TT>Intros</TT>, etc-- are defined in
+the directory <TT>src/tactics</TT>. This latter directory also
+contains some useful tools for programming new tactics, referred in 
+Section <A HREF="node.2.1.4.html#SomeUsefulToolsforWrittingTactics">10.5</A>.<BR>
+<BR>
+In practice, it is very unusual that the list of sub-goals and the
+validation function of the tactic must be explicitly constructed by
+the user. In most of the cases, the implementation of a new tactic
+consists in supplying the appropriate arguments to the basic tactics
+and tacticals.<BR>
+<BR>
+
+<H4>
+Basic Tactics
+</H4>
+The file <TT>Tactics</TT> contain the implementation of the basic
+tactics provided by <FONT COLOR=purple>Coq</FONT>. The following tactics are some of the most
+used ones:<BR>
+<BR>
+<PRE>
+val Tactics.intro           : tactic
+val Tactics.assumption      : tactic
+val Tactics.clear           : identifier list -&gt; tactic
+val Tactics.apply           : constr -&gt; constr substitution -&gt; tactic
+val Tactics.one_constructor : int -&gt; constr substitution -&gt; tactic
+val Tactics.simplest_elim   : constr -&gt; tactic
+val Tactics.elimType        : constr -&gt; tactic
+val Tactics.simplest_case   : constr -&gt; tactic
+val Tactics.caseType        : constr -&gt; tactic
+val Tactics.cut             : constr -&gt; tactic
+val Tactics.reduce          : redexpr -&gt; tactic
+val Tactics.exact           : constr -&gt; tactic
+val Auto.auto               : int option -&gt; tactic
+val Auto.trivial            : tactic
+</PRE>The functions hiding the implementation of these tactics are defined
+in the module <TT>Hiddentac</TT>. Their names are prefixed by ``h_''.<BR>
+<BR>
+
+<H4>
+Tacticals
+</H4>
+
+<A NAME="OcamlTacticals"></A>The following tacticals can be used to combine already existing
+tactics:<BR>
+<BR>
+<DL>
+<DT><DD><TT>val Tacticals.tclIDTAC : tactic</TT>. &nbsp;&nbsp;<BR>The identity tactic: it leaves the goal as it is.<BR>
+<BR>
+
+<DT><DD><TT>val Tacticals.tclORELSE : tactic -&gt; tactic -&gt; tactic</TT>. &nbsp;&nbsp;<BR>Tries the first tactic and in case of failure applies the second one.<BR>
+<BR>
+
+<DT><DD><TT>val Tacticals.tclTHEN : tactic -&gt; tactic -&gt; tactic</TT>. &nbsp;&nbsp;<BR>Applies the first tactic and then the second one to each generated subgoal.<BR>
+<BR>
+
+<DT><DD><TT>val Tacticals.tclTHENS : tactic -&gt; tactic list -&gt; tactic</TT>. &nbsp;&nbsp;<BR>Applies a tactic, and then applies each tactic of the tactic list to the
+ corresponding generated subgoal.<BR>
+<BR>
+
+<DT><DD><TT>val Tacticals.tclTHENL : tactic -&gt; tactic -&gt; tactic</TT>. &nbsp;&nbsp;<BR>Applies the first tactic, and then applies the second one to the last
+ generated subgoal.<BR>
+<BR>
+
+<DT><DD><TT>val Tacticals.tclREPEAT : tactic -&gt; tactic</TT>. &nbsp;&nbsp;<BR>If the given tactic succeeds in producing a subgoal, then it
+ is recursively applied to each generated subgoal, 
+ and so on until it fails. <BR>
+<BR>
+
+<DT><DD><TT>val Tacticals.tclFIRST : tactic list -&gt; tactic</TT>. &nbsp;&nbsp;<BR>Tries the tactics of the given list one by one, until one of them
+ succeeds.<BR>
+<BR>
+
+<DT><DD><TT>val Tacticals.tclTRY : tactic -&gt; tactic</TT>. &nbsp;&nbsp;<BR>Tries the given tactic and in case of failure applies the <TT>tclIDTAC</TT> tactical to the original goal.<BR>
+<BR>
+
+<DT><DD><TT>val Tacticals.tclDO : int -&gt; tactic -&gt; tactic</TT>. &nbsp;&nbsp;<BR>Applies the tactic a given number of times.<BR>
+<BR>
+
+<DT><DD><TT>val Tacticals.tclFAIL : tactic</TT>. &nbsp;&nbsp;<BR>The always failing tactic: it raises a <TT>UserError</TT> exception.<BR>
+<BR>
+
+<DT><DD><TT>val Tacticals.tclPROGRESS : tactic -&gt; tactic</TT>. &nbsp;&nbsp;<BR>Applies the given tactic to the current goal and fails if the 
+ tactic leaves the goal unchanged<BR>
+<BR>
+
+<DT><DD><TT>val Tacticals.tclNTH_HYP : int -&gt; (constr -&gt; tactic) -&gt; tactic</TT>. &nbsp;&nbsp;<BR>Applies a tactic to the nth hypothesis of the local context.
+ The last hypothesis introduced correspond to the integer 1.<BR>
+<BR>
+
+<DT><DD><TT>val Tacticals.tclLAST_HYP : (constr -&gt; tactic) -&gt; tactic</TT>. &nbsp;&nbsp;<BR>Applies a tactic to the last hypothesis introduced.<BR>
+<BR>
+
+<DT><DD><TT>val Tacticals.tclCOMPLETE : tactic -&gt; tactic</TT>. &nbsp;&nbsp;<BR>Applies a tactic and fails if the tactic did not solve completely the
+ goal<BR>
+<BR>
+
+<DT><DD><TT>val Tacticals.tclMAP : ('a -&gt; tactic) -&gt; 'a list -&gt; tactic</TT>. &nbsp;&nbsp;<BR>Applied to the function <TT>f</TT> and the list <TT>[x_1;
+ ... ; x_n]</TT>, this tactical applies the tactic
+ <TT>tclTHEN (f x1) (tclTHEN (f x2) ... ))))</TT>
+ 
+
+<DT><DD><TT>val Tacicals.tclIF : (goal sigma -&gt; bool) -&gt; tactic -&gt; tactic -&gt; tactic</TT>. &nbsp;&nbsp;<BR>If the condition holds, apply the first tactic; otherwise,
+ apply the second one</DL>
+<H3>
+
+10.3.6&nbsp;The Vernacular Interpreter
+</H3>
+The sixth logical module of the implementation corresponds to the
+interpreter of the vernacular phrases of <FONT COLOR=purple>Coq</FONT>. These phrases may be
+expressions from the <FONT COLOR=purple>Gallina</FONT> language (definitions), general
+directives (setting commands) or tactics to be applied by the proof
+engine. <BR>
+<BR>
+
+<H3>
+
+10.3.7&nbsp;The Parser and the Pretty-Printer
+</H3>
+
+<A NAME="PrettyPrinter"></A>The last logical module is the parser and pretty printer of <FONT COLOR=purple>Coq</FONT>,
+which is the interface between the vernacular interpreter and the
+user. They translate the chains of characters entered at the input
+into abstract syntax trees, and vice versa. Abstract syntax trees are
+represented by labeled n-ary trees, and its type is called
+<TT>CoqAst.t</TT>. For instance, the abstract syntax tree associated
+to the term [<I>x</I>:<I>A</I>]<I>x</I> is:<BR>
+<BR>
+<DIV ALIGN=center>
+<TT>Node</TT>
+ ((0,6), "<I>LAMBDA</I>",
+ [<TT>Nvar</TT>&nbsp;((3, 4),"<I>A</I>");&nbsp;<TT>Slam</TT>&nbsp;((0,6),&nbsp;<I>Some</I>&nbsp;"<I>x</I>",&nbsp;<TT>Nvar</TT>&nbsp;((5,6),"<I>x</I>"))])
+</DIV><BR>
+The numbers correspond to <I><FONT COLOR=maroon>locations</FONT></I>, used to point to some
+input line and character positions in the error messages. As it was
+already explained in Section <A HREF="node.2.1.2.html#TypeChecker">10.3.3</A>, this term is then
+translated into a construction term in order to be typed.<BR>
+<BR>
+The parser of <FONT COLOR=purple>Coq</FONT> is implemented using <FONT COLOR=purple>Camlp4</FONT>. The lexer and the data
+used by <FONT COLOR=purple>Camlp4</FONT> to generate the parser lay in the directory
+<TT>src/parsing</TT>. This directory also contains <FONT COLOR=purple>Coq</FONT>'s
+pretty-printer. The printing rules lay in the directory
+<TT>src/syntax</TT>. The different entries of the grammar are
+described in the module <TT>Pcoq.Entry</TT>. Let us present here two
+important functions of this logical module:<BR>
+<BR>
+<DL>
+<DT><DD><TT>val Pcoq.parse_string : 'a Grammar.Entry.e -&gt; string -&gt; 'a</TT>. &nbsp;&nbsp;<BR>Parses a given string, trying to recognize a phrase
+ corresponding to some entry in the grammar. If it succeeds,
+ it yields a value associated to the grammar entry. For example,
+ applied to the entry <TT>Pcoq.Command.command</TT>, this function
+ parses a term of <FONT COLOR=purple>Coq</FONT>'s language, and yields a value of type 
+ <TT>CoqAst.t</TT>. When applied to the entry
+ <TT>Pcoq.Vernac.vernac</TT>, it parses a vernacular command and
+ returns the corresponding Ast.
+
+<DT><DD><TT>val gentermpr :<BR>&nbsp;&nbsp;&nbsp;&nbsp;path_kind -&gt; constr assumptions -&gt; constr -&gt; std_ppcmds</TT>. &nbsp;&nbsp;<BR><BR>Pretty-prints a well-typed term of certain kind (cf. Section
+ <A HREF="node.2.1.2.html#SectionPaths">10.3.1</A>) under its context of typing assumption.
+
+<DT><DD><TT>val gentacpr : CoqAst.t -&gt; std_ppcmds</TT>. &nbsp;&nbsp;<BR>Pretty-prints a given abstract syntax tree representing a tactic
+ expression.
+</DL>
+<H3>
+
+10.3.8&nbsp;The General Library
+</H3>
+In addition to the ones laying in the standard library of <FONT COLOR=purple>Objective Caml</FONT>,
+several useful modules about lists, arrays, sets, mappings, balanced
+trees, and other frequently used data structures can be found in the
+directory <TT>lib</TT>. Before writing a new one, check if it is not
+already there!<BR>
+<BR>
+
+<H4>
+The module <TT>Std</TT>
+</H4>
+
+This module in the directory <TT>src/lib/util</TT> is opened by almost 
+all modules of <FONT COLOR=purple>Coq</FONT>. Among other things, it contains a definition of 
+the different kinds of errors used in <FONT COLOR=purple>Coq</FONT> :<BR>
+<BR>
+<DL>
+<DT><DD><TT>exception UserError of string * std_ppcmds</TT>. &nbsp;&nbsp;<BR>This is the class of ``users exceptions''. Such errors arise when 
+ the user attempts to do something illegal, for example <TT>Intro</TT>
+ when the current goal conclusion is not a product.<BR>
+<BR>
+
+<DT><DD><TT>val Std.error : string -&gt; 'a</TT>. &nbsp;&nbsp;<BR>For simple error messages
+
+<DT><DD><TT>val Std.errorlabstrm : string -&gt; std_ppcmds -&gt; 'a</TT>. &nbsp;&nbsp;<BR>See section <A HREF="node.2.1.2.html#PrettyPrinter">10.3.7</A> : this can be used if the user
+ want to display a term or build a complex error message<BR>
+<BR>
+
+<DT><DD><TT>exception Anomaly of string * std_ppcmds</TT>. &nbsp;&nbsp;<BR>This for reporting bugs or things that should not
+ happen. The tacticals <TT>tclTRY</TT> and
+ <TT>tclTRY</TT> described in section <A HREF="node.2.1.2.html#OcamlTacticals">10.3.5</A> catch the
+ exceptions of type <TT>UserError</TT>, but they don't catch the
+ anomalies. So, in your code, don't raise any anomaly, unless you
+ know what you are doing. We also recommend to avoid constructs
+ such as <TT>try ... with _ -&gt; ...</TT> : such constructs can trap 
+ an anomaly and make the debugging process harder.<BR>
+<BR>
+
+<DT><DD><TT>val Std.anomaly : string -&gt; 'a</TT>. &nbsp;&nbsp;<BR>
+
+<DT><DD><TT>val Std.anomalylabstrm : string -&gt; std_ppcmds -&gt; 'a</TT>. &nbsp;&nbsp;<BR>
+</DL><HR>
+
+<A HREF="node.2.1.1.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.2.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.2.1.3.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

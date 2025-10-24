@@ -1,0 +1,304 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD><TITLE></TITLE></HEAD>
+<BODY BGCOLOR=silver TEXT=black>
+<!--CUT DEF section 1 -->
+<BR>
+<BR>
+
+<DIV ALIGN=center><FONT SIZE=6><B>The Coq Proof Assistant<BR>
+ Changes from </B></FONT><FONT SIZE=6><B><FONT COLOR=purple>Coq</FONT></B></FONT><FONT SIZE=6><B> V6.2 to </B></FONT><FONT SIZE=6><B><FONT COLOR=purple>Coq</FONT></B></FONT><FONT SIZE=6><B> V6.3<BR></B></FONT><FONT SIZE=6>
+</FONT>
+</DIV>
+
+<BR>
+This document describes the main differences between Coq V6.2 and
+V6.3. This new version of Coq is characterized by new tactics and a
+more flexible guard condition in fixpoints definitions. 
+We refer to the reference manual
+for a more precise description of the new features.<BR>
+<BR>
+<BR>
+<BR>
+<!--TOC section Changes overview-->
+
+<H2>1&nbsp;&nbsp;Changes overview</H2><!--TOC subsection New Tactics-->
+
+<H3>1.1&nbsp;&nbsp;New Tactics</H3> <UL>
+<LI> The <TT>AutoRewrite</TT> tactic uses a set of theorems
+ as rewrite rules that are applied sequentially in order to
+ solve the goal. This tactic is still experimental and subject to changes.<BR>
+<BR>
+ 
+<LI><TT>First</TT> and <TT>Solve</TT> are two tacticals which
+ apply to a sequence of
+ tactics written <TT>[ </TT><TT><I>tac</I></TT><TT><SUB><FONT SIZE=2>1</FONT></SUB></TT><TT> | ... |
+ </TT><TT><I>tac</I></TT><TT><SUB><FONT SIZE=2><I>n</I></FONT></SUB></TT><TT> ]</TT>.
+ <TT>First</TT> applies the first tactic in the given list 
+ which does not fail while
+ <TT>Solve</TT> applies the first tactic in the list 
+ which completely solves the goal.<BR>
+<BR>
+ 
+<LI><TT>Quote</TT> this new tactic does automatic inversion of
+ interpretation function for people using Barengregt's so-called
+ `2-level approach'. See examples in <TT>theories/DEMOS/DemoQuote.v</TT>.<BR>
+<BR>
+ 
+<LI><TT>Change</TT> <I>term</I> <TT>in</TT> <I>hyp</I> is now
+ available.<BR>
+<BR>
+ 
+<LI><TT>Move</TT> <I>hyp</I> <TT>after</TT> <I>hyp</I> allows
+ to reorder the hypotheses of the local context.<BR>
+<BR>
+ </UL><!--TOC subsection Changes in existing tactics-->
+
+<H3>1.2&nbsp;&nbsp;Changes in existing tactics</H3> <UL>
+<LI> <TT>Intro</TT> or <TT>Intros</TT> with explicit names 
+ will force an head reduction of the goal in case it does not start
+ with a product.<BR><TT>Intro</TT> or <TT>Intros</TT> without explicit names
+ generate automatically names for the hypothesis or
+ variable to be introduced. The algorithm to generate these names
+ has been slightly changed, this may be a source of incompatibility in the
+ proofs script.<BR>
+<BR>
+ The new variant <TT>Intro </TT><TT><I>ident</I></TT><TT> after </TT><TT><I>hyp</I></TT> allows to
+ tell the place where an hypothesis is introduced in the context.<BR>
+<BR>
+ 
+<LI><TT>Auto</TT> the structure of the hints databases for the Auto
+ tactic was changed in version V6.2.3. 
+ In version V6.3, the following new features were added to Auto&nbsp;:
+ <UL>
+<LI><TT>Print</TT> <I>HintDbname</I> prints out the contents of
+ a the hint database <I>HintDbname</I>;
+ 
+<LI><TT>Constructors</TT> <I>Indname</I> is a new hint
+ tactic which is equivalent to introduce the <TT>Resolve</TT>
+ hint tactic for each
+ constructor of the <I>Indname</I> inductive definition.
+ </UL><BR>
+ 
+<LI><TT>Induction</TT> <I>var</I> now also performs induction on
+ a variable <I>var</I> of the local context. This extension is
+ more ``user-friendly'' in the sense it generalizes automatically
+ above the other hypotheses dependent on the original variable. It
+ does not duplicate any longer the name of the variable to which it
+ applies. It should avantageously replaces "Elim" on an
+ hypothesis/variable or a typical sequence "Generalize" followed by
+ "Induction" on the generalized variable. But this extension is
+ experimental and susceptible of change in next releases.<BR>
+<BR>
+ 
+<LI><TT>Let</TT> <I>ident</I> <TT>:=</TT> <I>term</I>
+ <TT>in</TT> <I>occurlist</I> <I>hyps</I> replaces the given
+ occurrences of <TT>term</TT> in the hypotheses <I>hyps</I> (or in
+ the goal) by the variable <I>ident</I> and keep the equality
+ <I>ident=term</I> in the context. This is actually a variant of
+ <TT>Generalize</TT> which keeps track of the original term. As the
+ new <TT>Induction</TT> to which it can be combined, it is susceptible
+ of change in next releases.<BR>
+<BR>
+ 
+<LI>The <TT>Ring</TT> tactic has been extended and 
+ works now also when the ring is in the <FONT COLOR=purple>Type</FONT> sort.<BR>
+<BR>
+ 
+<LI>The tactic <TT>Correctness</TT> has been improved.
+ </UL><!--TOC subsection New toplevel commands-->
+
+<H3>1.3&nbsp;&nbsp;New toplevel commands</H3><DL>
+<DT><TT>Time</TT><DD> Any vernacular command (including invocation of
+ tactics) can be prefixed by the word <TT>Time</TT>; then the time
+ spent is printed after having executed the command. For example :
+ <TT>Time Save.</TT> or <TT>Time Omega.</TT>
+ 
+
+<DT><TT>Focus</TT> <I>n</I><DD> It is now possible to focus on a specific
+ goal using the command <TT>Focus</TT> <I>n</I>, with <I>n</I> being the
+ range of the selected subgoal. All the tactics will be applied to
+ this goal and only the subgoals inherited from the selected goal
+ are displayed. When the subgoal is completed, the message
+ <TT>"Subtree proved"</TT> is printed out then the focus goes back
+ to the initial goal and the corresponding remaining subgoals are
+ printed out. The focus commands are reseted by the
+ <TT>Undo</TT> command or <TT>Unfocus</TT>. <TT>Focus</TT>
+ without argument keeps its old meaning to only disply the first
+ subgoal.<BR>
+<BR>
+
+<DT>Evaluation in Definition<DD> It is now possible to apply a
+ reduction function to a term inside a definition. Just replace the
+ term to be defined by 
+ <DIV ALIGN=center><TT>Eval</TT>&nbsp; <I>reduction-function</I>&nbsp; <TT>in</TT>&nbsp;
+ <I>term</I></DIV> 
+ at the right hand side of the <TT>:=</TT> sign in a definition.<BR>
+<BR>
+ </DL><!--TOC subsection Language extensions-->
+
+<H3>1.4&nbsp;&nbsp;Language extensions</H3>
+ <DL>
+<DT>Type reconstruction<DD> The algorithm to solve incomplete
+ information in terms has been improved. In particular 
+ question marks can be put
+ in place of the type of universally quantified variables.
+ 
+<DT>Guarded fixpoints<DD> The condition for well-formed
+ fixpoints has been extended, it is now possible to define
+ structural fixpoints for positive inductive definitions with
+ nested recursion (like 
+ </DL><!--TOC subsection Libraries-->
+
+<H3>1.5&nbsp;&nbsp;Libraries</H3> <DL>
+<DT> Reals<DD> The library of real numbers has been extended and 
+ obeys to the same naming convention than
+ ARITH and ZARITH: addition is <TT>Rplus</TT>, theorems stating commutativity are
+ postfixed by <TT>_sym</TT> like <TT>plus_sym</TT>,
+ <TT>Rmult_sym</TT>, etc. The tactic <TT>Ring</TT> has been
+ instantiated on the reals; one can use it to normalize polynomial
+ expressions over the reals. <BR>
+<BR>
+The library <TT>Reals</TT>
+ has been completed by a definition of limit, derivative
+ and by others properties and functions.
+</DL><!--TOC subsection Documentation-->
+
+<H3>1.6&nbsp;&nbsp;Documentation</H3>The documentation includes now an index of errors.<BR>
+<BR>
+<BR>
+<BR>
+<!--TOC section Incompatibilities-->
+
+<H2>2&nbsp;&nbsp;Incompatibilities</H2> You could have to modify your vernacular source for the following
+ reasons:<BR>
+<BR>
+ <UL>
+<LI>Some names of variables have changed. Typically, a sequence
+ "Generalize n; Induction n" should become a "Generalize n; Induction n0",
+ or better, simply "Induction n" since Induction now works with
+ hypotheses of the context and generalizes automatically.<BR>
+<BR>
+ 
+<LI>In the library ZArith, "Zinv" has been renamed as "Zopp", in
+ order to be coherent with the Reals library. Theorems whose name
+ includes "Zinv" have been renamed too. A global search-and-replace
+ of "Zinv" by "Zopp" should be sufficient to update user's
+ developments.<BR>
+<BR>
+ 
+<LI>In the library Reals, some names has been changed. 
+ In the file README of the library, there is a script which can be
+ used to update user's developments.<BR>
+<BR>
+ 
+<LI>The definition of Exists has changed in LISTS/Streams.<BR>
+<BR>
+ </UL><!--TOC section New contributions-->
+
+<H2>3&nbsp;&nbsp;New contributions</H2>
+We integrated new contributions :
+<DL>
+<DT>Finite sets and graphs<DD> 
+This contribution is due to J. Goubault-Larrecq from Dyade
+ (INRIA-Bull). It contains a
+development of finite sets implemented efficiently
+as trees indexed by binary numbers. This representation is used to
+implement graphs corresponding to arithmetic formulas and prove the
+correctness of a decision procedure testing the satisfiability of
+formula by detecting cycles of positive weigth in the graph
+
+<DT><FONT FACE=symbol>p</FONT>-calculus<DD> A development of <FONT FACE=symbol>p</FONT>-calculus due to 
+I. Scagnetto from University of Udine.
+
+<DT>The three gap theorem<DD> A Proof of the Three Gap Theorem
+ (Steinhaus Conjecture) by M. Mayero from INRIA Rocquencourt.
+
+<DT>Algebra<DD> Basic notions of algebra designed by L. Pottier from
+ INRIA Sophia-Antipolis.
+
+<DT>Heapsort<DD> A proof of an imperative version of the
+ Heapsort sorting algorithm.</DL><!--TOC section Installation procedure-->
+
+<H2>4&nbsp;&nbsp;Installation procedure</H2><!--TOC subsection Uninstalling Coq-->
+
+<H3>4.1&nbsp;&nbsp;Uninstalling Coq</H3>
+<H5>Warning</H5> 
+It is strongly recommended to clean-up the V6.2 Coq library directory
+before you install the new version.
+Use the option to coqtop <TT>-uninstall</TT> that will remove
+the binaries and the library files of Coq V6.2 on a Unix system.<BR>
+<BR>
+<BR>
+<BR>
+<!--TOC subsection OS Issues -- Requirements-->
+
+<H3>4.2&nbsp;&nbsp;OS Issues -- Requirements</H3><!--TOC subsubsection Unix users-->
+
+<H4>4.2.1&nbsp;&nbsp;Unix users</H4>
+You need Objective Caml version 2.01 or 2.02, and the corresponding 
+Camlp4 version to compile the system. Both are available by anonymous ftp
+at:<BR>
+<BR>
+<BR><BR><CODE>ftp://ftp.inria.fr/Projects/Cristal</CODE>.
+<BR><BR><BR>
+<BR>
+Binary distributions are available for the following architectures:<BR>
+<BR>
+<BR><BR>
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=1>
+<TR><TD NOWRAP ALIGN=left><B>OS </B></TD>
+<TD NOWRAP ALIGN=center><B>Processor</B></TD>
+<TD NOWRAP ALIGN=right>name of the package</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>Linux</TD>
+<TD NOWRAP ALIGN=center>80386 and higher</TD>
+<TD NOWRAP ALIGN=right>coq-6.3-linux-i386.tar.gz</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>Solaris</TD>
+<TD NOWRAP ALIGN=center>Sparc</TD>
+<TD NOWRAP ALIGN=right>coq-6.3-solaris-sparc.tar.gz</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=left>Digital</TD>
+<TD NOWRAP ALIGN=center>Alpha</TD>
+<TD NOWRAP ALIGN=right>coq-6.3-OSF1.tar.gz</TD>
+</TR></TABLE>
+<BR><BR><BR>
+<BR>
+If your configuration is in the above list, you don't need to install
+Caml and Camlp4 and to compile the system: 
+just download the package and install the binaries in the right place.<BR>
+<BR>
+<BR>
+<BR>
+<!--TOC subsubsection MS Windows users-->
+
+<H4>4.2.2&nbsp;&nbsp;MS Windows users</H4>A binary distribution is available for PC under MS Windows 95/NT.
+The package is named coq-6.3-win.zip.<BR>
+<BR>
+For installation information see the 
+files INSTALL.win and README.win.<BR>
+<BR>
+<BR>
+<BR>
+<!--TOC section Credits-->
+
+<H2>5&nbsp;&nbsp;Credits</H2>
+B. Barras extended the unification algorithm to complete partial terms
+and solved various tricky bugs related to universes.<BR>D. Delahaye developed the <TT>AutoRewrite</TT> tactic. He also designed the new
+behavior of <TT>Intro</TT> and provided the tacticals <TT>First</TT> and
+<TT>Solve</TT>.<BR>J.-C. Filliâtre developed the <TT>Correctness</TT> tactic.<BR>E. Giménez extended the guard condition in fixpoints.<BR>H. Herbelin designed the new syntax for definitions and extended the
+<TT>Induction</TT> tactic.<BR>P. Loiseleur developed the <TT>Quote</TT> tactic and 
+the new design of the <TT>Auto</TT>
+tactic, he also introduced the index of
+errors in the documentation.<BR>C. Paulin wrote the <TT>Focus</TT> command and introduced 
+the reduction functions in definitions, this last feature 
+was proposed by J.-F. Monin from CNET Lannion. 
+
+<!--FOOTER-->
+<HR>
+
+<BLOCKQUOTE><EM>This document was translated from L<sup>A</sup>T<sub>E</sub>X by </EM><A HREF="http://para.inria.fr/~maranget/hevea"><EM>H</EM><EM><FONT SIZE=2><sup>E</sup></FONT></EM><EM>V</EM><EM><FONT SIZE=2><sup>E</sup></FONT></EM><EM>A</EM></A><EM>.
+</EM></BLOCKQUOTE></BODY>
+</HTML>
+

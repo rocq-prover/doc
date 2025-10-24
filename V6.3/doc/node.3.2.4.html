@@ -1,0 +1,156 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+13.5&nbsp;When does the expansion strategy fail ?
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.2.3.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+13.5&nbsp;When does the expansion strategy fail ?
+</H2>
+
+
+<A NAME="limitations"></A>
+The strategy works very like in ML languages when treating
+patterns of non-dependent type. 
+But there are new cases of failure that are due to the presence of 
+dependencies. <BR>
+<BR>
+The error messages of the current implementation may be sometimes
+confusing. When the tactic fails because patterns are somehow
+incorrect then error messages refer to the initial expression. But the
+strategy may succeed to build an expression whose sub-expressions are
+well typed when the whole expression is not. In this situation the
+message makes reference to the expanded expression. We encourage
+users, when they have patterns with the same outer constructor in
+different equations, to name the variable patterns in the same
+positions with the same name. 
+E.g. to write <FONT SIZE=3><TT>(cons n O x) =&gt; e1</TT></FONT> 
+and <FONT SIZE=3><TT>(cons n _ x) =&gt; e2</TT></FONT> instead of
+<FONT SIZE=3><TT>(cons n O x) =&gt; e1</TT></FONT> and 
+<FONT SIZE=3><TT>(cons n' _ x') =&gt; e2</TT></FONT>. 
+This helps to maintain certain name correspondence between the
+generated expression and the original.<BR>
+<BR>
+Here is a summary of the error messages corresponding to each situation:<BR>
+<BR>
+<UL>
+<LI>patterns are incorrect (because constructors are not applied to
+ the correct number of the arguments, because they are not linear or
+ they are wrongly typed)
+<UL>
+<LI><TT>In pattern  </TT><TT><I><FONT COLOR=maroon>term</FONT></I></TT><TT> <TT>the constructor  </TT></TT><TT><TT><I><FONT COLOR=maroon>ident</FONT></I></TT></TT><TT><TT> <TT>expects  </TT></TT></TT><TT><TT><TT><I><FONT COLOR=maroon>num</FONT></I></TT></TT></TT><TT><TT><TT> <TT>arguments
+ 
+</TT></TT></TT></TT>
+<LI><TT><TT><TT><TT><TT>The variable  </TT></TT></TT></TT></TT><TT><TT><TT><TT><TT><I><FONT COLOR=maroon>ident</FONT></I></TT></TT></TT></TT></TT><TT><TT><TT><TT><TT> <TT>is bound several times
+ in pattern  </TT></TT></TT></TT></TT></TT><TT><TT><TT><TT><TT><TT><I><FONT COLOR=maroon>term</FONT></I></TT></TT></TT></TT></TT></TT><TT><TT><TT><TT><TT><TT>
+ 
+</TT></TT></TT></TT></TT></TT>
+<LI><TT><TT><TT><TT><TT><TT><TT>Constructor pattern:  </TT></TT></TT></TT></TT></TT></TT><TT><TT><TT><TT><TT><TT><TT><I><FONT COLOR=maroon>term</FONT></I></TT></TT></TT></TT></TT></TT></TT><TT><TT><TT><TT><TT><TT><TT> <TT>cannot match
+ values of type  </TT></TT></TT></TT></TT></TT></TT></TT><TT><TT><TT><TT><TT><TT><TT><TT><I><FONT COLOR=maroon>term</FONT></I></TT></TT></TT></TT></TT></TT></TT></TT><TT><TT><TT><TT><TT><TT><TT><TT>
+</TT></TT></TT></TT></TT></TT></TT></TT></UL><BR>
+
+<LI>the pattern matching is not exhaustive
+<UL>
+<LI><TT>This pattern-matching is not exhaustive
+</TT></UL>
+
+<LI>the elimination predicate provided to <TT>Cases</TT> has not the
+ expected arity<BR>
+<BR>
+<UL>
+<LI><TT>The elimination predicate  </TT><TT><I><FONT COLOR=maroon>term</FONT></I></TT><TT> <TT>should be
+ of arity  </TT></TT><TT><TT><I><FONT COLOR=maroon>num</FONT></I></TT></TT><TT><TT> <TT>(for non dependent case) or  </TT></TT></TT><TT><TT><TT><I><FONT COLOR=maroon>num</FONT></I></TT></TT></TT><TT><TT><TT> <TT>(for dependent case)
+</TT></TT></TT></TT></UL><BR>
+
+<LI>the whole expression is wrongly typed, or the synthesis of
+ implicit arguments fails (for example to find the elimination
+ predicate or to resolve implicit arguments in the rhs).<BR>
+<BR>
+ 
+ There are <EM>nested patterns of dependent type</EM>, the elimination
+ predicate corresponds to non-dependent case and has the form
+ [<I>x</I><SUB><FONT SIZE=2>1</FONT></SUB>:<I>T</I><SUB><FONT SIZE=2>1</FONT></SUB>]...[<I>x</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>:<I>T</I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>]<I>T</I> and <B>some</B> <I>x</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB> occurs <B>free</B> in
+ <I>T</I>. Then, the strategy may fail to find out a correct elimination
+ predicate during some step of compilation. In this situation we
+ recommend the user to rewrite the nested dependent patterns into
+ several <TT>Cases</TT> with <EM>simple patterns</EM>.
+ 
+ In all these cases we have the following error message:<BR>
+<BR>
+ <UL>
+<LI><TT>Expansion strategy failed to build a well typed case
+ expression. There is a branch that mismatches the expected
+ type. The risen<BR>type error on the result of expansion was:</TT>
+ </UL>
+ 
+
+<LI>because of nested patterns, it may happen that even though all
+ the rhs have the same type, the strategy needs dependent elimination
+ and so an elimination predicate must be provided. The system warns
+ about this situation, trying to compile anyway with the
+ non-dependent strategy. The risen message is:
+<UL>
+<LI><TT>Warning: This pattern matching may need dependent
+ elimination to be compiled. I will try, but if fails try again
+ giving dependent elimination predicate.</TT>
+</UL><BR>
+
+<LI>there are <EM>nested patterns of dependent type</EM> and the
+ strategy builds a term that is well typed but recursive calls in fix
+ point are reported as illegal:
+<UL>
+<LI><TT>Error: Recursive call applied to an illegal term ...</TT>
+</UL><BR>
+This is because the strategy generates a term that is correct w.r.t.
+to the initial term but which does not pass the guard condition. In
+this situation we recommend the user to transform the nested dependent
+patterns into <EM>several </EM><EM><TT>Cases</TT></EM><EM> of simple patterns</EM>. Let us
+explain this with an example. Consider the following definition of a
+function that yields the last element of a list and <TT>O</TT> if it is
+empty:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Fixpoint&nbsp;last&nbsp;[n:nat;&nbsp;l:(listn&nbsp;n)]&nbsp;:&nbsp;nat&nbsp;:=</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;Cases&nbsp;l&nbsp;of&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(consn&nbsp;_&nbsp;a&nbsp;niln)&nbsp;=&gt;&nbsp;a</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(consn&nbsp;m&nbsp;_&nbsp;x)&nbsp;=&gt;&nbsp;(last&nbsp;m&nbsp;x)&nbsp;|&nbsp;niln&nbsp;=&gt;&nbsp;O</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;end.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Error&nbsp;during&nbsp;interpretation&nbsp;of&nbsp;command:</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Fixpoint&nbsp;last&nbsp;[n:nat;&nbsp;l:(listn&nbsp;n)]&nbsp;:&nbsp;nat&nbsp;:=</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;Cases&nbsp;l&nbsp;of&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(consn&nbsp;_&nbsp;a&nbsp;niln)&nbsp;=&gt;&nbsp;a</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;|&nbsp;(consn&nbsp;m&nbsp;_&nbsp;x)&nbsp;=&gt;&nbsp;(last&nbsp;m&nbsp;x)&nbsp;|&nbsp;niln&nbsp;=&gt;&nbsp;O</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;end.</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Error:&nbsp;Recursive&nbsp;call&nbsp;applied&nbsp;to&nbsp;an&nbsp;illegal&nbsp;term</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;The&nbsp;recursive&nbsp;definition</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;[n:nat;&nbsp;l:(listn&nbsp;n)]</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&lt;[_:nat]nat&gt;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;Cases&nbsp;l&nbsp;of</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;niln&nbsp;=&gt;&nbsp;O</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(consn&nbsp;n0&nbsp;a&nbsp;a0)&nbsp;=&gt;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;[_:nat]nat&gt;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cases&nbsp;a0&nbsp;of</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;niln&nbsp;=&gt;&nbsp;a</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(consn&nbsp;t1&nbsp;t0&nbsp;t)&nbsp;=&gt;&nbsp;(last&nbsp;(S&nbsp;t1)&nbsp;(consn&nbsp;t1&nbsp;t0&nbsp;t))</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;end&nbsp;is&nbsp;not&nbsp;well-formed</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+It fails because of the priority between patterns, we know that this
+definition is equivalent to the following more explicit one (which
+fails too):<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Fixpoint&nbsp;last&nbsp;[n:nat;&nbsp;l:(listn&nbsp;n)]&nbsp;:&nbsp;nat&nbsp;:=</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;Cases&nbsp;l&nbsp;of</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(consn&nbsp;_&nbsp;a&nbsp;niln)&nbsp;=&gt;&nbsp;a</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(consn&nbsp;n&nbsp;_&nbsp;(consn&nbsp;m&nbsp;b&nbsp;x))&nbsp;=&gt;&nbsp;(last&nbsp;n&nbsp;(consn&nbsp;m&nbsp;b&nbsp;x))</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;niln&nbsp;=&gt;&nbsp;O</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;end.</TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Note that the recursive call <TT>(last n (consn m b x))</TT> is not
+guarded. When treating with patterns of dependent types the strategy
+interprets the first definition of <TT>last</TT> as the second
+one<A NAME="text13.1"></A><A HREF="node.8.html#note13.1"><SUP><FONT SIZE=2>1</FONT></SUP></A>
+. Thus it generates a term where the
+recursive call is rejected by the guard condition.<BR>
+<BR>
+You can get rid of this problem by writing the definition with
+<EM>simple patterns</EM>:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Fixpoint&nbsp;last&nbsp;[n:nat;&nbsp;l:(listn&nbsp;n)]&nbsp;:&nbsp;nat&nbsp;:=</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&lt;[_:nat]nat&gt;Cases&nbsp;l&nbsp;of</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(consn&nbsp;m&nbsp;a&nbsp;x)&nbsp;=&gt;&nbsp;Cases&nbsp;x&nbsp;of&nbsp;niln&nbsp;=&gt;&nbsp;a&nbsp;|&nbsp;_&nbsp;=&gt;&nbsp;(last&nbsp;m&nbsp;x)&nbsp;end</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;|&nbsp;niln&nbsp;=&gt;&nbsp;O</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;end.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>last&nbsp;is&nbsp;recursively&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT></UL>
+ <HR>
+
+<A HREF="node.3.2.3.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

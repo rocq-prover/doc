@@ -1,0 +1,114 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+2.7&nbsp;Implicit Coercions
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.0.1.5.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.0.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+2.7&nbsp;Implicit Coercions
+</H2>
+
+
+
+<A NAME="Coercions"></A><A NAME="@default76"></A>Coercions can be used to implicitly inject terms from one ``class'' in
+which they reside into another one. A <EM>class</EM> is either a sort
+(denoted by the keyword SORTCLASS), a product type (denoted by the
+keyword FUNCLASS) or an inductive type (denoted by its name).<BR>
+<BR>
+Then the user is able to apply an
+object that is not a function, but can be coerced to a function, and
+more generally to consider that a term of type A is of type B provided
+that there is a declared coercion between A and B.<BR>
+<BR>
+
+<H3>
+
+2.7.1&nbsp;<TT>Class </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>.
+</TT></H3>
+<A NAME="@default77"></A><A NAME="@command40"></A>Declares the name <I><FONT COLOR=maroon>ident</FONT></I> as a new class.<BR>
+<BR>
+<BR><B>Variant: </B><OL>
+<LI><TT>Class Local </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>.</TT><BR>Declares the name <I><FONT COLOR=maroon>ident</FONT></I> as a new local class to the current section.
+</OL>
+<H3>
+
+2.7.2&nbsp;<TT>Coercion </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> : </TT><I><FONT COLOR=maroon>ident</FONT></I><TT><SUB><FONT SIZE=2>1</FONT></SUB></TT><TT> &gt;-&gt; </TT><I><FONT COLOR=maroon>ident</FONT></I><TT><SUB><FONT SIZE=2>2</FONT></SUB></TT><TT>.
+</TT></H3>
+
+<A NAME="@default78"></A><A NAME="@command41"></A>Declares the name <I><FONT COLOR=maroon>ident</FONT></I> as a coercion between <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> and
+<I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB>. The classes <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> and <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>2</FONT></SUB> are first
+declared if necessary.<BR>
+<BR>
+<BR><B>Variants: </B><OL>
+<LI><TT>Coercion Local </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> : </TT><I><FONT COLOR=maroon>ident</FONT></I><TT><SUB><FONT SIZE=2>1</FONT></SUB></TT><TT> &gt;-&gt; </TT><I><FONT COLOR=maroon>ident</FONT></I><TT><SUB><FONT SIZE=2>2</FONT></SUB></TT><TT>.</TT><A NAME="@default79"></A><A NAME="@command42"></A><BR>Declares the name <I><FONT COLOR=maroon>ident</FONT></I> as a coercion local to the current section.<BR>
+<BR>
+
+<LI><TT>Identity Coercion </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>:</TT><I><FONT COLOR=maroon>ident</FONT></I><TT><SUB><FONT SIZE=2>1</FONT></SUB></TT><TT> &gt;-&gt;
+ </TT><I><FONT COLOR=maroon>ident</FONT></I><TT><SUB><FONT SIZE=2>2</FONT></SUB></TT><TT>.</TT><A NAME="@default80"></A><A NAME="@command43"></A><BR>Coerce an inductive type to a subtype of it.<BR>
+<BR>
+
+<LI><TT>Identity Coercion Local </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>:</TT><I><FONT COLOR=maroon>ident</FONT></I><TT><SUB><FONT SIZE=2>1</FONT></SUB></TT><TT> &gt;-&gt; </TT><I><FONT COLOR=maroon>ident</FONT></I><TT><SUB><FONT SIZE=2>2</FONT></SUB></TT><TT>.</TT><BR>Idem but locally to the current section.<BR>
+<BR>
+
+<LI><TT>Coercion </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> := </TT><I><FONT COLOR=maroon>term</FONT></I><A NAME="@default81"></A><A NAME="@command44"></A><BR>This defines <I><FONT COLOR=maroon>ident</FONT></I> just like <TT>Definition </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> :=
+ </TT><I><FONT COLOR=maroon>term</FONT></I>, and then declares <I><FONT COLOR=maroon>ident</FONT></I> as a coercion between it
+ source and its target.<BR>
+<BR>
+
+<LI><TT>Coercion </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> := </TT><I><FONT COLOR=maroon>term</FONT></I><TT> : </TT><I><FONT COLOR=maroon>type</FONT></I><BR>This defines <I><FONT COLOR=maroon>ident</FONT></I> just like 
+ <TT>Definition </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> : </TT><I><FONT COLOR=maroon>type</FONT></I><TT> := </TT><I><FONT COLOR=maroon>term</FONT></I>, and then
+ declares <I><FONT COLOR=maroon>ident</FONT></I> as a coercion between it source and its target. <BR>
+<BR>
+
+<LI><TT>Coercion Local </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> := </TT><I><FONT COLOR=maroon>term</FONT></I><A NAME="@default82"></A><A NAME="@command45"></A><BR>This defines <I><FONT COLOR=maroon>ident</FONT></I> just like <TT>Local </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> :=
+ </TT><I><FONT COLOR=maroon>term</FONT></I>, and then declares <I><FONT COLOR=maroon>ident</FONT></I> as a coercion between it
+ source and its target.</OL>
+<H3>
+
+2.7.3&nbsp;Displaying available coercions
+</H3>
+
+<H4>
+<TT>Print Classes.
+</TT></H4>
+<A NAME="@default83"></A><A NAME="@command46"></A>Print the list of declared classes in the current context.<BR>
+<BR>
+
+<H4>
+<TT>Print Coercions.
+</TT></H4>
+<A NAME="@default84"></A><A NAME="@command47"></A>Print the list of declared coercions in the current context.<BR>
+<BR>
+
+<H4>
+<TT>Print Graph.
+</TT></H4>
+<A NAME="@default85"></A><A NAME="@command48"></A>Print the list of valid path coercions in the current context.<BR>
+<BR>
+<BR><B>See also: </B>the technical chapter <A HREF="node.3.3.html#Coercions-full">14</A> on coercions.<BR>
+<BR>
+<HR>
+
+<A HREF="node.0.1.5.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.0.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

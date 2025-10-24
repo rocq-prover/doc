@@ -1,0 +1,146 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+7.10&nbsp;Inversion
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.1.2.8.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.10.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+7.10&nbsp;Inversion
+</H2>
+
+
+
+<A NAME="Inversion"></A>
+<H3>
+
+7.10.1&nbsp;<TT>Inversion </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>
+</TT></H3>
+<A NAME="@default462"></A><A NAME="@tactic75"></A>Let the type of <I><FONT COLOR=maroon>ident</FONT></I>&nbsp; in the local context be (<I>I</I>&nbsp;<I>t</I>),
+where <I>I</I> is a (co)inductive predicate. Then,
+<TT>Inversion</TT> applied to <I><FONT COLOR=maroon>ident</FONT></I>&nbsp; derives for each possible
+constructor <I>c</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB> of (<I>I</I>&nbsp;<I>t</I>), <B>all</B> the necessary
+conditions that should hold for the instance (<I>I</I>&nbsp;<I>t</I>) to be
+proved by <I>c</I><SUB><FONT SIZE=2><I>i</I></FONT></SUB>.<BR>
+<BR>
+<BR><B>Variants: </B><OL>
+<LI><TT>Inversion_clear</TT> <I><FONT COLOR=maroon>ident</FONT></I><BR><A NAME="@default463"></A><A NAME="@tactic76"></A>That does <TT>Inversion</TT> and then erases <I><FONT COLOR=maroon>ident</FONT></I>&nbsp; from the
+ context.
+
+<LI><TT>Inversion </TT> <I><FONT COLOR=maroon>ident</FONT></I>&nbsp; <TT>in</TT> <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> ... <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB><BR><A NAME="@default464"></A><A NAME="@tactic77"></A>Let <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> ... <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>, be identifiers in the local context. This
+ tactic behaves as generalizing <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> ... <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>, and
+ then performing <TT>Inversion</TT>.
+
+<LI><TT>Inversion_clear</TT> <I><FONT COLOR=maroon>ident</FONT></I>&nbsp; <TT>in</TT> <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> ...<I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB><BR><A NAME="@default465"></A><A NAME="@tactic78"></A>Let <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> ... <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>, be identifiers in the local context. This
+ tactic behaves as generalizing <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> ... <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>, and
+ then performing <TT>Inversion_clear</TT>.
+
+<LI><TT>Dependent Inversion</TT> <I><FONT COLOR=maroon>ident</FONT></I>&nbsp;<BR><A NAME="@default466"></A><A NAME="@tactic79"></A>That must be used when <I><FONT COLOR=maroon>ident</FONT></I> appears in the current goal. 
+ It acts like <TT>Inversion</TT> and then substitutes <I><FONT COLOR=maroon>ident</FONT></I> for the
+ corresponding term in the goal.
+
+<LI><TT>Dependent Inversion_clear</TT> <I><FONT COLOR=maroon>ident</FONT></I>&nbsp;<BR><A NAME="@default467"></A><A NAME="@tactic80"></A>Like <TT>Dependant Inversion</TT>, except that <I><FONT COLOR=maroon>ident</FONT></I>&nbsp; is cleared
+ from the local context.
+
+<LI><TT>Dependent Inversion </TT> <I><FONT COLOR=maroon>ident</FONT></I>&nbsp; <TT> with </TT> <I><FONT COLOR=maroon>term</FONT></I><BR><A NAME="@default468"></A><A NAME="@tactic81"></A>This variant allow to give the good generalization of the goal. It
+ is useful when the system fails to generalize the goal automatically. If
+ <I><FONT COLOR=maroon>ident</FONT></I>&nbsp; has type (<I>I</I>&nbsp;<I>t</I>) and <I>I</I> has type
+ (<I>x</I>:<I>T</I>)<I>s</I>, then <I><FONT COLOR=maroon>term</FONT></I>&nbsp; must be of type
+ <I>I</I>:(<I>x</I>:<I>T</I>)(<I>I</I>&nbsp;<I>x</I>)<FONT FACE=symbol>®</FONT> <I>s</I>' where <I>s</I>' is the
+ type of the goal.
+
+<LI><TT>Dependent Inversion_clear </TT> <I><FONT COLOR=maroon>ident</FONT></I>&nbsp; <TT> with </TT> <I><FONT COLOR=maroon>term</FONT></I><BR><A NAME="@default469"></A><A NAME="@tactic82"></A>Like <TT>Dependant Inversion ... with</TT> but clears <I><FONT COLOR=maroon>ident</FONT></I>from
+ the local context.
+
+<LI><TT>Inversion</TT> <I><FONT COLOR=maroon>ident</FONT></I><TT> using</TT> <I><FONT COLOR=maroon>ident</FONT></I>'<BR><A NAME="@default470"></A><A NAME="@tactic83"></A>Let <I><FONT COLOR=maroon>ident</FONT></I>&nbsp; have type (<I>I</I>&nbsp;<I>t</I>) (<I>I</I> an inductive
+ predicate) in the local context, and <I><FONT COLOR=maroon>ident</FONT></I>' be a (dependent) inversion
+ lemma. Then, this tactic refines the current goal with the specified
+ lemma.
+
+<LI><TT>Inversion</TT> <I><FONT COLOR=maroon>ident</FONT></I>&nbsp; <TT>using</TT> <I><FONT COLOR=maroon>ident</FONT></I>' 
+ <TT>in</TT> <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>... <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB><BR><A NAME="@default471"></A><A NAME="@tactic84"></A>This tactic behaves as generalizing <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB>... <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB>,
+ then doing <TT>Inversion</TT><I><FONT COLOR=maroon>ident</FONT></I>&nbsp;<TT>using</TT> <I><FONT COLOR=maroon>ident</FONT></I>'.
+
+<LI><TT>Simple Inversion</TT> <I><FONT COLOR=maroon>ident</FONT></I>&nbsp;<BR><A NAME="@default472"></A><A NAME="@tactic85"></A>It is a very primitive inversion tactic that derives all the necessary
+ equalities but it does not simplify the constraints as
+ <TT>Inversion</TT> do.
+</OL><BR><B>See also: </B><A HREF="node.1.3.3.html#Inversion-examples">8.4</A> for detailed examples<BR>
+<BR>
+
+<H3>
+
+7.10.2&nbsp;<TT>Derive Inversion </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>&nbsp; with
+ </TT><TT>(</TT><TT><I>x</I></TT><TT>:</TT><TT><I>T</I></TT><TT>)(<I>I</I>&nbsp;</TT><TT><I>t</I></TT><TT>)</TT><TT> Sort </TT><I><FONT COLOR=maroon>sort</FONT></I><TT>
+</TT></H3>
+
+<A NAME="Derive-Inversion"></A>
+<A NAME="@default473"></A><A NAME="@command134"></A><A NAME="@tactic86"></A>This command generates an inversion principle for the
+<TT>Inversion ... using</TT> tactic.
+Let <I>I</I> be an inductive predicate and <I>x</I> the variables
+occurring in <I>t</I>. This command generates and stocks the
+inversion lemma for the sort <I><FONT COLOR=maroon>sort</FONT></I>&nbsp; corresponding to the instance
+(<I>x</I>:<I>T</I>)(<I>I</I>&nbsp;<I>t</I>) with the name <I><FONT COLOR=maroon>ident</FONT></I>&nbsp; in the <B>global</B> environment. When applied it is equivalent to have inverted
+the instance with the tactic <TT>Inversion</TT>.<BR>
+<BR>
+<BR><B>Variants: </B><OL>
+<LI><TT>Derive Inversion_clear</TT> <I><FONT COLOR=maroon>ident</FONT></I>&nbsp; <TT>with</TT>
+ <A NAME="@default474"></A><A NAME="@command135"></A>(<I>x</I>:<I>T</I>)(<I>I</I>&nbsp;<I>t</I>) <TT>Sort</TT> <I><FONT COLOR=maroon>sort</FONT></I>&nbsp;<BR><A NAME="@default475"></A>When applied it is equivalent to having
+ inverted the instance with the tactic <TT>Inversion</TT>
+ replaced by the tactic <TT>Inversion_clear</TT>.
+
+<LI><TT>Derive Dependent Inversion</TT> <I><FONT COLOR=maroon>ident</FONT></I>&nbsp; <TT>with</TT>
+ (<I>x</I>:<I>T</I>)(<I>I</I>&nbsp;<I>t</I>) <TT>Sort</TT> <I><FONT COLOR=maroon>sort</FONT></I>&nbsp;<BR><A NAME="@default476"></A><A NAME="@command136"></A>When applied it is equivalent to having
+ inverted the instance with the tactic <TT>Dependent Inversion</TT>.
+
+<LI><TT>Derive Dependent Inversion_clear</TT> <I><FONT COLOR=maroon>ident</FONT></I>&nbsp; <TT>with</TT>
+ (<I>x</I>:<I>T</I>)(<I>I</I>&nbsp;<I>t</I>) <TT>Sort</TT> <I><FONT COLOR=maroon>sort</FONT></I>&nbsp;<BR><A NAME="@default477"></A><A NAME="@command137"></A>When applied it is equivalent to having
+ inverted the instance with the tactic <TT>Dependent Inversion_clear</TT>.
+</OL><BR><B>See also: </B><A HREF="node.1.3.3.html#Inversion-examples">8.4</A> for examples<BR>
+<BR>
+
+<H3>
+
+7.10.3&nbsp;<TT>Quote</TT> <I><FONT COLOR=maroon>ident</FONT></I>
+</H3>
+<A NAME="@default478"></A><A NAME="@tactic87"></A><A NAME="@default479"></A>-level approach<BR>
+<BR>
+This kind of inversion has nothing to do with the tactic
+<TT>Inversion</TT> above. This tactic does <TT>Change (</TT><I><FONT COLOR=maroon>ident</FONT></I><TT>
+ t)</TT>, where <TT>t</TT> is a term build in order to ensure the
+convertibility. In other words, it does inversion of the function
+<I><FONT COLOR=maroon>ident</FONT></I>. This function must be a fixpoint on a simple recursive
+datatype: see <A HREF="node.1.3.5.html#Quote-examples">8.6</A> for the full details.<BR>
+<BR>
+<BR><B>Error messages: </B><OL>
+<LI><TT>Quote: not a simple fixpoint</TT><A NAME="@error78"></A><BR>Happens when <TT>Quote</TT> is not able to perform inversion properly.
+</OL><BR><B>Variants: </B><OL>
+<LI><TT>Quote </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> [ </TT><I><FONT COLOR=maroon>ident</FONT></I><TT><SUB><FONT SIZE=2>1</FONT></SUB></TT><TT> ... </TT><I><FONT COLOR=maroon>ident</FONT></I><TT><SUB><FONT SIZE=2><I>n</I></FONT></SUB></TT><TT> ]</TT><BR>All terms that are build only with <I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2>1</FONT></SUB> ...<I><FONT COLOR=maroon>ident</FONT></I><SUB><FONT SIZE=2><I>n</I></FONT></SUB> will be
+ considered by <TT>Quote</TT> as constants rather than variables.
+</OL><BR><B>See also: </B>file <TT>theories/DEMOS/DemoQuote.v</TT> in the distribution<BR>
+<BR>
+<HR>
+
+<A HREF="node.1.2.8.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.2.10.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

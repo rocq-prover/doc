@@ -1,0 +1,94 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+20.8&nbsp;Discussion
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.3.9.6.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.9.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+20.8&nbsp;Discussion
+</H2>
+
+
+
+<A NAME="DiscussReflection"></A>Efficiency is not the only motivation to use reflection
+here. <TT>Ring</TT> also deals with constants, it rewrites for example the
+expression 34 + 2*<I>x</I> -<I>x</I> + 12 to the expected result <I>x</I> + 46. For the
+tactic <TT>ACDSimpl</TT>, the only constants were 0 and 1. So the
+expression 34 + 2*(<I>x</I> - 1) + 12 is interpreted as 
+<I>V</I><SUB><FONT SIZE=2>0</FONT></SUB> <FONT FACE=symbol>Å</FONT> <I>V</I><SUB><FONT SIZE=2>1</FONT></SUB> <FONT FACE=symbol>Ä</FONT> (<I>V</I><SUB><FONT SIZE=2>2</FONT></SUB> <FONT FACE=symbol>Q</FONT> 1) <FONT FACE=symbol>Å</FONT> <I>V</I><SUB><FONT SIZE=2>3</FONT></SUB>, 
+with the variables mapping 
+{<I>V</I><SUB><FONT SIZE=2>0</FONT></SUB> |<FONT FACE=symbol>®</FONT> 34; <I>V</I><SUB><FONT SIZE=2>1</FONT></SUB> |<FONT FACE=symbol>®</FONT> 2; <I>V</I><SUB><FONT SIZE=2>2</FONT></SUB> |<FONT FACE=symbol>®</FONT> <I>x</I>; <I>V</I><SUB><FONT SIZE=2>3</FONT></SUB> |<FONT FACE=symbol>®</FONT> 12 }. Then it is
+rewritten to 34 - <I>x</I> + 2*<I>x</I> + 12, very far from the expected
+result. Here rewriting is not sufficient: you have to do some kind of
+reduction (some kind of <I>computation</I>) to achieve the
+normalization.<BR>
+<BR>
+The tactic <TT>Ring</TT> is not only faster than a classical one:
+using reflection, we get for free integration of computation and
+reasoning that would be very complex to implement in the classic fashion.<BR>
+<BR>
+Is it the ultimate way to write tactics? 
+The answer is: yes and no. The <TT>Ring</TT> tactic
+uses intensively the conversion
+rule of <FONT COLOR=navy>Cic</FONT>, that is replaces proof by computation the most as it is
+possible. It can be useful in all situations where a classical tactic
+generates huge proof terms. Symbolic Processing and Tautologies are
+in that case. But there are also tactics like <TT>Auto</TT> or
+<TT>Linear</TT>: that do many complex computations, using side-effects
+and backtracking, and generate
+ a small proof term. Clearly, it would be a non-sense to
+replace them by tactics using reflection.<BR>
+<BR>
+Another argument against the reflection is that <FONT COLOR=purple>Coq</FONT>, as a
+programming language, has many nice features, like dependent types, 
+but is very far from the
+speed and the expressive power of <FONT COLOR=purple>Objective Caml</FONT>. Wait a minute! With <FONT COLOR=purple>Coq</FONT>
+it is possible to extract ML code from <FONT COLOR=navy>Cic</FONT> terms, right? So, why not
+to link the extracted code with <FONT COLOR=purple>Coq</FONT> to inherit the benefits of the
+reflection and the speed of ML tactics? That is called <I>total
+ reflection</I>, and is still an active research subject. With these
+technologies it will become possible to bootstrap the type-checker of
+<FONT COLOR=navy>Cic</FONT>, but there is still some work to achieve that goal.<BR>
+<BR>
+Another brilliant idea from Benjamin Werner: reflection could be used
+to couple a external tool (a rewriting program or a model checker)
+with <FONT COLOR=purple>Coq</FONT>. We define (in <FONT COLOR=purple>Coq</FONT>) a type of terms, a type of
+<EM>traces</EM>, and prove a correction theorem that states that
+<EM>replaying traces</EM> is safe w.r.t some interpretation. Then we let 
+the external tool do every computation (using side-effects,
+backtracking, exception, or others features that are not available in
+pure lambda calculus) to produce the trace: now we replay the trace in
+Coq, and apply the correction lemma. So internalization seems to be
+the best way to import ... external proofs!<BR>
+<BR>
+ 
+<BR>
+<BR>
+
+
+
+<HR>
+
+<A HREF="node.3.9.6.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.3.9.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

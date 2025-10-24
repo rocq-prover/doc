@@ -1,0 +1,374 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+2.2&nbsp;Variants and extensions of Cases
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.0.1.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.0.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.1.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+2.2&nbsp;Variants and extensions of <TT>Cases</TT>
+</H2>
+
+
+
+<A NAME="ExtensionsOfCases"></A>
+<A NAME="@default49"></A>
+<H3>
+
+2.2.1&nbsp;ML-style pattern-matching
+</H3>
+
+<A NAME="@default50"></A><A NAME="Mult-Cases"></A>The basic version of <CODE>Cases</CODE> allows pattern-matching on simple
+patterns. As an extension, multiple and nested patterns are
+allowed, as in ML-like languages.<BR>
+<BR>
+The extension just acts as a macro that is expanded during parsing
+into a sequence of <TT>Cases</TT> on simple patterns. Especially, a
+construction defined using the extended <TT>Cases</TT> is printed under
+its expanded form.<BR>
+<BR>
+The syntax of the extended <TT>Cases</TT> is presented in figure 
+<A HREF="node.0.1.1.html#ecases-grammar">2.2</A>.
+Note the annotation is mandatory when the sequence of equation is
+empty.<BR>
+<BR>
+<BLOCKQUOTE><HR>
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=1>
+<TR><TD NOWRAP ALIGN=right><I><FONT COLOR=maroon>nested_pattern</FONT></I></TD>
+<TD NOWRAP ALIGN=center>:=</TD>
+<TD NOWRAP ALIGN=left><I><FONT COLOR=maroon>ident</FONT></I></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left>_</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left><TT>(</TT> <I><FONT COLOR=maroon>ident</FONT></I> <I><FONT COLOR=maroon>nested_pattern</FONT></I>  ...  <I><FONT COLOR=maroon>nested_pattern</FONT></I> <TT>)</TT></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left><TT>(</TT> <I><FONT COLOR=maroon>nested_pattern</FONT></I> <TT>as</TT> <I><FONT COLOR=maroon>ident</FONT></I> <TT>)</TT></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left><TT>(</TT> <I><FONT COLOR=maroon>nested_pattern</FONT></I> <TT>,</TT> <I><FONT COLOR=maroon>nested_pattern</FONT></I> <TT>)</TT></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left><TT>(</TT> <I><FONT COLOR=maroon>nested_pattern</FONT></I> <TT>)</TT></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>&nbsp;</TD>
+<TD NOWRAP ALIGN=left>&nbsp;</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=right><I><FONT COLOR=maroon>mult_pattern</FONT></I></TD>
+<TD NOWRAP ALIGN=center>:=</TD>
+<TD NOWRAP ALIGN=left>nested_pattern  ...  nested_pattern</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>&nbsp;</TD>
+<TD NOWRAP ALIGN=left>&nbsp;</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=right><I><FONT COLOR=maroon>ext_eqn</FONT></I></TD>
+<TD NOWRAP ALIGN=center>:=</TD>
+<TD NOWRAP ALIGN=left><I><FONT COLOR=maroon>mult_pattern</FONT></I> <TT>=&gt;</TT> <I><FONT COLOR=maroon>term</FONT></I></TD>
+</TR>
+<TR><TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>&nbsp;</TD>
+<TD NOWRAP ALIGN=left>&nbsp;</TD>
+</TR>
+<TR><TD NOWRAP ALIGN=right><I><FONT COLOR=maroon>term</FONT></I></TD>
+<TD NOWRAP ALIGN=center>:=</TD>
+<TD NOWRAP ALIGN=left><I><FONT COLOR=maroon>[</FONT></I><I><FONT COLOR=maroon>annotation</FONT></I><I><FONT COLOR=maroon>]</FONT></I> <TT>Cases</TT> <I><FONT COLOR=maroon>term</FONT></I>  ...  <I><FONT COLOR=maroon>term</FONT></I> <TT>of</TT> 
+<I><FONT COLOR=maroon>[</FONT></I><I><FONT COLOR=maroon>ext_eqn</FONT></I> <TT>|</TT> ... <TT>|</TT> <I><FONT COLOR=maroon>ext_eqn</FONT></I><I><FONT COLOR=maroon>]</FONT></I> <TT>end</TT></TD>
+</TR></TABLE>
+
+<A NAME="ecases-grammar"></A>
+<BR>
+<DIV ALIGN=center>Figure 2.2: extended Cases syntax.</DIV>
+<HR></BLOCKQUOTE><BR><B>See also: </B>chapter <A HREF="node.3.2.html#Mult-Cases-full">13</A>.<BR>
+<BR>
+
+<H3>
+
+2.2.2&nbsp;Pattern-matching on boolean values: the <TT>if</TT> expression
+</H3>
+
+<A NAME="@default51"></A>For inductive types isomorphic to the boolean types (i.e. two
+constructors without arguments), it is possible to use a <TT>if
+... then ... else</TT> notation. This enriches the syntax of terms as follows:<BR>
+<BR>
+<BR>
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=right>term</TD>
+<TD NOWRAP ALIGN=center>:=</TD>
+<TD NOWRAP ALIGN=left><I><FONT COLOR=maroon>[</FONT></I><I><FONT COLOR=maroon>annotation</FONT></I><I><FONT COLOR=maroon>]</FONT></I> <TT>if</TT> <I><FONT COLOR=maroon>term</FONT></I> <TT>then</TT> <I><FONT COLOR=maroon>term</FONT></I> <TT>else</TT> <I><FONT COLOR=maroon>term</FONT></I></TD>
+</TR></TABLE>
+<BR><BR>
+<BR>
+For instance, the definition<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Definition&nbsp;not&nbsp;:=&nbsp;[b:bool]&nbsp;Cases&nbsp;b&nbsp;of&nbsp;true&nbsp;=&gt;&nbsp;false&nbsp;|&nbsp;false&nbsp;=&gt;&nbsp;true&nbsp;end.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>not&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+can be alternatively written<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Definition&nbsp;not&nbsp;:=&nbsp;[b:bool]&nbsp;if&nbsp;b&nbsp;then&nbsp;false&nbsp;else&nbsp;true.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>not&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+
+<H3>
+
+2.2.3&nbsp;Irrefutable patterns: the destructuring <TT>let</TT>
+</H3>
+
+<A NAME="@default52"></A><A NAME="Letin"></A>Terms in an inductive type having only one constructor, say <TT>foo</TT>, have
+necessarily the form <TT>(foo ...)</TT>. In this case, the <TT>Cases</TT>
+construction can be replaced by a <TT>let ... in ...</TT> construction.
+This enriches the syntax of terms as follows:<BR>
+<BR>
+<BR>
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=right>&nbsp;</TD>
+<TD NOWRAP ALIGN=center>|</TD>
+<TD NOWRAP ALIGN=left><I><FONT COLOR=maroon>[</FONT></I><I><FONT COLOR=maroon>annotation</FONT></I><I><FONT COLOR=maroon>]</FONT></I> <TT>let (</TT> <I><FONT COLOR=maroon>ident</FONT></I> <TT>,</TT> ... <TT>,</TT> <I><FONT COLOR=maroon>ident</FONT></I> <TT>) =</TT> <I><FONT COLOR=maroon>term</FONT></I> <TT>in</TT> <I><FONT COLOR=maroon>term</FONT></I></TD>
+</TR></TABLE>
+<BR><BR>
+<BR>
+For instance, the definition<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Definition&nbsp;fst&nbsp;:=&nbsp;[A,B:Set][H:A*B]&nbsp;Cases&nbsp;H&nbsp;of&nbsp;(pair&nbsp;x&nbsp;y)&nbsp;=&gt;&nbsp;x&nbsp;end.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>fst&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+can be alternatively written <BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Definition&nbsp;fst&nbsp;:=&nbsp;[A,B:Set][p:A*B]&nbsp;let&nbsp;(x,_)&nbsp;=&nbsp;p&nbsp;in&nbsp;x.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>fst&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+The pretty-printing of a definition by cases on a irrefutable pattern
+can either be done using <TT>Cases</TT> or the <TT>let</TT>
+construction (see section <A HREF="node.0.1.1.html#printing-options">2.2.4</A>).<BR>
+<BR>
+
+<H3>
+
+2.2.4&nbsp;Options for pretty-printing of <TT>Cases</TT>
+</H3>
+
+<A NAME="printing-options"></A>There are three options controlling the pretty-printing of <TT>Cases</TT>
+expressions.<BR>
+<BR>
+
+<H4>
+Printing of wildcard pattern
+</H4>
+
+<A NAME="@default53"></A><A NAME="@command21"></A><A NAME="@default54"></A><A NAME="@command22"></A><A NAME="@default55"></A><A NAME="@command23"></A>Some variables in a pattern may not occur in the right-hand side of
+the pattern-matching clause. There are options to control the
+display of these variables.<BR>
+<BR>
+
+<H4>
+<TT>Set Printing Wildcard.
+</TT></H4>
+
+ The variables having no occurrences
+in the right-hand side of the pattern-matching clause are just
+printed using the wildcard symbol ``<TT>_</TT>''.<BR>
+<BR>
+
+<H4>
+<TT>Unset Printing Wildcard.
+</TT></H4>
+
+The variables, even useless, are printed using their usual name. But some
+non dependent variables have no name. These ones are still printed
+using a ``<TT>_</TT>''.<BR>
+<BR>
+
+<H4>
+<TT>Print Printing Wildcard.
+</TT></H4>
+
+This tells if the wildcard
+printing mode is on or off. The default is to print wildcard for
+useless variables.<BR>
+<BR>
+
+<H4>
+Printing of the elimination predicate
+</H4>
+
+<A NAME="@default56"></A><A NAME="@command24"></A><A NAME="@default57"></A><A NAME="@command25"></A><A NAME="@default58"></A><A NAME="@command26"></A>In most of the cases, the type of the result of a matched term is
+mechanically synthesizable. Especially, if the result type does not
+depend of the matched term.<BR>
+<BR>
+
+<H4>
+<TT>Set Printing Synth.
+</TT></H4>
+
+The result type is not printed
+when it is easily synthesizable.<BR>
+<BR>
+
+<H4>
+<TT>Unset Printing Synth.
+</TT></H4>
+
+This forces the result type to be always printed (and then between
+angle brackets).<BR>
+<BR>
+
+<H4>
+<TT>Print Printing Synth.
+</TT></H4>
+
+This tells if the non-printing
+of synthesizable types is on or off. The default is to not print 
+synthesizable types.<BR>
+<BR>
+
+<H4>
+Printing matching on irrefutable pattern
+</H4>
+
+<A NAME="@default59"></A><A NAME="@command27"></A><A NAME="@default60"></A><A NAME="@command28"></A><A NAME="@default61"></A><A NAME="@command29"></A><A NAME="@default62"></A><A NAME="@command30"></A>If an inductive type has just one constructor,
+pattern-matching can be written using <TT>let</TT> ... <TT>=</TT>
+... <TT>in</TT>&nbsp;...<BR>
+<BR>
+
+<H4>
+<TT>Add Printing Let </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>.
+</TT></H4>
+
+This adds <I><FONT COLOR=maroon>ident</FONT></I> to the list
+of inductive types for which pattern-matching is written using a <TT>let</TT> expression.<BR>
+<BR>
+
+<H4>
+<TT>Remove Printing Let </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>.
+</TT></H4>
+
+This removes <I><FONT COLOR=maroon>ident</FONT></I> from this list.<BR>
+<BR>
+
+<H4>
+<TT>Test Printing Let </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>.
+</TT></H4>
+
+This tells if <I><FONT COLOR=maroon>ident</FONT></I> belongs
+to the list.<BR>
+<BR>
+
+<H4>
+<TT>Print Printing Let.
+</TT></H4>
+
+This prints the list of inductive types
+for which pattern-matching is written using a <TT>let</TT> expression.<BR>
+<BR>
+The table of inductive types for which pattern-matching is written
+using a <TT>let</TT> expression is managed synchronously. This means that
+it is sensible to the command <TT>Reset</TT>.<BR>
+<BR>
+
+<H4>
+Printing matching on booleans
+</H4>
+
+<A NAME="@default63"></A><A NAME="@command31"></A><A NAME="@default64"></A><A NAME="@command32"></A><A NAME="@default65"></A><A NAME="@command33"></A><A NAME="@default66"></A><A NAME="@command34"></A>If an inductive type is isomorphic to the boolean type,
+pattern-matching can be written using <TT>if</TT> ... <TT>then</TT>
+... <TT>else</TT> ...<BR>
+<BR>
+
+<H4>
+<TT>Add Printing If </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>.
+</TT></H4>
+
+This adds <I><FONT COLOR=maroon>ident</FONT></I> to the list
+of inductive types for which pattern-matching is written using an <TT>if</TT> expression.<BR>
+<BR>
+
+<H4>
+<TT>Remove Printing If </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>.
+</TT></H4>
+
+This removes <I><FONT COLOR=maroon>ident</FONT></I> from this list.<BR>
+<BR>
+
+<H4>
+<TT>Test Printing If </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>.
+</TT></H4>
+
+This tells if <I><FONT COLOR=maroon>ident</FONT></I> belongs
+to the list.<BR>
+<BR>
+
+<H4>
+<TT>Print Printing If.
+</TT></H4>
+
+This prints the list of inductive types
+for which pattern-matching is written using an <TT>if</TT> expression.<BR>
+<BR>
+The table of inductive types for which pattern-matching is written
+using an <TT>if</TT> expression is managed synchronously. This means that
+it is sensible to the command <TT>Reset</TT>.<BR>
+<BR>
+
+<H4>
+Example
+</H4>
+This example emphasizes what the printing options offer.<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Test&nbsp;Printing&nbsp;Let&nbsp;prod.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Cases&nbsp;on&nbsp;elements&nbsp;of&nbsp;prod&nbsp;are&nbsp;printed&nbsp;using&nbsp;a&nbsp;`let'&nbsp;form</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Print&nbsp;fst.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>fst&nbsp;=&nbsp;[A,B:Set;&nbsp;p:(A*B)](let&nbsp;(x,&nbsp;_)&nbsp;=&nbsp;p&nbsp;in&nbsp;x)</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(A,B:Set)A*B-&gt;A</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Remove&nbsp;Printing&nbsp;Let&nbsp;prod.</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Unset&nbsp;Printing&nbsp;Synth.</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Unset&nbsp;Printing&nbsp;Wildcard.</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Print&nbsp;snd.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>snd&nbsp;=&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>[A:Set;&nbsp;B:Set;&nbsp;p:(A*B)]&lt;B&gt;Cases&nbsp;p&nbsp;of&nbsp;(pair&nbsp;x&nbsp;y)&nbsp;=&gt;&nbsp;y&nbsp;end</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(A,B:Set)A*B-&gt;B</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+
+<H3>
+
+2.2.5&nbsp;Still not dead old notations
+</H3>
+The following variant of <TT>Cases</TT> is inherited from older version
+of <FONT COLOR=purple>Coq</FONT>. <BR>
+<BR>
+<BR>
+<TABLE CELLSPACING=2 CELLPADDING=0>
+<TR><TD NOWRAP ALIGN=left><I><FONT COLOR=maroon>term</FONT></I></TD>
+<TD NOWRAP ALIGN=center>::=</TD>
+<TD NOWRAP ALIGN=left><I><FONT COLOR=maroon>annotation</FONT></I> <TT>Match</TT> <I><FONT COLOR=maroon>term</FONT></I> <TT>with</TT> <I><FONT COLOR=maroon>terms</FONT></I> <TT>end</TT></TD>
+</TR></TABLE>
+<BR><BR>
+<BR>
+This syntax is a macro generating a combination of <TT>Cases</TT> with <TT>Fix</TT> implementing a combinator for primitive recursion equivalent to
+the <TT>Match</TT> construction of <FONT COLOR=purple>Coq</FONT> V5.8. It is provided only for
+sake of compatibility with <FONT COLOR=purple>Coq</FONT> V5.8. It is recommended to avoid it.
+(see section&nbsp;<A HREF="node.0.3.4.html#Matchexpr">4.5.5</A>).<BR>
+<BR>
+There is also a notation <TT>Case</TT> that is the
+ancestor of <TT>Cases</TT>. Again, it is still in the code for
+compatibility with old versions but the user should not use it.<BR>
+<BR>
+<HR>
+
+<A HREF="node.0.1.0.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.0.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.0.1.2.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

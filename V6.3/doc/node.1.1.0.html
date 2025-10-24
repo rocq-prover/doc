@@ -1,0 +1,168 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+6.1&nbsp;Switching on/off the proof editing mode
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.1.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.1.1.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+6.1&nbsp;Switching on/off the proof editing mode
+</H2>
+
+
+
+<H3>
+
+6.1.1&nbsp;<TT>Goal </TT><I><FONT COLOR=maroon>form</FONT></I><TT>.
+</TT></H3>
+
+<A NAME="@default350"></A><A NAME="@command107"></A><A NAME="Goal"></A>
+This command switches <FONT COLOR=purple>Coq</FONT>&nbsp; to editing proof mode and sets <I><FONT COLOR=maroon>form</FONT></I> as
+the original goal. It associates the name <TT>Unnamed_thm</TT> to
+that goal.<BR>
+<BR>
+<BR><B>Error messages: </B><OL>
+<LI><TT>Proof objects can only be abstracted</TT><A NAME="@error22"></A>
+<LI><TT>A goal should be a type</TT><A NAME="@error23"></A>
+<LI><TT>repeated goal not permitted in refining mode</TT><A NAME="@error24"></A></OL><BR><B>See also: </B>section <A HREF="node.1.1.0.html#Theorem">6.1.3</A><BR>
+<BR>
+
+<H3>
+
+6.1.2&nbsp;<TT>Qed.
+</TT></H3>
+<A NAME="@default351"></A><A NAME="@command108"></A><A NAME="Qed"></A>
+This command is available in interactive editing proof mode when the
+proof is completed. Then <TT>Qed</TT> extracts a proof term from the
+proof script, switches back to <FONT COLOR=purple>Coq</FONT> top-level and attaches the
+extracted proof term to the declared name of the original goal. This
+name is added to the environment as an <TT>Opaque</TT> constant.<BR>
+<BR>
+<BR><B>Error messages: </B><OL>
+<LI><TT>Attempt to save an incomplete proof</TT><A NAME="@error25"></A>
+<LI><TT>Clash with previous constant ...</TT><A NAME="@error26"></A><BR>The implicit name is already defined. You have then to provide
+ explicitly a new name (see variant 2 below).
+
+<LI>Sometimes an error occurs when building the proof term,
+because tactics do not enforce completely the term construction
+constraints.<BR>
+<BR>
+The user should also be aware of the fact that since the proof term is
+completely rechecked at this point, one may have to wait a while when
+the proof is large. In some exceptional cases one may even incur a
+memory overflow.
+</OL><BR><B>Variants: </B><OL>
+<LI><TT>Save.</TT><A NAME="@default352"></A><A NAME="@command109"></A>
+ Is equivalent to <TT>Qed</TT>.
+
+<LI><TT>Save </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>.</TT><BR>Forces the name of the original goal to be <I><FONT COLOR=maroon>ident</FONT></I>.
+
+<LI><TT>Save Theorem </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>.</TT><BR>Is equivalent to <TT>Save </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>.</TT>
+
+<LI><TT>Save Remark </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>.</TT><BR>Defines the proved term as a local constant that will not exist
+ anymore after the end of the current section.
+
+<LI><TT>Defined.</TT><A NAME="@default353"></A><A NAME="@command110"></A><A NAME="Defined"></A><BR>Defines the proved term as a transparent constant.
+</OL>
+<H3>
+
+6.1.3&nbsp;<TT>Theorem </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> : </TT><I><FONT COLOR=maroon>form</FONT></I><TT>.
+</TT></H3>
+<A NAME="@default354"></A><A NAME="@command111"></A><A NAME="Theorem"></A>
+This command switches to interactive editing proof mode and declares
+<I><FONT COLOR=maroon>ident</FONT></I> as being the name of the original goal <I><FONT COLOR=maroon>form</FONT></I>. When declared
+as a <TT>Theorem</TT>, the name <I><FONT COLOR=maroon>ident</FONT></I> is known at all section levels:
+<TT>Theorem</TT> is a <I><FONT COLOR=maroon>global</FONT></I> lemma.<BR>
+<BR>
+<BR><B>Error message: </B>(see section <A HREF="node.1.1.0.html#Goal">6.1.1</A>)<BR>
+<BR>
+<BR><B>Variants: </B><OL>
+<LI><TT>Lemma </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> : </TT><I><FONT COLOR=maroon>form</FONT></I><TT>.</TT><A NAME="@default355"></A><A NAME="@command112"></A><BR>It is equivalent to <TT>Theorem </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> : </TT><I><FONT COLOR=maroon>form</FONT></I><TT>.</TT>
+
+<LI><TT>Remark </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> : </TT><I><FONT COLOR=maroon>form</FONT></I><TT>.</TT><A NAME="@default356"></A><A NAME="@command113"></A><BR>Analogous to <TT>Theorem</TT> except that <I><FONT COLOR=maroon>ident</FONT></I> will be unknown
+ after closing the current section. All proofs of persistent objects
+ (such as theorems) referring to <I><FONT COLOR=maroon>ident</FONT></I> within the section will be
+ replaced by the proof of <I><FONT COLOR=maroon>ident</FONT></I>. 
+
+<LI><TT>Fact </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> : </TT><I><FONT COLOR=maroon>form</FONT></I><TT>.</TT><A NAME="@default357"></A><A NAME="@command114"></A><BR>Analogous to <TT>Theorem</TT> except that <I><FONT COLOR=maroon>ident</FONT></I> is known after
+ closing the current section but 
+ will be unknown after closing the section which is above the current section.
+
+<LI><TT>Definition </TT><I><FONT COLOR=maroon>ident</FONT></I><TT> : </TT><I><FONT COLOR=maroon>form</FONT></I><TT>.</TT>
+<A NAME="@default358"></A><A NAME="@command115"></A><BR>Analogous to <TT>Theorem</TT>, intended to be used in conjunction with
+ <TT>Defined</TT> (see <A HREF="node.1.1.0.html#Defined">5</A>) in order to define a
+ transparent constant.
+</OL>
+<H3>
+
+6.1.4&nbsp;<TT>Proof </TT><I><FONT COLOR=maroon>term</FONT></I><TT>.
+</TT></H3>
+<A NAME="@default359"></A><A NAME="@command116"></A>This command applies in proof editing mode. It is equivalent to <TT>Exact </TT><I><FONT COLOR=maroon>term</FONT></I><TT>; Save.</TT> That is, you have to give the full proof in
+one gulp, as a proof term (see section <A HREF="node.1.2.1.html#Exact">7.2.1</A>).<BR>
+<BR>
+<BR><B>Variants: </B><OL>
+<LI><TT>Proof.</TT> is a noop which is useful to delimit the sequence of
+tactic commands which start a proof, after a <TT>Theorem</TT> command.
+It is a good practice to use <TT>Proof.</TT> as an opening parenthesis,
+closed in the script with a closing <TT>Qed.</TT>
+</OL>
+<H3>
+
+6.1.5&nbsp;<TT>Abort.
+</TT></H3>
+<A NAME="@default360"></A><A NAME="@command117"></A>This command cancels the current proof development, switching back to
+the previous proof development, or to the <FONT COLOR=purple>Coq</FONT> toplevel if no other
+proof was edited.<BR>
+<BR>
+<BR><B>Error messages: </B><OL>
+<LI><TT>No focused proof</TT><A NAME="@error27"></A><TT> (No proof-editing in progress)</TT>
+</OL><BR><B>Variants: </B><OL>
+<LI><TT>Abort </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>.</TT><BR>Aborts the editing of the proof named <I><FONT COLOR=maroon>ident</FONT></I>.
+
+<LI><TT>Abort All.</TT><BR>Aborts all current goals, switching back to the <FONT COLOR=purple>Coq</FONT> toplevel.
+</OL>
+<H3>
+
+6.1.6&nbsp;<TT>Suspend.
+</TT></H3>
+<A NAME="@default361"></A><A NAME="@command118"></A>This command applies in proof editing mode. It switches back to the
+<FONT COLOR=purple>Coq</FONT> toplevel, but without canceling the current proofs.<BR>
+<BR>
+
+<H3>
+
+6.1.7&nbsp;<TT>Resume.
+</TT></H3>
+
+<A NAME="@default362"></A><A NAME="@command119"></A><A NAME="Resume"></A>
+This commands switches back to the editing of the last edited proof.<BR>
+<BR>
+<BR><B>Error messages: </B><OL>
+<LI><TT>No proof-editing in progress</TT><A NAME="@error28"></A></OL><BR><B>Variants: </B><OL>
+<LI><TT>Resume </TT><I><FONT COLOR=maroon>ident</FONT></I><TT>.</TT><BR>Restarts the editing of the proof named <I><FONT COLOR=maroon>ident</FONT></I>. This can be used
+ to navigate between currently edited proofs.
+</OL><BR><B>Error messages: </B><OL>
+<LI><TT>No such proof</TT><A NAME="@error29"></A></OL><HR>
+
+<A HREF="node.1.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.1.1.1.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

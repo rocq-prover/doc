@@ -1,0 +1,179 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+10.4&nbsp;The tactic writer mini-HOWTO
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.2.1.2.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.2.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.2.1.4.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+10.4&nbsp;The tactic writer mini-HOWTO
+</H2>
+
+
+
+<H3>
+
+10.4.1&nbsp;How to add a vernacular command
+</H3>
+The command to register a vernacular command can be found
+in module <TT>Vernacinterp</TT>:<BR>
+<BR>
+<PRE>
+val vinterp_add : string * (vernac_arg list -&gt; unit -&gt; unit) -&gt; unit;;
+</PRE>The first argument is the name, the second argument is a function that
+parses the arguments and returns a function of type
+<TT>unit</TT><FONT FACE=symbol>®</FONT><TT>unit</TT> that do the job.<BR>
+<BR>
+In this section we will show how to add a vernacular command
+<TT>CheckCheck</TT> that print a type of a term and the type of its
+type.<BR>
+<BR>
+File <TT>dcheck.ml</TT>:<BR>
+<BR>
+<PRE>
+open Vernacinterp;;
+open Trad;;
+let _ = 
+  vinterp_add 
+   ("DblCheck",
+    function [VARG_COMMAND com] -&gt;
+       (fun () -&gt; 
+          let evmap = Evd.mt_evd () 
+          and sign = Termenv.initial_sign () in
+           let {vAL=c;tYP=t;kIND=k} = 
+                 fconstruct_with_univ evmap sign com in
+             Pp.mSGNL [&lt; Printer.prterm c; 'sTR ":"; 
+                       Printer.prterm t; 'sTR ":"; 
+                       Printer.prterm k &gt;] )
+      | _ -&gt; bad_vernac_args "DblCheck")
+;;
+</PRE>Like for a new tactic, a new syntax entry must be created.<BR>
+<BR>
+File <TT>DCheck.v</TT>:<BR>
+<BR>
+<PRE>
+Declare ML Module "dcheck.ml".
+
+Grammar vernac vernac := 
+  dblcheck [ "CheckCheck" comarg($c) ] -&gt; [(DblCheck $c)].
+</PRE>We are now able to test our new command:<BR>
+<BR>
+<PRE>
+Coq &lt; Require DCheck.
+Coq &lt; CheckCheck O.
+O:nat:Set
+</PRE>Most Coq vernacular commands are registered in the module 
+ <CODE>src/env/vernacentries.ml</CODE>. One can see more examples here.<BR>
+<BR>
+
+<H3>
+
+10.4.2&nbsp;How to keep a hashtable synchronous with the reset mechanism
+</H3>
+This is far more tricky. Some vernacular commands modify some
+sort of state (for example by adding something in a hashtable). One
+wants that <TT>Reset</TT> has the expected behavior with this
+commands.<BR>
+<BR>
+<FONT COLOR=purple>Coq</FONT> provides a general mechanism to do that. <FONT COLOR=purple>Coq</FONT> environments
+contains objects of three kinds: CCI, FW and OBJ. CCI and FW are for
+constants of the calculus. OBJ is a dynamically extensible datatype
+that contains sections, tactic definitions, hints for auto, and so
+on. <BR>
+<BR>
+The simplest example of use of such a mechanism is in file
+<CODE>src/proofs/macros.ml</CODE> (which implements the <TT>Tactic
+ Definition</TT> command). Tactic macros are stored in the imperative
+hashtable <TT>mactab</TT>. There are two functions freeze and unfreeze
+to make a copy of the table and to restore the state of table from the
+copy. Then this table is declared using <TT>Library.declare_summary</TT>.<BR>
+<BR>
+What does <FONT COLOR=purple>Coq</FONT> with that ? <FONT COLOR=purple>Coq</FONT> defines synchronization points.
+At each synchronisation point, the declared tables are frozen (that
+is, a copy of this tables is stored).<BR>
+<BR>
+When <TT>Reset </TT><I>i</I> is called, <FONT COLOR=purple>Coq</FONT> goes back to the first
+synchronisation point that is above <I>i</I> and ``replays'' all objects
+between that point 
+and <I>i</I>. It will re-declare constants, re-open section, etc.<BR>
+<BR>
+So we need to declare a new type of objects, TACTIC-MACRO-DATA. To
+``replay'' on object of that type is to add the corresponding tactic
+macro to <TT>mactab</TT><BR>
+<BR>
+So, now, we can say that <TT>mactab</TT> is synchronous with the Reset
+mechanism<SUP><FONT SIZE=2><I>TM</I></FONT></SUP>.<BR>
+<BR>
+Notice that this works for hash tables but also for a single integer
+(the Undo stack size, modified by the <TT>Set Undo</TT> command, for
+example).<BR>
+<BR>
+
+<H3>
+
+10.4.3&nbsp;The right way to access to Coq constants from your ML code
+</H3>
+With their long names, Coq constants are stored using:<BR>
+<BR>
+<UL>
+<LI>a section path
+
+<LI>an identifier
+</UL>The identifier is exactly the identifier that is used in <FONT COLOR=purple>Coq</FONT> to
+denote the constant; the section path can be known using the
+<TT>Locate</TT> command:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Locate&nbsp;S.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>#Datatypes#nat.cci</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Locate&nbsp;nat.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>#Datatypes#nat.cci</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Locate&nbsp;eq.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>#Logic#eq.cci</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+Now it is easy to get a constant by its name and section path:<BR>
+<BR>
+<PRE>
+let constant sp id = 
+  Machops.global_reference (Names.gLOB (Termenv.initial_sign ())) 
+    (Names.path_of_string sp) (Names.id_of_string id);;
+</PRE>The only issue is that if one cannot put:<BR>
+<BR>
+<PRE>
+let coq_S = constant "#Datatypes#nat.cci" "S";;
+</PRE>in his tactic's code. That is because this sentence is evaluated
+<EM>before</EM> the module <TT>Datatypes</TT> is loaded. The solution is
+to use the lazy evaluation of <FONT COLOR=purple>Objective Caml</FONT>:<BR>
+<BR>
+<PRE>
+let coq_S = lazy (constant "#Datatypes#nat.cci" "S");;
+
+... (Lazy.force coq_S) ...
+</PRE>Be sure to call always Lazy.force behind a closure -- i.e. inside a
+function body or behind the <TT>lazy</TT> keyword.<BR>
+<BR>
+One can see examples of that technique in the source code of <FONT COLOR=purple>Coq</FONT>,
+for example 
+<CODE>tactics/contrib/polynom/ring.ml</CODE> or 
+<CODE>tactics/contrib/polynom/coq_omega.ml</CODE>.<BR>
+<BR>
+<HR>
+
+<A HREF="node.2.1.2.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.2.1.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="node.2.1.4.html"><IMG SRC="next.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>

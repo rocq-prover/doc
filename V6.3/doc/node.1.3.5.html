@@ -1,0 +1,127 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>
+
+8.6&nbsp;Quote
+</TITLE>
+
+</HEAD>
+
+<BODY>
+
+<A HREF="node.1.3.4.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+<BR CLEAR=ALL>
+
+<HR>
+
+<H2>
+
+8.6&nbsp;<TT>Quote
+</TT></H2>
+
+
+
+<A NAME="@default534"></A><A NAME="@tactic120"></A><A NAME="Quote-examples"></A>The tactic <TT>Quote</TT> allows to use Barendregt's so-called
+2-level approach without writing any ML code. Suppose you have a
+language <TT>L</TT> of 
+'abstract terms' and a type <TT>A</TT> of 'concrete terms' 
+and a function <TT>f : L -&gt; A</TT>. If <TT>L</TT> is a simple
+inductive datatype and <TT>f</TT> a simple fixpoint, <TT>Quote f</TT>
+will replace the head of current goal a convertible term with the form 
+<TT>(f t)</TT>. <TT>L</TT> must have a constructor of type: <TT>A
+ -&gt; L</TT>. <BR>
+<BR>
+Here is an example:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Require&nbsp;Quote.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>[Reinterning&nbsp;Quote&nbsp;...done]</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Parameters&nbsp;A,B,C:Prop.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>A&nbsp;is&nbsp;assumed</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>B&nbsp;is&nbsp;assumed</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>C&nbsp;is&nbsp;assumed</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Inductive&nbsp;Type&nbsp;formula&nbsp;:=</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;|&nbsp;f_and&nbsp;:&nbsp;formula&nbsp;-&gt;&nbsp;formula&nbsp;-&gt;&nbsp;formula&nbsp;(*&nbsp;binary&nbsp;constructor&nbsp;*)</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;|&nbsp;f_or&nbsp;:&nbsp;formula&nbsp;-&gt;&nbsp;formula&nbsp;-&gt;&nbsp;formula&nbsp;&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;|&nbsp;f_not&nbsp;:&nbsp;formula&nbsp;-&gt;&nbsp;formula&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(*&nbsp;unary&nbsp;constructor&nbsp;*)</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;|&nbsp;f_true&nbsp;:&nbsp;formula&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(*&nbsp;0-ary&nbsp;constructor&nbsp;*)</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;|&nbsp;f_const&nbsp;:&nbsp;Prop&nbsp;-&gt;&nbsp;formula.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(*&nbsp;contructor&nbsp;for&nbsp;constants&nbsp;*)</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Fixpoint&nbsp;interp_f&nbsp;[f:formula]&nbsp;:&nbsp;Prop&nbsp;:=&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Cases&nbsp;f&nbsp;of</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;|&nbsp;(f_and&nbsp;f1&nbsp;f2)&nbsp;=&gt;&nbsp;(interp_f&nbsp;f1)/\(interp_f&nbsp;f2)</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;|&nbsp;(f_or&nbsp;f1&nbsp;f2)&nbsp;=&gt;&nbsp;(interp_f&nbsp;f1)\/(interp_f&nbsp;f2)</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;|&nbsp;(f_not&nbsp;f1)&nbsp;=&gt;&nbsp;~(interp_f&nbsp;f1)</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;|&nbsp;f_true&nbsp;=&gt;&nbsp;True</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;|&nbsp;(f_const&nbsp;c)&nbsp;=&gt;&nbsp;c</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;end.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>formula_ind&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>formula_rec&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>formula_rect&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>formula&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Goal&nbsp;A/\(A\/True)/\~B/\(A&nbsp;&lt;-&gt;&nbsp;A).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Coq&nbsp;&lt;&nbsp;Coq&nbsp;&lt;&nbsp;Coq&nbsp;&lt;&nbsp;Coq&nbsp;&lt;&nbsp;Coq&nbsp;&lt;&nbsp;Coq&nbsp;&lt;&nbsp;Coq&nbsp;&lt;&nbsp;interp_f&nbsp;is&nbsp;recursively&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Quote&nbsp;interp_f.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Coq&nbsp;&lt;&nbsp;1&nbsp;subgoal</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;============================</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>&nbsp;&nbsp;&nbsp;A/\(A\/True)/\~B/\(A&lt;-&gt;A)</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+The algorithm to perform this inversion is: try to match the
+term with right-hand sides expression of <TT>f</TT>. If there is a
+match, apply the corresponding left-hand side and call yourself
+recursively on sub-terms. If there is no match, we are at a leaf:
+return the corresponding constructor (here <TT>f_const</TT>) applied
+to the term. <BR>
+<BR>
+<BR><B>Error messages: </B><OL>
+<LI><TT>Quote: not a simple fixpoint</TT><A NAME="@error90"></A>Happens when <TT>Quote</TT> is not able to perform inversion properly.
+</OL>
+<H3>
+
+8.6.1&nbsp;Introducing variables map
+</H3>
+The normal use of <TT>Quote</TT> is to make proofs by reflection: one
+defines a function <TT>simplify : formula -&gt; formula</TT> and proves a 
+theorem <TT>simplify_ok: (f:formula)(interp_f (simplify f)) -&gt;
+ (interp_f f)</TT>. Then, one can simplify formulas by doing:<BR>
+<BR>
+<BLOCKQUOTE><PRE>
+   Quote interp_f.
+   Apply simplify_ok.
+   Compute.
+</PRE></BLOCKQUOTE>But there is a problem with leafs: in the example above one cannot
+write a function that implements, for example, the logical simplifications 
+<I>A</I> <FONT FACE=symbol>Ù</FONT> <I>A</I> <FONT FACE=symbol>®</FONT> <I>A</I> or <I>A</I> <FONT FACE=symbol>Ù</FONT> ¬ <I>A</I> <FONT FACE=symbol>®</FONT> <TT>False</TT>. This is
+because the <FONT COLOR=purple>Prop</FONT> is impredicative.<BR>
+<BR>
+It is better to use that type of formulas:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Inductive&nbsp;Set&nbsp;formula&nbsp;:=</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;|&nbsp;f_and&nbsp;:&nbsp;formula&nbsp;-&gt;&nbsp;formula&nbsp;-&gt;&nbsp;formula</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;|&nbsp;f_or&nbsp;:&nbsp;formula&nbsp;-&gt;&nbsp;formula&nbsp;-&gt;&nbsp;formula&nbsp;&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;|&nbsp;f_not&nbsp;:&nbsp;formula&nbsp;-&gt;&nbsp;formula&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;|&nbsp;f_true&nbsp;:&nbsp;formula&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;|&nbsp;f_atom&nbsp;:&nbsp;index&nbsp;-&gt;&nbsp;formula.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(*&nbsp;contructor&nbsp;for&nbsp;variables&nbsp;*)</TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+<TT>index</TT> is defined in module <TT>Quote</TT>. Equality on that
+type is decidable so we are able to simplify <I>A</I> <FONT FACE=symbol>Ù</FONT> <I>A</I> into <I>A</I> at
+the abstract level. <BR>
+<BR>
+When there are variables, there are bindings, and <TT>Quote</TT>
+provides also a type <TT>(varmap A)</TT> of bindings from
+<TT>index</TT> to any set <TT>A</TT>, and a function
+<TT>varmap_find</TT> to search in such maps. The interpretation
+function has now another argument, a variables map:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;Fixpoint&nbsp;interp_f&nbsp;[vm:(varmap&nbsp;Prop);&nbsp;f:formula]&nbsp;:&nbsp;Prop&nbsp;:=&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Cases&nbsp;f&nbsp;of</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;|&nbsp;(f_and&nbsp;f1&nbsp;f2)&nbsp;=&gt;&nbsp;(interp_f&nbsp;vm&nbsp;f1)/\(interp_f&nbsp;vm&nbsp;f2)</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;|&nbsp;(f_or&nbsp;f1&nbsp;f2)&nbsp;=&gt;&nbsp;(interp_f&nbsp;vm&nbsp;f1)\/(interp_f&nbsp;vm&nbsp;f2)</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;|&nbsp;(f_not&nbsp;f1)&nbsp;=&gt;&nbsp;~(interp_f&nbsp;vm&nbsp;f1)</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;|&nbsp;f_true&nbsp;=&gt;&nbsp;True</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;|&nbsp;(f_atom&nbsp;i)&nbsp;=&gt;&nbsp;(varmap_find&nbsp;True&nbsp;i&nbsp;vm)</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;end.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Current&nbsp;goals&nbsp;aborted</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+<TT>Quote</TT> handles this second case properly:<BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Goal&nbsp;A/\(B\/A)/\(A\/~B).</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Coq&nbsp;&lt;&nbsp;Coq&nbsp;&lt;&nbsp;Coq&nbsp;&lt;&nbsp;Coq&nbsp;&lt;&nbsp;Coq&nbsp;&lt;&nbsp;formula_ind&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>formula_rec&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>formula_rect&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>formula&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Quote&nbsp;interp_f.</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Coq&nbsp;&lt;&nbsp;Coq&nbsp;&lt;&nbsp;Coq&nbsp;&lt;&nbsp;Coq&nbsp;&lt;&nbsp;Coq&nbsp;&lt;&nbsp;Coq&nbsp;&lt;&nbsp;Coq&nbsp;&lt;&nbsp;interp_f&nbsp;is&nbsp;recursively&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+It builds <TT>vm</TT> and <TT>t</TT> such that <TT>(f vm t)</TT> is
+convertible with the conclusion of current goal.<BR>
+<BR>
+
+<H3>
+
+8.6.2&nbsp;Combining variables and constants
+</H3>
+One can have both variables and constants in abstracts terms; that is
+the case, for example, for the <TT>Ring</TT> tactic (chapter
+<A HREF="node.3.9.html#Ring">20</A>). Then one must provide to Quote a list of
+<EM>constructors of constants</EM>. For example, if the list is
+<TT>[O S]</TT> then closed natural numbers will be considered as
+constants and other terms as variables. <BR>
+<BR>
+Example: <BR>
+<BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Inductive&nbsp;Type&nbsp;formula&nbsp;:=</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;|&nbsp;f_and&nbsp;:&nbsp;formula&nbsp;-&gt;&nbsp;formula&nbsp;-&gt;&nbsp;formula</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;|&nbsp;f_or&nbsp;:&nbsp;formula&nbsp;-&gt;&nbsp;formula&nbsp;-&gt;&nbsp;formula</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;|&nbsp;f_not&nbsp;:&nbsp;formula&nbsp;-&gt;&nbsp;formula</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;|&nbsp;f_true&nbsp;:&nbsp;formula</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;|&nbsp;f_const&nbsp;:&nbsp;Prop&nbsp;-&gt;&nbsp;formula&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(*&nbsp;constructor&nbsp;for&nbsp;constants&nbsp;*)</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;|&nbsp;f_atom&nbsp;:&nbsp;index&nbsp;-&gt;&nbsp;formula.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(*&nbsp;constructor&nbsp;for&nbsp;variables&nbsp;*)</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Fixpoint&nbsp;interp_f&nbsp;[vm:(varmap&nbsp;Prop);&nbsp;f:formula]&nbsp;:&nbsp;Prop&nbsp;:=&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;Cases&nbsp;f&nbsp;of</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;|&nbsp;(f_and&nbsp;f1&nbsp;f2)&nbsp;=&gt;&nbsp;(interp_f&nbsp;vm&nbsp;f1)/\(interp_f&nbsp;vm&nbsp;f2)</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;|&nbsp;(f_or&nbsp;f1&nbsp;f2)&nbsp;=&gt;&nbsp;(interp_f&nbsp;vm&nbsp;f1)\/(interp_f&nbsp;vm&nbsp;f2)</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;|&nbsp;(f_not&nbsp;f1)&nbsp;=&gt;&nbsp;~(interp_f&nbsp;vm&nbsp;f1)</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;|&nbsp;f_true&nbsp;=&gt;&nbsp;True</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;|&nbsp;(f_const&nbsp;c)&nbsp;=&gt;&nbsp;c</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;|&nbsp;(f_atom&nbsp;i)&nbsp;=&gt;&nbsp;(varmap_find&nbsp;True&nbsp;i&nbsp;vm)</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;&nbsp;&nbsp;end.</TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Goal&nbsp;A/\(A\/True)/\~B/\(C&lt;-&gt;C).</TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+<DIV ALIGN=left><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Quote&nbsp;interp_f&nbsp;[A&nbsp;B].&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Coq&nbsp;&lt;&nbsp;Coq&nbsp;&lt;&nbsp;Coq&nbsp;&lt;&nbsp;Coq&nbsp;&lt;&nbsp;Coq&nbsp;&lt;&nbsp;Coq&nbsp;&lt;&nbsp;formula_ind&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>formula_rec&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>formula_rect&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>formula&nbsp;is&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR><BR></FONT><FONT SIZE=3><TT>Coq&nbsp;&lt;&nbsp;Undo.&nbsp;Quote&nbsp;interp_f&nbsp;[B&nbsp;C&nbsp;iff].&nbsp;</TT></FONT><FONT SIZE=3><BR></FONT><FONT SIZE=3><TT><I>Coq&nbsp;&lt;&nbsp;Coq&nbsp;&lt;&nbsp;Coq&nbsp;&lt;&nbsp;Coq&nbsp;&lt;&nbsp;Coq&nbsp;&lt;&nbsp;Coq&nbsp;&lt;&nbsp;Coq&nbsp;&lt;&nbsp;Coq&nbsp;&lt;&nbsp;Coq&nbsp;&lt;&nbsp;interp_f&nbsp;is&nbsp;recursively&nbsp;defined</I></TT></FONT><FONT SIZE=3><BR></FONT></DIV><FONT SIZE=3>
+</FONT><BR>
+<BR><B>Warning: </B>This tactic is new and experimental. Since function inversion
+is undecidable in general case, don't expect miracles from it !<BR>
+<BR>
+<BR><B>See also: </B>file <TT>theories/DEMOS/DemoQuote.v</TT>
+<BR><B>See also: </B>comments of source file <TT>tactics/contrib/polynom/quote.ml</TT>
+<BR><B>See also: </B>the tactic <TT>Ring</TT> (chapter <A HREF="node.3.9.html#Ring">20</A>)<BR>
+<BR>
+<HR>
+
+<A HREF="node.1.3.4.html"><IMG SRC="prev.gif" ALIGN=LEFT></A>
+<A HREF="node.1.3.html"><IMG SRC="sub.gif" ALIGN=LEFT></A>
+<A HREF="toc.html"><IMG SRC="root.gif" ALIGN=LEFT></A>
+
+</BODY>
+
+</HTML>
