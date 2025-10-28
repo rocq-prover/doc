@@ -366,6 +366,16 @@ Unification
 <div class="code">
 <span class="id" title="keyword">Ltac2</span> <span class="id" title="var">unify_with_current_ts</span> : <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="var">unit</span> := <span class="id" title="keyword">fun</span> <span class="id" title="var">c1</span> <span class="id" title="var">c2</span> =&gt;<br/>
 &nbsp;&nbsp;<span class="id" title="var">unify</span> (<span class="id" title="var">TransparentState.current</span> ()) <span class="id" title="var">c1</span> <span class="id" title="var">c2</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">solve_constraints</span></span> <span class="inlinecode">()</span> solves any delayed unification constraints. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> @<span class="id" title="var">external</span> <span class="id" title="var">solve_constraints</span> : <span class="id" title="var">unit</span> -&gt; <span class="id" title="var">unit</span><br/>
+&nbsp;&nbsp;:= "rocq-runtime.plugins.ltac2" "solve_constraints".<br/>
 </div>
 
           <!-- ************************
