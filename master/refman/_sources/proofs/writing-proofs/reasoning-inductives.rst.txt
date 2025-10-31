@@ -1163,6 +1163,12 @@ Generation of induction principles with ``Scheme``
    If :token:`reference` involves independent constants or other
    inductive types, we recommend defining their equality first.
 
+.. cmd:: Scheme Rewriting for @reference
+   :name: Scheme Rewriting
+
+   Tries to generate rewriting schemes such as congruence for :n:`@reference`.
+   Equivalent to setting :flag:`Rewriting Schemes` before declaring :n:`@reference`.
+
 .. example:: Induction scheme for tree and forest
 
    Currently the automatically-generated :term:`induction principles <induction principle>`
