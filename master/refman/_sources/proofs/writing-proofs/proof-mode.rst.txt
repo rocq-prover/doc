@@ -945,6 +945,10 @@ Requesting information
 
    Displays the current goals.
 
+   If enabled, diffs are shown in emacs (via rocqtop) for :n:`Show` and
+   :n:`Show @natural`.  Use :cmd:`Show Diffs` in emacs to see diffs for
+   :n:`Show @ident`.  Diffs are not currently displayed in other IDEs.
+
    :n:`@natural`
      Display only the :token:`natural`\-th goal.
 
@@ -967,6 +971,10 @@ Requesting information
 
    .. exn:: No such goal.
       :undocumented:
+
+   .. cmd:: Show Diffs @ident
+
+      For use by emacs.  If :opt:`Diffs` is enabled, displays :n:`Show @ident` with proof diffs.
 
 .. cmd:: Show Proof {? Diffs {? removed } }
 
