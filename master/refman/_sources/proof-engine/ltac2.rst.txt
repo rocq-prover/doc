@@ -1492,28 +1492,41 @@ Metasyntactic operations that can be applied to other syntactic classes are:
 The following classes represent nonterminals with some special handling.  The
 table further down lists the classes that are handled plainly.
 
-  :n:`constr {? ( {+, @scope_key } ) }`
-    Parses a :token:`term`.  If specified, the :token:`scope_key`\s are used to interpret
-    the term (as described in  :ref:`LocalInterpretationRulesForNotations`).  The last
-    :token:`scope_key` is the top of the scope stack that's applied to the :token:`term`.
+.. insertprodn ltac2_constr_synclass_arg ltac2_constr_synclass_arg
 
-  :n:`lconstr {? ( {+, @scope_key } ) }`
+.. prodn::
+   ltac2_constr_synclass_arg ::= @scope_key
+   | delimiters ( {+, @scope_key } )
+
+Syntactic classes parsing terms may specify :token:`scope_key`\s which
+are used to interpret the term (as described in :ref:`LocalInterpretationRulesForNotations`).
+The last :token:`scope_key` is the top of the scope stack that's applied to the
+:token:`term`.
+When more than one :n:`@scope_key` is specified, it should be qualified using `delimiters`.
+
+  :n:`constr {? ( {+, @ltac2_constr_synclass_arg } ) }`
+    Parses a :token:`term`.
+    Typechecking the term runs typeclass resolution, after which no
+    new undefined existential variables may exist.
+
+  :n:`lconstr {? ( {+, @ltac2_constr_synclass_arg } ) }`
      Identical to `constr` but the term is parsed at precedence level 200.
 
-  :n:`open_constr {? ( {+, @scope_key } ) }`
-    Parses an open :token:`term`. Like :n:`constr` above, this class
-    accepts a list of notation scopes with the same effects.
+  :n:`open_constr {? ( {+, @ltac2_constr_synclass_arg } ) }`
+    Parses an open :token:`term`.
+    Typechecking the term may create new undefined existential variables,
+    and does not run typeclass resolution.
 
-  :n:`open_lconstr {? ( {+, @scope_key } ) }`
+  :n:`open_lconstr {? ( {+, @ltac2_constr_synclass_arg } ) }`
      Identical to `open_constr` but the term is parsed at precedence level 200.
 
 .. _preterm:
 
-  :n:`preterm {? ( {+, @scope_key } ) }`
+  :n:`preterm {? ( {+, @ltac2_constr_synclass_arg } ) }`
     Parses a non-typechecked :token:`term`. Like :n:`constr` above, this class
     accepts a list of notation scopes with the same effects.
 
-  :n:`lpreterm {? ( {+, @scope_key } ) }`
+  :n:`lpreterm {? ( {+, @ltac2_constr_synclass_arg } ) }`
      Identical to `preterm` but the term is parsed at precedence level 200.
 
   :n:`ident`
