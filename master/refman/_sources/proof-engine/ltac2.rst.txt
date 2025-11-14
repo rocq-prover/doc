@@ -1497,11 +1497,14 @@ Metasyntactic operations that can be applied to other syntactic classes are:
 The following classes represent nonterminals with some special handling.  The
 table further down lists the classes that are handled plainly.
 
-.. insertprodn ltac2_constr_synclass_arg ltac2_constr_synclass_arg
+.. insertprodn ltac2_constr_delimiters_arg ltac2_constr_synclass_arg
 
 .. prodn::
-   ltac2_constr_synclass_arg ::= @scope_key
+   ltac2_constr_delimiters_arg ::= @scope_key
    | delimiters ( {+, @scope_key } )
+   ltac2_constr_synclass_arg ::= @ltac2_constr_delimiters_arg
+   | custom ( @qualid )
+   | level ( @natural )
 
 Syntactic classes parsing terms may specify :token:`scope_key`\s which
 are used to interpret the term (as described in :ref:`LocalInterpretationRulesForNotations`).
@@ -1509,12 +1512,17 @@ The last :token:`scope_key` is the top of the scope stack that's applied to the
 :token:`term`.
 When more than one :n:`@scope_key` is specified, it should be qualified using `delimiters`.
 
+A :ref:`custom entry <custom-entries>` a parsing level may also be
+specified (except for the "l" syntactic classes which always parse the
+main term entry at level 200). If a custom entry is specified without
+a level, it is parsed at its highest level.
+
   :n:`constr {? ( {+, @ltac2_constr_synclass_arg } ) }`
     Parses a :token:`term`.
     Typechecking the term runs typeclass resolution, after which no
     new undefined existential variables may exist.
 
-  :n:`lconstr {? ( {+, @ltac2_constr_synclass_arg } ) }`
+  :n:`lconstr {? ( {+, @ltac2_constr_delimiters_arg } ) }`
      Identical to `constr` but the term is parsed at precedence level 200.
 
   :n:`open_constr {? ( {+, @ltac2_constr_synclass_arg } ) }`
@@ -1522,7 +1530,7 @@ When more than one :n:`@scope_key` is specified, it should be qualified using `d
     Typechecking the term may create new undefined existential variables,
     and does not run typeclass resolution.
 
-  :n:`open_lconstr {? ( {+, @ltac2_constr_synclass_arg } ) }`
+  :n:`open_lconstr {? ( {+, @ltac2_constr_delimiters_arg } ) }`
      Identical to `open_constr` but the term is parsed at precedence level 200.
 
 .. _preterm:
@@ -1531,7 +1539,7 @@ When more than one :n:`@scope_key` is specified, it should be qualified using `d
     Parses a non-typechecked :token:`term`. Like :n:`constr` above, this class
     accepts a list of notation scopes with the same effects.
 
-  :n:`lpreterm {? ( {+, @ltac2_constr_synclass_arg } ) }`
+  :n:`lpreterm {? ( {+, @ltac2_constr_delimiters_arg } ) }`
      Identical to `preterm` but the term is parsed at precedence level 200.
 
   :n:`ident`
