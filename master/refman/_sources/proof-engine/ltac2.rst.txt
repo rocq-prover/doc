@@ -182,6 +182,11 @@ One can define new types with the following commands.
          Ltac2 Eval PositiveInt.get (PositiveInt.make 3).
          Fail Ltac2 Eval PositiveInt.get (PositiveInt.make -1).
 
+.. cmd:: Ltac2 Import Type @qualid as @ident
+
+   Declares :n:`@ident` as an alias of :n:`@qualid` (i.e. `Ltac2 Type @ident := @qualid`),
+   and also makes its constructors or projections to have names accessible from the current module.
+
 .. cmd:: Ltac2 @ external @ident : @ltac2_type := @string__plugin @string__function
    :name: Ltac2 external
 
@@ -309,8 +314,8 @@ Ltac2 Definitions
    The previous value of the binding can be optionally accessed using the `as`
    binding syntax.
 
-   This command supports :term:`attributes <attribute>` :attr:`local` and :attr:`export`.
-   By default it is `export` outside sections. Inside sections it is `local` and does not support `export`.
+   This command supports :term:`attributes <attribute>` :attr:`local`, :attr:`export` and :attr:`global`.
+   By default it is `export` outside sections. Inside sections it is `local` and does not support `export` or `global`.
 
    .. example:: Dynamic nature of mutable cells
 
@@ -1853,6 +1858,13 @@ Debug
 .. flag:: Ltac2 Backtrace
 
    When this :term:`flag` is set, toplevel failures will be printed with a backtrace.
+
+.. flag:: Ltac2 Backtrace Compact
+
+   This flag is on by default. When unset, anonymous functions and
+   quotations in the stack trace print their bodies.
+
+   This flag has no effect when :flag:`Ltac2 Backtrace` is not set.
 
 Profiling
 ---------
