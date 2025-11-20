@@ -1407,8 +1407,21 @@ instead of in a single <a class="reference internal" href="#rocq:cmd.Module" tit
 Interactively defining the <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="#grammar-token-module_expr_inl"><span class="hole"><span class="pre">module_expr_inl</span></span></a></span></code>s in a series of
 <a class="reference internal" href="#rocq:cmd.Include" title="Include"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Include</span></code></a> commands is equivalent to giving them all in a single
 non-interactive <a class="reference internal" href="#rocq:cmd.Module" title="Module"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Module</span></code></a> command.</p>
-<p>The ! prefix indicates that any assumption command (such as <a class="reference internal" href="assumptions.html#rocq:cmd.Axiom" title="Axiom"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Axiom</span></code></a>) with an <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">Inline</span></span></span></span></code> clause
-in the type of the functor arguments will be ignored.</p>
+</dd></dl>
+
+<dl class="rocq opt">
+<dt class="sig sig-object rocq" id="rocq:opt.Inline-Level">
+<em class="property"><span class="sigannot"><span class="pre">Option</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Inline</span></span></span> <span><span><span class="pre">Level</span></span></span></span></span><a class="headerlink" href="#rocq:opt.Inline-Level" title="Link to this definition"></a></dt>
+<dd><p>Controls inlining of parameters (declared by e.g. <a class="reference internal" href="assumptions.html#rocq:cmd.Axiom" title="Axiom"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Axiom</span></code></a>) in
+functor application. The default is 100.</p>
+<p>A functor application with <code class="docutils literal notranslate"><span class="pre">[inline</span> <span class="pre">at</span> <span class="pre">level</span> <span class="pre">A]</span></code> will inline all
+parameters declared with <code class="docutils literal notranslate"><span class="pre">Inline(B)</span></code> with <code class="docutils literal notranslate"><span class="pre">B</span> <span class="pre">&lt;=</span> <span class="pre">A</span></code>.</p>
+<p><a class="reference internal" href="assumptions.html#rocq:cmd.Parameter" title="Parameter"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Parameter</span></code></a> declaration with <code class="docutils literal notranslate"><span class="pre">Inline</span></code> uses the value of this option
+unless an explicit level is provided (with <code class="docutils literal notranslate"><span class="pre">Inline(level)</span></code>).</p>
+<p>Functor application implicitly uses <code class="docutils literal notranslate"><span class="pre">[inline</span> <span class="pre">at</span> <span class="pre">level</span> <span class="pre">n]</span></code> where <code class="docutils literal notranslate"><span class="pre">n</span></code>
+is the value of this option, unless <code class="docutils literal notranslate"><span class="pre">[inline</span> <span class="pre">at</span> <span class="pre">level]</span></code> or <code class="docutils literal notranslate"><span class="pre">[no</span>
+<span class="pre">inline]</span></code> (or the prefix <code class="docutils literal notranslate"><span class="pre">!</span></code> which is equivalent to the suffix <code class="docutils literal notranslate"><span class="pre">[no</span>
+<span class="pre">inline]</span></code>) is explicitly provided.</p>
 </dd></dl>
 
 <dl class="rocq cmd">
