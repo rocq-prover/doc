@@ -3886,7 +3886,7 @@ type_sind is defined
 </span></dd>
 </dl>
 <span></span><dl class="simple">
-<dt><span></span><span class="rocqdoc-keyword">Notation</span><span> &quot; t --&gt; t' &quot; := (</span><span class="rocqdoc-var">arrow</span><span> </span><span class="rocqdoc-var">t</span><span> </span><span class="rocqdoc-var">t'</span><span>) (</span><span class="rocqdoc-tactic">at</span><span> </span><span class="rocqdoc-keyword">level</span><span> 20, </span><span class="rocqdoc-var">t'</span><span> </span><span class="rocqdoc-tactic">at</span><span> </span><span class="rocqdoc-var">next</span><span> </span><span class="rocqdoc-keyword">level</span><span>).</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Notation</span><span> &quot; t --&gt; t' &quot; := (</span><span class="rocqdoc-var">arrow</span><span> </span><span class="rocqdoc-var">t</span><span> </span><span class="rocqdoc-var">t'</span><span>) (</span><span class="rocqdoc-tactic">at</span><span> </span><span class="rocqdoc-keyword">level</span><span> 20, </span><span class="rocqdoc-tactic">right</span><span> </span><span class="rocqdoc-keyword">associativity</span><span>).</span><span>
 </span></dt></dl>
 <span></span><dl>
 <dt><span></span><span class="rocqdoc-keyword">Inductive</span><span> </span><span class="rocqdoc-var">ctx</span><span> : </span><span class="rocqdoc-keyword">Type</span><span> :=</span><span>
@@ -3900,7 +3900,7 @@ ctx_sind is defined
 </span></dd>
 </dl>
 <span></span><dl class="simple">
-<dt><span></span><span class="rocqdoc-keyword">Notation</span><span> &quot; G , tau &quot; := (</span><span class="rocqdoc-var">snoc</span><span> </span><span class="rocqdoc-var">G</span><span> </span><span class="rocqdoc-var">tau</span><span>) (</span><span class="rocqdoc-tactic">at</span><span> </span><span class="rocqdoc-keyword">level</span><span> 20, </span><span class="rocqdoc-var">tau</span><span> </span><span class="rocqdoc-tactic">at</span><span> </span><span class="rocqdoc-var">next</span><span> </span><span class="rocqdoc-keyword">level</span><span>).</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Notation</span><span> &quot; G , tau &quot; := (</span><span class="rocqdoc-var">snoc</span><span> </span><span class="rocqdoc-var">G</span><span> </span><span class="rocqdoc-var">tau</span><span>) (</span><span class="rocqdoc-tactic">at</span><span> </span><span class="rocqdoc-keyword">level</span><span> 21, </span><span class="rocqdoc-tactic">left</span><span> </span><span class="rocqdoc-keyword">associativity</span><span>).</span><span>
 </span></dt></dl>
 <span></span><dl>
 <dt><span></span><span class="rocqdoc-keyword">Fixpoint</span><span> </span><span class="rocqdoc-var">conc</span><span> (</span><span class="rocqdoc-var">G</span><span> </span><span class="rocqdoc-var">D</span><span> : </span><span class="rocqdoc-var">ctx</span><span>) : </span><span class="rocqdoc-var">ctx</span><span> :=</span><span>
@@ -3913,7 +3913,7 @@ conc is recursively defined (guarded on 2nd argument)
 </span></dd>
 </dl>
 <span></span><dl class="simple">
-<dt><span></span><span class="rocqdoc-keyword">Notation</span><span> &quot; G ; D &quot; := (</span><span class="rocqdoc-var">conc</span><span> </span><span class="rocqdoc-var">G</span><span> </span><span class="rocqdoc-var">D</span><span>) (</span><span class="rocqdoc-tactic">at</span><span> </span><span class="rocqdoc-keyword">level</span><span> 20).</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Notation</span><span> &quot; G ; D &quot; := (</span><span class="rocqdoc-var">conc</span><span> </span><span class="rocqdoc-var">G</span><span> </span><span class="rocqdoc-var">D</span><span>) (</span><span class="rocqdoc-tactic">at</span><span> </span><span class="rocqdoc-keyword">level</span><span> 21).</span><span>
 </span></dt></dl>
 <span></span><dl>
 <dt><span></span><span class="rocqdoc-keyword">Inductive</span><span> </span><span class="rocqdoc-var">term</span><span> : </span><span class="rocqdoc-var">ctx</span><span> -&gt; </span><span class="rocqdoc-keyword">type</span><span> -&gt; </span><span class="rocqdoc-keyword">Type</span><span> :=</span><span>
@@ -4071,10 +4071,10 @@ must help the automation by giving some arguments, using the
   G0 : ctx
   tau, tau' : type
   ============================
-  term ((G0</span><span>,</span><span> tau)</span><span>,</span><span> tau') tau
+  term (G0</span><span>,</span><span> tau</span><span>,</span><span> tau') tau
 
 goal 2 is:
- term (((G</span><span>,</span><span> tau')</span><span>;</span><span> D)</span><span>,</span><span> t) t
+ term ((G</span><span>,</span><span> tau')</span><span>;</span><span> D</span><span>,</span><span> t) t
 goal 3 is:
  term ((G</span><span>,</span><span> tau'0)</span><span>;</span><span> D) tau
 goal 4 is:
@@ -4087,7 +4087,7 @@ goal 5 is:
   G, D : ctx
   t, tau' : type
   ============================
-  term (((G</span><span>,</span><span> tau')</span><span>;</span><span> D)</span><span>,</span><span> t) t
+  term ((G</span><span>,</span><span> tau')</span><span>;</span><span> D</span><span>,</span><span> t) t
 
 goal 2 is:
  term ((G</span><span>,</span><span> tau'0)</span><span>;</span><span> D) tau
@@ -4130,10 +4130,10 @@ goal 3 is:
     G0</span><span> =</span><span> G</span><span>;</span><span> D</span><span> -&gt;</span><span> </span><span class="ansi-bold">forall</span><span> tau' : type, term ((G</span><span>,</span><span> tau')</span><span>;</span><span> D) tau
   tau'0 : type
   ============================
-  term ((G0</span><span>,</span><span> tau')</span><span>,</span><span> tau'0) tau
+  term (G0</span><span>,</span><span> tau'</span><span>,</span><span> tau'0) tau
 
 goal 2 is:
- term (((G</span><span>,</span><span> tau'0)</span><span>;</span><span> D)</span><span>,</span><span> t) tau
+ term ((G</span><span>,</span><span> tau'0)</span><span>;</span><span> D</span><span>,</span><span> t) tau
 goal 3 is:
  term ((G</span><span>,</span><span> tau'0)</span><span>;</span><span> D) (tau</span><span> --&gt;</span><span> tau')
 goal 4 is:
@@ -4153,10 +4153,10 @@ goal 4 is:
     G0</span><span> =</span><span> G</span><span>;</span><span> D</span><span> -&gt;</span><span> </span><span class="ansi-bold">forall</span><span> tau' : type, term ((G</span><span>,</span><span> tau')</span><span>;</span><span> D) tau
   tau'0 : type
   ============================
-  term ((G0</span><span>,</span><span> tau')</span><span>,</span><span> tau'0) tau
+  term (G0</span><span>,</span><span> tau'</span><span>,</span><span> tau'0) tau
 
 goal 2 is:
- term (((G</span><span>,</span><span> tau'0)</span><span>;</span><span> D)</span><span>,</span><span> t) tau
+ term ((G</span><span>,</span><span> tau'0)</span><span>;</span><span> D</span><span>,</span><span> t) tau
 goal 3 is:
  term ((G</span><span>,</span><span> tau'0)</span><span>;</span><span> D) (tau</span><span> --&gt;</span><span> tau')
 goal 4 is:
@@ -4174,10 +4174,10 @@ goal 4 is:
   IHterm : </span><span class="ansi-bold">forall</span><span> tau' : type, term ((G0</span><span>,</span><span> tau')</span><span>;</span><span> empty) tau
   tau'0 : type
   ============================
-  term ((G0</span><span>,</span><span> tau')</span><span>,</span><span> tau'0) tau
+  term (G0</span><span>,</span><span> tau'</span><span>,</span><span> tau'0) tau
 
 goal 2 is:
- term (((G</span><span>,</span><span> tau'0)</span><span>;</span><span> D)</span><span>,</span><span> t) tau
+ term ((G</span><span>,</span><span> tau'0)</span><span>;</span><span> D</span><span>,</span><span> t) tau
 goal 3 is:
  term ((G</span><span>,</span><span> tau'0)</span><span>;</span><span> D) (tau</span><span> --&gt;</span><span> tau')
 goal 4 is:
@@ -4200,7 +4200,7 @@ it can be used directly.</p>
   H : term (G</span><span>;</span><span> D) tau
   t, tau'0 : type
   ============================
-  term (((G</span><span>,</span><span> tau'0)</span><span>;</span><span> D)</span><span>,</span><span> t) tau
+  term ((G</span><span>,</span><span> tau'0)</span><span>;</span><span> D</span><span>,</span><span> t) tau
 
 goal 2 is:
  term ((G</span><span>,</span><span> tau'0)</span><span>;</span><span> D) (tau</span><span> --&gt;</span><span> tau')
@@ -4217,10 +4217,10 @@ goal 3 is:
   
   G, D : ctx
   tau, tau' : type
-  H : term ((G</span><span>;</span><span> D)</span><span>,</span><span> tau) tau'
+  H : term (G</span><span>;</span><span> D</span><span>,</span><span> tau) tau'
   IHterm :
     </span><span class="ansi-bold">forall</span><span> G0 D0 : ctx,
-    (G</span><span>;</span><span> D)</span><span>,</span><span> tau</span><span> =</span><span> G0</span><span>;</span><span> D0</span><span> -&gt;</span><span> </span><span class="ansi-bold">forall</span><span> tau'0 : type, term ((G0</span><span>,</span><span> tau'0)</span><span>;</span><span> D0) tau'
+    G</span><span>;</span><span> D</span><span>,</span><span> tau</span><span> =</span><span> G0</span><span>;</span><span> D0</span><span> -&gt;</span><span> </span><span class="ansi-bold">forall</span><span> tau'0 : type, term ((G0</span><span>,</span><span> tau'0)</span><span>;</span><span> D0) tau'
   tau'0 : type
   ============================
   term ((G</span><span>,</span><span> tau'0)</span><span>;</span><span> D) (tau</span><span> --&gt;</span><span> tau')
