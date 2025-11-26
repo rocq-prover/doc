@@ -627,9 +627,18 @@ Short form backtracks
 
 <div class="doc">
 Backtraces. 
-<div class="paragraph"> </div>
+</div>
+<div class="code">
 
- <span class="inlinecode"><span class="id" title="var">throw_bt</span></span> <span class="inlinecode"><span class="id" title="tactic">info</span></span> <span class="inlinecode"><span class="id" title="var">e</span></span> is similar to <span class="inlinecode"><span class="id" title="var">throw</span></span> <span class="inlinecode"><span class="id" title="var">e</span></span>, but raises <span class="inlinecode"><span class="id" title="var">e</span></span> with the
+<br/>
+<span class="id" title="keyword">Ltac2</span> @<span class="id" title="var">external</span> <span class="id" title="var">current_exninfo</span> : <span class="id" title="var">unit</span> -&gt; <span class="id" title="var">exninfo</span><br/>
+&nbsp;&nbsp;:= "rocq-runtime.plugins.ltac2" "current_exninfo".<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">throw_bt</span></span> <span class="inlinecode"><span class="id" title="tactic">info</span></span> <span class="inlinecode"><span class="id" title="var">e</span></span> is similar to <span class="inlinecode"><span class="id" title="var">throw</span></span> <span class="inlinecode"><span class="id" title="var">e</span></span>, but raises <span class="inlinecode"><span class="id" title="var">e</span></span> with the
     backtrace represented by <span class="inlinecode"><span class="id" title="tactic">info</span></span>. 
 </div>
 <div class="code">
