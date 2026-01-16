@@ -855,14 +855,14 @@ witness these temporary variables.
 Sort polymorphic inductives may be declared when every instantiation
 is valid.
 
-Elimination at a given universe instance requires that elimination is
-allowed at every ground instantiation of the sort variables in the
-instance. Additionally if the output sort at the given universe
-instance is sort polymorphic, the return type of the elimination must
-be at the same quality. These restrictions ignore :flag:`Definitional
-UIP`.
+.. _elim-constraints:
 
-For instance
+Elimination of Sort-Polymorphic Inductives
+------------------------------------------
+
+Sort-polymorphic inductives follow rules for their elimination, both
+when the target sort is polymorphic or not. We illustrate the first case
+on the following example:
 
 .. rocqtop:: all reset
 
@@ -870,7 +870,7 @@ For instance
 
    Inductive Squash@{s;u} (A:Type@{s;u}) : Prop := squash (_:A).
 
-Elimination to `Prop` and `SProp` is always allowed, so `Squash_ind`
+Here, elimination to `Prop` and `SProp` is always allowed, so `Squash_ind`
 and `Squash_sind` are automatically defined.
 
 Elimination to `Type` is not allowed with variable `s`, because the
@@ -890,19 +890,94 @@ However elimination to `Type` or to a polymorphic sort with `s := Prop` is allow
      : forall s, P s
      := fun s => match s with squash _ x => H x end.
 
+In fact, for a given universe instance, elimination is allowed if:
+
+- it is allowed for every ground instantiation of the sort variables in the instance, or
+
+- the output sort at the given universe instance is sort polymorphic and
+  the return type of the elimination is at the same quality.
+
+For instance, for the following inductive, elimination is not allowed unless the target sort of
+the inductive matches the sort it is eliminated to.
+
+.. rocqtop:: all
+
+   Inductive sum@{sl sr s;ul ur} (A:Type@{sl;ul}) (B:Type@{sr;ur}) : Type@{s;max(ul,ur)} :=
+   | inl (_:A)
+   | inr (_:B).
+
+.. rocqtop:: none
+
+   Arguments inl {_ _} _.
+   Arguments inr {_ _} _.
+
+.. rocqtop:: all
+
+   Fail Definition sum_elim@{sl sr s s';ul ur u'|}
+     (A:Type@{sl;ul}) (B:Type@{sr;ur}) (P:sum@{sl sr s;ul ur} A B -> Type@{s';u'})
+     (fl : forall (x : A), P (inl x)) (fr : forall (y : B), P (inr y))
+     (v : sum@{sl sr s;ul ur} A B) : P v :=
+         match v with
+         | inl x => fl x
+         | inr y => fr y
+         end.
+
+As this greatly inhibits the possibilities of sort polymorphism, we have introduced *elimination
+constraints* to manage these cases. Here, the annotation `s -> s'` can be added
+to tell Rocq that the definition is allowed for *every* sorts `s`, `s'` such that `s` eliminates
+into `s'`.
+
+.. rocqtop:: all
+
+   Definition sum_elim@{sl sr s s';ul ur u'|s -> s'}
+     (A:Type@{sl;ul}) (B:Type@{sr;ur}) (P:sum@{sl sr s;ul ur} A B -> Type@{s';u'})
+     (fl : forall (x : A), P (inl x)) (fr : forall (y : B), P (inr y))
+     (v : sum@{sl sr s;ul ur} A B) : P v :=
+         match v with
+         | inl x => fl x
+         | inr y => fr y
+         end.
+
+It means that `s` and `s'` can respectively be instantiated to e.g., `Type` and `Prop` or
+`Prop` and `SProp`, but cannot be instantiated to e.g., `Prop` and `Type` or `SProp` and
+`Prop`.
+
+.. rocqtop:: all
+
+   Check sum_elim@{_ _ Type Prop;_ _ _}.
+   Check sum_elim@{_ _ Prop SProp;_ _ _}.
+   Fail Check sum_elim@{_ _ Prop Type;_ _ _}.
+   Fail Check sum_elim@{_ _ SProp Prop;_ _ _}.
+
 .. note::
 
-   Since inductive types with sort polymorphic output may only be
-   polymorphically eliminated to the same sort quality, containers
-   such as sigma types may be better defined as primitive records (which
-   do not have this restriction) when possible.
+   As with universe level constraints, elimination constraints can be elaborated
+   automatically if the constraints are denoted extensible with `+` **or** if they
+   are totally omitted. For instance, the two following definitions are legal.
 
    .. rocqtop:: all
 
-      Set Primitive Projections.
-      Record sigma@{s;u v} (A:Type@{s;u}) (B:A -> Type@{s;v})
-        : Type@{s;max(u,v)}
-        := pair { pr1 : A; pr2 : B pr1 }.
+      Definition sum_elim_ext@{sl sr s s';ul ur u'|+}
+        (A:Type@{sl;ul}) (B:Type@{sr;ur}) (P:sum@{sl sr s;ul ur} A B -> Type@{s';u'})
+        (fl : forall (x : A), P (inl x)) (fr : forall (y : B), P (inr y))
+        (v : sum@{sl sr s;ul ur} A B) : P v :=
+            match v with
+                | inl x => fl x
+                | inr y => fr y
+                end.
+
+      Definition sum_elim_elab@{sl sr s s';ul ur u'}
+        (A:Type@{sl;ul}) (B:Type@{sr;ur}) (P:sum@{sl sr s;ul ur} A B -> Type@{s';u'})
+        (fl : forall (x : A), P (inl x)) (fr : forall (y : B), P (inr y))
+        (v : sum@{sl sr s;ul ur} A B) : P v :=
+            match v with
+                | inl x => fl x
+                | inr y => fr y
+                end.
+
+.. note::
+
+    These restrictions ignore :flag:`Definitional UIP`.
 
 .. flag:: Printing Sort Qualities
 
@@ -915,7 +990,8 @@ However elimination to `Type` or to a polymorphic sort with `s := Prop` is allow
 Explicit Sorts
 ---------------
 
-Similar to universes, fresh global sorts can be declared with the :cmd:`Sort`.
+Similar to universes, fresh global sorts can be declared with the :cmd:`Sort`, and elimination
+constraint on global sorts can be declared with the :cmd:`Constraint`.
 
 .. cmd:: Sort {+ @ident }
          Sorts {+ @ident }
