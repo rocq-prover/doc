@@ -1388,6 +1388,8 @@ expresses structural induction/recursion principles over objects of
 type <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></code>.  These <a class="reference internal" href="definitions.html#term-constant"><span class="xref std std-term">constants</span></a> are generated when
 possible (for instance <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></code><code class="docutils literal notranslate"><span class="pre">_rect</span></code> may be impossible to derive
 when <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></code> is a proposition).</p>
+<p>This commands supports <a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#rocq:attr.schemes" title="schemes"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">schemes</span></code></a> to control the automatic
+generation of inductive principles.</p>
 <dl class="rocq flag">
 <dt class="sig sig-object rocq" id="rocq:flag.Dependent-Proposition-Eliminators">
 <em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Dependent</span></span></span> <span><span><span class="pre">Proposition</span></span></span> <span><span><span class="pre">Eliminators</span></span></span></span></span><a class="headerlink" href="#rocq:flag.Dependent-Proposition-Eliminators" title="Link to this definition"></a></dt>
@@ -1395,6 +1397,9 @@ when <code class="docutils literal notranslate"><span class="notation"><a class=
 inductive type allows it (always true when not using
 <a class="reference internal" href="records.html#rocq:flag.Primitive-Projections" title="Primitive Projections"><code class="xref rocq rocq-flag docutils literal notranslate"><span class="pre">Primitive</span> <span class="pre">Projections</span></code></a>), except by default when the
 inductive is explicitly declared in <code class="docutils literal notranslate"><span class="pre">Prop</span></code>.</p>
+<p>The dependent elimination corresponds to the &quot;Induction&quot;
+<code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../proofs/writing-proofs/reasoning-inductives.html#grammar-token-scheme_type"><span class="hole"><span class="pre">scheme_type</span></span></a></span></code>, and non-dependent elimination to
+&quot;Minimality&quot;.</p>
 <p>Explicitly <code class="docutils literal notranslate"><span class="pre">Prop</span></code> inductive types declared when this flag is
 enabled also automatically declare dependent inductive
 principles. Name generation may also change when using tactics
