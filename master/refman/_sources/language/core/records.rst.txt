@@ -406,7 +406,7 @@ flag.
 There are currently two ways to introduce primitive records types:
 
 #. Through the :cmd:`Record` command, in which case the type has to be
-   non-recursive. The defined type enjoys eta-conversion definitionally,
+   non-recursive. The defined type has eta-conversion definitionally, in most cases (See :ref:`sprop <record-eta-restriction>` for exceptions),
    that is the generalized form of surjective pairing for records:
    `r` ``= Build_``\ `R` ``(``\ `r`\ ``.(``\ |p_1|\ ``) …`` `r`\ ``.(``\ |p_n|\ ``))``.
    Eta-conversion allows to define dependent elimination for these types as well.
