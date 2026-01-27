@@ -194,6 +194,12 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#sort-polymorphism">Sort polymorphism</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#explicit-sorts">Explicit Sorts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#template-polymorphism">Template polymorphism</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#template-polymorphic-inductive-declarations">Template polymorphic inductive declarations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#using-template-polymorphic-inductives">Using template polymorphic inductives</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#controlling-template-polymorphism">Controlling template polymorphism</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#universe-polymorphism-and-sections">Universe polymorphism and sections</a></li>
 </ul>
 </li>
@@ -2634,6 +2640,273 @@ Declared in toplevel input, characters 6098-6102
 </div>
 </dd></dl>
 
+</section>
+<section id="template-polymorphism">
+<span id="id4"></span><h2>Template polymorphism<a class="headerlink" href="#template-polymorphism" title="Link to this heading"></a></h2>
+<p>Template polymorphism is a variant of universe polymorphism for
+inductive types (and inductive families) whose shape allows inferring
+the universe instance from the parameters. Template polymorphic
+inductives appear in terms without an explicit universe instance (for
+instance if <code class="docutils literal notranslate"><span class="pre">prod</span></code> is template polymorphic then <code class="docutils literal notranslate"><span class="pre">prod</span> <span class="pre">nat</span> <span class="pre">nat</span></code> is a
+fully explicit term, if it is universe polymorphic it would be
+<code class="docutils literal notranslate"><span class="pre">prod&#64;{Set</span> <span class="pre">Set}</span> <span class="pre">nat</span> <span class="pre">nat</span></code>).</p>
+<p>Additionally template polymorphism implements sort polymorphism
+restricted to the sorts <code class="docutils literal notranslate"><span class="pre">Prop</span></code> and <code class="docutils literal notranslate"><span class="pre">Type</span></code>
+(for instance <code class="docutils literal notranslate"><span class="pre">prod</span> <span class="pre">True</span> <span class="pre">True</span> <span class="pre">:</span> <span class="pre">Prop</span></code>).</p>
+<section id="template-polymorphic-inductive-declarations">
+<h3>Template polymorphic inductive declarations<a class="headerlink" href="#template-polymorphic-inductive-declarations" title="Link to this heading"></a></h3>
+<p>A template polymorphic inductive is polymorphic over some specific
+universe levels and sort variables which are introduced by the inductive's declaration.
+These levels are called &quot;template (polymorphic) levels&quot; and sorts.</p>
+<p>A type of the shape <code class="docutils literal notranslate"><span class="pre">Type&#64;{s;u}</span></code> or <code class="docutils literal notranslate"><span class="pre">forall</span> <span class="pre">...,</span> <span class="pre">Type&#64;{s;u}</span></code> (i.e. a
+type of types or type families) is called an &quot;arity&quot;. <code class="docutils literal notranslate"><span class="pre">Type&#64;{s;u}</span></code> is
+the &quot;conclusion&quot; of the arity. The type of an inductive is always an
+arity, and for short we say &quot;the inductive's conclusion&quot; instead of
+&quot;the inductive's type's conclusion&quot;. Template polymorphism also
+involves parameters of the inductive whose types are arities.</p>
+<p>An inductive may be template polymorphic when</p>
+<ul>
+<li><p>it is the only inductive of its block (the combination of template
+polymorphism and mutual inductives is not supported).</p></li>
+<li><p>the template levels appear linearly in the conclusions of parameters
+which are arities. Such conclusions must have only that level as its universe
+(i.e. <code class="docutils literal notranslate"><span class="pre">Type&#64;{s;u}</span></code> where <code class="docutils literal notranslate"><span class="pre">u</span></code> is a template level, not <code class="docutils literal notranslate"><span class="pre">Type&#64;{s;max(u,v)}</span></code> or <code class="docutils literal notranslate"><span class="pre">Type&#64;{u+1}</span></code>).
+Each template level is said to be &quot;bound&quot; by the parameter in whose type it appears.</p></li>
+<li><p>the template levels may also appear in the inductive's conclusion,
+and appear nowhere else (not in non-arity parameters, not in
+the domains of arity parameters, not in the indices, and not
+in the constructor arguments and return types).</p></li>
+<li><p>template levels which appear in the inductive's conclusion do
+not appear with an increment (i.e. if <code class="docutils literal notranslate"><span class="pre">u</span></code> is a template level it
+does not appear as <code class="docutils literal notranslate"><span class="pre">u+1</span></code>).</p>
+<p>This restriction prevents generating increments higher than 1 by
+applying template inductives to themselves, i.e. if <code class="docutils literal notranslate"><span class="pre">I</span> <span class="pre">:</span> <span class="pre">Type&#64;{u}</span> <span class="pre">-&gt;</span>
+<span class="pre">Type&#64;{u</span> <span class="pre">+</span> <span class="pre">1}</span></code> was template polymorphic and <code class="docutils literal notranslate"><span class="pre">X:Type&#64;{i}</span></code> then <code class="docutils literal notranslate"><span class="pre">I</span>
+<span class="pre">(I</span> <span class="pre">X)</span> <span class="pre">:</span> <span class="pre">Type&#64;{i</span> <span class="pre">+</span> <span class="pre">2}</span></code>. It is necessary as the current universe
+checking cannot handle such increments properly, but this
+restriction may be removed in the future.</p>
+</li>
+<li><p>the template sorts appear in the conclusions of parameters (not
+necessarily linearly), may appear in the inductive's conclusion, and
+appear nowhere else.</p></li>
+<li><p>for each template universe <code class="docutils literal notranslate"><span class="pre">u</span></code>, there are no constraints of the form
+<code class="docutils literal notranslate"><span class="pre">v</span> <span class="pre">&lt;=</span> <span class="pre">u</span></code> (&quot;no constraints from below&quot;).</p></li>
+</ul>
+<p>These requirements are more than sufficient to ensure that if the
+inductive was declared universe polymorphic and cumulative then all
+template levels would be irrelevant. The &quot;no constraints from below&quot;
+requirement is needed for subject reduction (preservation of typing by
+reduction) in terms involving partially applied template polymorphic
+inductives. Linearity of template universes and not supporting mutual
+inductives make implementation of template polymorphism easier.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The restriction that universes are introduced by the inductive
+declaration prevents inductive types declared in sections from being
+template-polymorphic on universes introduced previously in the
+section: they cannot parameterize over the universes introduced with
+section variables that become parameters at section closing time, as
+these may be shared with other definitions from the same section
+which can impose constraints on them.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Currently user syntax does not support explicit sort polymorphism
+annotations (<code class="docutils literal notranslate"><span class="pre">&#64;{s;...}</span></code>) in template polymorphic declarations. The
+sorts must be left implicit and will be automatically inferred.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Example</p>
+<div class="coqtop literal-block docutils container">
+<span class="coqtop-reset"></span><dl>
+<dt><span></span><span class="coqdoc-keyword">Inductive</span><span> </span><span class="coqdoc-var">option</span><span> (</span><span class="coqdoc-var">A</span><span>:</span><span class="coqdoc-keyword">Type</span><span>) : </span><span class="coqdoc-keyword">Type</span><span> :=</span><span>
+| </span><span class="coqdoc-var">None</span><span> : </span><span class="coqdoc-var">option</span><span> </span><span class="coqdoc-var">A</span><span>
+| </span><span class="coqdoc-var">Some</span><span> : </span><span class="coqdoc-var">A</span><span> -&gt; </span><span class="coqdoc-var">option</span><span> </span><span class="coqdoc-var">A</span><span>.</span><span>
+</span></dt><dd class="coqtop-hidden"><span>option is defined
+option_rect is defined
+option_ind is defined
+option_rec is defined
+option_sind is defined
+</span></dd>
+<dt><span></span><span>
+</span><span class="coqdoc-keyword">Inductive</span><span> </span><span class="coqdoc-var">prod</span><span> </span><span class="coqdoc-var">A</span><span> </span><span class="coqdoc-var">B</span><span> := </span><span class="coqdoc-var">pair</span><span> : </span><span class="coqdoc-var">A</span><span> -&gt; </span><span class="coqdoc-var">B</span><span> -&gt; </span><span class="coqdoc-var">prod</span><span> </span><span class="coqdoc-var">A</span><span> </span><span class="coqdoc-var">B</span><span>.</span><span>
+</span></dt><dd class="coqtop-hidden"><span>prod is defined
+prod_rect is defined
+prod_ind is defined
+prod_rec is defined
+prod_sind is defined
+</span></dd>
+</dl>
+<span></span><dl>
+<dt><span></span><span class="coqdoc-keyword">Set Printing Universes</span><span>.</span><span>
+</span></dt><dt><span></span><span class="coqdoc-keyword">About</span><span> </span><span class="coqdoc-var">option</span><span>.</span><span>
+</span></dt><dd><span>option : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">option.u0</span><span>}</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{max(</span><span class="ansi-fg-yellow ansi-bold">Set</span><span>,</span><span class="ansi-fg-yellow ansi-bold">option.u0</span><span>)}
+
+option is template universe polymorphic on option.u0 (cannot be instantiated to Prop)
+Arguments </span><span class="ansi-fg-light-green">option</span><span> A%_type_scope
+Expands to: Inductive Top.option
+Declared in toplevel input, characters 6415-6421
+</span></dd>
+<dt><span></span><span class="coqdoc-keyword">About</span><span> </span><span class="coqdoc-var">prod</span><span>.</span><span>
+</span></dt><dd><span>prod : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">prod.u0</span><span>}</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">prod.u1</span><span>}</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{max(</span><span class="ansi-fg-yellow ansi-bold">prod.u0</span><span>,</span><span class="ansi-fg-yellow ansi-bold">prod.u1</span><span>)}
+
+prod is template universe polymorphic on prod.u1 prod.u0 (can be instantiated to Prop)
+Arguments </span><span class="ansi-fg-light-green">prod</span><span> (A B)%_type_scope
+Expands to: Inductive Top.prod
+Declared in toplevel input, characters 6493-6497
+</span></dd>
+</dl>
+</div>
+<p>Since the sort polymorphism of template inductives cannot be
+specified in the user syntax, it is instead described by the
+&quot;can/cannot be instantiated to <code class="docutils literal notranslate"><span class="pre">Prop</span></code>&quot; mention in <a class="reference internal" href="../proof-engine/vernacular-commands.html#coq:cmd.About" title="About"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">About</span></code></a>'s
+output. Since <code class="docutils literal notranslate"><span class="pre">option</span></code> has 2 constructors, it cannot be
+instantiated to <code class="docutils literal notranslate"><span class="pre">Prop</span></code> i.e. it is not sort polymorphic.</p>
+</div>
+</section>
+<section id="using-template-polymorphic-inductives">
+<h3>Using template polymorphic inductives<a class="headerlink" href="#using-template-polymorphic-inductives" title="Link to this heading"></a></h3>
+<p>For each template universe <code class="docutils literal notranslate"><span class="pre">u</span></code> bound by parameter <code class="docutils literal notranslate"><span class="pre">A</span></code> of an inductive
+<code class="docutils literal notranslate"><span class="pre">I</span></code>, when <code class="docutils literal notranslate"><span class="pre">I</span></code> is applied such that <code class="docutils literal notranslate"><span class="pre">A</span></code> is instantiated with a term of
+type <code class="docutils literal notranslate"><span class="pre">forall</span> <span class="pre">...,</span> <span class="pre">Type&#64;{q;i}</span></code> (where <code class="docutils literal notranslate"><span class="pre">i</span></code> may be an algebraic
+universe), <code class="docutils literal notranslate"><span class="pre">u</span></code> is instantiated by <code class="docutils literal notranslate"><span class="pre">i</span></code> in the inductive's conclusion
+and in the constraints (which must be of the form <code class="docutils literal notranslate"><span class="pre">u</span> <span class="pre">&lt;=</span> <span class="pre">x</span></code> where <code class="docutils literal notranslate"><span class="pre">x</span></code>
+is a global universe due to the &quot;no constraints from below&quot;
+requirement).</p>
+<p>Each template sort <code class="docutils literal notranslate"><span class="pre">s</span></code> is instantiated by the supremum of the <code class="docutils literal notranslate"><span class="pre">q</span></code>
+appearing in the conclusions of the types of arguments provided for
+parameters binding <code class="docutils literal notranslate"><span class="pre">s</span></code>. This is well-defined because template sorts
+may only be instantiated by <code class="docutils literal notranslate"><span class="pre">Prop</span></code> and <code class="docutils literal notranslate"><span class="pre">Type</span></code> and variable sorts
+restricted to these 2 ground sorts.</p>
+<p>If the inductive is partially applied, leftover parameters act as
+though they were given an argument at a default global universe and at
+sort <code class="docutils literal notranslate"><span class="pre">Type</span></code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Partially applied template polymorphic inductives lead to
+constraints between global universes, which can cause complex universe inconsistencies.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Example</p>
+<p>As mentioned previously, <code class="docutils literal notranslate"><span class="pre">option</span></code> is not sort polymorphic:</p>
+<div class="coqtop literal-block docutils container">
+<span></span><dl>
+<dt><span></span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">A</span><span>:</span><span class="coqdoc-keyword">Prop</span><span> =&gt; </span><span class="coqdoc-var">option</span><span> </span><span class="coqdoc-var">A</span><span>.</span><span>
+</span></dt><dd><span class="ansi-bold">fun</span><span> A : </span><span class="ansi-fg-yellow ansi-bold">Prop</span><span> =&gt; option A
+     : </span><span class="ansi-fg-yellow ansi-bold">Prop</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Set</span><span>
+</span></dd>
+</dl>
+</div>
+<p>but it is universe polymorphic:</p>
+<div class="coqtop literal-block docutils container">
+<span></span><dl>
+<dt><span></span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">A</span><span>:</span><span class="coqdoc-keyword">Set</span><span> =&gt; </span><span class="coqdoc-var">option</span><span> </span><span class="coqdoc-var">A</span><span>.</span><span>
+</span></dt><dd><span class="ansi-bold">fun</span><span> A : </span><span class="ansi-fg-yellow ansi-bold">Set</span><span> =&gt; option A
+     : </span><span class="ansi-fg-yellow ansi-bold">Set</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Set</span><span>
+</span></dd>
+<dt><span></span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-var">option</span><span> </span><span class="coqdoc-keyword">Set</span><span>.</span><span>
+</span></dt><dd><span>option </span><span class="ansi-fg-yellow ansi-bold">Set</span><span>
+     : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">Set</span><span>+1}
+</span></dd>
+</dl>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Example</p>
+<p><code class="docutils literal notranslate"><span class="pre">prod</span></code> is sort polymorphic, but restricted to <code class="docutils literal notranslate"><span class="pre">Prop</span></code> and <code class="docutils literal notranslate"><span class="pre">Type</span></code>:</p>
+<div class="coqtop literal-block docutils container">
+<span></span><dl>
+<dt><span></span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">A</span><span>:</span><span class="coqdoc-keyword">Prop</span><span> =&gt; </span><span class="coqdoc-var">prod</span><span> </span><span class="coqdoc-var">A</span><span> </span><span class="coqdoc-var">A</span><span>.</span><span>
+</span></dt><dd><span class="ansi-bold">fun</span><span> A : </span><span class="ansi-fg-yellow ansi-bold">Prop</span><span> =&gt; prod A A
+     : </span><span class="ansi-fg-yellow ansi-bold">Prop</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Prop</span><span>
+</span></dd>
+<dt><span></span><span class="coqdoc-var">Fail</span><span> </span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">A</span><span>:</span><span class="coqdoc-var">SProp</span><span> =&gt;  </span><span class="coqdoc-var">prod</span><span> </span><span class="coqdoc-var">A</span><span> </span><span class="coqdoc-var">A</span><span>.</span><span>
+</span></dt><dd><span>The command has indeed failed with message:
+In environment
+A : </span><span class="ansi-fg-yellow ansi-bold">SProp</span><span>
+The term &quot;A&quot; has type &quot;</span><span class="ansi-fg-yellow ansi-bold">SProp</span><span>&quot; while it is expected to have type
+ &quot;</span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">α45</span><span> ; </span><span class="ansi-fg-yellow ansi-bold">Top.239</span><span>}&quot;
+(universe inconsistency: Cannot enforce SProp &lt;= Type&#64;{α45 | Top.239}).
+</span></dd>
+</dl>
+</div>
+<p>When only one of the arguments is <code class="docutils literal notranslate"><span class="pre">Prop</span></code>, the supremum of the sorts is <code class="docutils literal notranslate"><span class="pre">Type</span></code>:</p>
+<div class="coqtop literal-block docutils container">
+<span></span><dl>
+<dt><span></span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-var">prod</span><span> </span><span class="coqdoc-var">True</span><span> </span><span class="coqdoc-var">nat</span><span>.</span><span>
+</span></dt><dd><span>prod True nat
+     : </span><span class="ansi-fg-yellow ansi-bold">Set</span><span>
+</span></dd>
+</dl>
+</div>
+<p>This is also the case when partially applied to a <code class="docutils literal notranslate"><span class="pre">Prop</span></code>, and we
+can see the use of the default universe <code class="docutils literal notranslate"><span class="pre">prod.u1</span></code> for the second
+parameter:</p>
+<div class="coqtop literal-block docutils container">
+<span></span><dl>
+<dt><span></span><span class="coqdoc-keyword">Check</span><span> </span><span class="coqdoc-var">prod</span><span> </span><span class="coqdoc-var">True</span><span>.</span><span>
+</span></dt><dd><span>prod True
+     : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">prod.u1</span><span>}</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{max(</span><span class="ansi-fg-yellow ansi-bold">Set</span><span>,</span><span class="ansi-fg-yellow ansi-bold">prod.u1</span><span>)}
+</span></dd>
+</dl>
+</div>
+</div>
+</section>
+<section id="controlling-template-polymorphism">
+<h3>Controlling template polymorphism<a class="headerlink" href="#controlling-template-polymorphism" title="Link to this heading"></a></h3>
+<dl class="coq flag">
+<dt class="sig sig-object coq" id="coq:flag.Auto-Template-Polymorphism">
+<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Auto</span></span></span> <span><span><span class="pre">Template</span></span></span> <span><span><span class="pre">Polymorphism</span></span></span></span></span><a class="headerlink" href="#coq:flag.Auto-Template-Polymorphism" title="Link to this definition"></a></dt>
+<dd><p>This <a class="reference internal" href="../language/core/basic.html#term-flag"><span class="xref std std-term">flag</span></a>, enabled by default, makes every inductive type declared
+at level <code class="docutils literal notranslate"><span class="pre">Type</span></code> (without an explicit universe instance or hiding it behind a
+definition) template polymorphic if possible.</p>
+<p>This can be prevented using the <a class="reference internal" href="#coq:attr.universes(template)" title="universes(template)"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">universes(template=no)</span></code></a>
+attribute.</p>
+<p>Template polymorphism and full universe polymorphism (see Chapter
+<a class="reference internal" href="#polymorphicuniverses"><span class="std std-ref">Polymorphic Universes</span></a>) are incompatible, so if the latter is
+enabled (through the <a class="reference internal" href="#coq:flag.Universe-Polymorphism" title="Universe Polymorphism"><code class="xref coq coq-flag docutils literal notranslate"><span class="pre">Universe</span> <span class="pre">Polymorphism</span></code></a> flag or the
+<a class="reference internal" href="#coq:attr.universes(polymorphic)" title="universes(polymorphic)"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">universes(polymorphic)</span></code></a> attribute) it will prevail over
+automatic template polymorphism.</p>
+</dd></dl>
+
+<dl class="coq warn">
+<dt class="sig sig-object coq" id="coq:warn.Automatically-declaring-‘ident’-as-template-polymorphic">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Automatically</span></span></span> <span><span><span class="pre">declaring</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">as</span></span></span> <span><span><span class="pre">template</span></span></span> <span><span><span class="pre">polymorphic.</span></span></span></span></span><a class="headerlink" href="#coq:warn.Automatically-declaring-‘ident’-as-template-polymorphic" title="Link to this definition"></a></dt>
+<dd><p>Warning <code class="docutils literal notranslate"><span class="pre">auto-template</span></code> can be used (it is off by default) to
+find which types are implicitly declared template polymorphic by
+<a class="reference internal" href="#coq:flag.Auto-Template-Polymorphism" title="Auto Template Polymorphism"><code class="xref coq coq-flag docutils literal notranslate"><span class="pre">Auto</span> <span class="pre">Template</span> <span class="pre">Polymorphism</span></code></a>.</p>
+<p>An inductive type can be forced to be template polymorphic using
+the <a class="reference internal" href="#coq:attr.universes(template)" title="universes(template)"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">universes(template)</span></code></a> attribute: in this case, the
+warning is not emitted.</p>
+</dd></dl>
+
+<dl class="coq attr">
+<dt class="sig sig-object coq" id="coq:attr.universes(template)">
+<em class="property"><span class="sigannot"><span class="pre">Attribute</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">universes(template</span></span></span><span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">=</span></span></span> <span class="alternative"><span class="alternative-block"><span><span><span class="pre">yes</span></span></span></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><span><span><span class="pre">no</span></span></span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span><span><span><span class="pre">)</span></span></span></span></span><a class="headerlink" href="#coq:attr.universes(template)" title="Link to this definition"></a></dt>
+<dd><p>This <a class="reference internal" href="../language/core/basic.html#term-boolean-attribute"><span class="xref std std-term">boolean attribute</span></a> can be used to explicitly declare an
+inductive type as template polymorphic, whether the <a class="reference internal" href="#coq:flag.Auto-Template-Polymorphism" title="Auto Template Polymorphism"><code class="xref coq coq-flag docutils literal notranslate"><span class="pre">Auto</span>
+<span class="pre">Template</span> <span class="pre">Polymorphism</span></code></a> flag is on or off.</p>
+<dl class="coq exn">
+<dt class="sig sig-object coq" id="coq:exn.Template-polymorphism-and-universe-polymorphism-are-not-compatible">
+<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Template-polymorphism</span></span></span> <span><span><span class="pre">and</span></span></span> <span><span><span class="pre">universe</span></span></span> <span><span><span class="pre">polymorphism</span></span></span> <span><span><span class="pre">are</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">compatible</span></span></span></span></span><a class="headerlink" href="#coq:exn.Template-polymorphism-and-universe-polymorphism-are-not-compatible" title="Link to this definition"></a></dt>
+<dd><p>This attribute cannot be used in a full universe polymorphic
+context, i.e. if the <a class="reference internal" href="#coq:flag.Universe-Polymorphism" title="Universe Polymorphism"><code class="xref coq coq-flag docutils literal notranslate"><span class="pre">Universe</span> <span class="pre">Polymorphism</span></code></a> flag is on or
+if the <a class="reference internal" href="#coq:attr.universes(polymorphic)" title="universes(polymorphic)"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">universes(polymorphic)</span></code></a> attribute is used.</p>
+</dd></dl>
+
+<dl class="coq warn">
+<dt class="sig sig-object coq" id="coq:warn.no-template-universe">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">This</span></span></span> <span><span><span class="pre">inductive</span></span></span> <span><span><span class="pre">type</span></span></span> <span><span><span class="pre">has</span></span></span> <span><span><span class="pre">no</span></span></span> <span><span><span class="pre">template</span></span></span> <span><span><span class="pre">universes</span></span></span></span></span><a class="headerlink" href="#coq:warn.no-template-universe" title="Link to this definition"></a></dt>
+<dd><p>The attribute was used but the inductive definition does not
+satisfy the criterion to be template polymorphic.</p>
+</dd></dl>
+
+<p>When <code class="docutils literal notranslate"><span class="pre">universes(template=no)</span></code> is used, it will prevent an
+inductive type from being template polymorphic, even if the <a class="reference internal" href="#coq:flag.Auto-Template-Polymorphism" title="Auto Template Polymorphism"><code class="xref coq coq-flag docutils literal notranslate"><span class="pre">Auto</span>
+<span class="pre">Template</span> <span class="pre">Polymorphism</span></code></a> flag is on.</p>
+</dd></dl>
+
+</section>
 </section>
 <section id="universe-polymorphism-and-sections">
 <span id="universe-polymorphism-in-sections"></span><h2>Universe polymorphism and sections<a class="headerlink" href="#universe-polymorphism-and-sections" title="Link to this heading"></a></h2>

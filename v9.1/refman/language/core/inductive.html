@@ -194,6 +194,12 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../addendum/universe-polymorphism.html#sort-polymorphism">Sort polymorphism</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../addendum/universe-polymorphism.html#explicit-sorts">Explicit Sorts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../addendum/universe-polymorphism.html#template-polymorphism">Template polymorphism</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../addendum/universe-polymorphism.html#template-polymorphic-inductive-declarations">Template polymorphic inductive declarations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../addendum/universe-polymorphism.html#using-template-polymorphic-inductives">Using template polymorphic inductives</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../addendum/universe-polymorphism.html#controlling-template-polymorphism">Controlling template polymorphism</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../../addendum/universe-polymorphism.html#universe-polymorphism-and-sections">Universe polymorphism and sections</a></li>
 </ul>
 </li>
@@ -1340,7 +1346,7 @@ See <a class="reference internal" href="#coq:flag.Uniform-Inductive-Parameters" 
 </dd>
 </dl>
 <p>The <a class="reference internal" href="#coq:cmd.Inductive" title="Inductive"><code class="xref coq coq-cmd docutils literal notranslate"><span class="pre">Inductive</span></code></a> command supports the <a class="reference internal" href="../../addendum/universe-polymorphism.html#coq:attr.universes(polymorphic)" title="universes(polymorphic)"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">universes(polymorphic)</span></code></a>,
-<a class="reference internal" href="#coq:attr.universes(template)" title="universes(template)"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">universes(template)</span></code></a>, <a class="reference internal" href="../../addendum/universe-polymorphism.html#coq:attr.universes(cumulative)" title="universes(cumulative)"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">universes(cumulative)</span></code></a>,
+<a class="reference internal" href="../../addendum/universe-polymorphism.html#coq:attr.universes(template)" title="universes(template)"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">universes(template)</span></code></a>, <a class="reference internal" href="../../addendum/universe-polymorphism.html#coq:attr.universes(cumulative)" title="universes(cumulative)"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">universes(cumulative)</span></code></a>,
 <a class="reference internal" href="../../proof-engine/vernacular-commands.html#coq:attr.bypass_check(positivity)" title="bypass_check(positivity)"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">bypass_check(positivity)</span></code></a>, <a class="reference internal" href="../../proof-engine/vernacular-commands.html#coq:attr.bypass_check(universes)" title="bypass_check(universes)"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">bypass_check(universes)</span></code></a> and
 <a class="reference internal" href="variants.html#coq:attr.private(matching)" title="private(matching)"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">private(matching)</span></code></a> attributes.</p>
 <p>When record syntax is used, this command also supports the
@@ -2685,253 +2691,9 @@ No more goals.
 Paulin in <span id="id5">[<a class="reference internal" href="../../zebibliography.html#id15" title="Thierry Coquand and Christine Paulin. Inductively defined types. In COLOG-88, 50–66. Springer Berlin Heidelberg, 1990. URL: http://dx.doi.org/10.1007/3-540-52335-9_47, doi:10.1007/3-540-52335-9_47.">CP90</a>]</span>.</p>
 </div>
 </section>
-<section id="template-polymorphism">
-<span id="id6"></span><h4>Template polymorphism<a class="headerlink" href="#template-polymorphism" title="Link to this heading"></a></h4>
-<p>Inductive types can be made polymorphic over the universes introduced by
-their parameters in <span class="math notranslate nohighlight">\(\Type\)</span>, if the minimal inferred sort of the
-inductive declarations either mention some of those parameter universes
-or is computed to be <span class="math notranslate nohighlight">\(\Prop\)</span> or <span class="math notranslate nohighlight">\(\Set\)</span>.</p>
-<p>If <span class="math notranslate nohighlight">\(A\)</span> is an arity of some sort and <span class="math notranslate nohighlight">\(s\)</span> is a sort, we write <span class="math notranslate nohighlight">\(A_{/s}\)</span>
-for the arity obtained from <span class="math notranslate nohighlight">\(A\)</span> by replacing its sort with <span class="math notranslate nohighlight">\(s\)</span>.
-Especially, if <span class="math notranslate nohighlight">\(A\)</span> is well-typed in some global environment and local
-context, then <span class="math notranslate nohighlight">\(A_{/s}\)</span> is typable by typability of all products in the
-Calculus of Inductive Constructions. The following typing rule is
-added to the theory.</p>
-<p>Let <span class="math notranslate nohighlight">\(\ind{p}{Γ_I}{Γ_C}\)</span> be an inductive definition. Let
-<span class="math notranslate nohighlight">\(Γ_P = [p_1 :P_1 ;~…;~p_p :P_p ]\)</span> be its context of parameters,
-<span class="math notranslate nohighlight">\(Γ_I = [I_1:∀ Γ_P ,A_1 ;~…;~I_k :∀ Γ_P ,A_k ]\)</span> its context of definitions and
-<span class="math notranslate nohighlight">\(Γ_C = [c_1 :∀ Γ_P ,C_1 ;~…;~c_n :∀ Γ_P ,C_n]\)</span> its context of constructors,
-with <span class="math notranslate nohighlight">\(c_i\)</span> a constructor of <span class="math notranslate nohighlight">\(I_{q_i}\)</span>. Let <span class="math notranslate nohighlight">\(m ≤ p\)</span> be the length of the
-longest prefix of parameters such that the <span class="math notranslate nohighlight">\(m\)</span> first arguments of all
-occurrences of all <span class="math notranslate nohighlight">\(I_j\)</span> in all <span class="math notranslate nohighlight">\(C_k\)</span> (even the occurrences in the
-hypotheses of <span class="math notranslate nohighlight">\(C_k\)</span>) are exactly applied to <span class="math notranslate nohighlight">\(p_1 … p_m\)</span> (<span class="math notranslate nohighlight">\(m\)</span> is the number
-of <em>recursively uniform parameters</em> and the <span class="math notranslate nohighlight">\(p−m\)</span> remaining parameters
-are the <em>recursively non-uniform parameters</em>). Let <span class="math notranslate nohighlight">\(q_1 , …, q_r\)</span>, with
-<span class="math notranslate nohighlight">\(0≤ r≤ m\)</span>, be a (possibly) partial instantiation of the recursively
-uniform parameters of <span class="math notranslate nohighlight">\(Γ_P\)</span>. We have:</p>
-<dl>
-<dt>Ind-Family</dt><dd><div class="math notranslate nohighlight">
-\[\begin{split}\frac{%
-\left\{\begin{array}{l}%
-\hspace{3em}%
-\ind{p}{Γ_I}{Γ_C} \in E\\%
-\hspace{3em}%
-(E[]  ⊢ q_l : P'_l)_{l=1\ldots r}\\%
-\hspace{3em}%
-(E[]  ⊢ P'_l ≤_{βδιζη} \subst{P_l}{p_u}{q_u}_{u=1\ldots l-1})_{l=1\ldots r}\\%
-\hspace{3em}%
-1 \leq j \leq k%
-\hspace{3em}%
-\end{array}%
-\hspace{3em}%
-\right.%
-}{%
-E[] ⊢ I_j~q_1 … q_r :∀ [p_{r+1} :P_{r+1} ;~…;~p_p :P_p], (A_j)_{/s_j}%
-}\end{split}\]</div>
-</dd>
-</dl>
-<p>provided that the following side conditions hold:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(Γ_{P′}\)</span> is the context obtained from <span class="math notranslate nohighlight">\(Γ_P\)</span> by replacing each <span class="math notranslate nohighlight">\(P_l\)</span> that is
-an arity with <span class="math notranslate nohighlight">\(P_l'\)</span> for <span class="math notranslate nohighlight">\(1≤ l ≤ r\)</span> (notice that <span class="math notranslate nohighlight">\(P_l\)</span> arity implies <span class="math notranslate nohighlight">\(P_l'\)</span>
-arity since <span class="math notranslate nohighlight">\(E[] ⊢ P_l' ≤_{βδιζη} \subst{P_l}{p_u}{q_u}_{u=1\ldots l-1}\)</span>);</p></li>
-<li><p>there are sorts <span class="math notranslate nohighlight">\(s_i\)</span>, for <span class="math notranslate nohighlight">\(1 ≤ i ≤ k\)</span> such that, for
-<span class="math notranslate nohighlight">\(Γ_{I'} = [I_1 :∀ Γ_{P'} ,(A_1)_{/s_1} ;~…;~I_k :∀ Γ_{P'} ,(A_k)_{/s_k}]\)</span>
-we have <span class="math notranslate nohighlight">\((E[Γ_{I′} ;Γ_{P′}] ⊢ C_i : s_{q_i})_{i=1… n}\)</span> ;</p></li>
-<li><p>the sorts <span class="math notranslate nohighlight">\(s_i\)</span> are all introduced by the inductive
-declaration and have no universe constraints beside being greater
-than or equal to <span class="math notranslate nohighlight">\(\Prop\)</span>, and such that all
-eliminations, to <span class="math notranslate nohighlight">\(\Prop\)</span>, <span class="math notranslate nohighlight">\(\Set\)</span> and <span class="math notranslate nohighlight">\(\Type(j)\)</span>,
-are allowed (see Section <a class="reference internal" href="#destructors"><span class="std std-ref">Destructors</span></a>).</p></li>
-</ul>
-</div></blockquote>
-<p>Notice that if <span class="math notranslate nohighlight">\(I_j~q_1 … q_r\)</span> is typable using the rules <strong>Ind-Const</strong> and
-<strong>App</strong>, then it is typable using the rule <strong>Ind-Family</strong>. Conversely, the
-extended theory is not stronger than the theory without <strong>Ind-Family</strong>. We
-get an equiconsistency result by mapping each <span class="math notranslate nohighlight">\(\ind{p}{Γ_I}{Γ_C}\)</span>
-occurring into a given derivation into as many different inductive
-types and constructors as the number of different (partial)
-replacements of sorts, needed for this derivation, in the parameters
-that are arities (this is possible because <span class="math notranslate nohighlight">\(\ind{p}{Γ_I}{Γ_C}\)</span> well-formed
-implies that <span class="math notranslate nohighlight">\(\ind{p}{Γ_{I'}}{Γ_{C'}}\)</span> is well-formed and has the
-same allowed eliminations, where <span class="math notranslate nohighlight">\(Γ_{I′}\)</span> is defined as above and
-<span class="math notranslate nohighlight">\(Γ_{C′} = [c_1 :∀ Γ_{P′} ,C_1 ;~…;~c_n :∀ Γ_{P′} ,C_n ]\)</span>). That is, the changes in the
-types of each partial instance <span class="math notranslate nohighlight">\(q_1 … q_r\)</span> can be characterized by the
-ordered sets of arity sorts among the types of parameters, and to each
-signature is associated a new inductive definition with fresh names.
-Conversion is preserved as any (partial) instance <span class="math notranslate nohighlight">\(I_j~q_1 … q_r\)</span> or
-<span class="math notranslate nohighlight">\(C_i~q_1 … q_r\)</span> is mapped to the names chosen in the specific instance of
-<span class="math notranslate nohighlight">\(\ind{p}{Γ_I}{Γ_C}\)</span>.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>The restriction that sorts are introduced by the inductive
-declaration prevents inductive types declared in sections to be
-template-polymorphic on universes introduced previously in the
-section: they cannot parameterize over the universes introduced with
-section variables that become parameters at section closing time, as
-these may be shared with other definitions from the same section
-which can impose constraints on them.</p>
-</div>
-<dl class="coq flag">
-<dt class="sig sig-object coq" id="coq:flag.Auto-Template-Polymorphism">
-<em class="property"><span class="sigannot"><span class="pre">Flag</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Auto</span></span></span> <span><span><span class="pre">Template</span></span></span> <span><span><span class="pre">Polymorphism</span></span></span></span></span><a class="headerlink" href="#coq:flag.Auto-Template-Polymorphism" title="Link to this definition"></a></dt>
-<dd><p>This <a class="reference internal" href="basic.html#term-flag"><span class="xref std std-term">flag</span></a>, enabled by default, makes every inductive type declared
-at level <span class="math notranslate nohighlight">\(\Type\)</span> (without an explicit universe instance or hiding it behind a
-definition) template polymorphic if possible.</p>
-<p>This can be prevented using the <a class="reference internal" href="#coq:attr.universes(template)" title="universes(template)"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">universes(template=no)</span></code></a>
-attribute.</p>
-<p>Template polymorphism and full universe polymorphism (see Chapter
-<a class="reference internal" href="../../addendum/universe-polymorphism.html#polymorphicuniverses"><span class="std std-ref">Polymorphic Universes</span></a>) are incompatible, so if the latter is
-enabled (through the <a class="reference internal" href="../../addendum/universe-polymorphism.html#coq:flag.Universe-Polymorphism" title="Universe Polymorphism"><code class="xref coq coq-flag docutils literal notranslate"><span class="pre">Universe</span> <span class="pre">Polymorphism</span></code></a> flag or the
-<a class="reference internal" href="../../addendum/universe-polymorphism.html#coq:attr.universes(polymorphic)" title="universes(polymorphic)"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">universes(polymorphic)</span></code></a> attribute) it will prevail over
-automatic template polymorphism.</p>
-</dd></dl>
-
-<dl class="coq warn">
-<dt class="sig sig-object coq" id="coq:warn.Automatically-declaring-‘ident’-as-template-polymorphic">
-<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Automatically</span></span></span> <span><span><span class="pre">declaring</span></span></span> <a class="reference internal" href="basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">as</span></span></span> <span><span><span class="pre">template</span></span></span> <span><span><span class="pre">polymorphic.</span></span></span></span></span><a class="headerlink" href="#coq:warn.Automatically-declaring-‘ident’-as-template-polymorphic" title="Link to this definition"></a></dt>
-<dd><p>Warning <code class="docutils literal notranslate"><span class="pre">auto-template</span></code> can be used (it is off by default) to
-find which types are implicitly declared template polymorphic by
-<a class="reference internal" href="#coq:flag.Auto-Template-Polymorphism" title="Auto Template Polymorphism"><code class="xref coq coq-flag docutils literal notranslate"><span class="pre">Auto</span> <span class="pre">Template</span> <span class="pre">Polymorphism</span></code></a>.</p>
-<p>An inductive type can be forced to be template polymorphic using
-the <a class="reference internal" href="#coq:attr.universes(template)" title="universes(template)"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">universes(template)</span></code></a> attribute: in this case, the
-warning is not emitted.</p>
-</dd></dl>
-
-<dl class="coq attr">
-<dt class="sig sig-object coq" id="coq:attr.universes(template)">
-<em class="property"><span class="sigannot"><span class="pre">Attribute</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">universes(template</span></span></span><span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">=</span></span></span> <span class="alternative"><span class="alternative-block"><span><span><span class="pre">yes</span></span></span></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><span><span><span class="pre">no</span></span></span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span><span><span><span class="pre">)</span></span></span></span></span><a class="headerlink" href="#coq:attr.universes(template)" title="Link to this definition"></a></dt>
-<dd><p>This <a class="reference internal" href="basic.html#term-boolean-attribute"><span class="xref std std-term">boolean attribute</span></a> can be used to explicitly declare an
-inductive type as template polymorphic, whether the <a class="reference internal" href="#coq:flag.Auto-Template-Polymorphism" title="Auto Template Polymorphism"><code class="xref coq coq-flag docutils literal notranslate"><span class="pre">Auto</span>
-<span class="pre">Template</span> <span class="pre">Polymorphism</span></code></a> flag is on or off.</p>
-<dl class="coq exn">
-<dt class="sig sig-object coq" id="coq:exn.template-and-polymorphism-not-compatible">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">template</span></span></span> <span><span><span class="pre">and</span></span></span> <span><span><span class="pre">polymorphism</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">compatible</span></span></span></span></span><a class="headerlink" href="#coq:exn.template-and-polymorphism-not-compatible" title="Link to this definition"></a></dt>
-<dd><p>This attribute cannot be used in a full universe polymorphic
-context, i.e. if the <a class="reference internal" href="../../addendum/universe-polymorphism.html#coq:flag.Universe-Polymorphism" title="Universe Polymorphism"><code class="xref coq coq-flag docutils literal notranslate"><span class="pre">Universe</span> <span class="pre">Polymorphism</span></code></a> flag is on or
-if the <a class="reference internal" href="../../addendum/universe-polymorphism.html#coq:attr.universes(polymorphic)" title="universes(polymorphic)"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">universes(polymorphic)</span></code></a> attribute is used.</p>
-</dd></dl>
-
-<dl class="coq exn">
-<dt class="sig sig-object coq" id="coq:exn.Ill-formed-template-inductive-declaration:-not-polymorphic-on-any-universe">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Ill-formed</span></span></span> <span><span><span class="pre">template</span></span></span> <span><span><span class="pre">inductive</span></span></span> <span><span><span class="pre">declaration:</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">polymorphic</span></span></span> <span><span><span class="pre">on</span></span></span> <span><span><span class="pre">any</span></span></span> <span><span><span class="pre">universe.</span></span></span></span></span><a class="headerlink" href="#coq:exn.Ill-formed-template-inductive-declaration:-not-polymorphic-on-any-universe" title="Link to this definition"></a></dt>
-<dd><p>The attribute was used but the inductive definition does not
-satisfy the criterion to be template polymorphic.</p>
-</dd></dl>
-
-<p>When <code class="docutils literal notranslate"><span class="pre">universes(template=no)</span></code> is used, it will prevent an
-inductive type to be template polymorphic, even if the <a class="reference internal" href="#coq:flag.Auto-Template-Polymorphism" title="Auto Template Polymorphism"><code class="xref coq coq-flag docutils literal notranslate"><span class="pre">Auto</span>
-<span class="pre">Template</span> <span class="pre">Polymorphism</span></code></a> flag is on.</p>
-</dd></dl>
-
-<p>In practice, the rule <strong>Ind-Family</strong> is used by Rocq only when there is only one
-inductive type in the inductive definition and it is declared with an arity
-whose sort is in the Type hierarchy. Then, the polymorphism is over
-the parameters whose type is an arity of sort in the Type hierarchy.
-The sorts <span class="math notranslate nohighlight">\(s_j\)</span> are chosen canonically so that each <span class="math notranslate nohighlight">\(s_j\)</span> is minimal with
-respect to the hierarchy <span class="math notranslate nohighlight">\(\Prop ⊂ \Set_p ⊂ \Type\)</span> where <span class="math notranslate nohighlight">\(\Set_p\)</span> is predicative
-<span class="math notranslate nohighlight">\(\Set\)</span>. More precisely, an empty or small singleton inductive definition
-(i.e. an inductive definition of which all inductive types are
-singleton – see Section <a class="reference internal" href="#destructors"><span class="std std-ref">Destructors</span></a>) is set in <span class="math notranslate nohighlight">\(\Prop\)</span>, a small non-singleton
-inductive type is set in <span class="math notranslate nohighlight">\(\Set\)</span> (even in case <span class="math notranslate nohighlight">\(\Set\)</span> is impredicative – see
-<a class="reference internal" href="../cic.html#the-calculus-of-inductive-construction-with-impredicative-set"><span class="std std-ref">The Calculus of Inductive Constructions with impredicative Set</span></a>),
-and otherwise in the Type hierarchy.</p>
-<p>Note that the side-condition about allowed elimination sorts in the rule
-<strong>Ind-Family</strong> avoids to recompute the allowed elimination sorts at each
-instance of a pattern matching (see Section <a class="reference internal" href="#destructors"><span class="std std-ref">Destructors</span></a>). As an
-example, let us consider the following definition:</p>
-<div class="admonition note">
-<p class="admonition-title">Example</p>
-<div class="coqtop literal-block docutils container">
-<span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Inductive</span><span> </span><span class="coqdoc-var">option</span><span> (</span><span class="coqdoc-var">A</span><span>:</span><span class="coqdoc-keyword">Type</span><span>) : </span><span class="coqdoc-keyword">Type</span><span> :=</span><span>
-| </span><span class="coqdoc-var">None</span><span> : </span><span class="coqdoc-var">option</span><span> </span><span class="coqdoc-var">A</span><span>
-| </span><span class="coqdoc-var">Some</span><span> : </span><span class="coqdoc-var">A</span><span> -&gt; </span><span class="coqdoc-var">option</span><span> </span><span class="coqdoc-var">A</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>option is defined
-option_rect is defined
-option_ind is defined
-option_rec is defined
-option_sind is defined
-</span></dd>
-</dl>
-</div>
-</div>
-<p>As the definition is set in the Type hierarchy, it is used
-polymorphically over its parameters whose types are arities of a sort
-in the Type hierarchy. Here, the parameter <span class="math notranslate nohighlight">\(A\)</span> has this property, hence,
-if <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">option</span></span></code> is applied to a type in <span class="math notranslate nohighlight">\(\Set\)</span>, the result is in <span class="math notranslate nohighlight">\(\Set\)</span>. Note that
-if <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">option</span></span></code> is applied to a type in <span class="math notranslate nohighlight">\(\Prop\)</span>, then, the result is not set in
-<span class="math notranslate nohighlight">\(\Prop\)</span> but in <span class="math notranslate nohighlight">\(\Set\)</span> still. This is because <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">option</span></span></code> is not a singleton type
-(see Section <a class="reference internal" href="#destructors"><span class="std std-ref">Destructors</span></a>) and it would lose the elimination to <span class="math notranslate nohighlight">\(\Set\)</span> and <span class="math notranslate nohighlight">\(\Type\)</span>
-if set in <span class="math notranslate nohighlight">\(\Prop\)</span>.</p>
-<div class="admonition note">
-<p class="admonition-title">Example</p>
-<div class="coqtop literal-block docutils container">
-<span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Check</span><span> (</span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">A</span><span>:</span><span class="coqdoc-keyword">Set</span><span> =&gt; </span><span class="coqdoc-var">option</span><span> </span><span class="coqdoc-var">A</span><span>).</span><span>
-</span></dt><dd><span class="ansi-bold">fun</span><span> A : </span><span class="ansi-fg-yellow ansi-bold">Set</span><span> =&gt; option A
-     : </span><span class="ansi-fg-yellow ansi-bold">Set</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Set</span><span>
-</span></dd>
-<dt><span></span><span class="coqdoc-keyword">Check</span><span> (</span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">A</span><span>:</span><span class="coqdoc-keyword">Prop</span><span> =&gt; </span><span class="coqdoc-var">option</span><span> </span><span class="coqdoc-var">A</span><span>).</span><span>
-</span></dt><dd><span class="ansi-bold">fun</span><span> A : </span><span class="ansi-fg-yellow ansi-bold">Prop</span><span> =&gt; option A
-     : </span><span class="ansi-fg-yellow ansi-bold">Prop</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Set</span><span>
-</span></dd>
-</dl>
-</div>
-</div>
-<p>Here is another example.</p>
-<div class="admonition note">
-<p class="admonition-title">Example</p>
-<div class="coqtop literal-block docutils container">
-<span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Inductive</span><span> </span><span class="coqdoc-var">prod</span><span> (</span><span class="coqdoc-var">A</span><span> </span><span class="coqdoc-var">B</span><span>:</span><span class="coqdoc-keyword">Type</span><span>) : </span><span class="coqdoc-keyword">Type</span><span> := </span><span class="coqdoc-var">pair</span><span> : </span><span class="coqdoc-var">A</span><span> -&gt; </span><span class="coqdoc-var">B</span><span> -&gt; </span><span class="coqdoc-var">prod</span><span> </span><span class="coqdoc-var">A</span><span> </span><span class="coqdoc-var">B</span><span>.</span><span>
-</span></dt><dd class="coqtop-hidden"><span>prod is defined
-prod_rect is defined
-prod_ind is defined
-prod_rec is defined
-prod_sind is defined
-</span></dd>
-</dl>
-</div>
-</div>
-<p>As <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">prod</span></span></code> is a singleton type, it will be in <span class="math notranslate nohighlight">\(\Prop\)</span> if applied twice to
-propositions, in <span class="math notranslate nohighlight">\(\Set\)</span> if applied twice to at least one type in <span class="math notranslate nohighlight">\(\Set\)</span> and
-none in <span class="math notranslate nohighlight">\(\Type\)</span>, and in <span class="math notranslate nohighlight">\(\Type\)</span> otherwise. In all cases, the three kind of
-eliminations schemes are allowed.</p>
-<div class="admonition note">
-<p class="admonition-title">Example</p>
-<div class="coqtop literal-block docutils container">
-<span></span><dl>
-<dt><span></span><span class="coqdoc-keyword">Check</span><span> (</span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">A</span><span>:</span><span class="coqdoc-keyword">Set</span><span> =&gt; </span><span class="coqdoc-var">prod</span><span> </span><span class="coqdoc-var">A</span><span>).</span><span>
-</span></dt><dd><span class="ansi-bold">fun</span><span> A : </span><span class="ansi-fg-yellow ansi-bold">Set</span><span> =&gt; prod A
-     : </span><span class="ansi-fg-yellow ansi-bold">Set</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Type</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>
-</span></dd>
-<dt><span></span><span class="coqdoc-keyword">Check</span><span> (</span><span class="coqdoc-keyword">fun</span><span> </span><span class="coqdoc-var">A</span><span>:</span><span class="coqdoc-keyword">Prop</span><span> =&gt; </span><span class="coqdoc-var">prod</span><span> </span><span class="coqdoc-var">A</span><span> </span><span class="coqdoc-var">A</span><span>).</span><span>
-</span></dt><dd><span class="ansi-bold">fun</span><span> A : </span><span class="ansi-fg-yellow ansi-bold">Prop</span><span> =&gt; prod A A
-     : </span><span class="ansi-fg-yellow ansi-bold">Prop</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Prop</span><span>
-</span></dd>
-<dt><span></span><span class="coqdoc-keyword">Check</span><span> (</span><span class="coqdoc-keyword">fun</span><span> (</span><span class="coqdoc-var">A</span><span>:</span><span class="coqdoc-keyword">Prop</span><span>) (</span><span class="coqdoc-var">B</span><span>:</span><span class="coqdoc-keyword">Set</span><span>) =&gt; </span><span class="coqdoc-var">prod</span><span> </span><span class="coqdoc-var">A</span><span> </span><span class="coqdoc-var">B</span><span>).</span><span>
-</span></dt><dd><span class="ansi-bold">fun</span><span> (A : </span><span class="ansi-fg-yellow ansi-bold">Prop</span><span>) (B : </span><span class="ansi-fg-yellow ansi-bold">Set</span><span>) =&gt; prod A B
-     : </span><span class="ansi-fg-yellow ansi-bold">Prop</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Set</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Set</span><span>
-</span></dd>
-<dt><span></span><span class="coqdoc-keyword">Check</span><span> (</span><span class="coqdoc-keyword">fun</span><span> (</span><span class="coqdoc-var">A</span><span>:</span><span class="coqdoc-keyword">Type</span><span>) (</span><span class="coqdoc-var">B</span><span>:</span><span class="coqdoc-keyword">Prop</span><span>) =&gt; </span><span class="coqdoc-var">prod</span><span> </span><span class="coqdoc-var">A</span><span> </span><span class="coqdoc-var">B</span><span>).</span><span>
-</span></dt><dd><span class="ansi-bold">fun</span><span> (A : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>) (B : </span><span class="ansi-fg-yellow ansi-bold">Prop</span><span>) =&gt; prod A B
-     : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Prop</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>
-</span></dd>
-</dl>
-</div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Template polymorphism used to be called “sort-polymorphism of
-inductive types” before universe polymorphism
-(see Chapter <a class="reference internal" href="../../addendum/universe-polymorphism.html#polymorphicuniverses"><span class="std std-ref">Polymorphic Universes</span></a>) was introduced.</p>
-</div>
-</section>
 </section>
 <section id="destructors">
-<span id="id7"></span><h3>Destructors<a class="headerlink" href="#destructors" title="Link to this heading"></a></h3>
+<span id="id6"></span><h3>Destructors<a class="headerlink" href="#destructors" title="Link to this heading"></a></h3>
 <p>The specification of inductive definitions with arities and
 constructors is quite natural. But we still have to say how to use an
 object in an inductive type.</p>
@@ -2986,7 +2748,7 @@ primitive recursion over the structure.</p>
 <p>But this operator is rather tedious to implement and use. We choose
 to factorize the operator for primitive recursion
 into two more primitive operations as was first suggested by Th.
-Coquand in <span id="id8">[<a class="reference internal" href="../../zebibliography.html#id13" title="Th. Coquand. Pattern Matching with Dependent Types. In Proceedings of the 1992 Workshop on Types for Proofs and Programs. 1992.">Coq92</a>]</span>. One is the definition by pattern matching. The
+Coquand in <span id="id7">[<a class="reference internal" href="../../zebibliography.html#id13" title="Th. Coquand. Pattern Matching with Dependent Types. In Proceedings of the 1992 Workshop on Types for Proofs and Programs. 1992.">Coq92</a>]</span>. One is the definition by pattern matching. The
 second one is a definition by guarded fixpoints.</p>
 <section id="the-match-with-end-construction">
 <span id="match-construction"></span><h4>The match ... with ... end construction<a class="headerlink" href="#the-match-with-end-construction" title="Link to this heading"></a></h4>
@@ -3297,7 +3059,7 @@ general reduction rule:</p>
 </section>
 </section>
 <section id="fixpoint-definitions">
-<span id="id9"></span><h3>Fixpoint definitions<a class="headerlink" href="#fixpoint-definitions" title="Link to this heading"></a></h3>
+<span id="id8"></span><h3>Fixpoint definitions<a class="headerlink" href="#fixpoint-definitions" title="Link to this heading"></a></h3>
 <p>The second operator for elimination is fixpoint definition. This
 fixpoint may involve several mutually recursive definitions. The basic
 concrete syntax for a recursive set of mutually recursive declarations
@@ -3314,8 +3076,8 @@ and are written</p>
 <p>with <span class="math notranslate nohighlight">\(t_i'\)</span> (resp. <span class="math notranslate nohighlight">\(A_i'\)</span>) representing the term <span class="math notranslate nohighlight">\(t_i\)</span> abstracted (resp.
 generalized) with respect to the bindings in the context <span class="math notranslate nohighlight">\(Γ_i\)</span>, namely
 <span class="math notranslate nohighlight">\(t_i'=λ Γ_i . t_i\)</span> and <span class="math notranslate nohighlight">\(A_i'=∀ Γ_i , A_i\)</span>.</p>
-<section id="id10">
-<h4>Typing rule<a class="headerlink" href="#id10" title="Link to this heading"></a></h4>
+<section id="id9">
+<h4>Typing rule<a class="headerlink" href="#id9" title="Link to this heading"></a></h4>
 <p>The typing rule is the expected one for a fixpoint.</p>
 <dl>
 <dt>Fix</dt><dd><div class="math notranslate nohighlight">
@@ -3347,7 +3109,7 @@ principle of type</p>
 \end{array}\end{split}\]</div>
 <p>Before accepting a fixpoint definition as being correctly typed, we
 check that the definition is “guarded”. A precise analysis of this
-notion can be found in <span id="id11">[<a class="reference internal" href="../../zebibliography.html#id23" title="E. Giménez. Codifying guarded definitions with recursive schemes. In Types'94 : Types for Proofs and Programs, volume 996 of Lecture Notes in Computer Science. Springer-Verlag, 1994. Extended version in LIP research report 95-07, ENS Lyon.">Gimenez94</a>]</span>. The first stage is to precise on which
+notion can be found in <span id="id10">[<a class="reference internal" href="../../zebibliography.html#id23" title="E. Giménez. Codifying guarded definitions with recursive schemes. In Types'94 : Types for Proofs and Programs, volume 996 of Lecture Notes in Computer Science. Springer-Verlag, 1994. Extended version in LIP research report 95-07, ENS Lyon.">Gimenez94</a>]</span>. The first stage is to precise on which
 argument the fixpoint will be decreasing. The type of this argument
 should be an inductive type. For doing this, the syntax of
 fixpoints is extended and becomes</p>
@@ -3459,7 +3221,7 @@ Arguments </span><span class="ansi-fg-light-green">sizet</span><span> t
 </div>
 </section>
 <section id="reduction-rule">
-<span id="id12"></span><h4>Reduction rule<a class="headerlink" href="#reduction-rule" title="Link to this heading"></a></h4>
+<span id="id11"></span><h4>Reduction rule<a class="headerlink" href="#reduction-rule" title="Link to this heading"></a></h4>
 <p>Let <span class="math notranslate nohighlight">\(F\)</span> be the set of declarations:
 <span class="math notranslate nohighlight">\(f_1 /k_1 :A_1 :=t_1 …f_n /k_n :A_n:=t_n\)</span>.
 The reduction for fixpoints is:</p>

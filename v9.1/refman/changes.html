@@ -194,6 +194,12 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="addendum/universe-polymorphism.html#sort-polymorphism">Sort polymorphism</a></li>
 <li class="toctree-l3"><a class="reference internal" href="addendum/universe-polymorphism.html#explicit-sorts">Explicit Sorts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="addendum/universe-polymorphism.html#template-polymorphism">Template polymorphism</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="addendum/universe-polymorphism.html#template-polymorphic-inductive-declarations">Template polymorphic inductive declarations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="addendum/universe-polymorphism.html#using-template-polymorphic-inductives">Using template polymorphic inductives</a></li>
+<li class="toctree-l4"><a class="reference internal" href="addendum/universe-polymorphism.html#controlling-template-polymorphism">Controlling template polymorphism</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="addendum/universe-polymorphism.html#universe-polymorphism-and-sections">Universe polymorphism and sections</a></li>
 </ul>
 </li>
@@ -4754,7 +4760,7 @@ warnings can now have multiple categories allowing for finer user control on whi
 (<a class="reference external" href="https://github.com/coq/coq/pull/17585">#17585</a>,
 by Gaëtan Gilbert).</p></li>
 <li><p><strong>Changed:</strong>
-<a class="reference internal" href="language/core/inductive.html#coq:attr.universes(template)" title="universes(template)"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">Template</span> <span class="pre">polymorphic</span></code></a> inductive types are
+<a class="reference internal" href="addendum/universe-polymorphism.html#coq:attr.universes(template)" title="universes(template)"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">Template</span> <span class="pre">polymorphic</span></code></a> inductive types are
 not implicitly added to the <a class="reference internal" href="proofs/writing-proofs/reasoning-inductives.html#coq:table.Keep-Equalities" title="Keep Equalities"><code class="xref coq coq-table docutils literal notranslate"><span class="pre">Keep</span> <span class="pre">Equalities</span></code></a> table anymore when
 defined. This may change the behavior of equality-related tactics on
 such types
@@ -6026,7 +6032,7 @@ have an argument marked as decreasing in a type which is inductive
 fixes <a class="reference external" href="https://github.com/coq/coq/issues/15621">#15621</a>,
 by Hugo Herbelin).</p></li>
 <li><p><strong>Removed:</strong>
-<a class="reference internal" href="language/core/inductive.html#template-polymorphism"><span class="std std-ref">Template polymorphism</span></a> is now forbidden for mutual inductive types
+<a class="reference internal" href="addendum/universe-polymorphism.html#template-polymorphism"><span class="std std-ref">Template polymorphism</span></a> is now forbidden for mutual inductive types
 (<a class="reference external" href="https://github.com/coq/coq/pull/15965">#15965</a>,
 by Gaëtan Gilbert).</p></li>
 <li><p><strong>Fixed:</strong>
@@ -8564,7 +8570,7 @@ supported, but produces the <code class="docutils literal notranslate"><span cla
 <p>Deprecated attributes are <code class="docutils literal notranslate"><span class="pre">universes(monomorphic)</span></code>,
 <code class="docutils literal notranslate"><span class="pre">universes(notemplate)</span></code> and <code class="docutils literal notranslate"><span class="pre">universes(noncumulative)</span></code>, which are
 respectively replaced by <a class="reference internal" href="addendum/universe-polymorphism.html#coq:attr.universes(polymorphic)" title="universes(polymorphic)"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">universes(polymorphic=no)</span></code></a>,
-<a class="reference internal" href="language/core/inductive.html#coq:attr.universes(template)" title="universes(template)"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">universes(template=no)</span></code></a>
+<a class="reference internal" href="addendum/universe-polymorphism.html#coq:attr.universes(template)" title="universes(template)"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">universes(template=no)</span></code></a>
 and <a class="reference internal" href="addendum/universe-polymorphism.html#coq:attr.universes(cumulative)" title="universes(cumulative)"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">universes(cumulative=no)</span></code></a>.
 Attributes <a class="reference internal" href="addendum/program.html#coq:attr.program" title="program"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">program</span></code></a> and <a class="reference internal" href="language/extensions/canonical.html#coq:attr.canonical" title="canonical"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">canonical</span></code></a> are also affected,
 with the syntax <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span><sub><span class="pre">attr</span></sub></span></a><span><span><span class="pre">(false)</span></span></span></span></code> being deprecated in favor of
@@ -9646,7 +9652,7 @@ by Emilio Jesus Gallego Arias).</p></li>
 Unqualified <code class="docutils literal notranslate"><span class="pre">polymorphic</span></code>, <code class="docutils literal notranslate"><span class="pre">monomorphic</span></code>, <code class="docutils literal notranslate"><span class="pre">template</span></code>,
 <code class="docutils literal notranslate"><span class="pre">notemplate</span></code> attributes (they were deprecated since Coq 8.10).
 Use <a class="reference internal" href="addendum/universe-polymorphism.html#coq:attr.universes(polymorphic)" title="universes(polymorphic)"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">universes(polymorphic)</span></code></a>, <code class="docutils literal notranslate"><span class="pre">universes(monomorphic)</span></code>,
-<a class="reference internal" href="language/core/inductive.html#coq:attr.universes(template)" title="universes(template)"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">universes(template)</span></code></a> and <code class="docutils literal notranslate"><span class="pre">universes(notemplate)</span></code> instead
+<a class="reference internal" href="addendum/universe-polymorphism.html#coq:attr.universes(template)" title="universes(template)"><code class="xref coq coq-attr docutils literal notranslate"><span class="pre">universes(template)</span></code></a> and <code class="docutils literal notranslate"><span class="pre">universes(notemplate)</span></code> instead
 (<a class="reference external" href="https://github.com/coq/coq/pull/11663">#11663</a>, by Théo Zimmermann).</p></li>
 <li><p><strong>Deprecated:</strong>
 <code class="docutils literal notranslate"><span class="pre">Hide</span> <span class="pre">Obligations</span></code> flag
@@ -11758,7 +11764,7 @@ simply hoist the inductive definition out of the section.
 An alternative is to declare the inductive as universe-polymorphic and
 cumulative in a universe-polymorphic section: all universes and
 constraints will be properly gathered in this case.
-See <a class="reference internal" href="language/core/inductive.html#template-polymorphism"><span class="std std-ref">Template polymorphism</span></a> for a detailed exposition of the
+See <a class="reference internal" href="addendum/universe-polymorphism.html#template-polymorphism"><span class="std std-ref">Template polymorphism</span></a> for a detailed exposition of the
 rules governing template-polymorphic types.</p>
 <p>To help users incrementally fix this issue, a command line option
 <code class="docutils literal notranslate"><span class="pre">-no-template-check</span></code> and a global flag <code class="docutils literal notranslate"><span class="pre">Template</span> <span class="pre">Check</span></code> are
