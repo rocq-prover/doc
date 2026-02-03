@@ -1688,7 +1688,7 @@ definitional uniqueness of identity proofs.</p>
 <p>Definitional UIP involves a special reduction rule through which
 reduction depends on conversion. Consider the following code:</p>
 <div class="rocqtop literal-block docutils container">
-<span></span><dl>
+<span class="rocqtop-reset"></span><dl>
 <dt><span></span><span class="rocqdoc-keyword">Set</span><span> </span><span class="rocqdoc-var">Definitional</span><span> </span><span class="rocqdoc-var">UIP</span><span>.</span><span>
 </span></dt><dt><span></span><span>
 </span><span class="rocqdoc-keyword">Inductive</span><span> </span><span class="rocqdoc-var">seq</span><span> {</span><span class="rocqdoc-var">A</span><span>} (</span><span class="rocqdoc-var">a</span><span>:</span><span class="rocqdoc-var">A</span><span>) : </span><span class="rocqdoc-var">A</span><span> -&gt; </span><span class="rocqdoc-var">SProp</span><span> :=</span><span>
@@ -1735,30 +1735,42 @@ a cast around the discriminee:</p>
 <section id="non-termination-with-uip">
 <h3>Non Termination with UIP<a class="headerlink" href="#non-termination-with-uip" title="Link to this heading"></a></h3>
 <p>The special reduction rule of UIP combined with an impredicative sort
+(including <code class="docutils literal notranslate"><span class="pre">SProp</span></code>)
 breaks termination of reduction
 <span id="id2">[<a class="reference internal" href="../zebibliography.html#id56" title="Andreas Abel and Thierry Coquand. Failure of Normalization in Impredicative Type Theory with Proof-Irrelevant Propositional Equality. Technical Report, Chalmers and Gothenburg University, 2019.">AC19</a>]</span>:</p>
 <div class="rocqtop literal-block docutils container">
 <span></span><dl>
-<dt><span></span><span class="rocqdoc-keyword">Axiom</span><span> </span><span class="rocqdoc-var">all_eq</span><span> : </span><span class="rocqdoc-keyword">forall</span><span> (</span><span class="rocqdoc-var">P</span><span> </span><span class="rocqdoc-var">Q</span><span>:</span><span class="rocqdoc-keyword">Prop</span><span>), </span><span class="rocqdoc-var">P</span><span> -&gt; </span><span class="rocqdoc-var">Q</span><span> -&gt; </span><span class="rocqdoc-var">seq</span><span> </span><span class="rocqdoc-var">P</span><span> </span><span class="rocqdoc-var">Q</span><span>.</span><span>
+<dt><span></span><span class="rocqdoc-keyword">Axiom</span><span> </span><span class="rocqdoc-var">all_eq</span><span> : </span><span class="rocqdoc-keyword">forall</span><span> (</span><span class="rocqdoc-var">P</span><span> </span><span class="rocqdoc-var">Q</span><span>:</span><span class="rocqdoc-keyword">Set</span><span>), </span><span class="rocqdoc-var">seq</span><span> </span><span class="rocqdoc-var">P</span><span> </span><span class="rocqdoc-var">Q</span><span>.</span><span>
 </span></dt><dd><span>all_eq is declared
 </span></dd>
 <dt><span></span><span>
-</span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">transport</span><span> (</span><span class="rocqdoc-var">P</span><span> </span><span class="rocqdoc-var">Q</span><span>:</span><span class="rocqdoc-keyword">Prop</span><span>) (</span><span class="rocqdoc-var">x</span><span>:</span><span class="rocqdoc-var">P</span><span>) (</span><span class="rocqdoc-var">y</span><span>:</span><span class="rocqdoc-var">Q</span><span>) : </span><span class="rocqdoc-var">Q</span><span>
-:= </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">all_eq</span><span> </span><span class="rocqdoc-var">P</span><span> </span><span class="rocqdoc-var">Q</span><span> </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">y</span><span> </span><span class="rocqdoc-keyword">with</span><span> </span><span class="rocqdoc-var">srefl</span><span> </span><span class="rocqdoc-var">_</span><span> =&gt; </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-keyword">end</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">transport</span><span> (</span><span class="rocqdoc-var">P</span><span> </span><span class="rocqdoc-var">Q</span><span>:</span><span class="rocqdoc-keyword">Set</span><span>) (</span><span class="rocqdoc-var">x</span><span>:</span><span class="rocqdoc-var">P</span><span>) : </span><span class="rocqdoc-var">Q</span><span>
+  := </span><span class="rocqdoc-keyword">match</span><span> </span><span class="rocqdoc-var">all_eq</span><span> </span><span class="rocqdoc-var">P</span><span> </span><span class="rocqdoc-var">Q</span><span> </span><span class="rocqdoc-keyword">with</span><span> </span><span class="rocqdoc-var">srefl</span><span> </span><span class="rocqdoc-var">_</span><span> =&gt; </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-keyword">end</span><span>.</span><span>
 </span></dt><dd><span>transport is defined
 </span></dd>
 <dt><span></span><span>
-</span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">top</span><span> : </span><span class="rocqdoc-keyword">Prop</span><span> := </span><span class="rocqdoc-keyword">forall</span><span> </span><span class="rocqdoc-var">P</span><span> : </span><span class="rocqdoc-keyword">Prop</span><span>, </span><span class="rocqdoc-var">P</span><span> -&gt; </span><span class="rocqdoc-var">P</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Record</span><span> </span><span class="rocqdoc-var">Box</span><span> (</span><span class="rocqdoc-var">A</span><span>:</span><span class="rocqdoc-var">SProp</span><span>) : </span><span class="rocqdoc-keyword">Set</span><span> := </span><span class="rocqdoc-var">box</span><span> { </span><span class="rocqdoc-var">unbox</span><span> : </span><span class="rocqdoc-var">A</span><span> }.</span><span>
+</span></dt><dd><span>Box is defined
+unbox is defined
+</span></dd>
+<dt><span></span><span class="rocqdoc-keyword">Arguments</span><span> </span><span class="rocqdoc-var">box</span><span> {</span><span class="rocqdoc-var">_</span><span>}. </span><span class="rocqdoc-var">Arguments</span><span> </span><span class="rocqdoc-var">unbox</span><span> {</span><span class="rocqdoc-var">_</span><span>}.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>
+</span></dd>
+<dt><span></span><span>
+</span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">transportS</span><span> (</span><span class="rocqdoc-var">P</span><span> </span><span class="rocqdoc-var">Q</span><span> : </span><span class="rocqdoc-var">SProp</span><span>) (</span><span class="rocqdoc-var">x</span><span>:</span><span class="rocqdoc-var">P</span><span>) : </span><span class="rocqdoc-var">Q</span><span>
+  := </span><span class="rocqdoc-var">unbox</span><span> (</span><span class="rocqdoc-var">transport</span><span> (</span><span class="rocqdoc-var">Box</span><span> </span><span class="rocqdoc-var">P</span><span>) (</span><span class="rocqdoc-var">Box</span><span> </span><span class="rocqdoc-var">Q</span><span>) (</span><span class="rocqdoc-var">box</span><span> </span><span class="rocqdoc-var">x</span><span>)).</span><span>
+</span></dt><dd><span>transportS is defined
+</span></dd>
+<dt><span></span><span>
+</span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">top</span><span> : </span><span class="rocqdoc-var">SProp</span><span> := </span><span class="rocqdoc-keyword">forall</span><span> </span><span class="rocqdoc-var">P</span><span> : </span><span class="rocqdoc-var">SProp</span><span>, </span><span class="rocqdoc-var">P</span><span> -&gt; </span><span class="rocqdoc-var">P</span><span>.</span><span>
 </span></dt><dd><span>top is defined
 </span></dd>
 <dt><span></span><span>
-</span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">c</span><span> : </span><span class="rocqdoc-var">top</span><span> :=</span><span>
-  </span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">P</span><span> </span><span class="rocqdoc-var">p</span><span> =&gt;</span><span>
-  </span><span class="rocqdoc-var">transport</span><span>
-  (</span><span class="rocqdoc-var">top</span><span> -&gt; </span><span class="rocqdoc-var">top</span><span>)</span><span>
-  </span><span class="rocqdoc-var">P</span><span>
-  (</span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">x</span><span> : </span><span class="rocqdoc-var">top</span><span> =&gt; </span><span class="rocqdoc-var">x</span><span> (</span><span class="rocqdoc-var">top</span><span> -&gt; </span><span class="rocqdoc-var">top</span><span>) (</span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">x</span><span> =&gt; </span><span class="rocqdoc-var">x</span><span>) </span><span class="rocqdoc-var">x</span><span>)</span><span>
-  </span><span class="rocqdoc-var">p</span><span>.</span><span>
+</span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">c</span><span> : </span><span class="rocqdoc-var">top</span><span> := </span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">P</span><span> </span><span class="rocqdoc-var">p</span><span> =&gt;</span><span>
+  </span><span class="rocqdoc-var">transportS</span><span>
+    (</span><span class="rocqdoc-var">top</span><span> -&gt; </span><span class="rocqdoc-var">top</span><span>)</span><span>
+    </span><span class="rocqdoc-var">P</span><span>
+    (</span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">x</span><span> : </span><span class="rocqdoc-var">top</span><span> =&gt; </span><span class="rocqdoc-var">x</span><span> (</span><span class="rocqdoc-var">top</span><span> -&gt; </span><span class="rocqdoc-var">top</span><span>) (</span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">x</span><span> =&gt; </span><span class="rocqdoc-var">x</span><span>) </span><span class="rocqdoc-var">x</span><span>).</span><span>
 </span></dt><dd><span>c is defined
 </span></dd>
 <dt><span></span><span>
