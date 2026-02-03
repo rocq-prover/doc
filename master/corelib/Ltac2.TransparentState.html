@@ -270,7 +270,8 @@
 </div>
 
 <div class="doc">
-Abstract type representing a transparency state. 
+Abstract type representing a transparency state. A transparency state
+    is a set of variables, constants, and primitive projections.  
 </div>
 <div class="code">
 <span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Type</span> <span class="id" title="var">t</span>.<br/>
@@ -305,6 +306,138 @@ Abstract type representing a transparency state.
 <div class="code">
 <span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">current</span> : <span class="id" title="var">unit</span> -&gt; <span class="id" title="var">t</span> :=<br/>
 &nbsp;&nbsp;"rocq-runtime.plugins.ltac2" "current_transparent_state".<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">union</span></span> <span class="inlinecode"><span class="id" title="var">t1</span></span> <span class="inlinecode"><span class="id" title="var">t2</span></span> builds a transparency state containing all the variables,
+    constants, and primitive projections which are either in <span class="inlinecode"><span class="id" title="var">t1</span></span> or in <span class="inlinecode"><span class="id" title="var">t2</span></span>. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">union</span> : <span class="id" title="var">t</span> -&gt; <span class="id" title="var">t</span> -&gt; <span class="id" title="var">t</span> :=<br/>
+&nbsp;&nbsp;"rocq-runtime.plugins.ltac2" "union_transparent_state".<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">inter</span></span> <span class="inlinecode"><span class="id" title="var">t1</span></span> <span class="inlinecode"><span class="id" title="var">t2</span></span> builds a transparency state containing all the variables,
+    constants, and primitive projections which are both in <span class="inlinecode"><span class="id" title="var">t1</span></span> and in <span class="inlinecode"><span class="id" title="var">t2</span></span>. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">inter</span> : <span class="id" title="var">t</span> -&gt; <span class="id" title="var">t</span> -&gt; <span class="id" title="var">t</span> :=<br/>
+&nbsp;&nbsp;"rocq-runtime.plugins.ltac2" "inter_transparent_state".<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">diff</span></span> <span class="inlinecode"><span class="id" title="var">t1</span></span> <span class="inlinecode"><span class="id" title="var">t2</span></span> builds a transparency state containing all the variables,
+    constants, and primitive projections which are in <span class="inlinecode"><span class="id" title="var">t1</span></span> but not in <span class="inlinecode"><span class="id" title="var">t2</span></span>. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">diff</span> : <span class="id" title="var">t</span> -&gt; <span class="id" title="var">t</span> -&gt; <span class="id" title="var">t</span> :=<br/>
+&nbsp;&nbsp;"rocq-runtime.plugins.ltac2" "diff_transparent_state".<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">add_constant</span></span> <span class="inlinecode"><span class="id" title="var">c</span></span> <span class="inlinecode"><span class="id" title="var">t</span></span> adds the constant <span class="inlinecode"><span class="id" title="var">c</span></span> to the transparency state <span class="inlinecode"><span class="id" title="var">t</span></span>.
+    Does nothing if the constant is already present. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">add_constant</span> : <span class="id" title="var">constant</span> -&gt; <span class="id" title="var">t</span> -&gt; <span class="id" title="var">t</span> :=<br/>
+&nbsp;&nbsp;"rocq-runtime.plugins.ltac2" "add_constant_transparent_state".<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">add_proj</span></span> <span class="inlinecode"><span class="id" title="var">p</span></span> <span class="inlinecode"><span class="id" title="var">t</span></span> adds the primitive projection <span class="inlinecode"><span class="id" title="var">p</span></span> to the transparency
+    state <span class="inlinecode"><span class="id" title="var">t</span></span>. Does nothing if the projection is already present. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">add_proj</span> : <span class="id" title="var">projection</span> -&gt; <span class="id" title="var">t</span> -&gt; <span class="id" title="var">t</span> :=<br/>
+&nbsp;&nbsp;"rocq-runtime.plugins.ltac2" "add_proj_transparent_state".<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">add_var</span></span> <span class="inlinecode"><span class="id" title="var">p</span></span> <span class="inlinecode"><span class="id" title="var">t</span></span> adds the local variable <span class="inlinecode"><span class="id" title="var">v</span></span> to the transparency state <span class="inlinecode"><span class="id" title="var">t</span></span>.
+    Does nothing if the variable is already present. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">add_var</span> : <span class="id" title="var">ident</span> -&gt; <span class="id" title="var">t</span> -&gt; <span class="id" title="var">t</span> :=<br/>
+&nbsp;&nbsp;"rocq-runtime.plugins.ltac2" "add_var_transparent_state".<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">remove_constant</span></span> <span class="inlinecode"><span class="id" title="var">c</span></span> <span class="inlinecode"><span class="id" title="var">t</span></span> removes the constant <span class="inlinecode"><span class="id" title="var">c</span></span> from the transparency
+    state <span class="inlinecode"><span class="id" title="var">t</span></span>. Does nothing if the constant is not present. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">remove_constant</span> : <span class="id" title="var">constant</span> -&gt; <span class="id" title="var">t</span> -&gt; <span class="id" title="var">t</span> :=<br/>
+&nbsp;&nbsp;"rocq-runtime.plugins.ltac2" "remove_constant_transparent_state".<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">remove_proj</span></span> <span class="inlinecode"><span class="id" title="var">p</span></span> <span class="inlinecode"><span class="id" title="var">t</span></span> removes the primitive projection <span class="inlinecode"><span class="id" title="var">p</span></span> from the
+    transparency state <span class="inlinecode"><span class="id" title="var">t</span></span>. Does nothing if the projection is not present. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">remove_proj</span> : <span class="id" title="var">projection</span> -&gt; <span class="id" title="var">t</span> -&gt; <span class="id" title="var">t</span> :=<br/>
+&nbsp;&nbsp;"rocq-runtime.plugins.ltac2" "remove_proj_transparent_state".<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">remove_var</span></span> <span class="inlinecode"><span class="id" title="var">p</span></span> <span class="inlinecode"><span class="id" title="var">t</span></span> removes the local variable <span class="inlinecode"><span class="id" title="var">v</span></span> from the transparency
+    state <span class="inlinecode"><span class="id" title="var">t</span></span>. Does nothing if the variable is not present. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">remove_var</span> : <span class="id" title="var">ident</span> -&gt; <span class="id" title="var">t</span> -&gt; <span class="id" title="var">t</span> :=<br/>
+&nbsp;&nbsp;"rocq-runtime.plugins.ltac2" "remove_var_transparent_state".<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">mem_constant</span></span> <span class="inlinecode"><span class="id" title="var">c</span></span> <span class="inlinecode"><span class="id" title="var">t</span></span> checks whether the constant <span class="inlinecode"><span class="id" title="var">c</span></span> is present in the
+    transparency state <span class="inlinecode"><span class="id" title="var">t</span></span>. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">mem_constant</span> : <span class="id" title="var">constant</span> -&gt; <span class="id" title="var">t</span> -&gt; <span class="id" title="var">bool</span> :=<br/>
+&nbsp;&nbsp;"rocq-runtime.plugins.ltac2" "mem_constant_transparent_state".<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">mem_proj</span></span> <span class="inlinecode"><span class="id" title="var">p</span></span> <span class="inlinecode"><span class="id" title="var">t</span></span> checks whether the primitive projection <span class="inlinecode"><span class="id" title="var">p</span></span> is present in the
+    transparency state <span class="inlinecode"><span class="id" title="var">t</span></span>. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">mem_proj</span> : <span class="id" title="var">projection</span> -&gt; <span class="id" title="var">t</span> -&gt; <span class="id" title="var">bool</span> :=<br/>
+&nbsp;&nbsp;"rocq-runtime.plugins.ltac2" "mem_proj_transparent_state".<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">mem_var</span></span> <span class="inlinecode"><span class="id" title="var">v</span></span> <span class="inlinecode"><span class="id" title="var">t</span></span> checks whether the local variable <span class="inlinecode"><span class="id" title="var">v</span></span> is present in the
+    transparency state <span class="inlinecode"><span class="id" title="var">t</span></span>. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">mem_var</span> : <span class="id" title="var">ident</span> -&gt; <span class="id" title="var">t</span> -&gt; <span class="id" title="var">bool</span> :=<br/>
+&nbsp;&nbsp;"rocq-runtime.plugins.ltac2" "mem_var_transparent_state".<br/>
 </div>
 
           <!-- ************************
