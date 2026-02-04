@@ -521,6 +521,64 @@ Fixed point operation for recursive strategies. <span class="inlinecode"><span c
 &nbsp;&nbsp;&nbsp;&nbsp;"rocq-runtime.plugins.ltac2" "rewstrat_fix".<br/>
 
 <br/>
+</div>
+
+<div class="doc">
+The identity if the pattern matching succeeds, fails otherwise 
+</div>
+<div class="code">
+&nbsp;&nbsp;<span class="id" title="keyword">Ltac2</span> @<span class="id" title="var">external</span> <span class="id" title="var">matches</span> : <span class="id" title="tactic">pattern</span> -&gt; <span class="id" title="var">t</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"rocq-runtime.plugins.ltac2" "rewstrat_matches".<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+The rewrite success datatype, where <span class="inlinecode"><span class="id" title="var">prf</span></span> should be of type <span class="inlinecode"><span class="id" title="var">rel</span></span> <span class="inlinecode"><span class="id" title="var">lhs</span></span> <span class="inlinecode"><span class="id" title="var">rhs</span></span> 
+</div>
+<div class="code">
+&nbsp;&nbsp;<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Type</span> <span class="id" title="var">rewrite_success</span> := { <span class="id" title="var">rel</span> : <span class="id" title="keyword">constr</span>; <span class="id" title="var">rhs</span> : <span class="id" title="keyword">constr</span>; <span class="id" title="var">prf</span> : <span class="id" title="keyword">constr</span> }.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+A rewrite result can be any of a success, and identity step (no progress), or a failure 
+</div>
+<div class="code">
+&nbsp;&nbsp;<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Type</span> <span class="id" title="var">rewrite_result</span> := [ <span class="id" title="var">Success</span> (<span class="id" title="var">rewrite_success</span>) | <span class="id" title="var">Identity</span> | <span class="id" title="var">Fail</span> ].<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+The <span class="inlinecode"><span class="id" title="var">tactic</span></span> <span class="inlinecode"><span class="id" title="var">f</span></span> strategy applies <span class="inlinecode"><span class="id" title="var">f</span></span> to arguments <span class="inlinecode"><span class="id" title="var">ty</span></span>, <span class="inlinecode"><span class="id" title="var">lhs</span></span> and <span class="inlinecode"><span class="id" title="var">rel</span></span>,
+      where <span class="inlinecode"><span class="id" title="var">lhs</span></span> is the subterm being rewritten, of type <span class="inlinecode"><span class="id" title="var">ty</span></span>, and
+      an optional relation constraint <span class="inlinecode"><span class="id" title="var">rel</span></span> is given.
+
+<div class="paragraph"> </div>
+
+      The tactic is applied to a single goal of type <span class="inlinecode"><span class="id" title="var">unit</span></span> whose context
+      corresponds to the context of the term to rewrite (i.e. the context of the
+      goal at the start of the <span class="inlinecode"><span class="id" title="var">rewrite_strat</span></span> call extended with the binders
+      that were traversed to attain this subterm. The tactic should return a
+      <span class="inlinecode"><span class="id" title="var">rewrite_result</span></span> indicating success, failure or no progress and should
+      *not* solve the goal. Solving the goal is an error that aborts the
+      <span class="inlinecode"><span class="id" title="var">rewrite_strat</span></span> call. The success record contains the chosen relation
+      <span class="inlinecode"><span class="id" title="var">rel</span></span>, new right hand-side <span class="inlinecode"><span class="id" title="var">rhs</span></span> and a proof <span class="inlinecode"><span class="id" title="var">prf</span></span> of <span class="inlinecode"><span class="id" title="var">rel</span></span> <span class="inlinecode"><span class="id" title="var">t</span></span> <span class="inlinecode"><span class="id" title="var">rhs</span></span>.
+
+<div class="paragraph"> </div>
+
+      If the proof <span class="inlinecode"><span class="id" title="var">prf</span></span> is syntactically <span class="inlinecode"><span class="id" title="var">eq_refl</span></span> <span class="inlinecode"><span class="id" title="var">_</span></span>, then the witness
+      of the rewriting is simply a *conversion* requiring no explicit
+      proof and no congruence lemmas for the context of the rewrite.
+   
+</div>
+<div class="code">
+&nbsp;&nbsp;<span class="id" title="keyword">Ltac2</span> @<span class="id" title="var">external</span> <span class="id" title="var">tactic</span> : (<span class="id" title="keyword">constr</span> -&gt; <span class="id" title="keyword">constr</span> -&gt; <span class="id" title="keyword">constr</span> <span class="id" title="var">option</span> -&gt; <span class="id" title="var">rewrite_result</span>) -&gt; <span class="id" title="var">t</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"rocq-runtime.plugins.ltac2" "rewstrat_tactic".<br/>
+
+<br/>
 <span class="id" title="keyword">End</span> <a class="idref" href="Ltac2.Rewrite.html#Strategy"><span class="id" title="module">Strategy</span></a>.<br/>
 
 <br/>
