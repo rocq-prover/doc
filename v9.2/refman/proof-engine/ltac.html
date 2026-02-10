@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ltac &mdash; The Rocq Prover 9.2+rc1 documentation</title>
+  <title>Ltac &mdash; The Rocq Prover 9.2+rc2 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/ansi.css?v=df714dbc" />
@@ -18,7 +18,7 @@
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=6de052d4"></script>
+      <script src="../_static/documentation_options.js?v=5a18d8be"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../_static/notations.js?v=7e0edea7"></script>
@@ -4408,38 +4408,40 @@ printed without entries faster than the cutoff (in seconds).</p>
 </span></dt><dd><span>No more goals.
 </span></dd>
 <dt><span></span><span class="rocqdoc-keyword">Show</span><span> </span><span class="rocqdoc-keyword">Ltac</span><span> </span><span class="rocqdoc-var">Profile</span><span>.</span><span>
-</span></dt><dd><span>total time:      1.300s
+</span></dt><dd><span>total time:      1.120s
 
  tactic                                      local  total   calls       max
 ───────────────────────────────────────────┴──────┴──────┴───────┴─────────┘
-─tac --------------------------------------   0.1% 100.0%       1    1.300s
-─&lt;Corelib.Init.Tauto.with_uniform_flags&gt; --   0.0%  98.0%      26    0.101s
-─&lt;Corelib.Init.Tauto.tauto_gen&gt; -----------   0.0%  97.9%      26    0.100s
-─&lt;Corelib.Init.Tauto.tauto_intuitionistic&gt;    0.0%  97.9%      26    0.100s
-─t_tauto_intuit ---------------------------   0.1%  97.8%      26    0.100s
-─&lt;Corelib.Init.Tauto.simplif&gt; -------------  59.5%  94.5%      26    0.099s
-─&lt;Corelib.Init.Tauto.is_conj&gt; -------------  27.2%  27.2%   28756    0.053s
-─elim id ----------------------------------   4.3%   4.3%     650    0.000s
+─tac --------------------------------------   0.1% 100.0%       1    1.120s
+─&lt;Corelib.Init.Tauto.with_uniform_flags&gt; --   0.0%  97.5%      26    0.110s
+─&lt;Corelib.Init.Tauto.tauto_gen&gt; -----------   0.0%  97.5%      26    0.110s
+─&lt;Corelib.Init.Tauto.tauto_intuitionistic&gt;    0.1%  97.4%      26    0.110s
+─t_tauto_intuit ---------------------------   0.1%  97.3%      26    0.110s
+─&lt;Corelib.Init.Tauto.simplif&gt; -------------  56.3%  94.1%      26    0.109s
+─&lt;Corelib.Init.Tauto.is_conj&gt; -------------  30.4%  30.4%   28756    0.055s
+─elim id ----------------------------------   3.9%   3.9%     650    0.000s
 ─&lt;Corelib.Init.Tauto.axioms&gt; --------------   2.2%   3.2%       0    0.002s
+─lia --------------------------------------   0.1%   2.2%      28    0.011s
 
- tactic                                      local  total   calls       max
-───────────────────────────────────────────┴──────┴──────┴───────┴─────────┘
-─tac --------------------------------------   0.1% 100.0%       1    1.300s
-└&lt;Corelib.Init.Tauto.with_uniform_flags&gt; --   0.0%  98.0%      26    0.101s
-└&lt;Corelib.Init.Tauto.tauto_gen&gt; -----------   0.0%  97.9%      26    0.100s
-└&lt;Corelib.Init.Tauto.tauto_intuitionistic&gt;    0.0%  97.9%      26    0.100s
-└t_tauto_intuit ---------------------------   0.1%  97.8%      26    0.100s
- ├─&lt;Corelib.Init.Tauto.simplif&gt; -----------  59.5%  94.5%      26    0.099s
- │ ├─&lt;Corelib.Init.Tauto.is_conj&gt; ---------  27.2%  27.2%   28756    0.053s
- │ └─elim id ------------------------------   4.3%   4.3%     650    0.000s
- └─&lt;Corelib.Init.Tauto.axioms&gt; ------------   2.2%   3.2%       0    0.002s
+ tactic                                        local  total   calls       max
+─────────────────────────────────────────────┴──────┴──────┴───────┴─────────┘
+─tac ----------------------------------------   0.1% 100.0%       1    1.120s
+ ├─&lt;Corelib.Init.Tauto.with_uniform_flags&gt; --   0.0%  97.5%      26    0.110s
+ │└&lt;Corelib.Init.Tauto.tauto_gen&gt; -----------   0.0%  97.4%      26    0.110s
+ │└&lt;Corelib.Init.Tauto.tauto_intuitionistic&gt;    0.1%  97.4%      26    0.110s
+ │└t_tauto_intuit ---------------------------   0.1%  97.3%      26    0.110s
+ │ ├─&lt;Corelib.Init.Tauto.simplif&gt; -----------  56.3%  94.1%      26    0.109s
+ │ │ ├─&lt;Corelib.Init.Tauto.is_conj&gt; ---------  30.4%  30.4%   28756    0.055s
+ │ │ └─elim id ------------------------------   3.9%   3.9%     650    0.000s
+ │ └─&lt;Corelib.Init.Tauto.axioms&gt; ------------   2.2%   3.2%       0    0.002s
+ └─lia --------------------------------------   0.1%   2.2%      28    0.011s
 </span></dd>
 <dt><span></span><span class="rocqdoc-keyword">Show</span><span> </span><span class="rocqdoc-keyword">Ltac</span><span> </span><span class="rocqdoc-var">Profile</span><span> &quot;lia&quot;.</span><span>
-</span></dt><dd><span>total time:      1.300s
+</span></dt><dd><span>total time:      1.120s
 
  tactic  local  total   calls       max
 ───────┴──────┴──────┴───────┴─────────┘
-
+─lia --   0.1%   2.2%      28    0.011s
 
  tactic  local  total   calls       max
 ───────┴──────┴──────┴───────┴─────────┘
@@ -4549,7 +4551,7 @@ some background.</p>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Other versions</span>
-      v: 9.2+rc1
+      v: 9.2+rc2
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
@@ -4611,6 +4613,8 @@ some background.</p>
       </dl>
       <dl>
         <dt>Downloads</dt>
+        
+          <dd><a href="https://github.com/rocq-prover/rocq/releases/download/V9.2+rc2/rocq-9.2+rc2-reference-manual.pdf">PDF</a></dd>
         
       </dl>
     </div>
