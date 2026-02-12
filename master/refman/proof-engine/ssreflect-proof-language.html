@@ -2531,10 +2531,9 @@ constants to the goal.</p>
 </span></dd>
 </dl>
 </div>
-<p>where <code class="docutils literal notranslate"><span class="pre">move</span></code> does nothing, but <code class="docutils literal notranslate"><span class="pre">=&gt;</span> <span class="pre">m</span> <span class="pre">n</span> <span class="pre">le_m_n</span></code> changes
-the variables and assumption of the goal into the constants
-<code class="docutils literal notranslate"><span class="pre">m</span> <span class="pre">n</span> <span class="pre">:</span> <span class="pre">nat</span></code> and the fact <code class="docutils literal notranslate"><span class="pre">le_n_m</span> <span class="pre">:</span> <span class="pre">n</span> <span class="pre">&lt;=</span> <span class="pre">m</span></code>, thus exposing the
-conclusion <code class="docutils literal notranslate"><span class="pre">m</span> <span class="pre">-</span> <span class="pre">n</span> <span class="pre">+</span> <span class="pre">n</span> <span class="pre">=</span> <span class="pre">m</span></code>.</p>
+<p>where <code class="docutils literal notranslate"><span class="pre">move</span></code> does nothing, but <code class="docutils literal notranslate"><span class="pre">=&gt;</span> <span class="pre">m</span> <span class="pre">n</span> <span class="pre">le_m_n</span></code> introduces
+the variables <code class="docutils literal notranslate"><span class="pre">m</span></code> and <code class="docutils literal notranslate"><span class="pre">n</span></code> and the hypothesis <code class="docutils literal notranslate"><span class="pre">le_n_m</span> <span class="pre">:</span> <span class="pre">n</span> <span class="pre">&lt;=</span> <span class="pre">m</span></code>
+from the goal, giving the new goal <code class="docutils literal notranslate"><span class="pre">m</span> <span class="pre">-</span> <span class="pre">n</span> <span class="pre">+</span> <span class="pre">n</span> <span class="pre">=</span> <span class="pre">m</span></code>.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">:</span></code> tactical is the converse of <code class="docutils literal notranslate"><span class="pre">=&gt;</span></code>; indeed it removes facts and
 constants from the context by turning them into variables and
 assumptions.</p>
