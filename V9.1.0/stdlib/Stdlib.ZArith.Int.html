@@ -267,7 +267,7 @@
 </div>
 
 <div class="doc">
-<a id="lab825"></a><h1 class="section">An light axiomatization of integers (used in MSetAVL).</h1>
+<a id="lab554"></a><h1 class="section">An light axiomatization of integers (used in MSetAVL).</h1>
 
 <div class="paragraph"> </div>
 
@@ -283,16 +283,16 @@
 <span class="id" title="keyword">From</span> <span class="id" title="var">Stdlib</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="Stdlib.ZArith.BinInt.html#"><span class="id" title="library">BinInt</span></a>.<br/>
 <span class="id" title="keyword">Declare Scope</span> <span class="id" title="var">Int_scope</span>.<br/>
 <span class="id" title="keyword">Delimit</span> <span class="id" title="keyword">Scope</span> <span class="id" title="var">Int_scope</span> <span class="id" title="keyword">with</span> <span class="id" title="var">I</span>.<br/>
-<span class="id" title="keyword">Local Open</span> <span class="id" title="keyword">Scope</span> <span class="id" title="var">Int_scope</span>.<br/>
+#[<span class="id" title="var">local</span>] <span class="id" title="keyword">Open</span> <span class="id" title="keyword">Scope</span> <span class="id" title="var">Int_scope</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Local Ltac</span> <span class="id" title="var">Tauto.intuition_solver</span> ::= <span class="id" title="tactic">auto</span> <span class="id" title="keyword">with</span> <span class="id" title="var">bool</span>.<br/>
+#[<span class="id" title="var">local</span>] <span class="id" title="keyword">Ltac</span> <span class="id" title="var">Tauto.intuition_solver</span> ::= <span class="id" title="tactic">auto</span> <span class="id" title="keyword">with</span> <span class="id" title="var">bool</span>.<br/>
 
 <br/>
 </div>
 
 <div class="doc">
-<a id="lab826"></a><h1 class="section">A specification of integers</h1>
+<a id="lab555"></a><h1 class="section">A specification of integers</h1>
 
 </div>
 <div class="code">
@@ -428,14 +428,14 @@ Then, we express the specifications of the above parameters using their
 </div>
 
 <div class="doc">
-<a id="lab827"></a><h1 class="section">Facts and  tactics using <span class="inlinecode"><span class="id" title="var">Int</span></span></h1>
+<a id="lab556"></a><h1 class="section">Facts and  tactics using <span class="inlinecode"><span class="id" title="var">Int</span></span></h1>
 
 </div>
 <div class="code">
 
 <br/>
 <span class="id" title="keyword">Module</span> <a id="MoreInt" class="idref" href="#MoreInt"><span class="id" title="module">MoreInt</span></a> (<span class="id" title="keyword">Import</span> <span class="id" title="var">I</span>:<a class="idref" href="Stdlib.ZArith.Int.html#Int"><span class="id" title="module">Int</span></a>).<br/>
-&nbsp;&nbsp;<span class="id" title="keyword">Local Notation</span> <a id="MoreInt.int" class="idref" href="#MoreInt.int"><span class="id" title="abbreviation">int</span></a> := <a class="idref" href="Stdlib.ZArith.Int.html#I.t"><span class="id" title="axiom">I.t</span></a>.<br/>
+&nbsp;&nbsp;#[<span class="id" title="var">local</span>] <span class="id" title="keyword">Notation</span> <a id="MoreInt.int" class="idref" href="#MoreInt.int"><span class="id" title="abbreviation">int</span></a> := <a class="idref" href="Stdlib.ZArith.Int.html#I.t"><span class="id" title="axiom">I.t</span></a>.<br/>
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a id="MoreInt.eqb_eq" class="idref" href="#MoreInt.eqb_eq"><span class="id" title="lemma">eqb_eq</span></a> <a id="n:84" class="idref" href="#n:84"><span class="id" title="binder">n</span></a> <a id="p:85" class="idref" href="#p:85"><span class="id" title="binder">p</span></a> : <a class="idref" href="../corelib/Corelib.Init.Logic.html#6cd0f7b28b6092304087c7049437bb1a"><span class="id" title="notation">(</span></a><a class="idref" href="Stdlib.ZArith.Int.html#n:84"><span class="id" title="variable">n</span></a> <a class="idref" href="Stdlib.ZArith.Int.html#7781bac2d82de50b686171410bc1bdf4"><span class="id" title="notation">=?</span></a> <a class="idref" href="Stdlib.ZArith.Int.html#p:85"><span class="id" title="variable">p</span></a><a class="idref" href="../corelib/Corelib.Init.Logic.html#6cd0f7b28b6092304087c7049437bb1a"><span class="id" title="notation">)</span></a> <a class="idref" href="../corelib/Corelib.Init.Logic.html#6cd0f7b28b6092304087c7049437bb1a"><span class="id" title="notation">=</span></a> <a class="idref" href="../corelib/Corelib.Init.Datatypes.html#true"><span class="id" title="constructor">true</span></a> <a class="idref" href="../corelib/Corelib.Init.Logic.html#::type_scope:x_'&lt;-&gt;'_x"><span class="id" title="notation">&lt;-&gt;</span></a> <a class="idref" href="Stdlib.ZArith.Int.html#n:84"><span class="id" title="variable">n</span></a> <a class="idref" href="Stdlib.ZArith.Int.html#2d072df30850000b50979c72a9f0a47e"><span class="id" title="notation">==</span></a> <a class="idref" href="Stdlib.ZArith.Int.html#p:85"><span class="id" title="variable">p</span></a>.<br/>
@@ -465,7 +465,7 @@ A magic (but costly) tactic that goes from <span class="inlinecode"><span class=
 <div class="code">
 
 <br/>
-&nbsp;&nbsp;<span class="id" title="keyword">Global Hint Rewrite</span> -&gt;<br/>
+&nbsp;&nbsp;#[<span class="id" title="var">global</span>] <span class="id" title="keyword">Hint</span> <span class="id" title="keyword">Rewrite</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Stdlib.ZArith.Int.html#I.i2z_0"><span class="id" title="axiom">i2z_0</span></a> <a class="idref" href="Stdlib.ZArith.Int.html#I.i2z_1"><span class="id" title="axiom">i2z_1</span></a> <a class="idref" href="Stdlib.ZArith.Int.html#I.i2z_2"><span class="id" title="axiom">i2z_2</span></a> <a class="idref" href="Stdlib.ZArith.Int.html#I.i2z_3"><span class="id" title="axiom">i2z_3</span></a> <a class="idref" href="Stdlib.ZArith.Int.html#I.i2z_add"><span class="id" title="axiom">i2z_add</span></a> <a class="idref" href="Stdlib.ZArith.Int.html#I.i2z_opp"><span class="id" title="axiom">i2z_opp</span></a> <a class="idref" href="Stdlib.ZArith.Int.html#I.i2z_sub"><span class="id" title="axiom">i2z_sub</span></a> <a class="idref" href="Stdlib.ZArith.Int.html#I.i2z_mul"><span class="id" title="axiom">i2z_mul</span></a> <a class="idref" href="Stdlib.ZArith.Int.html#I.i2z_max"><span class="id" title="axiom">i2z_max</span></a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Stdlib.ZArith.Int.html#I.i2z_eqb"><span class="id" title="axiom">i2z_eqb</span></a> <a class="idref" href="Stdlib.ZArith.Int.html#I.i2z_ltb"><span class="id" title="axiom">i2z_ltb</span></a> <a class="idref" href="Stdlib.ZArith.Int.html#I.i2z_leb"><span class="id" title="axiom">i2z_leb</span></a> : <span class="id" title="var">i2z</span>.<br/>
 
@@ -782,7 +782,7 @@ A reflexive version of the <span class="inlinecode"><span class="id" title="var"
 </div>
 
 <div class="doc">
-<a id="lab828"></a><h1 class="section">An implementation of <span class="inlinecode"><span class="id" title="var">Int</span></span></h1>
+<a id="lab557"></a><h1 class="section">An implementation of <span class="inlinecode"><span class="id" title="var">Int</span></span></h1>
 
 <div class="paragraph"> </div>
 
@@ -792,7 +792,7 @@ A reflexive version of the <span class="inlinecode"><span class="id" title="var"
 
 <br/>
 <span class="id" title="keyword">Module</span> <a id="Z_as_Int" class="idref" href="#Z_as_Int"><span class="id" title="module">Z_as_Int</span></a> &lt;: <a class="idref" href="Stdlib.ZArith.Int.html#Int"><span class="id" title="module">Int</span></a>.<br/>
-&nbsp;&nbsp;<span class="id" title="keyword">Local Open</span> <span class="id" title="keyword">Scope</span> <span class="id" title="var">Z_scope</span>.<br/>
+&nbsp;&nbsp;#[<span class="id" title="var">local</span>] <span class="id" title="keyword">Open</span> <span class="id" title="keyword">Scope</span> <span class="id" title="var">Z_scope</span>.<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a id="Z_as_Int.t" class="idref" href="#Z_as_Int.t"><span class="id" title="definition">t</span></a> := <a class="idref" href="../corelib/Corelib.Numbers.BinNums.html#Z"><span class="id" title="inductive">Z</span></a>.<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a id="Z_as_Int._0" class="idref" href="#Z_as_Int._0"><span class="id" title="definition">_0</span></a> := 0.<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a id="Z_as_Int._1" class="idref" href="#Z_as_Int._1"><span class="id" title="definition">_1</span></a> := 1.<br/>

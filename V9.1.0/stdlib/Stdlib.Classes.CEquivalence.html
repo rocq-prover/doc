@@ -267,7 +267,7 @@
 </div>
 
 <div class="doc">
-<a id="lab613"></a><h1 class="section">Typeclass-based setoids. Definitions on <span class="inlinecode"><span class="id" title="var">Equivalence</span></span>.</h1>
+<a id="lab800"></a><h1 class="section">Typeclass-based setoids. Definitions on <span class="inlinecode"><span class="id" title="var">Equivalence</span></span>.</h1>
 
 
 <div class="paragraph"> </div>
@@ -293,10 +293,10 @@
 
 <br/>
 <span class="id" title="keyword">Generalizable Variables</span> <span class="id" title="var">A</span> <span class="id" title="var">R</span> <span class="id" title="var">eqA</span> <span class="id" title="var">B</span> <span class="id" title="var">S</span> <span class="id" title="var">eqB</span>.<br/>
-<span class="id" title="keyword">Local Obligation</span> <span class="id" title="keyword">Tactic</span> := <span class="id" title="tactic">try</span> <span class="id" title="tactic">solve</span> [<span class="id" title="var">simpl_crelation</span>].<br/>
+#[<span class="id" title="var">local</span>] <span class="id" title="keyword">Obligation</span> <span class="id" title="keyword">Tactic</span> := <span class="id" title="tactic">try</span> <span class="id" title="tactic">solve</span> [<span class="id" title="var">simpl_crelation</span>].<br/>
 
 <br/>
-<span class="id" title="keyword">Local Open</span> <span class="id" title="keyword">Scope</span> <span class="id" title="var">signatureT_scope</span>.<br/>
+#[<span class="id" title="var">local</span>] <span class="id" title="keyword">Open</span> <span class="id" title="keyword">Scope</span> <span class="id" title="var">signatureT_scope</span>.<br/>
 
 <br/>
 <span class="id" title="keyword">Definition</span> <a id="equiv" class="idref" href="#equiv"><span class="id" title="definition">equiv</span></a> `{<a id="H:3" class="idref" href="#H:3"><span class="id" title="binder">Equivalence</span></a> <a id="A:1" class="idref" href="#A:1"><span class="id" title="binder"><span id="H:3" class="id">A</span></span></a> <a id="R:2" class="idref" href="#R:2"><span class="id" title="binder"><span id="H:3" class="id">R</span></span></a>} : <a class="idref" href="../corelib/Corelib.Classes.CRelationClasses.html#crelation"><span class="id" title="definition">crelation</span></a> <a class="idref" href="Stdlib.Classes.CEquivalence.html#A:1"><span class="id" title="variable">A</span></a> := <a class="idref" href="Stdlib.Classes.CEquivalence.html#R:2"><span class="id" title="variable">R</span></a>.<br/>
@@ -320,7 +320,7 @@ Overloaded notations for setoid equivalence and inequivalence.
 <span class="id" title="keyword">Notation</span> <a id="4d60a26a1a9a35af6019d82673a2f7d1" class="idref" href="#4d60a26a1a9a35af6019d82673a2f7d1"><span class="id" title="notation">&quot;</span></a> x =/= y " := (<a class="idref" href="../corelib/Corelib.Classes.CRelationClasses.html#complement"><span class="id" title="definition">complement</span></a> <a class="idref" href="Stdlib.Classes.CEquivalence.html#equiv"><span class="id" title="definition">equiv</span></a> <span class="id" title="var">x</span> <span class="id" title="var">y</span>) (<span class="id" title="tactic">at</span> <span class="id" title="keyword">level</span> 70, <span class="id" title="keyword">no</span> <span class="id" title="keyword">associativity</span>) : <span class="id" title="var">equiv_scope</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Local Open</span> <span class="id" title="keyword">Scope</span> <span class="id" title="var">equiv_scope</span>.<br/>
+#[<span class="id" title="var">local</span>] <span class="id" title="keyword">Open</span> <span class="id" title="keyword">Scope</span> <span class="id" title="var">equiv_scope</span>.<br/>
 
 <br/>
 </div>

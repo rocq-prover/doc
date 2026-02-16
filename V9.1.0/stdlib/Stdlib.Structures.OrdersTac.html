@@ -271,7 +271,7 @@
 </div>
 
 <div class="doc">
-<a id="lab695"></a><h1 class="section">The order tactic</h1>
+<a id="lab886"></a><h1 class="section">The order tactic</h1>
 
 <div class="paragraph"> </div>
 
@@ -304,13 +304,13 @@
 &nbsp;| <a class="idref" href="Stdlib.Structures.OrdersTac.html#OLE"><span class="id" title="constructor">OLE</span></a>, <a class="idref" href="Stdlib.Structures.OrdersTac.html#OLE"><span class="id" title="constructor">OLE</span></a> =&gt; <a class="idref" href="Stdlib.Structures.OrdersTac.html#OLE"><span class="id" title="constructor">OLE</span></a><br/>
 &nbsp;| <span class="id" title="var">_</span>, <span class="id" title="var">_</span> =&gt; <a class="idref" href="Stdlib.Structures.OrdersTac.html#OLT"><span class="id" title="constructor">OLT</span></a><br/>
 &nbsp;<span class="id" title="keyword">end</span>.<br/>
-<span class="id" title="keyword">Local Infix</span> <a id="00f623954fe4dd5f04bdc5ceb1846ff4" class="idref" href="#00f623954fe4dd5f04bdc5ceb1846ff4"><span class="id" title="notation">&quot;</span></a>+" := <a class="idref" href="Stdlib.Structures.OrdersTac.html#trans_ord"><span class="id" title="definition">trans_ord</span></a>.<br/>
+#[<span class="id" title="var">local</span>] <span class="id" title="keyword">Infix</span> "+" := <a class="idref" href="Stdlib.Structures.OrdersTac.html#trans_ord"><span class="id" title="definition">trans_ord</span></a>.<br/>
 
 <br/>
 </div>
 
 <div class="doc">
-<a id="lab696"></a><h2 class="section">The tactic requirements : a total order</h2>
+<a id="lab887"></a><h2 class="section">The tactic requirements : a total order</h2>
 
 
 <div class="paragraph"> </div>
@@ -346,7 +346,7 @@
 </div>
 
 <div class="doc">
-<a id="lab697"></a><h2 class="section">Properties that will be used by the <span class="inlinecode"><span class="id" title="var">order</span></span> tactic</h2>
+<a id="lab888"></a><h2 class="section">Properties that will be used by the <span class="inlinecode"><span class="id" title="var">order</span></span> tactic</h2>
 
 </div>
 <div class="code">
@@ -407,7 +407,7 @@ Transitivity rules : first, a generic formulation, then instances
 <br/>
 <span class="id" title="keyword">Definition</span> <a id="OrderFacts.interp_ord" class="idref" href="#OrderFacts.interp_ord"><span class="id" title="definition">interp_ord</span></a> <a id="o:16" class="idref" href="#o:16"><span class="id" title="binder">o</span></a> :=<br/>
 &nbsp;<span class="id" title="keyword">match</span> <a class="idref" href="Stdlib.Structures.OrdersTac.html#o:16"><span class="id" title="variable">o</span></a> <span class="id" title="keyword">with</span> <a class="idref" href="Stdlib.Structures.OrdersTac.html#OEQ"><span class="id" title="constructor">OEQ</span></a> =&gt; <a class="idref" href="Stdlib.Structures.OrdersTac.html#O.eq"><span class="id" title="axiom">O.eq</span></a> | <a class="idref" href="Stdlib.Structures.OrdersTac.html#OLT"><span class="id" title="constructor">OLT</span></a> =&gt; <a class="idref" href="Stdlib.Structures.OrdersTac.html#O.lt"><span class="id" title="axiom">O.lt</span></a> | <a class="idref" href="Stdlib.Structures.OrdersTac.html#OLE"><span class="id" title="constructor">OLE</span></a> =&gt; <a class="idref" href="Stdlib.Structures.OrdersTac.html#O.le"><span class="id" title="axiom">O.le</span></a> <span class="id" title="keyword">end</span>.<br/>
-<span class="id" title="keyword">Local Notation</span> <a id="4b5ee0775931f419b4302ec406b9c0bf" class="idref" href="#4b5ee0775931f419b4302ec406b9c0bf"><span class="id" title="notation">&quot;</span></a>#" := <a class="idref" href="Stdlib.Structures.OrdersTac.html#OrderFacts.interp_ord"><span class="id" title="definition">interp_ord</span></a>.<br/>
+#[<span class="id" title="var">local</span>] <span class="id" title="keyword">Notation</span> "#" := <a class="idref" href="Stdlib.Structures.OrdersTac.html#OrderFacts.interp_ord"><span class="id" title="definition">interp_ord</span></a>.<br/>
 
 <br/>
 <span class="id" title="keyword">Lemma</span> <a id="OrderFacts.trans" class="idref" href="#OrderFacts.trans"><span class="id" title="lemma">trans</span></a> <a id="o:18" class="idref" href="#o:18"><span class="id" title="binder">o</span></a> <a id="o':19" class="idref" href="#o':19"><span class="id" title="binder">o'</span></a> <a id="x:20" class="idref" href="#x:20"><span class="id" title="binder">x</span></a> <a id="y:21" class="idref" href="#y:21"><span class="id" title="binder">y</span></a> <a id="z:22" class="idref" href="#z:22"><span class="id" title="binder">z</span></a> : <a class="idref" href="Stdlib.Structures.OrdersTac.html#4b5ee0775931f419b4302ec406b9c0bf"><span class="id" title="notation">#</span></a><a class="idref" href="Stdlib.Structures.OrdersTac.html#4b5ee0775931f419b4302ec406b9c0bf"><span class="id" title="notation">o</span></a> <a class="idref" href="Stdlib.Structures.OrdersTac.html#4b5ee0775931f419b4302ec406b9c0bf"><span class="id" title="notation">x</span></a> <a class="idref" href="Stdlib.Structures.OrdersTac.html#4b5ee0775931f419b4302ec406b9c0bf"><span class="id" title="notation">y</span></a> <a class="idref" href="../corelib/Corelib.Init.Logic.html#::type_scope:x_'-&gt;'_x"><span class="id" title="notation">-&gt;</span></a> <a class="idref" href="Stdlib.Structures.OrdersTac.html#4b5ee0775931f419b4302ec406b9c0bf"><span class="id" title="notation">#</span></a><a class="idref" href="Stdlib.Structures.OrdersTac.html#4b5ee0775931f419b4302ec406b9c0bf"><span class="id" title="notation">o'</span></a> <a class="idref" href="Stdlib.Structures.OrdersTac.html#4b5ee0775931f419b4302ec406b9c0bf"><span class="id" title="notation">y</span></a> <a class="idref" href="Stdlib.Structures.OrdersTac.html#4b5ee0775931f419b4302ec406b9c0bf"><span class="id" title="notation">z</span></a> <a class="idref" href="../corelib/Corelib.Init.Logic.html#::type_scope:x_'-&gt;'_x"><span class="id" title="notation">-&gt;</span></a> <a class="idref" href="Stdlib.Structures.OrdersTac.html#4b5ee0775931f419b4302ec406b9c0bf"><span class="id" title="notation">#(</span></a><a class="idref" href="Stdlib.Structures.OrdersTac.html#4b5ee0775931f419b4302ec406b9c0bf"><span class="id" title="notation">o</span></a><a class="idref" href="Stdlib.Structures.OrdersTac.html#4b5ee0775931f419b4302ec406b9c0bf"><span class="id" title="notation">+</span></a><a class="idref" href="Stdlib.Structures.OrdersTac.html#4b5ee0775931f419b4302ec406b9c0bf"><span class="id" title="notation">o'</span></a><a class="idref" href="Stdlib.Structures.OrdersTac.html#4b5ee0775931f419b4302ec406b9c0bf"><span class="id" title="notation">)</span></a> <a class="idref" href="Stdlib.Structures.OrdersTac.html#4b5ee0775931f419b4302ec406b9c0bf"><span class="id" title="notation">x</span></a> <a class="idref" href="Stdlib.Structures.OrdersTac.html#4b5ee0775931f419b4302ec406b9c0bf"><span class="id" title="notation">z</span></a>.<br/>
@@ -456,7 +456,7 @@ Transitivity rules : first, a generic formulation, then instances
 </div>
 
 <div class="doc">
-<a id="lab698"></a><h2 class="section"><span class="inlinecode"><span class="id" title="var">MakeOrderTac</span></span> : The functor providing the order tactic.</h2>
+<a id="lab889"></a><h2 class="section"><span class="inlinecode"><span class="id" title="var">MakeOrderTac</span></span> : The functor providing the order tactic.</h2>
 
 </div>
 <div class="code">

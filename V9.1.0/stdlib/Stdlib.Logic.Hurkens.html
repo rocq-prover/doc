@@ -394,7 +394,7 @@ Exploiting Hurkens's paradox <span class="inlinecode">[<span class="id" title="v
 </div>
 
 <div class="doc">
-<a id="lab779"></a><h1 class="section">A modular proof of Hurkens's paradox.</h1>
+<a id="lab57"></a><h1 class="section">A modular proof of Hurkens's paradox.</h1>
 
 <div class="paragraph"> </div>
 
@@ -421,7 +421,7 @@ Exploiting Hurkens's paradox <span class="inlinecode">[<span class="id" title="v
 </div>
 
 <div class="doc">
-<a id="lab780"></a><h2 class="section">Axiomatisation of impredicative universes in a Martin-Löf style</h2>
+<a id="lab58"></a><h2 class="section">Axiomatisation of impredicative universes in a Martin-Löf style</h2>
 
 <div class="paragraph"> </div>
 
@@ -432,7 +432,7 @@ Exploiting Hurkens's paradox <span class="inlinecode">[<span class="id" title="v
     actual system U-. 
 <div class="paragraph"> </div>
 
-<a id="lab781"></a><h3 class="section">Large universe</h3>
+<a id="lab59"></a><h3 class="section">Large universe</h3>
 
 </div>
 <div class="code">
@@ -441,7 +441,7 @@ Exploiting Hurkens's paradox <span class="inlinecode">[<span class="id" title="v
 </div>
 
 <div class="doc">
-<a id="lab782"></a><h4 class="section">Closure by small product</h4>
+<a id="lab60"></a><h4 class="section">Closure by small product</h4>
 
 </div>
 <div class="code">
@@ -457,7 +457,7 @@ Exploiting Hurkens's paradox <span class="inlinecode">[<span class="id" title="v
 </div>
 
 <div class="doc">
-<a id="lab783"></a><h4 class="section">Closure by large products</h4>
+<a id="lab61"></a><h4 class="section">Closure by large products</h4>
  <span class="inlinecode"><span class="id" title="var">U1</span></span> only needs to quantify over itself. 
 </div>
 <div class="code">
@@ -474,7 +474,7 @@ Exploiting Hurkens's paradox <span class="inlinecode">[<span class="id" title="v
 </div>
 
 <div class="doc">
-<a id="lab784"></a><h3 class="section">Small universe</h3>
+<a id="lab62"></a><h3 class="section">Small universe</h3>
  The small universe is an element of the large one. 
 </div>
 <div class="code">
@@ -484,7 +484,7 @@ Exploiting Hurkens's paradox <span class="inlinecode">[<span class="id" title="v
 </div>
 
 <div class="doc">
-<a id="lab785"></a><h4 class="section">Closure by small product</h4>
+<a id="lab63"></a><h4 class="section">Closure by small product</h4>
  <span class="inlinecode"><span class="id" title="var">U0</span></span> does not need reduction rules 
 </div>
 <div class="code">
@@ -498,7 +498,7 @@ Exploiting Hurkens's paradox <span class="inlinecode">[<span class="id" title="v
 </div>
 
 <div class="doc">
-<a id="lab786"></a><h4 class="section">Closure by large products</h4>
+<a id="lab64"></a><h4 class="section">Closure by large products</h4>
 
 </div>
 <div class="code">
@@ -513,17 +513,17 @@ Exploiting Hurkens's paradox <span class="inlinecode">[<span class="id" title="v
 </div>
 
 <div class="doc">
-<a id="lab787"></a><h2 class="section">Automating the rewrite rules of our encoding.</h2>
+<a id="lab65"></a><h2 class="section">Automating the rewrite rules of our encoding.</h2>
 
 </div>
 <div class="code">
-<span class="id" title="keyword">Local Ltac</span> <span class="id" title="var">simplify</span> :=<br/>
+#[<span class="id" title="var">local</span>] <span class="id" title="keyword">Ltac</span> <span class="id" title="var">simplify</span> :=<br/>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;(<span class="id" title="tactic">repeat</span> <span class="id" title="tactic">rewrite</span> ?<a class="idref" href="Stdlib.Logic.Hurkens.html#Generic.Paradox.beta1"><span class="id" title="variable">beta1</span></a>, ?<a class="idref" href="Stdlib.Logic.Hurkens.html#Generic.Paradox.betaU1"><span class="id" title="variable">betaU1</span></a>);<br/>
 &nbsp;&nbsp;<span class="id" title="tactic">lazy</span> <span class="id" title="keyword">beta</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Local Ltac</span> <span class="id" title="var">simplify_in</span> <span class="id" title="var">h</span> :=<br/>
+#[<span class="id" title="var">local</span>] <span class="id" title="keyword">Ltac</span> <span class="id" title="var">simplify_in</span> <span class="id" title="var">h</span> :=<br/>
 &nbsp;&nbsp;(<span class="id" title="tactic">repeat</span> <span class="id" title="tactic">rewrite</span> ?<a class="idref" href="Stdlib.Logic.Hurkens.html#Generic.Paradox.beta1"><span class="id" title="variable">beta1</span></a>, ?<a class="idref" href="Stdlib.Logic.Hurkens.html#Generic.Paradox.betaU1"><span class="id" title="variable">betaU1</span></a> <span class="id" title="tactic">in</span> <span class="id" title="var">h</span>);<br/>
 &nbsp;&nbsp;<span class="id" title="tactic">lazy</span> <span class="id" title="keyword">beta</span> <span class="id" title="tactic">in</span> <span class="id" title="var">h</span>.<br/>
 
@@ -531,7 +531,7 @@ Exploiting Hurkens's paradox <span class="inlinecode">[<span class="id" title="v
 </div>
 
 <div class="doc">
-<a id="lab788"></a><h2 class="section">Hurkens's paradox.</h2>
+<a id="lab66"></a><h2 class="section">Hurkens's paradox.</h2>
 
 <div class="paragraph"> </div>
 
@@ -544,7 +544,7 @@ Exploiting Hurkens's paradox <span class="inlinecode">[<span class="id" title="v
 </div>
 
 <div class="doc">
-<a id="lab789"></a><h3 class="section">Preliminary definitions</h3>
+<a id="lab67"></a><h3 class="section">Preliminary definitions</h3>
 
 </div>
 <div class="code">
@@ -573,7 +573,7 @@ Exploiting Hurkens's paradox <span class="inlinecode">[<span class="id" title="v
 </div>
 
 <div class="doc">
-<a id="lab790"></a><h3 class="section">Proof</h3>
+<a id="lab68"></a><h3 class="section">Proof</h3>
 
 </div>
 <div class="code">
@@ -658,7 +658,7 @@ The <span class="inlinecode"><span class="id" title="var">paradox</span></span> 
 </div>
 
 <div class="doc">
-<a id="lab791"></a><h1 class="section">Impredicative universes are not retracts.</h1>
+<a id="lab69"></a><h1 class="section">Impredicative universes are not retracts.</h1>
 
 <div class="paragraph"> </div>
 
@@ -685,7 +685,7 @@ The <span class="inlinecode"><span class="id" title="var">paradox</span></span> 
 </div>
 
 <div class="doc">
-<a id="lab792"></a><h3 class="section"><span class="inlinecode"><span class="id" title="var">U1</span></span> is impredicative</h3>
+<a id="lab70"></a><h3 class="section"><span class="inlinecode"><span class="id" title="var">U1</span></span> is impredicative</h3>
 
 </div>
 <div class="code">
@@ -712,7 +712,7 @@ The <span class="inlinecode"><span class="id" title="var">paradox</span></span> 
 </div>
 
 <div class="doc">
-<a id="lab793"></a><h3 class="section"><span class="inlinecode"><span class="id" title="var">U0</span></span> is a retract of <span class="inlinecode"><span class="id" title="var">U1</span></span></h3>
+<a id="lab71"></a><h3 class="section"><span class="inlinecode"><span class="id" title="var">U0</span></span> is a retract of <span class="inlinecode"><span class="id" title="var">U1</span></span></h3>
 
 </div>
 <div class="code">
@@ -725,7 +725,7 @@ The <span class="inlinecode"><span class="id" title="var">paradox</span></span> 
 </div>
 
 <div class="doc">
-<a id="lab794"></a><h2 class="section">Paradox</h2>
+<a id="lab72"></a><h2 class="section">Paradox</h2>
 
 </div>
 <div class="code">
@@ -789,7 +789,7 @@ The interpretation of the small universe is the image of
 </div>
 
 <div class="doc">
-<a id="lab795"></a><h1 class="section">Modal fragments of <span class="inlinecode"><span class="id" title="keyword">Prop</span></span> are not retracts</h1>
+<a id="lab73"></a><h1 class="section">Modal fragments of <span class="inlinecode"><span class="id" title="keyword">Prop</span></span> are not retracts</h1>
 
 <div class="paragraph"> </div>
 
@@ -808,7 +808,7 @@ The interpretation of the small universe is the image of
 </div>
 
 <div class="doc">
-<a id="lab796"></a><h2 class="section">Monadic modality</h2>
+<a id="lab74"></a><h2 class="section">Monadic modality</h2>
 
 </div>
 <div class="code">
@@ -831,7 +831,7 @@ The interpretation of the small universe is the image of
 </div>
 
 <div class="doc">
-<a id="lab797"></a><h2 class="section">The universe of modal propositions</h2>
+<a id="lab75"></a><h2 class="section">The universe of modal propositions</h2>
 
 </div>
 <div class="code">
@@ -861,7 +861,7 @@ The interpretation of the small universe is the image of
 </div>
 
 <div class="doc">
-<a id="lab798"></a><h2 class="section">Retract of the modal fragment of <span class="inlinecode"><span class="id" title="keyword">Prop</span></span> in a small type</h2>
+<a id="lab76"></a><h2 class="section">Retract of the modal fragment of <span class="inlinecode"><span class="id" title="keyword">Prop</span></span> in a small type</h2>
 
 <div class="paragraph"> </div>
 
@@ -881,7 +881,7 @@ The interpretation of the small universe is the image of
 </div>
 
 <div class="doc">
-<a id="lab799"></a><h2 class="section">Paradox</h2>
+<a id="lab77"></a><h2 class="section">Paradox</h2>
 
 </div>
 <div class="code">
@@ -940,7 +940,7 @@ Small universe
 </div>
 
 <div class="doc">
-<a id="lab800"></a><h1 class="section">The negative fragment of <span class="inlinecode"><span class="id" title="keyword">Prop</span></span> is not a retract</h1>
+<a id="lab78"></a><h1 class="section">The negative fragment of <span class="inlinecode"><span class="id" title="keyword">Prop</span></span> is not a retract</h1>
 
 <div class="paragraph"> </div>
 
@@ -957,7 +957,7 @@ Small universe
 </div>
 
 <div class="doc">
-<a id="lab801"></a><h2 class="section">The universe of negative propositions.</h2>
+<a id="lab79"></a><h2 class="section">The universe of negative propositions.</h2>
 
 </div>
 <div class="code">
@@ -973,7 +973,7 @@ Small universe
 </div>
 
 <div class="doc">
-<a id="lab802"></a><h2 class="section">Retract of the negative fragment of <span class="inlinecode"><span class="id" title="keyword">Prop</span></span> in a small type</h2>
+<a id="lab80"></a><h2 class="section">Retract of the negative fragment of <span class="inlinecode"><span class="id" title="keyword">Prop</span></span> in a small type</h2>
 
 <div class="paragraph"> </div>
 
@@ -993,7 +993,7 @@ Small universe
 </div>
 
 <div class="doc">
-<a id="lab803"></a><h2 class="section">Paradox</h2>
+<a id="lab81"></a><h2 class="section">Paradox</h2>
 
 </div>
 <div class="code">
@@ -1024,7 +1024,7 @@ Small universe
 </div>
 
 <div class="doc">
-<a id="lab804"></a><h1 class="section">Prop is not a retract</h1>
+<a id="lab82"></a><h1 class="section">Prop is not a retract</h1>
 
 <div class="paragraph"> </div>
 
@@ -1041,7 +1041,7 @@ Small universe
 </div>
 
 <div class="doc">
-<a id="lab805"></a><h2 class="section">The universe of propositions.</h2>
+<a id="lab83"></a><h2 class="section">The universe of propositions.</h2>
 
 </div>
 <div class="code">
@@ -1057,7 +1057,7 @@ Small universe
 </div>
 
 <div class="doc">
-<a id="lab806"></a><h2 class="section">Retract of <span class="inlinecode"><span class="id" title="keyword">Prop</span></span> in a small type, using the identity modality.</h2>
+<a id="lab84"></a><h2 class="section">Retract of <span class="inlinecode"><span class="id" title="keyword">Prop</span></span> in a small type, using the identity modality.</h2>
 
 </div>
 <div class="code">
@@ -1073,7 +1073,7 @@ Small universe
 </div>
 
 <div class="doc">
-<a id="lab807"></a><h2 class="section">Paradox</h2>
+<a id="lab85"></a><h2 class="section">Paradox</h2>
 
 </div>
 <div class="code">
@@ -1104,7 +1104,7 @@ Small universe
 </div>
 
 <div class="doc">
-<a id="lab808"></a><h2 class="section">Retract of <span class="inlinecode"><span class="id" title="keyword">Prop</span></span> in a small type</h2>
+<a id="lab86"></a><h2 class="section">Retract of <span class="inlinecode"><span class="id" title="keyword">Prop</span></span> in a small type</h2>
 
 <div class="paragraph"> </div>
 
@@ -1122,7 +1122,7 @@ Small universe
 </div>
 
 <div class="doc">
-<a id="lab809"></a><h2 class="section">Paradox</h2>
+<a id="lab87"></a><h2 class="section">Paradox</h2>
 
 </div>
 <div class="code">
@@ -1149,7 +1149,7 @@ Small universe
 </div>
 
 <div class="doc">
-<a id="lab810"></a><h1 class="section">Large universes are not retracts of <span class="inlinecode"><span class="id" title="keyword">Prop</span></span>.</h1>
+<a id="lab88"></a><h1 class="section">Large universes are not retracts of <span class="inlinecode"><span class="id" title="keyword">Prop</span></span>.</h1>
 
 <div class="paragraph"> </div>
 
@@ -1174,7 +1174,7 @@ Small universe
 </div>
 
 <div class="doc">
-<a id="lab811"></a><h2 class="section">Assumption of a retract from Type into Prop</h2>
+<a id="lab89"></a><h2 class="section">Assumption of a retract from Type into Prop</h2>
 
 </div>
 <div class="code">
@@ -1188,7 +1188,7 @@ Small universe
 </div>
 
 <div class="doc">
-<a id="lab812"></a><h2 class="section">Paradox</h2>
+<a id="lab90"></a><h2 class="section">Paradox</h2>
 
 </div>
 <div class="code">
@@ -1243,7 +1243,7 @@ Large universe.
 </div>
 
 <div class="doc">
-<a id="lab813"></a><h1 class="section"><span class="inlinecode"><span class="id" title="var">A</span>&lt;&gt;<span class="id" title="keyword">Type</span></span></h1>
+<a id="lab91"></a><h1 class="section"><span class="inlinecode"><span class="id" title="var">A</span>&lt;&gt;<span class="id" title="keyword">Type</span></span></h1>
 
 <div class="paragraph"> </div>
 
@@ -1264,7 +1264,7 @@ Large universe.
 </div>
 
 <div class="doc">
-<a id="lab814"></a><h2 class="section">Universe <span class="inlinecode"><span class="id" title="var">U</span></span> is equal to one of its elements.</h2>
+<a id="lab92"></a><h2 class="section">Universe <span class="inlinecode"><span class="id" title="var">U</span></span> is equal to one of its elements.</h2>
 
 </div>
 <div class="code">
@@ -1278,7 +1278,7 @@ Large universe.
 </div>
 
 <div class="doc">
-<a id="lab815"></a><h2 class="section">Universe <span class="inlinecode"><span class="id" title="var">U</span></span> is a retract of <span class="inlinecode"><span class="id" title="var">A</span></span></h2>
+<a id="lab93"></a><h2 class="section">Universe <span class="inlinecode"><span class="id" title="var">U</span></span> is a retract of <span class="inlinecode"><span class="id" title="var">A</span></span></h2>
 
 <div class="paragraph"> </div>
 
@@ -1368,7 +1368,7 @@ The interpretation of <span class="inlinecode"><span class="id" title="var">A</s
 </div>
 
 <div class="doc">
-<a id="lab816"></a><h1 class="section"><span class="inlinecode"><span class="id" title="keyword">Prop</span>&lt;&gt;<span class="id" title="keyword">Type</span></span>.</h1>
+<a id="lab94"></a><h1 class="section"><span class="inlinecode"><span class="id" title="keyword">Prop</span>&lt;&gt;<span class="id" title="keyword">Type</span></span>.</h1>
 
 <div class="paragraph"> </div>
 

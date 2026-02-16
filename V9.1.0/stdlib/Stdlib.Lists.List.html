@@ -275,7 +275,7 @@
 </div>
 
 <div class="doc">
-<a id="lab553"></a><h1 class="section">Basics: definition of polymorphic lists and some operations</h1>
+<a id="lab947"></a><h1 class="section">Basics: definition of polymorphic lists and some operations</h1>
 
 <div class="paragraph"> </div>
 
@@ -367,7 +367,7 @@ The <span class="inlinecode"><span class="id" title="var">In</span></span> predi
 </div>
 
 <div class="doc">
-<a id="lab554"></a><h3 class="section">Generic facts</h3>
+<a id="lab948"></a><h3 class="section">Generic facts</h3>
 
 <div class="paragraph"> </div>
 
@@ -402,7 +402,7 @@ Destruction
 </div>
 
 <div class="doc">
-<a id="lab555"></a><h3 class="section">Head and tail</h3>
+<a id="lab949"></a><h3 class="section">Head and tail</h3>
 
 </div>
 <div class="code">
@@ -417,7 +417,7 @@ Destruction
 </div>
 
 <div class="doc">
-<a id="lab556"></a><h3 class="section">Facts about <span class="inlinecode"><span class="id" title="var">app</span></span></h3>
+<a id="lab950"></a><h3 class="section">Facts about <span class="inlinecode"><span class="id" title="var">app</span></span></h3>
 
 <div class="paragraph"> </div>
 
@@ -538,7 +538,7 @@ Compatibility with other operations
 </div>
 
 <div class="doc">
-<a id="lab557"></a><h3 class="section">Facts about <span class="inlinecode"><span class="id" title="var">In</span></span></h3>
+<a id="lab951"></a><h3 class="section">Facts about <span class="inlinecode"><span class="id" title="var">In</span></span></h3>
 
 <div class="paragraph"> </div>
 
@@ -619,13 +619,13 @@ Decidability of <span class="inlinecode"><span class="id" title="var">In</span><
 <span class="id" title="keyword">Hint</span> <span class="id" title="keyword">Resolve</span> <span class="id" title="var">in_eq</span> <span class="id" title="var">in_cons</span> <span class="id" title="var">in_inv</span> <span class="id" title="var">in_nil</span> <span class="id" title="var">in_app_or</span> <span class="id" title="var">in_or_app</span>: <span class="id" title="var">datatypes</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Local Ltac</span> <span class="id" title="var">Tauto.intuition_solver</span> ::= <span class="id" title="tactic">auto</span> <span class="id" title="keyword">with</span> <span class="id" title="var">datatypes</span>.<br/>
+#[<span class="id" title="var">local</span>] <span class="id" title="keyword">Ltac</span> <span class="id" title="var">Tauto.intuition_solver</span> ::= <span class="id" title="tactic">auto</span> <span class="id" title="keyword">with</span> <span class="id" title="var">datatypes</span>.<br/>
 
 <br/>
 </div>
 
 <div class="doc">
-<a id="lab558"></a><h1 class="section">Operations on the elements of a list</h1>
+<a id="lab952"></a><h1 class="section">Operations on the elements of a list</h1>
 
 </div>
 <div class="code">
@@ -640,13 +640,13 @@ Decidability of <span class="inlinecode"><span class="id" title="var">In</span><
 </div>
 
 <div class="doc">
-<a id="lab559"></a><h2 class="section">Nth element of a list</h2>
+<a id="lab953"></a><h2 class="section">Nth element of a list</h2>
 
 </div>
 <div class="code">
 
 <br/>
-&nbsp;&nbsp;<span class="id" title="keyword">Local Notation</span> <a id="nth" class="idref" href="#nth"><span class="id" title="abbreviation">nth</span></a> := (@<a class="idref" href="../corelib/Corelib.Lists.ListDef.html#nth"><span class="id" title="definition">nth</span></a> <a class="idref" href="Stdlib.Lists.List.html#Elts.A"><span class="id" title="variable">A</span></a>).<br/>
+&nbsp;&nbsp;#[<span class="id" title="var">local</span>] <span class="id" title="keyword">Notation</span> <a id="nth" class="idref" href="#nth"><span class="id" title="abbreviation">nth</span></a> := (@<a class="idref" href="../corelib/Corelib.Lists.ListDef.html#nth"><span class="id" title="definition">nth</span></a> <a class="idref" href="Stdlib.Lists.List.html#Elts.A"><span class="id" title="variable">A</span></a>).<br/>
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Fixpoint</span> <a id="nth_ok" class="idref" href="#nth_ok"><span class="id" title="definition">nth_ok</span></a> (<a id="n:136" class="idref" href="#n:136"><span class="id" title="binder">n</span></a>:<a class="idref" href="../corelib/Corelib.Init.Datatypes.html#nat"><span class="id" title="inductive">nat</span></a>) (<a id="l:137" class="idref" href="#l:137"><span class="id" title="binder">l</span></a>:<a class="idref" href="../corelib/Corelib.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="Stdlib.Lists.List.html#Elts.A"><span class="id" title="variable">A</span></a>) (<a id="default:138" class="idref" href="#default:138"><span class="id" title="binder">default</span></a>:<a class="idref" href="Stdlib.Lists.List.html#Elts.A"><span class="id" title="variable">A</span></a>) {<span class="id" title="keyword">struct</span> <span class="id" title="var">l</span>} : <a class="idref" href="../corelib/Corelib.Init.Datatypes.html#bool"><span class="id" title="inductive">bool</span></a> :=<br/>
@@ -836,7 +836,7 @@ Results directly relating <span class="inlinecode"><span class="id" title="var">
 </div>
 
 <div class="doc">
-<a id="lab560"></a><h2 class="section">Last element of a list</h2>
+<a id="lab954"></a><h2 class="section">Last element of a list</h2>
 
 <div class="paragraph"> </div>
 
@@ -891,7 +891,7 @@ Results directly relating <span class="inlinecode"><span class="id" title="var">
 </div>
 
 <div class="doc">
-<a id="lab561"></a><h2 class="section">Remove</h2>
+<a id="lab955"></a><h2 class="section">Remove</h2>
 
 </div>
 <div class="code">
@@ -942,7 +942,7 @@ Results directly relating <span class="inlinecode"><span class="id" title="var">
 </div>
 
 <div class="doc">
-<a id="lab562"></a><h2 class="section">Counting occurrences of an element</h2>
+<a id="lab956"></a><h2 class="section">Counting occurrences of an element</h2>
 
 </div>
 <div class="code">
@@ -1006,7 +1006,7 @@ Compatibility of count_occ with operations on list
 </div>
 
 <div class="doc">
-<a id="lab563"></a><h1 class="section">Manipulating whole lists</h1>
+<a id="lab957"></a><h1 class="section">Manipulating whole lists</h1>
 
 </div>
 <div class="code">
@@ -1021,7 +1021,7 @@ Compatibility of count_occ with operations on list
 </div>
 
 <div class="doc">
-<a id="lab564"></a><h2 class="section">Reverse</h2>
+<a id="lab958"></a><h2 class="section">Reverse</h2>
 
 </div>
 <div class="code">
@@ -1118,7 +1118,7 @@ Compatibility with other operations
 </div>
 
 <div class="doc">
-<a id="lab565"></a><h2 class="section">Concatenation</h2>
+<a id="lab959"></a><h2 class="section">Concatenation</h2>
 
 </div>
 <div class="code">
@@ -1147,7 +1147,7 @@ Compatibility with other operations
 </div>
 
 <div class="doc">
-<a id="lab566"></a><h2 class="section">Decidable equality on lists</h2>
+<a id="lab960"></a><h2 class="section">Decidable equality on lists</h2>
 
 </div>
 <div class="code">
@@ -1168,11 +1168,11 @@ Compatibility with other operations
 </div>
 
 <div class="doc">
-<a id="lab567"></a><h1 class="section">Applying functions to the elements of a list</h1>
+<a id="lab961"></a><h1 class="section">Applying functions to the elements of a list</h1>
 
 <div class="paragraph"> </div>
 
-<a id="lab568"></a><h2 class="section">Map</h2>
+<a id="lab962"></a><h2 class="section">Map</h2>
 
 </div>
 <div class="code">
@@ -1183,7 +1183,7 @@ Compatibility with other operations
 &nbsp;&nbsp;<span class="id" title="keyword">Variable</span> <a id="Map.f" class="idref" href="#Map.f"><span class="id" title="variable">f</span></a> : <a class="idref" href="Stdlib.Lists.List.html#Map.A"><span class="id" title="variable">A</span></a> <a class="idref" href="../corelib/Corelib.Init.Logic.html#::type_scope:x_'-&gt;'_x"><span class="id" title="notation">-&gt;</span></a> <a class="idref" href="Stdlib.Lists.List.html#Map.B"><span class="id" title="variable">B</span></a>.<br/>
 
 <br/>
-&nbsp;&nbsp;<span class="id" title="keyword">Local Notation</span> <a id="map" class="idref" href="#map"><span class="id" title="abbreviation">map</span></a> := (@<a class="idref" href="../corelib/Corelib.Lists.ListDef.html#map"><span class="id" title="definition">map</span></a> <a class="idref" href="Stdlib.Lists.List.html#Map.A"><span class="id" title="variable">A</span></a> <a class="idref" href="Stdlib.Lists.List.html#Map.B"><span class="id" title="variable">B</span></a> <a class="idref" href="Stdlib.Lists.List.html#Map.f"><span class="id" title="variable">f</span></a>).<br/>
+&nbsp;&nbsp;#[<span class="id" title="var">local</span>] <span class="id" title="keyword">Notation</span> <a id="map" class="idref" href="#map"><span class="id" title="abbreviation">map</span></a> := (@<a class="idref" href="../corelib/Corelib.Lists.ListDef.html#map"><span class="id" title="definition">map</span></a> <a class="idref" href="Stdlib.Lists.List.html#Map.A"><span class="id" title="variable">A</span></a> <a class="idref" href="Stdlib.Lists.List.html#Map.B"><span class="id" title="variable">B</span></a> <a class="idref" href="Stdlib.Lists.List.html#Map.f"><span class="id" title="variable">f</span></a>).<br/>
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a id="map_cons" class="idref" href="#map_cons"><span class="id" title="lemma">map_cons</span></a> (<a id="x:402" class="idref" href="#x:402"><span class="id" title="binder">x</span></a>:<a class="idref" href="Stdlib.Lists.List.html#Map.A"><span class="id" title="variable">A</span></a>)(<a id="l:403" class="idref" href="#l:403"><span class="id" title="binder">l</span></a>:<a class="idref" href="../corelib/Corelib.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="Stdlib.Lists.List.html#Map.A"><span class="id" title="variable">A</span></a>) : <a class="idref" href="Stdlib.Lists.List.html#map"><span class="id" title="abbreviation">map</span></a> (<a class="idref" href="Stdlib.Lists.List.html#x:402"><span class="id" title="variable">x</span></a><a class="idref" href="../corelib/Corelib.Init.Datatypes.html#::list_scope:x_'::'_x"><span class="id" title="notation">::</span></a><a class="idref" href="Stdlib.Lists.List.html#l:403"><span class="id" title="variable">l</span></a>) <a class="idref" href="../corelib/Corelib.Init.Logic.html#6cd0f7b28b6092304087c7049437bb1a"><span class="id" title="notation">=</span></a> <a class="idref" href="../corelib/Corelib.Init.Datatypes.html#::list_scope:x_'::'_x"><span class="id" title="notation">(</span></a><a class="idref" href="Stdlib.Lists.List.html#Map.f"><span class="id" title="variable">f</span></a> <a class="idref" href="Stdlib.Lists.List.html#x:402"><span class="id" title="variable">x</span></a><a class="idref" href="../corelib/Corelib.Init.Datatypes.html#::list_scope:x_'::'_x"><span class="id" title="notation">)</span></a> <a class="idref" href="../corelib/Corelib.Init.Datatypes.html#::list_scope:x_'::'_x"><span class="id" title="notation">::</span></a> <a class="idref" href="../corelib/Corelib.Init.Datatypes.html#::list_scope:x_'::'_x"><span class="id" title="notation">(</span></a><a class="idref" href="Stdlib.Lists.List.html#map"><span class="id" title="abbreviation">map</span></a> <a class="idref" href="Stdlib.Lists.List.html#l:403"><span class="id" title="variable">l</span></a><a class="idref" href="../corelib/Corelib.Init.Datatypes.html#::list_scope:x_'::'_x"><span class="id" title="notation">)</span></a>.<br/>
@@ -1260,7 +1260,7 @@ Compatibility with other operations
 </div>
 
 <div class="doc">
-<a id="lab569"></a><h2 class="section">Flat Map</h2>
+<a id="lab963"></a><h2 class="section">Flat Map</h2>
 
 </div>
 <div class="code">
@@ -1338,7 +1338,7 @@ Compatibility with other operations
 &nbsp;&nbsp;<span class="id" title="keyword">forall</span> (<a id="A:502" class="idref" href="#A:502"><span class="id" title="binder">A</span></a> <a id="B:503" class="idref" href="#B:503"><span class="id" title="binder">B</span></a> : <span class="id" title="keyword">Type</span>)(<a id="f:504" class="idref" href="#f:504"><span class="id" title="binder">f</span></a> <a id="g:505" class="idref" href="#g:505"><span class="id" title="binder">g</span></a>:<a class="idref" href="Stdlib.Lists.List.html#A:502"><span class="id" title="variable">A</span></a><a class="idref" href="../corelib/Corelib.Init.Logic.html#::type_scope:x_'-&gt;'_x"><span class="id" title="notation">-&gt;</span></a><a class="idref" href="Stdlib.Lists.List.html#B:503"><span class="id" title="variable">B</span></a>), <a class="idref" href="../corelib/Corelib.Init.Logic.html#::type_scope:x_'-&gt;'_x"><span class="id" title="notation">(</span></a><span class="id" title="keyword">forall</span> <a id="a:506" class="idref" href="#a:506"><span class="id" title="binder">a</span></a>, <a class="idref" href="Stdlib.Lists.List.html#f:504"><span class="id" title="variable">f</span></a> <a class="idref" href="Stdlib.Lists.List.html#a:506"><span class="id" title="variable">a</span></a> <a class="idref" href="../corelib/Corelib.Init.Logic.html#6cd0f7b28b6092304087c7049437bb1a"><span class="id" title="notation">=</span></a> <a class="idref" href="Stdlib.Lists.List.html#g:505"><span class="id" title="variable">g</span></a> <a class="idref" href="Stdlib.Lists.List.html#a:506"><span class="id" title="variable">a</span></a><a class="idref" href="../corelib/Corelib.Init.Logic.html#::type_scope:x_'-&gt;'_x"><span class="id" title="notation">)</span></a> <a class="idref" href="../corelib/Corelib.Init.Logic.html#::type_scope:x_'-&gt;'_x"><span class="id" title="notation">-&gt;</span></a> <span class="id" title="keyword">forall</span> <a id="l:507" class="idref" href="#l:507"><span class="id" title="binder">l</span></a>, <a class="idref" href="Stdlib.Lists.List.html#map"><span class="id" title="abbreviation">map</span></a> <a class="idref" href="Stdlib.Lists.List.html#f:504"><span class="id" title="variable">f</span></a> <a class="idref" href="Stdlib.Lists.List.html#l:507"><span class="id" title="variable">l</span></a> <a class="idref" href="../corelib/Corelib.Init.Logic.html#6cd0f7b28b6092304087c7049437bb1a"><span class="id" title="notation">=</span></a> <a class="idref" href="Stdlib.Lists.List.html#map"><span class="id" title="abbreviation">map</span></a> <a class="idref" href="Stdlib.Lists.List.html#g:505"><span class="id" title="variable">g</span></a> <a class="idref" href="Stdlib.Lists.List.html#l:507"><span class="id" title="variable">l</span></a>.<br/>
 
 <br/>
-<span class="id" title="keyword">Global Instance</span> <a id="Proper_map" class="idref" href="#Proper_map"><span class="id" title="instance">Proper_map</span></a> {<a id="A:508" class="idref" href="#A:508"><span class="id" title="binder">A</span></a> <a id="B:509" class="idref" href="#B:509"><span class="id" title="binder">B</span></a>} :<br/>
+#[<span class="id" title="var">global</span>] <span class="id" title="keyword">Instance</span> <a id="Proper_map" class="idref" href="#Proper_map"><span class="id" title="instance">Proper_map</span></a> {<a id="A:508" class="idref" href="#A:508"><span class="id" title="binder">A</span></a> <a id="B:509" class="idref" href="#B:509"><span class="id" title="binder">B</span></a>} :<br/>
 &nbsp;&nbsp;<a class="idref" href="../corelib/Corelib.Classes.Morphisms.html#Proper"><span class="id" title="class">Proper</span></a> (<a class="idref" href="../corelib/Corelib.Classes.Morphisms.html#pointwise_relation"><span class="id" title="definition">pointwise_relation</span></a> <span class="id" title="var">_</span> <a class="idref" href="../corelib/Corelib.Init.Logic.html#eq"><span class="id" title="inductive">eq</span></a> <a class="idref" href="../corelib/Corelib.Classes.Morphisms.html#8dc5652698a6e16f72dd37bd17d3b973"><span class="id" title="notation">==&gt;</span></a> <a class="idref" href="../corelib/Corelib.Init.Logic.html#eq"><span class="id" title="inductive">eq</span></a> <a class="idref" href="../corelib/Corelib.Classes.Morphisms.html#8dc5652698a6e16f72dd37bd17d3b973"><span class="id" title="notation">==&gt;</span></a> <a class="idref" href="../corelib/Corelib.Init.Logic.html#eq"><span class="id" title="inductive">eq</span></a>) (@<a class="idref" href="Stdlib.Lists.List.html#map"><span class="id" title="abbreviation">map</span></a> <a class="idref" href="Stdlib.Lists.List.html#A:508"><span class="id" title="variable">A</span></a> <a class="idref" href="Stdlib.Lists.List.html#B:509"><span class="id" title="variable">B</span></a>).<br/>
  
 <br/>
@@ -1442,7 +1442,7 @@ Right-to-left iterator on lists
 </div>
 
 <div class="doc">
-<a id="lab570"></a><h2 class="section">Boolean operations over lists</h2>
+<a id="lab964"></a><h2 class="section">Boolean operations over lists</h2>
 
 </div>
 <div class="code">
@@ -1609,7 +1609,7 @@ find whether a boolean function is satisfied by
 </div>
 
 <div class="doc">
-<a id="lab571"></a><h2 class="section">Further filtering facts</h2>
+<a id="lab965"></a><h2 class="section">Further filtering facts</h2>
 
 </div>
 <div class="code">
@@ -1703,7 +1703,7 @@ Counting occurrences by filtering
 </div>
 
 <div class="doc">
-<a id="lab572"></a><h2 class="section">Operations on lists of pairs or lists of lists</h2>
+<a id="lab966"></a><h2 class="section">Operations on lists of pairs or lists of lists</h2>
 
 </div>
 <div class="code">
@@ -1835,11 +1835,11 @@ Counting occurrences by filtering
 </div>
 
 <div class="doc">
-<a id="lab573"></a><h1 class="section">Miscellaneous operations on lists</h1>
+<a id="lab967"></a><h1 class="section">Miscellaneous operations on lists</h1>
 
 <div class="paragraph"> </div>
 
-<a id="lab574"></a><h2 class="section">Length order of lists</h2>
+<a id="lab968"></a><h2 class="section">Length order of lists</h2>
 
 </div>
 <div class="code">
@@ -1883,7 +1883,7 @@ Counting occurrences by filtering
 </div>
 
 <div class="doc">
-<a id="lab575"></a><h2 class="section">Set inclusion on list</h2>
+<a id="lab969"></a><h2 class="section">Set inclusion on list</h2>
 
 </div>
 <div class="code">
@@ -1973,7 +1973,7 @@ Counting occurrences by filtering
 </div>
 
 <div class="doc">
-<a id="lab576"></a><h1 class="section">Cutting a list at some position</h1>
+<a id="lab970"></a><h1 class="section">Cutting a list at some position</h1>
 
 </div>
 <div class="code">
@@ -1985,8 +1985,8 @@ Counting occurrences by filtering
 &nbsp;&nbsp;<span class="id" title="keyword">Variable</span> <a id="Cutting.A" class="idref" href="#Cutting.A"><span class="id" title="variable">A</span></a> : <span class="id" title="keyword">Type</span>.<br/>
 
 <br/>
-&nbsp;&nbsp;<span class="id" title="keyword">Local Notation</span> <a id="firstn" class="idref" href="#firstn"><span class="id" title="abbreviation">firstn</span></a> := (@<a class="idref" href="../corelib/Corelib.Lists.ListDef.html#firstn"><span class="id" title="definition">firstn</span></a> <a class="idref" href="Stdlib.Lists.List.html#Cutting.A"><span class="id" title="variable">A</span></a>).<br/>
-&nbsp;&nbsp;<span class="id" title="keyword">Local Notation</span> <a id="skipn" class="idref" href="#skipn"><span class="id" title="abbreviation">skipn</span></a> := (@<a class="idref" href="../corelib/Corelib.Lists.ListDef.html#skipn"><span class="id" title="definition">skipn</span></a> <a class="idref" href="Stdlib.Lists.List.html#Cutting.A"><span class="id" title="variable">A</span></a>).<br/>
+&nbsp;&nbsp;#[<span class="id" title="var">local</span>] <span class="id" title="keyword">Notation</span> <a id="firstn" class="idref" href="#firstn"><span class="id" title="abbreviation">firstn</span></a> := (@<a class="idref" href="../corelib/Corelib.Lists.ListDef.html#firstn"><span class="id" title="definition">firstn</span></a> <a class="idref" href="Stdlib.Lists.List.html#Cutting.A"><span class="id" title="variable">A</span></a>).<br/>
+&nbsp;&nbsp;#[<span class="id" title="var">local</span>] <span class="id" title="keyword">Notation</span> <a id="skipn" class="idref" href="#skipn"><span class="id" title="abbreviation">skipn</span></a> := (@<a class="idref" href="../corelib/Corelib.Lists.ListDef.html#skipn"><span class="id" title="definition">skipn</span></a> <a class="idref" href="Stdlib.Lists.List.html#Cutting.A"><span class="id" title="variable">A</span></a>).<br/>
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a id="firstn_nil" class="idref" href="#firstn_nil"><span class="id" title="lemma">firstn_nil</span></a> <a id="n:825" class="idref" href="#n:825"><span class="id" title="binder">n</span></a>: <a class="idref" href="Stdlib.Lists.List.html#firstn"><span class="id" title="abbreviation">firstn</span></a> <a class="idref" href="Stdlib.Lists.List.html#n:825"><span class="id" title="variable">n</span></a> <a class="idref" href="Stdlib.Lists.List.html#ae9a5e1034e143b218b09d8e454472bd"><span class="id" title="notation">[]</span></a> <a class="idref" href="../corelib/Corelib.Init.Logic.html#6cd0f7b28b6092304087c7049437bb1a"><span class="id" title="notation">=</span></a> <a class="idref" href="Stdlib.Lists.List.html#ae9a5e1034e143b218b09d8e454472bd"><span class="id" title="notation">[]</span></a>.<br/>
@@ -2138,7 +2138,7 @@ Counting occurrences by filtering
 </div>
 
 <div class="doc">
-<a id="lab577"></a><h2 class="section">Combining pairs of lists of possibly-different lengths</h2>
+<a id="lab971"></a><h2 class="section">Combining pairs of lists of possibly-different lengths</h2>
 
 </div>
 <div class="code">
@@ -2170,7 +2170,7 @@ Counting occurrences by filtering
 </div>
 
 <div class="doc">
-<a id="lab578"></a><h2 class="section">Predicate for List addition/removal (no need for decidability)</h2>
+<a id="lab972"></a><h2 class="section">Predicate for List addition/removal (no need for decidability)</h2>
 
 </div>
 <div class="code">
@@ -2214,7 +2214,7 @@ Counting occurrences by filtering
 </div>
 
 <div class="doc">
-<a id="lab579"></a><h2 class="section">Lists without redundancy</h2>
+<a id="lab973"></a><h2 class="section">Lists without redundancy</h2>
 
 </div>
 <div class="code">
@@ -2366,7 +2366,7 @@ NoDup and map
 </div>
 
 <div class="doc">
-<a id="lab580"></a><h2 class="section">Sequence of natural numbers</h2>
+<a id="lab974"></a><h2 class="section">Sequence of natural numbers</h2>
 
 </div>
 <div class="code">
@@ -2418,7 +2418,7 @@ NoDup and map
 </div>
 
 <div class="doc">
-<a id="lab581"></a><h2 class="section">List comparison</h2>
+<a id="lab975"></a><h2 class="section">List comparison</h2>
 
 </div>
 <div class="code">
@@ -2431,7 +2431,7 @@ NoDup and map
 &nbsp;&nbsp;<span class="id" title="keyword">Variable</span> <a id="Compare.cmp" class="idref" href="#Compare.cmp"><span class="id" title="variable">cmp</span></a> : <a class="idref" href="Stdlib.Lists.List.html#Compare.A"><span class="id" title="variable">A</span></a> <a class="idref" href="../corelib/Corelib.Init.Logic.html#::type_scope:x_'-&gt;'_x"><span class="id" title="notation">-&gt;</span></a> <a class="idref" href="Stdlib.Lists.List.html#Compare.A"><span class="id" title="variable">A</span></a> <a class="idref" href="../corelib/Corelib.Init.Logic.html#::type_scope:x_'-&gt;'_x"><span class="id" title="notation">-&gt;</span></a> <a class="idref" href="../corelib/Corelib.Init.Datatypes.html#comparison"><span class="id" title="inductive">comparison</span></a>.<br/>
 
 <br/>
-&nbsp;&nbsp;<span class="id" title="keyword">Local Notation</span> <a id="list_compare" class="idref" href="#list_compare"><span class="id" title="abbreviation">list_compare</span></a> := (@<a class="idref" href="../corelib/Corelib.Lists.ListDef.html#list_compare"><span class="id" title="definition">list_compare</span></a> <a class="idref" href="Stdlib.Lists.List.html#Compare.A"><span class="id" title="variable">A</span></a> <a class="idref" href="Stdlib.Lists.List.html#Compare.cmp"><span class="id" title="variable">cmp</span></a>).<br/>
+&nbsp;&nbsp;#[<span class="id" title="var">local</span>] <span class="id" title="keyword">Notation</span> <a id="list_compare" class="idref" href="#list_compare"><span class="id" title="abbreviation">list_compare</span></a> := (@<a class="idref" href="../corelib/Corelib.Lists.ListDef.html#list_compare"><span class="id" title="definition">list_compare</span></a> <a class="idref" href="Stdlib.Lists.List.html#Compare.A"><span class="id" title="variable">A</span></a> <a class="idref" href="Stdlib.Lists.List.html#Compare.cmp"><span class="id" title="variable">cmp</span></a>).<br/>
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Section</span> <a id="Compare.Lemmas" class="idref" href="#Compare.Lemmas"><span class="id" title="section">Lemmas</span></a>.<br/>
@@ -2555,7 +2555,7 @@ NoDup and map
 </div>
 
 <div class="doc">
-<a id="lab582"></a><h1 class="section">Existential and universal predicates over lists</h1>
+<a id="lab976"></a><h1 class="section">Existential and universal predicates over lists</h1>
 
 </div>
 <div class="code">
@@ -2617,7 +2617,7 @@ NoDup and map
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Hint</span> <span class="id" title="keyword">Constructors</span> <a class="idref" href="Stdlib.Lists.List.html#Forall"><span class="id" title="inductive">Forall</span></a> : <span class="id" title="var">core</span>.<br/>
 
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Local Notation</span> <a id="Forall" class="idref" href="#Forall"><span class="id" title="abbreviation">Forall</span></a> := (@<a class="idref" href="../corelib/Corelib.Lists.ListDef.html#Forall"><span class="id" title="inductive">Forall</span></a> <a class="idref" href="Stdlib.Lists.List.html#Exists_Forall.A"><span class="id" title="variable">A</span></a> <a class="idref" href="Stdlib.Lists.List.html#Exists_Forall.One_predicate.P"><span class="id" title="variable">P</span></a>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;#[<span class="id" title="var">local</span>] <span class="id" title="keyword">Notation</span> <a id="Forall" class="idref" href="#Forall"><span class="id" title="abbreviation">Forall</span></a> := (@<a class="idref" href="../corelib/Corelib.Lists.ListDef.html#Forall"><span class="id" title="inductive">Forall</span></a> <a class="idref" href="Stdlib.Lists.List.html#Exists_Forall.A"><span class="id" title="variable">A</span></a> <a class="idref" href="Stdlib.Lists.List.html#Exists_Forall.One_predicate.P"><span class="id" title="variable">P</span></a>).<br/>
 
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a id="Forall_inv" class="idref" href="#Forall_inv"><span class="id" title="lemma">Forall_inv</span></a> : <span class="id" title="keyword">forall</span> (<a id="a:1152" class="idref" href="#a:1152"><span class="id" title="binder">a</span></a>:<a class="idref" href="Stdlib.Lists.List.html#Exists_Forall.A"><span class="id" title="variable">A</span></a>) <a id="l:1153" class="idref" href="#l:1153"><span class="id" title="binder">l</span></a>, <a class="idref" href="Stdlib.Lists.List.html#Forall"><span class="id" title="abbreviation">Forall</span></a> (<a class="idref" href="Stdlib.Lists.List.html#a:1152"><span class="id" title="variable">a</span></a> <a class="idref" href="../corelib/Corelib.Init.Datatypes.html#::list_scope:x_'::'_x"><span class="id" title="notation">::</span></a> <a class="idref" href="Stdlib.Lists.List.html#l:1153"><span class="id" title="variable">l</span></a>) <a class="idref" href="../corelib/Corelib.Init.Logic.html#::type_scope:x_'-&gt;'_x"><span class="id" title="notation">-&gt;</span></a> <a class="idref" href="Stdlib.Lists.List.html#Exists_Forall.One_predicate.P"><span class="id" title="variable">P</span></a> <a class="idref" href="Stdlib.Lists.List.html#a:1152"><span class="id" title="variable">a</span></a>.<br/>
@@ -2667,7 +2667,7 @@ NoDup and map
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">End</span> <a class="idref" href="Stdlib.Lists.List.html#Exists_Forall.One_predicate"><span class="id" title="section">One_predicate</span></a>.<br/>
-&nbsp;&nbsp;<span class="id" title="keyword">Local Notation</span> <a id="Forall" class="idref" href="#Forall"><span class="id" title="abbreviation">Forall</span></a> := (@<a class="idref" href="../corelib/Corelib.Lists.ListDef.html#Forall"><span class="id" title="inductive">Forall</span></a> <a class="idref" href="Stdlib.Lists.List.html#Exists_Forall.A"><span class="id" title="variable">A</span></a>).<br/>
+&nbsp;&nbsp;#[<span class="id" title="var">local</span>] <span class="id" title="keyword">Notation</span> <a id="Forall" class="idref" href="#Forall"><span class="id" title="abbreviation">Forall</span></a> := (@<a class="idref" href="../corelib/Corelib.Lists.ListDef.html#Forall"><span class="id" title="inductive">Forall</span></a> <a class="idref" href="Stdlib.Lists.List.html#Exists_Forall.A"><span class="id" title="variable">A</span></a>).<br/>
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a id="map_ext_Forall" class="idref" href="#map_ext_Forall"><span class="id" title="lemma">map_ext_Forall</span></a> <a id="B:1179" class="idref" href="#B:1179"><span class="id" title="binder">B</span></a> : <span class="id" title="keyword">forall</span> (<a id="f:1180" class="idref" href="#f:1180"><span class="id" title="binder">f</span></a> <a id="g:1181" class="idref" href="#g:1181"><span class="id" title="binder">g</span></a> : <a class="idref" href="Stdlib.Lists.List.html#Exists_Forall.A"><span class="id" title="variable">A</span></a> <a class="idref" href="../corelib/Corelib.Init.Logic.html#::type_scope:x_'-&gt;'_x"><span class="id" title="notation">-&gt;</span></a> <a class="idref" href="Stdlib.Lists.List.html#B:1179"><span class="id" title="variable">B</span></a>) <a id="l:1182" class="idref" href="#l:1182"><span class="id" title="binder">l</span></a>,<br/>
@@ -2931,7 +2931,7 @@ NoDup and map
 &nbsp;&nbsp;<span class="id" title="keyword">Variable</span> <a id="Repeat.A" class="idref" href="#Repeat.A"><span class="id" title="variable">A</span></a> : <span class="id" title="keyword">Type</span>.<br/>
 
 <br/>
-&nbsp;&nbsp;<span class="id" title="keyword">Local Notation</span> <a id="repeat" class="idref" href="#repeat"><span class="id" title="abbreviation">repeat</span></a> := (@<a class="idref" href="../corelib/Corelib.Lists.ListDef.html#repeat"><span class="id" title="definition">repeat</span></a> <a class="idref" href="Stdlib.Lists.List.html#Repeat.A"><span class="id" title="variable">A</span></a>).<br/>
+&nbsp;&nbsp;#[<span class="id" title="var">local</span>] <span class="id" title="keyword">Notation</span> <a id="repeat" class="idref" href="#repeat"><span class="id" title="abbreviation">repeat</span></a> := (@<a class="idref" href="../corelib/Corelib.Lists.ListDef.html#repeat"><span class="id" title="definition">repeat</span></a> <a class="idref" href="Stdlib.Lists.List.html#Repeat.A"><span class="id" title="variable">A</span></a>).<br/>
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Theorem</span> <a id="repeat_length" class="idref" href="#repeat_length"><span class="id" title="lemma">repeat_length</span></a> <a id="x:1372" class="idref" href="#x:1372"><span class="id" title="binder">x</span></a> <a id="n:1373" class="idref" href="#n:1373"><span class="id" title="binder">n</span></a>:<br/>
@@ -3088,7 +3088,7 @@ Max of elements of a list of <span class="inlinecode"><span class="id" title="va
 </div>
 
 <div class="doc">
-<a id="lab583"></a><h1 class="section">Inversion of predicates over lists based on head symbol</h1>
+<a id="lab977"></a><h1 class="section">Inversion of predicates over lists based on head symbol</h1>
 
 </div>
 <div class="code">
@@ -3116,13 +3116,13 @@ Max of elements of a list of <span class="inlinecode"><span class="id" title="va
 </div>
 
 <div class="doc">
-<a id="lab584"></a><h1 class="section">Exporting hints and tactics</h1>
+<a id="lab978"></a><h1 class="section">Exporting hints and tactics</h1>
 
 </div>
 <div class="code">
 
 <br/>
-<span class="id" title="keyword">Global Hint Rewrite</span><br/>
+#[<span class="id" title="var">global</span>] <span class="id" title="keyword">Hint</span> <span class="id" title="keyword">Rewrite</span><br/>
 &nbsp;&nbsp;<a class="idref" href="Stdlib.Lists.List.html#rev_involutive"><span class="id" title="lemma">rev_involutive</span></a> <br/>
 &nbsp;&nbsp;<a class="idref" href="Stdlib.Lists.List.html#rev_unit"><span class="id" title="lemma">rev_unit</span></a> <br/>
 &nbsp;&nbsp;<a class="idref" href="Stdlib.Lists.List.html#map_nth"><span class="id" title="lemma">map_nth</span></a> <br/>

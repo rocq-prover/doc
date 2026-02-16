@@ -267,7 +267,7 @@
 </div>
 
 <div class="doc">
-<a id="lab232"></a><h1 class="section">Finite set library</h1>
+<a id="lab599"></a><h1 class="section">Finite set library</h1>
 
 <div class="paragraph"> </div>
 
@@ -536,7 +536,7 @@ the abstract type of sets
 </div>
 
 <div class="doc">
-<a id="lab233"></a><h2 class="section">Functorial signature for weak sets</h2>
+<a id="lab600"></a><h2 class="section">Functorial signature for weak sets</h2>
 
 
 <div class="paragraph"> </div>
@@ -650,7 +650,7 @@ When compared with ordered sets, here comes the only
 </div>
 
 <div class="doc">
-<a id="lab234"></a><h2 class="section">Static signature for weak sets</h2>
+<a id="lab601"></a><h2 class="section">Static signature for weak sets</h2>
 
 
 <div class="paragraph"> </div>
@@ -670,7 +670,7 @@ When compared with ordered sets, here comes the only
 </div>
 
 <div class="doc">
-<a id="lab235"></a><h2 class="section">Functorial signature for sets on ordered elements</h2>
+<a id="lab602"></a><h2 class="section">Functorial signature for sets on ordered elements</h2>
 
 
 <div class="paragraph"> </div>
@@ -782,7 +782,7 @@ Additional specification of <span class="inlinecode"><span class="id" title="var
 </div>
 
 <div class="doc">
-<a id="lab236"></a><h2 class="section">Static signature for sets on ordered elements</h2>
+<a id="lab603"></a><h2 class="section">Static signature for sets on ordered elements</h2>
 
 
 <div class="paragraph"> </div>
@@ -805,7 +805,7 @@ Additional specification of <span class="inlinecode"><span class="id" title="var
 </div>
 
 <div class="doc">
-<a id="lab237"></a><h2 class="section">Some subtyping tests</h2>
+<a id="lab604"></a><h2 class="section">Some subtyping tests</h2>
 
 <pre>
 WSetsOn ---&gt; WSets
@@ -822,7 +822,7 @@ Module WS_WSfun (M : WSets) &lt;: WSetsOn M.E := M.
 
 <div class="paragraph"> </div>
 
-<a id="lab238"></a><h2 class="section">Signatures for set representations with ill-formed values.</h2>
+<a id="lab605"></a><h2 class="section">Signatures for set representations with ill-formed values.</h2>
 
 
 <div class="paragraph"> </div>
@@ -1074,6 +1074,7 @@ From weak raw sets to weak usual sets
 We avoid creating induction principles for the Record 
 </div>
 <div class="code">
+&nbsp;#[<span class="id" title="var">local</span>] <span class="id" title="keyword">Unset</span> <span class="id" title="var">Elimination</span> <span class="id" title="var">Schemes</span>.<br/>
 
 <br/>
 &nbsp;<span class="id" title="keyword">Definition</span> <a id="WRaw2SetsOn.elt" class="idref" href="#WRaw2SetsOn.elt"><span class="id" title="definition">elt</span></a> := <a class="idref" href="Stdlib.MSets.MSetInterface.html#E.t"><span class="id" title="axiom">E.t</span></a>.<br/>
@@ -1450,8 +1451,8 @@ It is in fact possible to provide an ordering on sets with
 &nbsp;<span class="id" title="keyword">Module</span> <a id="MakeListOrdering.MO" class="idref" href="#MakeListOrdering.MO"><span class="id" title="module">MO</span></a>:=<a class="idref" href="Stdlib.Structures.OrdersFacts.html#OrderedTypeFacts"><span class="id" title="module">OrderedTypeFacts</span></a> <a class="idref" href="Stdlib.MSets.MSetInterface.html#O"><span class="id" title="module">O</span></a>.<br/>
 
 <br/>
-&nbsp;<span class="id" title="keyword">Local Notation</span> <a id="MakeListOrdering.t" class="idref" href="#MakeListOrdering.t"><span class="id" title="abbreviation">t</span></a> := (<a class="idref" href="../corelib/Corelib.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="Stdlib.MSets.MSetInterface.html#O.t"><span class="id" title="axiom">O.t</span></a>).<br/>
-&nbsp;<span class="id" title="keyword">Local Notation</span> <a id="MakeListOrdering.In" class="idref" href="#MakeListOrdering.In"><span class="id" title="abbreviation">In</span></a> := (<a class="idref" href="Stdlib.Sorting.SetoidList.html#InA"><span class="id" title="inductive">InA</span></a> <a class="idref" href="Stdlib.MSets.MSetInterface.html#O.eq"><span class="id" title="axiom">O.eq</span></a>).<br/>
+&nbsp;#[<span class="id" title="var">local</span>] <span class="id" title="keyword">Notation</span> <a id="MakeListOrdering.t" class="idref" href="#MakeListOrdering.t"><span class="id" title="abbreviation">t</span></a> := (<a class="idref" href="../corelib/Corelib.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="Stdlib.MSets.MSetInterface.html#O.t"><span class="id" title="axiom">O.t</span></a>).<br/>
+&nbsp;#[<span class="id" title="var">local</span>] <span class="id" title="keyword">Notation</span> <a id="MakeListOrdering.In" class="idref" href="#MakeListOrdering.In"><span class="id" title="abbreviation">In</span></a> := (<a class="idref" href="Stdlib.Sorting.SetoidList.html#InA"><span class="id" title="inductive">InA</span></a> <a class="idref" href="Stdlib.MSets.MSetInterface.html#O.eq"><span class="id" title="axiom">O.eq</span></a>).<br/>
 
 <br/>
 &nbsp;<span class="id" title="keyword">Definition</span> <a id="MakeListOrdering.eq" class="idref" href="#MakeListOrdering.eq"><span class="id" title="definition">eq</span></a> <a id="s:452" class="idref" href="#s:452"><span class="id" title="binder">s</span></a> <a id="s':453" class="idref" href="#s':453"><span class="id" title="binder">s'</span></a> := <span class="id" title="keyword">forall</span> <a id="x:454" class="idref" href="#x:454"><span class="id" title="binder">x</span></a>, <a class="idref" href="Stdlib.MSets.MSetInterface.html#MakeListOrdering.In"><span class="id" title="abbreviation">In</span></a> <a class="idref" href="Stdlib.MSets.MSetInterface.html#x:454"><span class="id" title="variable">x</span></a> <a class="idref" href="Stdlib.MSets.MSetInterface.html#s:452"><span class="id" title="variable">s</span></a> <a class="idref" href="../corelib/Corelib.Init.Logic.html#::type_scope:x_'&lt;-&gt;'_x"><span class="id" title="notation">&lt;-&gt;</span></a> <a class="idref" href="Stdlib.MSets.MSetInterface.html#MakeListOrdering.In"><span class="id" title="abbreviation">In</span></a> <a class="idref" href="Stdlib.MSets.MSetInterface.html#x:454"><span class="id" title="variable">x</span></a> <a class="idref" href="Stdlib.MSets.MSetInterface.html#s':453"><span class="id" title="variable">s'</span></a>.<br/>

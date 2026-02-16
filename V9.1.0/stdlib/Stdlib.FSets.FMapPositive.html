@@ -267,7 +267,7 @@
 </div>
 
 <div class="doc">
-<a id="lab496"></a><h1 class="section">FMapPositive : an implementation of FMapInterface for <span class="inlinecode"><span class="id" title="var">positive</span></span> keys.</h1>
+<a id="lab320"></a><h1 class="section">FMapPositive : an implementation of FMapInterface for <span class="inlinecode"><span class="id" title="var">positive</span></span> keys.</h1>
 
 </div>
 <div class="code">
@@ -277,7 +277,8 @@
 
 <br/>
 <span class="id" title="keyword">Set Implicit Arguments</span>.<br/>
-<span class="id" title="keyword">Local Open</span> <span class="id" title="keyword">Scope</span> <span class="id" title="var">positive_scope</span>.<br/>
+#[<span class="id" title="var">local</span>] <span class="id" title="keyword">Open</span> <span class="id" title="keyword">Scope</span> <span class="id" title="var">positive_scope</span>.<br/>
+#[<span class="id" title="var">local</span>] <span class="id" title="keyword">Unset</span> <span class="id" title="var">Elimination</span> <span class="id" title="var">Schemes</span>.<br/>
 
 <br/>
 </div>
@@ -614,9 +615,9 @@ The module of maps over positive keys
 &nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a id="PositiveMap.lt_key" class="idref" href="#PositiveMap.lt_key"><span class="id" title="definition">lt_key</span></a> (<a id="p:141" class="idref" href="#p:141"><span class="id" title="binder">p</span></a> <a id="p':142" class="idref" href="#p':142"><span class="id" title="binder">p'</span></a>:<a class="idref" href="Stdlib.FSets.FMapPositive.html#PositiveMap.key"><span class="id" title="definition">key</span></a><a class="idref" href="../corelib/Corelib.Init.Datatypes.html#11c698c8685bb8ab1cf725545c085ac4"><span class="id" title="notation">*</span></a><a class="idref" href="Stdlib.FSets.FMapPositive.html#PositiveMap.A.A"><span class="id" title="variable">A</span></a>) := <a class="idref" href="Stdlib.FSets.FMapPositive.html#PositiveMap.lt"><span class="id" title="definition">E.lt</span></a> (<a class="idref" href="../corelib/Corelib.Init.Datatypes.html#fst"><span class="id" title="definition">fst</span></a> <a class="idref" href="Stdlib.FSets.FMapPositive.html#p:141"><span class="id" title="variable">p</span></a>) (<a class="idref" href="../corelib/Corelib.Init.Datatypes.html#fst"><span class="id" title="definition">fst</span></a> <a class="idref" href="Stdlib.FSets.FMapPositive.html#p':142"><span class="id" title="variable">p'</span></a>).<br/>
 
 <br/>
-&nbsp;&nbsp;<span class="id" title="keyword">Global Instance</span> <a id="PositiveMap.eqk_equiv" class="idref" href="#PositiveMap.eqk_equiv"><span class="id" title="instance">eqk_equiv</span></a> : <a class="idref" href="../corelib/Corelib.Classes.RelationClasses.html#Equivalence"><span class="id" title="class">Equivalence</span></a> <a class="idref" href="Stdlib.FSets.FMapPositive.html#PositiveMap.eq_key"><span class="id" title="definition">eq_key</span></a> := <span class="id" title="var">_</span>.<br/>
-&nbsp;&nbsp;<span class="id" title="keyword">Global Instance</span> <a id="PositiveMap.eqke_equiv" class="idref" href="#PositiveMap.eqke_equiv"><span class="id" title="instance">eqke_equiv</span></a> : <a class="idref" href="../corelib/Corelib.Classes.RelationClasses.html#Equivalence"><span class="id" title="class">Equivalence</span></a> <a class="idref" href="Stdlib.FSets.FMapPositive.html#PositiveMap.eq_key_elt"><span class="id" title="definition">eq_key_elt</span></a> := <span class="id" title="var">_</span>.<br/>
-&nbsp;&nbsp;<span class="id" title="keyword">Global Instance</span> <a id="PositiveMap.ltk_strorder" class="idref" href="#PositiveMap.ltk_strorder"><span class="id" title="instance">ltk_strorder</span></a> : <a class="idref" href="../corelib/Corelib.Classes.RelationClasses.html#StrictOrder"><span class="id" title="class">StrictOrder</span></a> <a class="idref" href="Stdlib.FSets.FMapPositive.html#PositiveMap.lt_key"><span class="id" title="definition">lt_key</span></a> := <span class="id" title="var">_</span>.<br/>
+&nbsp;&nbsp;#[<span class="id" title="var">global</span>] <span class="id" title="keyword">Instance</span> <a id="PositiveMap.eqk_equiv" class="idref" href="#PositiveMap.eqk_equiv"><span class="id" title="instance">eqk_equiv</span></a> : <a class="idref" href="../corelib/Corelib.Classes.RelationClasses.html#Equivalence"><span class="id" title="class">Equivalence</span></a> <a class="idref" href="Stdlib.FSets.FMapPositive.html#PositiveMap.eq_key"><span class="id" title="definition">eq_key</span></a> := <span class="id" title="var">_</span>.<br/>
+&nbsp;&nbsp;#[<span class="id" title="var">global</span>] <span class="id" title="keyword">Instance</span> <a id="PositiveMap.eqke_equiv" class="idref" href="#PositiveMap.eqke_equiv"><span class="id" title="instance">eqke_equiv</span></a> : <a class="idref" href="../corelib/Corelib.Classes.RelationClasses.html#Equivalence"><span class="id" title="class">Equivalence</span></a> <a class="idref" href="Stdlib.FSets.FMapPositive.html#PositiveMap.eq_key_elt"><span class="id" title="definition">eq_key_elt</span></a> := <span class="id" title="var">_</span>.<br/>
+&nbsp;&nbsp;#[<span class="id" title="var">global</span>] <span class="id" title="keyword">Instance</span> <a id="PositiveMap.ltk_strorder" class="idref" href="#PositiveMap.ltk_strorder"><span class="id" title="instance">ltk_strorder</span></a> : <a class="idref" href="../corelib/Corelib.Classes.RelationClasses.html#StrictOrder"><span class="id" title="class">StrictOrder</span></a> <a class="idref" href="Stdlib.FSets.FMapPositive.html#PositiveMap.lt_key"><span class="id" title="definition">lt_key</span></a> := <span class="id" title="var">_</span>.<br/>
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a id="PositiveMap.mem_find" class="idref" href="#PositiveMap.mem_find"><span class="id" title="lemma">mem_find</span></a> :<br/>

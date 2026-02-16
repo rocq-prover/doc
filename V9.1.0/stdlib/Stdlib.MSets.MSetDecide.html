@@ -293,7 +293,7 @@ First, a version for Weak Sets in functorial presentation
 </div>
 
 <div class="doc">
-<a id="lab174"></a><h1 class="section">Overview</h1>
+<a id="lab606"></a><h1 class="section">Overview</h1>
 
     This functor defines the tactic <span class="inlinecode"><span class="id" title="var">fsetdec</span></span>, which will
     solve any valid goal of the form
@@ -399,7 +399,7 @@ the above form:
 
 <div class="paragraph"> </div>
 
-<a id="lab175"></a><h1 class="section">Facts and Tactics for Propositional Logic</h1>
+<a id="lab607"></a><h1 class="section">Facts and Tactics for Propositional Logic</h1>
 
       These lemmas and tactics are in a module so that they do
       not affect the namespace if you import the enclosing
@@ -414,18 +414,18 @@ the above form:
 </div>
 
 <div class="doc">
-<a id="lab176"></a><h2 class="section">Lemmas and Tactics About Decidable Propositions</h2>
+<a id="lab608"></a><h2 class="section">Lemmas and Tactics About Decidable Propositions</h2>
 
 <div class="paragraph"> </div>
 
-<a id="lab177"></a><h2 class="section">Propositional Equivalences Involving Negation</h2>
+<a id="lab609"></a><h2 class="section">Propositional Equivalences Involving Negation</h2>
 
         These are all written with the unfolded form of
         negation, since I am not sure if setoid rewriting will
         always perform conversion. 
 <div class="paragraph"> </div>
 
-<a id="lab178"></a><h2 class="section">Tactics for Negations</h2>
+<a id="lab610"></a><h2 class="section">Tactics for Negations</h2>
 
 </div>
 <div class="code">
@@ -676,7 +676,7 @@ A simple test case to see how this works.
 </div>
 
 <div class="doc">
-<a id="lab179"></a><h1 class="section">Auxiliary Tactics</h1>
+<a id="lab611"></a><h1 class="section">Auxiliary Tactics</h1>
 
       Again, these lemmas and tactics are in a module so that
       they do not affect the namespace if you import the
@@ -689,7 +689,7 @@ A simple test case to see how this works.
 </div>
 
 <div class="doc">
-<a id="lab180"></a><h2 class="section">Generic Tactics</h2>
+<a id="lab612"></a><h2 class="section">Generic Tactics</h2>
 
         We begin by defining a few generic, useful tactics. 
 <div class="paragraph"> </div>
@@ -806,7 +806,7 @@ This tactic acts just like <span class="inlinecode"><span class="id" title="tact
 </div>
 
 <div class="doc">
-<a id="lab181"></a><h2 class="section">Discarding Irrelevant Hypotheses</h2>
+<a id="lab613"></a><h2 class="section">Discarding Irrelevant Hypotheses</h2>
 
         We will want to clear the context of any
         non-MSet-related hypotheses in order to increase the
@@ -886,7 +886,7 @@ Here is the tactic that will throw away hypotheses that
 </div>
 
 <div class="doc">
-<a id="lab182"></a><h2 class="section">Turning Set Operators into Propositional Connectives</h2>
+<a id="lab614"></a><h2 class="section">Turning Set Operators into Propositional Connectives</h2>
 
         The lemmas from <span class="inlinecode"><span class="id" title="var">MSetFacts</span></span> will be used to break down
         set operations into propositional formulas built over
@@ -897,7 +897,7 @@ Here is the tactic that will throw away hypotheses that
 <div class="code">
 
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Global Hint Rewrite</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;#[<span class="id" title="var">global</span>] <span class="id" title="keyword">Hint</span> <span class="id" title="keyword">Rewrite</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Stdlib.MSets.MSetDecide.html#WDecideOn.F.empty_iff"><span class="id" title="lemma">F.empty_iff</span></a> <a class="idref" href="Stdlib.MSets.MSetDecide.html#WDecideOn.F.singleton_iff"><span class="id" title="lemma">F.singleton_iff</span></a> <a class="idref" href="Stdlib.MSets.MSetDecide.html#WDecideOn.F.add_iff"><span class="id" title="lemma">F.add_iff</span></a> <a class="idref" href="Stdlib.MSets.MSetDecide.html#WDecideOn.F.remove_iff"><span class="id" title="lemma">F.remove_iff</span></a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Stdlib.MSets.MSetDecide.html#WDecideOn.F.union_iff"><span class="id" title="abbreviation">F.union_iff</span></a> <a class="idref" href="Stdlib.MSets.MSetDecide.html#WDecideOn.F.inter_iff"><span class="id" title="abbreviation">F.inter_iff</span></a> <a class="idref" href="Stdlib.MSets.MSetDecide.html#WDecideOn.F.diff_iff"><span class="id" title="abbreviation">F.diff_iff</span></a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;: <span class="id" title="var">set_simpl</span>.<br/>
@@ -906,13 +906,13 @@ Here is the tactic that will throw away hypotheses that
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a id="WDecideOn.MSetDecideAuxiliary.eq_refl_iff" class="idref" href="#WDecideOn.MSetDecideAuxiliary.eq_refl_iff"><span class="id" title="lemma">eq_refl_iff</span></a> (<a id="x:31" class="idref" href="#x:31"><span class="id" title="binder">x</span></a> : <a class="idref" href="Stdlib.MSets.MSetDecide.html#E.t"><span class="id" title="axiom">E.t</span></a>) : <a class="idref" href="Stdlib.MSets.MSetDecide.html#E.eq"><span class="id" title="axiom">E.eq</span></a> <a class="idref" href="Stdlib.MSets.MSetDecide.html#x:31"><span class="id" title="variable">x</span></a> <a class="idref" href="Stdlib.MSets.MSetDecide.html#x:31"><span class="id" title="variable">x</span></a> <a class="idref" href="../corelib/Corelib.Init.Logic.html#::type_scope:x_'&lt;-&gt;'_x"><span class="id" title="notation">&lt;-&gt;</span></a> <a class="idref" href="../corelib/Corelib.Init.Logic.html#True"><span class="id" title="inductive">True</span></a>.<br/>
 
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Global Hint Rewrite</span> <a class="idref" href="Stdlib.MSets.MSetDecide.html#WDecideOn.MSetDecideAuxiliary.eq_refl_iff"><span class="id" title="lemma">eq_refl_iff</span></a> : <span class="id" title="var">set_eq_simpl</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;#[<span class="id" title="var">global</span>] <span class="id" title="keyword">Hint</span> <span class="id" title="keyword">Rewrite</span> <a class="idref" href="Stdlib.MSets.MSetDecide.html#WDecideOn.MSetDecideAuxiliary.eq_refl_iff"><span class="id" title="lemma">eq_refl_iff</span></a> : <span class="id" title="var">set_eq_simpl</span>.<br/>
 
 <br/>
 </div>
 
 <div class="doc">
-<a id="lab183"></a><h2 class="section">Decidability of MSet Propositions</h2>
+<a id="lab615"></a><h2 class="section">Decidability of MSet Propositions</h2>
 
 <div class="paragraph"> </div>
 
@@ -947,7 +947,7 @@ The hint database <span class="inlinecode"><span class="id" title="var">MSet_dec
 </div>
 
 <div class="doc">
-<a id="lab184"></a><h2 class="section">Normalizing Propositions About Equality</h2>
+<a id="lab616"></a><h2 class="section">Normalizing Propositions About Equality</h2>
 
         We have to deal with the fact that <span class="inlinecode"><span class="id" title="var">E.eq</span></span> may be
         convertible with Coq's equality.  Thus, we will find the
@@ -1030,7 +1030,7 @@ This tactic works like the built-in tactic <span class="inlinecode"><span class=
 </div>
 
 <div class="doc">
-<a id="lab185"></a><h2 class="section">Considering Decidability of Base Propositions</h2>
+<a id="lab617"></a><h2 class="section">Considering Decidability of Base Propositions</h2>
 
         This tactic adds assertions about the decidability of
         <span class="inlinecode"><span class="id" title="var">E.eq</span></span> and <span class="inlinecode"><span class="id" title="var">In</span></span> to the context.  This is necessary for
@@ -1079,7 +1079,7 @@ Now we eliminate the useless facts we added (because
 </div>
 
 <div class="doc">
-<a id="lab186"></a><h2 class="section">Handling <span class="inlinecode"><span class="id" title="var">Empty</span></span>, <span class="inlinecode"><span class="id" title="var">Subset</span></span>, and <span class="inlinecode"><span class="id" title="var">Equal</span></span></h2>
+<a id="lab618"></a><h2 class="section">Handling <span class="inlinecode"><span class="id" title="var">Empty</span></span>, <span class="inlinecode"><span class="id" title="var">Subset</span></span>, and <span class="inlinecode"><span class="id" title="var">Equal</span></span></h2>
 
         This tactic instantiates universally quantified
         hypotheses (which arise from the unfolding of <span class="inlinecode"><span class="id" title="var">Empty</span></span>,
@@ -1127,7 +1127,7 @@ Now we eliminate the useless facts we added (because
 </div>
 
 <div class="doc">
-<a id="lab187"></a><h2 class="section">The Core <span class="inlinecode"><span class="id" title="var">fsetdec</span></span> Auxiliary Tactics</h2>
+<a id="lab619"></a><h2 class="section">The Core <span class="inlinecode"><span class="id" title="var">fsetdec</span></span> Auxiliary Tactics</h2>
 
 <div class="paragraph"> </div>
 
@@ -1169,7 +1169,7 @@ If we add <span class="inlinecode"><span class="id" title="tactic">unfold</span>
 </div>
 
 <div class="doc">
-<a id="lab188"></a><h1 class="section">The <span class="inlinecode"><span class="id" title="var">fsetdec</span></span> Tactic</h1>
+<a id="lab620"></a><h1 class="section">The <span class="inlinecode"><span class="id" title="var">fsetdec</span></span> Tactic</h1>
 
       Here is the top-level tactic (the only one intended for
       clients of this library).  It's specification is given at
@@ -1283,7 +1283,7 @@ The next optimization is to swap a negated goal with a
 </div>
 
 <div class="doc">
-<a id="lab189"></a><h1 class="section">Examples</h1>
+<a id="lab621"></a><h1 class="section">Examples</h1>
 
 </div>
 <div class="code">

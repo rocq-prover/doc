@@ -270,7 +270,7 @@
 <span class="id" title="keyword">From</span> <span class="id" title="var">Stdlib</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="Stdlib.ZArith.Znat.html#"><span class="id" title="library">Znat</span></a>.<br/>
 <span class="id" title="keyword">From</span> <span class="id" title="var">Stdlib</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="Stdlib.ZArith.Zmisc.html#"><span class="id" title="library">Zmisc</span></a>.<br/>
 <span class="id" title="keyword">From</span> <span class="id" title="var">Stdlib</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="Stdlib.Arith.Wf_nat.html#"><span class="id" title="library">Wf_nat</span></a>.<br/>
-<span class="id" title="keyword">Local Open</span> <span class="id" title="keyword">Scope</span> <span class="id" title="var">Z_scope</span>.<br/>
+#[<span class="id" title="var">local</span>] <span class="id" title="keyword">Open</span> <span class="id" title="keyword">Scope</span> <span class="id" title="var">Z_scope</span>.<br/>
 
 <br/>
 </div>
@@ -344,7 +344,7 @@ Our purpose is to write an induction shema for {0,1,2,...}
 &nbsp;&nbsp;<span class="id" title="keyword">Let</span> <a id="Efficient_Rec.R" class="idref" href="#Efficient_Rec.R"><span class="id" title="variable">R</span></a> (<a id="a:17" class="idref" href="#a:17"><span class="id" title="binder">a</span></a> <a id="b:18" class="idref" href="#b:18"><span class="id" title="binder">b</span></a>:<a class="idref" href="../corelib/Corelib.Numbers.BinNums.html#Z"><span class="id" title="inductive">Z</span></a>) := 0 <a class="idref" href="Stdlib.ZArith.BinInt.html#306329b0eca7a2b86c198702f594ad8e"><span class="id" title="notation">&lt;=</span></a> <a class="idref" href="Stdlib.ZArith.Wf_Z.html#a:17"><span class="id" title="variable">a</span></a> <a class="idref" href="../corelib/Corelib.Init.Logic.html#ba2b0e492d2b4675a0acf3ea92aabadd"><span class="id" title="notation">/\</span></a> <a class="idref" href="Stdlib.ZArith.Wf_Z.html#a:17"><span class="id" title="variable">a</span></a> <a class="idref" href="Stdlib.ZArith.BinInt.html#::Z_scope:x_'&lt;'_x"><span class="id" title="notation">&lt;</span></a> <a class="idref" href="Stdlib.ZArith.Wf_Z.html#b:18"><span class="id" title="variable">b</span></a>.<br/>
 
 <br/>
-&nbsp;&nbsp;<span class="id" title="keyword">Local Definition</span> <a id="R_wf" class="idref" href="#R_wf"><span class="id" title="definition">R_wf</span></a> : <a class="idref" href="../corelib/Corelib.Init.Wf.html#well_founded"><span class="id" title="definition">well_founded</span></a> <a class="idref" href="Stdlib.ZArith.Wf_Z.html#Efficient_Rec.R"><span class="id" title="variable">R</span></a>.<br/>
+&nbsp;&nbsp;#[<span class="id" title="var">local</span>] <span class="id" title="keyword">Definition</span> <a id="R_wf" class="idref" href="#R_wf"><span class="id" title="definition">R_wf</span></a> : <a class="idref" href="../corelib/Corelib.Init.Wf.html#well_founded"><span class="id" title="definition">well_founded</span></a> <a class="idref" href="Stdlib.ZArith.Wf_Z.html#Efficient_Rec.R"><span class="id" title="variable">R</span></a>.<br/>
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a id="natlike_rec2" class="idref" href="#natlike_rec2"><span class="id" title="lemma">natlike_rec2</span></a> :<br/>
