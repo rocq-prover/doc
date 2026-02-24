@@ -449,6 +449,17 @@ Adds the given evar to the list of goals as the last one. If it is
 <div class="code">
 
 <br/>
+<span class="id" title="keyword">Ltac2</span> @<span class="id" title="var">external</span> <span class="id" title="var">reorder_goals</span> : <span class="id" title="var">int</span> <span class="id" title="var">list</span> -&gt; <span class="id" title="var">unit</span> := "rocq-runtime.plugins.ltac2" "reorder_goals".<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">reorder_goals</span></span> <span class="inlinecode"><span class="id" title="var">l</span></span> reorders the goals according to (1-indexed) list <span class="inlinecode"><span class="id" title="var">l</span></span>:
+    goal <span class="inlinecode"><span class="id" title="var">i</span></span> after executing the tactic was goal <span class="inlinecode"><span class="id" title="var">nth</span></span> <span class="inlinecode"><span class="id" title="var">l</span></span> <span class="inlinecode">(<span class="id" title="var">i</span>-1)</span> before executing the tactic.
+    Throws if <span class="inlinecode"><span class="id" title="var">l</span></span> is not a permutation of ints from <span class="inlinecode">1</span> to <span class="inlinecode"><span class="id" title="var">numgoals</span>()</span>. 
+</div>
+<div class="code">
+
+<br/>
 <span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">unshelve</span> : (<span class="id" title="var">unit</span> -&gt; '<span class="id" title="var">a</span>) -&gt; '<span class="id" title="var">a</span> := "rocq-runtime.plugins.ltac2" "unshelve".<br/>
 </div>
 
