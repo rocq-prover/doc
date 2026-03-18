@@ -265,6 +265,7 @@
 
 <br/>
 <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="Ltac2.Init.html#"><span class="id" title="library">Ltac2.Init</span></a>.<br/>
+<span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="Ltac2.Std.html#"><span class="id" title="library">Ltac2.Std</span></a>.<br/>
 
 <br/>
 </div>
@@ -275,6 +276,23 @@ Abstract type representing a transparency state. A transparency state
 </div>
 <div class="code">
 <span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Type</span> <span class="id" title="var">t</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Strategy levels used by <span class="inlinecode"><span class="id" title="var">with_strategy</span></span>.
+    <span class="inlinecode"><span class="id" title="var">Expand</span></span> corresponds to the <span class="inlinecode">-<span class="id" title="var">oo</span></span> level (always unfold),
+    <span class="inlinecode"><span class="id" title="keyword">Opaque</span></span> corresponds to the <span class="inlinecode">+<span class="id" title="var">oo</span></span> level (never unfold),
+    and <span class="inlinecode"><span class="id" title="var">Level</span></span> <span class="inlinecode"><span class="id" title="var">n</span></span> corresponds to integer level <span class="inlinecode"><span class="id" title="var">n</span></span>
+    (where <span class="inlinecode"><span class="id" title="var">Level</span></span> <span class="inlinecode">0</span> is <span class="inlinecode"><span class="id" title="var">transparent</span></span>). 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="keyword">Type</span> <span class="id" title="var">strategy_level</span> := [<br/>
+| <span class="id" title="var">Expand</span><br/>
+| <span class="id" title="keyword">Opaque</span><br/>
+| <span class="id" title="var">Level</span> (<span class="id" title="var">int</span>)<br/>
+].<br/>
 
 <br/>
 </div>
@@ -438,6 +456,20 @@ Abstract type representing a transparency state. A transparency state
 <div class="code">
 <span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">mem_var</span> : <span class="id" title="var">ident</span> -&gt; <span class="id" title="var">t</span> -&gt; <span class="id" title="var">bool</span> :=<br/>
 &nbsp;&nbsp;"rocq-runtime.plugins.ltac2" "mem_var_transparent_state".<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">with_strategy</span></span> <span class="inlinecode"><span class="id" title="var">lvl</span></span> <span class="inlinecode"><span class="id" title="var">refs</span></span> <span class="inlinecode"><span class="id" title="var">tac</span></span> temporarily sets the strategy level of
+    all references in <span class="inlinecode"><span class="id" title="var">refs</span></span> to <span class="inlinecode"><span class="id" title="var">lvl</span></span>, executes <span class="inlinecode"><span class="id" title="var">tac</span></span>, and then restores
+    the original strategy levels. This is the Ltac2 analogue of the
+    <span class="inlinecode"><span class="id" title="var">with_strategy</span></span> Ltac tactic and the <span class="inlinecode"><span class="id" title="var">Strategy</span></span> vernacular command. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> @ <span class="id" title="var">external</span> <span class="id" title="var">with_strategy</span> :<br/>
+&nbsp;&nbsp;<span class="id" title="var">strategy_level</span> -&gt; <span class="id" title="var">Std.reference</span> <span class="id" title="var">list</span> -&gt; (<span class="id" title="var">unit</span> -&gt; '<span class="id" title="var">a</span>) -&gt; '<span class="id" title="var">a</span> :=<br/>
+&nbsp;&nbsp;"rocq-runtime.plugins.ltac2" "with_strategy".<br/>
 </div>
 
           <!-- ************************
