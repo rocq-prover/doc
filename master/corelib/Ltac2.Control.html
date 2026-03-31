@@ -328,7 +328,13 @@ Backtracking point, cf Backtracking section of the ltac2 refman.
 </li>
 <li> If <span class="inlinecode"><span class="id" title="var">t</span></span> <span class="inlinecode">()</span> would succeed and evaluate to <span class="inlinecode"><span class="id" title="var">v</span></span> then <span class="inlinecode"><span class="id" title="tactic">case</span></span> <span class="inlinecode"><span class="id" title="var">t</span></span> returns <span class="inlinecode"><span class="id" title="var">Val</span></span> <span class="inlinecode">(<span class="id" title="var">v</span>,</span> <span class="inlinecode"><span class="id" title="var">h</span>)</span>,
   where <span class="inlinecode"><span class="id" title="var">h</span></span> is the continuation to execute in case of subsequent failure.
-  <span class="inlinecode"><span class="id" title="tactic">case</span></span> reifies a backtracking computation into an inspectable value, it allows the programmer to make explicit the effects which are normally implicit (i.e., they do not appear in the type system).
+  calling <span class="inlinecode"><span class="id" title="var">h</span></span> resets the backtrackable state to its value when <span class="inlinecode"><span class="id" title="tactic">case</span></span> was called.
+
+<div class="paragraph"> </div>
+
+  <span class="inlinecode"><span class="id" title="tactic">case</span></span> reifies a backtracking computation into an inspectable value,
+  it allows the programmer to make explicit the effects which are normally implicit
+  (i.e., they do not appear in the type system).
 
 </li>
 </ul>
