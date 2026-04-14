@@ -938,7 +938,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#rocq-configuration-basics">Rocq configuration basics</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#installing-the-rocq-prover-and-rocq-packages-with-opam">Installing the Rocq Prover and Rocq packages with opam</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#setup-for-working-on-your-own-projects">Setup for working on your own projects</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#building-a-project-with-coqproject-overview">Building a project with _CoqProject (overview)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#building-a-project-with-rocqproject-overview">Building a project with _RocqProject (overview)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#logical-paths-and-the-load-path">Logical paths and the load path</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#modifying-multiple-interdependent-projects-at-the-same-time">Modifying multiple interdependent projects at the same time</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#installed-and-uninstalled-packages">Installed and uninstalled packages</a></li>
@@ -1369,27 +1369,27 @@ directories for ease of use.</p>
 <section id="installing-the-rocq-prover-and-rocq-packages-with-opam">
 <h3>Installing the Rocq Prover and Rocq packages with opam<a class="headerlink" href="#installing-the-rocq-prover-and-rocq-packages-with-opam" title="Link to this heading"></a></h3>
 <p>The easiest way to install the Rocq Prover is with the
-<a class="reference external" href="https://github.com/coq/platform">Coq Platform</a>, which relies
+<a class="reference external" href="https://github.com/rocq-prover/platform">Rocq Platform</a>, which relies
 on the <a class="reference external" href="https://rocq-prover.org/using-opam">opam package manager</a>.</p>
-<p>The Coq platform installation process provides options to automatically install
+<p>The Rocq platform installation process provides options to automatically install
 some of the most frequently used packages at the
 same time.  While there's currently no guarantee that user-developed packages
 will compile on the current version of Rocq, all packages
-that Coq platform installs should compile without difficulty--this is part of
-the Coq platform release process.</p>
+that Rocq platform installs should compile without difficulty--this is part of
+the Rocq platform release process.</p>
 <p>Once you've installed Rocq, you can search for additional user-developed packages
 from the <a class="reference external" href="https://rocq-prover.org/packages">package list</a> or other opam repositories.
 These commands may be helpful:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">opam</span> <span class="pre">list</span> <span class="pre">&quot;coq-*&quot;</span></code> to see the list of available and installed packages</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">opam</span> <span class="pre">list</span> <span class="pre">&quot;coq-*&quot;</span> <span class="pre">--installed</span></code> to see the list of installed packages</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">opam</span> <span class="pre">list</span> <span class="pre">&quot;rocq-*&quot;</span></code> to see the list of available and installed packages</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">opam</span> <span class="pre">list</span> <span class="pre">&quot;rocq-*&quot;</span> <span class="pre">--installed</span></code> to see the list of installed packages</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">opam</span> <span class="pre">install</span> <span class="pre">&lt;package</span> <span class="pre">name&gt;</span></code> to install a package on your system.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">opam</span> <span class="pre">update</span></code> as needed to update the list of available packages</p></li>
 </ul>
 <p>For example, this command shows the installed packages with the package name,
 its version and short description:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ opam list &quot;coq-*&quot; --installed
-coq-bignums               8.15.0          Bignums, the Coq library of arbitrary large numbers
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ opam list &quot;rocq-*&quot; --installed
+rocq-bignums               9.0.0          Bignums, the Rocq library of arbitrary large numbers
 </pre></div>
 </div>
 <p>Note that packages marked <code class="docutils literal notranslate"><span class="pre">released</span></code> in the package list web page are more stable
@@ -1403,7 +1403,7 @@ with this command:</p>
 <p>You will then need to find the <a class="reference internal" href="../language/core/modules.html#term-logical-name"><span class="xref std std-term">logical name</span></a> used to refer to the package
 in <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.Require" title="Require"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Require</span></code></a> commands.  There are a couple ways to do this:</p>
 <ul class="simple">
-<li><p>If you installed with opam, use <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">opam</span></span></span> <span><span><span class="pre">show</span></span></span> <span><span><span class="pre">--list-files</span></span></span> <span><span><span class="pre">coq-bignums</span></span></span> <span class="pre">|</span> <span><span><span class="pre">head</span></span></span> <span><span><span class="pre">-n1</span></span></span></span></code> -
+<li><p>If you installed with opam, use <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">opam</span></span></span> <span><span><span class="pre">show</span></span></span> <span><span><span class="pre">--list-files</span></span></span> <span><span><span class="pre">rocq-bignums</span></span></span> <span class="pre">|</span> <span><span><span class="pre">head</span></span></span> <span><span><span class="pre">-n1</span></span></span></span></code> -
 the last component of the filename is the logical name (<code class="docutils literal notranslate"><span class="pre">Bignums</span></code>).</p></li>
 <li><p>On Linux, <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">ls</span></span></span> <span><span><span class="pre">$(rocq</span></span></span> <span><span><span class="pre">c</span></span></span> <span><span><span class="pre">-where)/user-contrib</span></span></span></span></code> shows the logical names of all
 installed user-contributed packages.  You should be able to guess which one you
@@ -1433,7 +1433,7 @@ Typically, each project has its own git repository.</p>
 and then step through it in one of the IDEs for Rocq, such as
 <a class="reference internal" href="coqide.html#coqintegrateddevelopmentenvironment"><span class="std std-ref">RocqIDE</span></a>,
 <a class="reference external" href="https://proofgeneral.github.io/">ProofGeneral</a>,
-<a class="reference external" href="https://github.com/coq-community/vscoq">vsCoq</a>
+<a class="reference external" href="https://github.com/rocq-prover/vsrocq">vsRocq</a>
 and <a class="reference external" href="https://github.com/whonore/Coqtail">Coqtail</a>.</p>
 <p>If your project has multiple files in a single directory that depend on each
 other through <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.Require" title="Require"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Require</span></code></a> commands, they must be compiled in an order that
@@ -1447,31 +1447,35 @@ manage the dependencies, particularly as the number of files increases.</p>
 <p>If your project files are in multiple directories, you would also need to pass
 additional command-line -Q and -R parameters to your IDE.  More details to manage
 and keep track of.</p>
-<p>Instead, by creating a <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> file, you can automatically generate
+<p>Instead, by creating a <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code> file, you can automatically generate
 a makefile that applies the correct dependencies when it compiles your project.
-In addition, the IDEs find and interpret <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> files, so project files
+In addition, the IDEs find and interpret <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code> files, so project files
 spread over multiple directories will work seamlessly.  If you're editing <code class="docutils literal notranslate"><span class="pre">dir/foo.v</span></code>,
-the IDEs apply settings from the <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> file in <code class="docutils literal notranslate"><span class="pre">dir</span></code> or the closest
+the IDEs apply settings from the <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code> file in <code class="docutils literal notranslate"><span class="pre">dir</span></code> or the closest
 ancestor directory.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> file identifies the <a class="reference internal" href="../language/core/modules.html#term-logical-path"><span class="xref std std-term">logical path</span></a> to associate with the
-directories containing your compiled files.  The <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> file is normally
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Some IDEs still look for the old name <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code>.</p>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code> file identifies the <a class="reference internal" href="../language/core/modules.html#term-logical-path"><span class="xref std std-term">logical path</span></a> to associate with the
+directories containing your compiled files.  The <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code> file is normally
 in the top directory of the project.  Occasionally it may be useful to have
-additional <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> files in subdirectories, for example in order to pass
+additional <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code> files in subdirectories, for example in order to pass
 different startup parameters to Rocq for particular scripts.</p>
 </section>
-<section id="building-a-project-with-coqproject-overview">
-<span id="building-with-coqproject"></span><h3>Building a project with _CoqProject (overview)<a class="headerlink" href="#building-a-project-with-coqproject-overview" title="Link to this heading"></a></h3>
+<section id="building-a-project-with-rocqproject-overview">
+<span id="building-with-coqproject"></span><h3>Building a project with _RocqProject (overview)<a class="headerlink" href="#building-a-project-with-rocqproject-overview" title="Link to this heading"></a></h3>
 <p>Note: building with <code class="docutils literal notranslate"><span class="pre">dune</span></code> is experimental.  See <a class="reference internal" href="#building-dune"><span class="std std-ref">Building a Rocq project with Dune</span></a>.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> file contains the information needed to generate a makefile
-for building your project.  Your <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> file should be in
+<p>The <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code> file contains the information needed to generate a makefile
+for building your project.  Your <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code> file should be in
 the top directory of your project's source tree.  We recommend using the
 <a class="reference internal" href="../language/core/modules.html#term-logical-name"><span class="xref std std-term">logical name</span></a> of the project as the name of the top directory.</p>
-<p><strong>Note:</strong> Make sure that <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> has no file extension.  On Windows, some
+<p><strong>Note:</strong> Make sure that <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code> has no file extension.  On Windows, some
 tools such as Notepad invisibly append <code class="docutils literal notranslate"><span class="pre">.txt</span></code> even when you ask to save the file
-as <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code>.  Also, File Manager doesn't display file extensions.  You may
+as <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code>.  Also, File Manager doesn't display file extensions.  You may
 be better off using a command line interface and an editor such as <code class="docutils literal notranslate"><span class="pre">vi</span></code> that
 always show file extensions.</p>
-<p>For example, here is a minimal <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> file for the <code class="docutils literal notranslate"><span class="pre">MyPackage</span></code> project
+<p>For example, here is a minimal <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code> file for the <code class="docutils literal notranslate"><span class="pre">MyPackage</span></code> project
 (the logical name of the package), which includes all the <code class="docutils literal notranslate"><span class="pre">.v</span></code> files (and
 other file types) in the <code class="docutils literal notranslate"><span class="pre">theories</span></code> directory and its subdirectories:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>-R theories MyPackage
@@ -1500,13 +1504,13 @@ a large number of users.  Alas, there's currently no easy way to discover what
 a bit; it shows the logical names defined in the Rocq process.</p>
 <p>Then:</p>
 <ul class="simple">
-<li><p>Generate a makefile from <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> with
-<code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">rocq</span></span></span> <span><span><span class="pre">makefile</span></span></span> <span><span><span class="pre">-f</span></span></span> <span><span><span class="pre">_</span></span></span><span><span><span class="pre">CoqProject</span></span></span> <span><span><span class="pre">-o</span></span></span> <span><span><span class="pre">CoqMakefile</span></span></span></span></code> and</p></li>
-<li><p>Compile your project with <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">make</span></span></span> <span><span><span class="pre">-f</span></span></span> <span><span><span class="pre">CoqMakefile</span></span></span></span></code> as needed.</p></li>
+<li><p>Generate a makefile from <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code> with
+<code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">rocq</span></span></span> <span><span><span class="pre">makefile</span></span></span> <span><span><span class="pre">-f</span></span></span> <span><span><span class="pre">_</span></span></span><span><span><span class="pre">RocqProject</span></span></span> <span><span><span class="pre">-o</span></span></span> <span><span><span class="pre">RocqMakefile</span></span></span></span></code> and</p></li>
+<li><p>Compile your project with <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">make</span></span></span> <span><span><span class="pre">-f</span></span></span> <span><span><span class="pre">RocqMakefile</span></span></span></span></code> as needed.</p></li>
 </ul>
 <p>If you add more files to your project that are not in directories listed
-in <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code>, update <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> and re-run <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">makefile</span></code> and <code class="docutils literal notranslate"><span class="pre">make</span></code>.</p>
-<p>We recommend checking <code class="docutils literal notranslate"><span class="pre">CoqMakefile</span></code> and <code class="docutils literal notranslate"><span class="pre">CoqMakefile.conf</span></code> into your source code
+in <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code>, update <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code> and re-run <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">makefile</span></code> and <code class="docutils literal notranslate"><span class="pre">make</span></code>.</p>
+<p>We recommend checking <code class="docutils literal notranslate"><span class="pre">RocqMakefile</span></code> and <code class="docutils literal notranslate"><span class="pre">RocqMakefile.conf</span></code> into your source code
 control system.  Also we recommend updating them with <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">makefile</span></code> when you switch
 to a new version of Rocq.</p>
 <p>In RocqIDE, you must explicitly save modified buffers before running <code class="docutils literal notranslate"><span class="pre">make</span></code> and
@@ -1574,7 +1578,7 @@ setting this variable.</p></li>
 <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">NBinary.vo</span></span></span></span></code> from the associated directory.  Note that a short name
 is often sufficient in <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.Require" title="Require"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Require</span></code></a> instead of a fully qualified
 name.</p>
-<p>In <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.Require" title="Require"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Require</span></code></a> commands referring to the current package (if <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code>
+<p>In <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.Require" title="Require"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Require</span></code></a> commands referring to the current package (if <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code>
 uses <code class="docutils literal notranslate"><span class="pre">-R</span></code>) can be referenced with a short name without
 a <code class="docutils literal notranslate"><span class="pre">From</span></code> clause provided that the logical path is unambiguous (as if they are
 available through <code class="docutils literal notranslate"><span class="pre">-R</span></code>).  In contrast, <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.Require" title="Require"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Require</span></code></a> commands that load files from other
@@ -1582,8 +1586,8 @@ locations such as <code class="docutils literal notranslate"><span class="pre">u
 or include a <code class="docutils literal notranslate"><span class="pre">From</span></code> clause (as if they are available through <code class="docutils literal notranslate"><span class="pre">-Q</span></code>).  This is done
 to reduce the number of ambiguous logical paths.  We encourage using <code class="docutils literal notranslate"><span class="pre">From</span></code>
 clauses.</p>
-<p>Note that if you use a <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> file, the <code class="docutils literal notranslate"><span class="pre">ROCQPATH</span></code> environment variable is not helpful.
-If you use <code class="docutils literal notranslate"><span class="pre">ROCQPATH</span></code> without a <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code>, a file in <code class="docutils literal notranslate"><span class="pre">MyPackage/theories/SubDir/File.v</span></code> will be
+<p>Note that if you use a <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code> file, the <code class="docutils literal notranslate"><span class="pre">ROCQPATH</span></code> environment variable is not helpful.
+If you use <code class="docutils literal notranslate"><span class="pre">ROCQPATH</span></code> without a <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code>, a file in <code class="docutils literal notranslate"><span class="pre">MyPackage/theories/SubDir/File.v</span></code> will be
 loaded with the logical name <code class="docutils literal notranslate"><span class="pre">MyPackage/theories/SubDir.File</span></code>, which may not be what you want.</p>
 <p>If you associate the same logical name with more than one directory, Rocq
 looks for the <code class="docutils literal notranslate"><span class="pre">.vo</span></code> file in the most recently added path first (i.e., the one
@@ -1594,14 +1598,14 @@ that appears earlier in the <a class="reference internal" href="../proof-engine/
 <p>If you want to modify multiple interdependent projects simultaneously,
 good practice recommends that
 all of them should be uninstalled.  Since the IDEs only apply a single
-<code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> file for each script, the best way to make them work properly is to
-temporarily edit the <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> for each project so it includes the other
+<code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code> file for each script, the best way to make them work properly is to
+temporarily edit the <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code> for each project so it includes the other
 uninstalled projects it depends on, then regenerate the makefile.  This may
-make your <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> system dependent.  Such dependencies shouldn't be
+make your <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code> system dependent.  Such dependencies shouldn't be
 present in published packages.</p>
 <p>For example, if
 project <code class="docutils literal notranslate"><span class="pre">A</span></code> requires project <code class="docutils literal notranslate"><span class="pre">B</span></code>, add <code class="docutils literal notranslate"><span class="pre">-Q</span> <span class="pre">&lt;directory</span> <span class="pre">path</span> <span class="pre">of</span> <span class="pre">B&gt;</span> <span class="pre">B</span></code> to the
-<code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> in <code class="docutils literal notranslate"><span class="pre">A</span></code>.  This will override any installed version of <code class="docutils literal notranslate"><span class="pre">B</span></code> only
+<code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code> in <code class="docutils literal notranslate"><span class="pre">A</span></code>.  This will override any installed version of <code class="docutils literal notranslate"><span class="pre">B</span></code> only
 when you're working on scripts in <code class="docutils literal notranslate"><span class="pre">A</span></code>.</p>
 <p>If you want to build all the related projects at once, you're
 on your own.  There's currently no tooling to identify the internal dependencies
@@ -1613,7 +1617,7 @@ between the projects (and thus the order in which to build them).</p>
 of the Rocq installation) differs from that generally used for the project source tree.
 The installed directory structure omits the paths given in the <code class="docutils literal notranslate"><span class="pre">-R</span></code> and <code class="docutils literal notranslate"><span class="pre">-Q</span></code>
 parameters that are not part of the logical name of a file.  For example,
-consider the following <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> file.</p>
+consider the following <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code> file.</p>
 <blockquote>
 <div><p>-R theories MyPackage
 theories/File1.v
@@ -1622,19 +1626,19 @@ theories/SubDir/File2.v</p>
 <p>The compiled file <code class="docutils literal notranslate"><span class="pre">theories/File1.vo</span></code> will be installed in
 the directory <code class="docutils literal notranslate"><span class="pre">user-contrib/MyPackage</span></code> and
 <code class="docutils literal notranslate"><span class="pre">theories/SubDir/File2.vo</span></code> in <code class="docutils literal notranslate"><span class="pre">user-contrib/MyPackage/SubDir</span></code>.</p>
-<p>Use <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">make</span></span></span> <span><span><span class="pre">-f</span></span></span> <span><span><span class="pre">CoqMakefile</span></span></span> <span><span><span class="pre">install</span></span></span></span></code> to install a project from a directory.</p>
+<p>Use <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">make</span></span></span> <span><span><span class="pre">-f</span></span></span> <span><span><span class="pre">RocqMakefile</span></span></span> <span><span><span class="pre">install</span></span></span></span></code> to install a project from a directory.</p>
 <p>If you try to step through scripts in installed packages (e.g. to understand
 the proofs therein), you may get unexpected failures for two reasons:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> files often have at least one <code class="docutils literal notranslate"><span class="pre">-R</span></code> parameter, while
+<li><p><code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code> files often have at least one <code class="docutils literal notranslate"><span class="pre">-R</span></code> parameter, while
 installed packages are loaded with the less-permissive <code class="docutils literal notranslate"><span class="pre">-Q</span></code> option described in
 the <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.Require" title="Require"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Require</span></code></a> command, which may cause a <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.Require" title="Require"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Require</span></code></a> to fail.  One workaround is
-to create a <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> file containing the line <code class="docutils literal notranslate"><span class="pre">-R</span> <span class="pre">.</span> <span class="pre">&lt;project</span> <span class="pre">directory&gt;</span></code> in
-<code class="docutils literal notranslate"><span class="pre">user-contrib/&lt;project</span> <span class="pre">directory&gt;</span></code>.  In this case, the <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> doesn't
+to create a <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code> file containing the line <code class="docutils literal notranslate"><span class="pre">-R</span> <span class="pre">.</span> <span class="pre">&lt;project</span> <span class="pre">directory&gt;</span></code> in
+<code class="docutils literal notranslate"><span class="pre">user-contrib/&lt;project</span> <span class="pre">directory&gt;</span></code>.  In this case, the <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code> doesn't
 need to list all the source files.</p></li>
-<li><p>Sometimes, the <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> file specifies options that affect the
+<li><p>Sometimes, the <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code> file specifies options that affect the
 behavior of Rocq, such as <code class="docutils literal notranslate"><span class="pre">-impredicative-set</span></code>.  These can similarly be
-added in <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> files in <code class="docutils literal notranslate"><span class="pre">user-contrib</span></code>.</p></li>
+added in <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code> files in <code class="docutils literal notranslate"><span class="pre">user-contrib</span></code>.</p></li>
 </ul>
 <p>Another way to get around these problems is to download the source tree for the
 project in a new directory and compile it before stepping through its scripts.</p>
@@ -1660,8 +1664,8 @@ files and possibly some <code class="docutils literal notranslate"><span class="
 metadata needed in order to build the project are the command line
 options to <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">compile</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">-R</span></code>, <code class="docutils literal notranslate"><span class="pre">-Q</span></code>, <code class="docutils literal notranslate"><span class="pre">-I</span></code>, see <a class="reference internal" href="coq-commands.html#command-line-options"><span class="std std-ref">command
 line options</span></a>). Collecting the list of files
-and options is the job of the <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> file.</p>
-<p>A <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> file may contain the following kinds of entries in any order,
+and options is the job of the <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code> file.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code> file may contain the following kinds of entries in any order,
 separated by whitespace:</p>
 <ul class="simple">
 <li><p>Selected options of <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">compile</span></code>, which are forwarded directly to it. Currently these
@@ -1674,7 +1678,7 @@ its subdirectories.</p></li>
 <li><p>Comments, started with an unquoted <code class="docutils literal notranslate"><span class="pre">#</span></code> and continuing to the end of the
 line.</p></li>
 </ul>
-<p>A simple example of a <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> file follows:</p>
+<p>A simple example of a <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code> file follows:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>-R theories/ MyCode
 -arg &quot;-w all&quot;
 # include everything under &quot;theories&quot;, e.g. foo.v and bar.v
@@ -1699,64 +1703,64 @@ is given. The generated file makes the plugin available
 to the <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.Declare-ML-Module" title="Declare ML Module"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Declare</span> <span class="pre">ML</span> <span class="pre">Module</span></code></a> as <code class="docutils literal notranslate"><span class="pre">my-package.plugin</span></code>. If the generated file
 doesn't suit your needs (for instance because it depends on some OCaml
 packages) or your project has multiple plugins, then create a file named
-<code class="docutils literal notranslate"><span class="pre">META.my-package</span></code> and list it in the <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> file.
+<code class="docutils literal notranslate"><span class="pre">META.my-package</span></code> and list it in the <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code> file.
 You can use <code class="docutils literal notranslate"><span class="pre">ocamlfind</span> <span class="pre">lint</span> <span class="pre">META.my-package</span></code> to lint the hand written file.
 Typically <code class="docutils literal notranslate"><span class="pre">my-package</span></code> is the name of the <code class="docutils literal notranslate"><span class="pre">OPAM</span></code> package for your
-project (which conventionally starts with <code class="docutils literal notranslate"><span class="pre">coq-</span></code>). If the project
+project (which conventionally starts with <code class="docutils literal notranslate"><span class="pre">rocq-</span></code>). If the project
 includes a <code class="docutils literal notranslate"><span class="pre">.mlg</span></code> file (to be pre-processed by <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">pp-mlg</span></code>) that
 declares a plugin, then the given name must match the <code class="docutils literal notranslate"><span class="pre">findlib</span></code> plugin
 name, e.g. <code class="docutils literal notranslate"><span class="pre">DECLARE</span> <span class="pre">PLUGIN</span> <span class="pre">&quot;my-package.plugin&quot;</span></code>.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">-native-compiler</span></code> option given in the <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> file overrides
+<p>The <code class="docutils literal notranslate"><span class="pre">-native-compiler</span></code> option given in the <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code> file overrides
 the global one passed at configure time.</p>
 <p>RocqIDE, Proof General, VsCoq and Coqtail all
-understand <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> files and can be used to invoke Rocq with the desired options.</p>
+understand <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code> files and can be used to invoke Rocq with the desired options.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">makefile</span></code> utility can be used to set up a build infrastructure
 for the Rocq project based on makefiles. We recommend
 invoking <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">makefile</span></code> this way:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rocq makefile -f _CoqProject -o CoqMakefile
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rocq makefile -f _RocqProject -o RocqMakefile
 </pre></div>
 </div>
 <p>This command generates the following files:</p>
 <dl class="simple">
-<dt>CoqMakefile</dt><dd><p>is a makefile for <code class="docutils literal notranslate"><span class="pre">GNU</span> <span class="pre">Make</span></code> with targets to build the project
+<dt>RocqMakefile</dt><dd><p>is a makefile for <code class="docutils literal notranslate"><span class="pre">GNU</span> <span class="pre">Make</span></code> with targets to build the project
 (e.g. generate .vo or .html files from .v or compile .ml* files)
 and install it in the <code class="docutils literal notranslate"><span class="pre">user-contrib</span></code> directory where the Rocq
 library is installed.</p>
 </dd>
-<dt>CoqMakefile.conf</dt><dd><p>contains make variables assignments that reflect
-the contents of the <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> file as well as the path relevant to
+<dt>RocqMakefile.conf</dt><dd><p>contains make variables assignments that reflect
+the contents of the <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code> file as well as the path relevant to
 Rocq.</p>
 </dd>
 </dl>
 <p>Run <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">makefile</span> <span class="pre">--help</span></code> for a description of command line options.</p>
-<p>The recommended approach is to invoke <code class="docutils literal notranslate"><span class="pre">CoqMakefile</span></code> from a standard
+<p>The recommended approach is to invoke <code class="docutils literal notranslate"><span class="pre">RocqMakefile</span></code> from a standard
 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> in the following form:</p>
 <div class="admonition note">
 <p class="admonition-title">Example</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># KNOWNTARGETS will not be passed along to CoqMakefile
-KNOWNTARGETS := CoqMakefile extra-stuff extra-stuff2
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># KNOWNTARGETS will not be passed along to RocqMakefile
+KNOWNTARGETS := RocqMakefile extra-stuff extra-stuff2
 # KNOWNFILES will not get implicit targets from the final rule, and so
 # depending on them won&#39;t invoke the submake
 # Warning: These files get declared as PHONY, so any targets depending
 # on them always get rebuilt
-KNOWNFILES   := Makefile _CoqProject
+KNOWNFILES   := Makefile _RocqProject
 
-.DEFAULT_GOAL := invoke-coqmakefile
+.DEFAULT_GOAL := invoke-rocqmakefile
 
-CoqMakefile: Makefile _CoqProject
-        $(COQBIN)rocq makefile -f _CoqProject -o CoqMakefile
+RocqMakefile: Makefile _RocqProject
+        $(COQBIN)rocq makefile -f _RocqProject -o RocqMakefile
 
-invoke-coqmakefile: CoqMakefile
-        $(MAKE) --no-print-directory -f CoqMakefile $(filter-out $(KNOWNTARGETS),$(MAKECMDGOALS))
+invoke-rocqmakefile: RocqMakefile
+        $(MAKE) --no-print-directory -f RocqMakefile $(filter-out $(KNOWNTARGETS),$(MAKECMDGOALS))
 
-.PHONY: invoke-coqmakefile $(KNOWNFILES)
+.PHONY: invoke-rocqmakefile $(KNOWNFILES)
 
 ####################################################################
 ##                      Your targets here                         ##
 ####################################################################
 
 # This should be the last rule, to handle any targets not declared above
-%: invoke-coqmakefile
+%: invoke-rocqmakefile
         @true
 </pre></div>
 </div>
@@ -1769,24 +1773,24 @@ master <code class="docutils literal notranslate"><span class="pre">Makefile</sp
 Including the generated makefile with an include directive is
 discouraged, since the contents of this file, including variable names and
 status of rules, may change in the future.</p>
-<p>Use the optional file <code class="docutils literal notranslate"><span class="pre">CoqMakefile.local</span></code> to extend
-<code class="docutils literal notranslate"><span class="pre">CoqMakefile</span></code>. In particular, you can declare custom actions to run
+<p>Use the optional file <code class="docutils literal notranslate"><span class="pre">RocqMakefile.local</span></code> to extend
+<code class="docutils literal notranslate"><span class="pre">RocqMakefile</span></code>. In particular, you can declare custom actions to run
 before or after the build process. Similarly you can customize the
 install target or even provide new targets. See
-<a class="reference internal" href="#rocqmakefilelocal"><span class="std std-ref">CoqMakefile.local</span></a> for extension-point documentation. Although
-you can use all variables defined in <code class="docutils literal notranslate"><span class="pre">CoqMakefile</span></code> in the <em>recipes</em>
+<a class="reference internal" href="#rocqmakefilelocal"><span class="std std-ref">RocqMakefile.local</span></a> for extension-point documentation. Although
+you can use all variables defined in <code class="docutils literal notranslate"><span class="pre">RocqMakefile</span></code> in the <em>recipes</em>
 of rules that you write and in the definitions of any variables that
 you assign with <code class="docutils literal notranslate"><span class="pre">=</span></code>, many variables are not available for use if you
 assign variable values with <code class="docutils literal notranslate"><span class="pre">:=</span></code> nor to define the <em>targets</em> of
 rules nor in top-level conditionals such as <code class="docutils literal notranslate"><span class="pre">ifeq</span></code>. Additionally,
 you must use <a class="reference external" href="https://www.gnu.org/software/make/manual/html_node/Secondary-Expansion.html">secondary expansion</a>
 to make use of such variables in the prerequisites of rules. To access
-variables defined in <code class="docutils literal notranslate"><span class="pre">CoqMakefile</span></code> in rule target computation,
+variables defined in <code class="docutils literal notranslate"><span class="pre">RocqMakefile</span></code> in rule target computation,
 top-level conditionals, and <code class="docutils literal notranslate"><span class="pre">:=</span></code> variable assignment, for example to
 add new dependencies to compiled outputs, use the optional file
-<code class="docutils literal notranslate"><span class="pre">CoqMakefile.local-late</span></code>.  See <a class="reference internal" href="#rocqmakefilelocallate"><span class="std std-ref">CoqMakefile.local-late</span></a> for a
+<code class="docutils literal notranslate"><span class="pre">RocqMakefile.local-late</span></code>.  See <a class="reference internal" href="#rocqmakefilelocallate"><span class="std std-ref">RocqMakefile.local-late</span></a> for a
 non-exhaustive list of variables.</p>
-<p>The extensions of files listed in <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> determine
+<p>The extensions of files listed in <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code> determine
 how they are built. In particular:</p>
 <ul class="simple">
 <li><p>Rocq files must use the <code class="docutils literal notranslate"><span class="pre">.v</span></code> extension</p></li>
@@ -1808,31 +1812,31 @@ distinct plugins because of a clash in their auxiliary module names.</p>
 line. Comments are ignored.</p>
 <section id="quoting-arguments-to-rocq-c">
 <h4>Quoting arguments to rocq c<a class="headerlink" href="#quoting-arguments-to-rocq-c" title="Link to this heading"></a></h4>
-<p>Any string in a <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> file may be enclosed in double quotes to include
+<p>Any string in a <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code> file may be enclosed in double quotes to include
 whitespace characters or <code class="docutils literal notranslate"><span class="pre">#</span></code>. For example, use <code class="docutils literal notranslate"><span class="pre">-arg</span> <span class="pre">&quot;-w</span> <span class="pre">all&quot;</span></code> to pass the
 argument <code class="docutils literal notranslate"><span class="pre">-w</span> <span class="pre">all</span></code> to <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">compile</span></code>. If the argument to <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">compile</span></code> needs some quotes as well,
 use single-quotes inside the double-quotes. For example <code class="docutils literal notranslate"><span class="pre">-arg</span> <span class="pre">&quot;-set</span> <span class="pre">'Default</span>
 <span class="pre">Goal</span> <span class="pre">Selector=!'&quot;</span></code> gets passed to <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">compile</span></code> as <code class="docutils literal notranslate"><span class="pre">-set</span> <span class="pre">'Default</span> <span class="pre">Goal</span> <span class="pre">Selector=!'</span></code>.</p>
-<p>But note, that single-quotes in a <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> file are only special
+<p>But note, that single-quotes in a <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code> file are only special
 characters if they appear in the string following <code class="docutils literal notranslate"><span class="pre">-arg</span></code>. And on their own
-they don't quote spaces. For example <code class="docutils literal notranslate"><span class="pre">-arg</span> <span class="pre">'foo</span> <span class="pre">bar'</span></code> in <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> is
-equivalent to <code class="docutils literal notranslate"><span class="pre">-arg</span> <span class="pre">foo</span> <span class="pre">&quot;bar'&quot;</span></code> (in <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> notation). <code class="docutils literal notranslate"><span class="pre">-arg</span> <span class="pre">&quot;'foo</span>
+they don't quote spaces. For example <code class="docutils literal notranslate"><span class="pre">-arg</span> <span class="pre">'foo</span> <span class="pre">bar'</span></code> in <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code> is
+equivalent to <code class="docutils literal notranslate"><span class="pre">-arg</span> <span class="pre">foo</span> <span class="pre">&quot;bar'&quot;</span></code> (in <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code> notation). <code class="docutils literal notranslate"><span class="pre">-arg</span> <span class="pre">&quot;'foo</span>
 <span class="pre">bar'&quot;</span></code> behaves differently and passes <code class="docutils literal notranslate"><span class="pre">'foo</span> <span class="pre">bar'</span></code> to <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">compile</span></code>.</p>
 </section>
 <section id="forbidden-filenames">
 <h4>Forbidden filenames<a class="headerlink" href="#forbidden-filenames" title="Link to this heading"></a></h4>
-<p>The paths of files given in a <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> file may not contain any of the
+<p>The paths of files given in a <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code> file may not contain any of the
 following characters: <code class="docutils literal notranslate"><span class="pre">\n</span></code>, <code class="docutils literal notranslate"><span class="pre">\t</span></code>, space, <code class="docutils literal notranslate"><span class="pre">\</span></code>, <code class="docutils literal notranslate"><span class="pre">'</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">#</span></code>, <code class="docutils literal notranslate"><span class="pre">$</span></code>,
 <code class="docutils literal notranslate"><span class="pre">%</span></code>. These characters have special meaning in Makefiles and
 <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">makefile</span></code> doesn't support encoding them correctly.</p>
 </section>
 <section id="warning-no-common-logical-root">
 <h4>Warning: No common logical root<a class="headerlink" href="#warning-no-common-logical-root" title="Link to this heading"></a></h4>
-<p>When a <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> file contains something like <code class="docutils literal notranslate"><span class="pre">-R</span> <span class="pre">theories</span> <span class="pre">Foo</span>
+<p>When a <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code> file contains something like <code class="docutils literal notranslate"><span class="pre">-R</span> <span class="pre">theories</span> <span class="pre">Foo</span>
 <span class="pre">theories/Bar.v</span></code>, the <code class="docutils literal notranslate"><span class="pre">install-doc</span></code> target installs the documentation
 generated by <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">doc</span></code> into <code class="docutils literal notranslate"><span class="pre">user-contrib/Foo/</span></code>, in the folder where Rocq was
 installed.</p>
-<p>But if the <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> file contains something like:</p>
+<p>But if the <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code> file contains something like:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>-R theories/Foo Foo
 -R theories/Bar Bar
 theories/Foo/Foo.v
@@ -1844,13 +1848,13 @@ theories/Bar/Bar.v
 a warning: &quot;No common logical root&quot; and generate a Makefile that installs the
 documentation in some folder beginning with &quot;orphan&quot;, in the above example,
 it'd be <code class="docutils literal notranslate"><span class="pre">user-contrib/orphan_Foo_Bar</span></code>.</p>
-<p>In this case, specify the <code class="docutils literal notranslate"><span class="pre">-docroot</span></code> option in _CoqProject to override
+<p>In this case, specify the <code class="docutils literal notranslate"><span class="pre">-docroot</span></code> option in _RocqProject to override
 the automatically selected logical root.</p>
 </section>
-<section id="coqmakefile-local">
-<span id="rocqmakefilelocal"></span><h4>CoqMakefile.local<a class="headerlink" href="#coqmakefile-local" title="Link to this heading"></a></h4>
-<p>The optional file <code class="docutils literal notranslate"><span class="pre">CoqMakefile.local</span></code> is included by the generated
-file <code class="docutils literal notranslate"><span class="pre">CoqMakefile</span></code>. It can contain two kinds of directives.</p>
+<section id="rocqmakefile-local">
+<span id="rocqmakefilelocal"></span><h4>RocqMakefile.local<a class="headerlink" href="#rocqmakefile-local" title="Link to this heading"></a></h4>
+<p>The optional file <code class="docutils literal notranslate"><span class="pre">RocqMakefile.local</span></code> is included by the generated
+file <code class="docutils literal notranslate"><span class="pre">RocqMakefile</span></code>. It can contain two kinds of directives.</p>
 <p><strong>Variable assignment</strong></p>
 <p>The variable must belong to the variables listed in the <code class="docutils literal notranslate"><span class="pre">Parameters</span></code>
 section of the generated makefile. These include:</p>
@@ -1903,7 +1907,7 @@ By default a combination of <code class="docutils literal notranslate"><span cla
 <code class="docutils literal notranslate"><span class="pre">$(COQLIB)/user-contrib</span></code>, <code class="docutils literal notranslate"><span class="pre">$(COQCORELIB)/..</span></code> and <code class="docutils literal notranslate"><span class="pre">$(DOCDIR)/coq/user-contrib</span></code>.</p>
 </dd>
 </dl>
-<p>Use <a class="reference internal" href="#rocqmakefilelocallate"><span class="std std-ref">CoqMakefile.local-late</span></a> instead to access more variables.</p>
+<p>Use <a class="reference internal" href="#rocqmakefilelocallate"><span class="std std-ref">RocqMakefile.local-late</span></a> instead to access more variables.</p>
 <p><strong>Rule extension</strong></p>
 <p>The following makefile rules can be extended.</p>
 <div class="admonition note">
@@ -1941,10 +1945,10 @@ target.</p>
 </dd>
 </dl>
 </section>
-<section id="coqmakefile-local-late">
-<span id="rocqmakefilelocallate"></span><h4>CoqMakefile.local-late<a class="headerlink" href="#coqmakefile-local-late" title="Link to this heading"></a></h4>
-<p>The optional file <code class="docutils literal notranslate"><span class="pre">CoqMakefile.local-late</span></code> is included at the end of the generated
-file <code class="docutils literal notranslate"><span class="pre">CoqMakefile</span></code>.  The following is a partial list of accessible variables:</p>
+<section id="rocqmakefile-local-late">
+<span id="rocqmakefilelocallate"></span><h4>RocqMakefile.local-late<a class="headerlink" href="#rocqmakefile-local-late" title="Link to this heading"></a></h4>
+<p>The optional file <code class="docutils literal notranslate"><span class="pre">RocqMakefile.local-late</span></code> is included at the end of the generated
+file <code class="docutils literal notranslate"><span class="pre">RocqMakefile</span></code>.  The following is a partial list of accessible variables:</p>
 <dl class="field-list simple">
 <dt class="field-odd">COQ_VERSION<span class="colon">:</span></dt>
 <dd class="field-odd"><p>the version of <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">compile</span></code> being used, which can be used to
@@ -1968,8 +1972,8 @@ be computed by writing <code class="docutils literal notranslate"><span class="p
 <p>In addition, the following variables may be useful for
 deciding what targets to present via <code class="docutils literal notranslate"><span class="pre">$(shell</span> <span class="pre">...)</span></code>; these
 variables are already accessible in recipes for rules added in
-<code class="docutils literal notranslate"><span class="pre">CoqMakefile.local</span></code>, but are only accessible from top-level <code class="docutils literal notranslate"><span class="pre">$(shell</span>
-<span class="pre">...)</span></code> invocations in <code class="docutils literal notranslate"><span class="pre">CoqMakefile.local-late</span></code>:</p>
+<code class="docutils literal notranslate"><span class="pre">RocqMakefile.local</span></code>, but are only accessible from top-level <code class="docutils literal notranslate"><span class="pre">$(shell</span>
+<span class="pre">...)</span></code> invocations in <code class="docutils literal notranslate"><span class="pre">RocqMakefile.local-late</span></code>:</p>
 <dl class="field-list simple">
 <dt class="field-odd">ROCQ, COQC, COQDEP, COQDOC, CAMLC, CAMLOPTC<span class="colon">:</span></dt>
 <dd class="field-odd"><p>compiler binaries</p>
@@ -2254,20 +2258,20 @@ information.</p>
 <section id="precompiling-for-native-compute">
 <h4>Precompiling for <code class="docutils literal notranslate"><span class="pre">native_compute</span></code><a class="headerlink" href="#precompiling-for-native-compute" title="Link to this heading"></a></h4>
 <p>To compile files for <code class="docutils literal notranslate"><span class="pre">native_compute</span></code>, one can use the
-<code class="docutils literal notranslate"><span class="pre">-native-compiler</span> <span class="pre">yes</span></code> option of Rocq, by putting it in the <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code>
+<code class="docutils literal notranslate"><span class="pre">-native-compiler</span> <span class="pre">yes</span></code> option of Rocq, by putting it in the <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code>
 file.</p>
 <p>The generated installation target of <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">makefile</span></code> will then take care of
 installing the extra <code class="docutils literal notranslate"><span class="pre">.coq-native</span></code> directories.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>As an alternative to modifying <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code>, one can set an
+<p>As an alternative to modifying <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code>, one can set an
 environment variable when calling <code class="docutils literal notranslate"><span class="pre">make</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>COQEXTRAFLAGS=&quot;-native-compiler yes&quot; make
 </pre></div>
 </div>
 <p>This can be useful when files cannot be modified, for instance when
 installing via OPAM a package built with <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">makefile</span></code>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>COQEXTRAFLAGS=&quot;-native-compiler yes&quot; opam install coq-package
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>COQEXTRAFLAGS=&quot;-native-compiler yes&quot; opam install rocq-package
 </pre></div>
 </div>
 </div>
@@ -2277,11 +2281,11 @@ installing via OPAM a package built with <code class="docutils literal notransla
 <code class="docutils literal notranslate"><span class="pre">-native-compiler</span> <span class="pre">yes</span></code>.</p>
 </div>
 </section>
-<section id="the-grammar-of-coqproject">
-<h4>The grammar of _CoqProject<a class="headerlink" href="#the-grammar-of-coqproject" title="Link to this heading"></a></h4>
-<p>A <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> file encodes a list of strings using the following syntax:</p>
+<section id="the-grammar-of-rocqproject">
+<h4>The grammar of _RocqProject<a class="headerlink" href="#the-grammar-of-rocqproject" title="Link to this heading"></a></h4>
+<p>A <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code> file encodes a list of strings using the following syntax:</p>
 <blockquote>
-<div><span class="prodn-table"><span class="prodn-column-group"><span class="prodn-column"></span><span class="prodn-column"></span><span class="prodn-column"></span><span class="prodn-column"></span></span><span class="prodn-row-group"><span class="prodn-row"><span class="prodn-cell-nonterminal"><span class="prodn-target"><span class="target" id="grammar-token-CoqProject"></span></span><span class="notation"><a class="reference internal" href="#grammar-token-CoqProject"><span class="hole">CoqProject</span></a></span></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">::=</span></code></span><span class="prodn-cell-production"><span class="notation"><span class="repeat-wrapper"><span class="repeat"><span class="repeated-alternative"><span class="alternative-block"><a class="reference internal" href="#grammar-token-blank"><span class="hole">blank</span></a></span><span class="alternative-separator">​</span><span class="alternative-block"><a class="reference internal" href="#grammar-token-comment"><span class="hole">comment</span></a></span><span class="alternative-separator">​</span><span class="alternative-block"><a class="reference internal" href="#grammar-token-quoted_string"><span class="hole">quoted_string</span></a></span><span class="alternative-separator">​</span><span class="alternative-block"><a class="reference internal" href="#grammar-token-unquoted_string"><span class="hole">unquoted_string</span></a></span></span></span><span class="notation-sup">*</span></span></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span><span class="prodn-row"><span class="prodn-cell-nonterminal"><span class="prodn-target"><span class="target" id="grammar-token-blank"></span></span><span class="notation"><a class="reference internal" href="#grammar-token-blank"><span class="hole">blank</span></a></span></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">::=</span></code></span><span class="prodn-cell-production"><span class="notation"><span class="alternative"><span class="alternative-block"><span><span>space</span></span></span><span class="alternative-separator">​</span><span class="alternative-block"><span><span>horizontal</span></span><span><span>_</span></span><span><span>tab</span></span></span><span class="alternative-separator">​</span><span class="alternative-block"><span><span>newline</span></span></span></span></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span><span class="prodn-row"><span class="prodn-cell-nonterminal"><span class="prodn-target"><span class="target" id="grammar-token-comment"></span></span><span class="notation"><a class="reference internal" href="#grammar-token-comment"><span class="hole">comment</span></a></span></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">::=</span></code></span><span class="prodn-cell-production"><span class="notation"><span><span>#</span></span> <span class="repeat-wrapper"><span class="repeat"><span><span>comment</span></span><span><span>_</span></span><span><span>char</span></span></span><span class="notation-sup">*</span></span> <span><span>newline</span></span></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span><span class="prodn-row"><span class="prodn-cell-nonterminal"><span class="prodn-target"><span class="target" id="grammar-token-quoted_string"></span></span><span class="notation"><a class="reference internal" href="#grammar-token-quoted_string"><span class="hole">quoted_string</span></a></span></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">::=</span></code></span><span class="prodn-cell-production"><span class="notation"><span><span>&quot;</span></span> <span class="repeat-wrapper"><span class="repeat"><span><span>quoted</span></span><span><span>_</span></span><span><span>char</span></span></span><span class="notation-sup">*</span></span> <span><span>&quot;</span></span></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span><span class="prodn-row"><span class="prodn-cell-nonterminal"><span class="prodn-target"><span class="target" id="grammar-token-unquoted_string"></span></span><span class="notation"><a class="reference internal" href="#grammar-token-unquoted_string"><span class="hole">unquoted_string</span></a></span></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">::=</span></code></span><span class="prodn-cell-production"><span class="notation"><span><span>string</span></span><span><span>_</span></span><span><span>start</span></span><span><span>_</span></span><span><span>char</span></span> <span class="repeat-wrapper"><span class="repeat"><span><span>unquoted</span></span><span><span>_</span></span><span><span>char</span></span></span><span class="notation-sup">*</span></span></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span></span></span></div></blockquote>
+<div><span class="prodn-table"><span class="prodn-column-group"><span class="prodn-column"></span><span class="prodn-column"></span><span class="prodn-column"></span><span class="prodn-column"></span></span><span class="prodn-row-group"><span class="prodn-row"><span class="prodn-cell-nonterminal"><span class="prodn-target"><span class="target" id="grammar-token-RocqProject"></span></span><span class="notation"><a class="reference internal" href="#grammar-token-RocqProject"><span class="hole">RocqProject</span></a></span></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">::=</span></code></span><span class="prodn-cell-production"><span class="notation"><span class="repeat-wrapper"><span class="repeat"><span class="repeated-alternative"><span class="alternative-block"><a class="reference internal" href="#grammar-token-blank"><span class="hole">blank</span></a></span><span class="alternative-separator">​</span><span class="alternative-block"><a class="reference internal" href="#grammar-token-comment"><span class="hole">comment</span></a></span><span class="alternative-separator">​</span><span class="alternative-block"><a class="reference internal" href="#grammar-token-quoted_string"><span class="hole">quoted_string</span></a></span><span class="alternative-separator">​</span><span class="alternative-block"><a class="reference internal" href="#grammar-token-unquoted_string"><span class="hole">unquoted_string</span></a></span></span></span><span class="notation-sup">*</span></span></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span><span class="prodn-row"><span class="prodn-cell-nonterminal"><span class="prodn-target"><span class="target" id="grammar-token-blank"></span></span><span class="notation"><a class="reference internal" href="#grammar-token-blank"><span class="hole">blank</span></a></span></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">::=</span></code></span><span class="prodn-cell-production"><span class="notation"><span class="alternative"><span class="alternative-block"><span><span>space</span></span></span><span class="alternative-separator">​</span><span class="alternative-block"><span><span>horizontal</span></span><span><span>_</span></span><span><span>tab</span></span></span><span class="alternative-separator">​</span><span class="alternative-block"><span><span>newline</span></span></span></span></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span><span class="prodn-row"><span class="prodn-cell-nonterminal"><span class="prodn-target"><span class="target" id="grammar-token-comment"></span></span><span class="notation"><a class="reference internal" href="#grammar-token-comment"><span class="hole">comment</span></a></span></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">::=</span></code></span><span class="prodn-cell-production"><span class="notation"><span><span>#</span></span> <span class="repeat-wrapper"><span class="repeat"><span><span>comment</span></span><span><span>_</span></span><span><span>char</span></span></span><span class="notation-sup">*</span></span> <span><span>newline</span></span></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span><span class="prodn-row"><span class="prodn-cell-nonterminal"><span class="prodn-target"><span class="target" id="grammar-token-quoted_string"></span></span><span class="notation"><a class="reference internal" href="#grammar-token-quoted_string"><span class="hole">quoted_string</span></a></span></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">::=</span></code></span><span class="prodn-cell-production"><span class="notation"><span><span>&quot;</span></span> <span class="repeat-wrapper"><span class="repeat"><span><span>quoted</span></span><span><span>_</span></span><span><span>char</span></span></span><span class="notation-sup">*</span></span> <span><span>&quot;</span></span></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span><span class="prodn-row"><span class="prodn-cell-nonterminal"><span class="prodn-target"><span class="target" id="grammar-token-unquoted_string"></span></span><span class="notation"><a class="reference internal" href="#grammar-token-unquoted_string"><span class="hole">unquoted_string</span></a></span></span><span class="prodn-cell-op"><code class="docutils literal notranslate"><span class="pre">::=</span></code></span><span class="prodn-cell-production"><span class="notation"><span><span>string</span></span><span><span>_</span></span><span><span>start</span></span><span><span>_</span></span><span><span>char</span></span> <span class="repeat-wrapper"><span class="repeat"><span><span>unquoted</span></span><span><span>_</span></span><span><span>char</span></span></span><span class="notation-sup">*</span></span></span></span><span class="prodn-cell-tag"><code class="docutils literal notranslate"></code></span></span></span></span></div></blockquote>
 <p>where the following definitions apply:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">space</span></span></span></span></code>, <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">horizontal</span></span></span><span><span><span class="pre">_</span></span></span><span><span><span class="pre">tab</span></span></span></span></code> and <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">newline</span></span></span></span></code> stand for the corresponding
@@ -2292,17 +2296,17 @@ ASCII characters.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">unquoted</span></span></span><span><span><span class="pre">_</span></span></span><span><span><span class="pre">char</span></span></span></span></code> is the set of all characters except those that match <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="#grammar-token-blank"><span class="hole"><span class="pre">blank</span></span></a></span></code> or are <code class="docutils literal notranslate"><span class="pre">#</span></code>.</p></li>
 </ul>
 <p>The parser produces a list of strings in the same order as they were
-encountered in <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code>. Blanks and comments are removed
+encountered in <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code>. Blanks and comments are removed
 and the double quotes of <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="#grammar-token-quoted_string"><span class="hole"><span class="pre">quoted_string</span></span></a></span></code> tokens are removed as
 well. The list is then treated as a list of command-line arguments of
 <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">makefile</span></code>.</p>
 <p>The semantics of <code class="docutils literal notranslate"><span class="pre">-arg</span></code> are as follows: the string given as argument is split
 on whitespace, but single quotes prevent splitting. The resulting list of
 strings is then passed to <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">compile</span></code>.</p>
-<p>The current approach has a few limitations: Double quotes in a <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code>
+<p>The current approach has a few limitations: Double quotes in a <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code>
 file are only special characters at the start of a string. For lack of an
 escaping mechanism, it is currently impossible to pass the following kinds of
-strings to <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">makefile</span></code> using a <code class="docutils literal notranslate"><span class="pre">_CoqProject</span></code> file:</p>
+strings to <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">makefile</span></code> using a <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code> file:</p>
 <ul class="simple">
 <li><p>strings starting with <code class="docutils literal notranslate"><span class="pre">&quot;</span></code></p></li>
 <li><p>strings starting with <code class="docutils literal notranslate"><span class="pre">#</span></code> and containing <code class="docutils literal notranslate"><span class="pre">&quot;</span></code></p></li>

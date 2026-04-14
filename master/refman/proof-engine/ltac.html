@@ -938,7 +938,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../practical-tools/utilities.html#rocq-configuration-basics">Rocq configuration basics</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../practical-tools/utilities.html#installing-the-rocq-prover-and-rocq-packages-with-opam">Installing the Rocq Prover and Rocq packages with opam</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../practical-tools/utilities.html#setup-for-working-on-your-own-projects">Setup for working on your own projects</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../practical-tools/utilities.html#building-a-project-with-coqproject-overview">Building a project with _CoqProject (overview)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../practical-tools/utilities.html#building-a-project-with-rocqproject-overview">Building a project with _RocqProject (overview)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../practical-tools/utilities.html#logical-paths-and-the-load-path">Logical paths and the load path</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../practical-tools/utilities.html#modifying-multiple-interdependent-projects-at-the-same-time">Modifying multiple interdependent projects at the same time</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../practical-tools/utilities.html#installed-and-uninstalled-packages">Installed and uninstalled packages</a></li>
@@ -4408,38 +4408,40 @@ printed without entries faster than the cutoff (in seconds).</p>
 </span></dt><dd><span>No more goals.
 </span></dd>
 <dt><span></span><span class="rocqdoc-keyword">Show</span><span> </span><span class="rocqdoc-keyword">Ltac</span><span> </span><span class="rocqdoc-var">Profile</span><span>.</span><span>
-</span></dt><dd><span>total time:      1.081s
+</span></dt><dd><span>total time:      0.902s
 
  tactic                                      local  total   calls       max
 ───────────────────────────────────────────┴──────┴──────┴───────┴─────────┘
-─tac --------------------------------------   0.1% 100.0%       1    1.081s
-─&lt;Corelib.Init.Tauto.with_uniform_flags&gt; --   0.0%  97.7%      26    0.097s
-─&lt;Corelib.Init.Tauto.tauto_gen&gt; -----------   0.0%  97.7%      26    0.097s
-─&lt;Corelib.Init.Tauto.tauto_intuitionistic&gt;    0.0%  97.6%      26    0.097s
-─t_tauto_intuit ---------------------------   0.1%  97.5%      26    0.097s
-─&lt;Corelib.Init.Tauto.simplif&gt; -------------  60.8%  94.3%      26    0.096s
-─&lt;Corelib.Init.Tauto.is_conj&gt; -------------  24.3%  24.3%   28756    0.042s
-─elim id ----------------------------------   5.8%   5.8%     650    0.020s
-─&lt;Corelib.Init.Tauto.axioms&gt; --------------   2.2%   3.2%       0    0.001s
+─tac --------------------------------------   0.1% 100.0%       1    0.902s
+─&lt;Corelib.Init.Tauto.with_uniform_flags&gt; --   0.0%  97.6%      26    0.072s
+─&lt;Corelib.Init.Tauto.tauto_gen&gt; -----------   0.0%  97.5%      26    0.072s
+─&lt;Corelib.Init.Tauto.tauto_intuitionistic&gt;    0.1%  97.4%      26    0.072s
+─t_tauto_intuit ---------------------------   0.1%  97.3%      26    0.072s
+─&lt;Corelib.Init.Tauto.simplif&gt; -------------  63.1%  93.9%      26    0.071s
+─&lt;Corelib.Init.Tauto.is_conj&gt; -------------  22.6%  22.6%   28756    0.002s
+─elim id ----------------------------------   5.1%   5.1%     650    0.019s
+─&lt;Corelib.Init.Tauto.axioms&gt; --------------   2.2%   3.3%       0    0.001s
+─lia --------------------------------------   0.2%   2.2%      28    0.009s
 
- tactic                                      local  total   calls       max
-───────────────────────────────────────────┴──────┴──────┴───────┴─────────┘
-─tac --------------------------------------   0.1% 100.0%       1    1.081s
-└&lt;Corelib.Init.Tauto.with_uniform_flags&gt; --   0.0%  97.7%      26    0.097s
-└&lt;Corelib.Init.Tauto.tauto_gen&gt; -----------   0.0%  97.7%      26    0.097s
-└&lt;Corelib.Init.Tauto.tauto_intuitionistic&gt;    0.0%  97.6%      26    0.097s
-└t_tauto_intuit ---------------------------   0.1%  97.5%      26    0.097s
- ├─&lt;Corelib.Init.Tauto.simplif&gt; -----------  60.8%  94.3%      26    0.096s
- │ ├─&lt;Corelib.Init.Tauto.is_conj&gt; ---------  24.3%  24.3%   28756    0.042s
- │ └─elim id ------------------------------   5.8%   5.8%     650    0.020s
- └─&lt;Corelib.Init.Tauto.axioms&gt; ------------   2.2%   3.2%       0    0.001s
+ tactic                                        local  total   calls       max
+─────────────────────────────────────────────┴──────┴──────┴───────┴─────────┘
+─tac ----------------------------------------   0.1% 100.0%       1    0.902s
+ ├─&lt;Corelib.Init.Tauto.with_uniform_flags&gt; --   0.0%  97.5%      26    0.072s
+ │└&lt;Corelib.Init.Tauto.tauto_gen&gt; -----------   0.0%  97.5%      26    0.072s
+ │└&lt;Corelib.Init.Tauto.tauto_intuitionistic&gt;    0.1%  97.4%      26    0.072s
+ │└t_tauto_intuit ---------------------------   0.1%  97.3%      26    0.072s
+ │ ├─&lt;Corelib.Init.Tauto.simplif&gt; -----------  63.1%  93.9%      26    0.071s
+ │ │ ├─&lt;Corelib.Init.Tauto.is_conj&gt; ---------  22.6%  22.6%   28756    0.002s
+ │ │ └─elim id ------------------------------   5.1%   5.1%     650    0.019s
+ │ └─&lt;Corelib.Init.Tauto.axioms&gt; ------------   2.2%   3.3%       0    0.001s
+ └─lia --------------------------------------   0.2%   2.2%      28    0.009s
 </span></dd>
 <dt><span></span><span class="rocqdoc-keyword">Show</span><span> </span><span class="rocqdoc-keyword">Ltac</span><span> </span><span class="rocqdoc-var">Profile</span><span> &quot;lia&quot;.</span><span>
-</span></dt><dd><span>total time:      1.081s
+</span></dt><dd><span>total time:      0.902s
 
  tactic  local  total   calls       max
 ───────┴──────┴──────┴───────┴─────────┘
-
+─lia --   0.2%   2.2%      28    0.009s
 
  tactic  local  total   calls       max
 ───────┴──────┴──────┴───────┴─────────┘
