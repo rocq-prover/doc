@@ -1405,7 +1405,7 @@ Leibniz equality on some type. An example implementation is:</p>
 </span></dd>
 </dl>
 </div>
-<p>Using the <a class="reference internal" href="#rocq:attr.refine" title="refine"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">refine</span></code></a> attribute, if the term is not sufficient to
+<p>Using the <a class="reference internal" href="../language/core/definitions.html#rocq:attr.refine" title="refine"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">refine</span></code></a> attribute, if the term is not sufficient to
 finish the definition (e.g. due to a missing field or non-inferable
 hole) it must be finished in proof mode. If it is sufficient a trivial
 proof mode with no open goals is started.</p>
@@ -1424,8 +1424,6 @@ No more goals.
 </span></dd>
 </dl>
 </div>
-<p>Note that if you finish the proof with <a class="reference internal" href="../proofs/writing-proofs/proof-mode.html#rocq:cmd.Qed" title="Qed"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Qed</span></code></a> the entire instance
-will be opaque, including the fields given in the initial term.</p>
 <p>Alternatively, in <a class="reference internal" href="program.html#rocq:flag.Program-Mode" title="Program Mode"><code class="xref rocq rocq-flag docutils literal notranslate"><span class="pre">Program</span> <span class="pre">Mode</span></code></a> if one does not give all the
 members in the Instance declaration, Rocq generates obligations for the
 remaining fields, e.g.:</p>
@@ -1864,17 +1862,7 @@ now <a class="reference internal" href="../language/core/modules.html#rocq:attr.
 <p>Like <a class="reference internal" href="../language/core/definitions.html#rocq:cmd.Definition" title="Definition"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Definition</span></code></a>, it also supports the <a class="reference internal" href="program.html#rocq:attr.program" title="program"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">program</span></code></a>
 attribute to switch the type checking to <code class="docutils literal notranslate"><span class="pre">Program</span></code> (chapter
 <a class="reference internal" href="program.html#programs"><span class="std std-ref">Program</span></a>) and to use the obligation mechanism to manage missing
-fields.</p>
-<p>Finally, it supports the lighter <a class="reference internal" href="#rocq:attr.refine" title="refine"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">refine</span></code></a> attribute:</p>
-<dl class="rocq attr">
-<dt class="sig sig-object rocq" id="rocq:attr.refine">
-<em class="property"><span class="sigannot"><span class="pre">Attribute</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">refine</span></span></span></span></span><a class="headerlink" href="#rocq:attr.refine" title="Link to this definition"></a></dt>
-<dd><p>This <a class="reference internal" href="../language/core/basic.html#term-attribute"><span class="xref std std-term">attribute</span></a> can be used to leave holes or not provide all
-fields in the definition of an instance and open the tactic mode
-to fill them.  It works exactly as if no <a class="reference internal" href="../language/core/definitions.html#term-body"><span class="xref std std-term">body</span></a> had been given and
-the <a class="reference internal" href="../proof-engine/tactics.html#rocq:tacn.refine" title="refine"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">refine</span></code></a> tactic has been used first.</p>
-</dd></dl>
-
+fields, and it also supports the lighter <a class="reference internal" href="../language/core/definitions.html#rocq:attr.refine" title="refine"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">refine</span></code></a> attribute:</p>
 <dl class="rocq cmd">
 <dt class="sig sig-object rocq" id="rocq:cmd.Declare-Instance">
 <em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Declare</span></span></span> <span><span><span class="pre">Instance</span></span></span> <a class="reference internal" href="../language/core/assumptions.html#grammar-token-ident_decl"><span class="hole"><span class="pre">ident_decl</span></span></a> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../language/core/assumptions.html#grammar-token-binder"><span class="hole"><span class="pre">binder</span></span></a></span><span class="notation-sup"><span class="pre">*</span></span></span> <span><span><span class="pre">:</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-term"><span class="hole"><span class="pre">term</span></span></a> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../proofs/automatic-tactics/auto.html#grammar-token-hint_info"><span class="hole"><span class="pre">hint_info</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span></span></span><a class="headerlink" href="#rocq:cmd.Declare-Instance" title="Link to this definition"></a></dt>
