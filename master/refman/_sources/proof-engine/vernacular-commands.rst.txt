@@ -68,9 +68,11 @@ to accessible objects.  (see Section :ref:`invocation-of-tactics`).
 :cmd:`Eval` and :cmd:`Compute` are also :token:`query_command`\s, which are
 described elsewhere
 
-.. cmd:: About @reference {? @univ_name_list }
+.. cmd:: About {+, @reference {? @univ_name_list } }
 
-   Displays information about the :n:`@reference` object, which may be the
+   Displays information about one or more definitions. When multiple
+   comma-separated :n:`@reference`\s are given, their information is printed
+   in order with a blank line between each. Each :n:`@reference` may be the
    name of any accessible defined symbol, such as a theorem, constructor,
    fixpoint or module.  If a proof is open, :n:`@reference` may refer to a
    hypothesis of the selected goal.  The information includes:
