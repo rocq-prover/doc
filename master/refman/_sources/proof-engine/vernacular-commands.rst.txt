@@ -11,14 +11,16 @@ Displaying
 
 .. _Print:
 
-.. cmd:: Print {? Term } @reference {? @univ_name_list }
+.. cmd:: Print {? Term } {+, @reference {? @univ_name_list } }
 
    .. insertprodn univ_name_list univ_name_list
 
    .. prodn::
       univ_name_list ::= @%{ {* @name } {? ; {* @name } } %}
 
-   Displays definitions of terms, including opaque terms, for the object :n:`@reference`.
+   Displays definitions of terms, including opaque terms, for one or more object :n:`@reference`\s.
+   When multiple comma-separted :n: `@reference`\s are given, their information is printed
+   in order with a blank line between each.
 
    * :n:`Term` - a syntactic marker to allow printing a term
      that is the same as one of the various :n:`Print` commands.  For example,
