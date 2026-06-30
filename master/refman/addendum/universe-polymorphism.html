@@ -1761,6 +1761,9 @@ be seen as a monoid in any higher universe, without introducing explicit lifting
 </span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-var">unit_monoid</span><span> : </span><span class="rocqdoc-var">Monoid&#64;</span><span>{</span><span class="rocqdoc-var">i</span><span>}.</span><span>
 </span></dt><dd><span>unit_monoid : Monoid&#64;{</span><span class="ansi-fg-yellow ansi-bold">i</span><span>}
      : Monoid&#64;{</span><span class="ansi-fg-yellow ansi-bold">i</span><span>}
+(* {} |= Set &lt;= i
+Normalized constraints:
+  *)
 </span></dd>
 </dl>
 </div>
@@ -1897,7 +1900,9 @@ while it is expected to have type &quot;Invariant&#64;{</span><span class="ansi-
 <dt><span></span><span class="rocqdoc-keyword">Check</span><span> (</span><span class="rocqdoc-var">co_low</span><span> : </span><span class="rocqdoc-var">Covariant&#64;</span><span>{</span><span class="rocqdoc-var">high</span><span>}).</span><span>
 </span></dt><dd><span>co_low : Covariant&#64;{</span><span class="ansi-fg-yellow ansi-bold">high</span><span>}
      : Covariant&#64;{</span><span class="ansi-fg-yellow ansi-bold">high</span><span>}
-(* {} |= low &lt;= high *)
+(* {} |= low &lt;= high
+Normalized constraints:
+ {} |= low &lt;= high *)
 </span></dd>
 <dt><span></span><span class="rocqdoc-var">Fail</span><span> </span><span class="rocqdoc-keyword">Check</span><span> (</span><span class="rocqdoc-var">co_high</span><span> : </span><span class="rocqdoc-var">Covariant&#64;</span><span>{</span><span class="rocqdoc-var">low</span><span>}).</span><span>
 </span></dt><dd><span>The command has indeed failed with message:
@@ -2259,7 +2264,9 @@ where
 </span></dt><dt><span></span><span class="rocqdoc-keyword">Check</span><span> (</span><span class="rocqdoc-var">le&#64;</span><span>{</span><span class="rocqdoc-var">k</span><span> </span><span class="rocqdoc-var">l</span><span>}).</span><span>
 </span></dt><dd><span>le&#64;{</span><span class="ansi-fg-yellow ansi-bold">k</span><span> </span><span class="ansi-fg-yellow ansi-bold">l</span><span>}
      : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">k</span><span>}</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">l</span><span>}
-(* {} |= k &lt;= l *)
+(* {} |= k &lt;= l
+Normalized constraints:
+ {} |= k &lt;= l *)
 </span></dd>
 </dl>
 </div>
@@ -2272,23 +2279,37 @@ underscore or by omitting the annotation to a polymorphic definition.</p>
 <dt><span></span><span class="rocqdoc-keyword">Check</span><span> (</span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">x</span><span> =&gt; </span><span class="rocqdoc-var">x</span><span>) : </span><span class="rocqdoc-keyword">Type</span><span> -&gt; </span><span class="rocqdoc-keyword">Type</span><span>.</span><span>
 </span></dt><dd><span>(</span><span class="ansi-bold">fun</span><span> x : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">Top.154</span><span>} =&gt; x) : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">Top.154</span><span>}</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">Top.155</span><span>}
      : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">Top.154</span><span>}</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">Top.155</span><span>}
-(* {Top.155 Top.154} |= Top.154 &lt;= Top.155 *)
+(* {Top.155 Top.154} |= Top.154 &lt;= Top.155
+Normalized constraints:
+ {Top.155 Top.154} |= Top.154 &lt;= Top.155 *)
 </span></dd>
 <dt><span></span><span class="rocqdoc-keyword">Check</span><span> (</span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">x</span><span> =&gt; </span><span class="rocqdoc-var">x</span><span>) : </span><span class="rocqdoc-keyword">Type</span><span> -&gt; </span><span class="rocqdoc-var">Type&#64;</span><span>{</span><span class="rocqdoc-var">_</span><span>}.</span><span>
-</span></dt><dd><span>(</span><span class="ansi-bold">fun</span><span> x : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">Top.156</span><span>} =&gt; x) : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">Top.156</span><span>}</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">Top.156</span><span>}
-     : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">Top.156</span><span>}</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">Top.156</span><span>}
-(* {Top.156} |=  *)
+</span></dt><dd><span>(</span><span class="ansi-bold">fun</span><span> x : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">Top.156</span><span>} =&gt; x) : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">Top.156</span><span>}</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">Top.157</span><span>}
+     : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">Top.156</span><span>}</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">Top.157</span><span>}
+(* {Top.157 Top.156} |= Top.156 &lt;= Top.157
+Minimized universes:
+ Top.157 := Top.156
+Normalized constraints:
+ {Top.156} |=  *)
 </span></dd>
 <dt><span></span><span>
 </span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-var">le&#64;</span><span>{</span><span class="rocqdoc-var">k</span><span> </span><span class="rocqdoc-var">_</span><span>}.</span><span>
-</span></dt><dd><span>le&#64;{</span><span class="ansi-fg-yellow ansi-bold">k</span><span> </span><span class="ansi-fg-yellow ansi-bold">k</span><span>}
-     : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">k</span><span>}</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">k</span><span>}
+</span></dt><dd><span>le&#64;{</span><span class="ansi-fg-yellow ansi-bold">k</span><span> </span><span class="ansi-fg-yellow ansi-bold">Top.158</span><span>}
+     : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">k</span><span>}</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">Top.158</span><span>}
+(* {Top.158} |= k &lt;= Top.158
+Minimized universes:
+ Top.158 := k
+Normalized constraints:
+  *)
 </span></dd>
 <dt><span></span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-var">le</span><span>.</span><span>
-</span></dt><dd><span>le&#64;{</span><span class="ansi-fg-yellow ansi-bold">Top.159</span><span>
-</span><span class="ansi-fg-yellow ansi-bold">Top.159</span><span>}
-     : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">Top.159</span><span>}</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">Top.159</span><span>}
-(* {Top.159} |=  *)
+</span></dt><dd><span>le&#64;{</span><span class="ansi-fg-yellow ansi-bold">Top.159</span><span> </span><span class="ansi-fg-yellow ansi-bold">Top.160</span><span>}
+     : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">Top.159</span><span>}</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">Top.160</span><span>}
+(* {Top.160 Top.159} |= Top.159 &lt;= Top.160
+Minimized universes:
+ Top.160 := Top.159
+Normalized constraints:
+ {Top.159} |=  *)
 </span></dd>
 </dl>
 </div>
@@ -2346,7 +2367,9 @@ universe:</p>
 <dt><span></span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-var">foo&#64;</span><span>{</span><span class="rocqdoc-var">_</span><span>}.</span><span>
 </span></dt><dd><span>foo&#64;{</span><span class="ansi-fg-yellow ansi-bold">Top.163</span><span>}
      : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">Top.163</span><span>}
-(* {Top.163} |= Set &lt; Top.163 *)
+(* {Top.163} |= Set &lt; Top.163
+Normalized constraints:
+ {Top.163} |= Set &lt; Top.163 *)
 </span></dd>
 </dl>
 </div>
@@ -2398,10 +2421,11 @@ Declared in toplevel input, characters 4736-4739
 Universe instance length for bar is 1 but should be 2.
 </span></dd>
 <dt><span></span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-var">bar&#64;</span><span>{</span><span class="rocqdoc-var">_</span><span> </span><span class="rocqdoc-var">_</span><span>}.</span><span>
-</span></dt><dd><span>bar&#64;{</span><span class="ansi-fg-yellow ansi-bold">Top.167</span><span>
-</span><span class="ansi-fg-yellow ansi-bold">Top.168</span><span>}
+</span></dt><dd><span>bar&#64;{</span><span class="ansi-fg-yellow ansi-bold">Top.167</span><span> </span><span class="ansi-fg-yellow ansi-bold">Top.168</span><span>}
      : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">Top.167</span><span>}
-(* {Top.168 Top.167} |= Top.168 &lt; Top.167 *)
+(* {Top.168 Top.167} |= Top.168 &lt; Top.167
+Normalized constraints:
+ {Top.168 Top.167} |= Top.168 &lt; Top.167 *)
 </span></dd>
 </dl>
 </div>
@@ -3021,6 +3045,11 @@ constraints between global universes, which can cause complex universe inconsist
 <dt><span></span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">A</span><span>:</span><span class="rocqdoc-keyword">Prop</span><span> =&gt; </span><span class="rocqdoc-var">option</span><span> </span><span class="rocqdoc-var">A</span><span>.</span><span>
 </span></dt><dd><span class="ansi-bold">fun</span><span> A : </span><span class="ansi-fg-yellow ansi-bold">Prop</span><span> =&gt; option A
      : </span><span class="ansi-fg-yellow ansi-bold">Prop</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Set</span><span>
+(* {Top.287} |= 
+Minimized universes:
+ Top.287 := Set
+Normalized constraints:
+  *)
 </span></dd>
 </dl>
 </div>
@@ -3030,10 +3059,20 @@ constraints between global universes, which can cause complex universe inconsist
 <dt><span></span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">A</span><span>:</span><span class="rocqdoc-keyword">Set</span><span> =&gt; </span><span class="rocqdoc-var">option</span><span> </span><span class="rocqdoc-var">A</span><span>.</span><span>
 </span></dt><dd><span class="ansi-bold">fun</span><span> A : </span><span class="ansi-fg-yellow ansi-bold">Set</span><span> =&gt; option A
      : </span><span class="ansi-fg-yellow ansi-bold">Set</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Set</span><span>
+(* {Top.288} |= Set &lt;= Top.288
+Minimized universes:
+ Top.288 := Set
+Normalized constraints:
+  *)
 </span></dd>
 <dt><span></span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-var">option</span><span> </span><span class="rocqdoc-keyword">Set</span><span>.</span><span>
 </span></dt><dd><span>option </span><span class="ansi-fg-yellow ansi-bold">Set</span><span>
      : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">Set</span><span>+1}
+(* {Top.289} |= Set &lt; Top.289
+Minimized universes:
+ Top.289 := Set+1
+Normalized constraints:
+  *)
 </span></dd>
 </dl>
 </div>
@@ -3046,6 +3085,15 @@ constraints between global universes, which can cause complex universe inconsist
 <dt><span></span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">A</span><span>:</span><span class="rocqdoc-keyword">Prop</span><span> =&gt; </span><span class="rocqdoc-var">prod</span><span> </span><span class="rocqdoc-var">A</span><span> </span><span class="rocqdoc-var">A</span><span>.</span><span>
 </span></dt><dd><span class="ansi-bold">fun</span><span> A : </span><span class="ansi-fg-yellow ansi-bold">Prop</span><span> =&gt; prod A A
      : </span><span class="ansi-fg-yellow ansi-bold">Prop</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Prop</span><span>
+(* {α118 α119}; {Top.291 Top.290} |= 
+Collapsed sorts:
+ α118 := Type
+ α119 := Type
+Minimized universes:
+ Top.291 := Set
+ Top.290 := Set
+Normalized constraints:
+  *)
 </span></dd>
 <dt><span></span><span class="rocqdoc-var">Fail</span><span> </span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">A</span><span>:</span><span class="rocqdoc-var">SProp</span><span> =&gt;  </span><span class="rocqdoc-var">prod</span><span> </span><span class="rocqdoc-var">A</span><span> </span><span class="rocqdoc-var">A</span><span>.</span><span>
 </span></dt><dd><span>The command has indeed failed with message:
@@ -3063,6 +3111,14 @@ The term &quot;A&quot; has type &quot;</span><span class="ansi-fg-yellow ansi-bo
 <dt><span></span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-var">prod</span><span> </span><span class="rocqdoc-var">True</span><span> </span><span class="rocqdoc-var">nat</span><span>.</span><span>
 </span></dt><dd><span>prod True nat
      : </span><span class="ansi-fg-yellow ansi-bold">Set</span><span>
+(* {α121}; {Top.294 Top.293} |= Set &lt;= Top.294
+Collapsed sorts:
+ α121 := Type
+Minimized universes:
+ Top.294 := Set
+ Top.293 := Set
+Normalized constraints:
+  *)
 </span></dd>
 </dl>
 </div>
@@ -3074,6 +3130,13 @@ parameter:</p>
 <dt><span></span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-var">prod</span><span> </span><span class="rocqdoc-var">True</span><span>.</span><span>
 </span></dt><dd><span>prod True
      : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">prod.u1</span><span>}</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{max(</span><span class="ansi-fg-yellow ansi-bold">Set</span><span>,</span><span class="ansi-fg-yellow ansi-bold">prod.u1</span><span>)}
+(* {α123}; {Top.295} |= 
+Collapsed sorts:
+ α123 := Type
+Minimized universes:
+ Top.295 := Set
+Normalized constraints:
+  *)
 </span></dd>
 </dl>
 </div>
