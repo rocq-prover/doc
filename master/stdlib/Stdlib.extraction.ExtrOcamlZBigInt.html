@@ -300,12 +300,14 @@ NB: The extracted code depends on <span class="inlinecode"><span class="id" titl
 
 <br/>
 <span class="id" title="keyword">Extract</span> <span class="id" title="keyword">Inductive</span> <a class="idref" href="../corelib/Corelib.Numbers.BinNums.html#positive"><span class="id" title="inductive">positive</span></a> =&gt; "Big_int_Z.big_int"<br/>
-&nbsp;[ "(fun x -&gt; Big_int_Z.succ_big_int (Big_int_Z.mult_int_big_int 2 x))"<br/>
-&nbsp;&nbsp;&nbsp;"Big_int_Z.mult_int_big_int 2" "Big_int_Z.unit_big_int" ]<br/>
+&nbsp;[ "(fun p -&gt; Big_int_Z.succ_big_int (Big_int_Z.shift_left_big_int p 1))"<br/>
+&nbsp;&nbsp;&nbsp;"(fun p -&gt; Big_int_Z.shift_left_big_int p 1)" "Big_int_Z.unit_big_int" ]<br/>
 &nbsp;"(fun f2p1 f2p f1 p -&gt;
   if Big_int_Z.le_big_int p Big_int_Z.unit_big_int then f1 () else
-  let (q,r) = Big_int_Z.quomod_big_int p (Big_int_Z.big_int_of_int 2) in
-  if Big_int_Z.eq_big_int r Big_int_Z.zero_big_int then f2p q else f2p1 q)".<br/>
+  let q = Big_int_Z.shift_right_big_int p 1 in
+  if Big_int_Z.eq_big_int (Big_int_Z.and_big_int p Big_int_Z.unit_big_int)
+       Big_int_Z.unit_big_int
+  then f2p1 q else f2p q)".<br/>
 
 <br/>
 <span class="id" title="keyword">Extract</span> <span class="id" title="keyword">Inductive</span> <a class="idref" href="../corelib/Corelib.Numbers.BinNums.html#Z"><span class="id" title="inductive">Z</span></a> =&gt; "Big_int_Z.big_int"<br/>
