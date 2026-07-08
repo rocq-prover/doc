@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ltac &mdash; The Rocq Prover 9.3+alpha documentation</title>
+  <title>Ltac &mdash; The Rocq Prover 9.4+alpha documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/ansi.css?v=df714dbc" />
@@ -18,7 +18,7 @@
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=86d5dac2"></script>
+      <script src="../_static/documentation_options.js?v=f70e70a8"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../_static/notations.js?v=7e0edea7"></script>
@@ -4448,38 +4448,40 @@ printed without entries faster than the cutoff (in seconds).</p>
 </span></dt><dd><span>No more goals.
 </span></dd>
 <dt><span></span><span class="rocqdoc-keyword">Show</span><span> </span><span class="rocqdoc-keyword">Ltac</span><span> </span><span class="rocqdoc-var">Profile</span><span>.</span><span>
-</span></dt><dd><span>total time:      2.188s
+</span></dt><dd><span>total time:      1.188s
 
  tactic                                      local  total   calls       max
 ───────────────────────────────────────────┴──────┴──────┴───────┴─────────┘
-─tac --------------------------------------   0.1% 100.0%       1    2.188s
-─&lt;Corelib.Init.Tauto.with_uniform_flags&gt; --   0.0%  97.9%      26    0.167s
-─&lt;Corelib.Init.Tauto.tauto_gen&gt; -----------   0.0%  97.8%      26    0.167s
-─&lt;Corelib.Init.Tauto.tauto_intuitionistic&gt;    0.0%  97.8%      26    0.167s
-─t_tauto_intuit ---------------------------   0.1%  97.7%      26    0.167s
-─&lt;Corelib.Init.Tauto.simplif&gt; -------------  66.0%  94.4%      26    0.164s
-─&lt;Corelib.Init.Tauto.is_conj&gt; -------------  21.2%  21.2%   28756    0.032s
+─tac --------------------------------------   0.1% 100.0%       1    1.188s
+─&lt;Corelib.Init.Tauto.with_uniform_flags&gt; --   0.0%  97.3%      26    0.105s
+─&lt;Corelib.Init.Tauto.tauto_gen&gt; -----------   0.0%  97.3%      26    0.105s
+─&lt;Corelib.Init.Tauto.tauto_intuitionistic&gt;    0.1%  97.2%      26    0.105s
+─t_tauto_intuit ---------------------------   0.1%  97.1%      26    0.105s
+─&lt;Corelib.Init.Tauto.simplif&gt; -------------  60.1%  93.9%      26    0.103s
+─&lt;Corelib.Init.Tauto.is_conj&gt; -------------  26.8%  26.8%   28756    0.053s
 ─elim id ----------------------------------   3.7%   3.7%     650    0.000s
-─&lt;Corelib.Init.Tauto.axioms&gt; --------------   2.4%   3.3%       0    0.003s
+─&lt;Corelib.Init.Tauto.axioms&gt; --------------   2.2%   3.2%       0    0.002s
+─lia --------------------------------------   0.2%   2.4%      28    0.013s
 
- tactic                                      local  total   calls       max
-───────────────────────────────────────────┴──────┴──────┴───────┴─────────┘
-─tac --------------------------------------   0.1% 100.0%       1    2.188s
-└&lt;Corelib.Init.Tauto.with_uniform_flags&gt; --   0.0%  97.9%      26    0.167s
-└&lt;Corelib.Init.Tauto.tauto_gen&gt; -----------   0.0%  97.8%      26    0.167s
-└&lt;Corelib.Init.Tauto.tauto_intuitionistic&gt;    0.0%  97.8%      26    0.167s
-└t_tauto_intuit ---------------------------   0.1%  97.7%      26    0.167s
- ├─&lt;Corelib.Init.Tauto.simplif&gt; -----------  66.0%  94.4%      26    0.164s
- │ ├─&lt;Corelib.Init.Tauto.is_conj&gt; ---------  21.2%  21.2%   28756    0.032s
- │ └─elim id ------------------------------   3.7%   3.7%     650    0.000s
- └─&lt;Corelib.Init.Tauto.axioms&gt; ------------   2.4%   3.3%       0    0.003s
+ tactic                                        local  total   calls       max
+─────────────────────────────────────────────┴──────┴──────┴───────┴─────────┘
+─tac ----------------------------------------   0.1% 100.0%       1    1.188s
+ ├─&lt;Corelib.Init.Tauto.with_uniform_flags&gt; --   0.0%  97.3%      26    0.105s
+ │└&lt;Corelib.Init.Tauto.tauto_gen&gt; -----------   0.0%  97.3%      26    0.105s
+ │└&lt;Corelib.Init.Tauto.tauto_intuitionistic&gt;    0.1%  97.2%      26    0.105s
+ │└t_tauto_intuit ---------------------------   0.1%  97.1%      26    0.105s
+ │ ├─&lt;Corelib.Init.Tauto.simplif&gt; -----------  60.1%  93.9%      26    0.103s
+ │ │ ├─&lt;Corelib.Init.Tauto.is_conj&gt; ---------  26.8%  26.8%   28756    0.053s
+ │ │ └─elim id ------------------------------   3.7%   3.7%     650    0.000s
+ │ └─&lt;Corelib.Init.Tauto.axioms&gt; ------------   2.2%   3.2%       0    0.002s
+ └─lia --------------------------------------   0.2%   2.4%      28    0.013s
 </span></dd>
 <dt><span></span><span class="rocqdoc-keyword">Show</span><span> </span><span class="rocqdoc-keyword">Ltac</span><span> </span><span class="rocqdoc-var">Profile</span><span> &quot;lia&quot;.</span><span>
-</span></dt><dd><span>total time:      2.188s
+</span></dt><dd><span>total time:      1.188s
 
  tactic  local  total   calls       max
 ───────┴──────┴──────┴───────┴─────────┘
-
+─lia --   0.2%   2.4%      28    0.013s
 
  tactic  local  total   calls       max
 ───────┴──────┴──────┴───────┴─────────┘
@@ -4589,7 +4591,7 @@ some background.</p>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Other versions</span>
-      v: 9.3+alpha
+      v: 9.4+alpha
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
