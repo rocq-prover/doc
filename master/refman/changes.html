@@ -3266,7 +3266,7 @@ by Hugo Herbelin).</p></li>
 <li><p><strong>Changed:</strong>
 The syntax <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">Derive</span></span></span> <span><span><span class="pre">x</span></span></span> <span><span><span class="pre">SuchThat</span></span></span> <span><span><span class="pre">type</span></span></span> <span><span><span class="pre">As</span></span></span> <span><span><span class="pre">name</span></span></span></span></code> is deprecated and replaced by
 <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">Derive</span></span></span> <span><span><span class="pre">x</span></span></span> <span><span><span class="pre">in</span></span></span> <span><span><span class="pre">type</span></span></span> <span><span><span class="pre">as</span></span></span> <span><span><span class="pre">name</span></span></span></span></code> which itself is generalized into
-<code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">Derive</span></span></span> <span><span><span class="pre">open</span></span></span><span><span><span class="pre">_</span></span></span><span><span><span class="pre">binders</span></span></span> <span><span><span class="pre">in</span></span></span> <span><span><span class="pre">type</span></span></span> <span><span><span class="pre">as</span></span></span> <span><span><span class="pre">name</span></span></span></span></code>, so that several names,
+<code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">Derive</span></span></span> <span><span><span class="pre">open_binders</span></span></span> <span><span><span class="pre">in</span></span></span> <span><span><span class="pre">type</span></span></span> <span><span><span class="pre">as</span></span></span> <span><span><span class="pre">name</span></span></span></span></code>, so that several names,
 and possibly types to these names, can be given
 (<a class="reference external" href="https://github.com/rocq-prover/rocq/pull/19295">#19295</a>,
 by Hugo Herbelin).</p></li>
@@ -7749,7 +7749,7 @@ More extraction definitions for division and comparison of Z and N
 by Li-yao Xia).</p></li>
 <li><p><strong>Fixed:</strong>
 Type <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">int</span></span></span></span></code> in files <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">Number.v</span></span></span></span></code>, <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">Decimal.v</span></span></span></span></code> and
-<code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">Hexadecimal.v</span></span></span></span></code> have been renamed to <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">signed</span></span></span><span><span><span class="pre">_</span></span></span><span><span><span class="pre">int</span></span></span></span></code> (together
+<code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">Hexadecimal.v</span></span></span></span></code> have been renamed to <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">signed_int</span></span></span></span></code> (together
 with a compatibility alias <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">int</span></span></span></span></code>) so that they can be used in
 extraction without conflicting with OCaml's <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">int</span></span></span></span></code> type
 (<a class="reference external" href="https://github.com/rocq-prover/rocq/pull/13460">#13460</a>,
@@ -8256,7 +8256,7 @@ fixes <a class="reference external" href="https://github.com/rocq-prover/rocq/is
 by Gaëtan Gilbert).</p></li>
 <li><p><strong>Changed:</strong>
 In extraction to OCaml, empty types in <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">Type</span></span></span></span></code> (such as
-<code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">Empty</span></span></span><span><span><span class="pre">_</span></span></span><span><span><span class="pre">set</span></span></span></span></code>) are now extracted to an abstract type (empty by
+<code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">Empty_set</span></span></span></span></code>) are now extracted to an abstract type (empty by
 construction) rather than to the OCaml's <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">unit</span></span></span></span></code> type
 (<a class="reference external" href="https://github.com/rocq-prover/rocq/pull/14802">#14802</a>,
 fixes a remark at <a class="reference external" href="https://github.com/rocq-prover/rocq/issues/14801">#14801</a>,

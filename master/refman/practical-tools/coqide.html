@@ -1831,7 +1831,7 @@ prompt or not processing a tactic or command).</p>
 <p>Note that <a class="reference internal" href="../language/core/basic.html#term-sentence"><span class="xref std std-term">sentences</span></a> containing a single built-in tactic
 are not Ltac constructs.  A breakpoint on <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">intros.</span></span></span></span></code>, for example, is
 ignored, while breakpoints on either tactic in <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">intros;</span></span></span> <span><span><span class="pre">idtac.</span></span></span></span></code> work.
-A breakpoint on, say, <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">my</span></span></span><span><span><span class="pre">_</span></span></span><span><span><span class="pre">ltac</span></span></span><span><span><span class="pre">_</span></span></span><span><span><span class="pre">tactic.</span></span></span></span></code> also works.</p>
+A breakpoint on, say, <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">my_ltac_tactic.</span></span></span></span></code> also works.</p>
 <p>Breakpoints on Ltac <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../proof-engine/ltac.html#grammar-token-value_tactic"><span class="hole"><span class="pre">value_tactic</span></span></a></span></code>s, which compute values without changing
 the proof context, such as <a class="reference internal" href="../proofs/writing-proofs/equality.html#rocq:tacn.eval" title="eval"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">eval</span></code></a>, are ignored.</p>
 <p>You must set at least one breakpoint in order to enter the debugger.</p>
@@ -1886,7 +1886,7 @@ stack frame.  Stack frames normally show the name of tactic being executed, the 
 number and the last component of the filename without the <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">.v</span></span></span></span></code> suffix.
 The directory part of the module name is shown when the frame is not in
 the toplevel script file.  For example,
-<code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">make</span></span></span><span><span><span class="pre">_</span></span></span><span><span><span class="pre">rewriter:387,</span></span></span> <span><span><span class="pre">AllTactics</span></span></span> <span><span><span class="pre">(Rewriter.Rewriter)</span></span></span></span></code> refers to the file
+<code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">make_rewriter:387,</span></span></span> <span><span><span class="pre">AllTactics</span></span></span> <span><span><span class="pre">(Rewriter.Rewriter)</span></span></span></span></code> refers to the file
 with the module name <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">Rewriter.Rewriter.AllTactics</span></span></span></span></code>.</p>
 <p>Note: A few stack frames aren't yet displayed in this described format (e.g. those starting
 with <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">???</span></span></span></span></code>) and may be extraneous. In some cases, the tactic name is not shown.</p>
