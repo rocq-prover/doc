@@ -308,6 +308,32 @@
 &nbsp;&nbsp;| <span class="id" title="var">true</span> =&gt; <span class="id" title="var">true</span><br/>
 &nbsp;&nbsp;| <span class="id" title="var">false</span> =&gt; <span class="id" title="var">gt</span> <span class="id" title="var">x</span> <span class="id" title="var">y</span><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">min</span></span> <span class="inlinecode"><span class="id" title="var">x</span></span> <span class="inlinecode"><span class="id" title="var">y</span></span> returns the smaller of <span class="inlinecode"><span class="id" title="var">x</span></span> and <span class="inlinecode"><span class="id" title="var">y</span></span>. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">min</span> (<span class="id" title="var">x</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">y</span> : <span class="id" title="var">int</span>) : <span class="id" title="var">int</span> :=<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">le</span> <span class="id" title="var">x</span> <span class="id" title="var">y</span> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;| <span class="id" title="var">true</span> =&gt; <span class="id" title="var">x</span><br/>
+&nbsp;&nbsp;| <span class="id" title="var">false</span> =&gt; <span class="id" title="var">y</span><br/>
+&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<span class="inlinecode"><span class="id" title="var">max</span></span> <span class="inlinecode"><span class="id" title="var">x</span></span> <span class="inlinecode"><span class="id" title="var">y</span></span> returns the larger of <span class="inlinecode"><span class="id" title="var">x</span></span> and <span class="inlinecode"><span class="id" title="var">y</span></span>. 
+</div>
+<div class="code">
+<span class="id" title="keyword">Ltac2</span> <span class="id" title="var">max</span> (<span class="id" title="var">x</span> : <span class="id" title="var">int</span>) (<span class="id" title="var">y</span> : <span class="id" title="var">int</span>) : <span class="id" title="var">int</span> :=<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">match</span> <span class="id" title="var">le</span> <span class="id" title="var">x</span> <span class="id" title="var">y</span> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;| <span class="id" title="var">true</span> =&gt; <span class="id" title="var">y</span><br/>
+&nbsp;&nbsp;| <span class="id" title="var">false</span> =&gt; <span class="id" title="var">x</span><br/>
+&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 </div>
 
           <!-- ************************
