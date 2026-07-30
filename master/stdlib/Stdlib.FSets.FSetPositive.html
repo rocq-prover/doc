@@ -291,6 +291,9 @@ Efficient implementation of <span class="inlinecode"><span class="id" title="var
 #[<span class="id" title="var">local</span>] <span class="id" title="keyword">Unset</span> <span class="id" title="var">Elimination</span> <span class="id" title="var">Schemes</span>.<br/>
 
 <br/>
+<span class="id" title="keyword">Create HintDb</span> <span class="id" title="var">ct</span>.<br/>
+
+<br/>
 <span class="id" title="keyword">Module</span> <a id="PositiveSet" class="idref" href="#PositiveSet"><span class="id" title="module">PositiveSet</span></a> &lt;: <a class="idref" href="Stdlib.FSets.FSetInterface.html#S"><span class="id" title="module">S</span></a> <span class="id" title="keyword">with</span> <span class="id" title="keyword">Module</span> <span class="id" title="var">E</span>:=<a class="idref" href="Stdlib.Structures.OrderedTypeEx.html#PositiveOrderedTypeBits"><span class="id" title="module">PositiveOrderedTypeBits</span></a>.<br/>
 
 <br/>
@@ -618,7 +621,6 @@ lexicographic product, defined using a notation to keep things lazy
 <div class="code">
 
 <br/>
-&nbsp;&nbsp;<span class="id" title="keyword">Notation</span> <a id="PositiveSet.lex" class="idref" href="#PositiveSet.lex"><span class="id" title="abbreviation">lex</span></a> <span class="id" title="var">u</span> <span class="id" title="var">v</span> := <span class="id" title="keyword">match</span> <span class="id" title="var">u</span> <span class="id" title="keyword">with</span> <a class="idref" href="../corelib/Corelib.Init.Datatypes.html#Eq"><span class="id" title="constructor">Eq</span></a> =&gt; <span class="id" title="var">v</span> | <a class="idref" href="../corelib/Corelib.Init.Datatypes.html#Lt"><span class="id" title="constructor">Lt</span></a> =&gt; <a class="idref" href="../corelib/Corelib.Init.Datatypes.html#Lt"><span class="id" title="constructor">Lt</span></a> | <a class="idref" href="../corelib/Corelib.Init.Datatypes.html#Gt"><span class="id" title="constructor">Gt</span></a> =&gt; <a class="idref" href="../corelib/Corelib.Init.Datatypes.html#Gt"><span class="id" title="constructor">Gt</span></a> <span class="id" title="keyword">end</span>.<br/>
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a id="PositiveSet.compare_bool" class="idref" href="#PositiveSet.compare_bool"><span class="id" title="definition">compare_bool</span></a> <a id="a:117" class="idref" href="#a:117"><span class="id" title="binder">a</span></a> <a id="b:118" class="idref" href="#b:118"><span class="id" title="binder">b</span></a> :=<br/>
@@ -1128,7 +1130,6 @@ Specification of <span class="inlinecode"><span class="id" title="var">elements<
 <div class="code">
 
 <br/>
-&nbsp;&nbsp;<span class="id" title="keyword">Notation</span> <a id="PositiveSet.InL" class="idref" href="#PositiveSet.InL"><span class="id" title="abbreviation">InL</span></a> := (<a class="idref" href="Stdlib.Sorting.SetoidList.html#InA"><span class="id" title="inductive">InA</span></a> <a class="idref" href="Stdlib.FSets.FSetPositive.html#PositiveSet.eq"><span class="id" title="definition">E.eq</span></a>).<br/>
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a id="PositiveSet.xelements_spec" class="idref" href="#PositiveSet.xelements_spec"><span class="id" title="lemma">xelements_spec</span></a>: <span class="id" title="keyword">forall</span> <a id="s:367" class="idref" href="#s:367"><span class="id" title="binder">s</span></a> <a id="j:368" class="idref" href="#j:368"><span class="id" title="binder">j</span></a> <a id="acc:369" class="idref" href="#acc:369"><span class="id" title="binder">acc</span></a> <a id="y:370" class="idref" href="#y:370"><span class="id" title="binder">y</span></a>,<br/>
