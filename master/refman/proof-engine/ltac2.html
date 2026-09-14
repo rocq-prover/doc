@@ -1749,7 +1749,7 @@ displaying information to the user.</p>
 <h4>Fatal errors<a class="headerlink" href="#fatal-errors" title="Link to this heading"></a></h4>
 <p>The Ltac2 language provides non-backtracking exceptions, also known as <em>panics</em>,
 through the following primitive in module <code class="docutils literal notranslate"><span class="pre">Control</span></code>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>val throw : exn -&gt; &#39;a
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>val throw : exn -&gt; 'a
 </pre></div>
 </div>
 <p>Unlike backtracking exceptions from the next section, this kind of error
@@ -1778,11 +1778,11 @@ destroy all backtrack and return values.</p>
 </div>
 <p>where <code class="docutils literal notranslate"><span class="pre">ConsStream</span></code> is a backtracking success with a value of type <code class="docutils literal notranslate"><span class="pre">'a</span></code> as its head and a backtracking handler parameterized by an exception. When sequenced with additional backtracking computations, a backtracking success may lead to a failure with an exception that will be passed to the handler.</p>
 <p>In practice, the backtracking aspects of Ltac2's computations can be accessed through the following primitives, defined in the <code class="docutils literal notranslate"><span class="pre">Control</span></code> module:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Ltac2 Type &#39;a result := [ Val (&#39;a) | Err (exn) ].
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Ltac2 Type 'a result := [ Val ('a) | Err (exn) ].
 
-val zero : exn -&gt; &#39;a
-val plus : (unit -&gt; &#39;a) -&gt; (exn -&gt; &#39;a) -&gt; &#39;a
-val case : (unit -&gt; &#39;a) -&gt; (&#39;a * (exn -&gt; &#39;a)) result
+val zero : exn -&gt; 'a
+val plus : (unit -&gt; 'a) -&gt; (exn -&gt; 'a) -&gt; 'a
+val case : (unit -&gt; 'a) -&gt; ('a * (exn -&gt; 'a)) result
 </pre></div>
 </div>
 <p>Informally, the primitive <code class="docutils literal notranslate"><span class="pre">zero</span> <span class="pre">e</span></code> ends the current computation and returns to the last backtracking point with exception <code class="docutils literal notranslate"><span class="pre">e</span></code>. In the stream model, it corresponds to the empty stream.
@@ -2002,7 +2002,7 @@ expanded by the Rocq binders from the term.</p>
 <p class="admonition-title">Example</p>
 <p>The following Ltac2 expression will <strong>not</strong> type check:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>`constr:(fun x : nat =&gt; ltac2:(exact $x))`
-`(* Error: Unbound variable &#39;x&#39; *)`
+`(* Error: Unbound variable 'x' *)`
 </pre></div>
 </div>
 </div>

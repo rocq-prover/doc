@@ -2262,13 +2262,13 @@ such as <code class="docutils literal notranslate"><span class="pre">1+2*3</span
 <code class="docutils literal notranslate"><span class="pre">ltac_expr</span></code>, designated as &quot;5&quot;, &quot;4&quot; and &quot;3&quot;.  Level 3 is right-associative,
 which applies to the productions within it, such as the <code class="docutils literal notranslate"><span class="pre">try</span></code> construct:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Entry ltac_expr is
-[ &quot;5&quot; RIGHTA
+[ "5" RIGHTA
   [ ]
-| &quot;4&quot; LEFTA
-  [ SELF; &quot;;&quot;; SELF
-  | SELF; &quot;;&quot;; tactic_then_locality; for_each_goal; &quot;]&quot; ]
-| &quot;3&quot; RIGHTA
-  [ IDENT &quot;try&quot;; SELF
+| "4" LEFTA
+  [ SELF; ";"; SELF
+  | SELF; ";"; tactic_then_locality; for_each_goal; "]" ]
+| "3" RIGHTA
+  [ IDENT "try"; SELF
   :
 </pre></div>
 </div>
@@ -2291,8 +2291,8 @@ explains <code class="docutils literal notranslate"><span class="pre">SELF</span
 which are dynamically added to the grammar at run time.
 For example, in the definition for <code class="docutils literal notranslate"><span class="pre">term</span></code>, the production on the second line shown
 here is defined by a <a class="reference internal" href="#rocq:cmd.Reserved-Notation" title="Reserved Notation"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Reserved</span> <span class="pre">Notation</span></code></a> command in <code class="docutils literal notranslate"><span class="pre">Notations.v</span></code>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>| &quot;50&quot; LEFTA
-  [ SELF; &quot;||&quot;; NEXT
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>| "50" LEFTA
+  [ SELF; "||"; NEXT
 </pre></div>
 </div>
 <p>Similarly, <code class="docutils literal notranslate"><span class="pre">Print</span> <span class="pre">Grammar</span> <span class="pre">tactic</span></code> includes <a class="reference internal" href="#rocq:cmd.Tactic-Notation" title="Tactic Notation"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Tactic</span> <span class="pre">Notation</span></code></a>s, such as <a class="reference internal" href="../proofs/automatic-tactics/logic.html#rocq:tacn.dintuition" title="dintuition"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">dintuition</span></code></a>.</p>

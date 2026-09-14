@@ -2115,7 +2115,7 @@ function:</p>
 </pre></div>
 </div>
 <p>and would have type:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>dp : &#39;a -&gt; &#39;a -&gt; (unit -&gt; &#39;a -&gt; &#39;b) -&gt; (&#39;b,&#39;b) prod
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>dp : 'a -&gt; 'a -&gt; (unit -&gt; 'a -&gt; 'b) -&gt; ('b,'b) prod
 </pre></div>
 </div>
 <p>which is not its original type, but a restriction.</p>
@@ -2231,11 +2231,11 @@ let rec eucl_dev n m =
 mandatory. It only enhances readability of extracted code.
 You can then copy-paste the output to a file <code class="docutils literal notranslate"><span class="pre">euclid.ml</span></code> or let
 Rocq do it for you with the following command:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Extraction &quot;euclid&quot; eucl_dev.
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Extraction "euclid" eucl_dev.
 </pre></div>
 </div>
 <p>Let us play the resulting program (in an OCaml toplevel):</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>#use &quot;euclid.ml&quot;;;
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>#use "euclid.ml";;
 type nat = O | S of nat
 type sumbool = Left | Right
 val sub : nat -&gt; nat -&gt; nat = &lt;fun&gt;

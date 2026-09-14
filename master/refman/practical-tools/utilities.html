@@ -1396,7 +1396,7 @@ These commands may be helpful:</p>
 </ul>
 <p>For example, this command shows the installed packages with the package name,
 its version and short description:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ opam list &quot;rocq-*&quot; --installed
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ opam list "rocq-*" --installed
 rocq-bignums               9.0.0          Bignums, the Rocq library of arbitrary large numbers
 </pre></div>
 </div>
@@ -1460,9 +1460,9 @@ may be other Rocq theory packages or OCaml packages, including Rocq plugins.</p>
 <p>Theory source files and compiled artifacts are installed under a <code class="docutils literal notranslate"><span class="pre">rocq.d</span></code>
 subdirectory of the package directory.  For example, with a Findlib root
 <code class="docutils literal notranslate"><span class="pre">$LIB</span></code>, a package directory <code class="docutils literal notranslate"><span class="pre">$LIB/foo</span></code>, and this metadata:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>directory = &quot;.&quot;
-rocqpath = &quot;Foo&quot;
-requires = &quot;bar foo.plugin&quot;
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>directory = "."
+rocqpath = "Foo"
+requires = "bar foo.plugin"
 </pre></div>
 </div>
 <p>Rocq theory files for the package are installed below
@@ -1742,11 +1742,11 @@ line.</p></li>
 </ul>
 <p>A simple example of a <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code> file follows:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>-R theories/ MyCode
--arg &quot;-w all&quot;
-# include everything under &quot;theories&quot;, e.g. foo.v and bar.v
+-arg "-w all"
+# include everything under "theories", e.g. foo.v and bar.v
 theories
 -I src/
-# include everything under &quot;src&quot;, e.g. baz.mlg bazaux.ml and qux_plugin.mlpack
+# include everything under "src", e.g. baz.mlg bazaux.ml and qux_plugin.mlpack
 src
 -generate-meta-for-package my-package
 </pre></div>
@@ -1815,7 +1815,7 @@ Rocq.</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span># KNOWNTARGETS will not be passed along to RocqMakefile
 KNOWNTARGETS := RocqMakefile extra-stuff extra-stuff2
 # KNOWNFILES will not get implicit targets from the final rule, and so
-# depending on them won&#39;t invoke the submake
+# depending on them won't invoke the submake
 # Warning: These files get declared as PHONY, so any targets depending
 # on them always get rebuilt
 KNOWNFILES   := Makefile _RocqProject
@@ -1996,7 +1996,7 @@ By default a combination of <code class="docutils literal notranslate"><span cla
 <div class="admonition note">
 <p class="admonition-title">Example</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>pre-all::
-        echo &quot;This line is print before making the all target&quot;
+        echo "This line is print before making the all target"
 install-extra::
         cp ThisExtraFile /there/it/goes
 </pre></div>
@@ -2349,12 +2349,12 @@ installing the extra <code class="docutils literal notranslate"><span class="pre
 <p class="admonition-title">Note</p>
 <p>As an alternative to modifying <code class="docutils literal notranslate"><span class="pre">_RocqProject</span></code>, one can set an
 environment variable when calling <code class="docutils literal notranslate"><span class="pre">make</span></code>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>COQEXTRAFLAGS=&quot;-native-compiler yes&quot; make
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>COQEXTRAFLAGS="-native-compiler yes" make
 </pre></div>
 </div>
 <p>This can be useful when files cannot be modified, for instance when
 installing via OPAM a package built with <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">makefile</span></code>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>COQEXTRAFLAGS=&quot;-native-compiler yes&quot; opam install rocq-package
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>COQEXTRAFLAGS="-native-compiler yes" opam install rocq-package
 </pre></div>
 </div>
 </div>
@@ -2464,9 +2464,9 @@ syntax for <code class="docutils literal notranslate"><span class="pre">Declare<
 <div class="highlight-scheme notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">rocq</span><span class="o">.</span><span class="nv">theory</span>
 <span class="w"> </span><span class="p">(</span><span class="nf">name</span><span class="w"> </span><span class="nv">Equations</span><span class="p">)</span><span class="w"> </span><span class="c1">; -R flag</span>
 <span class="w"> </span><span class="p">(</span><span class="nf">package</span><span class="w"> </span><span class="nv">equations</span><span class="p">)</span>
-<span class="w"> </span><span class="p">(</span><span class="nf">synopsis</span><span class="w"> </span><span class="s">&quot;Equations Plugin&quot;</span><span class="p">)</span>
+<span class="w"> </span><span class="p">(</span><span class="nf">synopsis</span><span class="w"> </span><span class="s">"Equations Plugin"</span><span class="p">)</span>
 <span class="w"> </span><span class="p">(</span><span class="nf">libraries</span><span class="w"> </span><span class="nv">rocq-runtime</span><span class="o">.</span><span class="nv">plugins</span><span class="o">.</span><span class="nv">extraction</span><span class="w"> </span><span class="nv">equations</span><span class="o">.</span><span class="nv">plugin</span><span class="p">)</span>
-<span class="w"> </span><span class="p">(</span><span class="nf">modules</span><span class="w"> </span><span class="nv">:standard</span><span class="w"> </span><span class="err">\</span><span class="w"> </span><span class="nv">IdDec</span><span class="w"> </span><span class="nv">NoCycle</span><span class="p">))</span><span class="w"> </span><span class="c1">; exclude some modules that don&#39;t build</span>
+<span class="w"> </span><span class="p">(</span><span class="nf">modules</span><span class="w"> </span><span class="nv">:standard</span><span class="w"> </span><span class="err">\</span><span class="w"> </span><span class="nv">IdDec</span><span class="w"> </span><span class="nv">NoCycle</span><span class="p">))</span><span class="w"> </span><span class="c1">; exclude some modules that don't build</span>
 
 <span class="p">(</span><span class="nf">include_subdirs</span><span class="w"> </span><span class="nv">qualified</span><span class="p">)</span>
 </pre></div>
