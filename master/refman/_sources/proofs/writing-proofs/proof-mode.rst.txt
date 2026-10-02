@@ -243,6 +243,16 @@ When the proof is completed, you can exit proof mode with commands such as
    This command is available in proof mode to give up
    the current proof and declare the initial goal as an axiom.
 
+   .. warn:: A proof was admitted.
+      :name: admitted-proof
+
+      When enabled, this warning is emitted when a proof is admitted with
+      :cmd:`Admitted` or when an obligation is admitted, including by
+      :cmd:`Admit Obligations`.  It is disabled by default and can be enabled with
+      ``Set Warnings "admitted-proof"``.  Treating it as an error with
+      ``Set Warnings "+admitted-proof"`` prevents the proof from being
+      admitted.
+
 .. cmd:: Abort {? All }
 
    Aborts the current proof.  If the current proof is a nested proof, the previous

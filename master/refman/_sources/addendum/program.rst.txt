@@ -319,7 +319,8 @@ optional tactic is replaced by the default one if not specified.
 
 .. cmd:: Admit Obligations {? of @ident }
 
-   Admits all obligations (of :token:`ident`).
+   Admits all obligations (of :token:`ident`).  Each admitted obligation emits
+   the :warn:`admitted-proof` warning when it is enabled.
 
    .. note:: Does not work with structurally recursive programs.
 
