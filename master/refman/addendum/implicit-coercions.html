@@ -1433,7 +1433,7 @@ is the number of parameters of <code class="docutils literal notranslate"><span 
 </ul>
 </div></blockquote>
 <p>We then write <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">f</span></span> <span class="operator"><span class="pre">:</span></span> <span class="name"><span class="pre">C</span></span> <span class="operator"><span class="pre">&gt;-&gt;</span></span> <span class="name"><span class="pre">D</span></span></code>.</p>
-<p id="ambiguous-paths">When you declare a new coercion (e.g. with <a class="reference internal" href="#rocq:cmd.Coercion" title="Coercion"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Coercion</span></code></a>), new coercion
+<p id="ambiguous-paths-ref">When you declare a new coercion (e.g. with <a class="reference internal" href="#rocq:cmd.Coercion" title="Coercion"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Coercion</span></code></a>), new coercion
 paths with the same classes as existing ones are ignored. When activating
 the <code class="docutils literal notranslate"><span class="pre">ambiguous-paths</span></code> warning (off by default), rocq will generate
 a warning when the two paths may be non convertible. When the <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">x₁</span></span><span class="operator"><span class="pre">..</span></span><span class="name"><span class="pre">xₖ</span></span></code> are exactly
@@ -1575,17 +1575,17 @@ Make sure that the target is not a variable.</p>
 </dd></dl>
 
 <dl class="rocq warn">
-<dt class="sig sig-object rocq" id="rocq:warn.‘qualid’-does-not-respect-the-uniform-inheritance-condition">
-<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a> <span><span><span class="pre">does</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">respect</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">uniform</span></span></span> <span><span><span class="pre">inheritance</span></span></span> <span><span><span class="pre">condition.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.‘qualid’-does-not-respect-the-uniform-inheritance-condition" title="Link to this definition"></a></dt>
-<dd><p>The <a class="reference internal" href="#ambiguous-paths"><span class="std std-ref">test for ambiguous coercion paths</span></a>
+<dt class="sig sig-object rocq" id="rocq:warn.uniform-inheritance">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a> <span><span><span class="pre">does</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">respect</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">uniform</span></span></span> <span><span><span class="pre">inheritance</span></span></span> <span><span><span class="pre">condition.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.uniform-inheritance" title="Link to this definition"></a></dt>
+<dd><p>The <a class="reference internal" href="#ambiguous-paths-ref"><span class="std std-ref">test for ambiguous coercion paths</span></a>
 may yield false positives involving the coercion <a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><code class="xref std std-token docutils literal notranslate"><span class="pre">qualid</span></code></a>.
 Use the <a class="reference internal" href="../language/core/basic.html#rocq:attr.warnings" title="warnings"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">warnings</span></code></a> attribute with &quot;-uniform-inheritance&quot; to silence this warning.</p>
 </dd></dl>
 
 <dl class="rocq warn">
-<dt class="sig sig-object rocq" id="rocq:warn.New-coercion-path-...-is-ambiguous-with-existing-...">
-<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">New</span></span></span> <span><span><span class="pre">coercion</span></span></span> <span><span><span class="pre">path</span></span></span> <span><span><span class="pre">...</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">ambiguous</span></span></span> <span><span><span class="pre">with</span></span></span> <span><span><span class="pre">existing</span></span></span> <span><span><span class="pre">...</span></span></span></span></span><a class="headerlink" href="#rocq:warn.New-coercion-path-...-is-ambiguous-with-existing-..." title="Link to this definition"></a></dt>
-<dd><p>The check for <a class="reference internal" href="#ambiguous-paths"><span class="std std-ref">ambiguous paths</span></a> failed.
+<dt class="sig sig-object rocq" id="rocq:warn.ambiguous-paths">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">New</span></span></span> <span><span><span class="pre">coercion</span></span></span> <span><span><span class="pre">path</span></span></span> <span><span><span class="pre">...</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">ambiguous</span></span></span> <span><span><span class="pre">with</span></span></span> <span><span><span class="pre">existing</span></span></span> <span><span><span class="pre">...</span></span></span></span></span><a class="headerlink" href="#rocq:warn.ambiguous-paths" title="Link to this definition"></a></dt>
+<dd><p>The check for <a class="reference internal" href="#ambiguous-paths-ref"><span class="std std-ref">ambiguous paths</span></a> failed.
 The paths for which this check fails are displayed by a warning
 in the form <code class="code Coq docutils literal notranslate"><span class="operator"><span class="pre">[</span></span><span class="name"><span class="pre">f₁</span></span><span class="operator"><span class="pre">;..;</span></span><span class="name"><span class="pre">fₙ</span></span><span class="operator"><span class="pre">]</span></span> <span class="operator"><span class="pre">:</span></span> <span class="name"><span class="pre">C</span></span> <span class="operator"><span class="pre">&gt;-&gt;</span></span> <span class="name"><span class="pre">D</span></span></code>.</p>
 <p>The convertibility checking procedure for coercion paths is complete for
@@ -1593,12 +1593,8 @@ paths consisting of coercions satisfying the <a class="reference internal" href=
 but some coercion paths could be reported as ambiguous even if they are
 convertible with existing ones when they have coercions that don't satisfy
 this condition.</p>
-</dd></dl>
-
-<dl class="rocq warn">
-<dt class="sig sig-object rocq" id="rocq:warn....-is-not-definitionally-an-identity-function">
-<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">...</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">definitionally</span></span></span> <span><span><span class="pre">an</span></span></span> <span><span><span class="pre">identity</span></span></span> <span><span><span class="pre">function.</span></span></span></span></span><a class="headerlink" href="#rocq:warn....-is-not-definitionally-an-identity-function" title="Link to this definition"></a></dt>
-<dd><p>If a coercion path has the same source and target class, that is said to be
+<p>This warning is disabled by default due to the cost of checking for ambiguity.</p>
+<p>If a coercion path has the same source and target class, that is said to be
 circular. When a new circular coercion path is not convertible with the
 identity function, it will be reported as ambiguous.</p>
 </dd></dl>

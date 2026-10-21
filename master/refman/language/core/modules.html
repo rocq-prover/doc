@@ -1688,8 +1688,8 @@ B.T or B.C?
 </div>
 </div>
 <dl class="rocq warn">
-<dt class="sig sig-object rocq" id="rocq:warn.Cannot-import-local-constant,-it-will-be-ignored">
-<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Cannot</span></span></span> <span><span><span class="pre">import</span></span></span> <span><span><span class="pre">local</span></span></span> <span><span><span class="pre">constant,</span></span></span> <span><span><span class="pre">it</span></span></span> <span><span><span class="pre">will</span></span></span> <span><span><span class="pre">be</span></span></span> <span><span><span class="pre">ignored.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.Cannot-import-local-constant,-it-will-be-ignored" title="Link to this definition"></a></dt>
+<dt class="sig sig-object rocq" id="rocq:warn.not-importable">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Cannot</span></span></span> <span><span><span class="pre">import</span></span></span> <span><span><span class="pre">local</span></span></span> <span><span><span class="pre">constant,</span></span></span> <span><span><span class="pre">it</span></span></span> <span><span><span class="pre">will</span></span></span> <span><span><span class="pre">be</span></span></span> <span><span><span class="pre">ignored.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.not-importable" title="Link to this definition"></a></dt>
 <dd><p>This warning is printed when a name in the list of names to
 import was declared as a local constant, and the name is not imported.</p>
 </dd></dl>
@@ -1726,9 +1726,36 @@ is imported, the <code class="docutils literal notranslate"><span class="notatio
 <dd></dd></dl>
 
 <dl class="rocq warn">
-<dt class="sig sig-object rocq" id="rocq:warn.Trying-to-mask-the-absolute-name-‘qualid’!">
-<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Trying</span></span></span> <span><span><span class="pre">to</span></span></span> <span><span><span class="pre">mask</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">absolute</span></span></span> <span><span><span class="pre">name</span></span></span> <a class="reference internal" href="#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a><span><span><span class="pre">!</span></span></span></span></span><a class="headerlink" href="#rocq:warn.Trying-to-mask-the-absolute-name-‘qualid’!" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object rocq" id="rocq:warn.masking-absolute-name">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Trying</span></span></span> <span><span><span class="pre">to</span></span></span> <span><span><span class="pre">mask</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">absolute</span></span></span> <span><span><span class="pre">name</span></span></span> <a class="reference internal" href="#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a><span><span><span class="pre">!</span></span></span></span></span><a class="headerlink" href="#rocq:warn.masking-absolute-name" title="Link to this definition"></a></dt>
+<dd><p>When a short name would shadow an absolute name of another
+object, the meaning of the absolute name is preserved. This
+avoids generating objects which are impossible to refer to.</p>
+<div class="admonition note">
+<p class="admonition-title">Example</p>
+<div class="rocqtop literal-block docutils container">
+<span class="rocqtop-reset"></span><dl>
+<dt><span></span><span class="rocqdoc-keyword">Module</span><span> </span><span class="rocqdoc-var">Corelib</span><span>. </span><span class="rocqdoc-keyword">Module</span><span> </span><span class="rocqdoc-var">Init</span><span>. </span><span class="rocqdoc-keyword">Module</span><span> </span><span class="rocqdoc-var">Datatypes</span><span>.</span><span>
+</span></dt><dd><span>Interactive Module Corelib started
+
+Interactive Module Init started
+
+Interactive Module Datatypes started
+</span></dd>
+<dt><span></span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">nat</span><span> := 0.</span><span>
+</span></dt><dd><span>Toplevel input, characters 0-20:
+&gt; Definition nat := 0.
+&gt; ^^^^^^^^^^^^^^^^^^^^
+</span><span class="ansi-fg-white ansi-bg-yellow ansi-bold">Warning:</span><span> Trying to mask the absolute name &quot;Corelib.Init.Datatypes.nat&quot;!
+[masking-absolute-name,deprecated-since-8.8,deprecated,default]
+nat is defined
+</span></dd>
+</dl>
+</div>
+<p>If we allowed shadowing absolute names, <code class="docutils literal notranslate"><span class="pre">nat</span></code> from the
+corelib would become impossible to name after the above code.</p>
+</div>
+</dd></dl>
 
 </dd></dl>
 
