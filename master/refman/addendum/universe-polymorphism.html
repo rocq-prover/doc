@@ -2998,17 +2998,20 @@ prod_sind is defined
 <span></span><dl>
 <dt><span></span><span class="rocqdoc-keyword">Set Printing Universes</span><span>.</span><span>
 </span></dt><dt><span></span><span class="rocqdoc-keyword">About</span><span> </span><span class="rocqdoc-var">option</span><span>.</span><span>
-</span></dt><dd><span>option : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">option.u0</span><span>}</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{max(</span><span class="ansi-fg-yellow ansi-bold">Set</span><span>,</span><span class="ansi-fg-yellow ansi-bold">option.u0</span><span>)}
+</span></dt><dd><span>option : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">u</span><span>}</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{max(</span><span class="ansi-fg-yellow ansi-bold">Set</span><span>,</span><span class="ansi-fg-yellow ansi-bold">u</span><span>)}
+(* u |  *)
 
-option is template universe polymorphic on option.u0 (cannot be instantiated to Prop)
+option is template universe polymorphic (default instance: {option.u0})
 Arguments </span><span class="ansi-fg-light-green">option</span><span> A%_type_scope
 Expands to: Inductive Top.option
 Declared in toplevel input, characters 8721-8727
 </span></dd>
 <dt><span></span><span class="rocqdoc-keyword">About</span><span> </span><span class="rocqdoc-var">prod</span><span>.</span><span>
-</span></dt><dd><span>prod : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">prod.u0</span><span>}</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">prod.u1</span><span>}</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>&#64;{max(</span><span class="ansi-fg-yellow ansi-bold">prod.u0</span><span>,</span><span class="ansi-fg-yellow ansi-bold">prod.u1</span><span>)}
+</span></dt><dd><span>prod : </span><span class="ansi-fg-yellow ansi-bold">Univ</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">α</span><span> ; </span><span class="ansi-fg-yellow ansi-bold">u</span><span>}</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Univ</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">α</span><span> ; </span><span class="ansi-fg-yellow ansi-bold">u0</span><span>}</span><span> -&gt;</span><span> </span><span class="ansi-fg-yellow ansi-bold">Univ</span><span>&#64;{</span><span class="ansi-fg-yellow ansi-bold">α</span><span> ; max(</span><span class="ansi-fg-yellow ansi-bold">u</span><span>,</span><span class="ansi-fg-yellow ansi-bold">u0</span><span>)}
+(* α ; u u0 |  *)
 
-prod is template universe polymorphic on prod.u1 prod.u0 (can be instantiated to Prop)
+prod is template universe polymorphic
+  (default instance: {Type ; prod.u0 prod.u1})
 Arguments </span><span class="ansi-fg-light-green">prod</span><span> (A B)%_type_scope
 Expands to: Inductive Top.prod
 Declared in toplevel input, characters 8799-8803
