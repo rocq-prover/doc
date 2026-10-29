@@ -112,14 +112,29 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="language/core/inductive.html">Inductive types and recursive functions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="language/core/inductive.html#inductive-types">Inductive types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="language/core/inductive.html#automatic-prop-lowering">Automatic Prop lowering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="language/core/inductive.html#positivity-condition">Positivity Condition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="language/core/inductive.html#eliminators">Eliminators</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="language/core/inductive.html#examples-of-inductive-types-and-eliminators">Examples of inductive types and eliminators</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="language/core/inductive.html#simple-inductive-types">Simple inductive types</a></li>
 <li class="toctree-l4"><a class="reference internal" href="language/core/inductive.html#simple-indexed-inductive-types">Simple indexed inductive types</a></li>
 <li class="toctree-l4"><a class="reference internal" href="language/core/inductive.html#parameterized-inductive-types">Parameterized inductive types</a></li>
 <li class="toctree-l4"><a class="reference internal" href="language/core/inductive.html#mutually-defined-inductive-types">Mutually defined inductive types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="language/core/inductive.html#nested-inductive-types">Nested inductive types</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="language/core/inductive.html#recursive-functions-fix">Recursive functions: fix</a></li>
-<li class="toctree-l3"><a class="reference internal" href="language/core/inductive.html#top-level-recursive-functions">Top-level recursive functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="language/core/inductive.html#writing-recursive-functions-using-fixpoints">Writing Recursive Functions using Fixpoints</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="language/core/inductive.html#top-level-recursive-functions">Top-level recursive functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="language/core/inductive.html#primitive-fix-construction">Primitive fix construction</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="language/core/inductive.html#the-guard-condition">The Guard Condition</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="language/core/inductive.html#minimal-guard-condition">Minimal Guard Condition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="language/core/inductive.html#traversing-subterm-analysis">Traversing Subterm Analysis</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="language/core/inductive.html#theory-of-inductive-definitions">Theory of inductive definitions</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="language/core/inductive.html#types-of-inductive-objects">Types of inductive objects</a></li>
 <li class="toctree-l4"><a class="reference internal" href="language/core/inductive.html#well-formed-inductive-definitions">Well-formed inductive definitions</a></li>
@@ -1079,18 +1094,18 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-9-2">Version 9.2</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id201">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id202">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-9-2-0">Changes in 9.2.0</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-9-1">Version 9.1</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id338">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id339">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-9-1-0">Changes in 9.1.0</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-9-1-1">Changes in 9.1.1</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-9-0">Version 9.0</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id460">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id461">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#porting-to-the-rocq-prover">Porting to The Rocq Prover</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#renaming-advice">Renaming Advice</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#the-rocq-prover-website">The Rocq Prover Website</a></li>
@@ -1099,50 +1114,50 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-8-20">Version 8.20</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id595">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id596">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-20-0">Changes in 8.20.0</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-20-1">Changes in 8.20.1</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-8-19">Version 8.19</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id808">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id809">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-19-0">Changes in 8.19.0</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-19-1">Changes in 8.19.1</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-19-2">Changes in 8.19.2</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-8-18">Version 8.18</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id1015">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id1016">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-18-0">Changes in 8.18.0</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-8-17">Version 8.17</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id1157">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id1158">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-17-0">Changes in 8.17.0</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-17-1">Changes in 8.17.1</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-8-16">Version 8.16</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id1317">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id1318">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-16-0">Changes in 8.16.0</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-16-1">Changes in 8.16.1</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-8-15">Version 8.15</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id1480">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id1481">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-15-0">Changes in 8.15.0</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-15-1">Changes in 8.15.1</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-15-2">Changes in 8.15.2</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-8-14">Version 8.14</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id1708">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id1709">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-14-0">Changes in 8.14.0</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-14-1">Changes in 8.14.1</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-8-13">Version 8.13</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id1904">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id1905">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-13-beta1">Changes in 8.13+beta1</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-13-0">Changes in 8.13.0</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-13-1">Changes in 8.13.1</a></li>
@@ -1150,7 +1165,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-8-12">Version 8.12</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id2068">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id2069">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-12-beta1">Changes in 8.12+beta1</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-12-0">Changes in 8.12.0</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-12-1">Changes in 8.12.1</a></li>
@@ -1158,7 +1173,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-8-11">Version 8.11</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id2374">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id2375">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-11-beta1">Changes in 8.11+beta1</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-11-0">Changes in 8.11.0</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-11-1">Changes in 8.11.1</a></li>
@@ -1166,7 +1181,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-8-10">Version 8.10</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id2512">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id2513">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#other-changes-in-8-10-beta1">Other changes in 8.10+beta1</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-10-beta2">Changes in 8.10+beta2</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-10-beta3">Changes in 8.10+beta3</a></li>
@@ -1176,14 +1191,14 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-8-9">Version 8.9</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id2659">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id2660">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#details-of-changes-in-8-9-beta1">Details of changes in 8.9+beta1</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-8-0">Changes in 8.8.0</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-8-1">Changes in 8.8.1</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-8-8">Version 8.8</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id2661">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id2662">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#details-of-changes-in-8-8-beta1">Details of changes in 8.8+beta1</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#details-of-changes-in-8-8-0">Details of changes in 8.8.0</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#details-of-changes-in-8-8-1">Details of changes in 8.8.1</a></li>
@@ -1191,7 +1206,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-8-7">Version 8.7</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id2662">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id2663">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#potential-compatibility-issues">Potential compatibility issues</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#details-of-changes-in-8-7-beta1">Details of changes in 8.7+beta1</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#details-of-changes-in-8-7-beta2">Details of changes in 8.7+beta2</a></li>
@@ -1201,7 +1216,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-8-6">Version 8.6</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id2663">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id2664">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#potential-sources-of-incompatibilities">Potential sources of incompatibilities</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#details-of-changes-in-8-6beta1">Details of changes in 8.6beta1</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#details-of-changes-in-8-6">Details of changes in 8.6</a></li>
@@ -1209,8 +1224,8 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-8-5">Version 8.5</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id2664">Summary of changes</a></li>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id2665">Potential sources of incompatibilities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id2665">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id2666">Potential sources of incompatibilities</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#details-of-changes-in-8-5beta1">Details of changes in 8.5beta1</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#details-of-changes-in-8-5beta2">Details of changes in 8.5beta2</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#details-of-changes-in-8-5beta3">Details of changes in 8.5beta3</a></li>
@@ -1221,32 +1236,32 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-8-4">Version 8.4</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id2666">Summary of changes</a></li>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id2668">Potential sources of incompatibilities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id2667">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id2669">Potential sources of incompatibilities</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#details-of-changes-in-8-4beta">Details of changes in 8.4beta</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#details-of-changes-in-8-4beta2">Details of changes in 8.4beta2</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#details-of-changes-in-8-4">Details of changes in 8.4</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-8-3">Version 8.3</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id2669">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id2670">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#details-of-changes">Details of changes</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-8-2">Version 8.2</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id2670">Summary of changes</a></li>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id2671">Details of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id2671">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id2672">Details of changes</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-8-1">Version 8.1</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id2672">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id2673">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#details-of-changes-in-8-1beta">Details of changes in 8.1beta</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#details-of-changes-in-8-1gamma">Details of changes in 8.1gamma</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#details-of-changes-in-8-1">Details of changes in 8.1</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-8-0">Version 8.0</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id2673">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id2674">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#details-of-changes-in-8-0beta-old-syntax">Details of changes in 8.0beta old syntax</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#details-of-changes-in-8-0beta-new-syntax">Details of changes in 8.0beta new syntax</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#details-of-changes-in-8-0">Details of changes in 8.0</a></li>
@@ -1503,24 +1518,40 @@ entry point to the manual.</p></li>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="language/core/inductive.html">Inductive types and recursive functions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="language/core/inductive.html#inductive-types">Inductive types</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="language/core/inductive.html#simple-inductive-types">Simple inductive types</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="language/core/inductive.html#automatic-prop-lowering">Automatic Prop lowering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="language/core/inductive.html#automatic-prop-lowering">Automatic Prop lowering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="language/core/inductive.html#positivity-condition">Positivity Condition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="language/core/inductive.html#eliminators">Eliminators</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="language/core/inductive.html#examples-of-inductive-types-and-eliminators">Examples of inductive types and eliminators</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="language/core/inductive.html#simple-inductive-types">Simple inductive types</a></li>
 <li class="toctree-l4"><a class="reference internal" href="language/core/inductive.html#simple-indexed-inductive-types">Simple indexed inductive types</a></li>
-<li class="toctree-l4"><a class="reference internal" href="language/core/inductive.html#parameterized-inductive-types">Parameterized inductive types</a></li>
-<li class="toctree-l4"><a class="reference internal" href="language/core/inductive.html#mutually-defined-inductive-types">Mutually defined inductive types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="language/core/inductive.html#parameterized-inductive-types">Parameterized inductive types</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="language/core/inductive.html#uniform-parameters">Uniform parameters</a></li>
+<li class="toctree-l5"><a class="reference internal" href="language/core/inductive.html#non-uniform-parameters">Non-uniform parameters</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="language/core/inductive.html#recursive-functions-fix">Recursive functions: fix</a></li>
-<li class="toctree-l3"><a class="reference internal" href="language/core/inductive.html#top-level-recursive-functions">Top-level recursive functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="language/core/inductive.html#mutually-defined-inductive-types">Mutually defined inductive types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="language/core/inductive.html#nested-inductive-types">Nested inductive types</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="language/core/inductive.html#writing-recursive-functions-using-fixpoints">Writing Recursive Functions using Fixpoints</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="language/core/inductive.html#top-level-recursive-functions">Top-level recursive functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="language/core/inductive.html#primitive-fix-construction">Primitive fix construction</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="language/core/inductive.html#the-guard-condition">The Guard Condition</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="language/core/inductive.html#minimal-guard-condition">Minimal Guard Condition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="language/core/inductive.html#traversing-subterm-analysis">Traversing Subterm Analysis</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="language/core/inductive.html#theory-of-inductive-definitions">Theory of inductive definitions</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="language/core/inductive.html#types-of-inductive-objects">Types of inductive objects</a></li>
 <li class="toctree-l4"><a class="reference internal" href="language/core/inductive.html#well-formed-inductive-definitions">Well-formed inductive definitions</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="language/core/inductive.html#arity-of-a-given-sort">Arity of a given sort</a></li>
 <li class="toctree-l5"><a class="reference internal" href="language/core/inductive.html#arity">Arity</a></li>
 <li class="toctree-l5"><a class="reference internal" href="language/core/inductive.html#type-of-constructor">Type of constructor</a></li>
-<li class="toctree-l5"><a class="reference internal" href="language/core/inductive.html#positivity-condition">Positivity Condition</a></li>
+<li class="toctree-l5"><a class="reference internal" href="language/core/inductive.html#positivity">Positivity Condition</a></li>
 <li class="toctree-l5"><a class="reference internal" href="language/core/inductive.html#strict-positivity">Strict positivity</a></li>
 <li class="toctree-l5"><a class="reference internal" href="language/core/inductive.html#nested-positivity">Nested Positivity</a></li>
 <li class="toctree-l5"><a class="reference internal" href="language/core/inductive.html#correctness-rules">Correctness rules</a></li>
@@ -1531,7 +1562,7 @@ entry point to the manual.</p></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="language/core/inductive.html#fixpoint-definitions">Fixpoint definitions</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="language/core/inductive.html#id9">Typing rule</a></li>
+<li class="toctree-l5"><a class="reference internal" href="language/core/inductive.html#id15">Typing rule</a></li>
 <li class="toctree-l5"><a class="reference internal" href="language/core/inductive.html#reduction-rule">Reduction rule</a></li>
 </ul>
 </li>
@@ -2595,330 +2626,330 @@ entry point to the manual.</p></li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-9-3">Version 9.3</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#summary-of-changes">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-9-3-0">Changes in 9.3.0</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id53">Kernel</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id84">Specification language, type inference</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id100">Notations</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id103">Tactics</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id134">Ltac2 language</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id148">SSReflect</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id155">Commands and options</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id175">Command-line tools</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id185">Corelib</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id189">Infrastructure and dependencies</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id194">Extraction</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id197">Miscellaneous</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id54">Kernel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id85">Specification language, type inference</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id101">Notations</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id104">Tactics</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id135">Ltac2 language</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id149">SSReflect</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id156">Commands and options</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id176">Command-line tools</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id186">Corelib</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id190">Infrastructure and dependencies</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id195">Extraction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id198">Miscellaneous</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-9-2">Version 9.2</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id201">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id202">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-9-2-0">Changes in 9.2.0</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id213">Kernel</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id224">Specification language, type inference</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id227">Notations</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id234">Tactics</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id259">Ltac2 language</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id284">SSReflect</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id289">Commands and options</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id317">Command-line tools</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id325">Corelib</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id331">Infrastructure and dependencies</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id332">Extraction</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id335">Miscellaneous</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id214">Kernel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id225">Specification language, type inference</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id228">Notations</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id235">Tactics</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id260">Ltac2 language</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id285">SSReflect</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id290">Commands and options</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id318">Command-line tools</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id326">Corelib</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id332">Infrastructure and dependencies</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id333">Extraction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id336">Miscellaneous</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-9-1">Version 9.1</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id338">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id339">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-9-1-0">Changes in 9.1.0</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id351">Kernel</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id364">Specification language, type inference</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id371">Notations</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id374">Tactics</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id381">Ltac language</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id386">Ltac2 language</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id411">SSReflect</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id416">Commands and options</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id429">Command-line tools</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id434">RocqIDE</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id439">Corelib</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id441">Infrastructure and dependencies</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id448">Extraction</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id450">Miscellaneous</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id352">Kernel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id365">Specification language, type inference</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id372">Notations</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id375">Tactics</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id382">Ltac language</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id387">Ltac2 language</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id412">SSReflect</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id417">Commands and options</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id430">Command-line tools</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id435">RocqIDE</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id440">Corelib</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id442">Infrastructure and dependencies</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id449">Extraction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id451">Miscellaneous</a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-9-1-1">Changes in 9.1.1</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id453">Specification language, type inference</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id456">Miscellaneous</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id454">Specification language, type inference</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id457">Miscellaneous</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-9-0">Version 9.0</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id460">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id461">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#porting-to-the-rocq-prover">Porting to The Rocq Prover</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#renaming-advice">Renaming Advice</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#the-rocq-prover-website">The Rocq Prover Website</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-9-0-0">Changes in 9.0.0</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id472">Kernel</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id479">Specification language, type inference</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id498">Notations</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id501">Tactics</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id515">Ltac2 language</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id526">SSReflect</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id530">Commands and options</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id552">Command-line tools</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id558">RocqIDE</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id473">Kernel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id480">Specification language, type inference</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id499">Notations</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id502">Tactics</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id516">Ltac2 language</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id527">SSReflect</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id531">Commands and options</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id553">Command-line tools</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id559">RocqIDE</a></li>
 <li class="toctree-l5"><a class="reference internal" href="changes.html#standard-library">Standard library</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id570">Infrastructure and dependencies</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id575">Miscellaneous</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id571">Infrastructure and dependencies</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id576">Miscellaneous</a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-9-0-1">Changes in 9.0.1</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id579">Kernel</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id590">Command-line tools</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id592">Infrastructure and dependencies</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id580">Kernel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id591">Command-line tools</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id593">Infrastructure and dependencies</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-8-20">Version 8.20</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id595">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id596">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-20-0">Changes in 8.20.0</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id605">Kernel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id606">Kernel</a></li>
 <li class="toctree-l5"><a class="reference internal" href="changes.html#changes-spec-language">Specification language, type inference</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id633">Notations</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id642">Tactics</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id669">Ltac language</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id674">Ltac2 language</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id699">SSReflect</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id708">Commands and options</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id739">Command-line tools</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id634">Notations</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id643">Tactics</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id670">Ltac language</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id675">Ltac2 language</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id700">SSReflect</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id709">Commands and options</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id740">Command-line tools</a></li>
 <li class="toctree-l5"><a class="reference internal" href="changes.html#coqide">CoqIDE</a></li>
 <li class="toctree-l5"><a class="reference internal" href="changes.html#renaming-stdlib">Standard library</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id774">Infrastructure and dependencies</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id791">Extraction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id775">Infrastructure and dependencies</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id792">Extraction</a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-20-1">Changes in 8.20.1</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id797">Kernel</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id800">Notations</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id805">Tactics</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id798">Kernel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id801">Notations</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id806">Tactics</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-8-19">Version 8.19</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id808">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id809">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-19-0">Changes in 8.19.0</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id820">Kernel</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id825">Specification language, type inference</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id837">Notations</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id872">Tactics</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id907">Ltac language</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id910">Ltac2 language</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id930">Commands and options</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id948">Command-line tools</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id956">Standard library</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id969">Extraction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id821">Kernel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id826">Specification language, type inference</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id838">Notations</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id873">Tactics</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id908">Ltac language</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id911">Ltac2 language</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id931">Commands and options</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id949">Command-line tools</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id957">Standard library</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id970">Extraction</a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-19-1">Changes in 8.19.1</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id973">Kernel</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id978">Notations</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id980">Tactics</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id983">Ltac2 language</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id988">Infrastructure and dependencies</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id974">Kernel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id979">Notations</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id981">Tactics</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id984">Ltac2 language</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id989">Infrastructure and dependencies</a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-19-2">Changes in 8.19.2</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id993">Specification language, type inference</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id996">Notations</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id999">Tactics</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1002">Ltac2 language</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1004">Commands and options</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1008">CoqIDE</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1011">Infrastructure and dependencies</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id994">Specification language, type inference</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id997">Notations</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1000">Tactics</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1003">Ltac2 language</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1005">Commands and options</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1009">CoqIDE</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1012">Infrastructure and dependencies</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-8-18">Version 8.18</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id1015">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id1016">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-18-0">Changes in 8.18.0</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1017">Kernel</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1023">Specification language, type inference</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1036">Notations</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1049">Tactics</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1069">Ltac2 language</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1087">Commands and options</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1118">Command-line tools</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1127">CoqIDE</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1130">Standard library</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1151">Infrastructure and dependencies</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1154">Extraction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1018">Kernel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1024">Specification language, type inference</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1037">Notations</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1050">Tactics</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1070">Ltac2 language</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1088">Commands and options</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1119">Command-line tools</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1128">CoqIDE</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1131">Standard library</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1152">Infrastructure and dependencies</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1155">Extraction</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-8-17">Version 8.17</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id1157">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id1158">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-17-0">Changes in 8.17.0</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1163">Kernel</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1168">Specification language, type inference</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1174">Notations</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1182">Tactics</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1202">Ltac language</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1205">Ltac2 language</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1229">SSReflect</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1231">Commands and options</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1260">Command-line tools</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1266">Standard library</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1286">Infrastructure and dependencies</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1306">Miscellaneous</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1164">Kernel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1169">Specification language, type inference</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1175">Notations</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1183">Tactics</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1203">Ltac language</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1206">Ltac2 language</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1230">SSReflect</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1232">Commands and options</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1261">Command-line tools</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1267">Standard library</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1287">Infrastructure and dependencies</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1307">Miscellaneous</a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-17-1">Changes in 8.17.1</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-8-16">Version 8.16</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id1317">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id1318">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-16-0">Changes in 8.16.0</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1324">Kernel</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1336">Specification language, type inference</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1348">Notations</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1354">Tactics</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1325">Kernel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1337">Specification language, type inference</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1349">Notations</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1355">Tactics</a></li>
 <li class="toctree-l5"><a class="reference internal" href="changes.html#tactic-language">Tactic language</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1388">SSReflect</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1390">Commands and options</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1416">Command-line tools</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1421">CoqIDE</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1423">Standard library</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1442">Infrastructure and dependencies</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1454">Extraction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1389">SSReflect</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1391">Commands and options</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1417">Command-line tools</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1422">CoqIDE</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1424">Standard library</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1443">Infrastructure and dependencies</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1455">Extraction</a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-16-1">Changes in 8.16.1</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1465">Kernel</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1474">Commands and options</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1477">CoqIDE</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1466">Kernel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1475">Commands and options</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1478">CoqIDE</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-8-15">Version 8.15</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id1480">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id1481">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-15-0">Changes in 8.15.0</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1487">Kernel</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1490">Specification language, type inference</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1501">Notations</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1518">Tactics</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1565">Tactic language</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1568">SSReflect</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1577">Commands and options</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1609">Command-line tools</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1624">CoqIDE</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1631">Standard library</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1644">Infrastructure and dependencies</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1650">Extraction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1488">Kernel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1491">Specification language, type inference</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1502">Notations</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1519">Tactics</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1566">Tactic language</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1569">SSReflect</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1578">Commands and options</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1610">Command-line tools</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1625">CoqIDE</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1632">Standard library</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1645">Infrastructure and dependencies</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1651">Extraction</a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-15-1">Changes in 8.15.1</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1655">Kernel</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1660">Notations</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1663">Tactics</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1672">Command-line tools</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1674">CoqIDE</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1683">Miscellaneous</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1656">Kernel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1661">Notations</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1664">Tactics</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1673">Command-line tools</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1675">CoqIDE</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1684">Miscellaneous</a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-15-2">Changes in 8.15.2</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1688">Tactics</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1693">CoqIDE</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1705">Standard library</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1689">Tactics</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1694">CoqIDE</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1706">Standard library</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-8-14">Version 8.14</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id1708">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id1709">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-14-0">Changes in 8.14.0</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1715">Kernel</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1722">Specification language, type inference</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1733">Notations</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1750">Tactics</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1787">Tactic language</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1807">SSReflect</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1810">Commands and options</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1833">Command-line tools</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1716">Kernel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1723">Specification language, type inference</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1734">Notations</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1751">Tactics</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1788">Tactic language</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1808">SSReflect</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1811">Commands and options</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1834">Command-line tools</a></li>
 <li class="toctree-l5"><a class="reference internal" href="changes.html#native-compilation">Native Compilation</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1848">CoqIDE</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1852">Standard library</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1879">Infrastructure and dependencies</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1885">Miscellaneous</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1849">CoqIDE</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1853">Standard library</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1880">Infrastructure and dependencies</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1886">Miscellaneous</a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-14-1">Changes in 8.14.1</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1888">Kernel</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1891">Specification language, type inference</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1894">Tactics</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1899">Commands and options</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1889">Kernel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1892">Specification language, type inference</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1895">Tactics</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1900">Commands and options</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-8-13">Version 8.13</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id1904">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id1905">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-13-beta1">Changes in 8.13+beta1</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1909">Kernel</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1919">Specification language, type inference</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1948">Notations</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id1981">Tactics</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id2002">Tactic language</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id2008">SSReflect</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id2012">Commands and options</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1910">Kernel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1920">Specification language, type inference</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1949">Notations</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id1982">Tactics</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id2003">Tactic language</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id2009">SSReflect</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id2013">Commands and options</a></li>
 <li class="toctree-l5"><a class="reference internal" href="changes.html#tools">Tools</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id2030">CoqIDE</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id2033">Standard library</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id2048">Infrastructure and dependencies</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id2031">CoqIDE</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id2034">Standard library</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id2049">Infrastructure and dependencies</a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-13-0">Changes in 8.13.0</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id2054">Commands and options</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id2055">Commands and options</a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-13-1">Changes in 8.13.1</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id2056">Kernel</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id2058">CoqIDE</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id2057">Kernel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id2059">CoqIDE</a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-13-2">Changes in 8.13.2</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id2060">Kernel</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id2065">Tactic language</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id2061">Kernel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id2066">Tactic language</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-8-12">Version 8.12</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id2068">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id2069">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-12-beta1">Changes in 8.12+beta1</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id2074">Kernel</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id2077">Specification language, type inference</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id2098">Notations</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id2119">Tactics</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id2160">Tactic language</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id2169">SSReflect</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id2075">Kernel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id2078">Specification language, type inference</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id2099">Notations</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id2120">Tactics</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id2161">Tactic language</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id2170">SSReflect</a></li>
 <li class="toctree-l5"><a class="reference internal" href="changes.html#flags-options-and-attributes">Flags, options and attributes</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id2183">Commands</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id2201">Tools</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id2236">CoqIDE</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id2239">Standard library</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id2184">Commands</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id2202">Tools</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id2237">CoqIDE</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id2240">Standard library</a></li>
 <li class="toctree-l5"><a class="reference internal" href="changes.html#reals-library">Reals library</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id2276">Extraction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id2277">Extraction</a></li>
 <li class="toctree-l5"><a class="reference internal" href="changes.html#refman">Reference manual</a></li>
-<li class="toctree-l5"><a class="reference internal" href="changes.html#id2314">Infrastructure and dependencies</a></li>
+<li class="toctree-l5"><a class="reference internal" href="changes.html#id2315">Infrastructure and dependencies</a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-12-0">Changes in 8.12.0</a></li>
@@ -2927,7 +2958,7 @@ entry point to the manual.</p></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-8-11">Version 8.11</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id2374">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id2375">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-11-beta1">Changes in 8.11+beta1</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-11-0">Changes in 8.11.0</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-11-1">Changes in 8.11.1</a></li>
@@ -2935,7 +2966,7 @@ entry point to the manual.</p></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-8-10">Version 8.10</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id2512">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id2513">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#other-changes-in-8-10-beta1">Other changes in 8.10+beta1</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-10-beta2">Changes in 8.10+beta2</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-10-beta3">Changes in 8.10+beta3</a></li>
@@ -2945,14 +2976,14 @@ entry point to the manual.</p></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-8-9">Version 8.9</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id2659">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id2660">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#details-of-changes-in-8-9-beta1">Details of changes in 8.9+beta1</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-8-0">Changes in 8.8.0</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#changes-in-8-8-1">Changes in 8.8.1</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-8-8">Version 8.8</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id2661">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id2662">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#details-of-changes-in-8-8-beta1">Details of changes in 8.8+beta1</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#details-of-changes-in-8-8-0">Details of changes in 8.8.0</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#details-of-changes-in-8-8-1">Details of changes in 8.8.1</a></li>
@@ -2960,7 +2991,7 @@ entry point to the manual.</p></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-8-7">Version 8.7</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id2662">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id2663">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#potential-compatibility-issues">Potential compatibility issues</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#details-of-changes-in-8-7-beta1">Details of changes in 8.7+beta1</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#details-of-changes-in-8-7-beta2">Details of changes in 8.7+beta2</a></li>
@@ -2970,7 +3001,7 @@ entry point to the manual.</p></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-8-6">Version 8.6</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id2663">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id2664">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#potential-sources-of-incompatibilities">Potential sources of incompatibilities</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#details-of-changes-in-8-6beta1">Details of changes in 8.6beta1</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#details-of-changes-in-8-6">Details of changes in 8.6</a></li>
@@ -2978,8 +3009,8 @@ entry point to the manual.</p></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-8-5">Version 8.5</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id2664">Summary of changes</a></li>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id2665">Potential sources of incompatibilities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id2665">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id2666">Potential sources of incompatibilities</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#details-of-changes-in-8-5beta1">Details of changes in 8.5beta1</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#details-of-changes-in-8-5beta2">Details of changes in 8.5beta2</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#details-of-changes-in-8-5beta3">Details of changes in 8.5beta3</a></li>
@@ -2990,32 +3021,32 @@ entry point to the manual.</p></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-8-4">Version 8.4</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id2666">Summary of changes</a></li>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id2668">Potential sources of incompatibilities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id2667">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id2669">Potential sources of incompatibilities</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#details-of-changes-in-8-4beta">Details of changes in 8.4beta</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#details-of-changes-in-8-4beta2">Details of changes in 8.4beta2</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#details-of-changes-in-8-4">Details of changes in 8.4</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-8-3">Version 8.3</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id2669">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id2670">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#details-of-changes">Details of changes</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-8-2">Version 8.2</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id2670">Summary of changes</a></li>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id2671">Details of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id2671">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id2672">Details of changes</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-8-1">Version 8.1</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id2672">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id2673">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#details-of-changes-in-8-1beta">Details of changes in 8.1beta</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#details-of-changes-in-8-1gamma">Details of changes in 8.1gamma</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#details-of-changes-in-8-1">Details of changes in 8.1</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="changes.html#version-8-0">Version 8.0</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="changes.html#id2673">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changes.html#id2674">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#details-of-changes-in-8-0beta-old-syntax">Details of changes in 8.0beta old syntax</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#details-of-changes-in-8-0beta-new-syntax">Details of changes in 8.0beta new syntax</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changes.html#details-of-changes-in-8-0">Details of changes in 8.0</a></li>

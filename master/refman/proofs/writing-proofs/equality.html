@@ -113,14 +113,29 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../language/core/inductive.html">Inductive types and recursive functions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../language/core/inductive.html#inductive-types">Inductive types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../language/core/inductive.html#automatic-prop-lowering">Automatic Prop lowering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../language/core/inductive.html#positivity-condition">Positivity Condition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../language/core/inductive.html#eliminators">Eliminators</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../language/core/inductive.html#examples-of-inductive-types-and-eliminators">Examples of inductive types and eliminators</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../language/core/inductive.html#simple-inductive-types">Simple inductive types</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../language/core/inductive.html#simple-indexed-inductive-types">Simple indexed inductive types</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../language/core/inductive.html#parameterized-inductive-types">Parameterized inductive types</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../language/core/inductive.html#mutually-defined-inductive-types">Mutually defined inductive types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../language/core/inductive.html#nested-inductive-types">Nested inductive types</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../../language/core/inductive.html#recursive-functions-fix">Recursive functions: fix</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../language/core/inductive.html#top-level-recursive-functions">Top-level recursive functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../language/core/inductive.html#writing-recursive-functions-using-fixpoints">Writing Recursive Functions using Fixpoints</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../language/core/inductive.html#top-level-recursive-functions">Top-level recursive functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../language/core/inductive.html#primitive-fix-construction">Primitive fix construction</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../language/core/inductive.html#the-guard-condition">The Guard Condition</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../language/core/inductive.html#minimal-guard-condition">Minimal Guard Condition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../language/core/inductive.html#traversing-subterm-analysis">Traversing Subterm Analysis</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../../language/core/inductive.html#theory-of-inductive-definitions">Theory of inductive definitions</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../language/core/inductive.html#types-of-inductive-objects">Types of inductive objects</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../language/core/inductive.html#well-formed-inductive-definitions">Well-formed inductive definitions</a></li>
@@ -1080,18 +1095,18 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../changes.html#version-9-2">Version 9.2</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id201">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id202">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#changes-in-9-2-0">Changes in 9.2.0</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../changes.html#version-9-1">Version 9.1</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id338">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id339">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#changes-in-9-1-0">Changes in 9.1.0</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#changes-in-9-1-1">Changes in 9.1.1</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../changes.html#version-9-0">Version 9.0</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id460">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id461">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#porting-to-the-rocq-prover">Porting to The Rocq Prover</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#renaming-advice">Renaming Advice</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#the-rocq-prover-website">The Rocq Prover Website</a></li>
@@ -1100,50 +1115,50 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../changes.html#version-8-20">Version 8.20</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id595">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id596">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#changes-in-8-20-0">Changes in 8.20.0</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#changes-in-8-20-1">Changes in 8.20.1</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../changes.html#version-8-19">Version 8.19</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id808">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id809">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#changes-in-8-19-0">Changes in 8.19.0</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#changes-in-8-19-1">Changes in 8.19.1</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#changes-in-8-19-2">Changes in 8.19.2</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../changes.html#version-8-18">Version 8.18</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id1015">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id1016">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#changes-in-8-18-0">Changes in 8.18.0</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../changes.html#version-8-17">Version 8.17</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id1157">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id1158">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#changes-in-8-17-0">Changes in 8.17.0</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#changes-in-8-17-1">Changes in 8.17.1</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../changes.html#version-8-16">Version 8.16</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id1317">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id1318">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#changes-in-8-16-0">Changes in 8.16.0</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#changes-in-8-16-1">Changes in 8.16.1</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../changes.html#version-8-15">Version 8.15</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id1480">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id1481">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#changes-in-8-15-0">Changes in 8.15.0</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#changes-in-8-15-1">Changes in 8.15.1</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#changes-in-8-15-2">Changes in 8.15.2</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../changes.html#version-8-14">Version 8.14</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id1708">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id1709">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#changes-in-8-14-0">Changes in 8.14.0</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#changes-in-8-14-1">Changes in 8.14.1</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../changes.html#version-8-13">Version 8.13</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id1904">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id1905">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#changes-in-8-13-beta1">Changes in 8.13+beta1</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#changes-in-8-13-0">Changes in 8.13.0</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#changes-in-8-13-1">Changes in 8.13.1</a></li>
@@ -1151,7 +1166,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../changes.html#version-8-12">Version 8.12</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id2068">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id2069">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#changes-in-8-12-beta1">Changes in 8.12+beta1</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#changes-in-8-12-0">Changes in 8.12.0</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#changes-in-8-12-1">Changes in 8.12.1</a></li>
@@ -1159,7 +1174,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../changes.html#version-8-11">Version 8.11</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id2374">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id2375">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#changes-in-8-11-beta1">Changes in 8.11+beta1</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#changes-in-8-11-0">Changes in 8.11.0</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#changes-in-8-11-1">Changes in 8.11.1</a></li>
@@ -1167,7 +1182,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../changes.html#version-8-10">Version 8.10</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id2512">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id2513">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#other-changes-in-8-10-beta1">Other changes in 8.10+beta1</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#changes-in-8-10-beta2">Changes in 8.10+beta2</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#changes-in-8-10-beta3">Changes in 8.10+beta3</a></li>
@@ -1177,14 +1192,14 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../changes.html#version-8-9">Version 8.9</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id2659">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id2660">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#details-of-changes-in-8-9-beta1">Details of changes in 8.9+beta1</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#changes-in-8-8-0">Changes in 8.8.0</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#changes-in-8-8-1">Changes in 8.8.1</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../changes.html#version-8-8">Version 8.8</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id2661">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id2662">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#details-of-changes-in-8-8-beta1">Details of changes in 8.8+beta1</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#details-of-changes-in-8-8-0">Details of changes in 8.8.0</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#details-of-changes-in-8-8-1">Details of changes in 8.8.1</a></li>
@@ -1192,7 +1207,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../changes.html#version-8-7">Version 8.7</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id2662">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id2663">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#potential-compatibility-issues">Potential compatibility issues</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#details-of-changes-in-8-7-beta1">Details of changes in 8.7+beta1</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#details-of-changes-in-8-7-beta2">Details of changes in 8.7+beta2</a></li>
@@ -1202,7 +1217,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../changes.html#version-8-6">Version 8.6</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id2663">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id2664">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#potential-sources-of-incompatibilities">Potential sources of incompatibilities</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#details-of-changes-in-8-6beta1">Details of changes in 8.6beta1</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#details-of-changes-in-8-6">Details of changes in 8.6</a></li>
@@ -1210,8 +1225,8 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../changes.html#version-8-5">Version 8.5</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id2664">Summary of changes</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id2665">Potential sources of incompatibilities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id2665">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id2666">Potential sources of incompatibilities</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#details-of-changes-in-8-5beta1">Details of changes in 8.5beta1</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#details-of-changes-in-8-5beta2">Details of changes in 8.5beta2</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#details-of-changes-in-8-5beta3">Details of changes in 8.5beta3</a></li>
@@ -1222,32 +1237,32 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../changes.html#version-8-4">Version 8.4</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id2666">Summary of changes</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id2668">Potential sources of incompatibilities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id2667">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id2669">Potential sources of incompatibilities</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#details-of-changes-in-8-4beta">Details of changes in 8.4beta</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#details-of-changes-in-8-4beta2">Details of changes in 8.4beta2</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#details-of-changes-in-8-4">Details of changes in 8.4</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../changes.html#version-8-3">Version 8.3</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id2669">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id2670">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#details-of-changes">Details of changes</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../changes.html#version-8-2">Version 8.2</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id2670">Summary of changes</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id2671">Details of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id2671">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id2672">Details of changes</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../changes.html#version-8-1">Version 8.1</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id2672">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id2673">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#details-of-changes-in-8-1beta">Details of changes in 8.1beta</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#details-of-changes-in-8-1gamma">Details of changes in 8.1gamma</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#details-of-changes-in-8-1">Details of changes in 8.1</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../changes.html#version-8-0">Version 8.0</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id2673">Summary of changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../changes.html#id2674">Summary of changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#details-of-changes-in-8-0beta-old-syntax">Details of changes in 8.0beta old syntax</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#details-of-changes-in-8-0beta-new-syntax">Details of changes in 8.0beta new syntax</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../changes.html#details-of-changes-in-8-0">Details of changes in 8.0</a></li>
@@ -1404,7 +1419,7 @@ operands.
 Using the standard library definitions of <code class="docutils literal notranslate"><span class="pre">+</span></code> for <code class="docutils literal notranslate"><span class="pre">nat</span></code> and <code class="docutils literal notranslate"><span class="pre">Z</span></code>, <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">+</span> <span class="pre">2</span></code> will be reduced to <code class="docutils literal notranslate"><span class="pre">3</span></code>.
 But the conversion rules don't do all the reductions that a person might.  For example,
 for the mentioned definitions, <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">+</span> <span class="pre">0</span></code> is not reducible due to how the add function is defined
-(see the aside <a class="reference internal" href="../../language/core/inductive.html#reversed-add-example"><span class="std std-ref">here</span></a>).  <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">+</span> <span class="pre">1</span> <span class="pre">+</span> <span class="pre">2</span></code> isn't reducible because it's
+(see the <a class="reference internal" href="../../language/core/inductive.html#guard-condition"><span class="std std-ref">fixpoint reduction rule</span></a>).  <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">+</span> <span class="pre">1</span> <span class="pre">+</span> <span class="pre">2</span></code> isn't reducible because it's
 represented as <code class="docutils literal notranslate"><span class="pre">(n</span> <span class="pre">+</span> <span class="pre">1)</span> <span class="pre">+</span> <span class="pre">2</span></code> and convertibility doesn't consider associativity.</p>
 <p>In contrast, for type <code class="docutils literal notranslate"><span class="pre">R</span></code>, <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">+</span> <span class="pre">2</span></code> is not reduced at all.</p>
 </li>
@@ -2835,7 +2850,7 @@ the relevant threshold at around <span class="math notranslate nohighlight">\(n 
 </span></dd>
 <dt><span></span><span class="rocqdoc-keyword">Proof</span><span>.</span><span>
 </span></dt><dt><span></span><span class="rocqdoc-keyword">Time</span><span> </span><span class="rocqdoc-tactic">assert</span><span> (</span><span class="rocqdoc-var">id</span><span> (</span><span class="rocqdoc-var">fact</span><span> 8) = </span><span class="rocqdoc-var">fact</span><span> 8) </span><span class="rocqdoc-tactic">by</span><span> </span><span class="rocqdoc-tactic">reflexivity</span><span>.</span><span>
-</span></dt><dd><span>Finished transaction in 0.027 secs (0.019u,0.007s) (successful)
+</span></dt><dd><span>Finished transaction in 0.136 secs (0.073u,0.063s) (successful)
 1 goal
   
   H : id (fact 8)</span><span> =</span><span> fact 8
@@ -2843,7 +2858,7 @@ the relevant threshold at around <span class="math notranslate nohighlight">\(n 
   True
 </span></dd>
 <dt><span></span><span class="rocqdoc-keyword">Time</span><span> </span><span class="rocqdoc-tactic">assert</span><span> (</span><span class="rocqdoc-var">id</span><span> (</span><span class="rocqdoc-var">fact</span><span> 9) = </span><span class="rocqdoc-var">fact</span><span> 9) </span><span class="rocqdoc-tactic">by</span><span> </span><span class="rocqdoc-tactic">reflexivity</span><span>.</span><span>
-</span></dt><dd><span>Finished transaction in 0.197 secs (0.182u,0.014s) (successful)
+</span></dt><dd><span>Finished transaction in 0.58 secs (0.543u,0.036s) (successful)
 1 goal
   
   H : id (fact 8)</span><span> =</span><span> fact 8
@@ -2872,7 +2887,7 @@ merely a hint to unfold this constant last.</p>
 Timeout!
 </span></dd>
 <dt><span></span><span class="rocqdoc-keyword">Time</span><span> </span><span class="rocqdoc-tactic">assert</span><span> (</span><span class="rocqdoc-var">id</span><span> (</span><span class="rocqdoc-var">fact</span><span> 100) = </span><span class="rocqdoc-var">fact</span><span> 100) </span><span class="rocqdoc-tactic">by</span><span> </span><span class="rocqdoc-var">with_strategy</span><span> -1 [</span><span class="rocqdoc-var">id</span><span>] </span><span class="rocqdoc-tactic">reflexivity</span><span>.</span><span>
-</span></dt><dd><span>Finished transaction in 0. secs (0.u,0.s) (successful)
+</span></dt><dd><span>Finished transaction in 0.001 secs (0.001u,0.s) (successful)
 1 goal
   
   H : id (fact 100)</span><span> =</span><span> fact 100
@@ -2908,7 +2923,7 @@ tactic passed to <a class="reference internal" href="#rocq:tacn.with_strategy" t
 </span></dd>
 <dt><span></span><span class="rocqdoc-keyword">Proof</span><span>.</span><span>
 </span></dt><dt><span></span><span class="rocqdoc-keyword">Time</span><span> </span><span class="rocqdoc-tactic">assert</span><span> (</span><span class="rocqdoc-var">id</span><span> (</span><span class="rocqdoc-var">fact</span><span> 100) = </span><span class="rocqdoc-var">fact</span><span> 100) </span><span class="rocqdoc-tactic">by</span><span> </span><span class="rocqdoc-var">with_strategy</span><span> -1 [</span><span class="rocqdoc-var">id</span><span>] </span><span class="rocqdoc-tactic">abstract</span><span> </span><span class="rocqdoc-tactic">reflexivity</span><span>.</span><span>
-</span></dt><dd><span>Finished transaction in 0.001 secs (0.001u,0.s) (successful)
+</span></dt><dd><span>Finished transaction in 0.002 secs (0.002u,0.s) (successful)
 1 goal
   
   H : id (fact 100)</span><span> =</span><span> fact 100
@@ -2919,7 +2934,7 @@ tactic passed to <a class="reference internal" href="#rocq:tacn.with_strategy" t
 </span></dt><dd><span>No more goals.
 </span></dd>
 <dt><span></span><span class="rocqdoc-keyword">Time</span><span> </span><span class="rocqdoc-keyword">Defined</span><span>.</span><span>
-</span></dt><dd><span>Finished transaction in 0. secs (0.u,0.s) (successful)
+</span></dt><dd><span>Finished transaction in 0.001 secs (0.001u,0.s) (successful)
 </span></dd>
 </dl>
 </div>
