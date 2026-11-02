@@ -1701,20 +1701,23 @@ and <code class="docutils literal notranslate"><span class="pre">_darcs</span></
 <dd class="field-even"><p>Start from an empty state instead of loading the <code class="docutils literal notranslate"><span class="pre">Init.Prelude</span></code>
 module.</p>
 </dd>
-<dt class="field-odd">-init-file <em>file</em><span class="colon">:</span></dt>
-<dd class="field-odd"><p>Load <em>file</em> as the resource file instead of
+<dt class="field-odd">-boot<span class="colon">:</span></dt>
+<dd class="field-odd"><p>don't automatically setup Corelib and ocamlfind paths (see <a class="reference internal" href="#system-config"><span class="std std-ref">System configuration</span></a>)</p>
+</dd>
+<dt class="field-even">-init-file <em>file</em><span class="colon">:</span></dt>
+<dd class="field-even"><p>Load <em>file</em> as the resource file instead of
 loading the default resource file from the standard configuration
 directories.</p>
 </dd>
-<dt class="field-even">-q<span class="colon">:</span></dt>
-<dd class="field-even"><p>Do not to load the default resource file.</p>
+<dt class="field-odd">-q<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Do not to load the default resource file.</p>
 </dd>
-<dt class="field-odd">-l <em>file</em>, -load-vernac-source <em>file</em><span class="colon">:</span></dt>
-<dd class="field-odd"><p>Load and execute the Rocq
+<dt class="field-even">-l <em>file</em>, -load-vernac-source <em>file</em><span class="colon">:</span></dt>
+<dd class="field-even"><p>Load and execute the Rocq
 script from <em>file.v</em>.</p>
 </dd>
-<dt class="field-even">-require <em>qualid</em><span class="colon">:</span></dt>
-<dd class="field-even"><p>Load Rocq compiled library <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></code>.
+<dt class="field-odd">-require <em>qualid</em><span class="colon">:</span></dt>
+<dd class="field-odd"><p>Load Rocq compiled library <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></code>.
 This is equivalent to running <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.Require" title="Require"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Require</span></code></a> <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></code>
 (note: the short form <code class="docutils literal notranslate"><span class="pre">-r</span> <span class="pre">*qualid*</span></code> is intentionally not provided to
 prevent the risk of collision with <code class="docutils literal notranslate"><span class="pre">-R</span></code>).</p>
@@ -1728,47 +1731,47 @@ variants (<code class="docutils literal notranslate"><span class="pre">-ri</span
 the command-line.</p>
 </div>
 </dd>
-<dt class="field-odd">-ri <em>qualid</em>, -require-import <em>qualid</em><span class="colon">:</span></dt>
-<dd class="field-odd"><p>Load Rocq compiled library <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></code> and import it.
+<dt class="field-even">-ri <em>qualid</em>, -require-import <em>qualid</em><span class="colon">:</span></dt>
+<dd class="field-even"><p>Load Rocq compiled library <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></code> and import it.
 This is equivalent to running <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.Require-Import" title="Require Import"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Require</span> <span class="pre">Import</span></code></a> <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></code>.
 See the <a class="reference internal" href="#interleave-command-line"><span class="std std-ref">note above</span></a> regarding the order
 of command-line options.</p>
 </dd>
-<dt class="field-even">-re <em>qualid</em>, -require-export <em>qualid</em><span class="colon">:</span></dt>
-<dd class="field-even"><p>Load Rocq compiled library <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></code> and transitively import it.
+<dt class="field-odd">-re <em>qualid</em>, -require-export <em>qualid</em><span class="colon">:</span></dt>
+<dd class="field-odd"><p>Load Rocq compiled library <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></code> and transitively import it.
 This is equivalent to running <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.Require-Export" title="Require Export"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Require</span> <span class="pre">Export</span></code></a> <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></code>.
 See the <a class="reference internal" href="#interleave-command-line"><span class="std std-ref">note above</span></a> regarding the order
 of command-line options.</p>
 </dd>
-<dt class="field-odd">-rfrom <em>dirpath qualid</em>, -require-from <em>dirpath qualid</em><span class="colon">:</span></dt>
-<dd class="field-odd"><p>Load Rocq compiled library <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></code>.
+<dt class="field-even">-rfrom <em>dirpath qualid</em>, -require-from <em>dirpath qualid</em><span class="colon">:</span></dt>
+<dd class="field-even"><p>Load Rocq compiled library <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></code>.
 This is equivalent to running <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.From-…-Require" title="From … Require"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">From</span></code></a>
 <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../proof-engine/vernacular-commands.html#grammar-token-dirpath"><span class="hole"><span class="pre">dirpath</span></span></a></span></code> <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.From-…-Require" title="From … Require"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Require</span></code></a> <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></code>.
 See the <a class="reference internal" href="#interleave-command-line"><span class="std std-ref">note above</span></a> regarding the order
 of command-line options.</p>
 </dd>
-<dt class="field-even">-rifrom <em>dirpath qualid</em>, -require-import-from <em>dirpath qualid</em><span class="colon">:</span></dt>
-<dd class="field-even"><p>Load Rocq compiled library <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></code> and import it.  This is
+<dt class="field-odd">-rifrom <em>dirpath qualid</em>, -require-import-from <em>dirpath qualid</em><span class="colon">:</span></dt>
+<dd class="field-odd"><p>Load Rocq compiled library <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></code> and import it.  This is
 equivalent to running <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.From-…-Require" title="From … Require"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">From</span></code></a> <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../proof-engine/vernacular-commands.html#grammar-token-dirpath"><span class="hole"><span class="pre">dirpath</span></span></a></span></code>
 <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.From-…-Require" title="From … Require"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Require</span> <span class="pre">Import</span></code></a> <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></code>.  See the
 <a class="reference internal" href="#interleave-command-line"><span class="std std-ref">note above</span></a> regarding the order of
 command-line options.</p>
 </dd>
-<dt class="field-odd">-refrom <em>dirpath qualid</em>, -require-export-from <em>dirpath qualid</em><span class="colon">:</span></dt>
-<dd class="field-odd"><p>Load Rocq compiled library <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></code> and transitively import it.
+<dt class="field-even">-refrom <em>dirpath qualid</em>, -require-export-from <em>dirpath qualid</em><span class="colon">:</span></dt>
+<dd class="field-even"><p>Load Rocq compiled library <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></code> and transitively import it.
 This is equivalent to running <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.From-…-Require" title="From … Require"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">From</span></code></a>
 <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../proof-engine/vernacular-commands.html#grammar-token-dirpath"><span class="hole"><span class="pre">dirpath</span></span></a></span></code> <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.From-…-Require" title="From … Require"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Require</span> <span class="pre">Export</span></code></a> <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></code>.
 See the <a class="reference internal" href="#interleave-command-line"><span class="std std-ref">note above</span></a> regarding the
 order of command-line options.</p>
 </dd>
-<dt class="field-even">-load-vernac-object <em>qualid</em><span class="colon">:</span></dt>
-<dd class="field-even"><p>Obsolete synonym of <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">-require</span></span></span> <span><span><span class="pre">qualid</span></span></span></span></code>.</p>
+<dt class="field-odd">-load-vernac-object <em>qualid</em><span class="colon">:</span></dt>
+<dd class="field-odd"><p>Obsolete synonym of <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">-require</span></span></span> <span><span><span class="pre">qualid</span></span></span></span></code>.</p>
 </dd>
-<dt class="field-odd">-batch<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Exit just after argument parsing. Available for <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">repl</span></code> only.</p>
+<dt class="field-even">-batch<span class="colon">:</span></dt>
+<dd class="field-even"><p>Exit just after argument parsing. Available for <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">repl</span></code> only.</p>
 </dd>
-<dt class="field-even">-native-compiler (yes|no|ondemand)<span class="colon">:</span></dt>
-<dd class="field-even"><p>Enable the <a class="reference internal" href="../proofs/writing-proofs/equality.html#rocq:tacn.native_compute" title="native_compute"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">native_compute</span></code></a>
+<dt class="field-odd">-native-compiler (yes|no|ondemand)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Enable the <a class="reference internal" href="../proofs/writing-proofs/equality.html#rocq:tacn.native_compute" title="native_compute"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">native_compute</span></code></a>
 reduction machine and precompilation to <code class="docutils literal notranslate"><span class="pre">.cmxs</span></code> files for future use
 by <a class="reference internal" href="../proofs/writing-proofs/equality.html#rocq:tacn.native_compute" title="native_compute"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">native_compute</span></code></a>.
 Setting <code class="docutils literal notranslate"><span class="pre">yes</span></code> enables <a class="reference internal" href="../proofs/writing-proofs/equality.html#rocq:tacn.native_compute" title="native_compute"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">native_compute</span></code></a>; it also causes Rocq
@@ -1845,50 +1848,50 @@ All this can be summarized in the following table:</p>
 </tbody>
 </table>
 </dd>
-<dt class="field-odd">-native-output-dir <em>dir</em><span class="colon">:</span></dt>
-<dd class="field-odd"><p>Set the directory in which to put the aforementioned
+<dt class="field-even">-native-output-dir <em>dir</em><span class="colon">:</span></dt>
+<dd class="field-even"><p>Set the directory in which to put the aforementioned
 <code class="docutils literal notranslate"><span class="pre">.cmxs</span></code> for <a class="reference internal" href="../proofs/writing-proofs/equality.html#rocq:tacn.native_compute" title="native_compute"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">native_compute</span></code></a>. Defaults to <code class="docutils literal notranslate"><span class="pre">.coq-native</span></code>.</p>
 </dd>
-<dt class="field-even">-output-directory <em>dir</em>, -output-dir <em>dir</em><span class="colon">:</span></dt>
-<dd class="field-even"><p>Sets the output directory for commands that
+<dt class="field-odd">-output-directory <em>dir</em>, -output-dir <em>dir</em><span class="colon">:</span></dt>
+<dd class="field-odd"><p>Sets the output directory for commands that
 write output to files, such as <a class="reference internal" href="../addendum/extraction.html#extraction"><span class="std std-ref">Program extraction</span></a> commands, <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.Redirect" title="Redirect"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Redirect</span></code></a> and <a class="reference internal" href="../addendum/universe-polymorphism.html#rocq:cmd.Print-Universes" title="Print Universes"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Print</span> <span class="pre">Universes</span></code></a>.</p>
 </dd>
-<dt class="field-odd">-vos<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Indicate Rocq to skip the processing of opaque proofs
+<dt class="field-even">-vos<span class="colon">:</span></dt>
+<dd class="field-even"><p>Indicate Rocq to skip the processing of opaque proofs
 (i.e., proofs ending with <a class="reference internal" href="../proofs/writing-proofs/proof-mode.html#rocq:cmd.Qed" title="Qed"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Qed</span></code></a> or <a class="reference internal" href="../proofs/writing-proofs/proof-mode.html#rocq:cmd.Admitted" title="Admitted"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Admitted</span></code></a>), output a <code class="docutils literal notranslate"><span class="pre">.vos</span></code> files
 instead of a <code class="docutils literal notranslate"><span class="pre">.vo</span></code> file, and to load <code class="docutils literal notranslate"><span class="pre">.vos</span></code> files instead of <code class="docutils literal notranslate"><span class="pre">.vo</span></code> files
 when interpreting <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.Require" title="Require"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Require</span></code></a> commands.</p>
 </dd>
-<dt class="field-even">-vok<span class="colon">:</span></dt>
-<dd class="field-even"><p>Indicate Rocq to check a file completely, to load <code class="docutils literal notranslate"><span class="pre">.vos</span></code> files instead
+<dt class="field-odd">-vok<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Indicate Rocq to check a file completely, to load <code class="docutils literal notranslate"><span class="pre">.vos</span></code> files instead
 of <code class="docutils literal notranslate"><span class="pre">.vo</span></code> files when interpreting <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.Require" title="Require"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Require</span></code></a> commands. No <code class="docutils literal notranslate"><span class="pre">.vo</span></code> file is written.</p>
 </dd>
-<dt class="field-odd">-w (all|none|w₁,…,wₙ)<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Configure the display of warnings. This
+<dt class="field-even">-w (all|none|w₁,…,wₙ)<span class="colon">:</span></dt>
+<dd class="field-even"><p>Configure the display of warnings. This
 option expects all, none or a comma-separated list of warning names or
 categories (see Section <a class="reference internal" href="../proof-engine/vernacular-commands.html#controlling-display"><span class="std std-ref">Controlling display</span></a>).</p>
 </dd>
-<dt class="field-even">-color (on|off|auto)<span class="colon">:</span></dt>
-<dd class="field-even"><p>Enable or disable color output.
+<dt class="field-odd">-color (on|off|auto)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Enable or disable color output.
 Default is auto, meaning color is shown only if
 the output channel supports ANSI escape sequences.</p>
 </dd>
-<dt class="field-odd">-diffs (on|off|removed)<span class="colon">:</span></dt>
-<dd class="field-odd"><p><em>Rocq repl only</em>.  Controls highlighting of differences
+<dt class="field-even">-diffs (on|off|removed)<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>Rocq repl only</em>.  Controls highlighting of differences
 between proof steps.  <code class="docutils literal notranslate"><span class="pre">on</span></code> highlights added tokens, <code class="docutils literal notranslate"><span class="pre">removed</span></code> highlights both added and
 removed tokens.  Requires that <code class="docutils literal notranslate"><span class="pre">-color</span></code> is enabled.  (see Section
 <a class="reference internal" href="../proofs/writing-proofs/proof-mode.html#showing-diffs"><span class="std std-ref">Showing differences between proof steps</span></a>).</p>
 </dd>
-<dt class="field-even">-beautify<span class="colon">:</span></dt>
-<dd class="field-even"><p>Pretty-print each command to <em>file.beautified</em> when
+<dt class="field-odd">-beautify<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Pretty-print each command to <em>file.beautified</em> when
 compiling <em>file.v</em>. Very buggy.</p>
 </dd>
-<dt class="field-odd">-emacs, -ide-slave<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Start a special toplevel to communicate with a
+<dt class="field-even">-emacs, -ide-slave<span class="colon">:</span></dt>
+<dd class="field-even"><p>Start a special toplevel to communicate with a
 specific IDE.</p>
 </dd>
-<dt class="field-even">-impredicative-set<span class="colon">:</span></dt>
-<dd class="field-even"><p>Change the logical theory of Rocq by declaring the
+<dt class="field-odd">-impredicative-set<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Change the logical theory of Rocq by declaring the
 sort <code class="code Coq docutils literal notranslate"><span class="keyword type"><span class="pre">Set</span></span></code> impredicative.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -1897,15 +1900,15 @@ standard axioms of classical mathematics such as the functional
 axiom of choice or the principle of description.</p>
 </div>
 </dd>
-<dt class="field-odd">-type-in-type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Collapse the universe hierarchy of Rocq.</p>
+<dt class="field-even">-type-in-type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Collapse the universe hierarchy of Rocq.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>This makes the logic inconsistent.</p>
 </div>
 </dd>
-<dt class="field-even">-mangle-names <em>ident</em><span class="colon">:</span></dt>
-<dd class="field-even"><p><em>Experimental.</em> Do not depend on this option. Replace
+<dt class="field-odd">-mangle-names <em>ident</em><span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>Experimental.</em> Do not depend on this option. Replace
 Rocq's auto-generated name scheme with names of the form <em>ident0</em>, <em>ident1</em>,
 etc. Within Rocq, the <a class="reference internal" href="../proofs/writing-proofs/proof-mode.html#rocq:flag.Mangle-Names" title="Mangle Names"><code class="xref rocq rocq-flag docutils literal notranslate"><span class="pre">Mangle</span> <span class="pre">Names</span></code></a> flag turns this behavior on,
 and the <a class="reference internal" href="../proofs/writing-proofs/proof-mode.html#rocq:opt.Mangle-Names-Prefix" title="Mangle Names Prefix"><code class="xref rocq rocq-opt docutils literal notranslate"><span class="pre">Mangle</span> <span class="pre">Names</span> <span class="pre">Prefix</span></code></a> option sets the prefix to use. This feature
@@ -1913,8 +1916,8 @@ is intended to be used as a linter for developments that want to be robust to
 changes in the auto-generated name scheme. The options are provided to
 facilitate tracking down problems.</p>
 </dd>
-<dt class="field-odd">-set <em>string</em><span class="colon">:</span></dt>
-<dd class="field-odd"><p>Enable flags and set options. <em>string</em> should be
+<dt class="field-even">-set <em>string</em><span class="colon">:</span></dt>
+<dd class="field-even"><p>Enable flags and set options. <em>string</em> should be
 <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/basic.html#grammar-token-setting_name"><span class="hole"><span class="pre">setting_name</span></span></a><span><span><span class="pre">=value</span></span></span></span></code>, the value is interpreted according to the
 type of the option. For flags <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/basic.html#grammar-token-setting_name"><span class="hole"><span class="pre">setting_name</span></span></a></span></code> is equivalent to
 <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/basic.html#grammar-token-setting_name"><span class="hole"><span class="pre">setting_name</span></span></a><span><span><span class="pre">=true</span></span></span></span></code>. For instance <code class="docutils literal notranslate"><span class="pre">-set</span> <span class="pre">&quot;Universe</span> <span class="pre">Polymorphism&quot;</span></code>
@@ -1923,18 +1926,18 @@ shell syntax, Rocq does not see them.
 See the <a class="reference internal" href="#interleave-command-line"><span class="std std-ref">note above</span></a> regarding the order
 of command-line options.</p>
 </dd>
-<dt class="field-even">-unset <em>string</em><span class="colon">:</span></dt>
-<dd class="field-even"><p>As <code class="docutils literal notranslate"><span class="pre">-set</span></code> but used to disable options and flags.
+<dt class="field-odd">-unset <em>string</em><span class="colon">:</span></dt>
+<dd class="field-odd"><p>As <code class="docutils literal notranslate"><span class="pre">-set</span></code> but used to disable options and flags.
 <em>string</em> must be <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">&quot;</span></span></span><a class="reference internal" href="../language/core/basic.html#grammar-token-setting_name"><span class="hole"><span class="pre">setting_name</span></span></a><span><span><span class="pre">&quot;</span></span></span></span></code>.
 See the <a class="reference internal" href="#interleave-command-line"><span class="std std-ref">note above</span></a> regarding the order
 of command-line options.</p>
 </dd>
-<dt class="field-odd">-compat <em>version</em><span class="colon">:</span></dt>
-<dd class="field-odd"><p>same as <code class="docutils literal notranslate"><span class="pre">-compat-from</span> <span class="pre">Stdlib</span> <span class="pre">Rocq&lt;version&gt;</span></code>
+<dt class="field-even">-compat <em>version</em><span class="colon">:</span></dt>
+<dd class="field-even"><p>same as <code class="docutils literal notranslate"><span class="pre">-compat-from</span> <span class="pre">Stdlib</span> <span class="pre">Rocq&lt;version&gt;</span></code>
 (or <code class="docutils literal notranslate"><span class="pre">Rocq</span></code> when version is <code class="docutils literal notranslate"><span class="pre">8.*</span></code>)</p>
 </dd>
-<dt class="field-even">-compat-from <em>root</em> <em>library</em><span class="colon">:</span></dt>
-<dd class="field-even"><p>Loads a file that sets a few options to maintain
+<dt class="field-odd">-compat-from <em>root</em> <em>library</em><span class="colon">:</span></dt>
+<dd class="field-odd"><p>Loads a file that sets a few options to maintain
 partial backward-compatibility with a previous version. This is
 equivalent to <code class="docutils literal notranslate"><span class="pre">-require-import-from</span> <span class="pre">&lt;root&gt;</span> <span class="pre">&lt;library&gt;</span></code>
 except that a non existing file only produces a warning (so that the option can
@@ -1943,52 +1946,52 @@ Note that the <a class="reference internal" href="#interleave-command-line"><spa
 options apply, and this could be relevant if you are resetting some
 of the compatibility options.</p>
 </dd>
-<dt class="field-odd">-dump-glob <em>file</em><span class="colon">:</span></dt>
-<dd class="field-odd"><p>Dump references for global names in file <em>file</em>
+<dt class="field-even">-dump-glob <em>file</em><span class="colon">:</span></dt>
+<dd class="field-even"><p>Dump references for global names in file <em>file</em>
 (to be used by rocq doc, see <a class="reference internal" href="../using/tools/coqdoc.html#rocqdoc"><span class="std std-ref">Documenting Rocq files with rocq doc</span></a>). By default, if <em>file.v</em> is being
 compiled, <em>file.glob</em> is used.</p>
 </dd>
-<dt class="field-even">-no-glob<span class="colon">:</span></dt>
-<dd class="field-even"><p>Disable the dumping of references for global names.</p>
+<dt class="field-odd">-no-glob<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Disable the dumping of references for global names.</p>
 </dd>
-<dt class="field-odd">-image <em>file</em><span class="colon">:</span></dt>
-<dd class="field-odd"><p>Set the binary image to be used by <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">compile</span></code> to be <em>file</em>
+<dt class="field-even">-image <em>file</em><span class="colon">:</span></dt>
+<dd class="field-even"><p>Set the binary image to be used by <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">compile</span></code> to be <em>file</em>
 instead of the standard one. Not of general use.</p>
 </dd>
-<dt class="field-even">-bindir <em>directory</em><span class="colon">:</span></dt>
-<dd class="field-even"><p>Set the directory containing Rocq binaries to be
+<dt class="field-odd">-bindir <em>directory</em><span class="colon">:</span></dt>
+<dd class="field-odd"><p>Set the directory containing Rocq binaries to be
 used by <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">compile</span></code>. It is equivalent to doing export COQBIN= <em>directory</em>
 before launching <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">compile</span></code>.</p>
 </dd>
-<dt class="field-odd">-where<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Print the location of Rocq’s standard library and exit.</p>
+<dt class="field-even">-where<span class="colon">:</span></dt>
+<dd class="field-even"><p>Print the location of Rocq’s standard library and exit.</p>
 </dd>
-<dt class="field-even">-config<span class="colon">:</span></dt>
-<dd class="field-even"><p>Print the locations of Rocq’s binaries, dependencies, and
+<dt class="field-odd">-config<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Print the locations of Rocq’s binaries, dependencies, and
 libraries, then exit.</p>
 </dd>
-<dt class="field-odd">-filteropts<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Print the list of command line arguments that <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">repl</span></code> has
+<dt class="field-even">-filteropts<span class="colon">:</span></dt>
+<dd class="field-even"><p>Print the list of command line arguments that <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">repl</span></code> has
 recognized as options and exit.</p>
 </dd>
-<dt class="field-even">-v<span class="colon">:</span></dt>
-<dd class="field-even"><p>Print Rocq’s version and exit.</p>
+<dt class="field-odd">-v<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Print Rocq’s version and exit.</p>
 </dd>
-<dt class="field-odd">-list-tags<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Print the highlight tags known by Rocq as well as their
+<dt class="field-even">-list-tags<span class="colon">:</span></dt>
+<dd class="field-even"><p>Print the highlight tags known by Rocq as well as their
 currently associated color and exit.</p>
 </dd>
-<dt class="field-even">-h, --help<span class="colon">:</span></dt>
-<dd class="field-even"><p>Print a short usage and exit.</p>
+<dt class="field-odd">-h, --help<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Print a short usage and exit.</p>
 </dd>
-<dt class="field-odd">-time<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Output timing information for each command to standard output.</p>
+<dt class="field-even">-time<span class="colon">:</span></dt>
+<dd class="field-even"><p>Output timing information for each command to standard output.</p>
 </dd>
-<dt class="field-even">-time-file <em>file</em><span class="colon">:</span></dt>
-<dd class="field-even"><p>Output timing information for each command to the given file.</p>
+<dt class="field-odd">-time-file <em>file</em><span class="colon">:</span></dt>
+<dd class="field-odd"><p>Output timing information for each command to the given file.</p>
 </dd>
-<dt class="field-odd">-profile <em>file</em><span class="colon">:</span></dt>
-<dd class="field-odd"><p>Output <a class="reference internal" href="#profiling"><span class="std std-ref">Profiling</span></a> information to the given file.</p>
+<dt class="field-even">-profile <em>file</em><span class="colon">:</span></dt>
+<dd class="field-even"><p>Output <a class="reference internal" href="#profiling"><span class="std std-ref">Profiling</span></a> information to the given file.</p>
 </dd>
 </dl>
 </section>
