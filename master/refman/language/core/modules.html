@@ -2235,8 +2235,10 @@ attribute (see <code class="docutils literal notranslate"><span class="notation"
 <p class="admonition-title">Note</p>
 <ul class="simple">
 <li><p>For some commands, this is the only locality supported within
-sections (e.g., for <a class="reference internal" href="../../user-extensions/syntax-extensions.html#rocq:cmd.Notation" title="Notation"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Notation</span></code></a>, <a class="reference internal" href="../../proof-engine/ltac.html#rocq:cmd.Ltac" title="Ltac"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Ltac</span></code></a> and
-<a class="reference internal" href="../../proofs/automatic-tactics/auto.html#creating-hints"><span class="std std-ref">Hint</span></a> commands).</p></li>
+sections (e.g., for <a class="reference internal" href="../../user-extensions/syntax-extensions.html#rocq:cmd.Notation" title="Notation"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Notation</span></code></a>, <a class="reference internal" href="../../proof-engine/ltac.html#rocq:cmd.Ltac" title="Ltac"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Ltac</span></code></a>,
+<a class="reference internal" href="../../proofs/automatic-tactics/auto.html#rocq:cmd.Hint-Immediate" title="Hint Immediate"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Hint</span> <span class="pre">Immediate</span></code></a>, <a class="reference internal" href="../../proofs/automatic-tactics/auto.html#rocq:cmd.Hint-Unfold" title="Hint Unfold"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Hint</span> <span class="pre">Unfold</span></code></a>, and <a class="reference internal" href="../../proofs/automatic-tactics/auto.html#rocq:cmd.Hint-Extern" title="Hint Extern"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Hint</span> <span class="pre">Extern</span></code></a>).
+Some other hint commands support non-local attributes; see
+<a class="reference internal" href="../../proofs/automatic-tactics/auto.html#creating-hints"><span class="std std-ref">Creating Hints</span></a>.</p></li>
 <li><p>For some commands, this is the default locality within
 sections even though other locality attributes are supported
 as well (e.g., for the <a class="reference internal" href="../extensions/arguments-command.html#rocq:cmd.Arguments" title="Arguments"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Arguments</span></code></a> command).</p></li>
@@ -2258,9 +2260,11 @@ unqualified names after an <a class="reference internal" href="#rocq:cmd.Import"
 <dd><p>This <a class="reference internal" href="basic.html#term-attribute"><span class="xref std std-term">attribute</span></a> makes the effect of the command
 persist when the section is closed and applies the effect when the
 module containing the command is imported.</p>
-<p>Commands supporting this attribute include <a class="reference internal" href="basic.html#rocq:cmd.Set" title="Set"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Set</span></code></a>, <a class="reference internal" href="basic.html#rocq:cmd.Unset" title="Unset"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Unset</span></code></a>
-and the <a class="reference internal" href="../../proofs/automatic-tactics/auto.html#creating-hints"><span class="std std-ref">Hint</span></a> commands, although the latter
-don't support it within sections.</p>
+<p>Commands supporting this attribute include <a class="reference internal" href="basic.html#rocq:cmd.Set" title="Set"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Set</span></code></a>, <a class="reference internal" href="basic.html#rocq:cmd.Unset" title="Unset"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Unset</span></code></a>,
+and the <a class="reference internal" href="../../proofs/automatic-tactics/auto.html#creating-hints"><span class="std std-ref">Hint</span></a> commands.  Within sections,
+support depends on the specific hint command; in particular,
+<a class="reference internal" href="../../proofs/automatic-tactics/auto.html#rocq:cmd.Hint-Resolve" title="Hint Resolve"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Hint</span> <span class="pre">Resolve</span></code></a> and <a class="reference internal" href="../../proofs/automatic-tactics/auto.html#rocq:cmd.Hint-Constructors" title="Hint Constructors"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Hint</span> <span class="pre">Constructors</span></code></a> support
+<a class="reference internal" href="#rocq:attr.export" title="export"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">export</span></code></a> subject to their section-discharge restrictions.</p>
 </dd></dl>
 
 <dl class="rocq attr">

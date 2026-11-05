@@ -1969,10 +1969,12 @@ should be used only in <a class="reference internal" href="#rocq:cmd.Hint-Immedi
 being applied .</p>
 <p>Outside of sections, these commands support the <a class="reference internal" href="../../language/core/modules.html#rocq:attr.local" title="local"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">local</span></code></a>, <a class="reference internal" href="../../language/core/modules.html#rocq:attr.export" title="export"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">export</span></code></a>
 and <a class="reference internal" href="../../language/core/modules.html#rocq:attr.global" title="global"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">global</span></code></a> attributes. <a class="reference internal" href="../../language/core/modules.html#rocq:attr.export" title="export"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">export</span></code></a> is the default.</p>
-<p>Inside sections, some commands only support the <a class="reference internal" href="../../language/core/modules.html#rocq:attr.local" title="local"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">local</span></code></a> attribute. These are
-<a class="reference internal" href="#rocq:cmd.Hint-Immediate" title="Hint Immediate"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Hint</span> <span class="pre">Immediate</span></code></a>, <a class="reference internal" href="#rocq:cmd.Hint-Resolve" title="Hint Resolve"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Hint</span> <span class="pre">Resolve</span></code></a>, <a class="reference internal" href="#rocq:cmd.Hint-Constructors" title="Hint Constructors"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Hint</span> <span class="pre">Constructors</span></code></a>,
-<a class="reference internal" href="#rocq:cmd.Hint-Unfold" title="Hint Unfold"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Hint</span> <span class="pre">Unfold</span></code></a>, <a class="reference internal" href="#rocq:cmd.Hint-Extern" title="Hint Extern"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Hint</span> <span class="pre">Extern</span></code></a> and <a class="reference internal" href="#rocq:cmd.Hint-Rewrite" title="Hint Rewrite"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Hint</span> <span class="pre">Rewrite</span></code></a>.
-<a class="reference internal" href="../../language/core/modules.html#rocq:attr.local" title="local"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">local</span></code></a> is the default for all hint commands inside sections.</p>
+<p>Inside sections, <a class="reference internal" href="#rocq:cmd.Hint-Immediate" title="Hint Immediate"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Hint</span> <span class="pre">Immediate</span></code></a>, <a class="reference internal" href="#rocq:cmd.Hint-Unfold" title="Hint Unfold"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Hint</span> <span class="pre">Unfold</span></code></a>,
+<a class="reference internal" href="#rocq:cmd.Hint-Extern" title="Hint Extern"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Hint</span> <span class="pre">Extern</span></code></a>, and <a class="reference internal" href="#rocq:cmd.Hint-Rewrite" title="Hint Rewrite"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Hint</span> <span class="pre">Rewrite</span></code></a> only support the <a class="reference internal" href="../../language/core/modules.html#rocq:attr.local" title="local"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">local</span></code></a>
+attribute.  <a class="reference internal" href="#rocq:cmd.Hint-Resolve" title="Hint Resolve"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Hint</span> <span class="pre">Resolve</span></code></a> and <a class="reference internal" href="#rocq:cmd.Hint-Constructors" title="Hint Constructors"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Hint</span> <span class="pre">Constructors</span></code></a> also support
+<a class="reference internal" href="../../language/core/modules.html#rocq:attr.export" title="export"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">export</span></code></a> and <a class="reference internal" href="../../language/core/modules.html#rocq:attr.global" title="global"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">global</span></code></a>, subject to the section-discharge
+restrictions described below.  <a class="reference internal" href="../../language/core/modules.html#rocq:attr.local" title="local"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">local</span></code></a> is the default for all hint
+commands inside sections.</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="../../language/core/modules.html#rocq:attr.local" title="local"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">local</span></code></a> hints are never visible from other modules, even if they
 <a class="reference internal" href="../../language/core/modules.html#rocq:cmd.Import" title="Import"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Import</span></code></a> or <a class="reference internal" href="../../proof-engine/vernacular-commands.html#rocq:cmd.Require" title="Require"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Require</span></code></a> the current module.</p></li>
@@ -2020,6 +2022,72 @@ unification with the goal. In this case, the hint is only used by
 <a class="reference internal" href="#rocq:tacn.eauto" title="eauto"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">eauto</span></code></a> / <a class="reference internal" href="../../addendum/type-classes.html#rocq:tacn.typeclasses-eauto" title="typeclasses eauto"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">typeclasses</span> <span class="pre">eauto</span></code></a>, but not by <a class="reference internal" href="#rocq:tacn.auto" title="auto"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">auto</span></code></a>.  A
 typical hint that would only be used by <a class="reference internal" href="#rocq:tacn.eauto" title="eauto"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">eauto</span></code></a> is a transitivity
 lemma.</p>
+<p>Within a section, <a class="reference internal" href="#rocq:cmd.Hint-Resolve" title="Hint Resolve"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Hint</span> <span class="pre">Resolve</span></code></a> supports <a class="reference internal" href="../../language/core/modules.html#rocq:attr.export" title="export"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">export</span></code></a> and
+<a class="reference internal" href="../../language/core/modules.html#rocq:attr.global" title="global"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">global</span></code></a> when no explicit <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="#grammar-token-one_pattern"><span class="hole"><span class="pre">one_pattern</span></span></a></span></code> is supplied and the
+discharged hint can still be indexed by a global head symbol.  A section
+variable cannot itself be made a non-local hint.  These restrictions are
+checked by the hint command, before the section is closed.</p>
+<p>On section closure, Rocq rebuilds the hint from the generalized type of
+the referenced declaration.  If <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/basic.html#grammar-token-natural"><span class="hole"><span class="pre">natural</span></span></a></span></code> was omitted, the cost is
+recomputed from that generalized type; an explicitly supplied cost is
+preserved.  Generalization can also make previously inferable parameters
+unresolvable by <a class="reference internal" href="#rocq:tacn.auto" title="auto"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">auto</span></code></a>.  In that case the rebuilt hint is restricted
+to <a class="reference internal" href="#rocq:tacn.eauto" title="eauto"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">eauto</span></code></a>, and Rocq reports the transition.</p>
+<p>The locality then behaves as it does for hints declared directly in the
+containing module: an <a class="reference internal" href="../../language/core/modules.html#rocq:attr.export" title="export"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">export</span></code></a> hint is activated when that module is
+imported, whereas a <a class="reference internal" href="../../language/core/modules.html#rocq:attr.global" title="global"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">global</span></code></a> hint is activated whenever the module
+is loaded.  For example:</p>
+<div class="rocqtop literal-block docutils container">
+<span class="rocqtop-reset"></span><dl>
+<dt><span></span><span class="rocqdoc-keyword">Create HintDb</span><span> </span><span class="rocqdoc-var">section_hints</span><span>.</span><span>
+</span></dt><dt><span></span><span class="rocqdoc-keyword">Inductive</span><span> </span><span class="rocqdoc-var">section_inhabited</span><span> (</span><span class="rocqdoc-var">A</span><span> : </span><span class="rocqdoc-keyword">Type</span><span>) : </span><span class="rocqdoc-keyword">Prop</span><span> :=</span><span>
+| </span><span class="rocqdoc-var">section_inhabits</span><span> : </span><span class="rocqdoc-var">A</span><span> -&gt; </span><span class="rocqdoc-var">section_inhabited</span><span> </span><span class="rocqdoc-var">A</span><span>.</span><span>
+</span></dt><dd><span>section_inhabited is defined
+section_inhabited_ind is defined
+section_inhabited_sind is defined
+</span></dd>
+<dt><span></span><span class="rocqdoc-keyword">Module</span><span> </span><span class="rocqdoc-var">ExportedHint</span><span>.</span><span>
+</span></dt><dd><span>Interactive Module ExportedHint started
+</span></dd>
+<dt><span>  </span><span class="rocqdoc-keyword">Section</span><span> </span><span class="rocqdoc-var">S</span><span>.</span><span>
+</span></dt><dt><span>    </span><span class="rocqdoc-keyword">Context</span><span> (</span><span class="rocqdoc-var">A</span><span> : </span><span class="rocqdoc-keyword">Type</span><span>) (</span><span class="rocqdoc-var">a</span><span> : </span><span class="rocqdoc-var">A</span><span>).</span><span>
+</span></dt><dd><span>A is declared
+a is declared
+</span></dd>
+<dt><span>    </span><span class="rocqdoc-keyword">Lemma</span><span> </span><span class="rocqdoc-var">inhabited_hint</span><span> : </span><span class="rocqdoc-var">section_inhabited</span><span> </span><span class="rocqdoc-var">A</span><span>.</span><span>
+</span></dt><dd><span>1 goal
+  
+  A : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>
+  a : A
+  ============================
+  section_inhabited A
+</span></dd>
+<dt><span>    </span><span class="rocqdoc-keyword">Proof</span><span>. </span><span class="rocqdoc-tactic">exact</span><span> (</span><span class="rocqdoc-var">section_inhabits</span><span> </span><span class="rocqdoc-var">A</span><span> </span><span class="rocqdoc-var">a</span><span>). </span><span class="rocqdoc-keyword">Qed</span><span>.</span><span>
+</span></dt><dd><span>
+No more goals.
+
+</span></dd>
+<dt><span>    #[</span><span class="rocqdoc-var">export</span><span>] </span><span class="rocqdoc-keyword">Hint</span><span> </span><span class="rocqdoc-keyword">Resolve</span><span> </span><span class="rocqdoc-var">inhabited_hint</span><span> : </span><span class="rocqdoc-var">section_hints</span><span>.</span><span>
+</span></dt><dt><span>  </span><span class="rocqdoc-keyword">End</span><span> </span><span class="rocqdoc-var">S</span><span>.</span><span>
+</span></dt><dt><span></span><span class="rocqdoc-keyword">End</span><span> </span><span class="rocqdoc-var">ExportedHint</span><span>.</span><span>
+</span></dt><dd><span>Module ExportedHint is defined
+</span></dd>
+<dt><span></span><span class="rocqdoc-keyword">Import</span><span> </span><span class="rocqdoc-var">ExportedHint</span><span>.</span><span>
+</span></dt><dt><span></span><span class="rocqdoc-keyword">Goal</span><span> </span><span class="rocqdoc-keyword">forall</span><span> (</span><span class="rocqdoc-var">A</span><span> : </span><span class="rocqdoc-keyword">Type</span><span>) (</span><span class="rocqdoc-var">a</span><span> : </span><span class="rocqdoc-var">A</span><span>), </span><span class="rocqdoc-var">section_inhabited</span><span> </span><span class="rocqdoc-var">A</span><span>.</span><span>
+</span></dt><dd><span>1 goal
+  
+  ============================
+  </span><span class="ansi-bold">forall</span><span> A : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>, A</span><span> -&gt;</span><span> section_inhabited A
+</span></dd>
+<dt><span></span><span class="rocqdoc-keyword">Proof</span><span>. </span><span class="rocqdoc-tactic">intros</span><span>; </span><span class="rocqdoc-tactic">auto</span><span> </span><span class="rocqdoc-keyword">with</span><span> </span><span class="rocqdoc-var">section_hints</span><span>. </span><span class="rocqdoc-keyword">Qed</span><span>.</span><span>
+</span></dt><dd><span>
+No more goals.
+
+</span></dd>
+</dl>
+</div>
+<p><a class="reference internal" href="#rocq:cmd.Hint-Constructors" title="Hint Constructors"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Hint</span> <span class="pre">Constructors</span></code></a> uses the same persistence and discharge rules,
+because it registers each constructor as a resolve hint.</p>
 <dl>
 <dt><code class="docutils literal notranslate"><span class="notation"><span class="alternative"><span class="alternative-block"><span><span><span class="pre">-&gt;</span></span></span></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><span><span><span class="pre">&lt;-</span></span></span></span></span></span></code></dt><dd><p>The second form adds the left-to-right (<code class="docutils literal notranslate"><span class="pre">-&gt;</span></code>) or right-ot-left implication (<code class="docutils literal notranslate"><span class="pre">&lt;-</span></code>)
 of a logical equivalence (<code class="docutils literal notranslate"><span class="pre">&lt;-&gt;</span></code>) as a hint.  If needed, it defines a projection

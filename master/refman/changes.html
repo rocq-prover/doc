@@ -1530,6 +1530,12 @@ The <a class="reference internal" href="proofs/writing-proofs/equality.html#rocq
 (<a class="reference external" href="https://github.com/rocq-prover/rocq/pull/22335">#22335</a>,
 fixes <a class="reference external" href="https://github.com/rocq-prover/rocq/issues/20944">#20944</a>,
 by Aleksei Rybnikov).</p></li>
+<li><p><strong>Added:</strong> <a class="reference internal" href="proofs/automatic-tactics/auto.html#rocq:cmd.Hint-Resolve" title="Hint Resolve"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Hint</span> <span class="pre">Resolve</span></code></a> and <a class="reference internal" href="proofs/automatic-tactics/auto.html#rocq:cmd.Hint-Constructors" title="Hint Constructors"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Hint</span> <span class="pre">Constructors</span></code></a> now support
+<a class="reference internal" href="language/core/modules.html#rocq:attr.export" title="export"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">export</span></code></a> and <a class="reference internal" href="language/core/modules.html#rocq:attr.global" title="global"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">global</span></code></a> inside sections.  Hints are rebuilt from
+their generalized types when the section closes, recomputing implicit costs
+while preserving explicit costs.  Explicit hint patterns, section-variable
+hints, and hints without a global head after discharge remain unsupported;
+see <a class="reference internal" href="proofs/automatic-tactics/auto.html#creating-hints"><span class="std std-ref">Creating Hints</span></a> (by Jan-Oliver Kaiser).</p></li>
 </ul>
 </section>
 <section id="ltac-language">
