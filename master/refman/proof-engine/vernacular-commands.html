@@ -1463,6 +1463,17 @@ argument scopes (as set in the definition of <a class="reference internal" href=
 subsequently with the <a class="reference internal" href="../language/extensions/arguments-command.html#rocq:cmd.Arguments" title="Arguments"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Arguments</span></code></a> command). It does not print the
 body of definitions or proofs.</p>
 <p>See <a class="reference internal" href="../proofs/writing-proofs/equality.html#rocq:cmd.Strategy" title="Strategy"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Strategy</span></code></a> for details on opacity.</p>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.print-unsatisfiable-ref">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[print-unsatisfiable-ref]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">This</span></span></span> <span><span><span class="pre">reference</span></span></span> <span><span><span class="pre">relies</span></span></span> <span><span><span class="pre">on</span></span></span> <span><span><span class="pre">unsatisfiable</span></span></span> <span><span><span class="pre">constraints</span></span></span></span></span><a class="headerlink" href="#rocq:warn.print-unsatisfiable-ref" title="Link to this definition"></a></dt>
+<dd><p>A <a class="reference internal" href="../addendum/universe-polymorphism.html#polymorphicuniverses"><span class="std std-ref">universe polymorphic</span></a> reference
+may require unsatisfiable universe constraints, either because
+it was declared with <a class="reference internal" href="#rocq:flag.Universe-Checking" title="Universe Checking"><code class="xref rocq rocq-flag docutils literal notranslate"><span class="pre">Universe</span> <span class="pre">Checking</span></code></a> disabled or
+because monomorphic constraints which contradict its bound
+constraints were added to the global environment after the reference was declared.</p>
+<p>This warning is raised when such a reference is printed by <code class="docutils literal notranslate"><span class="pre">About</span></code> or a similar command.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="rocq cmd">
