@@ -1957,55 +1957,79 @@ file <code class="docutils literal notranslate"><span class="pre">RocqMakefile</
 <p><strong>Variable assignment</strong></p>
 <p>The variable must belong to the variables listed in the <code class="docutils literal notranslate"><span class="pre">Parameters</span></code>
 section of the generated makefile. These include:</p>
-<dl class="field-list simple">
-<dt class="field-odd">CAMLPKGS<span class="colon">:</span></dt>
-<dd class="field-odd"><p>can be used to specify third party findlib packages, and is
+<ul class="simple">
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">CAMLPKGS</span></span></span></span></code></dt><dd><p>can be used to specify third party findlib packages, and is
 passed to the OCaml compiler on building or linking of modules. Eg:
 <code class="docutils literal notranslate"><span class="pre">-package</span> <span class="pre">yojson</span></code>.</p>
 </dd>
-<dt class="field-even">CAMLFLAGS<span class="colon">:</span></dt>
-<dd class="field-even"><p>can be used to specify additional flags to the OCaml
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">CAMLFLAGS</span></span></span></span></code></dt><dd><p>can be used to specify additional flags to the OCaml
 compiler, like <code class="docutils literal notranslate"><span class="pre">-bin-annot</span></code> or <code class="docutils literal notranslate"><span class="pre">-w</span></code>....</p>
 </dd>
-<dt class="field-odd">OCAMLWARN<span class="colon">:</span></dt>
-<dd class="field-odd"><p>it contains a default of <code class="docutils literal notranslate"><span class="pre">-warn-error</span> <span class="pre">+a-3</span></code>, useful to modify
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">OCAMLWARN</span></span></span></span></code></dt><dd><p>it contains a default of <code class="docutils literal notranslate"><span class="pre">-warn-error</span> <span class="pre">+a-3</span></code>, useful to modify
 this setting; beware this is not recommended for projects in
 Rocq's CI.</p>
 </dd>
-<dt class="field-even">ROCQ, COQC, COQDEP, COQDOC<span class="colon">:</span></dt>
-<dd class="field-even"><p>can be set in order to use alternative binaries
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">ROCQ</span></span></span></span></code>, <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">COQC</span></span></span></span></code>, <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">COQDEP</span></span></span></span></code>, <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">COQDOC</span></span></span></span></code></dt><dd><p>can be set in order to use alternative binaries
 (e.g. wrappers)</p>
 </dd>
-<dt class="field-odd">COQ_SRC_SUBDIRS<span class="colon">:</span></dt>
-<dd class="field-odd"><p>can be extended by including other paths in which <code class="docutils literal notranslate"><span class="pre">*.cm*</span></code> files
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">COQ_SRC_SUBDIRS</span></span></span></span></code></dt><dd><p>can be extended by including other paths in which <code class="docutils literal notranslate"><span class="pre">*.cm*</span></code> files
 are searched. For example <code class="docutils literal notranslate"><span class="pre">COQ_SRC_SUBDIRS+=user-contrib/Unicoq</span></code>
 lets you build a plugin containing OCaml code that depends on the
 OCaml code of <code class="docutils literal notranslate"><span class="pre">Unicoq</span></code></p>
 </dd>
-<dt class="field-even">COQFLAGS<span class="colon">:</span></dt>
-<dd class="field-even"><p>override the flags passed to <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">compile</span></code>. By default <code class="docutils literal notranslate"><span class="pre">-q</span></code>.</p>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">COQFLAGS</span></span></span></span></code></dt><dd><p>override the flags passed to <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">compile</span></code>. By default <code class="docutils literal notranslate"><span class="pre">-q</span></code>.</p>
 </dd>
-<dt class="field-odd">COQEXTRAFLAGS<span class="colon">:</span></dt>
-<dd class="field-odd"><p>extend the flags passed to <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">compile</span></code></p>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">COQEXTRAFLAGS</span></span></span></span></code></dt><dd><p>extend the flags passed to <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">compile</span></code></p>
 </dd>
-<dt class="field-even">COQCHKFLAGS<span class="colon">:</span></dt>
-<dd class="field-even"><p>override the flags passed to <code class="docutils literal notranslate"><span class="pre">rocqchk</span></code>.  By default <code class="docutils literal notranslate"><span class="pre">-silent</span> <span class="pre">-o</span></code>.</p>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">COQCHKFLAGS</span></span></span></span></code></dt><dd><p>override the flags passed to <code class="docutils literal notranslate"><span class="pre">rocqchk</span></code>.  By default <code class="docutils literal notranslate"><span class="pre">-silent</span> <span class="pre">-o</span></code>.</p>
 </dd>
-<dt class="field-odd">COQCHKEXTRAFLAGS<span class="colon">:</span></dt>
-<dd class="field-odd"><p>extend the flags passed to <code class="docutils literal notranslate"><span class="pre">rocqchk</span></code></p>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">COQCHKEXTRAFLAGS</span></span></span></span></code></dt><dd><p>extend the flags passed to <code class="docutils literal notranslate"><span class="pre">rocqchk</span></code></p>
 </dd>
-<dt class="field-even">COQDOCFLAGS<span class="colon">:</span></dt>
-<dd class="field-even"><p>override the flags passed to <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">doc</span></code>. By default <code class="docutils literal notranslate"><span class="pre">-interpolate</span> <span class="pre">-utf8</span></code>.</p>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">COQDOCFLAGS</span></span></span></span></code></dt><dd><p>override the flags passed to <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">doc</span></code>. By default <code class="docutils literal notranslate"><span class="pre">-interpolate</span> <span class="pre">-utf8</span></code>.</p>
 </dd>
-<dt class="field-odd">COQDOCEXTRAFLAGS<span class="colon">:</span></dt>
-<dd class="field-odd"><p>extend the flags passed to <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">doc</span></code></p>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">COQDOCEXTRAFLAGS</span></span></span></span></code></dt><dd><p>extend the flags passed to <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">doc</span></code></p>
 </dd>
-<dt class="field-even">COQLIBINSTALL, COQPLUGININSTALL, COQDOCINSTALL<span class="colon">:</span></dt>
-<dd class="field-even"><p>specify where the Rocq libraries, plugins and documentation will be installed.
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">COQLIBINSTALL</span></span></span></span></code>, <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">COQPLUGININSTALL</span></span></span></span></code>, <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">COQDOCINSTALL</span></span></span></span></code></dt><dd><p>specify where the Rocq libraries, plugins and documentation will be installed.
 By default a combination of <code class="docutils literal notranslate"><span class="pre">$(DESTDIR)</span></code> (if defined) with
 <code class="docutils literal notranslate"><span class="pre">$(COQLIB)/user-contrib</span></code>, <code class="docutils literal notranslate"><span class="pre">$(COQCORELIB)/..</span></code> and <code class="docutils literal notranslate"><span class="pre">$(DOCDIR)/coq/user-contrib</span></code>.</p>
 </dd>
 </dl>
+</li>
+</ul>
 <p>Use <a class="reference internal" href="#rocqmakefilelocallate"><span class="std std-ref">RocqMakefile.local-late</span></a> instead to access more variables.</p>
 <p><strong>Rule extension</strong></p>
 <p>The following makefile rules can be extended.</p>
@@ -2048,39 +2072,51 @@ target.</p>
 <span id="rocqmakefilelocallate"></span><h4>RocqMakefile.local-late<a class="headerlink" href="#rocqmakefile-local-late" title="Link to this heading"></a></h4>
 <p>The optional file <code class="docutils literal notranslate"><span class="pre">RocqMakefile.local-late</span></code> is included at the end of the generated
 file <code class="docutils literal notranslate"><span class="pre">RocqMakefile</span></code>.  The following is a partial list of accessible variables:</p>
-<dl class="field-list simple">
-<dt class="field-odd">COQ_VERSION<span class="colon">:</span></dt>
-<dd class="field-odd"><p>the version of <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">compile</span></code> being used, which can be used to
+<ul class="simple">
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">COQ_VERSION</span></span></span></span></code></dt><dd><p>the version of <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">compile</span></code> being used, which can be used to
 provide different behavior depending on the Rocq version</p>
 </dd>
-<dt class="field-even">COQMAKEFILE_VERSION<span class="colon">:</span></dt>
-<dd class="field-even"><p>the version of Rocq used to generate the
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">COQMAKEFILE_VERSION</span></span></span></span></code></dt><dd><p>the version of Rocq used to generate the
 Makefile, which can be used to detect version mismatches</p>
 </dd>
-<dt class="field-odd">ALLDFILES<span class="colon">:</span></dt>
-<dd class="field-odd"><p>the list of generated dependency files, which can be used,
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">ALLDFILES</span></span></span></span></code></dt><dd><p>the list of generated dependency files, which can be used,
 for example, to cause <code class="docutils literal notranslate"><span class="pre">make</span></code> to recompute dependencies
 when files change by writing <code class="docutils literal notranslate"><span class="pre">$(ALLDFILES):</span> <span class="pre">myfiles</span></code> or to
 indicate that files must be generated before dependencies can
 be computed by writing <code class="docutils literal notranslate"><span class="pre">$(ALLDFILES):</span> <span class="pre">|</span> <span class="pre">mygeneratedfiles</span></code></p>
 </dd>
-<dt class="field-even">VOFILES, GLOBFILES, CMOFILES, CMXFILES, OFILES, CMAFILES, CMXAFILES, CMIFILES, CMXSFILES<span class="colon">:</span></dt>
-<dd class="field-even"><p>lists of files that are generated by various invocations of the compilers</p>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">VOFILES</span></span></span></span></code>, <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">GLOBFILES</span></span></span></span></code>, <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">CMOFILES</span></span></span></span></code>, <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">CMXFILES</span></span></span></span></code>, <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">OFILES</span></span></span></span></code>, <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">CMAFILES</span></span></span></span></code>, <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">CMXAFILES</span></span></span></span></code>, <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">CMIFILES</span></span></span></span></code>, <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">CMXSFILES</span></span></span></span></code></dt><dd><p>lists of files that are generated by various invocations of the compilers</p>
 </dd>
 </dl>
+</li>
+</ul>
 <p>In addition, the following variables may be useful for
 deciding what targets to present via <code class="docutils literal notranslate"><span class="pre">$(shell</span> <span class="pre">...)</span></code>; these
 variables are already accessible in recipes for rules added in
 <code class="docutils literal notranslate"><span class="pre">RocqMakefile.local</span></code>, but are only accessible from top-level <code class="docutils literal notranslate"><span class="pre">$(shell</span>
 <span class="pre">...)</span></code> invocations in <code class="docutils literal notranslate"><span class="pre">RocqMakefile.local-late</span></code>:</p>
-<dl class="field-list simple">
-<dt class="field-odd">ROCQ, COQC, COQDEP, COQDOC, CAMLC, CAMLOPTC<span class="colon">:</span></dt>
-<dd class="field-odd"><p>compiler binaries</p>
-</dd>
-<dt class="field-even">COQFLAGS, CAMLFLAGS, COQLIBS, COQDEBUG, OCAMLLIBS<span class="colon">:</span></dt>
-<dd class="field-even"><p>flags passed to the Rocq or OCaml compilers</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">ROCQ</span></span></span></span></code>, <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">COQC</span></span></span></span></code>, <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">COQDEP</span></span></span></span></code>, <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">COQDOC</span></span></span></span></code>, <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">CAMLC</span></span></span></span></code>, <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">CAMLOPTC</span></span></span></span></code></dt><dd><p>compiler binaries</p>
 </dd>
 </dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">COQFLAGS</span></span></span></span></code>, <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">CAMLFLAGS</span></span></span></span></code>, <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">COQLIBS</span></span></span></span></code>, <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">COQDEBUG</span></span></span></span></code>, <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">OCAMLLIBS</span></span></span></span></code></dt><dd><p>flags passed to the Rocq or OCaml compilers</p>
+</dd>
+</dl>
+</li>
+</ul>
 </section>
 <section id="timing-targets-and-performance-testing">
 <h4>Timing targets and performance testing<a class="headerlink" href="#timing-targets-and-performance-testing" title="Link to this heading"></a></h4>
