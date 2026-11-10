@@ -1618,6 +1618,26 @@ unsafe tactics.</p>
 mode.</p>
 </dd></dl>
 
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.remaining-given-up">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[remaining-given-up]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">The</span></span></span> <span><span><span class="pre">proof</span></span></span> <span><span><span class="pre">has</span></span></span> <span><span><span class="pre">given</span></span></span> <span><span><span class="pre">up</span></span></span> <span><span><span class="pre">(admitted)</span></span></span> <span><span><span class="pre">goals.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.remaining-given-up" title="Link to this definition"></a></dt>
+<dd><p>In rare cases it is possible to generate a goal which does not
+appear in the final proof term. This warning appears when such a
+goal was <a class="reference internal" href="#rocq:tacn.admit" title="admit"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">admitted</span></code></a>. When an admitted goal appears
+in the final proof term we get an error &quot;No more goals, but
+there are some goals you gave up&quot; instead.</p>
+</dd></dl>
+
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.remaining-shelved-goals">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[remaining-shelved-goals]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">The</span></span></span> <span><span><span class="pre">proof</span></span></span> <span><span><span class="pre">has</span></span></span> <span><span><span class="pre">remaining</span></span></span> <span><span><span class="pre">shelved</span></span></span> <span><span><span class="pre">goals.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.remaining-shelved-goals" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.remaining-unresolved-evars">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[remaining-unresolved-evars]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">The</span></span></span> <span><span><span class="pre">proof</span></span></span> <span><span><span class="pre">has</span></span></span> <span><span><span class="pre">unresolved</span></span></span> <span><span><span class="pre">variables.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.remaining-unresolved-evars" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Sometimes an error occurs when building the proof term, because
@@ -1688,6 +1708,12 @@ See <a class="reference internal" href="#rocq:flag.Nested-Proofs-Allowed" title=
 <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">exact</span></span></span> <a class="reference internal" href="../../language/core/basic.html#grammar-token-term"><span class="hole"><span class="pre">term</span></span></a><span><span><span class="pre">.</span></span></span> <span><span><span class="pre">Qed.</span></span></span></span></code>
 That is, you have to give the full proof in one gulp, as a
 proof term (see Section <a class="reference internal" href="../../proof-engine/tactics.html#applyingtheorems"><span class="std std-ref">Applying theorems</span></a>).</p>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.deprecated-exact-proof">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[deprecated-exact-proof]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">&quot;Proof</span></span></span> <span><span><span class="pre">term.&quot;</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">deprecated.</span></span></span> <span><span><span class="pre">Use</span></span></span> <span><span><span class="pre">&quot;Proof.</span></span></span> <span><span><span class="pre">exact</span></span></span> <span><span><span class="pre">term.</span></span></span> <span><span><span class="pre">Qed.&quot;</span></span></span> <span><span><span class="pre">instead.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.deprecated-exact-proof" title="Link to this definition"></a></dt>
+<dd><p>Deprecated since 9.2.</p>
+</dd></dl>
+
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Use of this command is discouraged.  In particular, it
@@ -2076,6 +2102,12 @@ activated with this command.</p>
 <dd><p>Cancels the effect of the last <a class="reference internal" href="../../language/core/basic.html#grammar-token-natural"><code class="xref std std-token docutils literal notranslate"><span class="pre">natural</span></code></a> commands or tactics.
 The <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">To</span></span></span> <a class="reference internal" href="../../language/core/basic.html#grammar-token-natural"><span class="hole"><span class="pre">natural</span></span></a></span></code> form goes back to the specified state number.
 If <a class="reference internal" href="../../language/core/basic.html#grammar-token-natural"><code class="xref std std-token docutils literal notranslate"><span class="pre">natural</span></code></a> is not specified, the command goes back one command or tactic.</p>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.undo-batch-mode">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[undo-batch-mode]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Command</span></span></span> <a class="reference internal" href="../../language/core/basic.html#grammar-token-sentence"><span class="hole"><span class="pre">sentence</span></span></a> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">recommended</span></span></span> <span><span><span class="pre">in</span></span></span> <span><span><span class="pre">batch</span></span></span> <span><span><span class="pre">mode.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.undo-batch-mode" title="Link to this definition"></a></dt>
+<dd><p>Going back is not efficient in batch mode as previous states are not kept.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="rocq cmd">
@@ -2707,18 +2739,29 @@ No more goals.
 specified, the <a class="reference internal" href="../../language/core/basic.html#grammar-token-natural"><code class="xref std std-token docutils literal notranslate"><span class="pre">natural</span></code></a>-th.  The
 printing of the other goals is suspended until the focused goal
 is solved or unfocused.</p>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.deprecated-focus">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[deprecated-focus]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">The</span></span></span> <span><span><span class="pre">Focus</span></span></span> <span><span><span class="pre">command</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">deprecated</span></span></span></span></span><a class="headerlink" href="#rocq:warn.deprecated-focus" title="Link to this definition"></a></dt>
+<dd><p>Prefer the use of bullets or focusing braces with a goal selector (see above).</p>
 <div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 8.8: </span>Prefer the use of bullets or focusing braces with a goal selector (see above).</p>
+<p><span class="versionmodified deprecated">Deprecated since version 8.8.</span></p>
 </div>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="rocq cmd">
 <dt class="sig sig-object rocq" id="rocq:cmd.Unfocus">
 <em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Unfocus</span></span></span></span></span><a class="headerlink" href="#rocq:cmd.Unfocus" title="Link to this definition"></a></dt>
 <dd><p>Restores to focus the goals that were suspended by the last <a class="reference internal" href="#rocq:cmd.Focus" title="Focus"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Focus</span></code></a> command.</p>
-<div class="deprecated">
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.deprecated-unfocus">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[deprecated-unfocus]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">The</span></span></span> <span><span><span class="pre">Unfocus</span></span></span> <span><span><span class="pre">command</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">deprecated</span></span></span></span></span><a class="headerlink" href="#rocq:warn.deprecated-unfocus" title="Link to this definition"></a></dt>
+<dd><div class="deprecated">
 <p><span class="versionmodified deprecated">Deprecated since version 8.8.</span></p>
 </div>
+</dd></dl>
+
 </dd></dl>
 
 </section>
@@ -3036,6 +3079,16 @@ exiting the current tactic block, i.e. after a dot. The only guarantee
 with explicit naming is that the subproof will be accessible with this
 name after the <a class="reference internal" href="#rocq:cmd.Defined" title="Defined"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Defined</span></code></a> command.</p>
 </div>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.failed-abstract-certificate">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[failed-abstract-certificate]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Certificate</span></span></span> <span><span><span class="pre">for</span></span></span> <span><span><span class="pre">private</span></span></span> <span><span><span class="pre">constant</span></span></span> <a class="reference internal" href="../../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a> <span><span><span class="pre">failed.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.failed-abstract-certificate" title="Link to this definition"></a></dt>
+<dd><p>In rare cases the global environment at <a class="reference internal" href="#rocq:cmd.Qed" title="Qed"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Qed</span></code></a> or
+<a class="reference internal" href="#rocq:cmd.Defined" title="Defined"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Defined</span></code></a> cannot be verified to be an extension of the
+environment at <a class="reference internal" href="#rocq:tacn.abstract" title="abstract"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">abstract</span></code></a>. This means the generated proof
+must be rechecked.</p>
+<p>This warning usually indicates a bug in Rocq or in a plugin.</p>
+</dd></dl>
+
 <dl class="rocq tacn">
 <dt class="sig sig-object rocq" id="rocq:tacn.transparent_abstract">
 <em class="property"><span class="sigannot"><span class="pre">Tactic</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">transparent_abstract</span></span></span> <a class="reference internal" href="../../proof-engine/ltac.html#grammar-token-ltac_expr3"><span class="hole"><span class="pre">ltac_expr3</span></span></a> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">using</span></span></span> <a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span></span></span><a class="headerlink" href="#rocq:tacn.transparent_abstract" title="Link to this definition"></a></dt>

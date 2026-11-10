@@ -1506,6 +1506,22 @@ declared as a coercion to the class of its type.  See <a class="reference intern
 </dd>
 </dl>
 <p>The <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">Inline</span></span></span></span></code> clause is only relevant inside module types used for functor arguments.  See <a class="reference internal" href="modules.html#rocq:cmd.Module" title="Module"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Module</span></code></a>.</p>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.inline-parameter-in-module">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[inline-parameter-in-module]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Ignoring</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">Inline</span></span></span> <span><span><span class="pre">annotation</span></span></span> <span><span><span class="pre">of</span></span></span> <a class="reference internal" href="modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a> <span><span><span class="pre">outside</span></span></span> <span><span><span class="pre">of</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">module</span></span></span> <span><span><span class="pre">type.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.inline-parameter-in-module" title="Link to this definition"></a></dt>
+<dd><p>This warning is emitted when <code class="docutils literal notranslate"><span class="pre">Parameter</span></code> is used with an
+explicit <a class="reference internal" href="modules.html#rocq:opt.Inline-Level" title="Inline Level"><code class="xref rocq rocq-opt docutils literal notranslate"><span class="pre">Inline</span> <span class="pre">Level</span></code></a> (e.g. <code class="docutils literal notranslate"><span class="pre">Parameter</span> <span class="pre">Inline(10)</span> <span class="pre">x</span> <span class="pre">:</span> <span class="pre">T</span></code>)
+outside of a module type, because inlining level is only
+meaningful for parameters in module types.</p>
+</dd></dl>
+
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.plural-Command">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[plural-Command]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Command</span></span></span> <a class="reference internal" href="basic.html#grammar-token-string"><span class="hole"><span class="pre">string</span></span></a> <span><span><span class="pre">expects</span></span></span> <span><span><span class="pre">more</span></span></span> <span><span><span class="pre">than</span></span></span> <span><span><span class="pre">one</span></span></span> <span><span><span class="pre">assumption.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.plural-Command" title="Link to this definition"></a></dt>
+<dd><p>This warning is off by default. Enable it to enforce that plural
+forms (e.g. <code class="docutils literal notranslate"><span class="pre">Axioms</span></code>) have more than one argument.</p>
+</dd></dl>
+
 </dd></dl>
 
 <div class="admonition note">

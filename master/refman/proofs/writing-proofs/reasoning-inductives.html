@@ -1580,11 +1580,11 @@ constructor applied to its arguments, if any.</p>
 <p>Applying <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">destruct</span></span></span></span></code> to a hypothesis beginning with <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">and</span></span></span></span></code> such as <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">A</span></span></span> <span><span><span class="pre">/\</span></span></span> <span><span><span class="pre">B</span></span></span></span></code>
 or <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">A</span></span></span> <span><span><span class="pre">&lt;-&gt;</span></span></span> <span><span><span class="pre">B</span></span></span></span></code> splits the hypothesis into multiple hypotheses without creating new
 subgoals.  Example <a class="reference internal" href="#example-split-hypothesis"><span class="std std-ref">here</span></a>.</p>
-<dl class="simple">
+<dl>
 <dt><code class="docutils literal notranslate"><span class="notation"><span class="repeat-wrapper-with-sub"><span class="repeat"><a class="reference internal" href="#grammar-token-induction_clause"><span class="hole"><span class="pre">induction_clause</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span><span class="notation-sub"><span class="pre">,</span></span></span></span></code></dt><dd><p>Giving multiple <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="#grammar-token-induction_clause"><span class="hole"><span class="pre">induction_clause</span></span></a></span></code>s is equivalent to applying <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">destruct</span></span></span></span></code>
 serially on each <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="#grammar-token-induction_clause"><span class="hole"><span class="pre">induction_clause</span></span></a></span></code>.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="#grammar-token-induction_arg"><span class="hole"><span class="pre">induction_arg</span></span></a></span></code></dt><dd><ul class="simple">
+<dt><code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="#grammar-token-induction_arg"><span class="hole"><span class="pre">induction_arg</span></span></a></span></code></dt><dd><ul>
 <li><p>If <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/basic.html#grammar-token-one_term"><span class="hole"><span class="pre">one_term</span></span></a></span></code> (in <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../proof-engine/tactics.html#grammar-token-one_term_with_bindings"><span class="hole"><span class="pre">one_term_with_bindings</span></span></a></span></code>)
 is an identifier <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></code>:</p>
 <ul>
@@ -1595,7 +1595,13 @@ goal, then <code class="docutils literal notranslate"><span class="notation"><sp
 goal or unselected hypotheses after application of <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">destruct</span></span></span></span></code>,
 it is erased (unless it is a section variable). To avoid erasure,
 parenthesize the argument to make it a <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/basic.html#grammar-token-term"><span class="hole"><span class="pre">term</span></span></a></span></code> rather than an
-<code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></code>, as in <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">destruct</span></span></span> <span><span><span class="pre">(</span></span></span><a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a><span><span><span class="pre">)</span></span></span></span></code>.</p></li>
+<code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></code>, as in <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">destruct</span></span></span> <span><span><span class="pre">(</span></span></span><a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a><span><span><span class="pre">)</span></span></span></span></code>.</p>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.cannot-remove-as-expected">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[cannot-remove-as-expected]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Cannot</span></span></span> <span><span><span class="pre">remove</span></span></span> <a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></span><a class="headerlink" href="#rocq:warn.cannot-remove-as-expected" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</li>
 </ul>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/basic.html#grammar-token-one_term"><span class="hole"><span class="pre">one_term</span></span></a></span></code> may contain holes that are denoted by “_”. In this case,
@@ -1613,6 +1619,12 @@ for each constructor, given in the order in which the constructors are
 defined.  If there are not enough names, Rocq picks fresh names.
 Inner <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">intropattern</span></span></span></span></code>s can also split introduced hypotheses into
 multiple hypotheses or subgoals.</p>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.unused-intro-pattern">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[unused-intro-pattern]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Unused</span></span></span> <span><span><span class="pre">introduction</span></span></span> <span><span><span class="pre">pattern</span></span></span> <a class="reference internal" href="../../proof-engine/tactics.html#grammar-token-intropattern"><span class="hole"><span class="pre">intropattern</span></span></a></span></span><a class="headerlink" href="#rocq:warn.unused-intro-pattern" title="Link to this definition"></a></dt>
+<dd><p>This warning is omitted when too many patterns are given.</p>
+</dd></dl>
+
 </dd>
 <dt><code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">eqn</span></span></span> <span><span><span class="pre">:</span></span></span> <a class="reference internal" href="../../proof-engine/tactics.html#grammar-token-naming_intropattern"><span class="hole"><span class="pre">naming_intropattern</span></span></a></span></code></dt><dd><p>Generates a new hypothesis in each new subgoal that is an equality between
 the term being case-analyzed and the associated constructor (applied to
@@ -1973,10 +1985,16 @@ in <code class="docutils literal notranslate"><span class="pre">Prop</span></cod
 registered using <a class="reference internal" href="../../proof-engine/vernacular-commands.html#rocq:cmd.Register-Scheme" title="Register Scheme"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Register</span> <span class="pre">Scheme</span></code></a>, e.g. <code class="docutils literal notranslate"><span class="pre">Register</span> <span class="pre">Scheme</span>
 <span class="pre">my_foo_elim</span> <span class="pre">as</span> <span class="pre">rect_dep</span> <span class="pre">for</span> <span class="pre">foo</span></code> where <code class="docutils literal notranslate"><span class="pre">my_foo_elim</span></code> is a
 dependent elimination scheme for inductive <code class="docutils literal notranslate"><span class="pre">foo</span></code> at sort <code class="docutils literal notranslate"><span class="pre">Type</span></code>.</p>
-<p>If no scheme is registered for the eliminated inductive and goal
-sort, <a class="reference internal" href="#rocq:tacn.induction" title="induction"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">induction</span></code></a> attempts to find a constant from the same
-module as the inductive whose name is the inductive's name
-suffixed by <code class="docutils literal notranslate"><span class="pre">sind</span></code> / <code class="docutils literal notranslate"><span class="pre">ind</span></code> / <code class="docutils literal notranslate"><span class="pre">rec</span></code> / <code class="docutils literal notranslate"><span class="pre">rect</span></code>. This name-based lookup is deprecated.</p>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.deprecated-lookup-elim-by-name">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[deprecated-lookup-elim-by-name]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Found</span></span></span> <span><span><span class="pre">unregistered</span></span></span> <span><span><span class="pre">eliminator</span></span></span> <a class="reference internal" href="../../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a> <span><span><span class="pre">for</span></span></span> <a class="reference internal" href="../../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a> <span><span><span class="pre">by</span></span></span> <span><span><span class="pre">name.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.deprecated-lookup-elim-by-name" title="Link to this definition"></a></dt>
+<dd><p>If no scheme is registered for the eliminated inductive and
+goal sort, <a class="reference internal" href="#rocq:tacn.induction" title="induction"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">induction</span></code></a> attempts to find a constant from
+the same module as the inductive whose name is the inductive's
+name suffixed by <code class="docutils literal notranslate"><span class="pre">sind</span></code> / <code class="docutils literal notranslate"><span class="pre">ind</span></code> / <code class="docutils literal notranslate"><span class="pre">rec</span></code> / <code class="docutils literal notranslate"><span class="pre">rect</span></code>. This
+name-based lookup is deprecated since 9.2.</p>
+</dd></dl>
+
 </dd>
 </dl>
 <dl class="rocq exn">
@@ -2652,6 +2670,15 @@ the use of a sigma type is avoided.</p>
 <dt class="sig sig-object rocq" id="rocq:exn.Nothing-to-inject">
 <em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Nothing</span></span></span> <span><span><span class="pre">to</span></span></span> <span><span><span class="pre">inject.</span></span></span></span></span><a class="headerlink" href="#rocq:exn.Nothing-to-inject" title="Link to this definition"></a></dt>
 <dd><p>Generated when one side of the equality is not a constructor.</p>
+</dd></dl>
+
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.injection-missing-eqdep-dec">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[injection-missing-eqdep-dec]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">The</span></span></span> <span><span><span class="pre">equality</span></span></span> <span><span><span class="pre">scheme</span></span></span> <span><span><span class="pre">for</span></span></span> <a class="reference internal" href="../../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a> <span><span><span class="pre">could</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">be</span></span></span> <span><span><span class="pre">used</span></span></span> <span><span><span class="pre">as</span></span></span> <span><span><span class="pre">Stdlib.Logic.Eqdep_dec</span></span></span> <span><span><span class="pre">has</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">been</span></span></span> <span><span><span class="pre">required.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.injection-missing-eqdep-dec" title="Link to this definition"></a></dt>
+<dd><p>Some equality schemes need uniqueness of identity proofs to be
+used. When not using Stdlib it can be provided by
+<a class="reference internal" href="../../proof-engine/vernacular-commands.html#rocq:cmd.Register" title="Register"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">registering</span></code></a> <code class="docutils literal notranslate"><span class="pre">core.eqdep_dec.inj_pair2</span></code> (see
+Stdlib for the expected type).</p>
 </dd></dl>
 
 <dl class="rocq tacn">
@@ -3869,6 +3896,15 @@ inductive types, we recommend defining their equality first.</p>
 <em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Scheme</span></span></span> <span><span><span class="pre">Rewriting</span></span></span> <span><span><span class="pre">for</span></span></span> <a class="reference internal" href="../../proof-engine/vernacular-commands.html#grammar-token-reference"><span class="hole"><span class="pre">reference</span></span></a></span></span><a class="headerlink" href="#rocq:cmd.Scheme-Rewriting" title="Link to this definition"></a></dt>
 <dd><p>Tries to generate rewriting schemes such as congruence for <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../proof-engine/vernacular-commands.html#grammar-token-reference"><span class="hole"><span class="pre">reference</span></span></a></span></code>.
 Equivalent to setting <a class="reference internal" href="#rocq:flag.Rewriting-Schemes" title="Rewriting Schemes"><code class="xref rocq rocq-flag docutils literal notranslate"><span class="pre">Rewriting</span> <span class="pre">Schemes</span></code></a> before declaring <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../proof-engine/vernacular-commands.html#grammar-token-reference"><span class="hole"><span class="pre">reference</span></span></a></span></code>.</p>
+</dd></dl>
+
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.cannot-build-congruence">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[cannot-build-congruence]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Cannot</span></span></span> <span><span><span class="pre">build</span></span></span> <span><span><span class="pre">congruence</span></span></span> <span><span><span class="pre">scheme</span></span></span> <span><span><span class="pre">because</span></span></span> <span><span><span class="pre">eq</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">found.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.cannot-build-congruence" title="Link to this definition"></a></dt>
+<dd><p>Congruence needs an equality type to be registered as
+<code class="docutils literal notranslate"><span class="pre">core.eq.type</span></code> (with <a class="reference internal" href="../../proof-engine/vernacular-commands.html#rocq:cmd.Register" title="Register"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Register</span></code></a>).</p>
+<p>The prelude includes such a registration so this warning should
+only appear when using <code class="docutils literal notranslate"><span class="pre">-noinit</span></code>.</p>
 </dd></dl>
 
 </section>

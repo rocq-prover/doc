@@ -1477,6 +1477,14 @@ constraints were added to the global environment after the reference was declare
 <p>This warning is raised when such a reference is printed by <code class="docutils literal notranslate"><span class="pre">About</span></code> or a similar command.</p>
 </dd></dl>
 
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.using-fallback-loc">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[using-fallback-loc]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Using</span></span></span> <span><span><span class="pre">fallback</span></span></span> <span><span><span class="pre">loc</span></span></span> <span><span><span class="pre">for</span></span></span> <a class="reference internal" href="../language/core/assumptions.html#grammar-token-name"><span class="hole"><span class="pre">name</span></span></a><span><span><span class="pre">.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.using-fallback-loc" title="Link to this definition"></a></dt>
+<dd><p>This warning is off by default.</p>
+<p>Some references may be defined in a way which registers an
+imprecise source location. This warning is used to debug such cases.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="rocq cmd">
@@ -2353,6 +2361,32 @@ the appropriate solution is to recompile <code class="docutils literal notransla
 </div>
 </dd></dl>
 
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.deprecated-from-Coq">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[deprecated-from-Coq]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">&quot;From</span></span></span> <span><span><span class="pre">Coq&quot;</span></span></span> <span><span><span class="pre">has</span></span></span> <span><span><span class="pre">been</span></span></span> <span><span><span class="pre">replaced</span></span></span> <span><span><span class="pre">by</span></span></span> <span><span><span class="pre">&quot;From</span></span></span> <span><span><span class="pre">Stdlib&quot;.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.deprecated-from-Coq" title="Link to this definition"></a></dt>
+<dd><p>For backwards compatibility, when using <code class="docutils literal notranslate"><span class="pre">From</span> <span class="pre">Coq</span></code> it is treated
+as though <code class="docutils literal notranslate"><span class="pre">From</span> <span class="pre">Stdlib</span></code> was used. As a special case, when
+requiring libraries in <code class="docutils literal notranslate"><span class="pre">Init</span></code>, <code class="docutils literal notranslate"><span class="pre">Setoids</span></code> or <code class="docutils literal notranslate"><span class="pre">Ltac</span></code> then <code class="docutils literal notranslate"><span class="pre">From</span> <span class="pre">Coq</span></code> is
+treated as though <code class="docutils literal notranslate"><span class="pre">From</span> <span class="pre">Corelib</span></code> was used.</p>
+</dd></dl>
+
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.deprecated-dirpath-Coq">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[deprecated-dirpath-Coq]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Coq.</span></span></span><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a> <span><span><span class="pre">has</span></span></span> <span><span><span class="pre">been</span></span></span> <span><span><span class="pre">replaced</span></span></span> <span><span><span class="pre">by</span></span></span> <span><span><span class="pre">Stdlib.</span></span></span><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></span><a class="headerlink" href="#rocq:warn.deprecated-dirpath-Coq" title="Link to this definition"></a></dt>
+<dd><p>For backwards compatibility, qualified identifiers starting with
+<code class="docutils literal notranslate"><span class="pre">Coq</span></code> are searched in <code class="docutils literal notranslate"><span class="pre">Stdlib</span></code> and <code class="docutils literal notranslate"><span class="pre">Corelib</span></code>.</p>
+</dd></dl>
+
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.deprecated-missing-stdlib">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[deprecated-missing-stdlib]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Loading</span></span></span> <span><span><span class="pre">Stdlib</span></span></span> <span><span><span class="pre">without</span></span></span> <span><span><span class="pre">prefix</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">deprecated.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.deprecated-missing-stdlib" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.require-in-section">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[require-in-section]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Use</span></span></span> <span><span><span class="pre">of</span></span></span> <span><span><span class="pre">&quot;Require&quot;</span></span></span> <span><span><span class="pre">inside</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">section</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">fragile.</span></span></span> <span><span><span class="pre">It</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">recommended</span></span></span> <span><span><span class="pre">to</span></span></span> <span><span><span class="pre">use</span></span></span> <span><span><span class="pre">this</span></span></span> <span><span><span class="pre">functionality</span></span></span> <span><span><span class="pre">in</span></span></span> <span><span><span class="pre">finished</span></span></span> <span><span><span class="pre">proof</span></span></span> <span><span><span class="pre">scripts.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.require-in-section" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="rocq cmd">
@@ -2400,6 +2434,13 @@ of available libraries by running <code class="docutils literal notranslate"><sp
 <li><p>The metadata for <code class="docutils literal notranslate"><span class="pre">findlib</span></code> has not been set properly (see
 above).</p></li>
 </ul>
+</dd></dl>
+
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.summary-out-of-scope">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[summary-out-of-scope]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">A</span></span></span> <span><span><span class="pre">Rocq</span></span></span> <span><span><span class="pre">plugin</span></span></span> <span><span><span class="pre">was</span></span></span> <span><span><span class="pre">loaded</span></span></span> <span><span><span class="pre">inside</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">local</span></span></span> <span><span><span class="pre">scope</span></span></span> <span><span><span class="pre">(such</span></span></span> <span><span><span class="pre">as</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">Section).</span></span></span> <span><span><span class="pre">It</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">recommended</span></span></span> <span><span><span class="pre">to</span></span></span> <span><span><span class="pre">load</span></span></span> <span><span><span class="pre">plugins</span></span></span> <span><span><span class="pre">at</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">start</span></span></span> <span><span><span class="pre">of</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">file.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.summary-out-of-scope" title="Link to this definition"></a></dt>
+<dd><p>Loading plugins in local scopes may cause incorrect state to be
+installed when the state is reset to what it was before entering the scope.</p>
 </dd></dl>
 
 </dd></dl>
@@ -2671,10 +2712,10 @@ example: <code class="docutils literal notranslate"><span class="pre">Time</span
 
 <dl class="rocq opt">
 <dt class="sig sig-object rocq" id="rocq:opt.Warnings">
-<em class="property"><span class="sigannot"><span class="pre">Option</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Warnings</span></span></span> <span><span><span class="pre">&quot;</span></span></span><span class="repeat-wrapper-with-sub"><span class="repeat"><span class="repeat-wrapper"><span class="repeat"><span class="repeated-alternative"><span class="alternative-block"><span><span><span class="pre">-</span></span></span></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><span><span><span class="pre">+</span></span></span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span><span class="notation-sub"><span class="pre">,</span></span></span><span><span><span class="pre">&quot;</span></span></span></span></span><a class="headerlink" href="#rocq:opt.Warnings" title="Link to this definition"></a></dt>
-<dd><p>This <a class="reference internal" href="../language/core/basic.html#term-option"><span class="xref std std-term">option</span></a> configures the display of warnings. The <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></code>s
-are warning or category names. Adding <code class="docutils literal notranslate"><span class="pre">-</span></code> in front of a warning or category
-disables it, adding <code class="docutils literal notranslate"><span class="pre">+</span></code> makes it an error.</p>
+<em class="property"><span class="sigannot"><span class="pre">Option</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Warnings</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-string"><span class="hole"><span class="pre">string</span></span></a></span></span><a class="headerlink" href="#rocq:opt.Warnings" title="Link to this definition"></a></dt>
+<dd><p>This <a class="reference internal" href="../language/core/basic.html#term-option"><span class="xref std std-term">option</span></a> configures the display of warnings. The <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/basic.html#grammar-token-string"><span class="hole"><span class="pre">string</span></span></a></span></code>
+is a comma-separated list of warning or warning category names.
+Adding <code class="docutils literal notranslate"><span class="pre">-</span></code> in front of a warning or category disables it, adding <code class="docutils literal notranslate"><span class="pre">+</span></code> makes it an error.</p>
 <p>Warning name and categories are printed between brackets when the warning
 is displayed (the warning name appears first). Warnings can belong to
 multiple categories. The special category <code class="docutils literal notranslate"><span class="pre">all</span></code> contains all warnings, and
@@ -2709,16 +2750,30 @@ interpreted from left to right, so in case of an overlap, the flags on the
 right have higher priority, meaning that <code class="docutils literal notranslate"><span class="pre">A,-A</span></code> is equivalent to <code class="docutils literal notranslate"><span class="pre">-A</span></code>.</p>
 <p>See also the <a class="reference internal" href="../language/core/basic.html#rocq:attr.warnings" title="warnings"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">warnings</span></code></a> attribute, which can be used to
 configure the display of warnings for a single command.</p>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.unknown-warning">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[unknown-warning]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Could</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">enable</span></span></span> <span><span><span class="pre">unknown</span></span></span> <span><span><span class="pre">warning</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-string"><span class="hole"><span class="pre">string</span></span></a></span></span><a class="headerlink" href="#rocq:warn.unknown-warning" title="Link to this definition"></a></dt>
+<dd><p>This warning is not emitted when disabling an unknown warning,
+in case the disabled warning exists in another version of Rocq
+and the disabling may be for compatibility.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="rocq opt">
 <dt class="sig sig-object rocq" id="rocq:opt.Debug">
-<em class="property"><span class="sigannot"><span class="pre">Option</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Debug</span></span></span> <span><span><span class="pre">&quot;</span></span></span><span class="repeat-wrapper-with-sub"><span class="repeat"><span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">-</span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span><span class="notation-sub"><span class="pre">,</span></span></span><span><span><span class="pre">&quot;</span></span></span></span></span><a class="headerlink" href="#rocq:opt.Debug" title="Link to this definition"></a></dt>
-<dd><p>This <a class="reference internal" href="../language/core/basic.html#term-option"><span class="xref std std-term">option</span></a> configures the display of debug messages. Each <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></code> enables debug messages
-for that component, while  <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">-</span></span></span><a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></code> disables messages for the component.
-<code class="docutils literal notranslate"><span class="pre">all</span></code> activates or deactivates all other components.  <code class="docutils literal notranslate"><span class="pre">backtrace</span></code> controls printing of
+<em class="property"><span class="sigannot"><span class="pre">Option</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Debug</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-string"><span class="hole"><span class="pre">string</span></span></a></span></span><a class="headerlink" href="#rocq:opt.Debug" title="Link to this definition"></a></dt>
+<dd><p>This <a class="reference internal" href="../language/core/basic.html#term-option"><span class="xref std std-term">option</span></a> configures the display of debug messages. The
+<code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/basic.html#grammar-token-string"><span class="hole"><span class="pre">string</span></span></a></span></code> separated list of debug component names, each prefixed
+by either nothing to enable it or <code class="docutils literal notranslate"><span class="pre">-</span></code> to disable its messages.</p>
+<p><code class="docutils literal notranslate"><span class="pre">all</span></code> activates or deactivates all other components.  <code class="docutils literal notranslate"><span class="pre">backtrace</span></code> controls printing of
 error backtraces.</p>
 <p><a class="reference internal" href="../language/core/basic.html#rocq:cmd.Test" title="Test"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Test</span></code></a> <code class="docutils literal notranslate"><span class="pre">Debug</span></code> displays the list of components and their enabled/disabled state.</p>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.unknown-debug-flag">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[unknown-debug-flag]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">There</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">no</span></span></span> <span><span><span class="pre">debug</span></span></span> <span><span><span class="pre">flag</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-string"><span class="hole"><span class="pre">string</span></span></a></span></span><a class="headerlink" href="#rocq:warn.unknown-debug-flag" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="rocq opt">
@@ -3094,6 +3149,11 @@ mechanism for scheme kind <code class="docutils literal notranslate"><span class
 <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span><sub><span class="pre">3</span></sub></span></a></span></code>.</p>
 <p>This command supports attributes <a class="reference internal" href="../language/core/modules.html#rocq:attr.local" title="local"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">local</span></code></a>, <a class="reference internal" href="../language/core/modules.html#rocq:attr.export" title="export"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">export</span></code></a> and <a class="reference internal" href="../language/core/modules.html#rocq:attr.global" title="global"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">global</span></code></a>.
 The default is <a class="reference internal" href="../language/core/modules.html#rocq:attr.global" title="global"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">global</span></code></a>, even inside sections.</p>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.unknown-scheme-kind">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[unknown-scheme-kind]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Unknown</span></span></span> <span><span><span class="pre">scheme</span></span></span> <span><span><span class="pre">kind</span></span></span> <a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a><span><span><span class="pre">.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.unknown-scheme-kind" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="rocq cmd">

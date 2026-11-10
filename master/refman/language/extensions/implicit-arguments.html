@@ -1642,6 +1642,31 @@ f is defined
 </dd></dl>
 
 <dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.ignoring-implicit-status">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[ignoring-implicit-status]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Ignoring</span></span></span> <span><span><span class="pre">implicit</span></span></span> <span><span><span class="pre">status</span></span></span> <span><span><span class="pre">of</span></span></span> <span><span><span class="pre">product</span></span></span> <span><span><span class="pre">binder</span></span></span> <a class="reference internal" href="../core/assumptions.html#grammar-token-name"><span class="hole"><span class="pre">name</span></span></a> <span><span><span class="pre">and</span></span></span> <span><span><span class="pre">following</span></span></span> <span><span><span class="pre">binders</span></span></span></span></span><a class="headerlink" href="#rocq:warn.ignoring-implicit-status" title="Link to this definition"></a></dt>
+<dd><p>It is not clear if this warning can actually be trigggered, it may
+be prevented by <a class="reference internal" href="#rocq:warn.unexpected-implicit-declaration" title="unexpected-implicit-declaration"><code class="xref rocq rocq-warn docutils literal notranslate"><span class="pre">unexpected-implicit-declaration</span></code></a>.</p>
+</dd></dl>
+
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.implicits-in-term">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[implicits-in-term]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Implicit</span></span></span> <span><span><span class="pre">arguments</span></span></span> <span><span><span class="pre">declaration</span></span></span> <span><span><span class="pre">relies</span></span></span> <span><span><span class="pre">on</span></span></span> <span><span><span class="pre">type.</span></span></span> <span><span><span class="pre">Discarding</span></span></span> <span><span><span class="pre">incompatible</span></span></span> <span><span><span class="pre">declaration</span></span></span> <span><span><span class="pre">in</span></span></span> <span><span><span class="pre">term.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.implicits-in-term" title="Link to this definition"></a></dt>
+<dd><p>For instance</p>
+<div class="rocqtop literal-block docutils container">
+<span></span><dl>
+<dt><span></span><span class="rocqdoc-keyword">Definition</span><span> </span><span class="rocqdoc-var">g</span><span> : </span><span class="rocqdoc-var">nat</span><span> -&gt; </span><span class="rocqdoc-var">nat</span><span> := </span><span class="rocqdoc-keyword">fun</span><span> {</span><span class="rocqdoc-var">x</span><span>} =&gt; </span><span class="rocqdoc-var">x</span><span>.</span><span>
+</span></dt><dd><span>Toplevel input, characters 34-35:
+&gt; Definition g : nat -&gt; nat := fun {x} =&gt; x.
+&gt;                                   ^
+</span><span class="ansi-fg-white ansi-bg-yellow ansi-bold">Warning:</span><span> Implicit arguments declaration relies on type. Discarding
+incompatible declaration in term. [implicits-in-term,implicits,default]
+g is defined
+</span></dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="rocq warn">
 <dt class="sig sig-object rocq" id="rocq:warn.shadowed-implicit-name">
 <em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[shadowed-implicit-name]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Making</span></span></span> <span><span><span class="pre">shadowed</span></span></span> <span><span><span class="pre">name</span></span></span> <span><span><span class="pre">of</span></span></span> <span><span><span class="pre">implicit</span></span></span> <span><span><span class="pre">argument</span></span></span> <span><span><span class="pre">accessible</span></span></span> <span><span><span class="pre">by</span></span></span> <span><span><span class="pre">position</span></span></span></span></span><a class="headerlink" href="#rocq:warn.shadowed-implicit-name" title="Link to this definition"></a></dt>
 <dd><p>This is triggered when two variables of same name are set implicit

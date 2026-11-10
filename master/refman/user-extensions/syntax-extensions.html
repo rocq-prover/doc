@@ -1489,6 +1489,12 @@ the user may instead mean <code class="code Coq docutils literal notranslate"><s
 <code class="code Coq docutils literal notranslate"><span class="keyword namespace"><span class="pre">Reserved</span></span> <span class="keyword namespace"><span class="pre">Notation</span></span> <span class="literal string double"><span class="pre">&quot;A</span> <span class="pre">&quot;&quot;string&quot;&quot;&quot;&quot;!&quot;&quot;</span> <span class="pre">B</span></span></code>, or <code class="code Coq docutils literal notranslate"><span class="keyword namespace"><span class="pre">Reserved</span></span> <span class="keyword namespace"><span class="pre">Notation</span></span> <span class="literal string double"><span class="pre">&quot;A</span> <span class="pre">'&quot;&quot;string&quot;&quot;!'</span> <span class="pre">B</span></span></code>.</p>
 </dd></dl>
 
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.notation-overridden">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[notation-overridden]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Notation</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-string"><span class="hole"><span class="pre">string</span></span></a> <span><span><span class="pre">was</span></span></span> <span><span><span class="pre">already</span></span></span> <span><span><span class="pre">used</span></span></span> <span><span><span class="pre">in</span></span></span> <span><span><span class="pre">scope</span></span></span> <a class="reference internal" href="#grammar-token-scope_name"><span class="hole"><span class="pre">scope_name</span></span></a><span><span><span class="pre">.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.notation-overridden" title="Link to this definition"></a></dt>
+<dd><p>Redefining a notation produces this warning.</p>
+</dd></dl>
+
 </section>
 <section id="precedences-and-associativity">
 <h3>Precedences and associativity<a class="headerlink" href="#precedences-and-associativity" title="Link to this heading"></a></h3>
@@ -1540,6 +1546,33 @@ canonical). The level is either a number or the phrase <code class="docutils lit
 whose meaning is obvious.
 Some <a class="reference internal" href="../language/coq-library.html#init-notations"><span class="std std-ref">associativities are predefined</span></a> in the
 <code class="docutils literal notranslate"><span class="pre">Notations</span></code> module.</p>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.at-level-200-changed">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[at-level-200-changed]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Non</span></span></span> <span><span><span class="pre">left</span></span></span> <span><span><span class="pre">recursive</span></span></span> <span><span><span class="pre">notations</span></span></span> <span><span><span class="pre">declared</span></span></span> <span><span><span class="pre">at</span></span></span> <span><span><span class="pre">level</span></span></span> <span><span><span class="pre">200</span></span></span> <span><span><span class="pre">are</span></span></span> <span><span><span class="pre">actually</span></span></span> <span><span><span class="pre">at</span></span></span> <span><span><span class="pre">level</span></span></span> <span><span><span class="pre">10</span></span></span></span></span><a class="headerlink" href="#rocq:warn.at-level-200-changed" title="Link to this definition"></a></dt>
+<dd><p>For backwards compatibility non left recursive notations declared
+at level 200 are actually at level 10, with any right-recursion
+being at level 200. In the future level 200 will be treated as a
+normal level. To keep the current behaviour, use &quot;at level 10&quot;,
+remove any &quot;right associativity&quot; annotation, and if right recursive
+add &quot;x at level 200&quot; where &quot;x&quot; is the last argument.</p>
+<p>Typically, previously <code class="docutils literal notranslate"><span class="pre">exists</span></code> was declared with</p>
+<div class="rocqdoc literal-block docutils container">
+<span><span></span><span class="rocqdoc-keyword">Notation</span><span> &quot;'exists' x .. y , p&quot; :=</span><span>
+  (</span><span class="rocqdoc-var">ex</span><span> (</span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">x</span><span> =&gt; .. (</span><span class="rocqdoc-var">ex</span><span> (</span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">y</span><span> =&gt; </span><span class="rocqdoc-var">p</span><span>)) ..))</span><span>
+  (</span><span class="rocqdoc-tactic">at</span><span> </span><span class="rocqdoc-keyword">level</span><span> 200, </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">binder</span><span>, </span><span class="rocqdoc-var">y</span><span> </span><span class="rocqdoc-var">binder</span><span>, </span><span class="rocqdoc-tactic">right</span><span> </span><span class="rocqdoc-keyword">associativity</span><span>).</span><span>
+</span></span></div>
+<p>and is now</p>
+<div class="rocqtop literal-block docutils container">
+<span></span><dl>
+<dt><span></span><span class="rocqdoc-keyword">Notation</span><span> &quot;'exists' x .. y , p&quot; :=</span><span>
+  (</span><span class="rocqdoc-var">ex</span><span> (</span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">x</span><span> =&gt; .. (</span><span class="rocqdoc-var">ex</span><span> (</span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">y</span><span> =&gt; </span><span class="rocqdoc-var">p</span><span>)) ..))</span><span>
+  (</span><span class="rocqdoc-tactic">at</span><span> </span><span class="rocqdoc-keyword">level</span><span> 10, </span><span class="rocqdoc-var">x</span><span> </span><span class="rocqdoc-var">binder</span><span>, </span><span class="rocqdoc-var">y</span><span> </span><span class="rocqdoc-var">binder</span><span>, </span><span class="rocqdoc-var">p</span><span> </span><span class="rocqdoc-tactic">at</span><span> </span><span class="rocqdoc-keyword">level</span><span> 200).</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>Identifier 'exists' now a keyword
+</span></dd>
+</dl>
+</div>
+</dd></dl>
+
 </section>
 <section id="complex-notations">
 <h3>Complex notations<a class="headerlink" href="#complex-notations" title="Link to this heading"></a></h3>
@@ -1767,6 +1800,45 @@ after the “<code class="docutils literal notranslate"><span class="pre">[v</sp
 in the example)</p></li>
 <li><p>extra spaces in other tokens are preserved in the output</p></li>
 </ul>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.notation-both-format-and-spaces">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[notation-both-format-and-spaces]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Discarding</span></span></span> <span><span><span class="pre">format</span></span></span> <span><span><span class="pre">implicitly</span></span></span> <span><span><span class="pre">indicated</span></span></span> <span><span><span class="pre">by</span></span></span> <span><span><span class="pre">multiple</span></span></span> <span><span><span class="pre">spaces</span></span></span> <span><span><span class="pre">in</span></span></span> <span><span><span class="pre">notation</span></span></span> <span><span><span class="pre">because</span></span></span> <span><span><span class="pre">an</span></span></span> <span><span><span class="pre">explicit</span></span></span> <span><span><span class="pre">format</span></span></span> <span><span><span class="pre">modifier</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">given.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.notation-both-format-and-spaces" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.non-reversible-notation">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[non-reversible-notation]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">This</span></span></span> <span><span><span class="pre">notation</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">reversible,</span></span></span> <span><span><span class="pre">it</span></span></span> <span><span><span class="pre">will</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">be</span></span></span> <span><span><span class="pre">used</span></span></span> <span><span><span class="pre">for</span></span></span> <span><span><span class="pre">printing.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.non-reversible-notation" title="Link to this definition"></a></dt>
+<dd><p>Some constructions (typically tactics <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">ltac:(</span></span></span><a class="reference internal" href="../proof-engine/ltac.html#grammar-token-ltac_expr"><span class="hole"><span class="pre">ltac_expr</span></span></a><span><span><span class="pre">)</span></span></span></span></code> and
+volatile cases <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/basic.html#grammar-token-term"><span class="hole"><span class="pre">term</span></span></a> <span><span><span class="pre">:&gt;</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-type"><span class="hole"><span class="pre">type</span></span></a></span></code>) are not reversible. If used in
+a notation they prevent that notation from being used for printing.</p>
+</dd></dl>
+
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.notation-bound-to-variable">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[notation-bound-to-variable]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">This</span></span></span> <span><span><span class="pre">notation</span></span></span> <span><span><span class="pre">will</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">be</span></span></span> <span><span><span class="pre">used</span></span></span> <span><span><span class="pre">for</span></span></span> <span><span><span class="pre">printing</span></span></span> <span><span><span class="pre">as</span></span></span> <span><span><span class="pre">it</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">bound</span></span></span> <span><span><span class="pre">to</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">single</span></span></span> <span><span><span class="pre">variable.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.notation-bound-to-variable" title="Link to this definition"></a></dt>
+<dd><p>Such a notation would match every term so using it for printing would produce useless output.</p>
+</dd></dl>
+
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.notation-incompatible-format">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[notation-incompatible-format]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Notation</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-string"><span class="hole"><span class="pre">string</span></span></a> <span><span><span class="pre">was</span></span></span> <span><span><span class="pre">already</span></span></span> <span><span><span class="pre">defined</span></span></span> <span><span><span class="pre">with</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">different</span></span></span> <span><span><span class="pre">format.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.notation-incompatible-format" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.discarded-format-only-parsing">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[discarded-format-only-parsing]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">The</span></span></span> <span><span><span class="pre">format</span></span></span> <span><span><span class="pre">modifier</span></span></span> <span><span><span class="pre">has</span></span></span> <span><span><span class="pre">no</span></span></span> <span><span><span class="pre">effect</span></span></span> <span><span><span class="pre">for</span></span></span> <span><span><span class="pre">only-parsing</span></span></span> <span><span><span class="pre">notations.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.discarded-format-only-parsing" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.irrelevant-format-only-parsing">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[irrelevant-format-only-parsing]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">The</span></span></span> <span><span><span class="pre">format</span></span></span> <span><span><span class="pre">modifier</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">irrelevant</span></span></span> <span><span><span class="pre">for</span></span></span> <span><span><span class="pre">only-parsing</span></span></span> <span><span><span class="pre">rules.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.irrelevant-format-only-parsing" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.unused-notation">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[unused-notation]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Interpretation</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">used</span></span></span> <span><span><span class="pre">neither</span></span></span> <span><span><span class="pre">for</span></span></span> <span><span><span class="pre">printing</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">for</span></span></span> <span><span><span class="pre">parsing.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.unused-notation" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 <p>Notations disappear when a section is closed. No typing of the denoted
 expression is performed at definition time. Type checking is done only
 at the time of use of the notation.</p>
@@ -1906,6 +1978,11 @@ the other. See <a class="reference internal" href="#notationfactorization"><span
 details.</p>
 </dd></dl>
 
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.irrelevant-reserved-notation-only-parsing">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[irrelevant-reserved-notation-only-parsing]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">The</span></span></span> <span><span><span class="pre">only</span></span></span> <span><span><span class="pre">parsing</span></span></span> <span><span><span class="pre">modifier</span></span></span> <span><span><span class="pre">has</span></span></span> <span><span><span class="pre">no</span></span></span> <span><span><span class="pre">effect</span></span></span> <span><span><span class="pre">in</span></span></span> <span><span><span class="pre">Reserved</span></span></span> <span><span><span class="pre">Notation.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.irrelevant-reserved-notation-only-parsing" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </section>
@@ -2017,8 +2094,8 @@ originally defined as only printing.</p>
 </dd></dl>
 
 <dl class="rocq warn">
-<dt class="sig sig-object rocq" id="rocq:warn.Found-no-matching-notation-to-enable-or-disable">
-<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[Found</span> <span class="pre">no</span> <span class="pre">matching</span> <span class="pre">notation</span> <span class="pre">to</span> <span class="pre">enable</span> <span class="pre">or</span> <span class="pre">disable]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Found</span></span></span> <span><span><span class="pre">no</span></span></span> <span><span><span class="pre">matching</span></span></span> <span><span><span class="pre">notation</span></span></span> <span><span><span class="pre">to</span></span></span> <span><span><span class="pre">enable</span></span></span> <span><span><span class="pre">or</span></span></span> <span><span><span class="pre">disable.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.Found-no-matching-notation-to-enable-or-disable" title="Link to this definition"></a></dt>
+<dt class="sig sig-object rocq" id="rocq:warn.no-notation-to-enable-or-disable">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[no-notation-to-enable-or-disable]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Found</span></span></span> <span><span><span class="pre">no</span></span></span> <span><span><span class="pre">matching</span></span></span> <span><span><span class="pre">notation</span></span></span> <span><span><span class="pre">to</span></span></span> <span><span><span class="pre">enable</span></span></span> <span><span><span class="pre">or</span></span></span> <span><span><span class="pre">disable.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.no-notation-to-enable-or-disable" title="Link to this definition"></a></dt>
 <dd><p>No previously defined notation satisfies the given constraints.</p>
 </dd></dl>
 
@@ -2806,6 +2883,18 @@ name <code class="docutils literal notranslate"><span class="pre">e</span></code
 current module.</p>
 <p>Non-local custom entries survive module closing and are
 declared when a file is Required.</p>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.deprecated-unqualified-custom-entry">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[deprecated-unqualified-custom-entry]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Accessing</span></span></span> <span><span><span class="pre">custom</span></span></span> <span><span><span class="pre">entry</span></span></span> <a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a> <span><span><span class="pre">by</span></span></span> <span><span><span class="pre">its</span></span></span> <span><span><span class="pre">unqualified</span></span></span> <span><span><span class="pre">name</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">deprecated.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.deprecated-unqualified-custom-entry" title="Link to this definition"></a></dt>
+<dd><div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 9.2.</span></p>
+</div>
+<p>Custom entry names used to be unqualified and always accessible
+by the unqualified name. Now <a class="reference internal" href="../language/core/modules.html#rocq:cmd.Import" title="Import"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Import</span></code></a> should be used to
+refer to a custom entry by its unqualified name outside the
+module where it was declared.</p>
+</dd></dl>
+
 </dd></dl>
 
 <div class="admonition note">
@@ -3061,6 +3150,24 @@ It can be turned on with the <code class="docutils literal notranslate"><span cl
 <dd><p>Occurs when <a class="reference internal" href="#rocq:cmd.Notation" title="Notation"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Notation</span></code></a> or <a class="reference internal" href="#rocq:cmd.Print-Notation" title="Print Notation"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Print</span> <span class="pre">Notation</span></code></a> can't find the custom entry given by the user.</p>
 </dd></dl>
 
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.primitive-token-modifier">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[primitive-token-modifier]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Notations</span></span></span> <span><span><span class="pre">for</span></span></span> <span><span><span class="pre">numbers</span></span></span> <span><span><span class="pre">or</span></span></span> <span><span><span class="pre">strings</span></span></span> <span><span><span class="pre">are</span></span></span> <span><span><span class="pre">primitive;</span></span></span> <span><span><span class="pre">skipping</span></span></span> <span><span><span class="pre">this</span></span></span> <span><span><span class="pre">modifier.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.primitive-token-modifier" title="Link to this definition"></a></dt>
+<dd><p>This warning is emitted when defining a notation which matches a primitive token, e.g.</p>
+<div class="rocqtop literal-block docutils container">
+<span></span><dl>
+<dt><span></span><span class="rocqdoc-keyword">Notation</span><span> &quot;- 0&quot; := 0 (</span><span class="rocqdoc-tactic">at</span><span> </span><span class="rocqdoc-keyword">level</span><span> 50).</span><span>
+</span></dt><dd><span>Toplevel input, characters 21-32:
+&gt; Notation &quot;- 0&quot; := 0 (at level 50).
+&gt;                      ^^^^^^^^^^^
+</span><span class="ansi-fg-white ansi-bg-yellow ansi-bold">Warning:</span><span>
+Notations for numbers or strings are primitive; skipping this modifier.
+[primitive-token-modifier,parsing,default]
+</span></dd>
+</dl>
+</div>
+</dd></dl>
+
 </section>
 </section>
 <section id="notation-scopes">
@@ -3091,10 +3198,16 @@ state of Rocq declares the following notation scopes:</p>
 <p>Use commands such as <a class="reference internal" href="#rocq:cmd.Notation" title="Notation"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Notation</span></code></a> to add notations to the scope.</p>
 </dd></dl>
 
-<dl class="rocq exn">
-<dt class="sig sig-object rocq" id="rocq:exn.Scope-names-should-not-start-with-an-underscore">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Scope</span></span></span> <span><span><span class="pre">names</span></span></span> <span><span><span class="pre">should</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">start</span></span></span> <span><span><span class="pre">with</span></span></span> <span><span><span class="pre">an</span></span></span> <span><span><span class="pre">underscore.</span></span></span></span></span><a class="headerlink" href="#rocq:exn.Scope-names-should-not-start-with-an-underscore" title="Link to this definition"></a></dt>
-<dd><p>Scope names starting with an underscore would make the <code class="code Coq docutils literal notranslate"><span class="operator"><span class="pre">%_</span></span></code> syntax ambiguous.</p>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.undeclared-scope">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[undeclared-scope]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Declaring</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">scope</span></span></span> <span><span><span class="pre">implicitly</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">deprecated;</span></span></span> <span><span><span class="pre">use</span></span></span> <span><span><span class="pre">in</span></span></span> <span><span><span class="pre">advance</span></span></span> <span><span><span class="pre">an</span></span></span> <span><span><span class="pre">explicit</span></span></span> <span><span><span class="pre">&quot;Declare</span></span></span> <span><span><span class="pre">Scope&quot;</span></span></span></span></span><a class="headerlink" href="#rocq:warn.undeclared-scope" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.scope-underscore-start">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[scope-underscore-start]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Scope</span></span></span> <span><span><span class="pre">names</span></span></span> <span><span><span class="pre">should</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">start</span></span></span> <span><span><span class="pre">with</span></span></span> <span><span><span class="pre">an</span></span></span> <span><span><span class="pre">underscore.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.scope-underscore-start" title="Link to this definition"></a></dt>
+<dd><p>Scope names starting with an underscore would make the <code class="code Coq docutils literal notranslate"><span class="operator"><span class="pre">%_</span></span></code> syntax ambiguous.
+This warning is an error by default.</p>
 </dd></dl>
 
 <section id="global-interpretation-rules-for-notations">
@@ -3156,6 +3269,12 @@ rather than all its subterms.</p>
 <dt class="sig sig-object rocq" id="rocq:cmd.Delimit-Scope">
 <em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Delimit</span></span></span> <span><span><span class="pre">Scope</span></span></span> <a class="reference internal" href="#grammar-token-scope_name"><span class="hole"><span class="pre">scope_name</span></span></a> <span><span><span class="pre">with</span></span></span> <a class="reference internal" href="#grammar-token-scope_key"><span class="hole"><span class="pre">scope_key</span></span></a></span></span><a class="headerlink" href="#rocq:cmd.Delimit-Scope" title="Link to this definition"></a></dt>
 <dd><p>Binds the delimiting key <a class="reference internal" href="#grammar-token-scope_key"><code class="xref std std-token docutils literal notranslate"><span class="pre">scope_key</span></code></a> to a scope.</p>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.hiding-delimiting-key">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[hiding-delimiting-key]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Hiding</span></span></span> <span><span><span class="pre">binding</span></span></span> <span><span><span class="pre">of</span></span></span> <span><span><span class="pre">key</span></span></span> <a class="reference internal" href="#grammar-token-scope_key"><span class="hole"><span class="pre">scope_key</span></span></a> <span><span><span class="pre">to</span></span></span> <a class="reference internal" href="#grammar-token-scope_name"><span class="hole"><span class="pre">scope_name</span><sub><span class="pre">old</span></sub></span></a><span><span><span class="pre">.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.hiding-delimiting-key" title="Link to this definition"></a></dt>
+<dd><p>This warning is procuced when <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="#grammar-token-scope_key"><span class="hole"><span class="pre">scope_key</span></span></a></span></code> was already bound to a scope.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="rocq cmd">
@@ -3164,15 +3283,43 @@ rather than all its subterms.</p>
 <dd><p>Removes the delimiting keys associated with a scope.</p>
 </dd></dl>
 
-<dl class="rocq exn">
-<dt class="sig sig-object rocq" id="rocq:exn.Scope-delimiters-should-not-start-with-an-underscore">
-<em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Scope</span></span></span> <span><span><span class="pre">delimiters</span></span></span> <span><span><span class="pre">should</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">start</span></span></span> <span><span><span class="pre">with</span></span></span> <span><span><span class="pre">an</span></span></span> <span><span><span class="pre">underscore.</span></span></span></span></span><a class="headerlink" href="#rocq:exn.Scope-delimiters-should-not-start-with-an-underscore" title="Link to this definition"></a></dt>
-<dd><p>Scope delimiters starting with an underscore would make the <code class="code Coq docutils literal notranslate"><span class="operator"><span class="pre">%_</span></span></code> syntax ambiguous.</p>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.scope-delimiter-underscore-start">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[scope-delimiter-underscore-start]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Scope</span></span></span> <span><span><span class="pre">delimiters</span></span></span> <span><span><span class="pre">should</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">start</span></span></span> <span><span><span class="pre">with</span></span></span> <span><span><span class="pre">an</span></span></span> <span><span><span class="pre">underscore.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.scope-delimiter-underscore-start" title="Link to this definition"></a></dt>
+<dd><p>Scope delimiters starting with an underscore would make the <code class="code Coq docutils literal notranslate"><span class="operator"><span class="pre">%_</span></span></code> syntax ambiguous.
+This warning is an error by default.</p>
 </dd></dl>
 
 <p>The arguments of an <a class="reference internal" href="#abbreviations"><span class="std std-ref">abbreviation</span></a> can be interpreted
 in a scope stack locally extended with a given scope by using the modifier
 <code class="docutils literal notranslate"><span class="notation"><span class="repeat-wrapper-with-sub"><span class="repeat"><a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span><span class="notation-sub"><span class="pre">,</span></span></span> <span><span><span class="pre">in</span></span></span> <span><span><span class="pre">scope</span></span></span> <a class="reference internal" href="#grammar-token-scope_name"><span class="hole"><span class="pre">scope_name</span></span></a></span></code>.s</p>
+</section>
+<section id="scopes-of-notation-arguments">
+<h4>Scopes of notation arguments<a class="headerlink" href="#scopes-of-notation-arguments" title="Link to this heading"></a></h4>
+<p>Notation arguments are interpreted in scopes according to their use in the notation.
+For instance in</p>
+<div class="rocqtop literal-block docutils container">
+<span></span><dl>
+<dt><span></span><span class="rocqdoc-keyword">Notation</span><span> &quot;'idtype' :( x )&quot; := (</span><span class="rocqdoc-var">x</span><span> -&gt; </span><span class="rocqdoc-var">x</span><span>).</span><span>
+</span></dt><dd><span>Setting notation at level 0.
+</span></dd>
+<dt><span></span><span>
+</span><span class="rocqdoc-keyword">Check</span><span> </span><span class="rocqdoc-keyword">fun</span><span> </span><span class="rocqdoc-var">T</span><span> =&gt; </span><span class="rocqdoc-var">idtype</span><span>:(</span><span class="rocqdoc-var">T</span><span> + </span><span class="rocqdoc-var">T</span><span>).</span><span>
+</span></dt><dd><span class="ansi-bold">fun</span><span> T : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span> =&gt; </span><span>idtype </span><span>:( </span><span>T</span><span> +</span><span> T</span><span>)</span><span>
+     : </span><span>idtype </span><span>:( </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>)</span><span>
+</span></dd>
+</dl>
+</div>
+<p>The argument <code class="docutils literal notranslate"><span class="pre">x</span></code> is interpreted in the scope stack extended with
+<code class="docutils literal notranslate"><span class="pre">type_scope</span></code> (bound to key <code class="docutils literal notranslate"><span class="pre">type</span></code>), so <code class="docutils literal notranslate"><span class="pre">+</span></code> means sum type instead of
+natural addition.</p>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.inconsistent-scopes">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[inconsistent-scopes]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Argument</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">was</span></span></span> <span><span><span class="pre">previously</span></span></span> <span><span><span class="pre">inferred</span></span></span> <span><span><span class="pre">to</span></span></span> <span><span><span class="pre">be</span></span></span> <span><span><span class="pre">in</span></span></span> <span><span><span class="pre">scope</span></span></span> <a class="reference internal" href="#grammar-token-scope_name"><span class="hole"><span class="pre">scope_name</span></span></a> <span><span><span class="pre">but</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">here</span></span></span> <span><span><span class="pre">used</span></span></span> <span><span><span class="pre">in</span></span></span> <a class="reference internal" href="#grammar-token-scope_name"><span class="hole"><span class="pre">scope_name</span></span></a><span><span><span class="pre">.</span></span></span> <span><span><span class="pre">Scope</span></span></span> <a class="reference internal" href="#grammar-token-scope_name"><span class="hole"><span class="pre">scope_name</span></span></a> <span><span><span class="pre">will</span></span></span> <span><span><span class="pre">be</span></span></span> <span><span><span class="pre">used</span></span></span> <span><span><span class="pre">at</span></span></span> <span><span><span class="pre">parsing</span></span></span> <span><span><span class="pre">time</span></span></span> <span><span><span class="pre">unless</span></span></span> <span><span><span class="pre">you</span></span></span> <span><span><span class="pre">override</span></span></span> <span><span><span class="pre">it</span></span></span> <span><span><span class="pre">by</span></span></span> <span><span><span class="pre">annotating</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">argument</span></span></span> <span><span><span class="pre">with</span></span></span> <span><span><span class="pre">an</span></span></span> <span><span><span class="pre">explicit</span></span></span> <span><span><span class="pre">scope</span></span></span> <span><span><span class="pre">of</span></span></span> <span><span><span class="pre">choice.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.inconsistent-scopes" title="Link to this definition"></a></dt>
+<dd><p>If a notation declaration uses its arguments in inconsistent scope
+stacks this warning will be emitted.</p>
+</dd></dl>
+
 </section>
 <section id="binding-types-or-coercion-classes-to-notation-scopes">
 <h4>Binding types or coercion classes to notation scopes<a class="headerlink" href="#binding-types-or-coercion-classes-to-notation-scopes" title="Link to this heading"></a></h4>
@@ -3282,7 +3429,7 @@ the stack.</p>
 f is not universe polymorphic
 Arguments </span><span class="ansi-fg-light-green">f</span><span> _%_F_scope%_T_scope%_bool_scope
 Expands to: Constant Top.f
-Declared in toplevel input, characters 8097-8098
+Declared in toplevel input, characters 8381-8382
 </span></dd>
 </dl>
 </div>
@@ -3459,7 +3606,16 @@ scope is bound, if any.</p>
 <dl class="rocq cmd">
 <dt class="sig sig-object rocq" id="rocq:cmd.Abbreviation">
 <em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Abbreviation</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span><sub><span class="pre">parm</span></sub></span></a></span><span class="notation-sup"><span class="pre">*</span></span></span> <span><span><span class="pre">:=</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-one_term"><span class="hole"><span class="pre">one_term</span></span></a> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">(</span></span></span> <span class="repeat-wrapper-with-sub"><span class="repeat"><a class="reference internal" href="#grammar-token-syntax_modifier"><span class="hole"><span class="pre">syntax_modifier</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span><span class="notation-sub"><span class="pre">,</span></span></span> <span><span><span class="pre">)</span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span></span></span><a class="headerlink" href="#rocq:cmd.Abbreviation" title="Link to this definition"></a></dt>
-<dd><p>Defines an abbreviation <a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><code class="xref std std-token docutils literal notranslate"><span class="pre">ident</span></code></a> with the parameters <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span><sub><span class="pre">parm</span></sub></span></a></span></code>.</p>
+<dd><dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.notation-for-abbreviation">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[notation-for-abbreviation]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Use</span></span></span> <span><span><span class="pre">of</span></span></span> <span><span><span class="pre">&quot;Notation&quot;</span></span></span> <span><span><span class="pre">keyword</span></span></span> <span><span><span class="pre">for</span></span></span> <span><span><span class="pre">abbreviation</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">deprecated.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.notation-for-abbreviation" title="Link to this definition"></a></dt>
+<dd><div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 9.2.</span></p>
+</div>
+<p>Abbreviations used to share a keyword with notations.</p>
+</dd></dl>
+
+<p>Defines an abbreviation <a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><code class="xref std std-token docutils literal notranslate"><span class="pre">ident</span></code></a> with the parameters <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span><sub><span class="pre">parm</span></sub></span></a></span></code>.</p>
 <p>An <em>abbreviation</em> is a name, possibly applied to arguments, that
 denotes a (presumably) more complex expression. Here are examples:</p>
 <div class="rocqtop literal-block docutils container">
@@ -3924,8 +4080,8 @@ Declare string or numeral notations for non-inductive types using <code class="d
 </dd></dl>
 
 <dl class="rocq warn">
-<dt class="sig sig-object rocq" id="rocq:warn.via-type-renapping">
-<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[via-type-renapping]</span></span></em> <span class="sig-name descname"><span class="notation"><a class="reference internal" href="../language/core/basic.html#grammar-token-type"><span class="hole"><span class="pre">type</span></span></a> <span><span><span class="pre">was</span></span></span> <span><span><span class="pre">already</span></span></span> <span><span><span class="pre">mapped</span></span></span> <span><span><span class="pre">to</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-type"><span class="hole"><span class="pre">type</span></span></a><span><span><span class="pre">,</span></span></span> <span><span><span class="pre">mapping</span></span></span> <span><span><span class="pre">it</span></span></span> <span><span><span class="pre">also</span></span></span> <span><span><span class="pre">to</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-type"><span class="hole"><span class="pre">type</span></span></a> <span><span><span class="pre">might</span></span></span> <span><span><span class="pre">yield</span></span></span> <span><span><span class="pre">ill</span></span></span> <span><span><span class="pre">typed</span></span></span> <span><span><span class="pre">terms</span></span></span> <span><span><span class="pre">when</span></span></span> <span><span><span class="pre">using</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">notation.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.via-type-renapping" title="Link to this definition"></a></dt>
+<dt class="sig sig-object rocq" id="rocq:warn.via-type-remapping">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[via-type-remapping]</span></span></em> <span class="sig-name descname"><span class="notation"><a class="reference internal" href="../language/core/basic.html#grammar-token-type"><span class="hole"><span class="pre">type</span></span></a> <span><span><span class="pre">was</span></span></span> <span><span><span class="pre">already</span></span></span> <span><span><span class="pre">mapped</span></span></span> <span><span><span class="pre">to</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-type"><span class="hole"><span class="pre">type</span></span></a><span><span><span class="pre">,</span></span></span> <span><span><span class="pre">mapping</span></span></span> <span><span><span class="pre">it</span></span></span> <span><span><span class="pre">also</span></span></span> <span><span><span class="pre">to</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-type"><span class="hole"><span class="pre">type</span></span></a> <span><span><span class="pre">might</span></span></span> <span><span><span class="pre">yield</span></span></span> <span><span><span class="pre">ill</span></span></span> <span><span><span class="pre">typed</span></span></span> <span><span><span class="pre">terms</span></span></span> <span><span><span class="pre">when</span></span></span> <span><span><span class="pre">using</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">notation.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.via-type-remapping" title="Link to this definition"></a></dt>
 <dd><p>Two pairs in the <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">mapping</span></span></span></span></code> list associate types that might be incompatible.</p>
 </dd></dl>
 
@@ -4452,7 +4608,7 @@ implementation of Rocq</p>
 <aside class="footnote brackets" id="no-associativity" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">2</a><span class="fn-bracket">]</span></span>
 <p>Rocq accepts notations declared as nonassociative but the parser on
-which Rocq is built, namely Camlp5, currently does not implement <code class="docutils literal notranslate"><span class="pre">no</span> <span class="pre">associativity</span></code> and
+which Rocq is built, based on Camlp5, currently does not implement <code class="docutils literal notranslate"><span class="pre">no</span> <span class="pre">associativity</span></code> and
 replaces it with <code class="docutils literal notranslate"><span class="pre">left</span> <span class="pre">associativity</span></code>; hence it is the same for Rocq: <code class="docutils literal notranslate"><span class="pre">no</span> <span class="pre">associativity</span></code>
 is in fact <code class="docutils literal notranslate"><span class="pre">left</span> <span class="pre">associativity</span></code> for the purposes of parsing</p>
 </aside>

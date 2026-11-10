@@ -1436,6 +1436,11 @@ applied to zero or more arguments.</p></li>
 <li><p>Literal, (possibly dependent) function types: <code class="docutils literal notranslate"><span class="pre">…</span> <span class="pre">-&gt;</span> <span class="pre">…</span></code> and <code class="docutils literal notranslate"><span class="pre">forall</span> <span class="pre">…,</span> <span class="pre">…</span></code>.</p></li>
 <li><p>Variables bound in <a class="reference internal" href="../core/modules.html#grammar-token-qualid"><code class="xref std std-token docutils literal notranslate"><span class="pre">qualid</span></code></a>.</p></li>
 </ul>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.projection-no-head-constant">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[projection-no-head-constant]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Projection</span></span></span> <span><span><span class="pre">value</span></span></span> <span><span><span class="pre">has</span></span></span> <span><span><span class="pre">no</span></span></span> <span><span><span class="pre">head</span></span></span> <span><span><span class="pre">constant</span></span></span> <span><span><span class="pre">...</span></span></span> <span><span><span class="pre">in</span></span></span> <span><span><span class="pre">canonical</span></span></span> <span><span><span class="pre">instance</span></span></span> <a class="reference internal" href="../core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a> <span><span><span class="pre">of</span></span></span> <a class="reference internal" href="../core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a><span><span><span class="pre">,</span></span></span> <span><span><span class="pre">ignoring</span></span></span> <span><span><span class="pre">it.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.projection-no-head-constant" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 <p>Only the head symbol of an existing instance's field <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">c</span></span><sub><span class="pre">i</span></sub></span></span></code>
 is considered when searching for a canonical extension.
 We call this head symbol the <em>key</em> and we say &quot;<a class="reference internal" href="../core/modules.html#grammar-token-qualid"><code class="xref std std-token docutils literal notranslate"><span class="pre">qualid</span></code></a> <em>keys</em> the field <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">x</span></span><sub><span class="pre">i</span></sub></span></span></code> to <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">k</span></span></span></span></code>&quot; when <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">c</span></span><sub><span class="pre">i</span></sub></span></span></code>'s
@@ -1519,11 +1524,13 @@ and <code class="code Coq docutils literal notranslate"><span class="name"><span
 </dl>
 </div>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If a same field occurs in several canonical structures, then
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.redundant-canonical-projection">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[redundant-canonical-projection]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Ignoring</span></span></span> <span><span><span class="pre">canonical</span></span></span> <span><span><span class="pre">projection</span></span></span> <span><span><span class="pre">to</span></span></span> <a class="reference internal" href="../core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a> <span><span><span class="pre">by</span></span></span> <a class="reference internal" href="../core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a><span><span><span class="pre">:</span></span></span> <span><span><span class="pre">redundant</span></span></span> <span><span><span class="pre">with</span></span></span> <a class="reference internal" href="../core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a><span><span><span class="pre">.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.redundant-canonical-projection" title="Link to this definition"></a></dt>
+<dd><p>If a same field occurs in several canonical structures, then
 only the structure declared first as canonical is considered.</p>
-</div>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="rocq attr">

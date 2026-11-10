@@ -2626,6 +2626,21 @@ its pattern <em>and</em> gets at least one success for <code class="docutils lit
 <dd><p>This happens when <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="#grammar-token-ltac_expr"><span class="hole"><span class="pre">ltac_expr</span><sub><span class="pre">term</span></sub></span></a></span></code> does not denote a term.</p>
 </dd></dl>
 
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.cast-in-pattern">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[cast-in-pattern]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Cast</span></span></span> <span><span><span class="pre">types</span></span></span> <span><span><span class="pre">are</span></span></span> <span><span><span class="pre">ignored</span></span></span> <span><span><span class="pre">in</span></span></span> <span><span><span class="pre">patterns.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.cast-in-pattern" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.meta-collision">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[meta-collision]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Collision</span></span></span> <span><span><span class="pre">between</span></span></span> <span><span><span class="pre">bound</span></span></span> <span><span><span class="pre">variable</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">and</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">metavariable</span></span></span> <span><span><span class="pre">of</span></span></span> <span><span><span class="pre">same</span></span></span> <span><span><span class="pre">name.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.meta-collision" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.variable-collision">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[variable-collision]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Collision</span></span></span> <span><span><span class="pre">between</span></span></span> <span><span><span class="pre">bound</span></span></span> <span><span><span class="pre">variables</span></span></span> <span><span><span class="pre">of</span></span></span> <span><span><span class="pre">name</span></span></span> <a class="reference internal" href="../language/core/assumptions.html#grammar-token-name"><span class="hole"><span class="pre">name</span></span></a></span></span><a class="headerlink" href="#rocq:warn.variable-collision" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <blockquote id="match-vs-lazymatch-ex">
@@ -3616,6 +3631,13 @@ with <a class="reference internal" href="../language/core/modules.html#rocq:attr
 <dd></dd></dl>
 
 </dd>
+</dl>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.unusable-identifier">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[unusable-identifier]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">The</span></span></span> <span><span><span class="pre">Ltac</span></span></span> <span><span><span class="pre">name</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">may</span></span></span> <span><span><span class="pre">be</span></span></span> <span><span><span class="pre">unusable</span></span></span> <span><span><span class="pre">because</span></span></span> <span><span><span class="pre">of</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">conflict</span></span></span> <span><span><span class="pre">with</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">notation.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.unusable-identifier" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="notation"><span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">with</span></span></span> <a class="reference internal" href="#grammar-token-tacdef_body"><span class="hole"><span class="pre">tacdef_body</span></span></a></span><span class="notation-sup"><span class="pre">*</span></span></span></span></code></dt><dd><p>Permits definition of mutually recursive tactics.</p>
 </dd>
 </dl>
@@ -4477,40 +4499,40 @@ printed without entries faster than the cutoff (in seconds).</p>
 </span></dt><dd><span>No more goals.
 </span></dd>
 <dt><span></span><span class="rocqdoc-keyword">Show</span><span> </span><span class="rocqdoc-keyword">Ltac</span><span> </span><span class="rocqdoc-var">Profile</span><span>.</span><span>
-</span></dt><dd><span>total time:      1.598s
+</span></dt><dd><span>total time:      0.809s
 
  tactic                                      local  total   calls       max
 ───────────────────────────────────────────┴──────┴──────┴───────┴─────────┘
-─tac --------------------------------------   0.1% 100.0%       1    1.598s
-─&lt;Corelib.Init.Tauto.with_uniform_flags&gt; --   0.0%  97.2%      26    0.074s
-─&lt;Corelib.Init.Tauto.tauto_gen&gt; -----------   0.0%  97.1%      26    0.074s
-─&lt;Corelib.Init.Tauto.tauto_intuitionistic&gt;    0.0%  97.1%      26    0.074s
-─t_tauto_intuit ---------------------------   0.1%  97.0%      26    0.074s
-─&lt;Corelib.Init.Tauto.simplif&gt; -------------  61.6%  93.4%      26    0.071s
-─&lt;Corelib.Init.Tauto.is_conj&gt; -------------  22.6%  22.6%   28756    0.003s
-─elim id ----------------------------------   5.3%   5.3%     650    0.004s
-─&lt;Corelib.Init.Tauto.axioms&gt; --------------   2.5%   3.5%       0    0.003s
-─lia --------------------------------------   0.2%   2.5%      28    0.020s
+─tac --------------------------------------   0.1% 100.0%       1    0.809s
+─&lt;Corelib.Init.Tauto.with_uniform_flags&gt; --   0.1%  97.2%      26    0.055s
+─&lt;Corelib.Init.Tauto.tauto_gen&gt; -----------   0.0%  97.2%      26    0.055s
+─&lt;Corelib.Init.Tauto.tauto_intuitionistic&gt;    0.1%  97.1%      26    0.055s
+─t_tauto_intuit ---------------------------   0.1%  97.0%      26    0.055s
+─&lt;Corelib.Init.Tauto.simplif&gt; -------------  59.2%  93.2%      26    0.054s
+─&lt;Corelib.Init.Tauto.is_conj&gt; -------------  26.5%  26.5%   28756    0.002s
+─elim id ----------------------------------   3.7%   3.7%     650    0.003s
+─&lt;Corelib.Init.Tauto.axioms&gt; --------------   2.4%   3.7%       0    0.001s
+─lia --------------------------------------   0.2%   2.5%      28    0.009s
 
  tactic                                        local  total   calls       max
 ─────────────────────────────────────────────┴──────┴──────┴───────┴─────────┘
-─tac ----------------------------------------   0.1% 100.0%       1    1.598s
- ├─&lt;Corelib.Init.Tauto.with_uniform_flags&gt; --   0.0%  97.2%      26    0.074s
- │└&lt;Corelib.Init.Tauto.tauto_gen&gt; -----------   0.0%  97.1%      26    0.074s
- │└&lt;Corelib.Init.Tauto.tauto_intuitionistic&gt;    0.0%  97.1%      26    0.074s
- │└t_tauto_intuit ---------------------------   0.1%  97.0%      26    0.074s
- │ ├─&lt;Corelib.Init.Tauto.simplif&gt; -----------  61.6%  93.4%      26    0.071s
- │ │ ├─&lt;Corelib.Init.Tauto.is_conj&gt; ---------  22.6%  22.6%   28756    0.003s
- │ │ └─elim id ------------------------------   5.3%   5.3%     650    0.004s
- │ └─&lt;Corelib.Init.Tauto.axioms&gt; ------------   2.5%   3.5%       0    0.003s
- └─lia --------------------------------------   0.2%   2.5%      28    0.020s
+─tac ----------------------------------------   0.1% 100.0%       1    0.809s
+ ├─&lt;Corelib.Init.Tauto.with_uniform_flags&gt; --   0.0%  97.2%      26    0.055s
+ │└&lt;Corelib.Init.Tauto.tauto_gen&gt; -----------   0.0%  97.2%      26    0.055s
+ │└&lt;Corelib.Init.Tauto.tauto_intuitionistic&gt;    0.1%  97.1%      26    0.055s
+ │└t_tauto_intuit ---------------------------   0.1%  97.0%      26    0.055s
+ │ ├─&lt;Corelib.Init.Tauto.simplif&gt; -----------  59.2%  93.2%      26    0.054s
+ │ │ ├─&lt;Corelib.Init.Tauto.is_conj&gt; ---------  26.5%  26.5%   28756    0.002s
+ │ │ └─elim id ------------------------------   3.7%   3.7%     650    0.003s
+ │ └─&lt;Corelib.Init.Tauto.axioms&gt; ------------   2.4%   3.7%       0    0.001s
+ └─lia --------------------------------------   0.2%   2.5%      28    0.009s
 </span></dd>
 <dt><span></span><span class="rocqdoc-keyword">Show</span><span> </span><span class="rocqdoc-keyword">Ltac</span><span> </span><span class="rocqdoc-var">Profile</span><span> &quot;lia&quot;.</span><span>
-</span></dt><dd><span>total time:      1.598s
+</span></dt><dd><span>total time:      0.809s
 
  tactic  local  total   calls       max
 ───────┴──────┴──────┴───────┴─────────┘
-─lia --   0.2%   2.5%      28    0.020s
+─lia --   0.2%   2.5%      28    0.009s
 
  tactic  local  total   calls       max
 ───────┴──────┴──────┴───────┴─────────┘

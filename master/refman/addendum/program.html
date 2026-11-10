@@ -1761,13 +1761,20 @@ e.g. using <a class="reference internal" href="#rocq:cmd.Next-Obligation" title=
 <a class="reference internal" href="../language/core/modules.html#rocq:attr.local" title="local"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">local</span></code></a> makes the setting last only for the current
 module. <a class="reference internal" href="../language/core/modules.html#rocq:attr.local" title="local"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">local</span></code></a> is the default inside sections while <a class="reference internal" href="../language/core/modules.html#rocq:attr.global" title="global"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">global</span></code></a>
 otherwise. <a class="reference internal" href="../language/core/modules.html#rocq:attr.export" title="export"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">export</span></code></a> and <a class="reference internal" href="../language/core/modules.html#rocq:attr.global" title="global"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">global</span></code></a> may be used together.</p>
-<p>When <a class="reference internal" href="../language/core/modules.html#rocq:attr.global" title="global"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">global</span></code></a> is used without <a class="reference internal" href="../language/core/modules.html#rocq:attr.export" title="export"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">export</span></code></a> and when no
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.deprecated-tacopt-without-locality">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[deprecated-tacopt-without-locality]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">The</span></span></span> <span><span><span class="pre">default</span></span></span> <span><span><span class="pre">and</span></span></span> <span><span><span class="pre">global</span></span></span> <span><span><span class="pre">localities</span></span></span> <span><span><span class="pre">have</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">special</span></span></span> <span><span><span class="pre">meaning.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.deprecated-tacopt-without-locality" title="Link to this definition"></a></dt>
+<dd><p>When <a class="reference internal" href="../language/core/modules.html#rocq:attr.global" title="global"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">global</span></code></a> is used without <a class="reference internal" href="../language/core/modules.html#rocq:attr.export" title="export"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">export</span></code></a> and when no
 explicit locality is used outside sections, the meaning is
-different from the usual meaning of <a class="reference internal" href="../language/core/modules.html#rocq:attr.global" title="global"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">global</span></code></a>: the command's
-effect persists after the current module is closed (as with the
-usual <a class="reference internal" href="../language/core/modules.html#rocq:attr.global" title="global"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">global</span></code></a>), but it is also reapplied when the module or
-any of its parents is imported. This will change in a future
-version.</p>
+different from the usual meaning of <a class="reference internal" href="../language/core/modules.html#rocq:attr.global" title="global"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">global</span></code></a>: the
+command's effect persists after the current module is closed (as
+with the usual <a class="reference internal" href="../language/core/modules.html#rocq:attr.global" title="global"><code class="xref rocq rocq-attr docutils literal notranslate"><span class="pre">global</span></code></a>), but it is also reapplied when
+the module or any of its parents is imported. This will change
+in a future version.</p>
+<p>This warning is also used by other commands which use the
+&quot;tactic valued option&quot; mechanism such as <a class="reference internal" href="../proofs/automatic-tactics/logic.html#rocq:opt.Firstorder-Solver" title="Firstorder Solver"><code class="xref rocq rocq-opt docutils literal notranslate"><span class="pre">Firstorder</span> <span class="pre">Solver</span></code></a>.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="rocq cmd">
@@ -1808,6 +1815,13 @@ provided and otherwise in the current module.</p>
 <dt class="sig sig-object rocq" id="rocq:cmd.Solve-Obligations">
 <em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Solve</span></span></span> <span><span><span class="pre">Obligations</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">of</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">with</span></span></span> <a class="reference internal" href="../proof-engine/ltac.html#grammar-token-ltac_expr"><span class="hole"><span class="pre">ltac_expr</span></span></a></span><span class="notation-sup"><span class="pre">?</span></span></span></span></span><a class="headerlink" href="#rocq:cmd.Solve-Obligations" title="Link to this definition"></a></dt>
 <dd><p>Tries to solve each obligation of <a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><code class="xref std std-token docutils literal notranslate"><span class="pre">ident</span></code></a> using the given <a class="reference internal" href="../proof-engine/ltac.html#grammar-token-ltac_expr"><code class="xref std std-token docutils literal notranslate"><span class="pre">ltac_expr</span></code></a> or the default one.</p>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.solve_obligation_error">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[solve_obligation_error]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Solve</span></span></span> <span><span><span class="pre">Obligations</span></span></span> <span><span><span class="pre">tactic</span></span></span> <span><span><span class="pre">returned</span></span></span> <span><span><span class="pre">error:</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-string"><span class="hole"><span class="pre">string</span></span></a></span></span><a class="headerlink" href="#rocq:warn.solve_obligation_error" title="Link to this definition"></a></dt>
+<dd><p>Solve Obligations currently turns errors from the tactic into
+this warning. This may change in the future.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="rocq cmd">

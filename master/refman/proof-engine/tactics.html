@@ -3056,6 +3056,11 @@ with the name <code class="docutils literal notranslate"><span class="notation">
 <dd><p>There are fewer than <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/basic.html#grammar-token-natural"><span class="hole"><span class="pre">natural</span></span></a></span></code> premises in the goal.</p>
 </dd></dl>
 
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.deprecated-intros-until-0">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[deprecated-intros-until-0]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">&quot;intros</span></span></span> <span><span><span class="pre">until</span></span></span> <span><span><span class="pre">0&quot;</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">deprecated,</span></span></span> <span><span><span class="pre">use</span></span></span> <span><span><span class="pre">&quot;intros</span></span></span> <span><span><span class="pre">*&quot;;</span></span></span> <span><span><span class="pre">instead</span></span></span> <span><span><span class="pre">of</span></span></span> <span><span><span class="pre">&quot;induction</span></span></span> <span><span><span class="pre">0&quot;</span></span></span> <span><span><span class="pre">and</span></span></span> <span><span><span class="pre">&quot;destruct</span></span></span> <span><span><span class="pre">0&quot;</span></span></span> <span><span><span class="pre">use</span></span></span> <span><span><span class="pre">explicitly</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">name.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.deprecated-intros-until-0" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="rocq tacn">
@@ -3090,6 +3095,17 @@ never fails.</p>
 <dt class="sig sig-object rocq" id="rocq:exn.‘ident’-is-used-in-the-hypothesis-‘ident’">
 <em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">used</span></span></span> <span><span><span class="pre">in</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">hypothesis</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a><span><span><span class="pre">.</span></span></span></span></span><a class="headerlink" href="#rocq:exn.‘ident’-is-used-in-the-hypothesis-‘ident’" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.clear-no-such-hyp">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[clear-no-such-hyp]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">No</span></span></span> <span><span><span class="pre">such</span></span></span> <span><span><span class="pre">hypothesis:</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a><span><span><span class="pre">.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.clear-no-such-hyp" title="Link to this definition"></a></dt>
+<dd><p>Calling <code class="docutils literal notranslate"><span class="pre">clear</span></code> with an unbound name usually produces an
+error, but in rare cases for backwards compatibility we need
+to produce a warning instead. The warning typically happens
+when the <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></code> is bound by <code class="docutils literal notranslate"><span class="pre">match</span> <span class="pre">goal</span></code>, e.g. in
+<code class="docutils literal notranslate"><span class="pre">match</span> <span class="pre">goal</span> <span class="pre">with</span> <span class="pre">x</span> <span class="pre">:</span> <span class="pre">_</span> <span class="pre">|-</span> <span class="pre">_</span> <span class="pre">=&gt;</span> <span class="pre">clear</span> <span class="pre">x;</span> <span class="pre">clear</span> <span class="pre">x</span> <span class="pre">end</span></code> the second <code class="docutils literal notranslate"><span class="pre">clear</span></code>
+used to succeed silently leaving the context unchanged and now produces the warning.</p>
+</dd></dl>
 
 </div></blockquote>
 </dd>

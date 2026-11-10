@@ -1422,6 +1422,12 @@ The last component of the filename must be a valid Rocq identifier as described 
 <a class="reference internal" href="../language/core/basic.html#lexical-conventions"><span class="std std-ref">Lexical conventions</span></a>; it should contain only letters, digits or
 underscores (_) with a &quot;.v&quot; suffix on the final component.
 For example <code class="docutils literal notranslate"><span class="pre">/bar/foo/toto.v</span></code> is valid, but <code class="docutils literal notranslate"><span class="pre">/bar/foo/to-to.v</span></code> is not.</p>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.file-no-extension">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[file-no-extension]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">File</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-string"><span class="hole"><span class="pre">string</span></span></a> <span><span><span class="pre">has</span></span></span> <span><span><span class="pre">been</span></span></span> <span><span><span class="pre">implicitly</span></span></span> <span><span><span class="pre">expanded</span></span></span> <span><span><span class="pre">to</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-string"><span class="hole"><span class="pre">string</span></span></a><span><span><span class="pre">.v</span></span></span></span></span><a class="headerlink" href="#rocq:warn.file-no-extension" title="Link to this definition"></a></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">c</span> <span class="pre">/path/foo</span></code> is interpreted as <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">c</span> <span class="pre">/path/foo.v</span></code>.</p>
+</dd></dl>
+
 <p>We recommend specifying a <a class="reference internal" href="../language/core/modules.html#term-logical-path"><span class="xref std std-term">logical path</span></a> (which is also the module name)
 with the <code class="docutils literal notranslate"><span class="pre">-R</span></code> or the <code class="docutils literal notranslate"><span class="pre">-Q</span></code> options.
 Generally we recommend using utilities such as <code class="docutils literal notranslate"><span class="pre">make</span></code> (using <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">makefile</span></code>
@@ -1555,6 +1561,17 @@ also add an implicit <code class="docutils literal notranslate"><span class="pre
 <dd><p>Rocq fails with this error if OCamlfind package <code class="docutils literal notranslate"><span class="pre">rocq-runtime</span></code> could not be found.</p>
 </dd></dl>
 
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.boot-ignored-coqlib">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[boot-ignored-coqlib]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Command</span></span></span> <span><span><span class="pre">line</span></span></span> <span><span><span class="pre">options</span></span></span> <span><span><span class="pre">-boot</span></span></span> <span><span><span class="pre">and</span></span></span> <span><span><span class="pre">-coqlib</span></span></span> <span><span><span class="pre">are</span></span></span> <span><span><span class="pre">incompatible,</span></span></span> <span><span><span class="pre">ignored</span></span></span> <span><span><span class="pre">-coqlib.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.boot-ignored-coqlib" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.deprecated-coq-env-var">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[deprecated-coq-env-var]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Deprecated</span></span></span> <span><span><span class="pre">environment</span></span></span> <span><span><span class="pre">variable</span></span></span> <span><span><span class="pre">COQ...,</span></span></span> <span><span><span class="pre">use</span></span></span> <span><span><span class="pre">ROCQ...</span></span></span> <span><span><span class="pre">instead.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.deprecated-coq-env-var" title="Link to this definition"></a></dt>
+<dd><p>Old names such as <code class="docutils literal notranslate"><span class="pre">COQLIB</span></code> are deprecated aliases of new names such as <code class="docutils literal notranslate"><span class="pre">ROCQLIB</span></code>.</p>
+</dd></dl>
+
 </section>
 <section id="customization-at-launch-time">
 <h2>Customization at launch time<a class="headerlink" href="#customization-at-launch-time" title="Link to this heading"></a></h2>
@@ -1630,7 +1647,7 @@ and should be harmless.</p>
 <a class="reference external" href="https://caml.inria.fr/pub/docs/manual-ocaml/libref/Gc.html#TYPEcontrol">default values</a>,
 except that <code class="docutils literal notranslate"><span class="pre">space_overhead</span></code> is set to 120 and <code class="docutils literal notranslate"><span class="pre">minor_heap_size</span></code> is set to 32Mwords
 (256MB with 64-bit executables or 128MB with 32-bit executables).</p>
-<p id="rocq-profile-components">Specifies which components produce events when using the
+<p id="rocq-profile-components"><code class="docutils literal notranslate"><span class="pre">$ROCQ_PROFILE_COMPONENTS</span></code> Specifies which components produce events when using the
 <a class="reference internal" href="#profiling"><span class="std std-ref">Profiling</span></a> system. It is a comma separated list of
 component names, possibly prefixed by <code class="docutils literal notranslate"><span class="pre">-</span></code> to negate it.</p>
 <p>If the variable is not set, all components produce events.
@@ -1638,6 +1655,13 @@ If it starts with <code class="docutils literal notranslate"><span class="pre">-
 Otherwise only components in the list produce events.</p>
 <p>Component names are internally defined, but <code class="docutils literal notranslate"><span class="pre">command</span></code> which corresponds to
 the interpretation of one command is particularly notable.</p>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.PATH-not-found">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[PATH-not-found]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Environment</span></span></span> <span><span><span class="pre">variable</span></span></span> <span><span><span class="pre">PATH</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">set</span></span></span></span></span><a class="headerlink" href="#rocq:warn.PATH-not-found" title="Link to this definition"></a></dt>
+<dd><p>This warning may be produced when looking for an executable in <code class="docutils literal notranslate"><span class="pre">$PATH</span></code>
+(currently only <code class="docutils literal notranslate"><span class="pre">csdp</span></code> for micromega is searched for this way).</p>
+</dd></dl>
+
 </section>
 <section id="command-line-options">
 <span id="id1"></span><h3>Command line options<a class="headerlink" href="#command-line-options" title="Link to this heading"></a></h3>
@@ -1672,6 +1696,28 @@ case.</p>
 the <a class="reference internal" href="../language/core/modules.html#term-logical-name"><span class="xref std std-term">logical name</span></a> of the package in <code class="docutils literal notranslate"><span class="pre">From</span></code> clause of the <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.Require" title="Require"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Require</span></code></a>
 command <em>or</em> provide a fully qualified name.</p>
 <p>The added loadpath is considered local, see <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.Print-LoadPath" title="Print LoadPath"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Print</span> <span class="pre">LoadPath</span></code></a>.</p>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.cannot-open-dir">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[cannot-open-dir]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Cannot</span></span></span> <span><span><span class="pre">open</span></span></span> <span><span><span class="pre">directory</span></span></span> <span><span><span class="pre">...</span></span></span></span></span><a class="headerlink" href="#rocq:warn.cannot-open-dir" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.cannot-open-path">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[cannot-open-path]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Cannot</span></span></span> <span><span><span class="pre">open</span></span></span> <span><span><span class="pre">...</span></span></span></span></span><a class="headerlink" href="#rocq:warn.cannot-open-path" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.cannot-use-directory">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[cannot-use-directory]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Directory</span></span></span> <span><span><span class="pre">...</span></span></span> <span><span><span class="pre">cannot</span></span></span> <span><span><span class="pre">be</span></span></span> <span><span><span class="pre">used</span></span></span> <span><span><span class="pre">as</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">Rocq</span></span></span> <span><span><span class="pre">identifier</span></span></span> <span><span><span class="pre">(skipped)</span></span></span></span></span><a class="headerlink" href="#rocq:warn.cannot-use-directory" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.overriding-logical-loadpath">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[overriding-logical-loadpath]</span></span></em> <span class="sig-name descname"><span class="notation"><a class="reference internal" href="../language/core/basic.html#grammar-token-string"><span class="hole"><span class="pre">string</span></span></a> <span><span><span class="pre">was</span></span></span> <span><span><span class="pre">previously</span></span></span> <span><span><span class="pre">bound</span></span></span> <span><span><span class="pre">to</span></span></span> <a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a><span><span><span class="pre">;</span></span></span> <span><span><span class="pre">it</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">remapped</span></span></span> <span><span><span class="pre">to</span></span></span> <a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></span><a class="headerlink" href="#rocq:warn.overriding-logical-loadpath" title="Link to this definition"></a></dt>
+<dd><p>This warning is produced when there are overlapping <code class="docutils literal notranslate"><span class="pre">-Q</span></code> (e.g.
+<code class="docutils literal notranslate"><span class="pre">-Q</span> <span class="pre">/path</span> <span class="pre">X</span> <span class="pre">-Q</span> <span class="pre">/path/subpath</span> <span class="pre">Y</span></code> remaps <code class="docutils literal notranslate"><span class="pre">/path/subpath</span></code> from <code class="docutils literal notranslate"><span class="pre">X.subpath</span></code> to <code class="docutils literal notranslate"><span class="pre">Y</span></code>).</p>
+</dd></dl>
+
 </li>
 <li><p><code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">-R</span></span></span> <span><span><span class="pre">directory</span></span></span> <span><span><span class="pre">dirpath</span></span></span></span></code>: Similar to <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">-Q</span></span></span> <span><span><span class="pre">directory</span></span></span> <span><span><span class="pre">dirpath</span></span></span></span></code>, but allows using
 <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.Require" title="Require"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Require</span></code></a> with a partially qualified name (i.e. without a <code class="docutils literal notranslate"><span class="pre">From</span></code> clause).</p></li>
@@ -1738,6 +1784,14 @@ See the <a class="reference internal" href="#interleave-command-line"><span clas
 order of command-line options.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">-load-vernac-object</span></span></span> <a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></code>: Obsolete synonym of <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">-require</span></span></span> <a class="reference internal" href="../language/core/modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a></span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">-batch</span></span></span></span></code>: Exit just after argument parsing. Available for <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">repl</span></code> only.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">-bytecode-compiler</span></span></span> <span class="alternative"><span class="alternative-block"><span><span><span class="pre">yes</span></span></span></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><span><span><span class="pre">no</span></span></span></span></span></span></code> Enable the <a class="reference internal" href="../proofs/writing-proofs/equality.html#rocq:tacn.vm_compute" title="vm_compute"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">vm_compute</span></code></a> reduction machine
+and precompilation to bytecode (stored inside <code class="docutils literal notranslate"><span class="pre">.vo</span></code> files).</p>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.bytecode-compiler-disabled">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[bytecode-compiler-disabled]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Bytecode</span></span></span> <span><span><span class="pre">compiler</span></span></span> <span><span><span class="pre">ies</span></span></span> <span><span><span class="pre">disabled,</span></span></span> <span><span><span class="pre">-bytecode-compiler</span></span></span> <span><span><span class="pre">option</span></span></span> <span><span><span class="pre">ignored.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.bytecode-compiler-disabled" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</li>
 <li><p><code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">-native-compiler</span></span></span> <span class="alternative"><span class="alternative-block"><span><span><span class="pre">yes</span></span></span></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><span><span><span class="pre">no</span></span></span></span><span class="alternative-separator"><span class="pre">​</span></span><span class="alternative-block"><span><span><span class="pre">ondemand</span></span></span></span></span></span></code>: Enable the <a class="reference internal" href="../proofs/writing-proofs/equality.html#rocq:tacn.native_compute" title="native_compute"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">native_compute</span></code></a>
 reduction machine and precompilation to <code class="docutils literal notranslate"><span class="pre">.cmxs</span></code> files for future use
 by <a class="reference internal" href="../proofs/writing-proofs/equality.html#rocq:tacn.native_compute" title="native_compute"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">native_compute</span></code></a>.
@@ -1748,13 +1802,24 @@ to have been precompiled beforehand. Setting <code class="docutils literal notra
 Setting <code class="docutils literal notranslate"><span class="pre">ondemand</span></code> enables <a class="reference internal" href="../proofs/writing-proofs/equality.html#rocq:tacn.native_compute" title="native_compute"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">native_compute</span></code></a>
 but disables precompilation; all missing dependencies will be recompiled
 every time <a class="reference internal" href="../proofs/writing-proofs/equality.html#rocq:tacn.native_compute" title="native_compute"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">native_compute</span></code></a> is called.</p>
-<div class="deprecated" id="native-compiler-options">
-<p><span class="versionmodified deprecated">Deprecated since version 8.14: </span>This flag has been deprecated in favor of calling <a class="reference internal" href="utilities.html#rocqnative"><span class="std std-ref">rocq native-precompile</span></a>. The
+<dl class="rocq warn" id="native-compiler-options">
+<dt class="sig sig-object rocq" id="rocq:warn.deprecated-native-compiler-option">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[deprecated-native-compiler-option]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">The</span></span></span> <span><span><span class="pre">native-compiler</span></span></span> <span><span><span class="pre">option</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">deprecated.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.deprecated-native-compiler-option" title="Link to this definition"></a></dt>
+<dd><div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 8.14.</span></p>
+</div>
+<p>This flag has been deprecated in favor of calling <a class="reference internal" href="utilities.html#rocqnative"><span class="std std-ref">rocq native-precompile</span></a>. The
 toolchain has been adapted to transparently rely on the latter, so if you
 use <a class="reference internal" href="utilities.html#rocq-makefile"><span class="std std-ref">Building a Rocq project with rocq makefile (details)</span></a> there is nothing to do. Otherwise you should
 substitute calls to <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">c</span> <span class="pre">-native-compiler</span> <span class="pre">yes</span></code> to calls to <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">compile</span></code> followed
 by <code class="docutils literal notranslate"><span class="pre">rocq</span> <span class="pre">native-precompile</span></code> on the resulting <code class="docutils literal notranslate"><span class="pre">vo</span></code> file.</p>
-</div>
+</dd></dl>
+
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.native-compiler-disabled">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[native-compiler-disabled]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Native</span></span></span> <span><span><span class="pre">compiler</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">disabled.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.native-compiler-disabled" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 <div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 8.13: </span>The default value is set at configure time,
 <code class="docutils literal notranslate"><span class="pre">-config</span></code> can be used to retrieve it.
@@ -1818,7 +1883,13 @@ All this can be summarized in the following table:</p>
 <li><p><code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">-native-output-dir</span></span></span> <span><span><span class="pre">dir</span></span></span></span></code>: Set the directory in which to put the aforementioned
 <code class="docutils literal notranslate"><span class="pre">.cmxs</span></code> for <a class="reference internal" href="../proofs/writing-proofs/equality.html#rocq:tacn.native_compute" title="native_compute"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">native_compute</span></code></a>. Defaults to <code class="docutils literal notranslate"><span class="pre">.coq-native</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">-output-directory</span></span></span> <span><span><span class="pre">dir</span></span></span></span></code>, <code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">-output-dir</span></span></span> <span><span><span class="pre">dir</span></span></span></span></code>: Sets the output directory for commands that
-write output to files, such as <a class="reference internal" href="../addendum/extraction.html#extraction"><span class="std std-ref">Program extraction</span></a> commands, <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.Redirect" title="Redirect"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Redirect</span></code></a> and <a class="reference internal" href="../addendum/universe-polymorphism.html#rocq:cmd.Print-Universes" title="Print Universes"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Print</span> <span class="pre">Universes</span></code></a>.</p></li>
+write output to files, such as <a class="reference internal" href="../addendum/extraction.html#extraction"><span class="std std-ref">Program extraction</span></a> commands, <a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.Redirect" title="Redirect"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Redirect</span></code></a> and <a class="reference internal" href="../addendum/universe-polymorphism.html#rocq:cmd.Print-Universes" title="Print Universes"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Print</span> <span class="pre">Universes</span></code></a>.</p>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.default-output-directory">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[default-output-directory]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Output</span></span></span> <span><span><span class="pre">directoty</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">unset,</span></span></span> <span><span><span class="pre">using</span></span></span> <a class="reference internal" href="../language/core/basic.html#grammar-token-string"><span class="hole"><span class="pre">string</span></span></a><span><span><span class="pre">.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.default-output-directory" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</li>
 <li><p><code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">-vos</span></span></span></span></code>: Indicate Rocq to skip the processing of opaque proofs
 (i.e., proofs ending with <a class="reference internal" href="../proofs/writing-proofs/proof-mode.html#rocq:cmd.Qed" title="Qed"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Qed</span></code></a> or <a class="reference internal" href="../proofs/writing-proofs/proof-mode.html#rocq:cmd.Admitted" title="Admitted"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Admitted</span></code></a>), output a <code class="docutils literal notranslate"><span class="pre">.vos</span></code> files
 instead of a <code class="docutils literal notranslate"><span class="pre">.vo</span></code> file, and to load <code class="docutils literal notranslate"><span class="pre">.vos</span></code> files instead of <code class="docutils literal notranslate"><span class="pre">.vo</span></code> files
@@ -1885,7 +1956,13 @@ except that a non existing file only produces a warning (so that the option can
 be uniformly used on older versions that didn't offer the compat file yet).
 Note that the <a class="reference internal" href="#interleave-command-line"><span class="std std-ref">explanations above</span></a> regarding the order of command-line
 options apply, and this could be relevant if you are resetting some
-of the compatibility options.</p></li>
+of the compatibility options.</p>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.compatibility-module-not-found">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[compatibility-module-not-found]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Did</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">find</span></span></span> <span><span><span class="pre">compatibility</span></span></span> <span><span><span class="pre">module</span></span></span> <span><span><span class="pre">...</span></span></span> <span><span><span class="pre">with</span></span></span> <span><span><span class="pre">prefix</span></span></span> <span><span><span class="pre">...</span></span></span></span></span><a class="headerlink" href="#rocq:warn.compatibility-module-not-found" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</li>
 <li><p><code class="docutils literal notranslate"><span class="notation"><span><span><span class="pre">-dump-glob</span></span></span> <span><span><span class="pre">file</span></span></span></span></code>: Dump references for global names in file <em>file</em>
 (to be used by rocq doc, see <a class="reference internal" href="../using/tools/coqdoc.html#rocqdoc"><span class="std std-ref">Documenting Rocq files with rocq doc</span></a>). By default, if <em>file.v</em> is being
 compiled, <em>file.glob</em> is used.</p></li>
@@ -2102,6 +2179,17 @@ always refer to the absurd proposition, what we guarantee is that
 there is no proof of this latter constant.</p>
 </aside>
 </aside>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.ambiguous-file-name">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[ambiguous-file-name]</span></span></em> <span class="sig-name descname"><span class="notation"><a class="reference internal" href="../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a><span><span><span class="pre">.vo</span></span></span> <span><span><span class="pre">has</span></span></span> <span><span><span class="pre">been</span></span></span> <span><span><span class="pre">found</span></span></span> <span><span><span class="pre">in</span></span></span> <span><span><span class="pre">[</span></span></span> <span><span><span class="pre">...</span></span></span> <span><span><span class="pre">];</span></span></span> <span><span><span class="pre">loading</span></span></span> <span><span><span class="pre">...</span></span></span></span></span><a class="headerlink" href="#rocq:warn.ambiguous-file-name" title="Link to this definition"></a></dt>
+<dd><p>This warning is produced when <code class="docutils literal notranslate"><span class="pre">rocqchk</span></code> is called on a module by
+logical name and the file that name refers to is ambiguous.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.Require" title="Require"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Require</span></code></a> handles ambiguity differently.</p>
+</div>
+</dd></dl>
+
 </section>
 </section>
 

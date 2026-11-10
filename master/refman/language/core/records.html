@@ -1912,6 +1912,32 @@ internally omitted parameters at printing time (even though they
 are absent in the actual AST manipulated by the kernel).</p>
 </dd></dl>
 
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.non-primitive-record">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[non-primitive-record]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">The</span></span></span> <span><span><span class="pre">record</span></span></span> <a class="reference internal" href="modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a> <span><span><span class="pre">could</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">be</span></span></span> <span><span><span class="pre">defined</span></span></span> <span><span><span class="pre">as</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">primitive</span></span></span> <span><span><span class="pre">record.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.non-primitive-record" title="Link to this definition"></a></dt>
+<dd><p>A record may not be primitive in the following cases:</p>
+<ul class="simple">
+<li><p>it has no projections, e.g. <code class="docutils literal notranslate"><span class="pre">Record</span> <span class="pre">R</span> <span class="pre">:=</span> <span class="pre">{}</span></code></p></li>
+<li><p>it has an anonymous projection, e.g. <code class="docutils literal notranslate"><span class="pre">Record</span> <span class="pre">R</span> <span class="pre">:=</span> <span class="pre">{</span> <span class="pre">_</span> <span class="pre">:</span> <span class="pre">nat</span> <span class="pre">}.</span></code>
+(because the current implementation of primitive projections
+requires them to have a name and a corresponding constant)</p></li>
+<li><p>it is not in <code class="docutils literal notranslate"><span class="pre">SProp</span></code> but all projections may be irrelevant, e.g.
+<code class="docutils literal notranslate"><span class="pre">Record</span> <span class="pre">R</span> <span class="pre">(P:SProp)</span> <span class="pre">:</span> <span class="pre">Set</span> <span class="pre">:=</span> <span class="pre">{</span> <span class="pre">p</span> <span class="pre">:</span> <span class="pre">P</span> <span class="pre">}</span></code>. This is forbiddent
+because <code class="docutils literal notranslate"><span class="pre">R</span></code> would be definitionally proof irrelevant without
+being in <code class="docutils literal notranslate"><span class="pre">SProp</span></code>, and implementing such proof irrelevant types
+would make the system slower.</p></li>
+<li><p>its projections cannot be defined due to elimination restrictions (i.e. it is squashed),
+e.g. <code class="docutils literal notranslate"><span class="pre">Record</span> <span class="pre">R</span> <span class="pre">:</span> <span class="pre">Prop</span> <span class="pre">:=</span> <span class="pre">{</span> <span class="pre">x</span> <span class="pre">:</span> <span class="pre">nat</span> <span class="pre">}.</span></code>.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.nonprimitive-projection-syntax">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[nonprimitive-projection-syntax]</span></span></em> <span class="sig-name descname"><span class="notation"><a class="reference internal" href="modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a> <span><span><span class="pre">used</span></span></span> <span><span><span class="pre">as</span></span></span> <span><span><span class="pre">a</span></span></span> <span><span><span class="pre">primitive</span></span></span> <span><span><span class="pre">projection</span></span></span> <span><span><span class="pre">but</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">not</span></span></span> <span><span><span class="pre">one.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.nonprimitive-projection-syntax" title="Link to this definition"></a></dt>
+<dd><p>This warning is off by default. When enabled, it triggers when the
+projection syntax <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="basic.html#grammar-token-term"><span class="hole"><span class="pre">term</span></span></a><span><span><span class="pre">.(</span></span></span><a class="reference internal" href="modules.html#grammar-token-qualid"><span class="hole"><span class="pre">qualid</span></span></a><span><span><span class="pre">)</span></span></span></span></code> is used with a non-primitive projection.</p>
+</dd></dl>
+
 <section id="reduction">
 <h3>Reduction<a class="headerlink" href="#reduction" title="Link to this heading"></a></h3>
 <p>The basic reduction rule of a primitive projection is

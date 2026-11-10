@@ -1892,11 +1892,23 @@ treating everything as hint opaque.</p>
 pattern in <code class="docutils literal notranslate"><span class="pre">Extern</span></code> hints whenever possible.)</p>
 </li>
 </ul>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.mismatched-hint-db">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[mismatched-hint-db]</span></span></em> <span class="sig-name descname"><span class="notation"><a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">already</span></span></span> <span><span><span class="pre">exists</span></span></span> <span><span><span class="pre">and</span></span></span> <span><span><span class="pre">is</span></span></span> <span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">not</span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span> <span><span><span class="pre">discriminated</span></span></span></span></span><a class="headerlink" href="#rocq:warn.mismatched-hint-db" title="Link to this definition"></a></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">HintDb</span></code> will not change whether a pre-existing database is
+discriminated.</p>
+</dd></dl>
+
 <dl class="rocq cmd">
 <dt class="sig sig-object rocq" id="rocq:cmd.Create-Rewrite-HintDb">
 <em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Create</span></span></span> <span><span><span class="pre">Rewrite</span></span></span> <span><span><span class="pre">HintDb</span></span></span> <a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></span><a class="headerlink" href="#rocq:cmd.Create-Rewrite-HintDb" title="Link to this definition"></a></dt>
 <dd><p>Like above, but creates a database for <a class="reference internal" href="#rocq:cmd.Hint-Rewrite" title="Hint Rewrite"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Hint</span> <span class="pre">Rewrite</span></code></a> declarations
 instead.</p>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.already-declared-rewrite-hint-db">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[already-declared-rewrite-hint-db]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Rewrite</span></span></span> <span><span><span class="pre">hint</span></span></span> <span><span><span class="pre">database</span></span></span> <a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a> <span><span><span class="pre">already</span></span></span> <span><span><span class="pre">exists.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.already-declared-rewrite-hint-db" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </section>
@@ -1957,9 +1969,26 @@ instead to use one or more databases specific to your development.</p>
 <span id="id1"></span><h2>Creating Hints<a class="headerlink" href="#creating-hints" title="Link to this heading"></a></h2>
 <blockquote>
 <div><p>The various <code class="docutils literal notranslate"><span class="pre">Hint</span></code> commands share these elements:</p>
-<p><code class="docutils literal notranslate"><span class="notation"><span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">:</span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span></span></code> specifies the hint database(s) to add to.
-<em>(Deprecated since version 8.10:</em> If no <a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><code class="xref std std-token docutils literal notranslate"><span class="pre">ident</span></code></a>s
-are given, the hint is added to the <code class="docutils literal notranslate"><span class="pre">core</span></code> database.)</p>
+<p><code class="docutils literal notranslate"><span class="notation"><span class="repeat-wrapper"><span class="repeat"><span><span><span class="pre">:</span></span></span> <span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span><span class="notation-sup"><span class="pre">+</span></span></span></span><span class="notation-sup"><span class="pre">?</span></span></span></span></code> specifies the hint database(s) to add to.</p>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.implicit-core-hint-db">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[implicit-core-hint-db]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Adding</span></span></span> <span><span><span class="pre">and</span></span></span> <span><span><span class="pre">removing</span></span></span> <span><span><span class="pre">hints</span></span></span> <span><span><span class="pre">in</span></span></span> <span><span><span class="pre">the</span></span></span> <span><span><span class="pre">core</span></span></span> <span><span><span class="pre">database</span></span></span> <span><span><span class="pre">implicitly</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">deprecated.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.implicit-core-hint-db" title="Link to this definition"></a></dt>
+<dd><div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 8.10.</span></p>
+</div>
+<p>If no <a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><code class="xref std std-token docutils literal notranslate"><span class="pre">ident</span></code></a>s are given, the hint is added to the <code class="docutils literal notranslate"><span class="pre">core</span></code> database.</p>
+</dd></dl>
+
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.implicit-create-hint-db">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[implicit-create-hint-db]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Implicitly</span></span></span> <span><span><span class="pre">declaring</span></span></span> <span><span><span class="pre">hint</span></span></span> <span><span><span class="pre">databases</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">deprecated.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.implicit-create-hint-db" title="Link to this definition"></a></dt>
+<dd><p>If a <code class="docutils literal notranslate"><span class="notation"><a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></code> is not a known hint database, it is automatically created.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 9.2.</span></p>
+</div>
+<p>Use <a class="reference internal" href="#rocq:cmd.Create-HintDb" title="Create HintDb"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Create</span> <span class="pre">HintDb</span></code></a> before adding hints to a database.</p>
+</dd></dl>
+
 <p>Hints in hint databases are ordered, which is the order in which they're
 tried, as shown by the <a class="reference internal" href="#rocq:cmd.Print-HintDb" title="Print HintDb"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Print</span> <span class="pre">HintDb</span></code></a> command.
 Hints with lower costs are tried first.  Hints with the same cost are tried
@@ -2591,6 +2620,15 @@ If no arrow is given, the default orientation is left to right (<code class="doc
 equalities) to the rewriting bases <code class="docutils literal notranslate"><span class="notation"><span class="repeat-wrapper"><span class="repeat"><a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span><span class="notation-sup"><span class="pre">*</span></span></span></span></code>.
 Note that the rewriting bases are distinct from the <a class="reference internal" href="#rocq:tacn.auto" title="auto"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">auto</span></code></a>
 hint bases and that <a class="reference internal" href="#rocq:tacn.auto" title="auto"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">auto</span></code></a> does not take them into account.</p>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.implicit-create-rewrite-hint-db">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[implicit-create-rewrite-hint-db]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Implicitly</span></span></span> <span><span><span class="pre">declaring</span></span></span> <span><span><span class="pre">Rewrite</span></span></span> <span><span><span class="pre">hint</span></span></span> <span><span><span class="pre">databases</span></span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">deprecated.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.implicit-create-rewrite-hint-db" title="Link to this definition"></a></dt>
+<dd><div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 9.2.</span></p>
+</div>
+<p>Use <a class="reference internal" href="#rocq:cmd.Create-Rewrite-HintDb" title="Create Rewrite HintDb"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Create</span> <span class="pre">Rewrite</span> <span class="pre">HintDb</span></code></a> first.</p>
+</dd></dl>
+
 <dl class="rocq cmd">
 <dt class="sig sig-object rocq" id="rocq:cmd.Print-Rewrite-HintDb">
 <em class="property"><span class="sigannot"><span class="pre">Command</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Print</span></span></span> <span><span><span class="pre">Rewrite</span></span></span> <span><span><span class="pre">HintDb</span></span></span> <a class="reference internal" href="../../language/core/basic.html#grammar-token-ident"><span class="hole"><span class="pre">ident</span></span></a></span></span><a class="headerlink" href="#rocq:cmd.Print-Rewrite-HintDb" title="Link to this definition"></a></dt>

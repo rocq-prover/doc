@@ -2160,6 +2160,11 @@ polymorphic universes.</p>
 <em class="property"><span class="sigannot"><span class="pre">Error</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Polymorphic</span></span></span> <span><span><span class="pre">universe</span></span></span> <span><span><span class="pre">constraints</span></span></span> <span><span><span class="pre">can</span></span></span> <span><span><span class="pre">only</span></span></span> <span><span><span class="pre">be</span></span></span> <span><span><span class="pre">declared</span></span></span> <span><span><span class="pre">inside</span></span></span> <span><span><span class="pre">sections,</span></span></span> <span><span><span class="pre">use</span></span></span> <span><span><span class="pre">Monomorphic</span></span></span> <span><span><span class="pre">Constraint</span></span></span> <span><span><span class="pre">instead</span></span></span></span></span><a class="headerlink" href="#rocq:exn.Polymorphic-universe-constraints-can-only-be-declared-inside-sections,-use-Monomorphic-Constraint-instead" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.redundant-elimination-constraint">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[redundant-elimination-constraint]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Redundant</span></span></span> <span><span><span class="pre">elimination</span></span></span> <span><span><span class="pre">constraint</span></span></span></span></span><a class="headerlink" href="#rocq:warn.redundant-elimination-constraint" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <section id="printing-universes">
@@ -2522,8 +2527,17 @@ quantify over <span class="term-defn"><span class="target" id="term-sort-qualiti
 sort qualities are called <span class="term-defn"><span class="target" id="term-sort-polymorphic"></span>sort polymorphic</span>. The generic universe
 constructor <code class="docutils literal notranslate"><span class="pre">Univ&#64;{s;l}</span></code> combines a sort quality <code class="docutils literal notranslate"><span class="pre">s</span></code> and a universe level <code class="docutils literal notranslate"><span class="pre">l</span></code>.
 We have the equivalences <code class="docutils literal notranslate"><span class="pre">Univ&#64;{Prop;_}</span> <span class="pre">=</span> <span class="pre">Prop</span></code>, <code class="docutils literal notranslate"><span class="pre">Univ&#64;{SProp;_}</span> <span class="pre">=</span> <span class="pre">SProp</span></code> and
-<code class="docutils literal notranslate"><span class="pre">Univ&#64;{Type;i}</span> <span class="pre">=</span> <span class="pre">Type&#64;{i}</span></code>. The syntax <code class="docutils literal notranslate"><span class="pre">Type&#64;{s;_}</span></code> is deprecated since version
-9.4, to avoid confusion with <code class="docutils literal notranslate"><span class="pre">Type&#64;{u}</span> <span class="pre">=</span> <span class="pre">Univ&#64;{Type;u}</span></code> in particular.</p>
+<code class="docutils literal notranslate"><span class="pre">Univ&#64;{Type;i}</span> <span class="pre">=</span> <span class="pre">Type&#64;{i}</span></code>.</p>
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.deprecated-type-sort-poly-syntax">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[deprecated-type-sort-poly-syntax]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Support</span></span></span> <span><span><span class="pre">for</span></span></span> <span><span><span class="pre">Type</span></span></span><span><span><span class="pre">&#64;</span></span></span><span class="curlies"><span class="pre">{</span><span><span><span class="pre">s;l</span></span></span><span class="pre">}</span></span> <span><span><span class="pre">is</span></span></span> <span><span><span class="pre">deprecated.</span></span></span></span></span><a class="headerlink" href="#rocq:warn.deprecated-type-sort-poly-syntax" title="Link to this definition"></a></dt>
+<dd><div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 9.4.</span></p>
+</div>
+<p>The syntax <code class="docutils literal notranslate"><span class="pre">Type&#64;{s;_}</span></code> is deprecated to avoid confusion with
+<code class="docutils literal notranslate"><span class="pre">Type&#64;{u}</span> <span class="pre">=</span> <span class="pre">Univ&#64;{Type;u}</span></code> in particular.</p>
+</dd></dl>
+
 <div class="rocqtop literal-block docutils container">
 <span></span><dl>
 <dt><span></span><span class="rocqdoc-keyword">Polymorphic Definition</span><span> </span><span class="rocqdoc-var">sort&#64;</span><span>{</span><span class="rocqdoc-var">s</span><span> ; </span><span class="rocqdoc-var">u</span><span>} := </span><span class="rocqdoc-var">Univ&#64;</span><span>{</span><span class="rocqdoc-var">s</span><span>;</span><span class="rocqdoc-var">u</span><span>}.</span><span>
@@ -3235,6 +3249,15 @@ satisfy the criterion to be template polymorphic.</p>
 <p>When <code class="docutils literal notranslate"><span class="pre">universes(template=no)</span></code> is used, it will prevent an
 inductive type from being template polymorphic, even if the <a class="reference internal" href="#rocq:flag.Auto-Template-Polymorphism" title="Auto Template Polymorphism"><code class="xref rocq rocq-flag docutils literal notranslate"><span class="pre">Auto</span>
 <span class="pre">Template</span> <span class="pre">Polymorphism</span></code></a> flag is on.</p>
+</dd></dl>
+
+<dl class="rocq warn">
+<dt class="sig sig-object rocq" id="rocq:warn.bad-template-constraint">
+<em class="property"><span class="sigannot"><span class="pre">Warning</span> <span class="pre">[bad-template-constraint]</span></span></em> <span class="sig-name descname"><span class="notation"><span><span><span class="pre">Adding</span></span></span> <span><span><span class="pre">constraints</span></span></span> <span><span><span class="pre">involving</span></span></span> <span><span><span class="pre">global</span></span></span> <span><span><span class="pre">template</span></span></span> <span><span><span class="pre">universes:</span></span></span> <span><span><span class="pre">...</span></span></span></span></span><a class="headerlink" href="#rocq:warn.bad-template-constraint" title="Link to this definition"></a></dt>
+<dd><p>This warning is disabled by default. Turn it on to help find where
+constraints involving template universes are generated (such
+constraints generally indicate that the template inductive should
+be eta expanded).</p>
 </dd></dl>
 
 </section>
