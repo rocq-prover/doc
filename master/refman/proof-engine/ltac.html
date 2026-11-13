@@ -752,6 +752,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../addendum/generalized-rewriting.html#subrelations">Subrelations</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../addendum/generalized-rewriting.html#constant-unfolding-during-rewriting">Constant unfolding during rewriting</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../addendum/generalized-rewriting.html#constant-unfolding-during-proper-instance-search">Constant unfolding during <code class="docutils literal notranslate"><span class="pre">Proper</span></code>-instance search</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../addendum/generalized-rewriting.html#declaring-the-parameters-of-morphisms">Declaring the parameters of morphisms</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../addendum/generalized-rewriting.html#strategies-for-rewriting">Strategies for rewriting</a><ul>
@@ -4500,40 +4501,40 @@ printed without entries faster than the cutoff (in seconds).</p>
 </span></dt><dd><span>No more goals.
 </span></dd>
 <dt><span></span><span class="rocqdoc-keyword">Show</span><span> </span><span class="rocqdoc-keyword">Ltac</span><span> </span><span class="rocqdoc-var">Profile</span><span>.</span><span>
-</span></dt><dd><span>total time:      1.138s
+</span></dt><dd><span>total time:      0.849s
 
  tactic                                      local  total   calls       max
 ───────────────────────────────────────────┴──────┴──────┴───────┴─────────┘
-─tac --------------------------------------   0.1% 100.0%       1    1.138s
-─&lt;Corelib.Init.Tauto.with_uniform_flags&gt; --   0.0%  96.9%      26    0.085s
-─&lt;Corelib.Init.Tauto.tauto_gen&gt; -----------   0.0%  96.9%      26    0.085s
-─&lt;Corelib.Init.Tauto.tauto_intuitionistic&gt;    0.1%  96.8%      26    0.085s
-─t_tauto_intuit ---------------------------   0.1%  96.7%      26    0.085s
-─&lt;Corelib.Init.Tauto.simplif&gt; -------------  62.0%  93.0%      26    0.084s
-─&lt;Corelib.Init.Tauto.is_conj&gt; -------------  23.7%  23.7%   28756    0.000s
-─elim id ----------------------------------   3.9%   3.9%     650    0.005s
-─&lt;Corelib.Init.Tauto.axioms&gt; --------------   2.4%   3.6%       0    0.002s
-─lia --------------------------------------   0.2%   2.8%      28    0.014s
+─tac --------------------------------------   0.1% 100.0%       1    0.849s
+─&lt;Corelib.Init.Tauto.with_uniform_flags&gt; --   0.1%  97.2%      26    0.065s
+─&lt;Corelib.Init.Tauto.tauto_gen&gt; -----------   0.0%  97.1%      26    0.065s
+─&lt;Corelib.Init.Tauto.tauto_intuitionistic&gt;    0.1%  97.1%      26    0.065s
+─t_tauto_intuit ---------------------------   0.1%  96.9%      26    0.065s
+─&lt;Corelib.Init.Tauto.simplif&gt; -------------  59.4%  93.3%      26    0.064s
+─&lt;Corelib.Init.Tauto.is_conj&gt; -------------  25.8%  25.8%   28756    0.003s
+─elim id ----------------------------------   4.0%   4.0%     650    0.003s
+─&lt;Corelib.Init.Tauto.axioms&gt; --------------   2.3%   3.6%       0    0.001s
+─lia --------------------------------------   0.2%   2.5%      28    0.009s
 
  tactic                                        local  total   calls       max
 ─────────────────────────────────────────────┴──────┴──────┴───────┴─────────┘
-─tac ----------------------------------------   0.1% 100.0%       1    1.138s
- ├─&lt;Corelib.Init.Tauto.with_uniform_flags&gt; --   0.0%  96.9%      26    0.085s
- │└&lt;Corelib.Init.Tauto.tauto_gen&gt; -----------   0.0%  96.8%      26    0.085s
- │└&lt;Corelib.Init.Tauto.tauto_intuitionistic&gt;    0.1%  96.8%      26    0.085s
- │└t_tauto_intuit ---------------------------   0.1%  96.7%      26    0.085s
- │ ├─&lt;Corelib.Init.Tauto.simplif&gt; -----------  62.0%  93.0%      26    0.084s
- │ │ ├─&lt;Corelib.Init.Tauto.is_conj&gt; ---------  23.7%  23.7%   28756    0.000s
- │ │ └─elim id ------------------------------   3.9%   3.9%     650    0.005s
- │ └─&lt;Corelib.Init.Tauto.axioms&gt; ------------   2.4%   3.6%       0    0.002s
- └─lia --------------------------------------   0.2%   2.8%      28    0.014s
+─tac ----------------------------------------   0.1% 100.0%       1    0.849s
+ ├─&lt;Corelib.Init.Tauto.with_uniform_flags&gt; --   0.0%  97.2%      26    0.065s
+ │└&lt;Corelib.Init.Tauto.tauto_gen&gt; -----------   0.0%  97.1%      26    0.065s
+ │└&lt;Corelib.Init.Tauto.tauto_intuitionistic&gt;    0.1%  97.1%      26    0.065s
+ │└t_tauto_intuit ---------------------------   0.1%  96.9%      26    0.065s
+ │ ├─&lt;Corelib.Init.Tauto.simplif&gt; -----------  59.4%  93.3%      26    0.064s
+ │ │ ├─&lt;Corelib.Init.Tauto.is_conj&gt; ---------  25.8%  25.8%   28756    0.003s
+ │ │ └─elim id ------------------------------   4.0%   4.0%     650    0.003s
+ │ └─&lt;Corelib.Init.Tauto.axioms&gt; ------------   2.3%   3.6%       0    0.001s
+ └─lia --------------------------------------   0.2%   2.5%      28    0.009s
 </span></dd>
 <dt><span></span><span class="rocqdoc-keyword">Show</span><span> </span><span class="rocqdoc-keyword">Ltac</span><span> </span><span class="rocqdoc-var">Profile</span><span> &quot;lia&quot;.</span><span>
-</span></dt><dd><span>total time:      1.138s
+</span></dt><dd><span>total time:      0.849s
 
  tactic  local  total   calls       max
 ───────┴──────┴──────┴───────┴─────────┘
-─lia --   0.2%   2.8%      28    0.014s
+─lia --   0.2%   2.5%      28    0.009s
 
  tactic  local  total   calls       max
 ───────┴──────┴──────┴───────┴─────────┘

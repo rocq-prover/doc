@@ -752,6 +752,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#subrelations">Subrelations</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#constant-unfolding-during-rewriting">Constant unfolding during rewriting</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#constant-unfolding-during-proper-instance-search">Constant unfolding during <code class="docutils literal notranslate"><span class="pre">Proper</span></code>-instance search</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#declaring-the-parameters-of-morphisms">Declaring the parameters of morphisms</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#strategies-for-rewriting">Strategies for rewriting</a><ul>
@@ -2620,6 +2621,124 @@ hint database <code class="docutils literal notranslate"><span class="pre">typec
 </div></blockquote>
 <p>For more information, see <a class="reference internal" href="type-classes.html#rocq:cmd.Typeclasses-Opaque" title="Typeclasses Opaque"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">Typeclasses</span> <span class="pre">Opaque</span></code></a> and <a class="reference internal" href="type-classes.html#rocq:tacn.typeclasses-eauto" title="typeclasses eauto"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">typeclasses</span>
 <span class="pre">eauto</span></code></a>.</p>
+</section>
+<section id="declaring-the-parameters-of-morphisms">
+<span id="morphism-parameters"></span><h3>Declaring the parameters of morphisms<a class="headerlink" href="#declaring-the-parameters-of-morphisms" title="Link to this heading"></a></h3>
+<p>The class <code class="docutils literal notranslate"><span class="pre">Params</span></code> of <code class="docutils literal notranslate"><span class="pre">Classes.Morphisms</span></code> declares how many leading
+arguments of a <a class="reference internal" href="../language/core/definitions.html#term-constant"><span class="xref std std-term">constant</span></a> are parameters of the morphisms it defines,
+i.e. arguments that are never rewritten:</p>
+<div class="rocqdoc literal-block docutils container">
+<span><span></span><span class="rocqdoc-keyword">Class</span><span> </span><span class="rocqdoc-var">Params</span><span> {</span><span class="rocqdoc-var">A</span><span> : </span><span class="rocqdoc-keyword">Type</span><span>} (</span><span class="rocqdoc-var">from</span><span> : </span><span class="rocqdoc-var">A</span><span>) (</span><span class="rocqdoc-var">arity</span><span> : </span><span class="rocqdoc-var">nat</span><span>).</span><span>
+#[</span><span class="rocqdoc-var">global</span><span>] </span><span class="rocqdoc-keyword">Instance</span><span> </span><span class="rocqdoc-var">eq_pars</span><span> : </span><span class="rocqdoc-var">Params</span><span> (&#64;</span><span class="rocqdoc-var">eq</span><span>) 1 := {}.</span><span>
+</span></span></div>
+<p>A missing <code class="docutils literal notranslate"><span class="pre">Params</span></code> instance never makes rewriting fail, but it can make
+<a class="reference internal" href="../proofs/writing-proofs/equality.html#rocq:tacn.rewrite" title="rewrite"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">rewrite</span></code></a> and <a class="reference internal" href="#rocq:tacn.setoid_rewrite" title="setoid_rewrite"><code class="xref rocq rocq-tacn docutils literal notranslate"><span class="pre">setoid_rewrite</span></code></a> considerably slower.</p>
+<p>When rewriting under an application <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">f</span></span> <span class="name"><span class="pre">a1</span></span> <span class="name builtin pseudo"><span class="pre">…</span></span> <span class="name"><span class="pre">ak</span></span></code>, the morphism considered is
+<code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">f</span></span></code> applied to all the arguments before the first one being rewritten, and
+the rewriting constraint is a goal such as <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">Proper</span></span> <span class="operator"><span class="pre">(</span></span><span class="name"><span class="pre">R1</span></span> <span class="operator"><span class="pre">==&gt;</span></span> <span class="name builtin pseudo"><span class="pre">…</span></span> <span class="operator"><span class="pre">==&gt;</span></span> <span class="name"><span class="pre">impl</span></span><span class="operator"><span class="pre">)</span></span> <span class="operator"><span class="pre">(</span></span><span class="name"><span class="pre">f</span></span> <span class="name"><span class="pre">a1</span></span> <span class="name builtin pseudo"><span class="pre">…</span></span> <span class="name"><span class="pre">aj</span></span><span class="operator"><span class="pre">)</span></span></code>.
+When no instance matches it directly, proof search falls back on a hint from
+<code class="docutils literal notranslate"><span class="pre">Classes.Morphisms</span></code> that decomposes partial applications, before trying
+subrelations. On a goal <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">Proper</span></span> <span class="name"><span class="pre">R</span></span> <span class="operator"><span class="pre">(</span></span><span class="name"><span class="pre">f</span></span> <span class="name"><span class="pre">a1</span></span> <span class="name builtin pseudo"><span class="pre">…</span></span> <span class="name"><span class="pre">ak</span></span><span class="operator"><span class="pre">)</span></span></code>, this hint behaves as follows:</p>
+<ul class="simple">
+<li><p>If there is an instance <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">Params</span></span> <span class="operator"><span class="pre">(&#64;</span></span><span class="name"><span class="pre">f</span></span><span class="operator"><span class="pre">)</span></span> <span class="name"><span class="pre">n</span></span></code> and <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">k</span></span> <span class="operator"><span class="pre">&gt;</span></span> <span class="name"><span class="pre">n</span></span></code>, the <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">k</span></span> <span class="operator"><span class="pre">-</span></span> <span class="name"><span class="pre">n</span></span></code>
+trailing arguments are removed at once, each of them being required to be
+related to itself (through <code class="docutils literal notranslate"><span class="pre">ProperProxy</span></code>), and the search continues with
+<code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">Proper</span></span> <span class="operator"><span class="pre">(</span></span><span class="name"><span class="pre">Rn</span></span><span class="operator"><span class="pre">+</span></span><span class="literal number integer"><span class="pre">1</span></span> <span class="operator"><span class="pre">==&gt;</span></span> <span class="name builtin pseudo"><span class="pre">…</span></span> <span class="operator"><span class="pre">==&gt;</span></span> <span class="name"><span class="pre">Rk</span></span> <span class="operator"><span class="pre">==&gt;</span></span> <span class="name"><span class="pre">R</span></span><span class="operator"><span class="pre">)</span></span> <span class="operator"><span class="pre">(</span></span><span class="name"><span class="pre">f</span></span> <span class="name"><span class="pre">a1</span></span> <span class="name builtin pseudo"><span class="pre">…</span></span> <span class="name"><span class="pre">an</span></span><span class="operator"><span class="pre">)</span></span></code>.</p></li>
+<li><p>If there is an instance <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">Params</span></span> <span class="operator"><span class="pre">(&#64;</span></span><span class="name"><span class="pre">f</span></span><span class="operator"><span class="pre">)</span></span> <span class="name"><span class="pre">n</span></span></code> and <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">k</span></span> <span class="operator"><span class="pre">≤</span></span> <span class="name"><span class="pre">n</span></span></code>, the hint fails
+immediately.</p></li>
+<li><p>If there is no such instance, a single trailing argument is removed and the
+hint applies again on the resulting goal, down to the bare constant. This
+also removes type arguments and typeclass instances, and produces goals such
+as <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">Proper</span></span> <span class="operator"><span class="pre">?</span></span><span class="name"><span class="pre">R</span></span> <span class="operator"><span class="pre">(&#64;</span></span><span class="name"><span class="pre">f</span></span> <span class="name"><span class="pre">A</span></span><span class="operator"><span class="pre">)</span></span></code> where the relation <code class="code Coq docutils literal notranslate"><span class="operator"><span class="pre">?</span></span><span class="name"><span class="pre">R</span></span></code> is unconstrained. Such
+goals match every <code class="docutils literal notranslate"><span class="pre">Proper</span></code> instance in scope, so the search can become very
+expensive, and it usually fails in the end.</p></li>
+</ul>
+<p>A typical trigger is a morphism declared with <code class="docutils literal notranslate"><span class="pre">iff</span></code> as output relation, used
+to rewrite in a hypothesis, which requires <code class="docutils literal notranslate"><span class="pre">impl</span></code>: the direct match fails,
+the decomposition of partial applications is explored, and only then is the
+instance found through the subrelation from <code class="docutils literal notranslate"><span class="pre">iff</span></code> to <code class="docutils literal notranslate"><span class="pre">impl</span></code>.</p>
+<p>In the output of <a class="reference internal" href="type-classes.html#rocq:flag.Typeclasses-Debug" title="Typeclasses Debug"><code class="xref rocq rocq-flag docutils literal notranslate"><span class="pre">Typeclasses</span> <span class="pre">Debug</span></code></a>, a missing instance shows up as a
+failed goal <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">Params</span></span> <span class="operator"><span class="pre">(&#64;</span></span><span class="name"><span class="pre">f</span></span><span class="operator"><span class="pre">)</span></span> <span class="operator"><span class="pre">?</span></span><span class="name"><span class="pre">n</span></span></code>, followed by goals <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">Proper</span></span> <span class="operator"><span class="pre">?</span></span><span class="name"><span class="pre">R</span></span> <span class="operator"><span class="pre">(&#64;</span></span><span class="name"><span class="pre">f</span></span> <span class="name builtin pseudo"><span class="pre">…</span></span><span class="operator"><span class="pre">)</span></span></code> where
+<code class="code Coq docutils literal notranslate"><span class="operator"><span class="pre">?</span></span><span class="name"><span class="pre">R</span></span></code> is an unconstrained existential variable.</p>
+<dl>
+<dt>When to declare a <code class="docutils literal notranslate"><span class="pre">Params</span></code> instance</dt><dd><p>Declare <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">Params</span></span> <span class="operator"><span class="pre">(&#64;</span></span><span class="name"><span class="pre">f</span></span><span class="operator"><span class="pre">)</span></span> <span class="name"><span class="pre">n</span></span></code> when the following conditions hold:</p>
+<ul class="simple">
+<li><p><code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">f</span></span></code> has leading parameters: types, typeclass instances, structure or
+record arguments, or section variables over which <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">f</span></span></code> was generalized
+at the end of its section. Functions without such parameters, like
+<code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">Nat.add</span></span></code>, do not need an instance.</p></li>
+<li><p>Morphisms for <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">f</span></span></code> are declared on <code class="code Coq docutils literal notranslate"><span class="operator"><span class="pre">&#64;</span></span><span class="name"><span class="pre">f</span></span> <span class="name"><span class="pre">p1</span></span> <span class="name builtin pseudo"><span class="pre">…</span></span> <span class="name"><span class="pre">pn</span></span></code>, i.e. on <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">f</span></span></code>
+applied to exactly its parameters.</p></li>
+<li><p>Rewriting happens under <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">f</span></span></code> in situations where these morphisms do not
+match directly, typically when <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">f</span></span></code> is a predicate whose morphisms have
+output relation <code class="docutils literal notranslate"><span class="pre">iff</span></code>.</p></li>
+</ul>
+<p>Relations with parameters are a common case of the last condition. Rewriting
+with such a relation in a hypothesis relies on the instance
+<code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">Proper</span></span> <span class="operator"><span class="pre">(</span></span><span class="name"><span class="pre">R</span></span> <span class="operator"><span class="pre">==&gt;</span></span> <span class="name"><span class="pre">R</span></span> <span class="operator"><span class="pre">==&gt;</span></span> <span class="name"><span class="pre">iff</span></span><span class="operator"><span class="pre">)</span></span> <span class="name"><span class="pre">R</span></span></code> derived for partial equivalence relations,
+whose output relation is <code class="docutils literal notranslate"><span class="pre">iff</span></code>. This is why <code class="docutils literal notranslate"><span class="pre">Classes.Morphisms</span></code> declares
+<code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">Params</span></span> <span class="operator"><span class="pre">(&#64;</span></span><span class="name"><span class="pre">eq</span></span><span class="operator"><span class="pre">)</span></span> <span class="literal number integer"><span class="pre">1</span></span></code>.</p>
+<p>Declaring an instance where the morphisms always match directly is harmless,
+but does not speed anything up.</p>
+</dd>
+<dt>Choosing the arity</dt><dd><p>The arity is the number of leading arguments of <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">f</span></span></code> that are never
+rewritten. It should be the number of arguments to which the declared
+morphisms apply <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">f</span></span></code>. All the binders of the constant count, including
+implicit and generalized ones, and the section variables used by <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">f</span></span></code>; use
+<a class="reference internal" href="../proof-engine/vernacular-commands.html#rocq:cmd.About" title="About"><code class="xref rocq rocq-cmd docutils literal notranslate"><span class="pre">About</span></code></a> to check them once the section is closed.</p>
+<ul class="simple">
+<li><p>For a field of a class with a single field (which is defined as a constant
+rather than a record projection), the arity is the number of parameters of
+the class plus one, for the instance.</p></li>
+<li><p>For a record projection, the arity is the number of parameters of the
+record plus one, for the record itself.</p></li>
+</ul>
+<p>An arity that is too small brings back the unconstrained search on some
+partial applications. An arity that is too large prevents the decomposition
+of partial applications when one of the extra arguments is rewritten, so
+that rewriting may fail where it previously succeeded.</p>
+</dd>
+<dt>Declaring the instance</dt><dd><p>The instance must mention the bare constant, as in <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">Params</span></span> <span class="operator"><span class="pre">(&#64;</span></span><span class="name"><span class="pre">f</span></span><span class="operator"><span class="pre">)</span></span> <span class="name"><span class="pre">n</span></span></code>, and it
+must be declared outside of any section over whose variables <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">f</span></span></code> is
+generalized. Inside such a section, <code class="code Coq docutils literal notranslate"><span class="operator"><span class="pre">&#64;</span></span><span class="name"><span class="pre">f</span></span></code> does not take these variables as
+arguments yet: at the end of the section, the instance is generalized into
+<code class="code Coq docutils literal notranslate"><span class="keyword"><span class="pre">forall</span></span> <span class="name"><span class="pre">x1</span></span> <span class="name builtin pseudo"><span class="pre">…</span></span> <span class="name"><span class="pre">xm</span></span><span class="operator"><span class="pre">,</span></span> <span class="name"><span class="pre">Params</span></span> <span class="operator"><span class="pre">(&#64;</span></span><span class="name"><span class="pre">f</span></span> <span class="name"><span class="pre">x1</span></span> <span class="name builtin pseudo"><span class="pre">…</span></span> <span class="name"><span class="pre">xm</span></span><span class="operator"><span class="pre">)</span></span> <span class="name"><span class="pre">n</span></span></code>, which never matches the bare
+constant, so the instance has no effect. As for any instance, its locality
+must make it available wherever rewriting happens. For <code class="docutils literal notranslate"><span class="pre">Type</span></code>-valued
+relations, use the class <code class="docutils literal notranslate"><span class="pre">Params</span></code> of <code class="docutils literal notranslate"><span class="pre">Classes.CMorphisms</span></code> instead.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Example: Declaring the parameters of an operation</p>
+<div class="rocqtop literal-block docutils container">
+<span></span><dl class="simple">
+<dt><span></span><span class="rocqdoc-keyword">From</span><span> </span><span class="rocqdoc-var">Corelib</span><span> </span><span class="rocqdoc-keyword">Require</span><span> </span><span class="rocqdoc-keyword">Import</span><span> </span><span class="rocqdoc-var">Morphisms</span><span>.</span><span>
+</span></dt><dt><span></span><span>
+</span><span class="rocqdoc-keyword">Class</span><span> </span><span class="rocqdoc-var">Op</span><span> (</span><span class="rocqdoc-var">A</span><span> : </span><span class="rocqdoc-keyword">Type</span><span>) := </span><span class="rocqdoc-var">op</span><span> : </span><span class="rocqdoc-var">A</span><span> -&gt; </span><span class="rocqdoc-var">A</span><span> -&gt; </span><span class="rocqdoc-var">A</span><span>.</span><span>
+</span></dt></dl>
+<span></span><dl>
+<dt><span></span><span class="rocqdoc-keyword">About</span><span> </span><span class="rocqdoc-var">op</span><span>.</span><span>
+</span></dt><dd><span>op : </span><span class="ansi-bold">forall</span><span> {A : </span><span class="ansi-fg-yellow ansi-bold">Type</span><span>}, Op A</span><span> -&gt;</span><span> A</span><span> -&gt;</span><span> A</span><span> -&gt;</span><span> A
+
+op is not universe polymorphic
+Arguments </span><span class="ansi-fg-light-green">op</span><span> {A}%_type_scope {Op} _ _
+op is transparent
+Expands to: Constant Top.op
+Declared in toplevel input, characters 4810-4812
+</span></dd>
+</dl>
+</div>
+<p>The constant <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">op</span></span></code> has two parameters, the type <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">A</span></span></code> and the instance
+of <code class="code Coq docutils literal notranslate"><span class="name"><span class="pre">Op</span></span> <span class="name"><span class="pre">A</span></span></code>, so morphisms for it are declared on terms of the form
+<code class="code Coq docutils literal notranslate"><span class="operator"><span class="pre">&#64;</span></span><span class="name"><span class="pre">op</span></span> <span class="name"><span class="pre">A</span></span> <span class="name"><span class="pre">opA</span></span></code>, and its parameters are declared as follows.</p>
+<div class="rocqtop literal-block docutils container">
+<span></span><dl>
+<dt><span>#[</span><span class="rocqdoc-var">global</span><span>] </span><span class="rocqdoc-keyword">Instance</span><span> </span><span class="rocqdoc-var">op_params</span><span> : </span><span class="rocqdoc-var">Params</span><span> (&#64;</span><span class="rocqdoc-var">op</span><span>) 2 := {}.</span><span>
+</span></dt><dd class="rocqtop-hidden"><span>op_params is defined
+</span></dd>
+</dl>
+</div>
+</div>
 </section>
 </section>
 <section id="strategies-for-rewriting">
